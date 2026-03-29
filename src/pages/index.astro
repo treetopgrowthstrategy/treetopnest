@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Treetop Growth Strategy | Wholesale Sales for Specialty Coffee Roasters"
+  description="Treetop Growth Strategy generates wholesale accounts for specialty coffee roasters. Commission-only. No retainer. You only pay when we close."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-brand-border bg-brand-cream/95 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <span class="font-display font-bold text-lg text-brand-dark">Treetop <span class="text-brand-green">Growth</span></span>
+      <a
+        href="https://cal.com"
+        class="bg-brand-green text-white font-body font-bold text-sm px-5 py-2.5 rounded-full hover:bg-brand-dark transition-all"
+      >
+        Let's Talk
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col justify-center pt-16 px-6 bg-brand-cream">
+    <div class="max-w-6xl mx-auto w-full py-24">
+      <div class="inline-flex items-center gap-2 border border-brand-border rounded-full px-4 py-1.5 mb-8 bg-white/60">
+        <span class="text-sm text-brand-accent font-body">☕ Specialty Coffee Wholesale Sales</span>
+      </div>
+
+      <h1 class="font-display font-black text-5xl md:text-7xl leading-[1.05] tracking-tight mb-6 max-w-4xl text-brand-dark">
+        We Sell Your Coffee.<br />
+        <span class="text-brand-green">You Only Pay When We Close.</span>
+      </h1>
+
+      <p class="text-brand-brown text-xl md:text-2xl font-body font-light max-w-2xl mb-10 leading-relaxed">
+        Treetop Growth Strategy generates wholesale café and restaurant accounts for specialty coffee roasters — with no retainer, no monthly fee, and zero risk. Commission-only.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="https://cal.com"
+          class="bg-brand-green text-white font-body font-bold text-base px-8 py-4 rounded-full hover:bg-brand-dark transition-all text-center"
+        >
+          Let's Talk
+        </a>
+        <a
+          href="#how-it-works"
+          class="border border-brand-border text-brand-dark font-body font-bold text-base px-8 py-4 rounded-full hover:border-brand-green transition-all text-center bg-white/60"
+        >
+          See How It Works
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="px-6 py-24 border-t border-brand-border bg-white/50">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-green font-body font-bold text-sm uppercase tracking-widest mb-4">Who It's For</p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 max-w-2xl text-brand-dark">Built for specialty roasters ready to grow wholesale.</h2>
+      <p class="text-brand-brown text-lg max-w-2xl mb-16 leading-relaxed">
+        You've built an exceptional roasting operation. But finding and closing wholesale accounts takes a dedicated sales effort — one most roasters can't afford to hire for full-time. That's where we come in.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          { title: "Small to Mid-Size Roasters", body: "You're roasting great coffee but your wholesale growth is limited by bandwidth. You need accounts, not more admin." },
+          { title: "No In-House Sales Team", body: "You don't want to hire, train, and manage a full-time rep. You want results without the overhead." },
+          { title: "Ready to Scale", body: "You have capacity to fulfill more wholesale orders and you're ready to grow. You just need someone working the phones and inboxes." }
+        ].map(item => (
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-8">
+            <div class="w-8 h-8 rounded-full bg-brand-green/20 border border-brand-green/40 mb-6 flex items-center justify-center">
+              <div class="w-2.5 h-2.5 rounded-full bg-brand-green"></div>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 text-brand-dark">{item.title}</h3>
+            <p class="text-brand-brown font-body leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-green font-body font-bold text-sm uppercase tracking-widest mb-4">How It Works</p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-16 max-w-2xl text-brand-dark">Three steps from introduction to closed account.</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          { step: "01", title: "We Research Prospects", body: "We identify cafés, restaurants, and wholesale buyers in your target markets that are the right fit for your coffee." },
+          { step: "02", title: "We Run Outreach", body: "We handle all prospecting, cold outreach, and follow-up across email and phone on your behalf. You stay out of the inbox." },
+          { step: "03", title: "We Close Accounts", body: "We bring warm, interested buyers to the table. You fulfill the orders. We earn our commission. That's it." }
+        ].map(item => (
+          <div class="relative">
+            <span class="font-display font-black text-6xl text-brand-border absolute -top-4 -left-2">{item.step}</span>
+            <div class="bg-white border border-brand-border rounded-2xl p-8 pt-10 mt-4">
+              <h3 class="font-display font-bold text-xl mb-3 text-brand-dark">{item.title}</h3>
+              <p class="text-brand-brown font-body leading-relaxed">{item.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-dark text-white">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-green font-body font-bold text-sm uppercase tracking-widest mb-4">Pricing</p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 max-w-2xl">Simple, transparent, no-risk pricing.</h2>
+      <p class="text-gray-400 text-lg max-w-xl mb-16 leading-relaxed">
+        No monthly retainer. No long-term contract. One setup fee to get started, then we only earn when you earn.
+      </p>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-10 max-w-xl">
+        <div class="flex items-start gap-6 mb-8 pb-8 border-b border-white/10">
+          <div>
+            <p class="text-gray-400 text-sm font-body uppercase tracking-widest mb-1">One-Time Setup Fee</p>
+            <!-- EDIT: Replace with your actual setup fee -->
+            <p class="font-display font-bold text-4xl text-white">$XXX</p>
+            <p class="text-gray-400 mt-2 text-sm">Covers onboarding, prospect research, and outreach setup</p>
+          </div>
+        </div>
+        <div>
+          <p class="text-gray-400 text-sm font-body uppercase tracking-widest mb-1">Commission</p>
+          <!-- EDIT: Replace with your actual commission rate -->
+          <p class="font-display font-bold text-4xl text-brand-green">XX%</p>
+          <p class="text-gray-400 mt-2 text-sm">Of the first year's wholesale contract value — only when we close</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-cream">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="font-display font-black text-4xl md:text-6xl mb-6 text-brand-dark">
+        Ready to grow your wholesale accounts?
+      </h2>
+      <p class="text-brand-brown text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+        Book a 20-minute call. We'll learn about your roastery, your target markets, and whether we're a fit.
+      </p>
+      <a
+        href="https://cal.com"
+        class="inline-block bg-brand-green text-white font-body font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-dark transition-all"
+      >
+        Book a Call
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-border px-6 py-8 bg-brand-dark text-gray-400">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+      <span class="font-display font-bold text-white">Treetop <span class="text-brand-green">Growth Strategy</span></span>
+      <p>© {new Date().getFullYear()} Treetop Growth Strategy. All rights reserved.</p>
+    </div>
+  </footer>
+
+</Layout>
