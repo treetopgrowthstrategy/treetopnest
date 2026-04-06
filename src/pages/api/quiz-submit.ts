@@ -2,9 +2,8 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
-const MAILGUN_API_KEY = import.meta.env.MAILGUN_API_KEY;
-const MAILGUN_DOMAIN = import.meta.env.MAILGUN_DOMAIN || 'treetopgrowthstrategy.com';
-const MAILGUN_FROM = import.meta.env.MAILGUN_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const RESEND_API_KEY = import.meta.env.RESEND_API_KEY || import.meta.env.MAILGUN_API_KEY;
+const FROM_EMAIL = import.meta.env.MAILGUN_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL = import.meta.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
 const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = import.meta.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT';
@@ -233,31 +232,29 @@ function buildReport(data: QuizPayload): string {
 </html>`;
 }
 
-async function sendMailgun(to: string, subject: string, html: string) {
-  if (!MAILGUN_API_KEY) {
-    console.warn('MAILGUN_API_KEY not set — skipping email send');
+async function sendEmail(to: string, subject: string, html: string) {
+  if (!RESEND_API_KEY) {
+    console.warn('RESEND_API_KEY not set — skipping email send');
     return;
   }
-  const form = new URLSearchParams();
-  form.append('from', MAILGUN_FROM);
-  form.append('to', to);
-  form.append('subject', subject);
-  form.append('html', html);
-
-  const credentials = btoa(`api:${MAILGUN_API_KEY}`);
-  const res = await fetch(`https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`, {
+  const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': `Basic ${credentials}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
     },
-    body: form.toString(),
+    body: JSON.stringify({
+      from: FROM_EMAIL,
+      to: [to],
+      subject,
+      html,
+    }),
   });
 
   if (!res.ok) {
     const err = await res.text();
-    console.error('Mailgun error:', err);
-    throw new Error(`Mailgun failed: ${res.status}`);
+    console.error('Resend error:', err);
+    throw new Error(`Resend failed: ${res.status}`);
   }
 }
 
@@ -303,7 +300,7 @@ export const POST: APIRoute = async ({ request }) => {
     const firstName = data.name.split(' ')[0];
 
     // 1. Send report to prospect
-    await sendMailgun(
+    await sendEmail(
       data.email,
       `Your AI-Native GTM Gap Report, ${firstName}`,
       reportHtml
@@ -326,7 +323,7 @@ export const POST: APIRoute = async ({ request }) => {
         </table>
       </div>
     `;
-    await sendMailgun(BILL_EMAIL, `🎯 New GTM Quiz Lead: ${data.name} at ${data.company} (${tier.label})`, notifyHtml);
+    await sendEmail(BILL_EMAIL, `🎯 New GTM Quiz Lead: ${data.name} at ${data.company} (${tier.label})`, notifyHtml);
 
     // 3. Log to Airtable
     await logToAirtable(data, tier).catch(err => console.error('Airtable log failed:', err));
