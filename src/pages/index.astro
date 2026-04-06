@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Treetop Growth Strategy | Fix the System. Fix the Growth."
-  description="From first touch to retained customer — Treetop owns marketing, sales, and customer success as one connected revenue engine."
+  title="AI-Native GTM Transformation for B2B Executives | Treetop Growth Strategy"
+  description="Your peers are rebuilding their revenue teams around AI and reporting results to their boards. Treetop designs the AI-native GTM architecture and gives you the roadmap to lead it internally."
 >
 
   <!-- NAV -->
@@ -13,10 +13,11 @@ import Layout from '../layouts/Layout.astro';
       <span class="font-display font-bold text-lg text-white tracking-widest uppercase">Treetop</span>
       <div class="hidden md:flex items-center gap-8 text-sm text-gray-400 font-body">
         <a href="#how-it-works" class="hover:text-brand-green transition-colors">How It Works</a>
-        <a href="#capabilities" class="hover:text-brand-green transition-colors">Capabilities</a>
+        <a href="#who" class="hover:text-brand-green transition-colors">Who It's For</a>
+        <a href="#about" class="hover:text-brand-green transition-colors">About Bill</a>
       </div>
       <a href="#contact" class="bg-brand-green text-brand-dark font-body font-bold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all">
-        Book a Call
+        Start the Conversation
       </a>
     </div>
   </nav>
@@ -24,95 +25,74 @@ import Layout from '../layouts/Layout.astro';
   <!-- HERO -->
   <section class="min-h-screen flex flex-col justify-center pt-16 px-6 text-center">
     <div class="max-w-4xl mx-auto w-full py-24">
+      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-6">AI-Native GTM Transformation</p>
       <h1 class="font-display font-black text-5xl md:text-7xl leading-[1.05] tracking-tight mb-6 text-white">
-        You Don't Have a<br />Growth Problem.<br />You Have a System Problem.
+        Lead Your Organization's<br />AI Revenue<br />Transformation.
       </h1>
       <p class="text-gray-400 text-lg md:text-xl font-body font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-        From first touch to retained customer — I own marketing, sales, and customer success as one connected revenue engine.
+        Your peers are rebuilding their revenue teams around AI — and reporting the results to their boards. Treetop designs the AI-native GTM architecture and gives you the roadmap to lead it internally.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-        <a href="#contact" class="bg-brand-green text-brand-dark font-body font-bold text-base px-8 py-4 rounded-full hover:brightness-110 transition-all">Book a Call</a>
+        <a href="#contact" class="bg-brand-green text-brand-dark font-body font-bold text-base px-8 py-4 rounded-full hover:brightness-110 transition-all">Start the Conversation</a>
         <a href="#how-it-works" class="border border-brand-border text-white font-body font-bold text-base px-8 py-4 rounded-full hover:border-brand-green/50 transition-all">See How It Works</a>
       </div>
-      <div class="flex items-center justify-center gap-4 flex-wrap">
-        {["Marketing", "Sales", "Customer Success"].map((label, i) => (
-          <div class="flex items-center gap-4">
-            <div class="border border-brand-green/40 text-brand-green text-sm font-body font-semibold px-6 py-3 rounded-lg">{label}</div>
-            {i < 2 && <span class="text-brand-green/40 text-xl">→</span>}
-          </div>
-        ))}
+      <div class="inline-flex items-center gap-3 border border-brand-border rounded-lg px-6 py-3">
+        <span class="font-display font-bold text-2xl text-brand-green">51%</span>
+        <span class="text-gray-400 font-body text-sm text-left max-w-xs">of organizations can't measure ROI from their AI investments. They're buying tools, not building systems.</span>
       </div>
-      <p class="text-brand-green/60 text-xs font-body mt-4 uppercase tracking-widest">Revenue Loop</p>
+      <p class="text-brand-green/60 text-xs font-body mt-4 uppercase tracking-widest">Built for CMOs, CROs, and CEOs at $5M–$50M B2B companies</p>
     </div>
   </section>
 
-  <!-- THE CHALLENGE -->
+  <!-- THE SITUATION -->
   <section class="px-6 py-24 border-t border-brand-border">
     <div class="max-w-6xl mx-auto">
-      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">— The Challenge</p>
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-6 text-white max-w-2xl">Most Teams Are Fragmented. Revenue Suffers.</h2>
-      <p class="text-gray-400 text-lg max-w-xl mb-6 leading-relaxed">
-        Marketing generates leads. Sales tries to close them. CS deals with what's left. No alignment. No ownership. Growth stalls.
+      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">— The Situation</p>
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-6 text-white max-w-3xl">Most Companies Are Buying AI Tools. A Few Are Rebuilding Around AI. The Gap Is Widening.</h2>
+      <p class="text-gray-400 text-lg max-w-xl mb-4 leading-relaxed">
+        Most B2B executives have done the same thing: bought a few AI tools, seen some productivity gains, and called it an AI strategy. Meanwhile, a smaller group rebuilt their revenue motion from the ground up — and those companies are now running leaner teams with significantly more pipeline.
       </p>
-      <p class="text-brand-green font-body font-semibold text-lg">I don't optimize pieces. I build and run the entire system.</p>
+      <p class="text-gray-400 text-lg max-w-xl mb-6 leading-relaxed">
+        The difference isn't budget. It's architecture. AI-native GTM isn't about which tools you have. It's about whether your entire revenue system is designed around AI from the start.
+      </p>
+      <p class="text-brand-green font-body font-semibold text-lg">Right now, there's still a window to lead this transformation in your organization.</p>
     </div>
   </section>
 
   <!-- FULL LIFECYCLE OWNERSHIP -->
-  <section class="px-6 py-24 border-t border-brand-border">
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border">
     <div class="max-w-6xl mx-auto">
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-4 text-white">Full Customer Lifecycle Ownership</h2>
-      <p class="text-gray-400 text-lg max-w-xl mb-16 leading-relaxed">Growth comes from how functions work together — not how hard each one works alone.</p>
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-4 text-white">We Build the System. You Lead the Initiative.</h2>
+      <p class="text-gray-400 text-lg max-w-xl mb-16 leading-relaxed">Three phases. A working AI-native revenue motion at the end. And a narrative you own internally.</p>
       <div class="grid md:grid-cols-3 gap-6 mb-8">
         {[
-          { title: "Marketing", body: "Positioning, demand generation, architecture, competitive positioning, brand narrative" },
-          { title: "Sales", body: "Conversion systems, deal velocity, pipeline management" },
-          { title: "Customer Success", body: "Onboarding, activation, retention, expansion revenue" }
+          { step: "01", title: "Diagnose", body: "We audit your current GTM motion — ICP definition, outbound performance, pipeline mechanics, AI tool ROI — and produce a clear transformation roadmap your team can execute. You know exactly what you're building and why." },
+          { step: "02", title: "Design & Build", body: "We design and implement the AI-native GTM architecture: a dynamic ICP model, AI-augmented outbound motion, pipeline intelligence layer, and the workflows that connect them. This isn't a slide deck. It's a working system." },
+          { step: "03", title: "Lead", body: "You own the narrative internally. We give you the frameworks, the language, and the metrics to report to your board and peers with confidence. The transformation is yours. We're the infrastructure behind it." }
         ].map(item => (
           <div class="bg-brand-card border border-brand-border rounded-xl p-8 hover:border-brand-green/30 transition-colors">
+            <p class="font-display font-black text-4xl text-brand-green mb-4">{item.step}</p>
             <div class="w-6 h-px bg-brand-green mb-4"></div>
             <h3 class="font-display font-bold text-xl mb-3 text-white">{item.title}</h3>
             <p class="text-gray-400 font-body text-sm leading-relaxed">{item.body}</p>
           </div>
         ))}
       </div>
-      <p class="text-brand-green font-body font-semibold text-center">When these three run as one system, revenue compounds.</p>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-16 text-white">Built Like an Operator Would Run It</h2>
-      <div class="grid md:grid-cols-4 gap-8">
-        {[
-          { step: "01", title: "Diagnose", body: "Map the full lifecycle. Find where revenue leaks." },
-          { step: "02", title: "Prioritize", body: "Identify the highest-impact constraint." },
-          { step: "03", title: "Build", body: "Hands-on implementation across all three functions." },
-          { step: "04", title: "Scale", body: "Double down on what drives revenue. Cut the rest." }
-        ].map(item => (
-          <div>
-            <p class="font-display font-black text-4xl text-brand-green mb-2">{item.step}</p>
-            <div class="w-full h-px bg-brand-border mb-4"></div>
-            <h3 class="font-body font-bold text-white mb-2">{item.title}</h3>
-            <p class="text-gray-400 font-body text-sm leading-relaxed">{item.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CAPABILITIES -->
+  <!-- WHAT GETS BUILT -->
   <section id="capabilities" class="px-6 py-24 border-t border-brand-border">
     <div class="max-w-6xl mx-auto">
-      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">Capabilities</p>
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-16 text-white">What Gets Built</h2>
+      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">What Gets Built</p>
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-16 text-white">The AI-Native GTM Architecture</h2>
       <div class="grid md:grid-cols-4 gap-6">
         {[
-          { title: "Lifecycle Positioning", body: "ICP definition, messaging architecture, competitive positioning, brand narrative" },
-          { title: "Pipeline + Conversion Engine", body: "Demand gen, outbound systems, deal results, CRM architecture, lead scoring" },
-          { title: "Revenue Operations", body: "Dashboards, automations, attribution, closed-loop reporting, ops infrastructure" },
-          { title: "Retention + Expansion", body: "Onboarding activation, churn prediction, expansion playbooks, NPS-to-revenue loops" }
+          { title: "Dynamic ICP System", body: "A living ICP model that refines itself from signal data — not a static doc that goes stale in 90 days" },
+          { title: "AI-Augmented Outbound", body: "Outbound motion rebuilt around AI enrichment, personalization at scale, and signal-based sequencing" },
+          { title: "Pipeline Intelligence", body: "Dashboards and attribution that connect AI activity to revenue outcomes — so you can prove ROI to your board" },
+          { title: "Revenue Workflows", body: "The automations, handoffs, and AI-powered workflows that let a smaller team produce more qualified pipeline" }
         ].map(item => (
           <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-green/30 transition-colors">
             <div class="w-6 h-6 rounded-full bg-brand-green/10 border border-brand-green/30 flex items-center justify-center mb-4">
@@ -125,51 +105,56 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+      </div>
+    </div>
+  </section>
 
-  <!-- FIT CHECK -->
-  <section class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+  <!-- WHO IT'S FOR -->
+  <section id="who" class="px-6 py-24 border-t border-brand-border">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
       <div>
-        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">Fit Check</p>
-        <h2 class="font-display font-black text-4xl mb-8 text-white">For Founders Who Want a Real Revenue Engine</h2>
-        <ul class="space-y-3">
+        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">Who It's For</p>
+        <h2 class="font-display font-black text-4xl mb-8 text-white">This Is for You If:</h2>
+        <ul class="space-y-4">
           {[
-            "You have traction but growth is inconsistent",
-            "Your GTM feels disconnected across functions",
-            "No one owns the full customer lifecycle",
-            "You need predictable, scalable revenue — not more campaigns"
+            "You've heard a peer describe downsizing their GTM team while growing pipeline — and you want to understand whether that's repeatable in your organization",
+            "Your board or CEO has started asking about your AI strategy and you want more than a slide deck answer",
+            "You've invested in AI tools — Clay, Gong, Apollo, or similar — but can't point to clear revenue outcomes from them",
+            "You want to be the executive who led your company's AI revenue transformation, not the one who approved a tool purchase and hoped for results"
           ].map(item => (
-            <li class="flex items-start gap-3 text-gray-400 font-body text-sm">
-              <span class="text-brand-green mt-0.5">→</span>
+            <li class="flex items-start gap-3 text-gray-400 font-body text-sm leading-relaxed">
+              <span class="text-brand-green mt-0.5 flex-shrink-0">→</span>
               {item}
             </li>
           ))}
         </ul>
       </div>
       <div class="bg-brand-card border border-brand-border rounded-xl p-8">
-        <p class="text-gray-400 font-body mb-4 leading-relaxed">If you want someone to run campaigns, this isn't it.</p>
-        <p class="text-brand-green font-body font-semibold text-lg leading-relaxed">If you want someone to own revenue, let's talk.</p>
+        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">Not the right fit</p>
+        <p class="text-gray-400 font-body mb-6 leading-relaxed text-sm">This engagement is not for companies still finding product-market fit, or organizations looking to pilot a single AI tool. AI-native GTM transformation requires a working revenue motion to rebuild around.</p>
+        <p class="text-brand-green font-body font-semibold leading-relaxed">If you have the motion and want to rebuild it around AI — that's exactly what we do.</p>
       </div>
     </div>
   </section>
 
-  <!-- THE OPERATOR -->
-  <section class="px-6 py-24 border-t border-brand-border">
+  <!-- ABOUT BILL -->
+  <section id="about" class="px-6 py-24 border-t border-brand-border">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
       <div>
-        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">The Operator</p>
-        <h2 class="font-display font-black text-4xl mb-4 text-white">End-to-End Operator</h2>
-        <p class="text-gray-400 font-body leading-relaxed">Most GTM leaders specialize in one function. I've operated across all three and built the systems that connect them.</p>
+        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">About Bill</p>
+        <h2 class="font-display font-black text-4xl mb-4 text-white">The Person Who's Done This Before.</h2>
+        <p class="text-gray-400 font-body leading-relaxed mb-4">Bill Colbert has built and rebuilt revenue motions at companies from pre-revenue to acquisition — including AI-native GTM implementations across B2B SaaS, consumer brands, and global enterprises.</p>
+        <p class="text-gray-400 font-body leading-relaxed">The difference between Treetop and a strategy firm: Bill doesn't hand off a framework and leave. He sits inside the revenue system with you until the architecture is working and your team owns it.</p>
       </div>
-      <ul class="space-y-3 pt-8">
+      <ul class="space-y-4 pt-2">
         {[
-          "Full lifecycle experience — marketing, sales, CS",
-          "Built GTM systems, not just campaigns",
-          "Revenue-focused, not activity-focused",
-          "Operator mindset — I build, not advise"
+          "Built AI-native SaaS GTM from zero pipeline to repeatable revenue (FitCopilot)",
+          "Led growth through national scale and acquisition (Factor, acquired by HelloFresh)",
+          "Fortune 500 and startup GTM — understands both the constraint environment and the speed requirement (Leo Burnett, El Quetzal Coffee)",
+          "Operator mindset: builds working systems, not advisory decks"
         ].map(item => (
-          <li class="flex items-start gap-3 text-gray-400 font-body text-sm">
-            <span class="text-brand-green mt-0.5">→</span>
+          <li class="flex items-start gap-3 text-gray-400 font-body text-sm leading-relaxed">
+            <span class="text-brand-green mt-0.5 flex-shrink-0">→</span>
             {item}
           </li>
         ))}
@@ -177,24 +162,13 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- AI NATIVE -->
-  <section class="px-6 py-24 border-t border-brand-border text-center">
-    <div class="max-w-2xl mx-auto">
-      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">— AI-Native</p>
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-6 text-white">AI-Native From Day One</h2>
-      <p class="text-gray-400 text-lg font-body leading-relaxed">
-        I design AI-native systems across the lifecycle — from prospecting to follow-up to retention. More output. Better conversion. Less headcount dependency.
-      </p>
-    </div>
-  </section>
-
   <!-- FINAL CTA -->
   <section id="contact" class="px-6 py-24 border-t border-brand-border text-center">
     <div class="max-w-3xl mx-auto">
-      <h2 class="font-display font-black text-5xl md:text-6xl mb-6 text-white">Fix the System.<br />Fix the Growth.</h2>
-      <p class="text-gray-400 text-lg mb-10 leading-relaxed">Inconsistent growth isn't bad luck. It's a system problem.<br />Let's find it and fix it.</p>
+      <h2 class="font-display font-black text-5xl md:text-6xl mb-6 text-white">The Executives Leading AI Transformation Didn't Wait for a Perfect Plan.</h2>
+      <p class="text-gray-400 text-lg mb-10 leading-relaxed">They found a partner who'd done it before and started. That's the conversation we begin here.<br />30 minutes. No pitch deck. Just an honest look at your revenue motion.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSferFXOK9Car63jMGfEceATp5WdpgxzVUNqU2EL-HOgS613TQ/viewform?usp=header" class="bg-brand-green text-brand-dark font-body font-bold text-lg px-10 py-5 rounded-full hover:brightness-110 transition-all">Book a Call</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSferFXOK9Car63jMGfEceATp5WdpgxzVUNqU2EL-HOgS613TQ/viewform?usp=header" class="bg-brand-green text-brand-dark font-body font-bold text-lg px-10 py-5 rounded-full hover:brightness-110 transition-all">Start the Conversation</a>
         <a href="mailto:bill@treetopgrowthstrategy.com" class="border border-brand-border text-white font-body font-bold text-lg px-10 py-5 rounded-full hover:border-brand-green/50 transition-all">Send a Note</a>
       </div>
     </div>
