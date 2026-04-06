@@ -8,7 +8,7 @@ const MAILGUN_FROM = import.meta.env.MAILGUN_FROM || 'Bill Colbert <bill@treetop
 const BILL_EMAIL = import.meta.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
 const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = import.meta.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT';
-const BOOKING_LINK = import.meta.env.BOOKING_LINK || 'https://docs.google.com/forms/d/e/1FAIpQLSferFXOK9Car63jMGfEceATp5WdpgxzVUNqU2EL-HOgS613TQ/viewform?usp=header';
+const BOOKING_LINK = import.meta.env.BOOKING_LINK || 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
 
 interface QuizPayload {
   name: string;
