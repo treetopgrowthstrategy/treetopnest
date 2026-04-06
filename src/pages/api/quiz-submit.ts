@@ -422,16 +422,14 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 2. Push to GitHub and get live URL
     let reportUrl: string | null = null;
+    let githubError: string | null = null;
     try {
       reportUrl = await pushReportToGitHub(slug, buildReportHTML(data, `${SITE_URL}/reports/${slug}.html`));
     } catch (e) {
-      console.error('GitHub push failed, continuing without hosted report:', e);
+      githubError = String(e);
+      console.error('GitHub push failed:', e);
     }
-
-    // 3. Wait for Vercel deploy if we have a URL
-    if (reportUrl) {
-      await new Promise(r => setTimeout(r, 35000));
-    }
+    // Note: No 35s wait — Vercel deploys in ~45s, email takes minutes to open
 
     // 4. Send prospect email with report URL
     const prospectEmail = buildProspectEmail(data, reportUrl, tier);
@@ -444,7 +442,7 @@ export const POST: APIRoute = async ({ request }) => {
     // 6. Log to Airtable
     await logToAirtable(data, tier, reportUrl, slug).catch(e => console.error('Airtable log failed:', e));
 
-    return new Response(JSON.stringify({ success: true, reportUrl }), {
+    return new Response(JSON.stringify({ success: true, reportUrl, githubError }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
