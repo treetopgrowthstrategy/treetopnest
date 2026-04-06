@@ -7,179 +7,443 @@ import Layout from '../layouts/Layout.astro';
   description="Your peers are rebuilding their revenue teams around AI and reporting results to their boards. Treetop designs the AI-native GTM architecture and gives you the roadmap to lead it internally."
 >
 
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-brand-border bg-brand-dark/95 backdrop-blur-sm">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <span class="font-display font-bold text-lg text-white tracking-widest uppercase">Treetop</span>
-      <div class="hidden md:flex items-center gap-8 text-sm text-gray-400 font-body">
-        <a href="#how-it-works" class="hover:text-brand-green transition-colors">How It Works</a>
-        <a href="#who" class="hover:text-brand-green transition-colors">Who It's For</a>
-        <a href="#about" class="hover:text-brand-green transition-colors">About Bill</a>
-      </div>
-      <a href="#contact" class="bg-brand-green text-brand-dark font-body font-bold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all">
-        Start the Conversation
-      </a>
-    </div>
-  </nav>
+<style>
+  /* GRAIN TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
 
-  <!-- HERO -->
-  <section class="min-h-screen flex flex-col justify-center pt-16 px-6 text-center">
-    <div class="max-w-4xl mx-auto w-full py-24">
-      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-6">AI-Native GTM Transformation</p>
-      <h1 class="font-display font-black text-5xl md:text-7xl leading-[1.05] tracking-tight mb-6 text-white">
-        Lead Your Organization's<br />AI Revenue<br />Transformation.
-      </h1>
-      <p class="text-gray-400 text-lg md:text-xl font-body font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-        Your peers are rebuilding their revenue teams around AI — and reporting the results to their boards. Treetop designs the AI-native GTM architecture and gives you the roadmap to lead it internally.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-        <a href="#contact" class="bg-brand-green text-brand-dark font-body font-bold text-base px-8 py-4 rounded-full hover:brightness-110 transition-all">Start the Conversation</a>
-        <a href="/quiz" class="border border-brand-border text-white font-body font-bold text-base px-8 py-4 rounded-full hover:border-brand-green/50 transition-all">Take the Gap Assessment →</a>
-      </div>
-      <div class="inline-flex items-center gap-3 border border-brand-border rounded-lg px-6 py-3">
-        <span class="font-display font-bold text-2xl text-brand-green">51%</span>
-        <span class="text-gray-400 font-body text-sm text-left max-w-xs">of organizations can't measure ROI from their AI investments. They're buying tools, not building systems.</span>
-      </div>
-      <p class="text-brand-green/60 text-xs font-body mt-4 uppercase tracking-widest">Built for CMOs, CROs, and CEOs at $5M–$50M B2B companies</p>
-    </div>
-  </section>
+  /* FADE IN ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .fade-up-1 { animation-delay: 0.1s; opacity: 0; }
+  .fade-up-2 { animation-delay: 0.25s; opacity: 0; }
+  .fade-up-3 { animation-delay: 0.4s; opacity: 0; }
+  .fade-up-4 { animation-delay: 0.55s; opacity: 0; }
+  .fade-up-5 { animation-delay: 0.7s; opacity: 0; }
 
-  <!-- THE SITUATION -->
-  <section class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">— The Situation</p>
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-6 text-white max-w-3xl">Most Companies Are Buying AI Tools. A Few Are Rebuilding Around AI. The Gap Is Widening.</h2>
-      <p class="text-gray-400 text-lg max-w-xl mb-4 leading-relaxed">
+  /* PHASE CARDS */
+  .phase-card {
+    border: 1px solid rgba(245,240,232,0.08);
+    border-radius: 2px;
+    padding: 2rem;
+    transition: border-color 0.25s, background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: #3d7a35;
+    transition: height 0.3s ease;
+  }
+  .phase-card:hover { border-color: rgba(61,122,53,0.4); background: rgba(23,34,18,0.6); }
+  .phase-card:hover::before { height: 100%; }
+
+  /* PILLAR CARDS */
+  .pillar-card {
+    border: 1px solid rgba(245,240,232,0.08);
+    border-radius: 2px;
+    padding: 1.5rem;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .pillar-card:hover { border-color: rgba(61,122,53,0.35); background: rgba(23,34,18,0.5); }
+
+  /* WHO LIST */
+  .who-item {
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+    transition: border-color 0.2s;
+  }
+  .who-item:last-child { border-bottom: none; }
+  .who-arrow {
+    color: #3d7a35;
+    font-size: 0.85rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .who-item:hover .who-arrow { transform: translateX(3px); }
+
+  /* SECTION DIVIDER */
+  .section-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(245,240,232,0.1), transparent);
+  }
+
+  /* STAT BLOCK */
+  .stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid rgba(245,240,232,0.1);
+    border-radius: 2px;
+    padding: 0.75rem 1.25rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #2D5A27;
+    color: #F5F0E8;
+    padding: 0.875rem 1.75rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #3d7a35; transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #F5F0E8;
+    padding: 0.875rem 1.75rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid rgba(245,240,232,0.2);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(61,122,53,0.6); background: rgba(45,90,39,0.1); }
+
+  /* EYEBROW */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8B6914;
+  }
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #8B6914;
+    flex-shrink: 0;
+  }
+
+  /* QUALIFIER BOX */
+  .qualifier {
+    background: rgba(23,34,18,0.8);
+    border: 1px solid rgba(245,240,232,0.08);
+    border-left: 2px solid rgba(139,105,20,0.5);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  /* CREDENTIAL ITEMS */
+  .cred-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.88rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.6;
+    padding: 0.5rem 0;
+  }
+  .cred-arrow { color: #3d7a35; flex-shrink: 0; margin-top: 2px; }
+</style>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(15,26,12,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,240,232,0.07);">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-display font-bold text-base text-brand-cream tracking-widest uppercase" style="letter-spacing:0.18em;">Treetop</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#how-it-works" class="text-xs font-body font-bold uppercase tracking-widest text-brand-muted hover:text-brand-cream transition-colors" style="letter-spacing:0.12em;">How It Works</a>
+      <a href="#who" class="text-xs font-body font-bold uppercase tracking-widest text-brand-muted hover:text-brand-cream transition-colors" style="letter-spacing:0.12em;">Who It's For</a>
+      <a href="#about" class="text-xs font-body font-bold uppercase tracking-widest text-brand-muted hover:text-brand-cream transition-colors" style="letter-spacing:0.12em;">About</a>
+    </div>
+    <a href="#contact" class="btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.72rem;">Start the Conversation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex flex-col justify-center pt-16 px-6" style="background: linear-gradient(160deg, #0f1a0c 0%, #172212 50%, #0f1a0c 100%);">
+  <div class="max-w-5xl mx-auto w-full py-28 relative z-10">
+
+    <div class="eyebrow fade-up fade-up-1 mb-8">AI-Native GTM Transformation</div>
+
+    <h1 class="font-display font-black fade-up fade-up-2 mb-8 text-brand-cream" style="font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -0.02em; max-width: 820px;">
+      Lead Your Organization's<br />
+      <em style="color: #3d7a35; font-style: italic;">AI Revenue</em><br />
+      Transformation.
+    </h1>
+
+    <p class="fade-up fade-up-3 font-body font-light text-brand-muted mb-12" style="font-size: 1.1rem; max-width: 520px; line-height: 1.8;">
+      Your peers are rebuilding their revenue teams around AI and reporting the results to their boards. Treetop designs the architecture and gives you the roadmap to lead it internally.
+    </p>
+
+    <div class="fade-up fade-up-4 flex flex-wrap gap-4 mb-16">
+      <a href="#contact" class="btn-primary">Start the Conversation →</a>
+      <a href="/quiz" class="btn-ghost">Take the Gap Assessment →</a>
+    </div>
+
+    <div class="fade-up fade-up-5 flex flex-wrap gap-6">
+      <div class="stat-pill">
+        <span class="font-display font-bold text-brand-bright" style="font-size: 1.8rem; line-height:1;">51%</span>
+        <span class="font-body text-brand-muted" style="font-size: 0.78rem; max-width: 180px; line-height: 1.5;">of B2B orgs can't measure ROI from their AI investments</span>
+      </div>
+      <div class="stat-pill">
+        <span class="font-display font-bold text-brand-bright" style="font-size: 1.8rem; line-height:1;">61%</span>
+        <span class="font-body text-brand-muted" style="font-size: 0.78rem; max-width: 180px; line-height: 1.5;">quota attainment at AI-native GTM companies vs. 56% traditional</span>
+      </div>
+    </div>
+
+    <p class="mt-6 font-body text-brand-faint" style="font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;">Built for CMOs, CROs, and CEOs at $5M–$50M B2B companies</p>
+  </div>
+
+  <!-- Subtle grid lines -->
+  <div class="absolute inset-0 z-0" style="background-image: linear-gradient(rgba(245,240,232,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,240,232,0.02) 1px, transparent 1px); background-size: 60px 60px;"></div>
+</section>
+
+<!-- THE SITUATION -->
+<div class="section-rule"></div>
+<section class="px-6 py-24 relative z-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 items-start">
+    <div>
+      <div class="eyebrow mb-6">The Situation</div>
+      <p class="font-body text-brand-faint" style="font-size: 0.78rem; line-height: 1.8; letter-spacing: 0.04em;">Why this moment matters</p>
+    </div>
+    <div class="md:col-span-2">
+      <h2 class="font-display font-bold text-brand-cream mb-6" style="font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.2; letter-spacing: -0.01em;">
+        Most companies are buying AI tools. A few are rebuilding around AI. The gap is widening.
+      </h2>
+      <p class="font-body text-brand-muted mb-4" style="font-size: 0.96rem; line-height: 1.85;">
         Most B2B executives have done the same thing: bought a few AI tools, seen some productivity gains, and called it an AI strategy. Meanwhile, a smaller group rebuilt their revenue motion from the ground up — and those companies are now running leaner teams with significantly more pipeline.
       </p>
-      <p class="text-gray-400 text-lg max-w-xl mb-6 leading-relaxed">
+      <p class="font-body text-brand-muted mb-6" style="font-size: 0.96rem; line-height: 1.85;">
         The difference isn't budget. It's architecture. AI-native GTM isn't about which tools you have. It's about whether your entire revenue system is designed around AI from the start.
       </p>
-      <p class="text-brand-green font-body font-semibold text-lg">Right now, there's still a window to lead this transformation in your organization.</p>
+      <p class="font-body font-bold" style="color: #3d7a35; font-size: 0.96rem;">
+        Right now, there's still a window to lead this transformation in your organization.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FULL LIFECYCLE OWNERSHIP -->
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-4 text-white">We Build the System. You Lead the Initiative.</h2>
-      <p class="text-gray-400 text-lg max-w-xl mb-16 leading-relaxed">Three phases. A working AI-native revenue motion at the end. And a narrative you own internally.</p>
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
+<!-- HOW IT WORKS -->
+<div class="section-rule"></div>
+<section id="how-it-works" class="px-6 py-24 relative z-10" style="background: rgba(23,34,18,0.4);">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <div class="eyebrow mb-4">How It Works</div>
+        <h2 class="font-display font-bold text-brand-cream" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.15; letter-spacing: -0.01em; max-width: 400px;">
+          We build the system.<br/>You lead the initiative.
+        </h2>
+      </div>
+      <p class="font-body text-brand-muted md:text-right" style="font-size: 0.85rem; max-width: 280px; line-height: 1.7;">Three phases. A working AI-native revenue motion. A narrative you own internally.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {[
+        {
+          num: "01",
+          tag: "Diagnose",
+          title: "Audit & Roadmap",
+          body: "We audit your current GTM motion — ICP definition, outbound performance, pipeline mechanics, AI tool ROI — and produce a clear transformation roadmap your team can execute. You know exactly what you're building and why."
+        },
+        {
+          num: "02",
+          tag: "Design & Build",
+          title: "The Architecture",
+          body: "We design and implement the AI-native GTM system: a dynamic ICP model, AI-augmented outbound motion, pipeline intelligence layer, and the workflows that connect them. This isn't a slide deck. It's a working system."
+        },
+        {
+          num: "03",
+          tag: "Lead",
+          title: "Your Initiative",
+          body: "You own the narrative internally. We give you the frameworks, the language, and the metrics to report to your board and peers with confidence. The transformation is yours. We're the infrastructure behind it."
+        }
+      ].map(p => (
+        <div class="phase-card">
+          <div class="font-display font-black text-brand-faint mb-4" style="font-size: 3.5rem; line-height: 1;">{p.num}</div>
+          <div class="eyebrow mb-3" style="font-size: 0.6rem;">{p.tag}</div>
+          <h3 class="font-display font-bold text-brand-cream mb-3" style="font-size: 1.3rem; letter-spacing: -0.01em;">{p.title}</h3>
+          <p class="font-body text-brand-muted" style="font-size: 0.85rem; line-height: 1.75;">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHAT GETS BUILT -->
+<div class="section-rule"></div>
+<section class="px-6 py-24 relative z-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="eyebrow mb-4">What Gets Built</div>
+    <h2 class="font-display font-bold text-brand-cream mb-16" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.01em; max-width: 480px; line-height: 1.15;">
+      The AI-Native GTM Architecture
+    </h2>
+
+    <div class="grid md:grid-cols-4 gap-5">
+      {[
+        {
+          title: "Dynamic ICP System",
+          body: "A living ICP model that refines itself from signal data — not a static document that goes stale in 90 days."
+        },
+        {
+          title: "AI-Augmented Outbound",
+          body: "Outbound motion rebuilt around AI enrichment, personalization at scale, and signal-based sequencing."
+        },
+        {
+          title: "Pipeline Intelligence",
+          body: "Dashboards and attribution that connect AI activity to revenue outcomes — so you can prove ROI to your board."
+        },
+        {
+          title: "Revenue Workflows",
+          body: "Automations, handoffs, and AI-powered workflows that let a leaner team produce more qualified pipeline."
+        }
+      ].map(item => (
+        <div class="pillar-card">
+          <div style="width: 28px; height: 2px; background: #3d7a35; margin-bottom: 1.25rem; border-radius: 1px;"></div>
+          <h3 class="font-body font-bold text-brand-cream mb-3" style="font-size: 0.88rem; letter-spacing: 0.02em;">{item.title}</h3>
+          <p class="font-body text-brand-muted" style="font-size: 0.8rem; line-height: 1.75;">{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<div class="section-rule"></div>
+<section id="who" class="px-6 py-24 relative z-10" style="background: rgba(23,34,18,0.4);">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+    <div>
+      <div class="eyebrow mb-4">Who It's For</div>
+      <h2 class="font-display font-bold text-brand-cream mb-8" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.01em; line-height: 1.15;">
+        This is for you if:
+      </h2>
+      <div>
         {[
-          { step: "01", title: "Diagnose", body: "We audit your current GTM motion — ICP definition, outbound performance, pipeline mechanics, AI tool ROI — and produce a clear transformation roadmap your team can execute. You know exactly what you're building and why." },
-          { step: "02", title: "Design & Build", body: "We design and implement the AI-native GTM architecture: a dynamic ICP model, AI-augmented outbound motion, pipeline intelligence layer, and the workflows that connect them. This isn't a slide deck. It's a working system." },
-          { step: "03", title: "Lead", body: "You own the narrative internally. We give you the frameworks, the language, and the metrics to report to your board and peers with confidence. The transformation is yours. We're the infrastructure behind it." }
+          "You've heard a peer describe downsizing their GTM team while growing pipeline — and you want to understand whether that's repeatable in your organization",
+          "Your board or CEO has started asking about your AI strategy and you want more than a slide deck answer",
+          "You've invested in AI tools — Clay, Gong, Apollo, or similar — but can't point to clear revenue outcomes from them",
+          "You want to be the executive who led your company's AI revenue transformation, not the one who approved a tool purchase and hoped for results"
         ].map(item => (
-          <div class="bg-brand-card border border-brand-border rounded-xl p-8 hover:border-brand-green/30 transition-colors">
-            <p class="font-display font-black text-4xl text-brand-green mb-4">{item.step}</p>
-            <div class="w-6 h-px bg-brand-green mb-4"></div>
-            <h3 class="font-display font-bold text-xl mb-3 text-white">{item.title}</h3>
-            <p class="text-gray-400 font-body text-sm leading-relaxed">{item.body}</p>
+          <div class="who-item">
+            <span class="who-arrow">→</span>
+            <span class="font-body text-brand-muted" style="font-size: 0.88rem; line-height: 1.7;">{item}</span>
           </div>
         ))}
       </div>
     </div>
-  </section>
+    <div>
+      <div class="qualifier mb-8">
+        <p class="eyebrow mb-3" style="font-size: 0.6rem;">Not the right fit</p>
+        <p class="font-body text-brand-muted" style="font-size: 0.85rem; line-height: 1.75;">This engagement is not for companies still finding product-market fit, or organizations looking to pilot a single AI tool. AI-native GTM transformation requires a working revenue motion to rebuild around.</p>
+        <p class="font-body font-bold mt-4" style="color: #3d7a35; font-size: 0.85rem;">If you have the motion and want to rebuild it around AI — that's exactly what we do.</p>
+      </div>
 
-  <!-- WHAT GETS BUILT -->
-  <section id="capabilities" class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">What Gets Built</p>
-      <h2 class="font-display font-black text-4xl md:text-5xl mb-16 text-white">The AI-Native GTM Architecture</h2>
-      <div class="grid md:grid-cols-4 gap-6">
-        {[
-          { title: "Dynamic ICP System", body: "A living ICP model that refines itself from signal data — not a static doc that goes stale in 90 days" },
-          { title: "AI-Augmented Outbound", body: "Outbound motion rebuilt around AI enrichment, personalization at scale, and signal-based sequencing" },
-          { title: "Pipeline Intelligence", body: "Dashboards and attribution that connect AI activity to revenue outcomes — so you can prove ROI to your board" },
-          { title: "Revenue Workflows", body: "The automations, handoffs, and AI-powered workflows that let a smaller team produce more qualified pipeline" }
-        ].map(item => (
-          <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-green/30 transition-colors">
-            <div class="w-6 h-6 rounded-full bg-brand-green/10 border border-brand-green/30 flex items-center justify-center mb-4">
-              <div class="w-2 h-2 rounded-full bg-brand-green"></div>
-            </div>
-            <h3 class="font-body font-bold text-white mb-3 text-sm">{item.title}</h3>
-            <p class="text-gray-400 font-body text-xs leading-relaxed">{item.body}</p>
-          </div>
-        ))}
+      <!-- Quiz CTA Card -->
+      <div style="background: rgba(15,26,12,0.8); border: 1px solid rgba(61,122,53,0.25); border-radius: 2px; padding: 1.75rem;">
+        <div class="eyebrow mb-3" style="font-size: 0.6rem;">3-Minute Assessment</div>
+        <h3 class="font-display font-bold text-brand-cream mb-3" style="font-size: 1.3rem; letter-spacing:-0.01em;">Not sure where your gaps are?</h3>
+        <p class="font-body text-brand-muted mb-5" style="font-size: 0.82rem; line-height: 1.7;">Take the AI-Native GTM Gap Assessment. 8 questions. A personalized gap report delivered to your inbox.</p>
+        <a href="/quiz" class="btn-primary" style="font-size: 0.72rem;">Take the Assessment →</a>
       </div>
     </div>
-  </section>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- WHO IT'S FOR -->
-  <section id="who" class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-      <div>
-        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">Who It's For</p>
-        <h2 class="font-display font-black text-4xl mb-8 text-white">This Is for You If:</h2>
-        <ul class="space-y-4">
-          {[
-            "You've heard a peer describe downsizing their GTM team while growing pipeline — and you want to understand whether that's repeatable in your organization",
-            "Your board or CEO has started asking about your AI strategy and you want more than a slide deck answer",
-            "You've invested in AI tools — Clay, Gong, Apollo, or similar — but can't point to clear revenue outcomes from them",
-            "You want to be the executive who led your company's AI revenue transformation, not the one who approved a tool purchase and hoped for results"
-          ].map(item => (
-            <li class="flex items-start gap-3 text-gray-400 font-body text-sm leading-relaxed">
-              <span class="text-brand-green mt-0.5 flex-shrink-0">→</span>
-              {item}
-            </li>
-          ))}
-        </ul>
+<!-- ABOUT BILL -->
+<div class="section-rule"></div>
+<section id="about" class="px-6 py-24 relative z-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+    <div>
+      <div class="eyebrow mb-4">About Bill</div>
+      <h2 class="font-display font-bold text-brand-cream mb-6" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.01em; line-height: 1.15;">
+        The person who's done this before.
+      </h2>
+      <p class="font-body text-brand-muted mb-4" style="font-size: 0.92rem; line-height: 1.85;">
+        Bill Colbert has built and rebuilt revenue motions at companies from pre-revenue to acquisition — including AI-native GTM implementations across B2B SaaS, consumer brands, and global enterprises.
+      </p>
+      <p class="font-body text-brand-muted" style="font-size: 0.92rem; line-height: 1.85;">
+        The difference between Treetop and a strategy firm: Bill doesn't hand off a framework and leave. He sits inside the revenue system with you until the architecture is working and your team owns it.
+      </p>
+    </div>
+    <div style="padding-top: 0.5rem;">
+      <div class="cred-item">
+        <span class="cred-arrow">→</span>
+        <span>Built AI-native SaaS GTM from zero pipeline to repeatable revenue (FitCopilot)</span>
       </div>
-      <div class="bg-brand-card border border-brand-border rounded-xl p-8">
-        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">Not the right fit</p>
-        <p class="text-gray-400 font-body mb-6 leading-relaxed text-sm">This engagement is not for companies still finding product-market fit, or organizations looking to pilot a single AI tool. AI-native GTM transformation requires a working revenue motion to rebuild around.</p>
-        <p class="text-brand-green font-body font-semibold leading-relaxed">If you have the motion and want to rebuild it around AI — that's exactly what we do.</p>
+      <div class="cred-item">
+        <span class="cred-arrow">→</span>
+        <span>Led growth through national scale and acquisition (Factor, acquired by HelloFresh)</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-arrow">→</span>
+        <span>Fortune 500 and startup GTM — understands both constraint environments and speed requirements (Leo Burnett, El Quetzal Coffee)</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-arrow">→</span>
+        <span>Operator mindset: builds working systems, not advisory decks</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT BILL -->
-  <section id="about" class="px-6 py-24 border-t border-brand-border">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-      <div>
-        <p class="text-brand-green font-body font-semibold text-xs uppercase tracking-widest mb-4">About Bill</p>
-        <h2 class="font-display font-black text-4xl mb-4 text-white">The Person Who's Done This Before.</h2>
-        <p class="text-gray-400 font-body leading-relaxed mb-4">Bill Colbert has built and rebuilt revenue motions at companies from pre-revenue to acquisition — including AI-native GTM implementations across B2B SaaS, consumer brands, and global enterprises.</p>
-        <p class="text-gray-400 font-body leading-relaxed">The difference between Treetop and a strategy firm: Bill doesn't hand off a framework and leave. He sits inside the revenue system with you until the architecture is working and your team owns it.</p>
-      </div>
-      <ul class="space-y-4 pt-2">
-        {[
-          "Built AI-native SaaS GTM from zero pipeline to repeatable revenue (FitCopilot)",
-          "Led growth through national scale and acquisition (Factor, acquired by HelloFresh)",
-          "Fortune 500 and startup GTM — understands both the constraint environment and the speed requirement (Leo Burnett, El Quetzal Coffee)",
-          "Operator mindset: builds working systems, not advisory decks"
-        ].map(item => (
-          <li class="flex items-start gap-3 text-gray-400 font-body text-sm leading-relaxed">
-            <span class="text-brand-green mt-0.5 flex-shrink-0">→</span>
-            {item}
-          </li>
-        ))}
-      </ul>
+<!-- FINAL CTA -->
+<div class="section-rule"></div>
+<section id="contact" class="px-6 py-28 relative z-10 text-center" style="background: linear-gradient(160deg, #172212 0%, #0f1a0c 100%);">
+  <div class="max-w-3xl mx-auto">
+    <div class="eyebrow mb-6 justify-center">Start the Conversation</div>
+    <h2 class="font-display font-black text-brand-cream mb-6" style="font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.1; letter-spacing: -0.02em;">
+      The executives leading AI transformation didn't wait for a perfect plan.
+    </h2>
+    <p class="font-body text-brand-muted mb-10 mx-auto" style="font-size: 1rem; line-height: 1.8; max-width: 520px;">
+      They found a partner who'd done it before and started. That's the conversation we begin here. 30 minutes. No pitch deck. Just an honest look at your revenue motion.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSferFXOK9Car63jMGfEceATp5WdpgxzVUNqU2EL-HOgS613TQ/viewform?usp=header" class="btn-primary" style="font-size: 0.85rem; padding: 1rem 2rem;">Schedule a Discovery Call →</a>
+      <a href="mailto:bill@treetopgrowthstrategy.com" class="btn-ghost" style="font-size: 0.85rem; padding: 1rem 2rem;">Send a Note</a>
     </div>
-  </section>
+  </div>
+  <!-- Subtle grid -->
+  <div class="absolute inset-0 z-0 pointer-events-none" style="background-image: linear-gradient(rgba(245,240,232,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,240,232,0.02) 1px, transparent 1px); background-size: 60px 60px;"></div>
+</section>
 
-  <!-- FINAL CTA -->
-  <section id="contact" class="px-6 py-24 border-t border-brand-border text-center">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-display font-black text-5xl md:text-6xl mb-6 text-white">The Executives Leading AI Transformation Didn't Wait for a Perfect Plan.</h2>
-      <p class="text-gray-400 text-lg mb-10 leading-relaxed">They found a partner who'd done it before and started. That's the conversation we begin here.<br />30 minutes. No pitch deck. Just an honest look at your revenue motion.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSferFXOK9Car63jMGfEceATp5WdpgxzVUNqU2EL-HOgS613TQ/viewform?usp=header" class="bg-brand-green text-brand-dark font-body font-bold text-lg px-10 py-5 rounded-full hover:brightness-110 transition-all">Start the Conversation</a>
-        <a href="mailto:bill@treetopgrowthstrategy.com" class="border border-brand-border text-white font-body font-bold text-lg px-10 py-5 rounded-full hover:border-brand-green/50 transition-all">Send a Note</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-brand-border px-6 py-8">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
-      <span class="font-display font-bold text-white uppercase tracking-widest">Treetop</span>
-      <p>© {new Date().getFullYear()} Treetop Growth Strategy. All rights reserved.</p>
-    </div>
-  </footer>
+<!-- FOOTER -->
+<footer class="px-6 py-8 border-t border-brand-border relative z-10">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <span class="font-display font-bold text-brand-muted uppercase" style="font-size: 0.85rem; letter-spacing: 0.18em;">Treetop Growth Strategy</span>
+    <p class="font-body text-brand-faint" style="font-size: 0.78rem;">© {new Date().getFullYear()} Treetop Growth Strategy · Austin, TX</p>
+  </div>
+</footer>
 
 </Layout>
