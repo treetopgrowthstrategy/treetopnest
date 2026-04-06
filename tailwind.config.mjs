@@ -5,25 +5,20 @@ export default {
     extend: {
       colors: {
         brand: {
-          dark:    '#0f1a0c',
-          mid:     '#172212',
-          green:   '#2D5A27',
-          bright:  '#3d7a35',
-          gold:    '#8B6914',
-          cream:   '#F5F0E8',
-          muted:   'rgba(245,240,232,0.55)',
-          faint:   'rgba(245,240,232,0.18)',
-          border:  'rgba(245,240,232,0.1)',
-          gborder: 'rgba(45,90,39,0.35)',
+          bg:      '#050D05',
+          bgalt:   '#0A1A0A',
+          green:   '#00C853',
+          text:    '#F0FFF0',
+          sub:     '#8FAF8F',
+          muted:   '#4A6A4A',
+          border:  '#1A3A1A',
+          card:    '#050D05',
         }
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
-        body:    ['Lato', 'sans-serif'],
+        serif:  ['"Instrument Serif"', 'serif'],
+        sans:   ['"DM Sans"', 'sans-serif'],
       },
-      letterSpacing: {
-        widest2: '0.2em',
-      }
     },
   },
   plugins: [],
