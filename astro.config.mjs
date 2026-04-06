@@ -5,6 +5,6 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://treetopgrowthstrategy.com',
   integrations: [tailwind()],
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel(),
 });
