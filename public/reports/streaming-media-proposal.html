@@ -980,7 +980,7 @@
       <span class="section-num">07</span>
       <h2 class="section-title"><strong>Fees</strong> &amp; Pricing Model</h2>
     </div>
-    <p>Treetop operates on a transparent two-part fee structure: a one-time strategy and setup fee to build out the full media plan, followed by a percentage-of-spend management retainer once campaigns are live. Use the calculator below to model your investment at any budget level.</p>
+    <p>Treetop operates on a transparent two-part fee structure: a one-time strategy and setup fee to build out the full media plan, followed by a <strong>12% management retainer</strong> on gross monthly media spend once campaigns are live. Use the calculator below to model your investment at any budget level.</p>
 
     <div class="pricing-calc">
 
@@ -1002,17 +1002,6 @@
           <input type="range" id="pc-spend" min="500" max="150000" step="500" value="2500" oninput="pcUpdate()">
           <div class="pc-slider-ticks">
             <span>$500</span><span>$37,500</span><span>$75,000</span><span>$112,500</span><span>$150,000</span>
-          </div>
-        </div>
-
-        <div class="pc-slider-row">
-          <div class="pc-slider-header">
-            <span class="pc-slider-label">Management fee rate</span>
-            <span class="pc-slider-val" id="pc-rate-display">12%</span>
-          </div>
-          <input type="range" id="pc-rate" min="10" max="20" step="1" value="12" oninput="pcUpdate()">
-          <div class="pc-slider-ticks">
-            <span>10% (floor)</span><span>12–15% (standard)</span><span>20% (boutique)</span>
           </div>
         </div>
 
@@ -1115,7 +1104,7 @@ function pcFmt(n) {
 
 function pcUpdate() {
   const spend = parseInt(document.getElementById('pc-spend').value);
-  const rate  = parseInt(document.getElementById('pc-rate').value);
+  const rate  = 12;
   const setup = parseInt(document.getElementById('pc-setup').value);
 
   const monthly = spend * rate / 100;
