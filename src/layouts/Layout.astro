@@ -2,33 +2,101 @@
 export interface Props {
   title: string;
   description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  pageType?: 'website' | 'article' | 'service';
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage = 'https://treetopgrowthstrategy.com/og-default.png',
+  pageType = 'website',
+  noindex = false,
+} = Astro.props;
+const canonical = canonicalUrl || `https://treetopgrowthstrategy.com${Astro.url.pathname}`;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- PRIMARY META -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- OPEN GRAPH -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://treetopgrowthstrategy.com" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Treetop Growth Strategy" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- TWITTER / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- SCHEMA: ORGANIZATION (all pages) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
+      "@id": "https://treetopgrowthstrategy.com/#organization",
       "name": "Treetop Growth Strategy",
-      "description": "AI-native GTM transformation for B2B executives.",
-      "url": "https://treetopgrowthstrategy.com"
+      "url": "https://treetopgrowthstrategy.com",
+      "logo": "https://treetopgrowthstrategy.com/og-default.png",
+      "description": "AI-native GTM transformation for B2B executives at $5M–$50M companies. We design the architecture and give you the roadmap to lead it internally.",
+      "founder": {
+        "@type": "Person",
+        "name": "Bill Colbert",
+        "jobTitle": "Founder, Treetop Growth Strategy",
+        "url": "https://treetopgrowthstrategy.com/#bill"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "bill@treetopgrowthstrategy.com",
+        "contactType": "sales"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/billcolbert"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "serviceType": [
+        "AI-Native GTM Transformation",
+        "Fractional CMO",
+        "GTM Strategy Consulting",
+        "Claude AI Training"
+      ]
     }
     </script>
+
+    <!-- PAGE-SPECIFIC SCHEMA SLOT -->
+    <slot name="schema" />
   </head>
   <body class="bg-brand-bg text-brand-text font-sans antialiased">
     <slot />
