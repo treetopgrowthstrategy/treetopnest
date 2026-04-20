@@ -1,0 +1,67 @@
+---
+// GlobalFooter.astro — shared across all pages
+const currentPath = Astro.url.pathname;
+---
+<footer style="border-top:1px solid #1A3A1A;background:#050D05;padding:3.5rem 2.5rem 2rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <!-- MAIN FOOTER GRID -->
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:3rem;margin-bottom:3rem;">
+
+      <!-- BRAND COLUMN -->
+      <div style="min-width:200px;max-width:260px;">
+        <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.2rem;font-style:italic;color:#F0FFF0;text-decoration:none;display:block;margin-bottom:0.75rem;">Treetop</a>
+        <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.7;margin-bottom:1.25rem;">AI-native GTM transformation for B2B executives at $5M–$50M companies.</p>
+        <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.78rem;color:#00C853;text-decoration:none;">bill@treetopgrowthstrategy.com</a>
+      </div>
+
+      <!-- SERVICES COLUMN -->
+      <div style="min-width:160px;">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="/#how-it-works" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">AI-Native GTM</a>
+          <a href="/claude-training" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/claude-training' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/claude-training' ? '#00C853' : '#4A6A4A'}'`}>Claude Training</a>
+          <a href="/#about" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Fractional CMO/CRO</a>
+          <a href="/#who" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Who It's For</a>
+        </div>
+      </div>
+
+      <!-- RESOURCES COLUMN -->
+      <div style="min-width:160px;">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Resources</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="/quiz" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/quiz' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/quiz' ? '#00C853' : '#4A6A4A'}'`}>AI-GTM Gap Assessment</a>
+          <a href="/#how-it-works" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">The Process</a>
+          <a href="/#about" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">About Bill</a>
+        </div>
+      </div>
+
+      <!-- CONNECT COLUMN -->
+      <div style="min-width:160px;">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Schedule a Call</a>
+          <a href="https://linkedin.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">LinkedIn</a>
+          <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Email Bill</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- QUIZ CTA STRIP -->
+    <div style="border:1px solid #1A3A1A;padding:1.25rem 1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;background:#0A1A0A;">
+      <div>
+        <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#00C853;">Free · 3 Minutes</span>
+        <p style="font-size:0.88rem;color:#8FAF8F;margin-top:4px;">Not sure where your AI-GTM gaps are? Get a personalized report.</p>
+      </div>
+      <a href="/quiz" style="display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.78rem;padding:0.65rem 1.25rem;text-decoration:none;white-space:nowrap;">Take the Gap Assessment →</a>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div style="border-top:1px solid #1A3A1A;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;">
+      <span style="font-size:0.72rem;color:#2A3A2A;">© {new Date().getFullYear()} Treetop Growth Strategy · Austin, TX</span>
+      <span style="font-size:0.72rem;color:#2A3A2A;font-style:italic;">Growth is a system, not a series of bets.</span>
+    </div>
+
+  </div>
+</footer>
