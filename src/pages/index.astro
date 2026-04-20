@@ -1,11 +1,35 @@
 ---
+export const prerender = true;
 import Layout from '../layouts/Layout.astro';
+import GlobalFooter from '../components/GlobalFooter.astro';
 ---
 
 <Layout
   title="AI-Native GTM Transformation for B2B Executives | Treetop Growth Strategy"
   description="Your peers are rebuilding their revenue teams around AI and reporting results to their boards. Treetop designs the AI-native GTM architecture and gives you the roadmap to lead it internally."
+  canonicalUrl="https://treetopgrowthstrategy.com/"
 >
+<script type="application/ld+json" slot="schema">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI-Native GTM Transformation",
+  "provider": { "@id": "https://treetopgrowthstrategy.com/#organization" },
+  "description": "We design the AI-native GTM architecture and give B2B executives the roadmap to lead the transformation internally.",
+  "url": "https://treetopgrowthstrategy.com/",
+  "serviceType": "GTM Consulting",
+  "areaServed": { "@type": "Country", "name": "United States" },
+  "audience": {
+    "@type": "Audience",
+    "description": "CMOs, CROs, and CEOs at B2B companies between M and 0M in revenue"
+  },
+  "offers": {
+    "@type": "Offer",
+    "description": "AI-native GTM transformation engagement — 90-day architecture and implementation",
+    "url": "https://calendar.app.google/GS5H5y8U3PrN8u4A8"
+  }
+}
+</script>
 
 <style>
   @keyframes fadeUp {
@@ -312,36 +336,6 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer style="border-top:1px solid #1A3A1A;padding:3rem 2.5rem;background:#050D05;">
-  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;">
-    <div>
-      <div style="font-family:'Instrument Serif',serif;font-size:1.2rem;font-style:italic;color:#F0FFF0;margin-bottom:0.5rem;">Treetop</div>
-      <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.6;max-width:220px;">AI-native GTM transformation<br/>for B2B executives.</p>
-    </div>
-    <div style="display:flex;gap:3rem;">
-      <div>
-        <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="#process" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;">How It Works</a>
-          <a href="#who" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;">Who It's For</a>
-          <a href="#about" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;">About</a>
-          <a href="/quiz" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;">Gap Assessment</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Connect</div>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="https://linkedin.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;">LinkedIn</a>
-          <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;">Email</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid #1A3A1A;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
-    <span style="font-size:0.72rem;color:#2A3A2A;">© {new Date().getFullYear()} Treetop Growth Strategy. All rights reserved.</span>
-    <span style="font-size:0.72rem;color:#2A3A2A;font-style:italic;">Growth is a system, not a series of bets.</span>
-  </div>
-</footer>
+<GlobalFooter />
 
 </Layout>
