@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why EcoFit — The Case for Fitness Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #84BC41;
+    --green-dim: rgba(132,188,65,0.12);
+    --green-border: rgba(132,188,65,0.25);
+    --dark: #0f1419;
+    --dark-2: #161e27;
+    --dark-3: #1e2a35;
+    --dark-4: #253040;
+    --muted: #6b7d8a;
+    --light: #9eb0bc;
+    --off-white: #e8eef2;
+    --white: #ffffff;
+    --red-dim: rgba(220,60,60,0.1);
+    --red-border: rgba(220,60,60,0.25);
+    --red: #dc3c3c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    background: rgba(15,20,25,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-brand {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  .nav-brand span { color: var(--white); font-weight: 300; }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    border: 1px solid var(--green-border);
+    padding: 8px 18px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--green); color: var(--dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 3rem 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 28px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .hero h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(44px, 6.5vw, 80px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    max-width: 820px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px);
+    font-weight: 300;
+    color: var(--light);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+
+  .hero-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--green-border), transparent);
+    margin-top: 60px;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 40px;
+  }
+
+  .scroll-hint-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--green), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* SECTION SHELL */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  h2 em { font-style: normal; color: var(--green); }
+
+  .section-intro {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--light);
+    max-width: 640px;
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+
+  /* FULL-BLEED DIVIDERS */
+  .bleed-dark {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .bleed-green {
+    background: rgba(132,188,65,0.06);
+    border-top: 1px solid var(--green-border);
+    border-bottom: 1px solid var(--green-border);
+  }
+
+  /* PROBLEM CARDS */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .problem-card {
+    background: var(--dark-2);
+    padding: 32px 30px;
+    position: relative;
+    transition: background 0.25s;
+  }
+
+  .problem-card:hover { background: var(--dark-3); }
+
+  .problem-number {
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .problem-number::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--red-border);
+  }
+
+  .problem-card h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .problem-card p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.75;
+  }
+
+  .problem-card .stat {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* SPLIT SECTION — TWO PATHS */
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .split-card {
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-card.dead {
+    background: rgba(220,60,60,0.06);
+    border: 1px solid var(--red-border);
+  }
+
+  .split-card.living {
+    background: rgba(132,188,65,0.07);
+    border: 1px solid var(--green-border);
+  }
+
+  .split-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .split-card.dead .split-card-label { color: var(--red); }
+  .split-card.living .split-card-label { color: var(--green); }
+
+  .split-card-label::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .split-card.dead .split-card-label::before { background: var(--red); }
+  .split-card.living .split-card-label::before { background: var(--green); }
+
+  .split-card h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+
+  .split-card.dead h3 { color: rgba(220,60,60,0.8); }
+  .split-card.living h3 { color: var(--green); }
+
+  .split-card .desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .split-trait {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    font-size: 13.5px;
+    color: var(--light);
+    line-height: 1.55;
+  }
+
+  .split-trait-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .split-card.dead .split-trait-dot { background: var(--red); opacity: 0.6; }
+  .split-card.living .split-trait-dot { background: var(--green); }
+
+  /* OUTCOME SECTION */
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .outcome-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .outcome-card:hover {
+    border-color: var(--green-border);
+    background: var(--dark-3);
+  }
+
+  .outcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+  }
+
+  .outcome-num {
+    font-family: 'Raleway', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: rgba(132,188,65,0.2);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.04em;
+  }
+
+  .outcome-card h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .outcome-card p {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.7;
+  }
+
+  /* PROOF STRIP */
+  .proof-strip {
+    display: flex;
+    gap: 0;
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .proof-item {
+    flex: 1;
+    padding: 20px 24px;
+    border-right: 1px solid var(--green-border);
+    text-align: center;
+  }
+
+  .proof-item:last-child { border-right: none; }
+
+  .proof-val {
+    font-family: 'Raleway', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .proof-label {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* MANUFACTURER GRID */
+  .mfr-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .mfr-item {
+    background: var(--dark-2);
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mfr-item:hover { background: var(--dark-3); color: var(--white); }
+
+  .mfr-item::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .integration-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .integration-item {
+    background: var(--dark-2);
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+
+  .integration-item:hover { background: var(--dark-3); color: var(--white); }
+
+  .integration-item::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* QUOTE BLOCK */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .quote-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 3px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 24px 22px;
+  }
+
+  .quote-role {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  .quote-text {
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    text-align: center;
+    padding: 100px 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+
+  .cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    margin-right: 12px;
+  }
+
+  .cta-btn-primary:hover { background: #96cf4c; transform: translateY(-1px); }
+
+  .cta-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--light);
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 16px 28px;
+    border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .cta-btn-secondary:hover { border-color: var(--green-border); color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .hero, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .split-grid { grid-template-columns: 1fr; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .quote-grid { grid-template-columns: 1fr; }
+    .mfr-grid { grid-template-columns: repeat(2, 1fr); }
+    .integration-grid { grid-template-columns: repeat(2, 1fr); }
+    .proof-strip { flex-direction: column; }
+    .proof-item { border-right: none; border-bottom: 1px solid var(--green-border); }
+    .proof-item:last-child { border-bottom: none; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .cta-section { padding: 60px 1.5rem; }
+    .cta-btn-primary { margin-right: 0; margin-bottom: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">ECOFIT <span>— Facility Intelligence</span></a>
+  <a class="nav-cta" href="#cta">Talk to an Analyst</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Why EcoFit</div>
+  <h1>The fitness industry<br>is <em>splitting in two.</em></h1>
+  <p class="hero-sub">On one side: operators who know exactly what's happening on their floor — and use that knowledge to make faster, smarter decisions. On the other: facilities still running on instinct, manual observation, and expensive guesswork. The gap is widening every quarter.</p>
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    The case for intelligence
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- SECTION 1 — THE PROBLEM -->
+<div class="bleed-dark">
+  <div class="section">
+    <div class="section-tag fade-up">The problem</div>
+    <h2 class="fade-up">You're making million-dollar decisions<br>with almost <em>no real data.</em></h2>
+    <p class="section-intro fade-up">Equipment is your largest capital expenditure. But once it hits the floor, most operators have almost no reliable visibility into how, when, or whether it's actually being used. That's not a small inefficiency — it's a structural problem at the heart of how fitness facilities are run.</p>
+
+    <div class="problem-grid fade-up">
+
+      <div class="problem-card">
+        <div class="problem-number">01 — The Blind Spot</div>
+        <h3>Your floor is invisible after installation.</h3>
+        <p>The moment equipment ships, most operators lose their data advantage. You can see what you bought — not what's being used, when, by whom, or whether it's earning its place on the floor.</p>
+        <div class="stat">"Gut feeling" gym design is no longer viable in a market where members have more choice than ever and margins are under sustained pressure.</div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-number">02 — The Data Gap</div>
+        <h3>Dead zones are draining your overhead.</h3>
+        <p>Most operators cannot quantify the ROI of their floor plan. Underperforming areas absorb the same overhead as your best-performing equipment — but they don't drive retention, revenue, or member satisfaction.</p>
+        <div class="stat">Over the past few years, operators have been scaling back cardio buys by up to 40% in favor of strength and functional space — often without the data to know if it's working.</div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-number">03 — The Insight Vacuum</div>
+        <h3>You're guessing at trends instead of leading them.</h3>
+        <p>Without granular usage data, your response to shifting member behavior is reactive at best. By the time a trend is visible to you, your most data-driven competitors have already acted on it — and moved on.</p>
+        <div class="stat">Expensive equipment and premium floor space sit idle because no one has a clear picture of what's actually being used versus what operators assumed would be popular.</div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-number">04 — The Commodity Trap</div>
+        <h3>Smart gyms are winning the members you're losing.</h3>
+        <p>Facilities that fail to optimize their footprint are losing members to "smart gyms" that use data to personalize the workout experience, remove friction, and engineer environments members want to return to.</p>
+        <div class="stat">The middle ground between optimized and stagnant is disappearing. Operators who don't choose a direction will find it chosen for them — by declining membership and compressed margins.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2 — THE SPLIT -->
+<div class="section">
+  <div class="section-tag fade-up">The divide</div>
+  <h2 class="fade-up">Two kinds of operators.<br><em>One clear outcome.</em></h2>
+  <p class="section-intro fade-up">A structural split has opened in the commercial fitness industry. The organizations that win over the next decade are the ones treating their floor as a live, measurable asset — not a static sunk cost.</p>
+
+  <div class="split-grid fade-up">
+
+    <div class="split-card dead">
+      <div class="split-card-label">Legacy Operator</div>
+      <h3>The Dead Gym Floor</h3>
+      <p class="desc">Running on instinct, periodic walkthroughs, and whatever data a single manufacturer chooses to share. The floor looks the same it did five years ago — because no one has the data to justify changing it.</p>
+      <div class="split-trait"><div class="split-trait-dot"></div>Floor decisions driven by gut feel and vendor recommendations</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Equipment failures discovered by members, not operations</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Capital investment justified by experience, not utilization data</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Reactive to member trends — always a quarter behind</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Dead zones silently eroding overhead and retention</div>
+    </div>
+
+    <div class="split-card living">
+      <div class="split-card-label">Optimized Leader</div>
+      <h3>The Living Gym</h3>
+      <p class="desc">The floor evolves continuously based on what members actually do — not what operators assumed they would do. Every layout change, every equipment investment, every refresh decision is driven by real data.</p>
+      <div class="split-trait"><div class="split-trait-dot"></div>Equipment utilization tracked by piece, by hour, by site</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Maintenance issues resolved before members experience them</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Capital reallocated to what's proven, not what's assumed</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Trend visibility weeks ahead of the market — not months behind</div>
+      <div class="split-trait"><div class="split-trait-dot"></div>Proven formats rolled out with confidence across every location</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 3 — WHAT CHANGES -->
+<div class="bleed-green">
+  <div class="section">
+    <div class="section-tag fade-up">What changes</div>
+    <h2 class="fade-up">Three things EcoFit <em>makes possible.</em></h2>
+    <p class="section-intro fade-up">EcoFit doesn't just report data. It gives you the actionable intelligence to make better decisions about your most important asset — the floor.</p>
+
+    <div class="outcome-grid fade-up">
+
+      <div class="outcome-card">
+        <div class="outcome-num">01</div>
+        <h3>Maximize Your Equipment</h3>
+        <p>Know what's being used, what isn't, and why. Extend equipment life with usage-based maintenance. Identify underperforming assets before the next capex cycle — and reallocate capital with confidence instead of guesswork.</p>
+      </div>
+
+      <div class="outcome-card">
+        <div class="outcome-num">02</div>
+        <h3>Maximize Your Floor</h3>
+        <p>See exactly how every square foot performs across every site. Resolve flow bottlenecks. Identify dead zones. Optimize the mix between cardio, strength, and functional space based on what members actually do — not what the layout assumed they would.</p>
+      </div>
+
+      <div class="outcome-card">
+        <div class="outcome-num">03</div>
+        <h3>Maximize Your Members</h3>
+        <p>Remove the physical friction that leads to churn. Design environments that match real member behavior. Spot emerging trends early enough to act on them — and give your board the data to back every decision you make.</p>
+      </div>
+
+    </div>
+
+    <!-- WHAT THEY SAY -->
+    <div style="margin-top: 48px;">
+      <div class="section-tag fade-up" style="margin-bottom: 20px;">In their words</div>
+      <div class="quote-grid fade-up">
+        <div class="quote-card">
+          <div class="quote-role">CFO</div>
+          <p class="quote-text">"We can now justify every equipment investment with utilization data and identify underperforming assets before the next capex cycle."</p>
+        </div>
+        <div class="quote-card">
+          <div class="quote-role">CEO / MD</div>
+          <p class="quote-text">"We have the operational intelligence to make faster, better decisions and to show our board exactly what's working and what isn't."</p>
+        </div>
+        <div class="quote-card">
+          <div class="quote-role">COO / Operations Director</div>
+          <p class="quote-text">"Finally, a single view of how every piece of equipment across every site is actually performing — without needing a team to collect the data."</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 4 — PROOF -->
+<div class="section">
+  <div class="section-tag fade-up">Already proven. At scale.</div>
+  <h2 class="fade-up">We didn't design a concept.<br>We <em>built the infrastructure.</em></h2>
+  <p class="section-intro fade-up">EcoFit is already running inside more than 5,000 gyms. The manufacturer API relationships, the camera integrations, the partner platform connections — all live, all built, all working today. Not a vision. A network.</p>
+
+  <div class="proof-strip fade-up">
+    <div class="proof-item">
+      <div class="proof-val">5,000+</div>
+      <div class="proof-label">Gyms running EcoFit today</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-val">13+</div>
+      <div class="proof-label">Equipment manufacturer partnerships</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-val">6</div>
+      <div class="proof-label">Service platform integrations</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-val">100%</div>
+      <div class="proof-label">Brand-agnostic — whole floor visibility</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <div class="section-tag fade-up" style="margin-bottom: 16px; font-size: 10px; color: var(--muted);">Equipment manufacturer partners</div>
+    <div class="mfr-grid fade-up">
+      <div class="mfr-item">Matrix</div>
+      <div class="mfr-item">Core Health & Fitness</div>
+      <div class="mfr-item">Life Fitness</div>
+      <div class="mfr-item">Precor</div>
+      <div class="mfr-item">Woodway</div>
+      <div class="mfr-item">Technogym</div>
+      <div class="mfr-item">True Fitness</div>
+      <div class="mfr-item">eGym</div>
+      <div class="mfr-item">FitBench</div>
+      <div class="mfr-item">Abs Company</div>
+      <div class="mfr-item">Wellness Brands</div>
+      <div class="mfr-item">TMax</div>
+      <div class="mfr-item">Normatec / Hyperice</div>
+      <div class="mfr-item">Eagle Eye</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-tag fade-up" style="margin-bottom: 16px; margin-top: 16px; font-size: 10px; color: var(--muted);">Service platform integrations</div>
+    <div class="integration-grid fade-up">
+      <div class="integration-item">ABC Financial</div>
+      <div class="integration-item">Woven</div>
+      <div class="integration-item">Open Wrench</div>
+      <div class="integration-item">Service Channel</div>
+      <div class="integration-item">MXM</div>
+      <div class="integration-item">+ more in development</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div id="cta" class="bleed-dark">
+  <div class="cta-section fade-up">
+    <div class="section-tag" style="justify-content: center; margin-bottom: 20px;">Ready to see your floor?</div>
+    <h2>Stop flying blind.<br><em>Start leading with data.</em></h2>
+    <p>Talk to an EcoFit analyst about what visibility into your floor could mean for your next capital decision, your next location refresh, or your next board presentation.</p>
+    <div>
+      <a class="cta-btn-primary" href="#">Talk to an EcoFit Analyst</a>
+      <a class="cta-btn-secondary" href="#">See How It Works</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>EcoFit — Facility Intelligence Platform</div>
+  <div>© 2026 EcoFit. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
