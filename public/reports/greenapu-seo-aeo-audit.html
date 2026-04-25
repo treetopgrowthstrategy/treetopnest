@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenAPU — SEO & AEO Audit + Content Strategy | Treetop Growth Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2ecc71;
+    --green-dark: #1a9e52;
+    --green-muted: #1d3a28;
+    --black: #0a0f0d;
+    --surface: #111a14;
+    --surface-2: #172012;
+    --surface-3: #1e2b1a;
+    --border: rgba(46,204,113,0.15);
+    --border-bright: rgba(46,204,113,0.35);
+    --text: #e8f5ec;
+    --text-muted: #8aab96;
+    --text-dim: #4d7a5c;
+    --red: #e74c3c;
+    --amber: #f39c12;
+    --blue: #3498db;
+    --white: #f0faf4;
+    --treetop: #2ecc71;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: linear-gradient(160deg, #0a0f0d 0%, #0d1a10 50%, #0a1208 100%);
+    border-bottom: 1px solid var(--border-bright);
+    padding: 60px 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(46,204,113,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .report-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+
+  .header-kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-kicker::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--green);
+  }
+
+  .header-client {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .header-client span {
+    color: var(--green);
+  }
+
+  .header-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    letter-spacing: 0.3px;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .meta-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* ── SCORE BAND ── */
+  .score-band {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 64px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .score-cell {
+    background: var(--surface);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .score-cell:first-child { border-radius: 0; }
+  .score-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .score-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .score-number.green { color: var(--green); }
+  .score-number.amber { color: var(--amber); }
+  .score-number.red { color: var(--red); }
+  .score-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── LAYOUT ── */
+  .report-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 64px 120px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 72px;
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--green);
+    background: rgba(46,204,113,0.08);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+  }
+  .section-title span {
+    color: var(--green);
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-left: 3px solid;
+    padding: 20px 24px;
+    border-radius: 0 6px 6px 0;
+    margin: 24px 0;
+    background: rgba(0,0,0,0.25);
+  }
+  .callout.positive { border-color: var(--green); background: rgba(46,204,113,0.05); }
+  .callout.warning { border-color: var(--amber); background: rgba(243,156,18,0.05); }
+  .callout.critical { border-color: var(--red); background: rgba(231,76,60,0.05); }
+  .callout.info { border-color: var(--blue); background: rgba(52,152,219,0.05); }
+  .callout-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .callout.positive .callout-title { color: var(--green); }
+  .callout.warning .callout-title { color: var(--amber); }
+  .callout.critical .callout-title { color: var(--red); }
+  .callout.info .callout-title { color: var(--blue); }
+  .callout p { font-size: 14px; color: var(--text); line-height: 1.65; }
+
+  /* ── AUDIT CARDS ── */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .audit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .audit-card:hover { border-color: var(--border-bright); }
+  .audit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .audit-card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.3px;
+  }
+  .badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .badge.pass { background: rgba(46,204,113,0.15); color: var(--green); border: 1px solid rgba(46,204,113,0.25); }
+  .badge.warn { background: rgba(243,156,18,0.15); color: var(--amber); border: 1px solid rgba(243,156,18,0.25); }
+  .badge.fail { background: rgba(231,76,60,0.15); color: var(--red); border: 1px solid rgba(231,76,60,0.25); }
+  .badge.gap { background: rgba(52,152,219,0.15); color: var(--blue); border: 1px solid rgba(52,152,219,0.25); }
+  .audit-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── FULL-WIDTH AUDIT ROW ── */
+  .audit-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+  }
+  .audit-row-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .audit-row p { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── KEYWORD TABLE ── */
+  .kw-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 13px;
+  }
+  .kw-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-bright);
+  }
+  .kw-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .kw-table tr:last-child td { border-bottom: none; }
+  .kw-table tr:hover td { background: rgba(46,204,113,0.03); }
+  .kw-table tbody tr td:first-child { font-weight: 500; color: var(--white); }
+
+  .vol-pill {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: rgba(46,204,113,0.1);
+    color: var(--green);
+  }
+  .vol-pill.amber { background: rgba(243,156,18,0.1); color: var(--amber); }
+  .vol-pill.blue { background: rgba(52,152,219,0.1); color: var(--blue); }
+
+  /* ── CONTENT STRATEGY CARDS ── */
+  .content-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .content-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .content-card-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+  .content-card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .content-card-meta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .content-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .content-card-queries {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .query-chip {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    padding: 4px 0;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+  }
+  .query-chip::before { content: '"'; }
+  .query-chip::after { content: '"'; }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .roadmap-phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .roadmap-phase-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .phase-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .phase-tag.p1 { background: rgba(46,204,113,0.12); color: var(--green); }
+  .phase-tag.p2 { background: rgba(243,156,18,0.12); color: var(--amber); }
+  .phase-tag.p3 { background: rgba(52,152,219,0.12); color: var(--blue); }
+  .roadmap-phase-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .roadmap-items {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .roadmap-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .roadmap-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  /* ── AEO PROMPTS SECTION ── */
+  .prompt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .prompt-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .prompt-icon {
+    font-size: 18px;
+    margin-top: 2px;
+  }
+  .prompt-query {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.45;
+  }
+  .prompt-query::before { content: '"'; color: var(--green); }
+  .prompt-query::after { content: '"'; color: var(--green); }
+  .prompt-guidance {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── STAT BLOCKS ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .stat-block {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-n {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-n span { color: var(--green); font-size: 22px; }
+  .stat-desc {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* ── ENTITY TABLE ── */
+  .entity-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .entity-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border-bright);
+  }
+  .entity-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+  .entity-table tr:last-child td { border-bottom: none; }
+  .entity-table td:first-child { color: var(--white); font-weight: 500; }
+  .status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .dot-green { background: var(--green); }
+  .dot-amber { background: var(--amber); }
+  .dot-red { background: var(--red); }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 32px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .footer-brand span { color: var(--green); }
+  .footer-note {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 48px 0 64px;
+  }
+  .toc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 32px;
+  }
+  .toc-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    color: var(--green);
+    min-width: 22px;
+  }
+
+  /* ── PROSE ── */
+  p { margin-bottom: 14px; color: var(--text-muted); font-size: 14.5px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--white); font-weight: 600; }
+
+  h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 28px 0 12px;
+    letter-spacing: 0.2px;
+  }
+  h3:first-child { margin-top: 0; }
+
+  ul { margin: 12px 0 18px 0; padding-left: 0; list-style: none; }
+  ul li {
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 5px 0 5px 18px;
+    position: relative;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(46,204,113,0.05);
+  }
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-size: 12px;
+  }
+  ul li:last-child { border-bottom: none; }
+
+  /* ── COMPETITOR BAR ── */
+  .comp-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  .comp-name {
+    min-width: 160px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .comp-bar-wrap {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border-radius: 3px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .comp-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--green-dark);
+  }
+  .comp-bar.self { background: var(--green); }
+  .comp-val {
+    min-width: 80px;
+    text-align: right;
+    color: var(--text-muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .report-header { padding: 40px 24px 32px; }
+    .report-body { padding: 40px 24px 80px; }
+    .score-band { grid-template-columns: repeat(3, 1fr); }
+    .audit-grid, .content-cards, .roadmap, .stat-row { grid-template-columns: 1fr 1fr; }
+    .report-footer { flex-direction: column; gap: 12px; padding: 24px; }
+    .header-client { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header class="report-header">
+  <div class="header-kicker">Treetop Growth Strategy &nbsp;·&nbsp; SEO / AEO Audit</div>
+  <div class="header-client">Green<span>APU</span></div>
+  <div class="header-subtitle">greenapu.com &nbsp;·&nbsp; Auxiliary Power Units for Semi Trucks &nbsp;·&nbsp; Lemont, IL</div>
+  <div class="header-meta">
+    <div class="meta-item">
+      <div class="meta-label">Prepared</div>
+      <div class="meta-value">April 2026</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Organic Keywords</div>
+      <div class="meta-value">1,380</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Monthly Organic Traffic</div>
+      <div class="meta-value">2,590</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Traffic Value</div>
+      <div class="meta-value">$176,430</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Scope</div>
+      <div class="meta-value">SEO + AEO + Content</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     SCORE BAND
+══════════════════════════════════════════ -->
+<div class="score-band">
+  <div class="score-cell">
+    <div class="score-label">SEO Foundation</div>
+    <div class="score-number amber">62<span style="font-size:18px;color:var(--text-dim)">/100</span></div>
+    <div class="score-sub">Solid base, notable gaps</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-label">AEO Readiness</div>
+    <div class="score-number red">28<span style="font-size:18px;color:var(--text-dim)">/100</span></div>
+    <div class="score-sub">Significant opportunity</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-label">Content Depth</div>
+    <div class="score-number amber">44<span style="font-size:18px;color:var(--text-dim)">/100</span></div>
+    <div class="score-sub">Thin on key topics</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-label">Technical Health</div>
+    <div class="score-number amber">55<span style="font-size:18px;color:var(--text-dim)">/100</span></div>
+    <div class="score-sub">WordPress / schema gaps</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-label">Competitive Position</div>
+    <div class="score-number green">71<span style="font-size:18px;color:var(--text-dim)">/100</span></div>
+    <div class="score-sub">Strong niche authority</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BODY
+══════════════════════════════════════════ -->
+<div class="report-body">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="toc-num">01</span> Executive Summary</div>
+      <div class="toc-item"><span class="toc-num">02</span> SEO Foundation Audit</div>
+      <div class="toc-item"><span class="toc-num">03</span> Keyword Opportunity Analysis</div>
+      <div class="toc-item"><span class="toc-num">04</span> Competitive Landscape</div>
+      <div class="toc-item"><span class="toc-num">05</span> AEO: AI Search Readiness</div>
+      <div class="toc-item"><span class="toc-num">06</span> Content Strategy Recommendations</div>
+      <div class="toc-item"><span class="toc-num">07</span> Technical Recommendations</div>
+      <div class="toc-item"><span class="toc-num">08</span> Implementation Roadmap</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 01 ── -->
+  <div class="section" id="s01">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div>
+        <div class="section-title">Executive <span>Summary</span></div>
+        <div class="section-desc">Where Green APU stands today and what the opportunity looks like</div>
+      </div>
+    </div>
+
+    <p>Green APU sits in an enviable position: a niche product category (diesel APUs for semi trucks), a 15-year brand history, and genuine differentiation in parts availability and serviceability. The Ahrefs data tells a credible story — <strong>1,380 organic keywords, $176,430 in traffic value, and 76 keywords ranking in positions 1–3</strong> — for a product that costs $8,000–$12,000 installed. This is not a broken site. It is a performing one that is leaving significant revenue on the table.</p>
+
+    <p>The core problem is a dual gap: the site was built and optimized for the SEO era of 2018–2022. It ranks for transactional and brand terms, but it does not own the <strong>educational and comparative query space</strong> that now drives the top of the purchase funnel. More critically, it has essentially zero Answer Engine Optimization (AEO) infrastructure — no schema markup for products or FAQs, no structured comparison content, and no entity clarity signals that would cause ChatGPT, Perplexity, or Google AI Overviews to cite Green APU when truckers ask AI systems for APU recommendations.</p>
+
+    <div class="callout positive">
+      <div class="callout-title">The Core Opportunity</div>
+      <p>Green APU already has brand authority in the trucking community. The Riviera Finance review, forum citations on TruckersReport, and long-standing domain age give it third-party credibility that competitors are still building. The task is not to build authority from zero — it is to <strong>translate existing authority into AI-era citation infrastructure</strong> and to expand the content footprint to capture buyers earlier in their decision journey.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-block">
+        <div class="stat-n">1,380</div>
+        <div class="stat-desc">Organic Keywords Ranking</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-n">76</div>
+        <div class="stat-desc">Keywords in Positions 1–3</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-n">$176<span>K</span></div>
+        <div class="stat-desc">Monthly Traffic Value</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-n">$0</div>
+        <div class="stat-desc">Paid Search Investment</div>
+      </div>
+    </div>
+
+    <p>The $176K/month in estimated traffic value with zero paid spend is a strong signal that organic SEO is working. The challenge is that paid search = 0 also means there is no paid safety net, and organic-only strategies are increasingly exposed to AI search disruption. The recommendations in this audit are designed to both protect existing organic rankings and build the AEO infrastructure that will determine brand visibility over the next three to five years.</p>
+  </div>
+
+  <!-- ── SECTION 02 ── -->
+  <div class="section" id="s02">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div>
+        <div class="section-title">SEO Foundation <span>Audit</span></div>
+        <div class="section-desc">Page-by-page assessment of on-site SEO health</div>
+      </div>
+    </div>
+
+    <h3>What's Working</h3>
+
+    <div class="audit-grid">
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Brand + Transactional Rankings</div>
+          <span class="badge pass">Pass</span>
+        </div>
+        <p>Green APU ranks well for its own brand terms and for high-commercial-intent phrases like "truck APU," "semi truck APU," and "auxiliary power unit for trucks." These are the right keywords to own and conversion intent is high at this stage.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Domain Age & Authority</div>
+          <span class="badge pass">Pass</span>
+        </div>
+        <p>Founded 2011, active web presence since early 2010s. Domain age is a trust signal that newer competitors like HP2000 APU and RoyPow Electric APU cannot replicate quickly. This should be leveraged more explicitly in content and About page positioning.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Core Page Coverage</div>
+          <span class="badge pass">Pass</span>
+        </div>
+        <p>The site covers the essential pages: product page, installation, financing, service/support, blog, parts store, and location. The navigation is logical and the URL structure is clean (no parameter bloat observed). A solid structural foundation exists.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Third-Party Citations</div>
+          <span class="badge pass">Pass</span>
+        </div>
+        <p>The Riviera Finance APU comparison review, TruckersReport forum mentions, and Fontaine Modification distributor partnership provide meaningful external link equity. These third-party endorsements are the raw material for AEO entity establishment.</p>
+      </div>
+    </div>
+
+    <h3>What Needs Work</h3>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">Blog Content Is Thin & Dated</div>
+        <p>The blog has posts but most are 400–700 word articles written in 2019–2024 that function as SEO placeholders rather than authoritative resources. Titles like "What is an APU for a Truck?" rank for low-competition informational terms but do not build the topical depth needed to compete for high-value buyer-journey keywords or to be cited by AI systems. Articles use shortcodes in the visible source (<code>[vc_row]</code>, <code>[vc_column_text]</code>) — a sign the page builder is leaking content markup into rendered pages, which can confuse crawlers.</p>
+      </div>
+      <span class="badge warn">Warning</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">No FAQ / Q&A Schema Markup</div>
+        <p>Zero structured FAQ markup was found across the site. This is the single highest-leverage technical fix available. FAQ schema enables Google AI Overviews to cite specific answers from Green APU pages, and it provides clean structured data for Perplexity and ChatGPT to parse. In the APU category, "how long does an APU pay for itself," "what is the best APU for a semi truck," and "how much fuel does an APU use" are active AI search queries with no dominant answer source. This is a gap that can be captured quickly.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">No Product Schema / Structured Data</div>
+        <p>The product page does not include Product schema with price range, availability, manufacturer, or review aggregate data. This means Green APU is invisible in rich results and Google Shopping snippets, and does not feed the structured entity data that AI search engines use to build product knowledge graphs. Competitor sites that add this first will have a compounding advantage.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">Missing Comparison & Versus Pages</div>
+        <p>There is no content directly addressing "Green APU vs. Thermo King TriPac," "Green APU vs. Carrier ComfortPro," or "diesel APU vs. electric APU." These comparison queries are among the most common mid-funnel searches in this category and are the exact format that AI answer engines preferentially cite. The buyer asking an AI "which APU should I buy?" needs comparative content to trigger a Green APU citation.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">Savings Calculator Exists — But Isn't Crawlable</div>
+        <p>Green APU has a savings calculator, which is a genuine conversion asset. However, the calculator content is JavaScript-rendered and not backed by a static, crawlable companion page that explains the math in plain text. AI systems and search bots cannot parse dynamic JS calculators. A companion page with the fuel savings math written out as structured prose would allow this content to rank and be cited.</p>
+      </div>
+      <span class="badge warn">Warning</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">Visual Page Builder Markup Leakage</div>
+        <p>Several blog posts contain visible shortcode strings (<code>[vc_column_text]</code>, <code>[vc_row]</code>) in the rendered page source. This indicates a WordPress Visual Composer / WPBakery configuration issue. These strings do not render in the browser but they do appear in source markup and can create parsing confusion for search engine crawlers. This should be audited and cleaned in all affected posts.</p>
+      </div>
+      <span class="badge warn">Warning</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">Fleet Manager Segment Is Underserved</div>
+        <p>The current site speaks primarily to owner-operators and individual truck drivers. Fleet-focused content (ROI calculators, total cost of ownership for 10+ truck fleets, compliance with state idling laws by fleet) is completely absent. Fleet managers are high-value buyers with multiple-unit purchase potential and are increasingly using AI research tools for procurement decisions. This is a major untapped segment.</p>
+      </div>
+      <span class="badge warn">Warning</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">LocalBusiness Schema Missing</div>
+        <p>Green APU has a physical installation facility in Lemont, IL and a growing distributor network. The site has no LocalBusiness schema, which means it does not appear in "APU installation near me" or "APU installer Illinois" local pack results. Given the installation requirement of APUs, local search intent is substantial and currently uncaptured.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+  </div>
+
+  <!-- ── SECTION 03 ── -->
+  <div class="section" id="s03">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div>
+        <div class="section-title">Keyword Opportunity <span>Analysis</span></div>
+        <div class="section-desc">Priority targets by intent, volume, and competitive feasibility</div>
+      </div>
+    </div>
+
+    <p>The following keyword clusters represent the highest-opportunity gaps between what Green APU currently ranks for and what buyers are actively searching. These are organized by funnel stage.</p>
+
+    <h3>High-Intent Commercial Keywords (Underranked or Missing)</h3>
+
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Est. Monthly Volume</th>
+          <th>Intent</th>
+          <th>Current Position</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>best APU for semi trucks 2025</td>
+          <td><span class="vol-pill">2,400–4,000</span></td>
+          <td>Commercial</td>
+          <td>Not ranking</td>
+          <td><span class="badge fail">High</span></td>
+        </tr>
+        <tr>
+          <td>diesel APU vs electric APU</td>
+          <td><span class="vol-pill amber">800–1,500</span></td>
+          <td>Comparison</td>
+          <td>Not ranking</td>
+          <td><span class="badge fail">High</span></td>
+        </tr>
+        <tr>
+          <td>how much does an APU save on fuel</td>
+          <td><span class="vol-pill amber">600–1,200</span></td>
+          <td>Informational</td>
+          <td>Partial (savings page)</td>
+          <td><span class="badge fail">High</span></td>
+        </tr>
+        <tr>
+          <td>APU for semi truck cost installed</td>
+          <td><span class="vol-pill amber">900–1,800</span></td>
+          <td>Transactional</td>
+          <td>Not ranking</td>
+          <td><span class="badge fail">High</span></td>
+        </tr>
+        <tr>
+          <td>Green APU vs Thermo King</td>
+          <td><span class="vol-pill blue">300–600</span></td>
+          <td>Comparison</td>
+          <td>Not ranking</td>
+          <td><span class="badge fail">High</span></td>
+        </tr>
+        <tr>
+          <td>Kubota diesel APU truck</td>
+          <td><span class="vol-pill blue">400–800</span></td>
+          <td>Product</td>
+          <td>Unknown</td>
+          <td><span class="badge warn">Medium</span></td>
+        </tr>
+        <tr>
+          <td>truck APU anti-idling law compliance</td>
+          <td><span class="vol-pill blue">200–500</span></td>
+          <td>Informational</td>
+          <td>Not ranking</td>
+          <td><span class="badge warn">Medium</span></td>
+        </tr>
+        <tr>
+          <td>fleet APU ROI calculator</td>
+          <td><span class="vol-pill blue">150–350</span></td>
+          <td>Commercial</td>
+          <td>Not ranking</td>
+          <td><span class="badge warn">Medium</span></td>
+        </tr>
+        <tr>
+          <td>APU installation near me</td>
+          <td><span class="vol-pill blue">500–1,000</span></td>
+          <td>Local</td>
+          <td>Not ranking</td>
+          <td><span class="badge warn">Medium</span></td>
+        </tr>
+        <tr>
+          <td>how does an APU work on a semi truck</td>
+          <td><span class="vol-pill blue">300–700</span></td>
+          <td>Informational</td>
+          <td>Blog post (weak)</td>
+          <td><span class="badge warn">Medium</span></td>
+        </tr>
+        <tr>
+          <td>APU semi truck weight exemption by state</td>
+          <td><span class="vol-pill blue">200–450</span></td>
+          <td>Informational</td>
+          <td>Not ranking</td>
+          <td><span class="badge pass">Low–Medium</span></td>
+        </tr>
+        <tr>
+          <td>APU for truck driver comfort winter</td>
+          <td><span class="vol-pill blue">200–400</span></td>
+          <td>Informational</td>
+          <td>Partial (existing blog)</td>
+          <td><span class="badge pass">Low–Medium</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="callout-title">Volume Methodology Note</div>
+      <p>Volume estimates reflect combined US search volume across keyword variants and related phrasing. APU-category searches are concentrated in Q4 (winter) and Q2 (pre-summer) buying cycles. Content published in August–September captures maximum seasonal intent.</p>
+    </div>
+
+    <h3>Long-Tail & AI Search Queries (AEO-Specific)</h3>
+    <p>The following are conversational queries that truckers and fleet managers are actively asking AI search engines. These are not high Google volume terms — they are the exact prompts entering ChatGPT and Perplexity daily. There are no dominant cited sources for most of them in the APU category. Green APU content that directly answers these questions has a first-mover opportunity for AI citation.</p>
+
+    <ul>
+      <li>What is the most reliable APU for an owner-operator running OTR routes?</li>
+      <li>How long does it take for an APU to pay for itself on a semi truck?</li>
+      <li>Is a diesel APU or electric APU better for cold weather routes?</li>
+      <li>What APU brands use off-the-shelf parts I can get at a truck stop?</li>
+      <li>Does running an APU void my truck warranty?</li>
+      <li>What states have idling laws that require an APU?</li>
+      <li>How much does it cost to install an APU on a semi truck?</li>
+      <li>Can I use an APU to run a microwave and CPAP machine in my sleeper?</li>
+      <li>What is the fuel consumption of a diesel APU per hour?</li>
+      <li>What is the difference between a Kubota APU and a Yanmar APU?</li>
+    </ul>
+  </div>
+
+  <!-- ── SECTION 04 ── -->
+  <div class="section" id="s04">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div>
+        <div class="section-title">Competitive <span>Landscape</span></div>
+        <div class="section-desc">Where Green APU stands relative to key players for organic share</div>
+      </div>
+    </div>
+
+    <p>The APU category has a layered competitive set: legacy institutional brands (Thermo King, Carrier Transicold) dominate on brand authority and distribution, while emerging digital competitors (APU Center, GoGreenAPU, HP2000 APU) compete for organic search share in the educational and informational content space. Green APU's direct competitive threat is not Carrier — it's the SEO-optimized content aggregators that are ranking for buyer-research queries and capturing top-of-funnel intent.</p>
+
+    <h3>Estimated Organic Traffic Share (Target Keywords)</h3>
+
+    <div style="margin: 24px 0;">
+      <div class="comp-row">
+        <div class="comp-name">APU Center (apucenter.com)</div>
+        <div class="comp-bar-wrap"><div class="comp-bar" style="width:78%"></div></div>
+        <div class="comp-val">High — content site</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Green APU (greenapu.com)</div>
+        <div class="comp-bar-wrap"><div class="comp-bar self" style="width:60%"></div></div>
+        <div class="comp-val">Moderate — product-led</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Carrier Transicold</div>
+        <div class="comp-bar-wrap"><div class="comp-bar" style="width:55%"></div></div>
+        <div class="comp-val">Strong — DR dominance</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Thermo King</div>
+        <div class="comp-bar-wrap"><div class="comp-bar" style="width:52%"></div></div>
+        <div class="comp-val">Strong — DR dominance</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">GoGreen APU (gogreenapu.com)</div>
+        <div class="comp-bar-wrap"><div class="comp-bar" style="width:30%"></div></div>
+        <div class="comp-val">Niche — direct competitor</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">HP2000 APU (hp2000apu.com)</div>
+        <div class="comp-bar-wrap"><div class="comp-bar" style="width:22%"></div></div>
+        <div class="comp-val">Low — growing</div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">Key Competitive Insight</div>
+      <p>The most dangerous competitor in this category for Green APU is not a product company — it is <strong>APU Center</strong>, a content-heavy service/sales site that is systematically building educational content to capture buyer-research traffic. Sites like keynnectlogistics.com (which published a "Top 10 APU brands" roundup) and TCS Fuel are also capturing mid-funnel traffic with comparison and buying-guide content. Green APU should be the author of this educational narrative, not a cited subject in someone else's roundup.</p>
+    </div>
+
+    <h3>Competitive Positioning Summary</h3>
+
+    <table class="entity-table">
+      <thead>
+        <tr>
+          <th>Competitor</th>
+          <th>Threat Type</th>
+          <th>Green APU Advantage</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Thermo King TriPac</td>
+          <td>Brand authority, DR dominance</td>
+          <td>Parts availability, lower cost, USA-made</td>
+          <td><span class="status-dot dot-amber"></span>Monitor</td>
+        </tr>
+        <tr>
+          <td>Carrier ComfortPro</td>
+          <td>OEM distribution, institutional fleets</td>
+          <td>Independent flexibility, service network, 24/7 support</td>
+          <td><span class="status-dot dot-amber"></span>Monitor</td>
+        </tr>
+        <tr>
+          <td>APU Center</td>
+          <td>Content SEO, buying guide rankings</td>
+          <td>Actual manufacturer authority vs. reseller</td>
+          <td><span class="status-dot dot-red"></span>Immediate Action</td>
+        </tr>
+        <tr>
+          <td>GoGreen APU</td>
+          <td>Name confusion, direct product competitor</td>
+          <td>5th gen technology, Kubota engine, USA assembly</td>
+          <td><span class="status-dot dot-red"></span>Immediate Action</td>
+        </tr>
+        <tr>
+          <td>RoyPow Electric APU</td>
+          <td>Electric APU narrative, "APU future" queries</td>
+          <td>Diesel reliability for OTR routes, cold weather performance</td>
+          <td><span class="status-dot dot-amber"></span>Monitor</td>
+        </tr>
+        <tr>
+          <td>HP2000 APU</td>
+          <td>Direct competitor, lighter weight claim</td>
+          <td>Established track record, service network breadth</td>
+          <td><span class="status-dot dot-green"></span>Manageable</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── SECTION 05 ── -->
+  <div class="section" id="s05">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div>
+        <div class="section-title">AEO: AI Search <span>Readiness</span></div>
+        <div class="section-desc">How Green APU performs in the emerging AI search landscape</div>
+      </div>
+    </div>
+
+    <div class="callout critical">
+      <div class="callout-title">AEO Score: 28/100 — Significant Gap</div>
+      <p>Green APU is effectively invisible in AI-generated search answers today. When a truck driver or fleet manager asks ChatGPT, Perplexity, or Google AI Overviews "what is the best APU for a semi truck," the cited brands are Thermo King and Carrier — not Green APU. This is not a brand problem. It is a content structure and entity clarity problem. It is solvable.</p>
+    </div>
+
+    <h3>What AI Answer Engines Look For</h3>
+    <p>AI answer engines like ChatGPT (with browsing), Perplexity, and Google AI Overviews do not rank pages — they cite sources that meet specific criteria. Based on analysis of how these systems operate, the following factors determine citation probability:</p>
+
+    <div class="audit-grid">
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Entity Clarity</div>
+          <span class="badge warn">Partial</span>
+        </div>
+        <p>AI engines need to understand who Green APU is as an entity: a manufacturer (not a retailer), founded 2011, family-owned, based in Lemont IL, producing the 5th Generation Kubota Star Edition APU. This entity data exists on the site but is not structured in machine-readable format and is inconsistently presented across pages.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">FAQ Structured Data</div>
+          <span class="badge fail">Missing</span>
+        </div>
+        <p>No FAQ schema found sitewide. This is the primary technical lever for AI citation. FAQ schema allows AI engines to extract specific question-answer pairs directly from page markup. Perplexity specifically surfaces these as cited responses. This should be the first technical implementation.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Comparative Content</div>
+          <span class="badge fail">Missing</span>
+        </div>
+        <p>AI engines preferentially cite pages that directly answer "which is better" queries. Green APU has no head-to-head comparison content. This is the format most likely to trigger an AI citation when a buyer asks "should I buy a Green APU or a Thermo King TriPac?"</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Product Schema</div>
+          <span class="badge fail">Missing</span>
+        </div>
+        <p>No Product structured data with specifications, price range, or aggregate review markup. AI product-knowledge graphs are built from Product schema. Without it, Green APU does not exist in the product knowledge layer that powers AI recommendation answers.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Third-Party Citation Signals</div>
+          <span class="badge warn">Partial</span>
+        </div>
+        <p>The Riviera Finance review and TruckersReport citations are valuable AEO signals. Perplexity heavily favors content from forum communities and third-party reviews. The current citation footprint is thin for a 15-year-old manufacturer. Proactively seeding reviews on trucking forums, Google Business Profile, and comparison sites would strengthen AI citation likelihood.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-header">
+          <div class="audit-card-title">Content Freshness</div>
+          <span class="badge warn">Stale</span>
+        </div>
+        <p>Most blog content has 2019–2024 publication dates with no visible update dates. AI engines weight recent content more heavily — especially for product queries. Adding "Last Updated: [Year]" and regularly refreshing key pages with current data (new state idling law updates, current pricing, etc.) improves AI citation probability significantly.</p>
+      </div>
+    </div>
+
+    <h3>AI Queries Green APU Should Own</h3>
+    <p>The following are the highest-priority AI search prompts that Green APU should architect content to answer. These are ordered by citation opportunity and commercial value.</p>
+
+    <div class="prompt-list">
+      <div class="prompt-item">
+        <div class="prompt-icon">🎯</div>
+        <div>
+          <div class="prompt-query">What is the best diesel APU for an owner-operator on OTR routes?</div>
+          <div class="prompt-guidance">Currently cited: Thermo King and Carrier. Green APU can own this with a dedicated "Best APU for Owner-Operators" page that leads with a direct recommendation (Green APU 5th Gen Kubota Star Edition), justifies with specific specs (¼ gal/hr fuel consumption, standard parts availability, 24/7 support), and includes FAQ schema with the 10 most common OTR APU questions.</div>
+        </div>
+        <span class="badge fail">Gap</span>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-icon">🎯</div>
+        <div>
+          <div class="prompt-query">How long does it take for a semi truck APU to pay for itself?</div>
+          <div class="prompt-guidance">Green APU has a savings calculator but no static page that answers this directly. A page titled "APU ROI: How Long Until Your Investment Pays Off" with a text-based worked example (owner-operator, 300 nights/year, $5.20/gal diesel, idling 8 hrs/night = $1.25/hr APU vs. $4.50/hr idling = $970/month savings = 9-month payback) would be highly citeable and ownable.</div>
+        </div>
+        <span class="badge fail">Gap</span>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-icon">🎯</div>
+        <div>
+          <div class="prompt-query">What APU brand uses the most widely available replacement parts?</div>
+          <div class="prompt-guidance">This is Green APU's single most defensible competitive differentiator and it does not have a page purpose-built to answer this question. A "Why Standard Parts Matter" content page with a comparison of proprietary vs. standard part availability, auto store accessibility, and cost implications would rank and get cited with minimal competition.</div>
+        </div>
+        <span class="badge fail">Gap</span>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-icon">🎯</div>
+        <div>
+          <div class="prompt-query">Does a diesel APU or electric APU perform better in cold weather?</div>
+          <div class="prompt-guidance">The electric APU narrative is growing fast. Green APU needs to own the "diesel wins in cold weather" counternarrative with data. A long-form comparison page covering real temperature performance data, cold-start reliability at -20°F, heating capacity (BTU comparison), and OTR route scenarios would fill a gap that no competitor has adequately addressed.</div>
+        </div>
+        <span class="badge fail">Gap</span>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-icon">🎯</div>
+        <div>
+          <div class="prompt-query">What states have anti-idling laws for semi trucks in 2025?</div>
+          <div class="prompt-guidance">This is a purely informational query with regulatory urgency that drives APU purchase decisions. A well-structured "Anti-Idling Laws by State: 2025 Guide" page with a state-by-state table, fine amounts, APU exemptions, and updated dates would rank easily, get cited frequently by AI engines, and generate highly qualified traffic from fleet managers doing compliance research.</div>
+        </div>
+        <span class="badge warn">Partial Gap</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 06 ── -->
+  <div class="section" id="s06">
+    <div class="section-header">
+      <div class="section-number">06</div>
+      <div>
+        <div class="section-title">Content Strategy <span>Recommendations</span></div>
+        <div class="section-desc">12 specific content pieces that would meaningfully move the needle</div>
+      </div>
+    </div>
+
+    <p>The following content recommendations are prioritized by their combined SEO value, AEO citation potential, and proximity to purchase decision. Each piece is actionable, ownable by Green APU specifically (not a generic topic any APU site could cover), and builds toward a topic cluster that establishes Green APU as the authoritative source in the category.</p>
+
+    <div class="content-cards">
+      <div class="content-card">
+        <div class="content-card-icon">📊</div>
+        <div class="content-card-meta">Priority 1 · Commercial</div>
+        <div class="content-card-title">The Complete APU Buyer's Guide for Owner-Operators (2026)</div>
+        <p>The definitive long-form guide targeting every stage of the APU purchase decision. 3,000+ words covering: what APUs do, diesel vs. electric comparison table, the 6 questions to ask before buying, installation requirements, financing options, and a direct recommendation. Designed to rank for "best APU semi truck" and to be the single most-cited resource when AI engines answer buying questions.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">What is the best APU for a semi truck?</div>
+          <div class="query-chip">best diesel APU owner-operator 2026</div>
+          <div class="query-chip">APU for semi truck buying guide</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">⚖️</div>
+        <div class="content-card-meta">Priority 1 · Comparison</div>
+        <div class="content-card-title">Green APU vs. Thermo King TriPac: Side-by-Side Comparison</div>
+        <p>A direct, honest comparison page covering specifications, fuel consumption, parts availability, warranty terms, service network, price installed, and total cost of ownership over 5 years. Include a comparison table in schema-ready markup. This is the highest-AEO-value page the site could add — AI engines cite head-to-head comparisons with high frequency for product-buying queries.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">Green APU vs Thermo King TriPac</div>
+          <div class="query-chip">which APU is more reliable Thermo King or Green APU</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">💰</div>
+        <div class="content-card-meta">Priority 1 · Commercial</div>
+        <div class="content-card-title">APU Cost & ROI Calculator: How Fast Does Your Investment Pay Off?</div>
+        <p>A static, crawlable companion page to the existing JS calculator. Provides a full worked-out ROI example with variable inputs explained in plain text, a data table showing payback period at different idle hours and diesel prices, and a downloadable PDF summary for fleet managers. This page answers the single most important buying question and positions Green APU as the ROI authority.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">how long does APU pay for itself</div>
+          <div class="query-chip">APU fuel savings calculation semi truck</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">🗺️</div>
+        <div class="content-card-meta">Priority 1 · Regulatory</div>
+        <div class="content-card-title">Anti-Idling Laws by State: 2025–2026 Complete Guide for Truck Drivers</div>
+        <p>A structured reference page with a table of all 50 states, idling time limits, fine amounts, APU exemption language, and last-updated dates. Reviewed annually. This page targets fleet compliance research, ranks for long-tail regulatory queries, and is precisely the format AI engines cite when answering "what are the idling laws in [state]." Fleet managers bookmark this kind of resource.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">semi truck idling laws by state 2025</div>
+          <div class="query-chip">anti-idling fines truck driver California</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">❄️</div>
+        <div class="content-card-meta">Priority 2 · Seasonal</div>
+        <div class="content-card-title">Diesel APU vs. Electric APU in Cold Weather: The Real Numbers</div>
+        <p>Data-driven comparison of diesel vs. electric APU heating performance in sub-zero conditions. Include actual BTU output data, temperature performance floors, cold-start reliability, and real driver testimonials from northern routes. Position Green APU's Kubota diesel as the definitive choice for OTR routes through the northern US and Canada. Counters the electric APU marketing narrative head-on.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">best APU for cold weather trucking</div>
+          <div class="query-chip">diesel APU vs electric APU winter performance</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">🔧</div>
+        <div class="content-card-meta">Priority 2 · Trust</div>
+        <div class="content-card-title">APU Maintenance Guide: What You Need to Know Before You Buy</div>
+        <p>An honest, comprehensive guide to APU maintenance requirements — oil change intervals, filter replacement, belt inspection, what to check at annual truck service, and how Green APU's standard-parts design reduces service costs. Includes a maintenance checklist (as schema-formatted content). This builds trust and directly addresses a top buyer concern before it becomes an objection.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">how often does APU need oil change</div>
+          <div class="query-chip">APU maintenance schedule semi truck</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">🏗️</div>
+        <div class="content-card-meta">Priority 2 · Fleet</div>
+        <div class="content-card-title">Fleet Manager's Guide to APU ROI: Calculating Value Across Your Fleet</div>
+        <p>A B2B-facing guide targeting fleet managers and owner-operators with multiple trucks. Covers fleet-level ROI modeling, driver retention impact (APU-equipped trucks have lower driver turnover), compliance benefits, and bulk purchasing/financing options. Includes a downloadable fleet ROI spreadsheet. This segment is completely unaddressed on the current site and represents a high-value, low-competition content opportunity.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">APU ROI fleet trucking company</div>
+          <div class="query-chip">should my fleet invest in APUs for drivers</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">📍</div>
+        <div class="content-card-meta">Priority 2 · Local SEO</div>
+        <div class="content-card-title">APU Installation Near [City]: What to Expect + Service Locations</div>
+        <p>A location-structured service page covering Green APU's installation facility in Lemont, IL plus distributor network locations. Include what the installation process involves, how long it takes, and how to schedule. Add LocalBusiness schema. Also create sub-pages or sections for key distributor locations (Fontaine Modification, Pilot/Flying J alliance, R.B. Humphreys). This captures high-intent local search traffic.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">APU installation near me semi truck</div>
+          <div class="query-chip">Green APU install Illinois Chicago</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">💬</div>
+        <div class="content-card-meta">Priority 2 · AEO</div>
+        <div class="content-card-title">APU FAQ Hub: 40 Questions Truckers Actually Ask</div>
+        <p>A dedicated FAQ page structured entirely around real questions that truckers ask AI systems, Google, and trucking forums. Organized into categories: Buying, Cost &amp; Savings, Installation, Maintenance, Compliance, and Comparison. Each answer is 50–100 words, precise, and marked up with FAQ schema. This is the single highest-leverage page for AI engine citation and Google featured snippets simultaneously.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">does APU void truck warranty</div>
+          <div class="query-chip">can APU run CPAP machine in sleeper</div>
+          <div class="query-chip">how loud is a diesel APU at night</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">🎥</div>
+        <div class="content-card-meta">Priority 3 · Authority</div>
+        <div class="content-card-title">Inside the Green APU Factory: How We Build the 5th Gen Kubota Star Edition</div>
+        <p>A behind-the-scenes manufacturing feature with photos, video (transcribed), and technical content about Green APU's USA assembly process, Kubota engine selection rationale, in-house component manufacturing, and quality testing. This content builds entity authority, generates backlink opportunities from trucking press, differentiates from overseas-assembled competitors, and performs strongly on "Made in USA" searches in the trucking industry.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">USA-made diesel APU semi truck</div>
+          <div class="query-chip">Green APU Kubota engine review</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">⚡</div>
+        <div class="content-card-meta">Priority 3 · Emerging</div>
+        <div class="content-card-title">Electric APUs in 2026: Are They Ready for OTR Trucking?</div>
+        <p>An honest, data-led assessment of electric APU technology maturity for long-haul OTR routes. Not a dismissal of electric — a fair evaluation of where electric APUs perform well (regional, moderate climate, short overnight) vs. where diesel continues to outperform (OTR, cold weather, continuous use). Positions Green APU as a credible, objective voice in the diesel vs. electric debate rather than a partisan defender of diesel.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">are electric APUs ready for OTR trucking</div>
+          <div class="query-chip">electric vs diesel APU 2025 comparison</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-icon">💳</div>
+        <div class="content-card-meta">Priority 3 · Conversion</div>
+        <div class="content-card-title">How to Finance an APU for Your Truck: Owner-Operator Guide</div>
+        <p>A dedicated financing guide covering Green APU's flexible financing options, typical approval requirements, how APU financing compares to a truck upgrade loan, and the ROI case for financing vs. paying cash. Include a financing FAQ with schema markup. Financing is a real purchase barrier for owner-operators and the existing financing page lacks the educational content to overcome it proactively.</p>
+        <div class="content-card-queries">
+          <div class="query-chip">how to finance APU for truck driver</div>
+          <div class="query-chip">APU financing owner-operator</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 07 ── -->
+  <div class="section" id="s07">
+    <div class="section-header">
+      <div class="section-number">07</div>
+      <div>
+        <div class="section-title">Technical <span>Recommendations</span></div>
+        <div class="section-desc">Infrastructure changes to enable the content strategy and AEO improvements</div>
+      </div>
+    </div>
+
+    <h3>Schema Markup Implementation</h3>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">1. FAQPage Schema — Highest Priority</div>
+        <p>Add FAQPage schema markup to the existing "Why You Need an APU" page, the "What is the Best APU" post, and any new FAQ content. This is a 30-minute WordPress SEO plugin task (Yoast, RankMath, or Schema Pro all support FAQ schema). FAQPage schema directly feeds Google AI Overviews and enables Perplexity to extract structured answers. This is the single highest-ROI technical action available.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">2. Product Schema on APU Product Page</div>
+        <p>Implement Product schema on the semi truck APU product page including: name ("Green APU 5th Generation Kubota Star Edition"), manufacturer ("Green APU"), description, priceRange, availability, and aggregateRating (once reviews are collected). Add HowToUse if applicable. This feeds Google's product knowledge graph and enables rich result snippets for commercial queries.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">3. Organization + LocalBusiness Schema</div>
+        <p>Add Organization schema to the homepage and About page: name ("Green APU"), foundingDate (2011), description, address (Lemont, IL), phone, email, sameAs links to social profiles. Add LocalBusiness schema for the Lemont installation facility. These schemas establish Green APU as a named entity in Google's knowledge graph, which is the foundational step for AI citation authority.</p>
+      </div>
+      <span class="badge fail">Critical</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">4. Fix Visual Composer Shortcode Leakage</div>
+        <p>Audit all blog posts for visible <code>[vc_row]</code>, <code>[vc_column_text]</code>, and similar WPBakery shortcodes appearing in rendered source. This typically indicates plugin deactivation without content migration. Either reinstall the page builder, convert to blocks, or manually clean affected posts. This is a crawl quality issue that reduces indexing confidence.</p>
+      </div>
+      <span class="badge warn">Important</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">5. Add Author Schema + Expert Attribution</div>
+        <p>Research shows that adding author schema (especially for named expert contributors) improves AI citation rates for existing content. Green APU's team includes technical experts and long-tenured staff. Add named authors with Person schema to key blog posts, including title (e.g., "Lead APU Technician"), employer (Green APU), and expertise areas. This signals editorial authority to AI models evaluating source credibility.</p>
+      </div>
+      <span class="badge warn">Important</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">6. Update Dates on All Key Content</div>
+        <p>Add visible "Last Updated: [Month Year]" dates to all blog posts and key pages. AI engines weight content freshness — content without dates is treated as potentially stale. This is a 10-minute content edit per page and meaningfully improves both AI citation probability and Google ranking for competitive queries where freshness is a ranking factor.</p>
+      </div>
+      <span class="badge warn">Important</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">7. Create a Static Savings Companion Page</div>
+        <p>The current savings calculator is JavaScript-only. Add a companion HTML page at /apu-fuel-savings-calculator/ that presents the same math in static, crawlable form: a table of scenarios (idle hours per day × diesel cost per gallon × APU fuel cost = daily savings), explanation of the variables, and a clear summary statement. This page will rank and be cited independently of the JS calculator.</p>
+      </div>
+      <span class="badge warn">Important</span>
+    </div>
+
+    <div class="audit-row">
+      <div>
+        <div class="audit-row-title">8. Google Business Profile Optimization</div>
+        <p>Ensure Green APU's Google Business Profile is fully built out: complete description, all service categories, photos of the Lemont facility, Q&A section populated with common questions, and regular posts. Gemini AI (Google's AI) draws heavily from Google Business Profile data for local and product queries. An optimized GBP is an AEO signal that most competitors overlook.</p>
+      </div>
+      <span class="badge warn">Important</span>
+    </div>
+  </div>
+
+  <!-- ── SECTION 08 ── -->
+  <div class="section" id="s08">
+    <div class="section-header">
+      <div class="section-number">08</div>
+      <div>
+        <div class="section-title">Implementation <span>Roadmap</span></div>
+        <div class="section-desc">90-day phased action plan organized by impact and effort</div>
+      </div>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-header">
+          <div class="phase-tag p1">Phase 1</div>
+          <div class="roadmap-phase-title">Days 1–30<br>Technical Foundation</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">Add FAQPage schema to existing blog posts (use RankMath or Yoast FAQ blocks)</div>
+          <div class="roadmap-item">Add Organization + LocalBusiness schema to homepage and About page</div>
+          <div class="roadmap-item">Add Product schema to the APU product page with all available attributes</div>
+          <div class="roadmap-item">Audit and fix Visual Composer shortcode leakage across all blog posts</div>
+          <div class="roadmap-item">Add "Last Updated" dates to all blog posts and key pages</div>
+          <div class="roadmap-item">Fully optimize Google Business Profile for Lemont, IL facility</div>
+          <div class="roadmap-item">Add author attribution with Person schema to top 10 blog posts</div>
+        </div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-header">
+          <div class="phase-tag p2">Phase 2</div>
+          <div class="roadmap-phase-title">Days 31–60<br>Priority Content Build</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">Publish: "Complete APU Buyer's Guide for Owner-Operators 2026" (3,000+ words)</div>
+          <div class="roadmap-item">Publish: "APU FAQ Hub: 40 Questions Truckers Actually Ask" with full FAQ schema</div>
+          <div class="roadmap-item">Publish: "Anti-Idling Laws by State 2025–2026" with structured state table</div>
+          <div class="roadmap-item">Publish: "APU Cost & ROI: How Fast Does Your Investment Pay Off?" static companion page</div>
+          <div class="roadmap-item">Publish: "Green APU vs. Thermo King TriPac" head-to-head comparison page</div>
+          <div class="roadmap-item">Update existing blog posts with expanded content, proper headers, FAQ schema</div>
+        </div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-header">
+          <div class="phase-tag p3">Phase 3</div>
+          <div class="roadmap-phase-title">Days 61–90<br>Authority & Expansion</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">Publish: "Diesel APU vs. Electric APU in Cold Weather" with performance data</div>
+          <div class="roadmap-item">Publish: "Fleet Manager's Guide to APU ROI" with downloadable template</div>
+          <div class="roadmap-item">Publish: Local installation page with full schema for Lemont facility</div>
+          <div class="roadmap-item">Publish: "APU Maintenance Guide" with HowTo schema markup</div>
+          <div class="roadmap-item">Publish: "How to Finance an APU" education page</div>
+          <div class="roadmap-item">Submit updated sitemap to Google Search Console and Bing Webmaster Tools</div>
+          <div class="roadmap-item">Begin proactive outreach to trucking forums and publications for content distribution</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout positive">
+      <div class="callout-title">Expected Outcomes at 90 Days</div>
+      <p>With full Phase 1–3 implementation, Green APU should expect: a material increase in keyword rankings for commercial and comparison queries, first appearances in AI Overview citations for FAQ and comparison queries, improved local pack visibility in the Chicagoland and Midwest region, and a meaningfully larger addressable top-of-funnel audience. The AEO foundation built in Phase 1 compounds over time — schema markup and entity establishment have long-term cumulative value that accelerates with each new piece of content published.</p>
+    </div>
+
+    <h3>Ongoing Cadence Recommendations</h3>
+    <ul>
+      <li>Publish 2 new blog articles per month targeting AI search queries identified in Section 03</li>
+      <li>Refresh the Anti-Idling Laws page quarterly with any state regulation updates</li>
+      <li>Update the Buyer's Guide and FAQ Hub annually with current year designation and new content</li>
+      <li>Monitor AI visibility monthly by manually testing 10–15 target queries in ChatGPT, Perplexity, and Google AI Overviews — track whether Green APU is cited and by which page</li>
+      <li>Solicit structured reviews on Google Business Profile from every post-installation customer</li>
+      <li>Seed key content (especially the comparison and FAQ pages) to TruckersReport.com, Reddit r/Truckers, and industry newsletters</li>
+    </ul>
+  </div>
+
+  <!-- CLOSING NOTE -->
+  <div class="callout info" style="margin-top: 48px;">
+    <div class="callout-title">A Note on Timing</div>
+    <p>The window for first-mover advantage in AEO within the truck APU category is narrow but still open. No competitor has built a comprehensive AI-citation infrastructure in this niche. Green APU's combination of genuine product differentiation, 15 years of brand authority, and a physically installed product with real customer satisfaction data is an ideal foundation for AEO dominance. The brands that begin structuring content for AI citation in 2025–2026 will be the ones that appear by default in AI recommendations through 2027 and beyond. Citation share compounds. The time to move is now.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div class="footer-brand"><span>Treetop</span> Growth Strategy &nbsp;·&nbsp; greenapu.com SEO/AEO Audit</div>
+  <div class="footer-note">Prepared April 2026 &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; treetopgrowthstrategy.com</div>
+</footer>
+
+</body>
+</html>
