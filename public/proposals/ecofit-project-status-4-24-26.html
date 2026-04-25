@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoFit — Website Project Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #84BC41;
+    --green-dark: #5e8a2d;
+    --green-light: #a8d46a;
+    --green-muted: #d6edb8;
+    --dark: #14191f;
+    --dark-2: #1e252e;
+    --dark-3: #28323d;
+    --mid: #3a4856;
+    --muted: #7a8a96;
+    --light: #b0bec8;
+    --off-white: #f4f6f4;
+    --white: #ffffff;
+    --border: rgba(132,188,65,0.15);
+    --border-dark: rgba(255,255,255,0.08);
+    --amber: #efb940;
+    --red: #e05252;
+    --blue: #60a5fa;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(20,25,31,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 0 3rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    color: var(--green);
+  }
+
+  .nav-logo span { color: var(--white); font-weight: 300; }
+
+  .nav-links { display: flex; gap: 0; list-style: none; }
+
+  .nav-links a {
+    display: block;
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-date { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 3rem 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  h1 em { color: var(--green); font-style: normal; }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--light);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+
+  .hero-meta-item { display: flex; flex-direction: column; gap: 2px; }
+
+  .hero-meta-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-meta-value { font-size: 13px; color: var(--light); }
+
+  /* SECTIONS */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 3rem;
+    border-top: 1px solid var(--border-dark);
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 620px;
+    line-height: 1.7;
+  }
+
+  h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  p { color: var(--light); font-size: 14px; line-height: 1.75; }
+
+  /* CARDS */
+  .card {
+    background: var(--dark-2);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+
+  .card-accent-green { border-left: 3px solid var(--green); }
+  .card-accent-amber { border-left: 3px solid var(--amber); }
+  .card-accent-red   { border-left: 3px solid var(--red); }
+  .card-accent-top   { border-top: 3px solid var(--green); border-left: none; }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  /* STATUS DASHBOARD */
+  .status-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: rgba(132,188,65,0.06);
+    border: 1px solid rgba(132,188,65,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .status-item {
+    padding: 20px 22px;
+    border-right: 1px solid rgba(132,188,65,0.1);
+  }
+
+  .status-item:last-child { border-right: none; }
+
+  .status-val {
+    font-family: 'Raleway', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .status-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* BUILD STATUS TABLE */
+  .build-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; }
+
+  .build-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .build-table td {
+    padding: 12px 12px;
+    color: var(--light);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+
+  .build-table td:first-child { color: var(--white); font-weight: 500; font-family: 'Raleway', sans-serif; }
+
+  .build-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .b-now    { background: rgba(132,188,65,0.12); color: var(--green);  border: 1px solid rgba(132,188,65,0.2); }
+  .b-next   { background: rgba(96,165,250,0.1);  color: var(--blue);   border: 1px solid rgba(96,165,250,0.2); }
+  .b-hold   { background: rgba(120,130,150,0.1); color: var(--muted);  border: 1px solid rgba(255,255,255,0.1); }
+  .b-done   { background: rgba(58,186,130,0.1);  color: #3aba82;       border: 1px solid rgba(58,186,130,0.25); }
+  .b-block  { background: rgba(224,82,82,0.1);   color: var(--red);    border: 1px solid rgba(224,82,82,0.2); }
+
+  /* STAT STRIP */
+  .stat-strip {
+    display: flex;
+    gap: 0;
+    background: rgba(132,188,65,0.06);
+    border: 1px solid rgba(132,188,65,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 36px;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 18px 22px;
+    border-right: 1px solid rgba(132,188,65,0.1);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-val {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* SUMMARY */
+  .summary-card {
+    background: var(--dark-2);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 22px 26px;
+  }
+
+  .summary-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  .summary-card p { font-size: 14px; color: var(--light); line-height: 1.7; }
+
+  .quote-block {
+    background: var(--dark-3);
+    border-left: 3px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+
+  .quote-block-amber {
+    background: var(--dark-3);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+
+  .quote-block p, .quote-block-amber p {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.7;
+  }
+
+  .quote-attr {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  /* CHECK / MINUS / PLUS ITEMS */
+  .check-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .check-item::before { content: '✓'; color: var(--green); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .check-item span { font-size: 13px; color: var(--light); line-height: 1.55; }
+
+  .minus-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .minus-item::before { content: '—'; color: var(--red); font-size: 12px; margin-top: 1px; flex-shrink: 0; }
+  .minus-item span { font-size: 13px; color: var(--light); line-height: 1.55; }
+
+  .plus-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .plus-item::before { content: '+'; color: var(--green); font-size: 13px; font-weight: 600; margin-top: 1px; flex-shrink: 0; }
+  .plus-item span { font-size: 13px; color: var(--light); line-height: 1.55; }
+
+  .dot-item { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .dot-item::before { content: '·'; color: var(--amber); font-size: 16px; margin-top: -1px; flex-shrink: 0; line-height: 1.3; }
+  .dot-item span { font-size: 13px; color: var(--light); line-height: 1.55; }
+
+  /* BRANDSCRIPT */
+  .bs-number {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(132,188,65,0.15);
+    border: 1px solid rgba(132,188,65,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+    color: var(--green);
+    flex-shrink: 0;
+    margin-bottom: 12px;
+  }
+
+  .bs-row-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+
+  /* PAGE CARDS */
+  .page-card {
+    background: var(--dark-2);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .page-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border-dark);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .page-card-header:hover { background: rgba(255,255,255,0.02); }
+
+  .page-title-row { display: flex; align-items: center; gap: 14px; }
+
+  .page-badge {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 4px;
+  }
+
+  .page-name { font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); }
+  .page-url { font-size: 11px; color: rgba(255,255,255,0.25); margin-left: 8px; font-family: monospace; }
+
+  .page-toggle { font-size: 18px; color: var(--muted); transition: transform 0.2s; }
+
+  .page-body { padding: 22px 24px; display: none; }
+  .page-body.open { display: block; }
+
+  .page-body h4 {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 10px; margin-top: 18px;
+  }
+
+  .page-body h4:first-child { margin-top: 0; }
+
+  .rec-item { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+  .rec-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-top: 7px; flex-shrink: 0; }
+  .rec-item p { font-size: 13.5px; margin: 0; }
+
+  .need-item { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+  .need-dot-c { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); margin-top: 7px; flex-shrink: 0; }
+  .need-dot-u { width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-top: 7px; flex-shrink: 0; }
+  .need-item p { font-size: 13px; margin: 0; }
+
+  .needs-legend { display: flex; gap: 20px; margin-bottom: 12px; }
+  .legend-dot { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+  .legend-dot::before { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; }
+  .legend-amber::before { background: var(--amber); }
+  .legend-green::before { background: var(--green); }
+
+  .remove-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--red);
+    background: rgba(224,82,82,0.1);
+    border: 1px solid rgba(224,82,82,0.2);
+    padding: 2px 7px; border-radius: 4px; margin-left: 6px;
+  }
+
+  .new-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--green);
+    background: rgba(132,188,65,0.12);
+    border: 1px solid rgba(132,188,65,0.2);
+    padding: 2px 7px; border-radius: 4px; margin-left: 6px;
+  }
+
+  /* COMPARABLES */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .comp-card {
+    background: var(--dark-2);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .comp-card:hover { border-color: rgba(132,188,65,0.35); }
+
+  .comp-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+  .comp-name { font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); }
+
+  .comp-tag {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; white-space: nowrap;
+  }
+
+  .tag-top    { background: rgba(132,188,65,0.12); color: var(--green);  border: 1px solid rgba(132,188,65,0.2); }
+  .tag-analog { background: rgba(58,186,130,0.1);  color: #3aba82;       border: 1px solid rgba(58,186,130,0.25); }
+  .tag-gold   { background: rgba(239,159,39,0.1);  color: var(--amber);  border: 1px solid rgba(239,159,39,0.25); }
+  .tag-stats  { background: rgba(224,82,82,0.1);   color: #e08282;       border: 1px solid rgba(224,82,82,0.2); }
+  .tag-nav    { background: rgba(120,120,140,0.12); color: var(--muted); border: 1px solid rgba(120,120,140,0.2); }
+  .tag-fit    { background: rgba(96,165,250,0.1);   color: var(--blue);  border: 1px solid rgba(96,165,250,0.2); }
+  .tag-avoid  { background: rgba(224,82,82,0.08);   color: #c07070;      border: 1px solid rgba(224,82,82,0.15); }
+
+  .comp-what { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+  .comp-divider { height: 1px; background: var(--border-dark); }
+
+  .comp-lesson-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 4px;
+  }
+
+  .comp-lesson { font-size: 12.5px; color: var(--light); line-height: 1.65; }
+
+  .comp-eval-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 4px; margin-top: 8px;
+  }
+
+  .comp-eval { font-size: 12px; color: var(--muted); line-height: 1.6; font-style: italic; }
+
+  .comp-link {
+    font-size: 11px;
+    color: rgba(132,188,65,0.7);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 3px;
+    margin-top: auto;
+  }
+
+  .comp-link:hover { color: var(--green); }
+
+  /* GALLERY */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+  .gallery-card {
+    background: var(--dark-3);
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .gallery-name { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .gallery-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .gallery-link { font-size: 11px; color: var(--green); text-decoration: none; display: block; margin-top: 8px; }
+
+  /* CLIENT NEEDS TABLE */
+  .needs-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; }
+
+  .needs-table th {
+    text-align: left;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); padding: 8px 12px;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .needs-table td {
+    padding: 12px 12px;
+    color: var(--light);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+
+  .needs-table td:first-child { color: var(--white); font-weight: 500; }
+
+  /* PRINCIPLES */
+  .principle-row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px; align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .principle-row:last-child { border-bottom: none; }
+
+  .principle-num {
+    font-family: 'Raleway', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: rgba(132,188,65,0.25);
+    line-height: 1;
+  }
+
+  .principle-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 5px; }
+  .principle-body { font-size: 13.5px; color: var(--light); line-height: 1.7; }
+
+  /* ALERT BOXES */
+  .alert-box {
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    border-left: 3px solid;
+  }
+
+  .alert-amber { background: rgba(239,159,39,0.07); border-color: var(--amber); }
+  .alert-green { background: rgba(132,188,65,0.07); border-color: var(--green); }
+  .alert-red   { background: rgba(224,82,82,0.07);  border-color: var(--red);   }
+
+  .alert-title {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .alert-amber .alert-title { color: var(--amber); }
+  .alert-green .alert-title { color: var(--green); }
+  .alert-red   .alert-title { color: var(--red); }
+  .alert-box p { font-size: 13.5px; line-height: 1.65; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-dark);
+    padding: 40px 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">EcoFit <span>× Treetop</span></div>
+  <ul class="nav-links">
+    <li><a href="#status">Status</a></li>
+    <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#brandscript">BrandScript</a></li>
+    <li><a href="#pages">Pages</a></li>
+    <li><a href="#comparables">Comparables</a></li>
+    <li><a href="#inputs">Inputs Needed</a></li>
+    <li><a href="#principles">Principles</a></li>
+  </ul>
+  <div class="nav-date">Updated April 24, 2026</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">EcoFit Website Project</div>
+  <h1>Project Status &amp;<br><em>Build Plan</em></h1>
+  <p class="hero-sub">A living document tracking strategy, decisions, open questions, and build priorities across both working sessions — April 7 and April 24, 2026.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Prepared for</div>
+      <div class="hero-meta-value">Dave Johnson, Phil Rankine, Tim Porth, Will</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Sessions</div>
+      <div class="hero-meta-value">April 7 + April 24, 2026</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Prepared by</div>
+      <div class="hero-meta-value">Treetop Growth Strategy</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Version</div>
+      <div class="hero-meta-value">2.0 — Living Document</div>
+    </div>
+  </div>
+</div>
+
+<!-- 00 PROJECT STATUS -->
+<section id="status">
+  <div class="section-eyebrow">Project Overview</div>
+  <h2>Where We Stand</h2>
+  <p class="section-desc">Two sessions in. Strategy and StoryBrand are locked. The site architecture is defined. The next gate is a narrative direction decision — everything else follows from that.</p>
+
+  <div class="status-strip">
+    <div class="status-item">
+      <div class="status-val">2</div>
+      <div class="status-label">Strategy sessions complete</div>
+    </div>
+    <div class="status-item">
+      <div class="status-val">7</div>
+      <div class="status-label">Pages defined and scoped</div>
+    </div>
+    <div class="status-item">
+      <div class="status-val">3</div>
+      <div class="status-label">Narrative options wireframed</div>
+    </div>
+    <div class="status-item">
+      <div class="status-val">0</div>
+      <div class="status-label">Pages in production — awaiting direction approval</div>
+    </div>
+  </div>
+
+  <table class="build-table">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>URL</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Blocker</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Homepage</td>
+        <td>/</td>
+        <td><span class="build-badge b-now">Build Now</span></td>
+        <td>3 narrative options wireframed in Pencil</td>
+        <td>Team must select Option A, B, or C</td>
+      </tr>
+      <tr>
+        <td>Get Started in 90 Days</td>
+        <td>/get-started</td>
+        <td><span class="build-badge b-now">Build Now</span></td>
+        <td>Outlined — ready to wireframe</td>
+        <td>Installation timeline + sensor photos from team</td>
+      </tr>
+      <tr>
+        <td>For Franchisees</td>
+        <td>/franchisees</td>
+        <td><span class="build-badge b-next">Build Next</span></td>
+        <td>Brief written, not yet wireframed</td>
+        <td>Persona session with Dave required</td>
+      </tr>
+      <tr>
+        <td>For Corporate Operators</td>
+        <td>/enterprise</td>
+        <td><span class="build-badge b-next">Build Next</span></td>
+        <td>Brief written, not yet wireframed</td>
+        <td>Masked case study + Dave persona session</td>
+      </tr>
+      <tr>
+        <td>How It Works / Platform</td>
+        <td>/how-it-works</td>
+        <td><span class="build-badge b-next">Build Next</span></td>
+        <td>Outlined — needs product photography</td>
+        <td>Sensor hardware photos + dashboard screenshot</td>
+      </tr>
+      <tr>
+        <td>About</td>
+        <td>/about</td>
+        <td><span class="build-badge b-next">Build Next</span></td>
+        <td>Direction from April 7 session is clear</td>
+        <td>Team bios + stat confirmation from Dave</td>
+      </tr>
+      <tr>
+        <td>Manufacturer Partners</td>
+        <td>/partners</td>
+        <td><span class="build-badge b-block">Blocked</span></td>
+        <td>Not started</td>
+        <td>Will's language document must be complete first</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box alert-amber">
+    <div class="alert-title">The One Decision That Unlocks Everything</div>
+    <p>Three narrative directions have been wireframed in full (Classic StoryBrand, Tension First, Insight Model). Until the team selects one, no copy can be finalized and no page can enter production. This is a low-cost, reversible decision made on paper — it should take one 30-minute review session to choose.</p>
+  </div>
+</section>
+
+<!-- 01 APRIL 7 SESSION -->
+<section id="sessions">
+  <div class="section-eyebrow">01 — April 7 Session</div>
+  <h2>What we learned — Session One</h2>
+  <p class="section-desc">The founding strategy session with Dave, Phil, and Tim established the brand framework, target buyer, and governing principles for the entire website.</p>
+
+  <div class="stat-strip">
+    <div class="stat-item"><div class="stat-val">5,000+</div><div class="stat-label">Gyms running EcoFit today</div></div>
+    <div class="stat-item"><div class="stat-val">2</div><div class="stat-label">Core pillars: analytics + maintenance</div></div>
+    <div class="stat-item"><div class="stat-val">3</div><div class="stat-label">Outcome stages: equipment → floor → members</div></div>
+    <div class="stat-item"><div class="stat-val">C-suite</div><div class="stat-label">Target buyer altitude — not GMs</div></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="summary-card">
+      <div class="summary-card-label">Product Architecture</div>
+      <p>EcoFit sells two things: analytics and maintenance. Analytics is the entry point — 99.9% of customers come for it first. Maintenance is the module that pays off the full investment. Camera and space analytics are an emerging layer that augments the core IoT data with floor-level visibility.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-label">The Buyer and the Website's Job</div>
+      <p>One job: when a VP or C-suite operator lands on the site, they need to know in under 90 seconds that EcoFit is the intelligence layer their facilities need. Existing customers go straight to the portal. The site is purely for prospective buyers and investors.</p>
+    </div>
+    <div class="summary-card card-accent-green">
+      <div class="summary-card-label">The "Living Gym" Concept — Approved Brand Metaphor</div>
+      <p>Tim introduced the defining metaphor: the Living Gym vs. the dead gym. A living gym floor evolves based on real usage data — it shifts equipment, responds to member behavior, and proves new formats before rolling to franchise locations. A dead gym looks the same it did five years ago.</p>
+      <div class="quote-block" style="margin-top:12px">
+        <p>"One's living, one's dead. And to me, it's like, there are three offerings we have here — maximize your equipment, maximize your floor, maximize your members."</p>
+        <div class="quote-attr">— Tim Porth</div>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-label">The Cardinal Rule — Simplicity</div>
+      <p>Tim's defining insight from his own company: after hiring someone to write the website, the copy was so technical that even Tim couldn't follow it. He rewrote the homepage himself, simplifying it completely. Website sales doubled. This is the governing principle for every EcoFit page.</p>
+      <div class="quote-block" style="margin-top:12px">
+        <p>"We were so intelligent that people had to be impressed. And when I read it, I was like — I don't even understand what we're saying."</p>
+        <div class="quote-attr">— Tim Porth</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-card" style="margin-bottom:16px">
+    <div class="summary-card-label">Key Decisions Made in Session One — These Are Locked</div>
+    <div class="grid-2" style="margin-top:8px">
+      <div>
+        <div class="check-item"><span>The website is 100% marketing — no portal documentation, no technical specs</span></div>
+        <div class="check-item"><span>Target buyer is C-suite / VP level, not gym floor managers</span></div>
+        <div class="check-item"><span>"The Living Gym" is the approved brand concept</span></div>
+        <div class="check-item"><span>Three-outcome framework replaces any feature-based structure</span></div>
+      </div>
+      <div>
+        <div class="check-item"><span>5,000+ gyms statistic must appear prominently above the fold</span></div>
+        <div class="check-item"><span>Named partners (EOS, Planet Fitness, Woodway, Matrix, Crew) are non-negotiable credibility anchors</span></div>
+        <div class="check-item"><span>No IoT jargon, no gateway specs, no API descriptions on any customer-facing page</span></div>
+        <div class="check-item"><span>"Talk to an EcoFit Analyst" replaces "Request a Demo" as the primary CTA</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APRIL 24 SESSION -->
+  <div class="section-eyebrow" style="margin-top:48px">02 — April 24 Session</div>
+  <h2>What we learned — Session Two</h2>
+  <p class="section-desc">The April 24 session with Tim, Will, and Dave (joining late) expanded the scope from a homepage-first build to a full multi-persona website. Four buyer types were identified and four new pages were scoped.</p>
+
+  <div class="alert-box alert-green">
+    <div class="alert-title">The Biggest Insight From Session Two</div>
+    <p>Almost nobody wants data. They want recommendations. Tim and Will both confirmed it from different angles: most operators are not data analysts. They have a day job. They need EcoFit to do the analysis and tell them what to do. This is EcoFit's key differentiator versus PowerBI, Salesforce, and every generic analytics platform — and it should anchor the messaging on every page.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="summary-card">
+      <div class="summary-card-label">The 90-Day Page — A Critical Addition</div>
+      <p>Tim's question was direct: "What happens in 90 days?" Will confirmed the timeline is accurate — roughly a month to install and connect, two more months for data to normalize, and by day 90 a customer has fully actionable intelligence. This page answers the buyer's second-most-important question after the homepage and should be built immediately.</p>
+      <div class="quote-block" style="margin-top:12px">
+        <p>"What happens in 90 days is really important. When do you start seeing real data? This is not an expense. This is an investment."</p>
+        <div class="quote-attr">— Tim Porth</div>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-label">Franchise vs. Corporate — Two Different Buyers</div>
+      <p>Will surfaced a critical distinction: Planet Fitness-model franchisees are fundamentally different from EOS-model corporate operators. The franchisee's specific emotional problem — corporate won't approve equipment changes without proof — is a distinct use case that requires its own page. "Our data gives you a voice to corporate" is the franchise value prop.</p>
+      <div class="quote-block" style="margin-top:12px">
+        <p>"Instead of going 'I think I have too many treadmills,' corporate now says 'prove it.' EcoFit is how you prove it."</p>
+        <div class="quote-attr">— Will</div>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-label">Make It Tangible — Show the Hardware</div>
+      <p>Tim made a critical point that is currently missing from every design direction: people need to see the sensor. "When I watched Dave pull it out — somebody sees it, it's tangible, they're like, 'Oh, that's cool. Now I get it.'" The How It Works page cannot be built without product photography of the hardware.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-label">Prove It With Real Numbers</div>
+      <p>Tim: "We've never given good examples of clubs. A large HVLP club that installed this, saw this kind of return — those things are really important." Will acknowledged the current site has outdated testimonials. Three masked case studies — small, mid, large — are a hard requirement before launch.</p>
+      <div class="quote-block" style="margin-top:12px">
+        <p>"This is not theoretical ROI. You're in 5,000 clubs. This is so far beyond product market fit."</p>
+        <div class="quote-attr">— Bill Colbert</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BRANDSCRIPT -->
+<section id="brandscript">
+  <div class="section-eyebrow">03 — StoryBrand Framework</div>
+  <h2>The BrandScript</h2>
+  <p class="section-desc">Every page of the website flows from this. EcoFit is the Guide — not the hero. The C-suite gym operator is the hero. EcoFit helps them win.</p>
+
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="bs-number">1</div>
+      <div class="bs-row-label">The Character — The Hero</div>
+      <h3>VP or C-suite decision maker at a multi-location gym chain</h3>
+      <p style="margin-bottom:10px">Responsible for equipment investments, facility performance, and brand competitiveness across every location. Accountable to a board or franchise network. Makes decisions that cost hundreds of thousands of dollars.</p>
+      <p>What they want: fitness facilities that attract and retain members — and the intelligence to keep their clubs ahead of the competition without relying on gut feeling or vendor relationships.</p>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="bs-number">2</div>
+        <div class="bs-row-label">External Problem</div>
+        <h3>Blind capital decisions</h3>
+        <p>Making six-figure equipment and facility decisions without knowing what is actually being used, what is breaking down, or what members want.</p>
+      </div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="bs-number">2</div>
+        <div class="bs-row-label">Internal Problem</div>
+        <h3>Fear of falling behind</h3>
+        <p>The unsettling sense that competitors are making smarter moves — and that your clubs are slipping without you knowing it.</p>
+      </div>
+      <div class="card">
+        <div class="bs-number">2</div>
+        <div class="bs-row-label">Philosophical Problem</div>
+        <h3>Operators deserve better</h3>
+        <p>A gym operator investing millions in their facilities should not have to rely on a salesperson's opinion. Real data should drive real decisions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card card-accent-green">
+      <div class="bs-number">3</div>
+      <div class="bs-row-label">The Guide — Empathy</div>
+      <h3>EcoFit understands the problem firsthand</h3>
+      <p>"We know what it means to make a $600K equipment investment without being able to see whether half of it sits unused — and we built EcoFit because gym operators deserve better than that."</p>
+    </div>
+    <div class="card card-accent-green">
+      <div class="bs-number">3</div>
+      <div class="bs-row-label">The Guide — Authority</div>
+      <h3>EcoFit has done this, at scale</h3>
+      <div class="check-item"><span>5,000+ gyms already running EcoFit today</span></div>
+      <div class="check-item"><span>Manufacturer API partnerships: Matrix, Woodway, Crew</span></div>
+      <div class="check-item"><span>Live deployments: EOS, Planet Fitness, and others</span></div>
+      <div class="check-item"><span>Proven infrastructure built — not a startup with a vision</span></div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:16px">
+    <div class="card">
+      <div class="bs-number">1</div>
+      <div class="bs-row-label">The Plan — Step One</div>
+      <h3>Connect</h3>
+      <p>Integrate EcoFit with your existing equipment, cameras, and facility systems. Your current infrastructure becomes the data source — no rip and replace.</p>
+    </div>
+    <div class="card">
+      <div class="bs-number">2</div>
+      <div class="bs-row-label">The Plan — Step Two</div>
+      <h3>See</h3>
+      <p>Access real-time dashboards showing equipment usage, space utilization, and maintenance health across every location. Your digital fitness intelligence — always on.</p>
+    </div>
+    <div class="card">
+      <div class="bs-number">3</div>
+      <div class="bs-row-label">The Plan — Step Three</div>
+      <h3>Act</h3>
+      <p>Optimize your floor layout, extend equipment life, and scale what works across every location — with confidence that comes from data, not intuition.</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-color: rgba(224,82,82,0.2)">
+      <div class="bs-row-label" style="color:var(--red)">Without EcoFit</div>
+      <div class="minus-item"><span>A dead gym floor that never evolves to match member behavior</span></div>
+      <div class="minus-item"><span>Equipment failures members feel before you do</span></div>
+      <div class="minus-item"><span>Refresh decisions driven by vendor relationships, not data</span></div>
+      <div class="minus-item"><span>Watching a competitor's Living Gym outperform yours</span></div>
+    </div>
+    <div class="card card-accent-green">
+      <div class="bs-row-label">With EcoFit</div>
+      <div class="plus-item"><span>The Living Gym — a floor that adapts to real member behavior</span></div>
+      <div class="plus-item"><span>Maintenance savings that pay off the full investment</span></div>
+      <div class="plus-item"><span>Proven models you can scale across every franchise location</span></div>
+      <div class="plus-item"><span>Intelligence that replaces vendor opinion with real confidence</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PAGES -->
+<section id="pages">
+  <div class="section-eyebrow">04 — Website Structure</div>
+  <h2>Page-by-page build plan</h2>
+  <p class="section-desc">Seven pages total. Each one serves a specific job. Click to expand full guidance, section-by-section content recommendations, and what is needed from the team before that page can be built.</p>
+
+  <!-- Homepage -->
+  <div class="page-card">
+    <div class="page-card-header" onclick="togglePage(this)">
+      <div class="page-title-row">
+        <span class="build-badge b-now">Build Now</span>
+        <span class="page-name">Homepage <span class="page-url">ecofit.com/</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <h4>Purpose</h4>
+      <p style="margin-bottom:14px">Tell the overarching EcoFit story using a StoryBrand narrative. Route the right visitor to the right supporting page. Close the emotionally engaged visitor with a demo CTA. Lead with an outcome-first headline anchored to "The Living Gym."</p>
+      <h4>Recommended Section Order</h4>
+      <div class="rec-item"><div class="rec-dot"></div><p>Hero — "Your gym is alive. Are you listening to it?" No product names, no feature descriptions in the hero.</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Stats strip — 5,000+ Gyms | Equipment Connected | Manufacturing Partnerships. Phil: "5,000 gyms can't be wrong."</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>The Problem — external, internal, and philosophical layers (internal layer is currently missing — must be added)</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>The Guide — 15 years of infrastructure, named brand logos, proven at scale</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Three-outcome framework: Maximize Equipment → Floor → Members</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>The Stakes — cost of inaction (moved above the primary CTA, not buried at the bottom)</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Primary CTA — "Talk to an EcoFit Analyst"</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Social proof — testimonials, partner logos, key stats</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Persona routing — "I operate a franchise →" / "I run a corporate network →" / "I'm a manufacturer →"</p></div>
+      <h4>Content to Remove <span class="remove-tag">Remove Cut</span></h4>
+      <div class="rec-item"><div class="rec-dot"></div><p style="color:var(--red)">Any section explaining how the technology works — cameras, gateways, API feeds, IoT devices are not homepage content</p></div>
+      <h4>What We Need From the Team</h4>
+      <div class="needs-legend"><div class="legend-dot legend-amber">Client to provide</div><div class="legend-dot legend-green">Treetop can draft</div></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Select narrative direction: Option A (Classic StoryBrand), Option B (Tension First), or Option C (Insight Model) — three wireframed options are ready for review</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Updated testimonials — current site testimonials are outdated, at least one references a brand that filed for bankruptcy</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Better product tier names — "Smart Asset Tracking," "Vision AI," and "Analytics" are too generic and will conflict with competitors in search</p></div>
+    </div>
+  </div>
+
+  <!-- 90 Days -->
+  <div class="page-card">
+    <div class="page-card-header" onclick="togglePage(this)">
+      <div class="page-title-row">
+        <span class="build-badge b-now">Build Now</span>
+        <span class="page-name">Get Started in 90 Days <span class="page-url">ecofit.com/get-started</span> <span class="new-tag">New</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <h4>Why This Page Exists</h4>
+      <p style="margin-bottom:14px">Tim's exact question was "What happens in 90 days?" Every buyer who leaves the homepage with interest immediately needs this answer. Will confirmed 90 days is accurate. This page closes the hesitant buyer by making the journey concrete and framing it as an investment, not a cost. Bill's reference: Hapana built a "Go Live in 90 Days" page that addressed operator anxieties directly — sales accelerated. Same approach here.</p>
+      <h4>Recommended Section Order</h4>
+      <div class="rec-item"><div class="rec-dot"></div><p>Hero — "From zero to actionable intelligence in 90 days." Lead with the outcome, not the process.</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Investment reframe — "This isn't a line item. It's a return." Anchor with one hard ROI stat above the fold.</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Phase 1 (Days 1–30) — Install and Connect. Show the hardware. Show what gets connected. Make it tangible.</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Phase 2 (Days 31–60) — Data begins normalizing. First patterns appear. "Your floor is starting to talk."</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Phase 3 (Days 61–90) — Fully actionable intelligence. First real decision made. Show an example.</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>The Start Small story — "Most customers begin with 2–3 clubs. 80% expand after seeing the impact." Lower the barrier.</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>CTA — "Talk to an EcoFit Analyst" + "See How It Works"</p></div>
+      <h4>What We Need From the Team</h4>
+      <div class="need-item"><div class="need-dot-c"></div><p>Actual installation timeline for a typical 10-club rollout — how long does each phase take?</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Photos of the sensor hardware — Tim said seeing it makes it click. Cannot build this page without product photography.</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>A real "first decision" example — what is the first thing a customer does differently at day 90? Specific, not abstract.</p></div>
+      <div class="need-item"><div class="need-dot-u"></div><p>Phase structure, investment framing copy, and three-phase layout — Treetop can draft this once assets are in hand</p></div>
+    </div>
+  </div>
+
+  <!-- Franchisees -->
+  <div class="page-card">
+    <div class="page-card-header" onclick="togglePage(this)">
+      <div class="page-title-row">
+        <span class="build-badge b-next">Build Next</span>
+        <span class="page-name">For Franchisees <span class="page-url">ecofit.com/franchisees</span> <span class="new-tag">New</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <h4>The Persona — Franchise Owner-Operator</h4>
+      <p style="margin-bottom:14px">They own 5–50 locations under a brand like Planet Fitness, Crunch, or Retro Fitness. Corporate controls the equipment schedule. They cannot deviate without proof. Their specific fear: "I know something is wrong in my clubs but I can't get corporate to act without data." EcoFit gives them that data — and that voice. This is a fundamentally different emotional journey than the corporate operator page.</p>
+      <h4>Draft Headline Direction</h4>
+      <div class="quote-block">
+        <p>"Your data. Your voice. Your case to corporate."</p>
+      </div>
+      <h4>Key Outcomes to Feature</h4>
+      <div class="rec-item"><div class="rec-dot"></div><p>Justify equipment deviations with data — not intuition or franchise-owner instinct</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Prove new floor layouts in 2 clubs before rolling to 50 — pilot with confidence</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Match member behavior at your specific location vs. the brand average</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Give your GM real answers when equipment underperforms — before a member complains</p></div>
+      <h4>What We Need From the Team</h4>
+      <div class="need-item"><div class="need-dot-c"></div><p>Dedicated personas session with Dave — who are the stakeholders in a franchise buying decision? Who feels this pain most acutely?</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>A Planet Fitness or Crunch franchisee case study (masked) — the page needs proof, not just a promise</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>A specific example of a franchisee using EcoFit data to win an equipment argument with corporate — this is the emotional centerpiece of the page</p></div>
+    </div>
+  </div>
+
+  <!-- Corporate -->
+  <div class="page-card">
+    <div class="page-card-header" onclick="togglePage(this)">
+      <div class="page-title-row">
+        <span class="build-badge b-next">Build Next</span>
+        <span class="page-name">For Corporate Operators <span class="page-url">ecofit.com/enterprise</span> <span class="new-tag">New</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <h4>The Persona — Multi-Unit Corporate Buyer</h4>
+      <p style="margin-bottom:14px">The EOS-type buyer. A VP of Operations or C-suite executive managing dozens to hundreds of owned locations. The CFO signs off. The VP drives it. They want network-level visibility, cross-location benchmarking, and ROI they can defend to a board. Tim's framing: it's going to save you $30 million. Lead with that.</p>
+      <h4>Draft Headline Direction</h4>
+      <div class="quote-block">
+        <p>"One view of every machine. Every location. Every dollar."</p>
+      </div>
+      <h4>Key Outcomes to Feature</h4>
+      <div class="rec-item"><div class="rec-dot"></div><p>Cross-location benchmarking — identify which clubs are underperforming before they become a problem</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Eliminate dead zones that drain overhead without retention impact</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Data-validated equipment refresh cycles — end reactive, relationship-driven replacement</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>CFO-ready reporting — the board meeting answer, not a data dump to sift through</p></div>
+      <h4>What We Need From the Team</h4>
+      <div class="need-item"><div class="need-dot-c"></div><p>EOS or similar case study (masked) — specific dollar figure saved, reduction percentage achieved</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Personas session with Dave — what does the CFO objection look like? What does the VP of Operations need to see?</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Typical enterprise deal structure — how does pricing scale at 50 clubs vs. 500?</p></div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div class="page-card">
+    <div class="page-card-header" onclick="togglePage(this)">
+      <div class="page-title-row">
+        <span class="build-badge b-next">Build Next</span>
+        <span class="page-name">How It Works / Platform <span class="page-url">ecofit.com/how-it-works</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <h4>Purpose</h4>
+      <p style="margin-bottom:14px">Make the product tangible. Tim's critical insight: "When people see the sensor, they get it." Right now EcoFit is invisible on the website. This page shows the hardware, explains the connection in plain language, and demonstrates what comes out the other side — without any jargon.</p>
+      <h4>Recommended Section Order</h4>
+      <div class="rec-item"><div class="rec-dot"></div><p>The sensor — photograph, plain-language explanation, "it mounts in minutes and you'll never touch it again"</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>How it connects — proprietary protocol, not Wi-Fi dependent, "built and rebuilt over 14 years of real-world deployments"</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>What gets captured — equipment usage, zone traffic, maintenance health, member flow</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>Where data goes — the always-on portal and the heat map visual (Phil's floor PDF example is the single most compelling product story from either session)</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>What you get back — recommendations, not just reports. "We don't give you more data to analyze. We tell you what to do."</p></div>
+      <div class="rec-item"><div class="rec-dot"></div><p>The 14-year data reliability story — what makes EcoFit's data trustworthy when competitors have failed</p></div>
+      <h4>What We Need From the Team — This Page Cannot Launch Without These</h4>
+      <div class="need-item"><div class="need-dot-c"></div><p>Product photography — sensor hardware, gateway, installed on equipment. No photography = no page.</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Dashboard screenshot or mockup — the portal visualization, ideally the heat map Phil referenced</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Better product tier names (Will to provide) before any copy is finalized</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>The proprietary protocol reliability story translated into plain English — Tim's framing was right: "high density, no Wi-Fi, built over 14 years"</p></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="page-card">
+    <div class="page-card-header" onclick="togglePage(this)">
+      <div class="page-title-row">
+        <span class="build-badge b-next">Build Next</span>
+        <span class="page-name">About <span class="page-url">ecofit.com/about</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <h4>Direction From Session One</h4>
+      <p style="margin-bottom:14px">Lead with infrastructure, not origin story. An investor or skeptical VP who lands here should see scale immediately — installs, connections, partnerships — before reading a single team bio. Team bios are brief and secondary to the proof of scale.</p>
+      <div class="quote-block">
+        <p>"We have the relationships with the manufacturers for the API feeds. We have the camera relationships. We have the tie-ins to the asset management firms. We're not playing lip service."</p>
+        <div class="quote-attr">— Phil Rankine</div>
+      </div>
+      <h4>What We Need From the Team</h4>
+      <div class="need-item"><div class="need-dot-c"></div><p>Confirmed stat set — installs, connections, partnerships — what can be publicly stated?</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Team bios for Dave, Phil, Tim — brief, focused on relevant experience</p></div>
+      <div class="need-item"><div class="need-dot-c"></div><p>Headshots or team photography</p></div>
+    </div>
+  </div>
+
+  <!-- Partners — Blocked -->
+  <div class="page-card" style="border-color: rgba(224,82,82,0.2)">
+    <div class="page-card-header" onclick="togglePage(this)" style="border-color: rgba(224,82,82,0.1)">
+      <div class="page-title-row">
+        <span class="build-badge b-block">Blocked</span>
+        <span class="page-name">Manufacturer Partners <span class="page-url">ecofit.com/partners</span></span>
+      </div>
+      <span class="page-toggle">+</span>
+    </div>
+    <div class="page-body">
+      <div class="alert-box alert-red" style="margin-bottom:0">
+        <div class="alert-title">Do Not Build Until Will's Language Document Is Complete</div>
+        <p>This page requires fundamentally different messaging than any operator-facing page — it is about ecosystem embedding, OEM licensing, and data partnership, not about buying an analytics product. Will is actively developing the manufacturer partner language document. Building this page without that foundation will result in full rework. Status: hold until Will's document is delivered.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 04 COMPARABLES -->
+<section id="comparables">
+  <div class="section-eyebrow">05 — Design References</div>
+  <h2>Comparable companies</h2>
+  <p class="section-desc">Two groups below. The first six are curated references from Session One — each teaches a specific lesson about website execution. The second group is new: fitness and operations-adjacent companies for the team to evaluate and react to. Visit each one and note what resonates.</p>
+
+  <h3 style="margin-bottom:16px; color: var(--muted); font-size:14px; font-weight:500; text-transform:uppercase; letter-spacing:0.08em">Group One — Session One Curated References</h3>
+
+  <div class="comp-grid" style="margin-bottom:32px">
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Databox</div>
+        <span class="comp-tag tag-top">Most Relevant</span>
+      </div>
+      <div class="comp-what">Analytics SaaS that turns business data into visual dashboards. Same category as EcoFit — selling insight to operators who are not data scientists.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">EcoFit Application</div>
+        <div class="comp-lesson">They lead with real numbers — dashboards created daily, integrations supported, actual ROI figures. They do not say "trusted by thousands," they show you how many. Maps directly to the "5,000 gyms" stat play.</div>
+      </div>
+      <a href="https://databox.com" target="_blank" class="comp-link">databox.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">VergeSense</div>
+        <span class="comp-tag tag-analog">Closest Analogy</span>
+      </div>
+      <div class="comp-what">IoT sensors and occupancy analytics for corporate offices. Literally does for office space what EcoFit does for gym floors.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">EcoFit Application</div>
+        <div class="comp-lesson">Watch how they explain sensor hardware without making it the hero — floor plan visualizations and utilization graphs do the selling. They talk about decisions, not devices. Direct template for the camera and space analytics story.</div>
+      </div>
+      <a href="https://vergesense.com" target="_blank" class="comp-link">vergesense.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Stripe</div>
+        <span class="comp-tag tag-gold">Gold Standard</span>
+      </div>
+      <div class="comp-what">Payment infrastructure for the internet. Technically complex, but their site makes value feel obvious and inevitable to any business buyer.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">EcoFit Application</div>
+        <div class="comp-lesson">Enterprise confidence without enterprise stuffiness. Hero ties product to revenue. Big brand logos above the fold. Never mentions APIs in the hero — only outcomes. Study the scroll pacing: each section earns the next.</div>
+      </div>
+      <a href="https://stripe.com" target="_blank" class="comp-link">stripe.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Ramp</div>
+        <span class="comp-tag tag-tone">C-suite Tone</span>
+      </div>
+      <div class="comp-what">Finance automation for business. Sells to the CFO and VP Finance — same decision-making altitude as EcoFit's C-suite gym buyer.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">EcoFit Application</div>
+        <div class="comp-lesson">Sharp, efficient hero that leads with time and money saved. Bite-sized scroll-friendly sections mixing social proof with product benefit. Tone is confident and direct without being aggressive. This is the register EcoFit should aim for.</div>
+      </div>
+      <a href="https://ramp.com" target="_blank" class="comp-link">ramp.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Proof</div>
+        <span class="comp-tag tag-stats">Stats as Hero</span>
+      </div>
+      <div class="comp-what">Conversion optimization SaaS. Leads with "25,000+ online businesses use Proof" — the customer count is literally the first thing you read.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">EcoFit Application</div>
+        <div class="comp-lesson">Phil's line — "5,000 gyms can't be wrong" — is a direct homepage headline. Proof executes this exact idea: put the scale number in the hero and let it do the heavy lifting. Nobody questions a platform already running at that scale.</div>
+      </div>
+      <a href="https://useproof.com" target="_blank" class="comp-link">useproof.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">HubSpot</div>
+        <span class="comp-tag tag-nav">Multi-Persona Nav</span>
+      </div>
+      <div class="comp-what">CRM and marketing platform serving multiple buyer types — each with distinct needs and entry points into the same product.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">EcoFit Application</div>
+        <div class="comp-lesson">Study how they handle three distinct buyer profiles without making any one feel like an afterthought. Their Solutions nav structure is the right model for EcoFit's multi-persona pages.</div>
+      </div>
+      <a href="https://hubspot.com" target="_blank" class="comp-link">hubspot.com ↗</a>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:8px; color: var(--muted); font-size:14px; font-weight:500; text-transform:uppercase; letter-spacing:0.08em">Group Two — Team Evaluation</h3>
+  <p style="margin-bottom:20px; color:var(--muted); font-size:13px;">Visit each of these sites. The evaluation question under each one is what the team should be thinking about as they browse. Share reactions in the next session.</p>
+
+  <div class="comp-grid" style="margin-bottom:32px">
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Samsara</div>
+        <span class="comp-tag tag-analog">Operations Analog</span>
+      </div>
+      <div class="comp-what">IoT-based fleet and operations intelligence for enterprise. Connects physical assets — trucks, equipment, facilities — and turns sensor data into decisions. 15,000+ customers.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">Why It Matters</div>
+        <div class="comp-lesson">Samsara is the most direct analog to what EcoFit is doing — not in fitness, but in structure. Connected assets, operational intelligence, enterprise buyers who want outcomes not dashboards. Study how they explain a technically complex product simply.</div>
+        <div class="comp-eval-label">Evaluation Question</div>
+        <div class="comp-eval">How do they frame their value proposition for a buyer who doesn't care about the hardware? What does the hero say?</div>
+      </div>
+      <a href="https://samsara.com" target="_blank" class="comp-link">samsara.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Placer.ai</div>
+        <span class="comp-tag tag-fit">Closest Vertical</span>
+      </div>
+      <div class="comp-what">Location intelligence and foot traffic analytics for retail, fitness, restaurants, and commercial real estate. Sells to operators who want to understand how physical spaces perform.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">Why It Matters</div>
+        <div class="comp-lesson">This is the closest B2B website analogy to EcoFit's pitch — spatial analytics sold to operators making capital allocation decisions. They use fitness chains as customer case studies. Worth a deep read of their case study section specifically.</div>
+        <div class="comp-eval-label">Evaluation Question</div>
+        <div class="comp-eval">How do they handle the "show me the data" visual on the homepage without it looking like a software demo?</div>
+      </div>
+      <a href="https://placer.ai" target="_blank" class="comp-link">placer.ai ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Verkada</div>
+        <span class="comp-tag tag-analog">Physical Intelligence</span>
+      </div>
+      <div class="comp-what">Enterprise physical security and building intelligence — cameras, sensors, access control. Sells to the same C-suite and VP-level operators as EcoFit. 25,000+ organizations.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">Why It Matters</div>
+        <div class="comp-lesson">Verkada sells physical hardware that produces intelligence — exact same category challenge as EcoFit. Study how they position the platform as a software decision, not a hardware purchase. Clean, confident enterprise B2B visual language.</div>
+        <div class="comp-eval-label">Evaluation Question</div>
+        <div class="comp-eval">Does the site feel like it's selling a product or selling an outcome? How quickly can you tell which one?</div>
+      </div>
+      <a href="https://verkada.com" target="_blank" class="comp-link">verkada.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Mindbody</div>
+        <span class="comp-tag tag-fit">Category Context</span>
+      </div>
+      <div class="comp-what">The dominant fitness management software platform. EcoFit's customers almost certainly use Mindbody — making it a familiar frame of reference. Also the category's visual baseline.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">Why It Matters</div>
+        <div class="comp-lesson">EcoFit is not a Mindbody competitor, but many buyers will arrive thinking in that frame. Understanding how Mindbody positions itself helps EcoFit clearly differentiate. Also useful for understanding what the category visual language looks like — and where to break from it.</div>
+        <div class="comp-eval-label">Evaluation Question</div>
+        <div class="comp-eval">Does EcoFit feel visually and tonally distinct from this? Should it — or should it feel familiar to the same buyer?</div>
+      </div>
+      <a href="https://mindbodyonline.com" target="_blank" class="comp-link">mindbodyonline.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">Daxko</div>
+        <span class="comp-tag tag-avoid">Category Contrast</span>
+      </div>
+      <div class="comp-what">Operations and engagement software for health and fitness organizations. Mid-market. Heavily feature-focused in its website language and positioning.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">Why It Matters</div>
+        <div class="comp-lesson">This is what the fitness software category typically looks like at the messaging level — feature lists, generic benefits, product screenshots as heroes. Study it specifically to understand what EcoFit should <em>not</em> look like. The contrast is instructive.</div>
+        <div class="comp-eval-label">Evaluation Question</div>
+        <div class="comp-eval">What's missing emotionally that a buyer needs? How quickly does the site answer "why does this matter to me?"</div>
+      </div>
+      <a href="https://daxko.com" target="_blank" class="comp-link">daxko.com ↗</a>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-top">
+        <div class="comp-name">ABC Fitness</div>
+        <span class="comp-tag tag-avoid">Category Contrast</span>
+      </div>
+      <div class="comp-what">Fitness management and analytics platform. One of the largest in the space. Sells to the same multi-location gym chains as EcoFit.</div>
+      <div class="comp-divider"></div>
+      <div>
+        <div class="comp-lesson-label">Why It Matters</div>
+        <div class="comp-lesson">Same buyer, different product — the buyer has probably seen this site. Understanding ABC Fitness's visual and copy language shows the standard the target buyer is used to evaluating. EcoFit needs to feel noticeably smarter and cleaner.</div>
+        <div class="comp-eval-label">Evaluation Question</div>
+        <div class="comp-eval">If a VP of Operations has seen this site before seeing EcoFit's, what impression do they carry in? How does EcoFit need to contrast?</div>
+      </div>
+      <a href="https://abcfitness.com" target="_blank" class="comp-link">abcfitness.com ↗</a>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:12px">Design galleries to browse as a team</h3>
+
+  <div class="gallery-grid">
+    <div class="gallery-card">
+      <div class="gallery-name">Saaspo</div>
+      <div class="gallery-desc">Filterable by page type. Best for live browsing together — fast, visual, no signup required.</div>
+      <a href="https://saaspo.com" target="_blank" class="gallery-link">saaspo.com ↗</a>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-name">Webflow Blog</div>
+      <div class="gallery-desc">35 current examples with written breakdowns of why each one works. Good for pre-session prep.</div>
+      <a href="https://webflow.com/blog/saas-website-design-examples" target="_blank" class="gallery-link">webflow.com/blog ↗</a>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-name">SiteBuilderReport</div>
+      <div class="gallery-desc">40+ examples with analysis. Strong on explaining the reasoning behind each design choice.</div>
+      <a href="https://www.sitebuilderreport.com/inspiration/saas-websites" target="_blank" class="gallery-link">sitebuilderreport.com ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- 05 WHAT WE NEED -->
+<section id="inputs">
+  <div class="section-eyebrow">06 — Client Inputs</div>
+  <h2>What we need from the team</h2>
+  <p class="section-desc">Nothing below can be worked around. Each item is a hard dependency for a specific page. Pages cannot be finalized until their inputs are delivered. The three Immediate items unlock the homepage and are the first priority.</p>
+
+  <div class="alert-box alert-amber">
+    <div class="alert-title">How to Use This List</div>
+    <p>Assign a name to each row in your next team session. Every item has a natural owner — Dave has the customer data, Will has the product knowledge, Tim has the ops context. Getting these delivered in sequence is what controls the build timeline.</p>
+  </div>
+
+  <table class="needs-table">
+    <thead>
+      <tr>
+        <th>Deliverable</th>
+        <th>Natural Owner</th>
+        <th>Needed For</th>
+        <th>When Needed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Select narrative option: A, B, or C</td>
+        <td>Dave + Will</td>
+        <td>Homepage — nothing moves without this</td>
+        <td><span class="build-badge b-now">Immediate</span></td>
+      </tr>
+      <tr>
+        <td>Updated testimonials — minimum 3, current ones are outdated</td>
+        <td>Dave</td>
+        <td>Homepage, Case Studies</td>
+        <td><span class="build-badge b-now">Immediate</span></td>
+      </tr>
+      <tr>
+        <td>Better product tier names (replace: Smart Asset Tracking, Vision AI, Analytics)</td>
+        <td>Will</td>
+        <td>Homepage, How It Works page</td>
+        <td><span class="build-badge b-now">Immediate</span></td>
+      </tr>
+      <tr>
+        <td>Sensor hardware photography — mounted, close-up, in context</td>
+        <td>Dave / Tim</td>
+        <td>How It Works, 90 Days page</td>
+        <td><span class="build-badge b-next">Week 2</span></td>
+      </tr>
+      <tr>
+        <td>Dashboard screenshot or heat map mockup</td>
+        <td>Will / Dave</td>
+        <td>How It Works, Homepage</td>
+        <td><span class="build-badge b-next">Week 2</span></td>
+      </tr>
+      <tr>
+        <td>3 masked case studies — small / mid / large operator</td>
+        <td>Dave</td>
+        <td>Corporate page, Case Studies, Social proof throughout</td>
+        <td><span class="build-badge b-next">Week 2</span></td>
+      </tr>
+      <tr>
+        <td>Dedicated personas session — Dave joins, franchise + corporate buyer maps</td>
+        <td>Dave + Treetop</td>
+        <td>Franchisee page, Corporate page — neither can be written without this</td>
+        <td><span class="build-badge b-next">Week 2</span></td>
+      </tr>
+      <tr>
+        <td>Installation timeline — how long is each of the 3 phases for a typical 10-club rollout?</td>
+        <td>Will / Dave</td>
+        <td>90 Days page</td>
+        <td><span class="build-badge b-next">Week 2</span></td>
+      </tr>
+      <tr>
+        <td>Confirmed stat set for About page — what can be publicly stated?</td>
+        <td>Dave</td>
+        <td>About page</td>
+        <td><span class="build-badge b-next">Week 2</span></td>
+      </tr>
+      <tr>
+        <td>Team bios and headshots — Dave, Phil, Tim</td>
+        <td>Dave</td>
+        <td>About page</td>
+        <td><span class="build-badge b-next">Week 3</span></td>
+      </tr>
+      <tr>
+        <td>Manufacturer partner language document</td>
+        <td>Will</td>
+        <td>Partners page — blocked until this exists</td>
+        <td><span class="build-badge b-block">Blocked on Will</span></td>
+      </tr>
+      <tr>
+        <td>General pricing range or investment context</td>
+        <td>Dave</td>
+        <td>Corporate page, 90 Days page</td>
+        <td><span class="build-badge b-hold">When Ready</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 06 PRINCIPLES -->
+<section id="principles">
+  <div class="section-eyebrow">07 — Governing Principles</div>
+  <h2>The rules that govern every page</h2>
+  <p class="section-desc">These emerged directly from both sessions and reflect the team's own thinking. They serve as the filter for every design and copy decision going forward.</p>
+
+  <div class="principle-row">
+    <div class="principle-num">01</div>
+    <div>
+      <div class="principle-title">EcoFit is the Guide, not the Hero</div>
+      <div class="principle-body">The C-suite gym operator is the hero of this story. EcoFit is the experienced guide who hands them the tools to win. Every headline, section, and CTA should reinforce this. The moment the website starts celebrating EcoFit's technology for its own sake, it has failed.</div>
+    </div>
+  </div>
+
+  <div class="principle-row">
+    <div class="principle-num">02</div>
+    <div>
+      <div class="principle-title">The 90-second clarity test</div>
+      <div class="principle-body">Tim shared a defining experience: after investing in professional copywriting, the website was so technically written that even he could not follow it. He simplified the homepage himself, and sales doubled. Every EcoFit page passes this test: a VP of Operations at a mid-size gym chain reads it cold and immediately knows what they would get, why it matters, and what to do next. If a section requires a second read, it gets rewritten.</div>
+    </div>
+  </div>
+
+  <div class="principle-row">
+    <div class="principle-num">03</div>
+    <div>
+      <div class="principle-title">Proven, not promised</div>
+      <div class="principle-body">Competitors build expensive websites claiming they can do things they have never done. EcoFit has done it. Every page communicates this distinction — 5,000 live installs, named partners, built infrastructure — without saying "we're better than the competition." Show the scale. Let the buyer draw the conclusion.</div>
+    </div>
+  </div>
+
+  <div class="principle-row">
+    <div class="principle-num">04</div>
+    <div>
+      <div class="principle-title">Lead with outcomes, not mechanisms</div>
+      <div class="principle-body">No IoT jargon. No gateways. No API descriptions. No camera specs. The Living Gym, Maximize Your Floor, actionable insights — these are the words. The mechanisms that produce them are for the sales call, the demo, and the implementation team. They do not belong on the marketing site.</div>
+    </div>
+  </div>
+
+  <div class="principle-row">
+    <div class="principle-num">05</div>
+    <div>
+      <div class="principle-title">Tell me what to do — not just what happened</div>
+      <div class="principle-body">Added from the April 24 session: operators don't want data. They want recommendations. Tim said it. Will's user research confirmed it. The positioning that separates EcoFit from every generic analytics platform is this: we do the analysis and tell you what to do. Every page should reinforce this, not just the platform page.</div>
+    </div>
+  </div>
+
+  <div class="principle-row">
+    <div class="principle-num">06</div>
+    <div>
+      <div class="principle-title">5,000 gyms is a headline, not a footnote</div>
+      <div class="principle-body">This number is currently buried or absent. It should be one of the first things a visitor sees. Alongside the named partner logos, it answers the buyer's biggest question — "can I trust these people?" — before they have even read the first paragraph. Lead with the proof.</div>
+    </div>
+  </div>
+
+  <div class="principle-row">
+    <div class="principle-num">07</div>
+    <div>
+      <div class="principle-title">This is an investment, not an expense</div>
+      <div class="principle-body">Added from the April 24 session: Tim's framing was clear. "It's going to save you $30 million over X days. This is not a cost." The CFO who signs off on this deal needs to walk into a board meeting and call it an investment with a defined return period. The website should make that case before the sales call ever happens.</div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div>EcoFit Website Project — Treetop Growth Strategy</div>
+  <div>Prepared April 2026 · Living Document · Updated After Each Session</div>
+</footer>
+
+<script>
+  function togglePage(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.page-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    toggle.textContent = isOpen ? '+' : '−';
+    toggle.style.transform = isOpen ? '' : 'rotate(0deg)';
+  }
+</script>
+</body>
+</html>
