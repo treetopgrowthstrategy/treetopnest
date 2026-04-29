@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecofit — The Intelligence Layer for Modern Fitness Facilities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Work Sans',sans-serif;background:#14191f;color:#F2F3F8;line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Raleway',sans-serif;font-weight:700;line-height:1.15;letter-spacing:-0.01em}
+  h2{font-weight:600}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+  .label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#84BC41;display:inline-block;margin-bottom:20px}
+  .btn{display:inline-block;padding:14px 28px;background:#84BC41;color:#14191f;font-weight:600;border-radius:4px;font-size:15px;transition:all .2s;border:none;cursor:pointer;font-family:inherit}
+  .btn:hover{background:#9bd151;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:#F2F3F8;border:1px solid rgba(242,243,248,0.2);padding:13px 26px}
+  .btn-ghost:hover{border-color:#84BC41;color:#84BC41}
+  .link-arrow{color:#58BCC5;font-weight:500;font-size:15px;transition:color .2s}
+  .link-arrow:hover{color:#84BC41}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(20,25,31,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(132,188,65,0.15)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1320px;margin:0 auto}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-links a{font-size:14px;font-weight:500;color:#9699A2;transition:color .2s}
+  .nav-links a:hover{color:#F2F3F8}
+  .nav-cta{padding:10px 20px;font-size:14px}
+  .hamburger{display:none;background:none;border:0;color:#F2F3F8;font-size:24px;cursor:pointer}
+
+  /* HERO */
+  .hero{position:relative;padding:100px 0 120px;overflow:hidden;background:#14191f}
+  .hero-bg-icon{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:0.06;pointer-events:none}
+  .hero-bg-icon img{width:100%;height:100%;object-fit:contain}
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+  .hero h1{font-size:clamp(40px,5.4vw,68px);margin:18px 0 24px}
+  .hero-sub{font-size:19px;color:#9699A2;margin-bottom:36px;max-width:560px;font-weight:300}
+  .hero-ctas{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .hero-tert{display:block;margin-top:22px;font-size:13px;color:#9699A2;font-weight:300}
+  .hero-tert:hover{color:#84BC41}
+  .hero-panel{background:#2F3535;border:1px solid rgba(132,188,65,0.2);border-radius:4px;padding:32px;position:relative;overflow:hidden;min-height:420px}
+  .hero-panel::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+  .hero-panel-icon{position:absolute;right:-40px;bottom:-40px;width:280px;opacity:0.15}
+  .hero-panel h4{font-family:'Work Sans';font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#84BC41;margin-bottom:24px;font-weight:600}
+  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;position:relative;z-index:2}
+  .stat{padding:20px;background:#14191f;border:1px solid rgba(132,188,65,0.15);border-radius:4px}
+  .stat-num{font-family:'Raleway',sans-serif;font-weight:700;font-size:36px;color:#84BC41;line-height:1}
+  .stat-lbl{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9699A2;margin-top:6px}
+  .stat-bar{height:6px;background:rgba(132,188,65,0.15);margin-top:14px;border-radius:0;overflow:hidden}
+  .stat-bar span{display:block;height:100%;background:linear-gradient(90deg,#84BC41,#58BCC5)}
+  .live-row{display:flex;align-items:center;gap:8px;font-size:11px;color:#58BCC5;letter-spacing:0.1em;text-transform:uppercase;font-family:'Work Sans';font-weight:500;position:relative;z-index:2}
+  .live-dot{width:8px;height:8px;background:#84BC41;border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+  /* TRUST */
+  .trust{padding:60px 0;background:#2F3535;border-top:1px solid rgba(132,188,65,0.1);border-bottom:1px solid rgba(132,188,65,0.1)}
+  .trust-stat{text-align:center;font-size:13px;color:#9699A2;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:32px;font-weight:500}
+  .logo-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .logo-ph{font-family:'Raleway',sans-serif;font-weight:700;font-size:18px;color:#9699A2;opacity:0.4;letter-spacing:0.04em;flex:1;text-align:center;min-width:120px}
+
+  /* SECTION */
+  .section{padding:120px 0}
+  .section-head{max-width:760px;margin-bottom:64px}
+  .section h2{font-size:clamp(32px,3.6vw,48px);color:#F2F3F8;margin-bottom:18px}
+  .section-sub{font-size:18px;color:#9699A2;font-weight:300}
+
+  /* PROBLEM */
+  .problem{background:#2F3535}
+  .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{background:#14191f;border:1px solid rgba(132,188,65,0.2);border-radius:4px;padding:36px;transition:all .25s}
+  .card:hover{border-color:#84BC41;box-shadow:0 0 32px rgba(132,188,65,0.08)}
+  .card h3{font-family:'Work Sans';font-weight:600;font-size:18px;color:#84BC41;margin-bottom:14px;letter-spacing:0.02em}
+  .card p{color:#9699A2;font-size:15px;font-weight:300}
+
+  /* COST */
+  .cost{background:#14191f}
+  .cost-body{font-size:19px;color:#9699A2;max-width:780px;font-weight:300;margin-bottom:24px}
+  .cost-bold{font-family:'Raleway';font-weight:700;font-size:24px;color:#F2F3F8;border-left:3px solid #147673;padding-left:20px;max-width:780px}
+
+  /* GUIDE */
+  .guide{background:#3E4D54}
+  .guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+  .guide p{color:#c8cad1;font-size:16px;margin-bottom:18px;font-weight:300}
+  .objection{margin-top:32px;background:#2F3535;border-left:3px solid #147673;padding:24px 28px;color:#F2F3F8;font-size:15px}
+  .guide-logos{padding-top:48px;margin-top:48px;border-top:1px solid rgba(132,188,65,0.15)}
+
+  /* PLAN */
+  .plan{background:#14191f}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px}
+  .step{padding:36px;background:#2F3535;border:1px solid rgba(132,188,65,0.15);border-radius:4px}
+  .step-n{font-family:'Raleway';font-weight:700;font-size:14px;color:#84BC41;letter-spacing:0.1em;margin-bottom:18px;font-family:'Work Sans';font-weight:600}
+  .step h3{font-family:'Work Sans';font-weight:600;font-size:20px;color:#F2F3F8;margin-bottom:12px}
+  .step p{color:#9699A2;font-size:15px;font-weight:300}
+
+  /* SUCCESS */
+  .success{background:#3E4D54}
+  .success-body{font-size:18px;color:#c8cad1;max-width:820px;font-weight:300;margin-bottom:28px}
+  .success-close{font-family:'Raleway';font-weight:700;font-size:24px;color:#84BC41;max-width:820px}
+
+  /* CTA */
+  .cta-section{background:#14191f;text-align:center;padding:120px 0;border-top:1px solid rgba(132,188,65,0.1);border-bottom:1px solid rgba(132,188,65,0.1)}
+  .cta-section h2{font-size:clamp(32px,4vw,52px);margin-bottom:18px;max-width:760px;margin-left:auto;margin-right:auto}
+  .cta-section p{color:#9699A2;font-size:17px;max-width:620px;margin:0 auto 36px;font-weight:300}
+  .cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+  .cta-note{font-size:12px;color:#9699A2;font-weight:300}
+
+  /* STAKES */
+  .stakes{background:#14191f;border-left:none}
+  .stakes-body{font-size:17px;color:#9699A2;max-width:820px;font-weight:300;margin-bottom:24px}
+  .stakes-close{font-family:'Raleway';font-weight:700;font-size:24px;color:#F2F3F8;border-left:3px solid #147673;padding-left:20px;max-width:820px;margin-bottom:32px}
+
+  /* FOOTER */
+  footer{background:#2F3535;padding:80px 0 32px;border-top:1px solid rgba(132,188,65,0.1)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+  .foot-brand img{margin-bottom:18px}
+  .foot-brand p{font-size:14px;color:#9699A2;font-weight:300;max-width:240px}
+  .foot-col h5{font-family:'Work Sans';font-weight:600;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#84BC41;margin-bottom:18px}
+  .foot-col a{display:block;font-size:14px;color:#9699A2;margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:#F2F3F8}
+  .foot-bottom{padding-top:28px;border-top:1px solid rgba(132,188,65,0.1);font-size:12px;color:#9699A2;text-align:center}
+
+  @media (max-width:900px){
+    .hero-grid,.guide-grid{grid-template-columns:1fr;gap:48px}
+    .cards-3,.steps{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+    .nav-links{display:none}
+    .nav-links.open{display:flex;position:absolute;top:64px;left:0;right:0;background:#14191f;flex-direction:column;padding:24px;gap:16px;border-bottom:1px solid rgba(132,188,65,0.1)}
+    .hamburger{display:block}
+    .section{padding:80px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/"><img src="/assets/ecofit-logo-dark.png" alt="Ecofit" height="36" onerror="this.outerHTML='<span style=&quot;font-family:Raleway;font-weight:700;color:#84BC41;font-size:22px&quot;>ecofit</span>'"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#franchisees">For Franchisees</a>
+      <a href="#enterprise">For Enterprise</a>
+      <a href="#download">Download Overview</a>
+      <a href="#cta" class="btn nav-cta">Talk to an Ecofit Analyst</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-icon"><img src="/assets/ecofit-icon-dark.png" alt=""></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="label">The Intelligence Layer for Modern Fitness Facilities</span>
+        <h1>Your gym is alive. Are you listening to it?</h1>
+        <p class="hero-sub">Ecofit gives multi-location fitness operators real-time intelligence across equipment, floor, and revenue — so you can run a smarter facility, not just a busier one.</p>
+        <div class="hero-ctas">
+          <a href="#cta" class="btn">Talk to an Ecofit Analyst →</a>
+          <a href="#how" class="link-arrow">See How It Works</a>
+        </div>
+        <a href="#download" class="hero-tert">Download Overview ↓</a>
+      </div>
+      <div class="hero-panel">
+        <img src="/assets/ecofit-icon-dark.png" class="hero-panel-icon" alt="">
+        <h4>Live Network Status</h4>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">98.4%</div><div class="stat-lbl">Uptime</div><div class="stat-bar"><span style="width:98%"></span></div></div>
+          <div class="stat"><div class="stat-num">5,247</div><div class="stat-lbl">Machines Live</div><div class="stat-bar"><span style="width:84%"></span></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">312</div><div class="stat-lbl">Locations</div><div class="stat-bar"><span style="width:62%"></span></div></div>
+          <div class="stat"><div class="stat-num">1.2M</div><div class="stat-lbl">Sessions / wk</div><div class="stat-bar"><span style="width:91%"></span></div></div>
+        </div>
+        <div class="live-row"><span class="live-dot"></span> Live · Updated 0.4s ago</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="container">
+    <div class="trust-stat">Trusted by 5,000+ fitness facilities worldwide</div>
+    <div class="logo-row">
+      <div class="logo-ph">EOS FITNESS</div>
+      <div class="logo-ph">PLANET FITNESS</div>
+      <div class="logo-ph">MATRIX</div>
+      <div class="logo-ph">WOODWAY</div>
+      <div class="logo-ph">CRUNCH</div>
+    </div>
+  </div>
+</section>
+
+<section class="section problem">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">The Problem</span>
+      <h2>Most operators are running modern facilities with outdated visibility.</h2>
+      <p class="section-sub">Every day without real intelligence costs you in three compounding ways.</p>
+    </div>
+    <div class="cards-3">
+      <div class="card"><h3>Wasted Capital</h3><p>Buying the wrong equipment based on gut feel, not utilization data. Vendor relationships drive refresh decisions instead of real usage patterns.</p></div>
+      <div class="card"><h3>Unexpected Downtime</h3><p>Members report broken equipment before your team does. Reactive maintenance costs more and damages the member experience.</p></div>
+      <div class="card"><h3>Data Silos</h3><p>No cross-location visibility means decisions stay local when they should be network-wide.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section cost">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">The Real Cost</span>
+      <h2>You're making seven-figure decisions on gut feel.</h2>
+    </div>
+    <p class="cost-body">Every day without real intelligence costs you three ways — emotionally, operationally, and competitively. You feel the uncertainty. Your team feels the pressure. And your board keeps getting stories instead of data.</p>
+    <p class="cost-bold">That's not a you problem. It's a visibility problem.</p>
+  </div>
+</section>
+
+<section class="section guide">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Why Ecofit</span>
+      <h2>We know how complex modern fitness facilities have become.</h2>
+    </div>
+    <div class="guide-grid">
+      <div>
+        <p>For over 15 years, Ecofit has partnered with gym chains, health clubs, and fitness operators to turn raw equipment data into competitive advantage. We don't just give you a dashboard — we sit down with you, work through your data, and tell you exactly what to do with it.</p>
+        <p>EOS Fitness has a full BI division. PF Corp has a full analytics team. They still call us — because having the data and knowing what to do with it are two different things.</p>
+      </div>
+      <div>
+        <div class="objection">Not a rip-and-replace. Not a six-month implementation. Ecofit fits into what you already have — and works alongside the systems already in place.</div>
+      </div>
+    </div>
+    <div class="guide-logos">
+      <div class="logo-row">
+        <div class="logo-ph">PLANET FITNESS</div>
+        <div class="logo-ph">EOS FITNESS</div>
+        <div class="logo-ph">CRUNCH</div>
+        <div class="logo-ph">MATRIX</div>
+        <div class="logo-ph">WOODWAY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section plan" id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">How It Works</span>
+      <h2>Getting started is simpler than you think.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-n">01 / CONNECT</div><h3>Connect</h3><p>Plug Ecofit into your existing equipment infrastructure. Our platform integrates with the machines you already have, regardless of manufacturer. No rip-and-replace.</p></div>
+      <div class="step"><div class="step-n">02 / SEE</div><h3>See Everything</h3><p>Access a real-time portal view of every piece of equipment across all locations. Usage, uptime, and performance — always on, always current.</p></div>
+      <div class="step"><div class="step-n">03 / ACT</div><h3>Act on It</h3><p>We don't just hand you data. We work with you to make smarter equipment decisions, eliminate underperforming zones, and give your board the answers they're asking for.</p></div>
+    </div>
+    <a href="/how-it-works" class="link-arrow">See the full platform →</a>
+  </div>
+</section>
+
+<section class="section success">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">What Success Looks Like</span>
+      <h2>Imagine knowing exactly what's happening — at every location, at any moment.</h2>
+    </div>
+    <p class="success-body">Know which equipment is trending toward failure before your members notice. Refresh your floor with confidence backed by actual usage data. Give your CFO the data-driven justifications they've been asking for. Walk into every board meeting with intelligence, not instinct.</p>
+    <p class="success-close">That's what Ecofit makes possible, every day, for operators around the world.</p>
+  </div>
+</section>
+
+<section class="cta-section" id="cta">
+  <div class="container">
+    <h2>Ready to see what your facility is really telling you?</h2>
+    <p>Book a 30-minute demo. We'll show you exactly how Ecofit works and what your data could look like from day one. No commitment. No jargon. No IT department required.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn">Book a Demo →</a>
+      <a href="#" class="btn btn-ghost">Talk to a Partner →</a>
+    </div>
+    <a href="#" class="link-arrow" style="display:inline-block;margin-bottom:18px">Download the Overview ↓</a>
+    <p class="cta-note">Demos run 30 minutes. We'll come prepared with benchmark data for your facility type.</p>
+  </div>
+</section>
+
+<section class="section stakes">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Don't Wait</span>
+      <h2>Your competitors are already doing this.</h2>
+    </div>
+    <p class="stakes-body">The operators winning in this market aren't working harder — they're working with better information. They know which equipment drives revenue and which drains it. They catch failure before members feel it. They walk into board meetings with data, not stories. The gap between data-driven operators and legacy operators is widening every month.</p>
+    <p class="stakes-close">It doesn't have to include you.</p>
+    <a href="#cta" class="link-arrow">Book a Demo →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="/assets/ecofit-logo-dark.png" alt="Ecofit" height="36">
+        <p>The intelligence layer for modern fitness facilities.</p>
+      </div>
+      <div class="foot-col"><h5>Platform</h5><a href="#">Cross-Brand Intelligence</a><a href="#">AI Space Analytics</a><a href="#">Amenity Analytics</a><a href="#">Connected Data Layer</a></div>
+      <div class="foot-col"><h5>Solutions</h5><a href="#">Gym Chains</a><a href="#">Franchise Operators</a><a href="#">Enterprise Networks</a><a href="#">OEM Partners</a></div>
+      <div class="foot-col"><h5>Resources</h5><a href="#">Annual Ranking Report</a><a href="#">Case Studies</a><a href="#">Blog</a></div>
+      <div class="foot-col"><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Data Privacy</a></div>
+    </div>
+    <div class="foot-bottom">© 2026 Ecofit Networks Inc. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
