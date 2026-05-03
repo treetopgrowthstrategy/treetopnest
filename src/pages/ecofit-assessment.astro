@@ -1,0 +1,722 @@
+---
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecofit Facility OpEx Assessment</title>
+  <meta name="description" content="Find out how much operational spend your fitness facility could be recovering. Free 2-minute assessment." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #14191f;
+      color: #F2F3F8;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    /* PROGRESS */
+    #progress-wrap {
+      position: fixed; top: 0; left: 0; right: 0; height: 3px;
+      background: rgba(132,188,65,0.15); z-index: 100;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    #progress-wrap.visible { opacity: 1; }
+    #progress-bar { height: 100%; background: #84BC41; transition: width 0.4s ease; width: 0%; }
+
+    /* NAV */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+      padding: 20px 32px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(20,25,31,0.8); backdrop-filter: blur(12px);
+    }
+    .top-nav-logo img { height: 32px; display: block; }
+    .top-nav-logo span {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      font-size: 22px; color: #84BC41;
+    }
+    .top-nav-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(242,243,248,0.35);
+    }
+
+    /* STEP */
+    .step {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 100px 32px 48px;
+      opacity: 1; transition: opacity 0.32s ease, transform 0.32s ease;
+      overflow-y: auto;
+    }
+    .step.hidden { opacity: 0; pointer-events: none; transform: translateY(18px); }
+    .step.exit   { opacity: 0; transform: translateY(-18px); }
+    .step-inner { width: 100%; max-width: 660px; }
+
+    /* INTRO */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #84BC41; margin-bottom: 28px;
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: #84BC41; }
+    .intro-headline {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1;
+      color: #F2F3F8; margin-bottom: 20px; letter-spacing: -0.01em;
+    }
+    .intro-headline .accent { color: #84BC41; }
+    .intro-sub {
+      font-size: 17px; font-weight: 300; color: #9699A2;
+      line-height: 1.75; margin-bottom: 36px; max-width: 560px;
+    }
+    .stat-row { display: flex; gap: 32px; margin-bottom: 36px; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+    .stat-num {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      font-size: 2rem; color: #84BC41; line-height: 1;
+    }
+    .stat-label { font-size: 12px; color: #9699A2; max-width: 160px; line-height: 1.5; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #84BC41; color: #14191f;
+      border: none; padding: 14px 28px;
+      font-family: 'Work Sans', sans-serif; font-size: 15px;
+      font-weight: 600; cursor: pointer; border-radius: 4px;
+      transition: background 0.2s, transform 0.15s; text-decoration: none;
+    }
+    .btn:hover { background: #9bd151; transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-ghost {
+      background: transparent; color: #F2F3F8;
+      border: 1px solid rgba(242,243,248,0.2); padding: 13px 26px;
+    }
+    .btn-ghost:hover { border-color: #84BC41; color: #84BC41; background: transparent; }
+    .btn-note {
+      display: block; margin-top: 12px; font-size: 12px;
+      color: rgba(242,243,248,0.3); letter-spacing: 0.04em;
+    }
+
+    /* QUESTION STEPS */
+    .q-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #84BC41; margin-bottom: 8px;
+    }
+    .q-context {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(242,243,248,0.25); margin-bottom: 20px;
+    }
+    .q-text {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      font-size: clamp(1.4rem, 3.2vw, 2rem);
+      line-height: 1.25; color: #F2F3F8; margin-bottom: 8px;
+    }
+    .q-hint {
+      font-size: 13px; color: #9699A2; font-weight: 300;
+      margin-bottom: 28px; line-height: 1.6;
+    }
+
+    /* SELECT */
+    .select-wrap { position: relative; margin-bottom: 28px; }
+    select {
+      width: 100%; appearance: none; -webkit-appearance: none;
+      background: #2F3535; border: 1px solid rgba(132,188,65,0.2);
+      color: #F2F3F8; padding: 16px 48px 16px 20px;
+      font-family: 'Work Sans', sans-serif; font-size: 16px;
+      font-weight: 400; border-radius: 4px; cursor: pointer;
+      outline: none; transition: border-color 0.2s;
+    }
+    select:focus { border-color: #84BC41; }
+    select option { background: #2F3535; color: #F2F3F8; }
+    .select-arrow {
+      position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+      pointer-events: none; color: #84BC41; font-size: 12px;
+    }
+
+    /* CHECKBOXES for Q7 */
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+    .check-item {
+      display: flex; align-items: center; gap: 12px;
+      background: #2F3535; border: 1px solid rgba(132,188,65,0.15);
+      border-radius: 4px; padding: 14px 16px; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .check-item:hover { border-color: rgba(132,188,65,0.5); }
+    .check-item input { display: none; }
+    .check-box {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1px solid rgba(132,188,65,0.4); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .check-item.checked { border-color: #84BC41; background: rgba(132,188,65,0.08); }
+    .check-item.checked .check-box {
+      background: #84BC41; border-color: #84BC41;
+    }
+    .check-item.checked .check-box::after { content: '✓'; font-size: 11px; color: #14191f; font-weight: 700; }
+    .check-label { font-size: 14px; color: #F2F3F8; font-weight: 400; line-height: 1.4; }
+    .other-input {
+      grid-column: 1 / -1; background: #2F3535;
+      border: 1px solid rgba(132,188,65,0.15); color: #F2F3F8;
+      padding: 14px 16px; border-radius: 4px; font-family: 'Work Sans', sans-serif;
+      font-size: 14px; font-weight: 300; outline: none; width: 100%;
+      transition: border-color 0.2s;
+    }
+    .other-input:focus { border-color: #84BC41; }
+    .other-input::placeholder { color: rgba(242,243,248,0.3); }
+
+    /* SCORE PREVIEW */
+    .score-block {
+      background: #2F3535; border: 1px solid rgba(132,188,65,0.2);
+      border-left: 3px solid #84BC41; padding: 28px 32px; margin-bottom: 28px; border-radius: 4px;
+    }
+    .score-block-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(242,243,248,0.4); margin-bottom: 10px;
+    }
+    .score-amount {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      font-size: 3rem; color: #84BC41; line-height: 1; display: block;
+      margin-bottom: 6px;
+    }
+    .score-range-label { font-size: 13px; color: #9699A2; font-weight: 300; }
+
+    /* LEAD FORM */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(242,243,248,0.45);
+    }
+    .form-input {
+      background: #2F3535; border: 1px solid rgba(132,188,65,0.15);
+      color: #F2F3F8; padding: 14px 16px; font-family: 'Work Sans', sans-serif;
+      font-size: 15px; font-weight: 300; border-radius: 4px; outline: none;
+      transition: border-color 0.2s; width: 100%;
+    }
+    .form-input:focus { border-color: #84BC41; }
+    .form-input::placeholder { color: rgba(242,243,248,0.25); }
+    .form-note { font-size: 12px; color: rgba(242,243,248,0.3); margin-top: 12px; line-height: 1.5; }
+    #submit-btn { width: 100%; justify-content: center; margin-top: 18px; padding: 16px; font-size: 16px; }
+    #error-msg { color: #f87171; font-size: 13px; margin-top: 12px; display: none; }
+
+    /* CONFIRM */
+    .confirm-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(132,188,65,0.12); border: 1px solid #84BC41;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 28px;
+    }
+    .confirm-headline {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      font-size: clamp(1.8rem, 4vw, 2.6rem); color: #F2F3F8;
+      margin-bottom: 14px; line-height: 1.15;
+    }
+    .confirm-sub { font-size: 16px; color: #9699A2; line-height: 1.75; margin-bottom: 28px; max-width: 520px; }
+    .confirm-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 28px; }
+    .confirm-stat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,243,248,0.35); }
+    .confirm-stat-val { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 1.5rem; color: #84BC41; margin-top: 4px; }
+    .back-link {
+      margin-top: 24px; display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: rgba(242,243,248,0.3); text-decoration: none; transition: color 0.2s;
+    }
+    .back-link:hover { color: #9699A2; }
+
+    @media (max-width: 600px) {
+      .check-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stat-row { gap: 20px; }
+      .top-nav { padding: 16px 20px; }
+      .step { padding: 88px 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">
+    <img src="/assets/ecofit-logo-dark.png" alt="Ecofit" onerror="this.outerHTML='<span style=&quot;font-family:Raleway;font-weight:700;color:#84BC41;font-size:20px&quot;>ecofit</span>'">
+  </div>
+  <span class="top-nav-label">Facility OpEx Assessment</span>
+</nav>
+
+<!-- STEP 0: INTRO -->
+<div class="step" id="step-0">
+  <div class="step-inner">
+    <div class="eyebrow">2-Minute Assessment · Free</div>
+    <h1 class="intro-headline">
+      Could your facility be<br>
+      <span class="accent">squandering $250K+</span><br>
+      every year?
+    </h1>
+    <p class="intro-sub">
+      Multi-location fitness operators running without real equipment intelligence are leaving enormous sums on the table — in reactive maintenance costs, premature equipment replacement, and underperforming floor space. This assessment tells you exactly how much is at stake for your network.
+    </p>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">40%</span>
+        <span class="stat-label">reduction in equipment refresh costs with Ecofit intelligence</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3.2x</span>
+        <span class="stat-label">longer equipment lifespan on average across connected networks</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">200+</span>
+        <span class="stat-label">assets networked per facility on average</span>
+      </div>
+    </div>
+    <button class="btn" onclick="startAssessment()">
+      Calculate My OpEx Risk →
+    </button>
+    <span class="btn-note">8 questions · No cost · Personalized report delivered to your inbox</span>
+  </div>
+</div>
+
+<!-- QUESTIONS CONTAINER -->
+<div id="questions-container"></div>
+
+<!-- STEP LEAD: LEAD CAPTURE -->
+<div class="step hidden" id="step-lead">
+  <div class="step-inner">
+    <div class="score-block">
+      <div class="score-block-label">Estimated Annual OpEx at Risk</div>
+      <span class="score-amount" id="score-display">—</span>
+      <div class="score-range-label" id="score-sublabel"></div>
+    </div>
+
+    <h2 style="font-family:'Raleway',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:8px;color:#F2F3F8;">
+      Get your full Facility Intelligence Report.
+    </h2>
+    <p style="font-size:14px;color:#9699A2;margin-bottom:24px;line-height:1.7;">
+      Your personalized report breaks down OpEx exposure by category, benchmarks your network against comparable operators, and gives you three priority actions.
+    </p>
+
+    <form id="lead-form">
+      <div class="form-grid">
+        <div class="form-field">
+          <label class="form-label" for="f-name">First Name *</label>
+          <input class="form-input" type="text" id="f-name" name="name" placeholder="Jordan" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-company">Company / Brand *</label>
+          <input class="form-input" type="text" id="f-company" name="company" placeholder="Apex Fitness" required />
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="f-email">Work Email *</label>
+          <input class="form-input" type="email" id="f-email" name="email" placeholder="jordan@apexfitness.com" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-title">Your Title</label>
+          <input class="form-input" type="text" id="f-title" name="title" placeholder="VP Operations, CEO..." />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-phone">Phone</label>
+          <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="(555) 000-0000" />
+        </div>
+      </div>
+      <p class="form-note">Your report arrives within 5 minutes. We don't share your information.</p>
+      <button class="btn" id="submit-btn" type="submit">
+        Send My Facility Report →
+      </button>
+      <div id="error-msg">Something went wrong. Please try again or email us directly.</div>
+    </form>
+  </div>
+</div>
+
+<!-- STEP CONFIRM -->
+<div class="step hidden" id="step-confirm">
+  <div class="step-inner">
+    <div class="confirm-icon">✓</div>
+    <h2 class="confirm-headline">Your report is on its way.</h2>
+    <p class="confirm-sub">
+      Check your inbox in the next few minutes. Your Ecofit Facility Intelligence Report includes a full OpEx exposure breakdown, benchmarks for your facility type, and three priority actions.
+    </p>
+    <div class="confirm-stats">
+      <div>
+        <div class="confirm-stat-label">Estimated at risk</div>
+        <div class="confirm-stat-val" id="confirm-risk">—</div>
+      </div>
+      <div>
+        <div class="confirm-stat-label">Network size</div>
+        <div class="confirm-stat-val" id="confirm-network">—</div>
+      </div>
+    </div>
+    <p style="font-size:14px;color:#9699A2;line-height:1.75;margin-bottom:24px;max-width:520px;">
+      If the numbers raise questions or you want to see what the intelligence layer looks like for your specific network, an Ecofit analyst is available for a 30-minute no-commitment demo.
+    </p>
+    <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn" target="_blank">
+      Book a Demo →
+    </a>
+    <a href="https://treetopgrowthstrategy.com" class="back-link">← Back to Treetop Growth Strategy</a>
+  </div>
+</div>
+
+<script is:inline>
+const QUESTIONS = [
+  {
+    id: 'locations',
+    context: 'Your Network',
+    text: 'How many locations do you currently operate?',
+    hint: 'Include all active locations — owned, managed, or franchised.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: '1 location', value: '1' },
+      { label: '2–5 locations', value: '2-5' },
+      { label: '6–15 locations', value: '6-15' },
+      { label: '16–50 locations', value: '16-50' },
+      { label: '51–100 locations', value: '51-100' },
+      { label: '100+ locations', value: '100+' },
+    ]
+  },
+  {
+    id: 'sqft',
+    context: 'Your Network',
+    text: 'Approximate total sq ft across all locations?',
+    hint: 'Estimate is fine. Include all usable floor space.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: 'Under 5,000 sq ft per location', value: 'under-5k' },
+      { label: '5,000–15,000 sq ft per location', value: '5k-15k' },
+      { label: '15,000–30,000 sq ft per location', value: '15k-30k' },
+      { label: '30,000–50,000 sq ft per location', value: '30k-50k' },
+      { label: '50,000+ sq ft per location', value: '50k+' },
+    ]
+  },
+  {
+    id: 'cardio',
+    context: 'Equipment Inventory',
+    text: 'How many pieces of cardio equipment per location?',
+    hint: 'Treadmills, bikes, ellipticals, rowers, steppers, etc.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: '1–10 pieces', value: '1-10' },
+      { label: '11–30 pieces', value: '11-30' },
+      { label: '31–60 pieces', value: '31-60' },
+      { label: '61–100 pieces', value: '61-100' },
+      { label: '100+ pieces', value: '100+' },
+    ]
+  },
+  {
+    id: 'strength',
+    context: 'Equipment Inventory',
+    text: 'How many pieces of selectorized strength equipment per location?',
+    hint: 'Cable machines, plate-loaded, selectorized circuit pieces.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: '1–10 pieces', value: '1-10' },
+      { label: '11–30 pieces', value: '11-30' },
+      { label: '31–60 pieces', value: '31-60' },
+      { label: '61–100 pieces', value: '61-100' },
+      { label: '100+ pieces', value: '100+' },
+    ]
+  },
+  {
+    id: 'other',
+    context: 'Equipment Inventory',
+    text: 'How many other pieces of equipment per location?',
+    hint: 'Functional rigs, free weight stations, turf areas, specialty equipment.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: 'None / minimal', value: '0' },
+      { label: '1–10 pieces', value: '1-10' },
+      { label: '11–30 pieces', value: '11-30' },
+      { label: '31–60 pieces', value: '31-60' },
+      { label: '60+ pieces', value: '60+' },
+    ]
+  },
+  {
+    id: 'recovery',
+    context: 'Recovery Zone',
+    text: 'How large is your recovery area per location?',
+    hint: 'Dedicated space for recovery modalities — not stretching mats.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: 'No dedicated recovery area', value: 'none' },
+      { label: 'Small (under 500 sq ft)', value: 'small' },
+      { label: 'Medium (500–1,500 sq ft)', value: 'medium' },
+      { label: 'Large (1,500–3,000 sq ft)', value: 'large' },
+      { label: 'Dedicated zone (3,000+ sq ft)', value: 'xl' },
+    ]
+  },
+  {
+    id: 'hardware',
+    context: 'Recovery Zone',
+    text: 'What recovery hardware is currently in use?',
+    hint: 'Select all that apply.',
+    type: 'multi',
+    options: [
+      { label: 'Percussion devices (Theragun / Hypervolt)', value: 'percussion' },
+      { label: 'Compression boots (Normatec / similar)', value: 'compression' },
+      { label: 'Red light therapy panels', value: 'redlight' },
+      { label: 'Cold plunge or cryotherapy', value: 'coldplunge' },
+      { label: 'Infrared sauna', value: 'sauna' },
+      { label: 'Hyperbaric chamber', value: 'hyperbaric' },
+      { label: 'None currently', value: 'none' },
+    ],
+    other: true
+  },
+  {
+    id: 'dwell',
+    context: 'Visibility & Analytics',
+    text: 'Have you ever measured dwell time with visual analysis?',
+    hint: 'Visual analysis = camera-based or sensor-based zone utilization tracking.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: 'Yes — we actively measure it', value: 'active' },
+      { label: 'Yes — but we\'ve discontinued it', value: 'discontinued' },
+      { label: 'No — but we\'re interested', value: 'interested' },
+      { label: 'No — it\'s not on our radar', value: 'no' },
+    ]
+  }
+];
+
+let answers = {};
+let currentQ = 0;
+const totalQ = QUESTIONS.length;
+
+// Build question steps
+const container = document.getElementById('questions-container');
+QUESTIONS.forEach((q, i) => {
+  const div = document.createElement('div');
+  div.className = 'step hidden';
+  div.id = `step-q${i}`;
+
+  let inputHtml = '';
+  if (q.type === 'select') {
+    inputHtml = `
+      <div class="select-wrap">
+        <select id="select-${q.id}" onchange="onSelectChange('${q.id}')">
+          ${q.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>`;
+  } else if (q.type === 'multi') {
+    inputHtml = `
+      <div class="check-grid" id="checks-${q.id}">
+        ${q.options.map(o => `
+          <label class="check-item" id="check-${o.value}" onclick="toggleCheck('${q.id}','${o.value}',this)">
+            <input type="checkbox" value="${o.value}">
+            <span class="check-box"></span>
+            <span class="check-label">${o.label}</span>
+          </label>`).join('')}
+        ${q.other ? `<input class="other-input" type="text" id="other-${q.id}" placeholder="Other hardware (describe)…">` : ''}
+      </div>`;
+  }
+
+  div.innerHTML = `
+    <div class="step-inner">
+      <div class="q-label">Question ${i + 1} of ${totalQ}</div>
+      <div class="q-context">${q.context}</div>
+      <div class="q-text">${q.text}</div>
+      ${q.hint ? `<div class="q-hint">${q.hint}</div>` : ''}
+      ${inputHtml}
+      <div style="display:flex;gap:16px;align-items:center">
+        <button class="btn" id="next-${i}" onclick="nextStep(${i})" ${q.type === 'select' ? 'disabled' : ''}>
+          ${i < totalQ - 1 ? 'Continue →' : 'See My Results →'}
+        </button>
+        ${i > 0 ? `<button class="btn btn-ghost" onclick="prevStep(${i})">← Back</button>` : ''}
+      </div>
+    </div>`;
+  container.appendChild(div);
+});
+
+function onSelectChange(qId) {
+  const sel = document.getElementById('select-' + qId);
+  const qIdx = QUESTIONS.findIndex(q => q.id === qId);
+  const btn = document.getElementById('next-' + qIdx);
+  if (sel.value) {
+    btn.disabled = false;
+    answers[qId] = sel.value;
+  } else {
+    btn.disabled = true;
+  }
+}
+
+function toggleCheck(qId, val, el) {
+  el.classList.toggle('checked');
+  // update answers array
+  if (!answers[qId]) answers[qId] = [];
+  const idx = answers[qId].indexOf(val);
+  if (idx > -1) answers[qId].splice(idx, 1);
+  else answers[qId].push(val);
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => {
+    if (!s.classList.contains('hidden')) {
+      s.classList.add('exit');
+      setTimeout(() => { s.classList.add('hidden'); s.classList.remove('exit'); }, 320);
+    }
+  });
+  setTimeout(() => {
+    const next = document.getElementById(id);
+    if (next) { next.classList.remove('hidden'); next.scrollTop = 0; }
+  }, 200);
+}
+
+function updateProgress(n) {
+  const pct = Math.round((n / totalQ) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-wrap').classList.toggle('visible', n > 0);
+}
+
+function startAssessment() {
+  showStep('step-q0');
+  updateProgress(0);
+}
+
+function nextStep(i) {
+  // Collect multi-select other text
+  const q = QUESTIONS[i];
+  if (q.type === 'multi') {
+    const otherEl = document.getElementById('other-' + q.id);
+    if (otherEl && otherEl.value.trim()) {
+      if (!answers[q.id]) answers[q.id] = [];
+      answers[q.id].push('other:' + otherEl.value.trim());
+    }
+    if (!answers[q.id]) answers[q.id] = [];
+  }
+
+  if (i < totalQ - 1) {
+    showStep(`step-q${i + 1}`);
+    updateProgress(i + 1);
+  } else {
+    computeAndShowLead();
+  }
+}
+
+function prevStep(i) {
+  showStep(i === 0 ? 'step-0' : `step-q${i - 1}`);
+  updateProgress(Math.max(0, i - 1));
+}
+
+// ─── SCORING ─────────────────────────────────────────────────────────────────
+function computeRisk() {
+  // Mid-point estimates for location scale
+  const locMap = { '1': 1, '2-5': 3, '6-15': 10, '16-50': 30, '51-100': 75, '100+': 150 };
+  const cardioMap = { '1-10': 5, '11-30': 20, '31-60': 45, '61-100': 80, '100+': 125 };
+  const strengthMap = { '1-10': 5, '11-30': 20, '31-60': 45, '61-100': 80, '100+': 125 };
+  const otherMap = { '0': 0, '1-10': 5, '11-30': 20, '31-60': 45, '60+': 80 };
+  const recoveryBaseMap = { 'none': 0, 'small': 12000, 'medium': 28000, 'large': 52000, 'xl': 80000 };
+
+  const locations = locMap[answers.locations] || 1;
+  const cardio = cardioMap[answers.cardio] || 5;
+  const strength = strengthMap[answers.strength] || 5;
+  const other = otherMap[answers.other] || 0;
+  const totalPerLoc = cardio + strength + other;
+  const totalNetwork = totalPerLoc * locations;
+
+  // Base equipment risk: $2,000/piece/year visibility gap (maintenance premium + premature capex)
+  const equipRisk = totalNetwork * 2000;
+
+  // Recovery risk per location (untracked hardware = waste)
+  const recovBase = recoveryBaseMap[answers.recovery] || 0;
+  const hwCount = Array.isArray(answers.hardware) ? answers.hardware.filter(h => h !== 'none').length : 0;
+  const recovRisk = recovBase * locations * (1 + hwCount * 0.12);
+
+  // Dwell time gap multiplier
+  const dwellMult = { 'active': 0.70, 'discontinued': 0.90, 'interested': 1.10, 'no': 1.25 };
+  const mult = dwellMult[answers.dwell] || 1.0;
+
+  const total = (equipRisk + recovRisk) * mult;
+  return Math.round(total);
+}
+
+function formatMoney(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+  return '$' + n.toLocaleString();
+}
+
+function getRiskLabel(n) {
+  if (n < 100000) return 'Emerging exposure — focused quick wins available';
+  if (n < 300000) return 'Significant exposure — clear ROI opportunity at this scale';
+  if (n < 750000) return 'High exposure — network-wide intelligence pays for itself fast';
+  return 'Critical exposure — every quarter without visibility compounds the cost';
+}
+
+function getNetworkLabel() {
+  const locMap = { '1': '1 location', '2-5': '2–5 locations', '6-15': '6–15 locations', '16-50': '16–50 locations', '51-100': '51–100 locations', '100+': '100+ locations' };
+  return locMap[answers.locations] || 'Your network';
+}
+
+function computeAndShowLead() {
+  const risk = computeRisk();
+  const lo = formatMoney(Math.round(risk * 0.75));
+  const hi = formatMoney(Math.round(risk * 1.35));
+  document.getElementById('score-display').textContent = `${lo}–${hi}`;
+  document.getElementById('score-sublabel').textContent = getRiskLabel(risk);
+  // store for confirm
+  window._riskDisplay = `${lo}–${hi}`;
+  showStep('step-lead');
+  updateProgress(totalQ);
+}
+
+// ─── FORM SUBMIT ──────────────────────────────────────────────────────────────
+document.getElementById('lead-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const errEl = document.getElementById('error-msg');
+  btn.disabled = true;
+  btn.textContent = 'Generating your report…';
+  errEl.style.display = 'none';
+
+  const risk = computeRisk();
+  const payload = {
+    name: document.getElementById('f-name').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    company: document.getElementById('f-company').value.trim(),
+    title: document.getElementById('f-title').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    answers,
+    riskLow: Math.round(risk * 0.75),
+    riskHigh: Math.round(risk * 1.35),
+    riskMid: risk,
+    networkLabel: getNetworkLabel(),
+  };
+
+  try {
+    const res = await fetch('/api/ecofit-assessment-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('Server error');
+
+    // Show confirm
+    document.getElementById('confirm-risk').textContent = window._riskDisplay || `${formatMoney(payload.riskLow)}–${formatMoney(payload.riskHigh)}`;
+    document.getElementById('confirm-network').textContent = getNetworkLabel();
+    showStep('step-confirm');
+    document.getElementById('progress-wrap').classList.remove('visible');
+  } catch (err) {
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send My Facility Report →';
+  }
+});
+</script>
+
+</body>
+</html>
