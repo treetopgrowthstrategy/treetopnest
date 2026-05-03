@@ -144,38 +144,6 @@ export const prerender = true;
       pointer-events: none; color: #84BC41; font-size: 12px;
     }
 
-    /* CHECKBOXES for Q7 */
-    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
-    .check-item {
-      display: flex; align-items: center; gap: 12px;
-      background: #2F3535; border: 1px solid rgba(132,188,65,0.15);
-      border-radius: 4px; padding: 14px 16px; cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .check-item:hover { border-color: rgba(132,188,65,0.5); }
-    .check-item input { display: none; }
-    .check-box {
-      width: 18px; height: 18px; flex-shrink: 0;
-      border: 1px solid rgba(132,188,65,0.4); border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.15s;
-    }
-    .check-item.checked { border-color: #84BC41; background: rgba(132,188,65,0.08); }
-    .check-item.checked .check-box {
-      background: #84BC41; border-color: #84BC41;
-    }
-    .check-item.checked .check-box::after { content: '✓'; font-size: 11px; color: #14191f; font-weight: 700; }
-    .check-label { font-size: 14px; color: #F2F3F8; font-weight: 400; line-height: 1.4; }
-    .other-input {
-      grid-column: 1 / -1; background: #2F3535;
-      border: 1px solid rgba(132,188,65,0.15); color: #F2F3F8;
-      padding: 14px 16px; border-radius: 4px; font-family: 'Work Sans', sans-serif;
-      font-size: 14px; font-weight: 300; outline: none; width: 100%;
-      transition: border-color 0.2s;
-    }
-    .other-input:focus { border-color: #84BC41; }
-    .other-input::placeholder { color: rgba(242,243,248,0.3); }
-
     /* SCORE PREVIEW */
     .score-block {
       background: #2F3535; border: 1px solid rgba(132,188,65,0.2);
@@ -235,7 +203,6 @@ export const prerender = true;
     .back-link:hover { color: #9699A2; }
 
     @media (max-width: 600px) {
-      .check-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
       .stat-row { gap: 20px; }
       .top-nav { padding: 16px 20px; }
@@ -264,7 +231,7 @@ export const prerender = true;
       every year?
     </h1>
     <p class="intro-sub">
-      Multi-location fitness operators running without real equipment intelligence are leaving enormous sums on the table — in reactive maintenance costs, premature equipment replacement, and underperforming floor space. This assessment tells you exactly how much is at stake for your network.
+      Multi-location fitness operators running without real equipment intelligence are absorbing enormous costs invisibly — in reactive maintenance, premature equipment replacement, and untracked floor performance. Eight questions tells you exactly how much is at stake for your network.
     </p>
     <div class="stat-row">
       <div class="stat-item">
@@ -303,7 +270,7 @@ export const prerender = true;
       Get your full Facility Intelligence Report.
     </h2>
     <p style="font-size:14px;color:#9699A2;margin-bottom:24px;line-height:1.7;">
-      Your personalized report breaks down OpEx exposure by category, benchmarks your network against comparable operators, and gives you three priority actions.
+      Your personalized report breaks down OpEx exposure by category, benchmarks your network against comparable operators, and gives you three priority actions to close the gap.
     </p>
 
     <form id="lead-form">
@@ -385,109 +352,102 @@ const QUESTIONS = [
     ]
   },
   {
-    id: 'sqft',
+    id: 'equipment',
     context: 'Your Network',
-    text: 'Approximate total sq ft across all locations?',
-    hint: 'Estimate is fine. Include all usable floor space.',
+    text: 'Roughly how many pieces of equipment does your average location run?',
+    hint: 'Count everything — cardio, strength, functional, specialty. Estimate is fine.',
     type: 'select',
     options: [
       { label: 'Select your answer…', value: '' },
-      { label: 'Under 5,000 sq ft per location', value: 'under-5k' },
-      { label: '5,000–15,000 sq ft per location', value: '5k-15k' },
-      { label: '15,000–30,000 sq ft per location', value: '15k-30k' },
-      { label: '30,000–50,000 sq ft per location', value: '30k-50k' },
-      { label: '50,000+ sq ft per location', value: '50k+' },
+      { label: 'Under 30 pieces', value: 'under-30' },
+      { label: '30–75 pieces', value: '30-75' },
+      { label: '76–150 pieces', value: '76-150' },
+      { label: '151–300 pieces', value: '151-300' },
+      { label: '300+ pieces', value: '300+' },
     ]
   },
   {
-    id: 'cardio',
-    context: 'Equipment Inventory',
-    text: 'How many pieces of cardio equipment per location?',
-    hint: 'Treadmills, bikes, ellipticals, rowers, steppers, etc.',
+    id: 'tracking',
+    context: 'Current Operations',
+    text: 'How are you currently tracking equipment performance and utilization?',
+    hint: 'Be honest — this is the single biggest driver of OpEx waste we see.',
     type: 'select',
     options: [
       { label: 'Select your answer…', value: '' },
-      { label: '1–10 pieces', value: '1-10' },
-      { label: '11–30 pieces', value: '11-30' },
-      { label: '31–60 pieces', value: '31-60' },
-      { label: '61–100 pieces', value: '61-100' },
-      { label: '100+ pieces', value: '100+' },
+      { label: 'Dedicated software or IoT-connected equipment', value: 'software' },
+      { label: 'Service tickets and staff reports', value: 'tickets' },
+      { label: 'Periodic manual audits', value: 'manual' },
+      { label: 'We don\'t have a formal system', value: 'none' },
     ]
   },
   {
-    id: 'strength',
-    context: 'Equipment Inventory',
-    text: 'How many pieces of selectorized strength equipment per location?',
-    hint: 'Cable machines, plate-loaded, selectorized circuit pieces.',
+    id: 'maintenance',
+    context: 'Current Operations',
+    text: 'How much of your maintenance spend last year was reactive — unplanned repairs after something broke?',
+    hint: 'Industry benchmark: best-in-class operators keep reactive spend under 20%.',
     type: 'select',
     options: [
       { label: 'Select your answer…', value: '' },
-      { label: '1–10 pieces', value: '1-10' },
-      { label: '11–30 pieces', value: '11-30' },
-      { label: '31–60 pieces', value: '31-60' },
-      { label: '61–100 pieces', value: '61-100' },
-      { label: '100+ pieces', value: '100+' },
+      { label: 'Mostly planned — under 25% reactive', value: 'planned' },
+      { label: 'Roughly half and half', value: 'mixed' },
+      { label: 'Mostly reactive — over 50% unplanned', value: 'reactive' },
+      { label: 'We don\'t track this breakdown', value: 'unknown' },
     ]
   },
   {
-    id: 'other',
-    context: 'Equipment Inventory',
-    text: 'How many other pieces of equipment per location?',
-    hint: 'Functional rigs, free weight stations, turf areas, specialty equipment.',
+    id: 'age',
+    context: 'Equipment Profile',
+    text: 'What\'s the average age of your primary cardio and strength equipment?',
+    hint: 'Older fleets without visibility data carry compounding capex risk.',
     type: 'select',
     options: [
       { label: 'Select your answer…', value: '' },
-      { label: 'None / minimal', value: '0' },
-      { label: '1–10 pieces', value: '1-10' },
-      { label: '11–30 pieces', value: '11-30' },
-      { label: '31–60 pieces', value: '31-60' },
-      { label: '60+ pieces', value: '60+' },
+      { label: 'Under 3 years — relatively new fleet', value: 'under-3' },
+      { label: '3–6 years — starting to see more service calls', value: '3-6' },
+      { label: '6–10 years — significant maintenance pressure', value: '6-10' },
+      { label: '10+ years — major replacement cycle coming', value: '10+' },
     ]
   },
   {
     id: 'recovery',
-    context: 'Recovery Zone',
-    text: 'How large is your recovery area per location?',
-    hint: 'Dedicated space for recovery modalities — not stretching mats.',
+    context: 'Equipment Profile',
+    text: 'Do you have a dedicated recovery or wellness zone at your locations?',
+    hint: 'Recovery zones are the fastest-growing capex category in fitness — and the least measured.',
     type: 'select',
     options: [
       { label: 'Select your answer…', value: '' },
       { label: 'No dedicated recovery area', value: 'none' },
-      { label: 'Small (under 500 sq ft)', value: 'small' },
-      { label: 'Medium (500–1,500 sq ft)', value: 'medium' },
-      { label: 'Large (1,500–3,000 sq ft)', value: 'large' },
-      { label: 'Dedicated zone (3,000+ sq ft)', value: 'xl' },
+      { label: 'Small zone — under 500 sq ft', value: 'small' },
+      { label: 'Medium zone — 500–1,500 sq ft', value: 'medium' },
+      { label: 'Large or premium recovery area — 1,500+ sq ft', value: 'large' },
     ]
   },
   {
-    id: 'hardware',
-    context: 'Recovery Zone',
-    text: 'What recovery hardware is currently in use?',
-    hint: 'Select all that apply.',
-    type: 'multi',
-    options: [
-      { label: 'Percussion devices (Theragun / Hypervolt)', value: 'percussion' },
-      { label: 'Compression boots (Normatec / similar)', value: 'compression' },
-      { label: 'Red light therapy panels', value: 'redlight' },
-      { label: 'Cold plunge or cryotherapy', value: 'coldplunge' },
-      { label: 'Infrared sauna', value: 'sauna' },
-      { label: 'Hyperbaric chamber', value: 'hyperbaric' },
-      { label: 'None currently', value: 'none' },
-    ],
-    other: true
-  },
-  {
-    id: 'dwell',
-    context: 'Visibility & Analytics',
-    text: 'Have you ever measured dwell time with visual analysis?',
-    hint: 'Visual analysis = camera-based or sensor-based zone utilization tracking.',
+    id: 'impact',
+    context: 'Member Experience',
+    text: 'In the last 12 months, how often has equipment downtime visibly impacted member experience?',
+    hint: 'Out-of-order equipment, member complaints, or staff scrambling to respond.',
     type: 'select',
     options: [
       { label: 'Select your answer…', value: '' },
-      { label: 'Yes — we actively measure it', value: 'active' },
-      { label: 'Yes — but we\'ve discontinued it', value: 'discontinued' },
-      { label: 'No — but we\'re interested', value: 'interested' },
-      { label: 'No — it\'s not on our radar', value: 'no' },
+      { label: 'Rarely — equipment is mostly reliable', value: 'rarely' },
+      { label: 'Occasionally — a few incidents per quarter', value: 'occasionally' },
+      { label: 'Frequently — members notice and sometimes complain', value: 'frequently' },
+      { label: 'It\'s a known pain point we haven\'t solved', value: 'known-pain' },
+    ]
+  },
+  {
+    id: 'data_confidence',
+    context: 'Visibility & Analytics',
+    text: 'How confident are you in the accuracy of your equipment ROI data right now?',
+    hint: 'This is what Ecofit gives you. Most operators answer this question and feel the gap immediately.',
+    type: 'select',
+    options: [
+      { label: 'Select your answer…', value: '' },
+      { label: 'Very confident — we have real-time visibility', value: 'high' },
+      { label: 'Somewhat confident — we track it but it\'s incomplete', value: 'medium' },
+      { label: 'Not very confident — our data has significant gaps', value: 'low' },
+      { label: 'We don\'t have equipment ROI data', value: 'none' },
     ]
   }
 ];
@@ -503,27 +463,13 @@ QUESTIONS.forEach((q, i) => {
   div.className = 'step hidden';
   div.id = `step-q${i}`;
 
-  let inputHtml = '';
-  if (q.type === 'select') {
-    inputHtml = `
-      <div class="select-wrap">
-        <select id="select-${q.id}" onchange="onSelectChange('${q.id}')">
-          ${q.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
-        </select>
-        <span class="select-arrow">▼</span>
-      </div>`;
-  } else if (q.type === 'multi') {
-    inputHtml = `
-      <div class="check-grid" id="checks-${q.id}">
-        ${q.options.map(o => `
-          <label class="check-item" id="check-${o.value}" onclick="toggleCheck('${q.id}','${o.value}',this)">
-            <input type="checkbox" value="${o.value}">
-            <span class="check-box"></span>
-            <span class="check-label">${o.label}</span>
-          </label>`).join('')}
-        ${q.other ? `<input class="other-input" type="text" id="other-${q.id}" placeholder="Other hardware (describe)…">` : ''}
-      </div>`;
-  }
+  const inputHtml = `
+    <div class="select-wrap">
+      <select id="select-${q.id}" onchange="onSelectChange('${q.id}')">
+        ${q.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
+      </select>
+      <span class="select-arrow">▼</span>
+    </div>`;
 
   div.innerHTML = `
     <div class="step-inner">
@@ -533,7 +479,7 @@ QUESTIONS.forEach((q, i) => {
       ${q.hint ? `<div class="q-hint">${q.hint}</div>` : ''}
       ${inputHtml}
       <div style="display:flex;gap:16px;align-items:center">
-        <button class="btn" id="next-${i}" onclick="nextStep(${i})" ${q.type === 'select' ? 'disabled' : ''}>
+        <button class="btn" id="next-${i}" onclick="nextStep(${i})" disabled>
           ${i < totalQ - 1 ? 'Continue →' : 'See My Results →'}
         </button>
         ${i > 0 ? `<button class="btn btn-ghost" onclick="prevStep(${i})">← Back</button>` : ''}
@@ -552,15 +498,6 @@ function onSelectChange(qId) {
   } else {
     btn.disabled = true;
   }
-}
-
-function toggleCheck(qId, val, el) {
-  el.classList.toggle('checked');
-  // update answers array
-  if (!answers[qId]) answers[qId] = [];
-  const idx = answers[qId].indexOf(val);
-  if (idx > -1) answers[qId].splice(idx, 1);
-  else answers[qId].push(val);
 }
 
 function showStep(id) {
@@ -588,17 +525,6 @@ function startAssessment() {
 }
 
 function nextStep(i) {
-  // Collect multi-select other text
-  const q = QUESTIONS[i];
-  if (q.type === 'multi') {
-    const otherEl = document.getElementById('other-' + q.id);
-    if (otherEl && otherEl.value.trim()) {
-      if (!answers[q.id]) answers[q.id] = [];
-      answers[q.id].push('other:' + otherEl.value.trim());
-    }
-    if (!answers[q.id]) answers[q.id] = [];
-  }
-
   if (i < totalQ - 1) {
     showStep(`step-q${i + 1}`);
     updateProgress(i + 1);
@@ -614,33 +540,42 @@ function prevStep(i) {
 
 // ─── SCORING ─────────────────────────────────────────────────────────────────
 function computeRisk() {
-  // Mid-point estimates for location scale
+  // Location scale
   const locMap = { '1': 1, '2-5': 3, '6-15': 10, '16-50': 30, '51-100': 75, '100+': 150 };
-  const cardioMap = { '1-10': 5, '11-30': 20, '31-60': 45, '61-100': 80, '100+': 125 };
-  const strengthMap = { '1-10': 5, '11-30': 20, '31-60': 45, '61-100': 80, '100+': 125 };
-  const otherMap = { '0': 0, '1-10': 5, '11-30': 20, '31-60': 45, '60+': 80 };
-  const recoveryBaseMap = { 'none': 0, 'small': 12000, 'medium': 28000, 'large': 52000, 'xl': 80000 };
-
   const locations = locMap[answers.locations] || 1;
-  const cardio = cardioMap[answers.cardio] || 5;
-  const strength = strengthMap[answers.strength] || 5;
-  const other = otherMap[answers.other] || 0;
-  const totalPerLoc = cardio + strength + other;
-  const totalNetwork = totalPerLoc * locations;
 
-  // Base equipment risk: $2,000/piece/year visibility gap (maintenance premium + premature capex)
-  const equipRisk = totalNetwork * 2000;
+  // Equipment density: midpoint pieces per location
+  const equipMap = { 'under-30': 18, '30-75': 50, '76-150': 110, '151-300': 220, '300+': 350 };
+  const equipPerLoc = equipMap[answers.equipment] || 18;
 
-  // Recovery risk per location (untracked hardware = waste)
-  const recovBase = recoveryBaseMap[answers.recovery] || 0;
-  const hwCount = Array.isArray(answers.hardware) ? answers.hardware.filter(h => h !== 'none').length : 0;
-  const recovRisk = recovBase * locations * (1 + hwCount * 0.12);
+  // Base equipment risk: $2,000/piece/year visibility gap
+  const equipRisk = equipPerLoc * locations * 2000;
 
-  // Dwell time gap multiplier
-  const dwellMult = { 'active': 0.70, 'discontinued': 0.90, 'interested': 1.10, 'no': 1.25 };
-  const mult = dwellMult[answers.dwell] || 1.0;
+  // Tracking sophistication multiplier — the biggest lever
+  const trackMult = { 'software': 0.55, 'tickets': 1.0, 'manual': 1.25, 'none': 1.5 };
+  const tMult = trackMult[answers.tracking] || 1.0;
 
-  const total = (equipRisk + recovRisk) * mult;
+  // Maintenance posture multiplier
+  const maintMult = { 'planned': 0.65, 'mixed': 1.0, 'reactive': 1.45, 'unknown': 1.25 };
+  const mMult = maintMult[answers.maintenance] || 1.0;
+
+  // Equipment age adds capex risk per location
+  const ageRiskMap = { 'under-3': 0, '3-6': 12000, '6-10': 38000, '10+': 75000 };
+  const capexRisk = (ageRiskMap[answers.age] || 0) * locations;
+
+  // Recovery zone (untracked investment = waste)
+  const recovMap = { 'none': 0, 'small': 10000, 'medium': 24000, 'large': 48000 };
+  const recovRisk = (recovMap[answers.recovery] || 0) * locations;
+
+  // Member experience impact multiplier
+  const impactMult = { 'rarely': 0.85, 'occasionally': 1.0, 'frequently': 1.2, 'known-pain': 1.35 };
+  const iMult = impactMult[answers.impact] || 1.0;
+
+  // Data confidence multiplier — ends on the core value prop
+  const dataMult = { 'high': 0.5, 'medium': 0.9, 'low': 1.2, 'none': 1.45 };
+  const dMult = dataMult[answers.data_confidence] || 1.0;
+
+  const total = (equipRisk * tMult * mMult * iMult * dMult) + (capexRisk * mMult) + (recovRisk * dMult);
   return Math.round(total);
 }
 
@@ -651,15 +586,18 @@ function formatMoney(n) {
 }
 
 function getRiskLabel(n) {
-  if (n < 100000) return 'Emerging exposure — focused quick wins available';
+  if (n < 100000) return 'Emerging exposure — targeted quick wins available';
   if (n < 300000) return 'Significant exposure — clear ROI opportunity at this scale';
   if (n < 750000) return 'High exposure — network-wide intelligence pays for itself fast';
   return 'Critical exposure — every quarter without visibility compounds the cost';
 }
 
 function getNetworkLabel() {
-  const locMap = { '1': '1 location', '2-5': '2–5 locations', '6-15': '6–15 locations', '16-50': '16–50 locations', '51-100': '51–100 locations', '100+': '100+ locations' };
-  return locMap[answers.locations] || 'Your network';
+  const locMap = {
+    '1': '1 location', '2-5': '2–5 locations', '6-15': '6–15 locations',
+    '16-50': '16–50 locations', '51-100': '51–100 locations', '100+': '100+ locations'
+  };
+  return locMap[answers.locations] || 'your network';
 }
 
 function computeAndShowLead() {
@@ -668,7 +606,6 @@ function computeAndShowLead() {
   const hi = formatMoney(Math.round(risk * 1.35));
   document.getElementById('score-display').textContent = `${lo}–${hi}`;
   document.getElementById('score-sublabel').textContent = getRiskLabel(risk);
-  // store for confirm
   window._riskDisplay = `${lo}–${hi}`;
   showStep('step-lead');
   updateProgress(totalQ);
@@ -691,9 +628,9 @@ document.getElementById('lead-form').addEventListener('submit', async (e) => {
     title: document.getElementById('f-title').value.trim(),
     phone: document.getElementById('f-phone').value.trim(),
     answers,
-    riskLow: Math.round(risk * 0.75),
+    riskLow:  Math.round(risk * 0.75),
     riskHigh: Math.round(risk * 1.35),
-    riskMid: risk,
+    riskMid:  risk,
     networkLabel: getNetworkLabel(),
   };
 
@@ -705,7 +642,6 @@ document.getElementById('lead-form').addEventListener('submit', async (e) => {
     });
     if (!res.ok) throw new Error('Server error');
 
-    // Show confirm
     document.getElementById('confirm-risk').textContent = window._riskDisplay || `${formatMoney(payload.riskLow)}–${formatMoney(payload.riskHigh)}`;
     document.getElementById('confirm-network').textContent = getNetworkLabel();
     showStep('step-confirm');
