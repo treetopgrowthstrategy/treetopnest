@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Quetzal Coffee Co. — CRO & Ecom Growth Plan</title>
+  <style>
+    :root {
+      --green-dark: #1a3d2b;
+      --green-mid: #2e6b47;
+      --green-light: #4a9e6e;
+      --gold: #c8a96e;
+      --gold-light: #e8cfa0;
+      --cream: #faf7f2;
+      --white: #ffffff;
+      --text: #1c1c1c;
+      --text-muted: #5a5a5a;
+      --border: #ddd6c8;
+      --tag-bg: #eef7f1;
+      --tag-text: #1a3d2b;
+      --red-soft: #fdf2f2;
+      --red-text: #8b1a1a;
+      --amber-bg: #fef9ec;
+      --amber-text: #7a5200;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* ── HEADER ── */
+    .doc-header {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 56px 60px 48px;
+    }
+    .doc-header .eyebrow {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .doc-header h1 {
+      font-size: 38px;
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .doc-header .subtitle {
+      font-size: 17px;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+    }
+    .doc-header .meta {
+      margin-top: 28px;
+      display: flex;
+      gap: 40px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+    .doc-header .meta span strong {
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--green-mid);
+      color: var(--white);
+      padding: 32px 60px;
+    }
+    .toc h2 {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .toc ol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 40px;
+      padding-left: 20px;
+    }
+    .toc li { font-size: 14px; color: rgba(255,255,255,0.85); }
+    .toc a { color: rgba(255,255,255,0.85); text-decoration: none; }
+    .toc a:hover { color: var(--gold-light); }
+
+    /* ── CONTENT AREA ── */
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 64px;
+    }
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: 28px;
+      font-weight: normal;
+      color: var(--green-dark);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .section h3 {
+      font-size: 20px;
+      font-weight: normal;
+      color: var(--green-dark);
+      margin: 32px 0 12px;
+    }
+    .section h4 {
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--green-mid);
+      margin: 24px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: 'Courier New', monospace;
+    }
+    .section p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-card .stat-val {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--green-dark);
+      font-family: 'Courier New', monospace;
+    }
+    .stat-card .stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-left: 4px solid var(--gold);
+      background: var(--amber-bg);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .callout.green {
+      border-left-color: var(--green-light);
+      background: var(--tag-bg);
+    }
+    .callout.red {
+      border-left-color: #c94040;
+      background: var(--red-soft);
+    }
+    .callout .callout-title {
+      font-weight: bold;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      color: var(--amber-text);
+    }
+    .callout.green .callout-title { color: var(--green-dark); }
+    .callout.red .callout-title { color: var(--red-text); }
+    .callout p { margin-bottom: 0; font-size: 15px; }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid #b8ddc6;
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin: 2px;
+    }
+    .tag.gold {
+      background: #fef4e0;
+      color: #7a5200;
+      border-color: #e8cfa0;
+    }
+    .tag.red {
+      background: var(--red-soft);
+      color: var(--red-text);
+      border-color: #f0b8b8;
+    }
+
+    /* ── TABLE ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    thead th {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: var(--white); }
+    tbody tr:hover { background: #f0f8f3; }
+
+    /* ── INITIATIVE CARDS ── */
+    .initiative {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+    .initiative-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .initiative-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green-dark);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .initiative-meta h3 {
+      font-size: 19px;
+      color: var(--green-dark);
+      margin: 0 0 4px;
+    }
+    .initiative-meta .badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .initiative p { font-size: 15px; margin-bottom: 12px; }
+
+    /* ── CHECKLIST ── */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0;
+    }
+    .checklist li {
+      padding: 7px 0 7px 28px;
+      position: relative;
+      font-size: 15px;
+      border-bottom: 1px solid #f0ece5;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--green-light);
+      font-weight: bold;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      margin: 28px 0;
+    }
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0;
+      margin-bottom: 0;
+    }
+    .timeline-row:last-child .timeline-body { border-bottom: none; }
+    .timeline-phase {
+      padding: 20px 16px 20px 0;
+      border-right: 3px solid var(--green-light);
+      text-align: right;
+      position: relative;
+    }
+    .timeline-phase::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--green-dark);
+      border-radius: 50%;
+      position: absolute;
+      right: -7px;
+      top: 26px;
+    }
+    .timeline-phase .phase-label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .timeline-phase .phase-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--green-dark);
+      margin-top: 2px;
+    }
+    .timeline-body {
+      padding: 20px 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-body h4 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--green-dark);
+      text-transform: none;
+      letter-spacing: 0;
+      font-family: Georgia, serif;
+    }
+    .timeline-body p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    /* ── PRIORITY MATRIX ── */
+    .priority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .priority-quad {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      background: var(--white);
+    }
+    .priority-quad .quad-label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .priority-quad.high-now .quad-label { color: #2e6b47; }
+    .priority-quad.high-later .quad-label { color: #5a7a00; }
+    .priority-quad.low-now .quad-label { color: #7a5200; }
+    .priority-quad.low-later .quad-label { color: #888; }
+    .priority-quad ul {
+      padding-left: 18px;
+      font-size: 14px;
+    }
+    .priority-quad li { margin-bottom: 4px; }
+
+    /* ── KEYWORD TABLE ── */
+    .kw-opp { color: #2e6b47; font-weight: bold; }
+    .kw-pos { font-family: 'Courier New', monospace; }
+
+    /* ── DIVIDER ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.5);
+      padding: 32px 60px;
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 700px) {
+      .doc-header { padding: 32px 24px; }
+      .toc { padding: 24px; }
+      .toc ol { grid-template-columns: 1fr; }
+      .content { padding: 32px 20px; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .priority-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+────────────────────────────────────────────── -->
+<header class="doc-header">
+  <div class="eyebrow">Treetop Growth Strategy — Client: El Quetzal Coffee Co.</div>
+  <h1>CRO &amp; Ecommerce Growth Plan<br>elquetzal.coffee</h1>
+  <div class="subtitle">Exclusive Drops · Microlot Landing Pages · Bundles · Email &amp; SMS List Growth</div>
+  <div class="meta">
+    <span><strong>Prepared</strong>May 6, 2026</span>
+    <span><strong>Version</strong>2.0 — With Competitor Analysis</span>
+    <span><strong>YTD Revenue</strong>$123,584</span>
+    <span><strong>Status</strong>For Review</span>
+  </div>
+</header>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#exec-summary">Executive Summary</a></li>
+    <li><a href="#site-audit">Site Audit Findings</a></li>
+    <li><a href="#competitor-analysis">Competitor Analysis &amp; Benchmarking</a></li>
+    <li><a href="#cro-expert">CRO Expert Assessment</a></li>
+    <li><a href="#ahrefs">SEO &amp; Ahrefs Analysis</a></li>
+    <li><a href="#exclusive-drops">Exclusive Drops Strategy</a></li>
+    <li><a href="#landing-pages">Landing Pages &amp; PDPs</a></li>
+    <li><a href="#bundles">Bundles</a></li>
+    <li><a href="#email-sms">Email &amp; SMS Growth</a></li>
+    <li><a href="#lead-capture">Lead Capture &amp; Nurture Flows</a></li>
+    <li><a href="#seo-content">SEO &amp; Content</a></li>
+    <li><a href="#roadmap">Implementation Roadmap</a></li>
+    <li><a href="#kpis">KPIs &amp; Measurement</a></li>
+  </ol>
+</nav>
+
+<!-- ─────────────────────────────────────────────
+     MAIN CONTENT
+────────────────────────────────────────────── -->
+<main class="content">
+
+  <!-- ── 1. EXEC SUMMARY ── -->
+  <section class="section" id="exec-summary">
+    <div class="section-label">Section 01</div>
+    <h2>Executive Summary</h2>
+
+    <p>El Quetzal Coffee Co. is at an inflection point. YTD revenue of <strong>$123,584</strong> reflects real momentum in D2C, bolstered by a loyal repeat customer base (24.8% repeat purchase rate) and an email newsletter that performs at roughly <strong>3× the industry average</strong> open rate. The brand has a clear product differentiation story: rare varietals from a single estate — Laurina, Pacamara, Geisha, Anaerobic Java — that no commodity roaster can match.</p>
+
+    <p>The opportunity gap is structural. Organic traffic is nearly zero (16 visits/month from search). The site lacks the conversion architecture — dedicated drop pages, urgency mechanisms, bundle logic, and a gated lead capture funnel — to fully monetize the traffic it does receive. Email is the brand's single biggest asset and it is under-leveraged as a revenue engine.</p>
+
+    <p>This plan prioritizes <strong>five interconnected growth levers</strong>: exclusive drop campaigns, high-converting microlot landing pages, bundle offers, a structured lead capture + nurture system, and an SEO content program that can build long-term organic traffic around the rare varietals EQCC grows.</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-val">$123K</div>
+        <div class="stat-lbl">YTD Revenue (Apr 2026)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">65.7%</div>
+        <div class="stat-lbl">Newsletter Open Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">24.8%</div>
+        <div class="stat-lbl">Repeat Purchase Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">~600</div>
+        <div class="stat-lbl">Weekly Sessions (All-Time High)</div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-title">Key Insight</div>
+      <p>The newsletter's 65.7% open rate is the most valuable asset on the balance sheet. A well-structured email revenue program — drops, exclusive offers, microlot launches — should be the primary conversion driver before any additional paid spend is added.</p>
+    </div>
+  </section>
+
+  <!-- ── 2. SITE AUDIT ── -->
+  <section class="section" id="site-audit">
+    <div class="section-label">Section 02</div>
+    <h2>Site Audit Findings</h2>
+
+    <p>Audit conducted May 6, 2026 against the live elquetzal.coffee Shopify storefront.</p>
+
+    <h3>Strengths</h3>
+    <ul class="checklist">
+      <li><strong>Clear product taxonomy</strong> — Roasted vs. Green Coffee separation, with varietal-specific collection pages (Pacamara, Laurina, Yellow Catuai, Catimor, Geisha) that create SEO surface area.</li>
+      <li><strong>Sample pack entry points</strong> — Roasted Sampler, Classic Samples, Microlot Sample Pack, and Espresso Sample Pack all serve as low-friction trial products. These are strong lead generators.</li>
+      <li><strong>Reviews (Judge.me)</strong> — Review app is installed and configured with floating tab. Social proof infrastructure is in place.</li>
+      <li><strong>Blog content exists</strong> — "Why Yellow Catuai Coffee Deserves a Spot in Your Roastery," "Why Geisha Coffee Beans Are Still the Pinnacle of Specialty Coffee" — SEO-relevant but underdeveloped.</li>
+      <li><strong>Wholesale path</strong> — Dedicated wholesale inquiry page and clear B2B separation from D2C SKUs.</li>
+      <li><strong>Multi-language/currency support</strong> — Spanish, Canadian English variants detected (helpful for international green coffee buyers).</li>
+    </ul>
+
+    <h3>Critical Gaps</h3>
+    <ul class="checklist">
+      <li><strong>No dedicated drop / launch landing pages.</strong> New microlot releases go directly to a generic PDP. There is no urgency scaffold, no story, no countdown, no pre-launch capture page.</li>
+      <li><strong>No email/SMS pop-up or lead capture mechanism beyond a footer form.</strong> The newsletter signup is buried with generic copy: "Stay connected with our farm and store!" — no offer, no incentive, no urgency.</li>
+      <li><strong>Bundle builder is placeholder-level.</strong> A "Bundle" link exists in navigation but the page shows a generic discount format with no curated bundle storytelling or cross-sell logic.</li>
+      <li><strong>PDPs lack conversion depth.</strong> Product detail pages do not feature: tasting notes in structured format, farm origin story, process method callouts, pairing suggestions, urgency signals (limited quantity, harvest year), or prominent "notify me" for sold-out items.</li>
+      <li><strong>No subscription / recurring purchase option.</strong> No Recharge, Bold Subscriptions, or equivalent app detected. This leaves recurring revenue entirely to manual repurchase behavior.</li>
+      <li><strong>No dedicated SMS capture or opt-in flow.</strong> SlickText is used operationally but there is no on-site SMS opt-in mechanism tied to a value exchange.</li>
+      <li><strong>No loyalty or referral program.</strong> 24.8% repeat rate is strong — but there is no mechanism to accelerate it or reward it.</li>
+      <li><strong>Weak above-the-fold conversion path.</strong> Homepage hero says "A Legacy in Every Cup" with no clear next action beyond browsing. No featured drop, no urgency, no list-building CTA.</li>
+      <li><strong>Paid ads and organic email are the only real traffic drivers.</strong> No SEO, no referral, minimal direct. Traffic ceiling is entirely dependent on ad budget.</li>
+    </ul>
+
+    <div class="callout red">
+      <div class="callout-title">Conversion Architecture Gap</div>
+      <p>The site is structured as a catalog rather than a conversion funnel. Visitors who don't already know the brand have no clear reason to act now, sign up, or return. This is the root cause of conversion rate underperformance relative to traffic levels.</p>
+    </div>
+
+    <h3>Installed Tech Stack</h3>
+    <table>
+      <thead>
+        <tr><th>Tool</th><th>Category</th><th>Status</th><th>Gap / Recommendation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Shopify</td><td>Platform</td><td><span class="tag">Active</span></td><td>Well-configured, needs conversion apps</td></tr>
+        <tr><td>Judge.me</td><td>Reviews</td><td><span class="tag">Active</span></td><td>Ensure photo reviews are enabled &amp; requested</td></tr>
+        <tr><td>Beehiiv</td><td>Email Newsletter</td><td><span class="tag">Active</span></td><td>65.7% OR — needs to be revenue-wired (drops, launches)</td></tr>
+        <tr><td>SlickText</td><td>SMS</td><td><span class="tag">Operational Only</span></td><td>Add SMS opt-in capture to site; build nurture flow</td></tr>
+        <tr><td>Google Ads</td><td>Paid Search</td><td><span class="tag">Active</span></td><td>Mother's Day campaign running; add microlot landing pages</td></tr>
+        <tr><td>Meta Ads</td><td>Paid Social</td><td><span class="tag">Active</span></td><td>Retargeting ($20/day) + Prospecting ($15/day) running</td></tr>
+        <tr><td>Bundle Builder</td><td>Bundles</td><td><span class="tag">Partial</span></td><td>Needs curation + storytelling; see Section 6</td></tr>
+        <tr><td>Klaviyo / Email Pop-up</td><td>Lead Capture</td><td><span class="tag red">Missing</span></td><td>Critical gap — see Section 8</td></tr>
+        <tr><td>Recharge / Subscriptions</td><td>Recurring Revenue</td><td><span class="tag red">Missing</span></td><td>High-priority add for green coffee buyers</td></tr>
+        <tr><td>Loyalty / Referral</td><td>Retention</td><td><span class="tag red">Missing</span></td><td>Install Smile.io or LoyaltyLion to accelerate repeat</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── 3. COMPETITOR ANALYSIS ── -->
+  <section class="section" id="competitor-analysis">
+    <div class="section-label">Section 03</div>
+    <h2>Competitor Analysis &amp; Benchmarking</h2>
+
+    <p>Live site audits were conducted in May 2026 against four leading specialty/single-origin coffee brands: <strong>Onyx Coffee Lab</strong>, <strong>Verve Coffee Roasters</strong>, <strong>Proud Mary Coffee</strong>, and <strong>Heart Coffee Roasters</strong>. Each was evaluated on product offer architecture, pricing, conversion tactics, email/subscription strategy, and content approach. The goal is not to copy these brands — EQCC's single-estate, farm-direct story is a stronger differentiator than any of them — but to adopt the best structural mechanics the market has already validated.</p>
+
+    <!-- ONYX -->
+    <h3>🏆 Onyx Coffee Lab — onyxcoffeelab.com</h3>
+    <p><em>The closest model to what EQCC should become at scale.</em> Onyx is arguably the most sophisticated specialty coffee DTC operator in the US, built around rare single-origins, named lots, and a strong community ("Pilgrimage") brand identity. Their price ceiling for single-origin lots runs up to <strong>$70 per bag</strong> (Panama Finca Deborah Nirvana Gesha).</p>
+
+    <table>
+      <thead><tr><th>Tactic</th><th>What They Do</th><th>EQCC Application</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>The Archive</strong></td>
+          <td>Dedicated <code>/collections/coffee-archive</code> page for retired/sold-out lots. Creates a permanent record of every past release — builds FOMO, collectibility, and brand prestige.</td>
+          <td>Build an EQCC Archive page. Every drop that sells out lives on as a documented "chapter." Drives aspirational browsing and encourages faster purchase on future drops.</td>
+        </tr>
+        <tr>
+          <td><strong>Named Evergreen Blends</strong></td>
+          <td>"Monarch," "Geometry," "Southern Weather" — named blends with permanent brand identity alongside rotating single-origins. The name creates loyalty beyond the lot.</td>
+          <td>Consider naming 1–2 evergreen roasted blends (beyond varietal names). A "Finca Blend" or signature EQCC house coffee gives returning customers a consistent anchor product.</td>
+        </tr>
+        <tr>
+          <td><strong>Find My Roast Quiz</strong></td>
+          <td><code>/pages/find-my-roast</code> — interactive flavor/brew method quiz that routes people to the right product. Double function: recommendation engine and email capture.</td>
+          <td><strong>High priority copy.</strong> A 3-question quiz ("How do you brew?" / "What flavors do you prefer?" / "How adventurous are you?") routes to one of EQCC's microlots + captures email as gate.</td>
+        </tr>
+        <tr>
+          <td><strong>Box Sets</strong></td>
+          <td>Curated multi-coffee sets at a premium price point. Positioned as gifts and discovery bundles — not discount vehicles.</td>
+          <td>Directly maps to EQCC's Microlot Discovery Set proposal. Framing matters: call them "Sets" or "Flights," not bundles.</td>
+        </tr>
+        <tr>
+          <td><strong>Subscription with flavor profile</strong></td>
+          <td>Subscription flow asks Espresso vs. Filter, then Modern vs. Traditional. This personalization reduces churn and improves satisfaction vs. a generic "get coffee monthly" offer.</td>
+          <td>Add a 2-question preference selector to the EQCC subscription signup. Even a simple "Roasted" vs. "Green" + "Light" vs. "Medium" creates a personalized feel.</td>
+        </tr>
+        <tr>
+          <td><strong>Adjacent categories</strong></td>
+          <td>Tea, chocolate, matcha, merch, equipment. Each expands basket size and serves customers who might not buy coffee on a given visit.</td>
+          <td>Phase 3 opportunity. Start with merch (branded tote + sticker) and consider a Guatemala-sourced tea or cocoa as a natural adjacency given the farm's location.</td>
+        </tr>
+        <tr>
+          <td><strong>Price ceiling</strong></td>
+          <td>$70 for a Panama Gesha lot. The market clearly supports $60–$70 for elite single-origin bags.</td>
+          <td>EQCC's Geisha and rare Pacamara lots are likely underpriced relative to market comps. Onyx validates $60–$70 pricing for equivalent quality. See pricing analysis below.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- VERVE -->
+    <h3>⚡ Verve Coffee Roasters — vervecoffee.com</h3>
+    <p>A California-based multi-roastery with a strong DTC program. Price range: <strong>$11.50–$38</strong>. Known for design-forward branding and strategic brand collaborations. Their most important move from a growth standpoint is the <strong>Grateful Dead x Verve "Cosmic Ripple"</strong> collaboration — a limited-edition coffee that drives massive earned media and reaches completely new audiences.</p>
+
+    <table>
+      <thead><tr><th>Tactic</th><th>What They Do</th><th>EQCC Application</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Brand collaborations</strong></td>
+          <td>Grateful Dead x Verve "Cosmic Ripple" — a limited coffee tied to a cultural brand with a massive fanbase. Generates press, social sharing, and introduces Verve to non-coffee-first audiences.</td>
+          <td>Identify 1–2 collaboration partners with aligned audiences: a specialty food brand, a Guatemalan cultural organization, a notable chef or sommelier, or a travel/adventure brand. Even a micro-collab (50 bags) creates content and broadens reach.</td>
+        </tr>
+        <tr>
+          <td><strong>Craft Instant Coffee line</strong></td>
+          <td>Premium instant coffee as a high-margin, high-convenience SKU. Reaches customers who want the flavor without the brew equipment.</td>
+          <td>Medium-term opportunity. Specialty instant (freeze-dried or microground) of the Anaerobic Java or Laurina would be a unique, giftable product with strong margins and near-zero additional sourcing cost.</td>
+        </tr>
+        <tr>
+          <td><strong>Gift subscription as distinct nav item</strong></td>
+          <td>Gift subscriptions are featured prominently as their own collection — not buried inside the main subscription page. Gifters are a distinct behavioral segment who need their own path.</td>
+          <td>Create a dedicated <code>/products/gift-subscription</code> or <code>/collections/gifts</code> page. The gifter's mental model is different: they need to feel confident the recipient will love it, not evaluate flavors for themselves.</td>
+        </tr>
+        <tr>
+          <td><strong>New Arrivals monthly cadence</strong></td>
+          <td><code>/collections/new-arrivals</code> updated monthly with a clear "May Coffee" hero message. Creates a rhythm that trains subscribers to check back regularly.</td>
+          <td>Add a "New This Month" or "Current Harvest" section to the homepage that updates with each drop cycle. This alone can increase return visit rate among existing customers.</td>
+        </tr>
+        <tr>
+          <td><strong>Branded hardware</strong></td>
+          <td>"Dwell Dripper Kit" — a branded pour-over dripper. Creates a deeper relationship with the brewing ritual and a ~$40 add-on item.</td>
+          <td>Phase 3 opportunity. A branded EQCC brewing kit (dripper + filters + tasting card) could be a compelling gift set item.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PROUD MARY -->
+    <h3>🧭 Proud Mary Coffee — proudmarycoffee.com</h3>
+    <p>An Australian-originated specialty roaster with US cafés (Portland, Austin). Their most interesting ecom innovation is a <strong>flavor-intensity navigation system</strong> that replaces origin-based browsing with accessibility-first categorization. Price range: <strong>$17–$45</strong>, with their premium "Deluxe" tier explicitly positioned around microlots.</p>
+
+    <table>
+      <thead><tr><th>Tactic</th><th>What They Do</th><th>EQCC Application</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Flavor-tier navigation</strong></td>
+          <td>Collections: Mild / Curious / Wild / Deluxe. Customers shop by how adventurous they feel, not by origin country. Removes the intimidation of specialty coffee taxonomy for new buyers.</td>
+          <td>Add a secondary navigation layer or a "Start Here" filter alongside the existing varietal collections: "Approachable" (Yellow Catuai, SHG Blend), "Adventurous" (Anaerobic Java, Washed Geisha), "Rare" (Laurina, Pacamara). Especially useful for new visitor PDP pages.</td>
+        </tr>
+        <tr>
+          <td><strong>"Deluxe" premium tier</strong></td>
+          <td>The Deluxe collection ($35–$45) is explicitly named and positioned as the premium/microlot tier. The name alone signals that these are special products worth paying more for.</td>
+          <td>Consider naming EQCC's premium tier. "Reserve" or "Single Lot" or "Estate Microlot" as a collection label that creates a clear price/quality signal for buyers who want the best.</td>
+        </tr>
+        <tr>
+          <td><strong>Subscription as primary nav item</strong></td>
+          <td>Coffee subscriptions are the first item in the main navigation — not buried under "Shop." This signals that the subscription is the preferred customer relationship, not a secondary option.</td>
+          <td>Test moving the subscription CTA higher in the navigation hierarchy, or adding a persistent "Subscribe &amp; Save" call-out in the site header or sticky bar.</td>
+        </tr>
+        <tr>
+          <td><strong>Investment / community page</strong></td>
+          <td><code>/pages/invest</code> — a community investment or crowdfunding page. Signals that EQCC's most loyal customers can have a stake in the brand's future.</td>
+          <td>Long-term consideration. A "Friends of the Farm" membership or waitlist could create deep community ties without a full investment structure.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- HEART -->
+    <h3>❤️ Heart Coffee Roasters — heartroasters.com</h3>
+    <p>A Portland-based specialty roaster known for exceptional sourcing transparency. Price range: <strong>$15.50–$75</strong>. Heart is notable for its use of <strong>drop language on the homepage</strong> ("Just dropped"), transparency reporting, and a promotional mechanic that avoids discounting.</p>
+
+    <table>
+      <thead><tr><th>Tactic</th><th>What They Do</th><th>EQCC Application</strong></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>"Just Dropped" homepage section</strong></td>
+          <td>A dynamic section at the top of the homepage labeled "Just dropped" that features the most recent arrivals. Simple but powerful — immediately communicates that the brand is active, fresh, and worth checking regularly.</td>
+          <td>Add a "Just Arrived" or "Now in Season" section to the EQCC homepage that auto-updates with the most recently added product. This single change can increase homepage-to-PDP conversion by signaling recency and activity.</td>
+        </tr>
+        <tr>
+          <td><strong>Purchase incentive (non-discount)</strong></td>
+          <td>"Get a free 5lb bag of Stereo Blend with your purchase!" — a free product incentive rather than a percentage discount. Protects price integrity while still creating urgency and a clear CTA.</td>
+          <td>Replace any planned blanket discount mechanic with a "free bag with qualifying order" or "free sample with every order over $X." Protects EQCC's premium positioning while still offering clear value.</td>
+        </tr>
+        <tr>
+          <td><strong>Transparency reports</strong></td>
+          <td>Annual published transparency reports (2018, 2019, 2020–21) showing sourcing costs, farmer payments, and margins. Rare in the industry and extraordinarily credibility-building for the ethical consumer segment.</td>
+          <td>EQCC has the ultimate transparency story — it IS the farm. A simple annual "Farm Report" PDF (harvest yields, pricing per lot, what the money funded at the farm) would be a differentiator no multi-roaster competitor can replicate.</td>
+        </tr>
+        <tr>
+          <td><strong>Video content (Coffee Sourcing, Roasting, Origin)</strong></td>
+          <td>Blog section has video-forward content: "Coffee Sourcing," "Roasting the Coffee," "Kenya" origin videos. This drives time-on-site, builds emotional connection, and earns backlinks from coffee media.</td>
+          <td>EQCC is literally on the farm. Short-form videos (30–90 seconds) of the harvest, processing, and drying beds would be uniquely compelling content that no other brand can produce. These also serve as high-performing Meta ad creative.</td>
+        </tr>
+        <tr>
+          <td><strong>Brew guide pages</strong></td>
+          <td>Dedicated brew guide pages for each method (AeroPress, V60, Kalita, Espresso, Coffee Maker) — not just a blog post but persistent navigation pages. Double as SEO content and customer support.</td>
+          <td>Create 4–5 "Brew Guide" pages on elquetzal.coffee, each tailored to one brew method. Link from PDPs ("Best brewed as a V60 → see our brew guide"). These become both SEO pages and customer education tools.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PRICE BENCHMARKING -->
+    <h3>Pricing Benchmarking: Is EQCC Leaving Money on the Table?</h3>
+    <p>Based on the live competitor data collected, here is how the market prices comparable products. Note that EQCC's current pricing is largely inferred from the site structure (single price point of $25 detected on the Roasted Sampler page) — but the competitive context is instructive:</p>
+
+    <table>
+      <thead><tr><th>Product Type</th><th>Onyx</th><th>Verve</th><th>Proud Mary</th><th>Heart</th><th>EQCC Est.</th><th>Gap</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Entry single-origin (200–250g)</td>
+          <td>$21–$28</td>
+          <td>$17–$27</td>
+          <td>$17–$25</td>
+          <td>$15–$22</td>
+          <td>Est. $18–$25</td>
+          <td>Likely at parity</td>
+        </tr>
+        <tr>
+          <td>Premium microlot (200–250g)</td>
+          <td>$38–$52</td>
+          <td>$28–$38</td>
+          <td>$35–$45</td>
+          <td>$38–$75</td>
+          <td>Est. $25–$35</td>
+          <td><span class="tag red">Likely underpriced 20–40%</span></td>
+        </tr>
+        <tr>
+          <td>Gesha / Panama-equivalent (100g)</td>
+          <td>$66–$70</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>$75</td>
+          <td>Unknown</td>
+          <td><span class="tag red">Major price ceiling opportunity</span></td>
+        </tr>
+        <tr>
+          <td>Sample / discovery set</td>
+          <td>Box Sets: $40–$60</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>Gift sets: $38+</td>
+          <td>Sampler: $25</td>
+          <td><span class="tag red">Sampler likely underpriced by $15–25</span></td>
+        </tr>
+        <tr>
+          <td>Subscription (monthly bag)</td>
+          <td>~$22–$40/mo</td>
+          <td>~$22–$35/mo</td>
+          <td>~$25–$45/mo</td>
+          <td>N/A</td>
+          <td>Not yet available</td>
+          <td><span class="tag gold">Untapped recurring revenue channel</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout red">
+      <div class="callout-title">Pricing Action Required</div>
+      <p>If EQCC's Geisha or premium Pacamara lots are priced below $40, they are being sold at a significant discount to market rate for equivalent quality. Onyx validates $66–$70 for Panama Gesha; Heart validates $75. EQCC's farm-direct provenance story actually <em>justifies a premium over reseller roasters</em> — customers are paying for both the coffee and the direct relationship with the origin. A pricing audit of all SKUs against these comps is recommended before the next drop launch.</p>
+    </div>
+
+    <!-- COMPETITOR BEST PRACTICES SUMMARY -->
+    <h3>Competitor Best Practices: Master Checklist</h3>
+    <p>The following tactics are validated by two or more of the benchmarked competitors and are directly applicable to EQCC:</p>
+    <ul class="checklist">
+      <li><strong>Archive page</strong> for sold-out/retired lots — builds scarcity, collectibility, and brand depth (Onyx)</li>
+      <li><strong>Interactive coffee quiz</strong> ("Find My Roast") as dual recommendation tool and email capture (Onyx)</li>
+      <li><strong>Named premium tier</strong> ("Deluxe," "Reserve," "Box Sets") to justify higher price points for microlots (Onyx, Proud Mary)</li>
+      <li><strong>Flavor-accessibility navigation</strong> (Mild / Wild / Adventurous) to reduce browse friction for new visitors (Proud Mary)</li>
+      <li><strong>"Just Dropped" homepage section</strong> to signal freshness and recency (Heart Roasters)</li>
+      <li><strong>Purchase incentive without discounting</strong> — free product with qualifying order (Heart Roasters)</li>
+      <li><strong>Gift subscriptions as a distinct product category</strong>, not buried in general subscriptions (Verve, Onyx)</li>
+      <li><strong>Brand collaborations</strong> for earned media and new audience access (Verve × Grateful Dead)</li>
+      <li><strong>Subscription as a primary navigation item</strong>, not a secondary option (Proud Mary)</li>
+      <li><strong>Brew guide pages</strong> per brew method as persistent educational content (Heart Roasters)</li>
+      <li><strong>Transparency/provenance reporting</strong> as a differentiation anchor (Heart Roasters — though EQCC can go further, being the actual farm)</li>
+      <li><strong>Video content</strong> of sourcing and processing as both editorial content and ad creative (Heart Roasters)</li>
+      <li><strong>Price ceiling increase</strong> for premium lots, validated up to $70–$75 by the market (Onyx, Heart)</li>
+    </ul>
+  </section>
+
+  <!-- ── 4. CRO EXPERT ASSESSMENT ── -->
+  <section class="section" id="cro-expert">
+    <div class="section-label">Section 04</div>
+    <h2>CRO Expert Assessment</h2>
+
+    <p>The following is an honest, direct evaluation of elquetzal.coffee's conversion architecture through the lens of an experienced ecommerce CRO practitioner. The goal is to identify the highest-leverage changes — the ones that move revenue, not just metrics — and separate them from nice-to-have optimizations.</p>
+
+    <div class="callout green">
+      <div class="callout-title">CRO Expert Framing</div>
+      <p>Most Shopify specialty food and beverage stores convert at <strong>1.5–3.5%</strong> from organic and direct traffic, and <strong>0.8–1.5%</strong> from paid social cold traffic. The site's exceptional email engagement (65.7% OR) tells us the product-market fit is real. The problem is structural: the funnel leaks before it ever gets started. Traffic arrives at a catalog, finds no urgency, no capture mechanism, and no clear narrative entry point. Every fix below is about plugging those leaks.</p>
+    </div>
+
+    <h3>Finding 1: The Homepage Has No Dominant CTA</h3>
+    <p>The current homepage hero — "A Legacy in Every Cup" — is a brand statement, not a conversion directive. There is no single dominant call to action above the fold. A first-time visitor has no clear answer to "what should I do next?" The industry benchmark is a hero section with one primary CTA that drives 40–60% of homepage exit clicks.</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>Replace the hero with a two-state design: <strong>State A (no drop active)</strong> — "Now in Season: [Current Microlot]" with a direct Add-to-Cart or PDP button. <strong>State B (drop countdown active)</strong> — countdown timer + waitlist capture. The hero should rotate between these two states based on whether a live drop is active. Never leave it as a passive brand statement.</p>
+    </div>
+
+    <h3>Finding 2: The Email Pop-Up Offer Has No Hook</h3>
+    <p>The current newsletter copy ("Stay connected with our farm and store!") has no clear value proposition for the subscriber. Generic copy = low opt-in rates. Industry benchmarks for email pop-ups with no offer: 1–2% conversion. With a specific, compelling offer framed as access/intelligence: 4–8%. On 600 sessions/week, the difference between 1.5% and 5% capture is roughly 20 additional subscribers per week — about 1,000 incremental subscribers per year from the same traffic.</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>The pop-up needs a <strong>clear value exchange</strong>: early access to drops, insider harvest intelligence, or a first-order incentive. The most brand-consistent option: "Get Drop-Day Access Before Anyone Else." The lowest-friction option for immediate list growth: "10% off your first order" (one-time, expiring). Test both. A/B test copy for 30 days before committing to a permanent approach.</p>
+    </div>
+
+    <h3>Finding 3: The Sample Pack Is Doing All the Heavy Lifting — Alone</h3>
+    <p>The Microlot Sample Pack, Roasted Sampler, and Classic Samples are the natural entry-point products. But they appear to be priced at ~$25 — well below market comp (Onyx's equivalent Box Sets range $40–$60). These products are simultaneously EQCC's most important acquisition tool and its most likely underpriced SKU. Worse, they are not featured with clear cross-sell logic pointing to the next purchase ("Loved the Anaerobic Java in your sampler? Here it is in a full 250g bag").</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>Two actions: (1) <strong>Reprice the Microlot Sample Pack upward</strong> toward $35–$45 — it currently prices EQCC below its competitive positioning. (2) <strong>Build an explicit post-purchase follow-up flow</strong> (email Day 7) that links each sample directly to its full-size PDP with a personalized "you tried it, now own it" message. This single flow has the potential to generate a 15–25% conversion rate from sampler buyers to full-bag purchasers.</p>
+    </div>
+
+    <h3>Finding 4: Product Pages Lack Scarcity Infrastructure</h3>
+    <p>Scarcity is the single most powerful conversion lever for limited-production specialty products, and it is entirely absent from EQCC's current PDPs. There is no inventory counter, no harvest year signal, no "only X bags remaining," no social proof of recent purchases. When a customer sees a $30 bag of coffee with no urgency signals, the rational response is to bookmark it and come back — which means they often don't.</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>Add three scarcity signals to every microlot PDP: (1) <strong>Harvest year badge</strong> ("2026 Harvest — Limited Release") in the product image or title area. (2) <strong>Low-stock message</strong> when inventory drops below a threshold (e.g., "Only 12 bags remaining from this lot"). (3) <strong>Sold-out state with Next Harvest opt-in</strong> instead of a dead "sold out" label. All three can be implemented in Shopify with no additional apps for the first two, and a back-in-stock app for the third.</p>
+    </div>
+
+    <h3>Finding 5: No Abandoned Cart or Browse Abandonment Recovery</h3>
+    <p>With 600 sessions per week and a conversion rate that is unlikely to exceed 3–4% (18–24 orders/week at best), approximately 576+ sessions per week leave without purchasing. Some of these are pure tire-kickers, but a meaningful percentage added items to cart or browsed PDPs and left due to friction, distraction, or price hesitation. Without any recovery sequence — abandoned cart email, browse abandonment flow, retargeting — these visitors are simply lost.</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>Shopify has a native abandoned checkout email, but it requires Shopify Email or Klaviyo for proper abandoned <em>cart</em> and browse abandonment flows. Estimated revenue recovery from a properly configured Klaviyo abandoned cart sequence: <strong>5–15% of abandoned cart revenue</strong>. For a store doing $15–20K/month, this is a $750–$3,000/month recovery opportunity from traffic already acquired.</p>
+    </div>
+
+    <h3>Finding 6: The Green Coffee Buyer Is a Distinct Persona Without a Dedicated Path</h3>
+    <p>Green coffee buyers (home roasters, small commercial roasters) have fundamentally different needs than retail roasted coffee buyers. They want: exact lot information, processing details, cupping scores if available, lot size, and bulk pricing. Currently, green and roasted coffees are separated at the collection level, but PDPs appear to use the same template. A roastery browsing green coffee needs different information and a different conversion path than a home consumer buying a bag of roasted Laurina.</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>Create a distinct <strong>Green Coffee PDP template</strong> with a "For Roasters" section: lot number, total available quantity, cupping notes in SCA format, moisture content if available, and a bulk/wholesale inquiry CTA. This also creates a clear upgrade path: "Try a 1kg sample before committing to a full sack." The green coffee buyer is also the natural pipeline for the B2B wholesale relationship — the PDP should reflect that journey.</p>
+    </div>
+
+    <h3>Finding 7: No Social Proof Architecture Beyond Reviews</h3>
+    <p>Judge.me is installed, but the review strategy appears passive — reviews are collected, but there is no active UGC program, no "made by us, shared by you" gallery (which Onyx and Judge.me's UGC feature both support), no press quotes, no barista or roaster endorsements. For a brand selling $30–$70 specialty coffee, trust signals beyond star ratings are important conversion drivers — especially for first-time visitors arriving from paid social.</p>
+    <div class="callout">
+      <div class="callout-title">Fix</div>
+      <p>Three additions: (1) <strong>Enable Judge.me's UGC widget</strong> (the config shows it's installed but not fully activated — "Made by us, Shared by you" widget was detected in the page source). (2) <strong>Add a press/feature bar</strong> on the homepage: any mentions in coffee media, food publications, or specialty coffee competitions. (3) <strong>Add a "Used by X+ roasteries" or "Shipped to X countries" social proof counter</strong> near the hero section. These three additions require no new apps — only content and configuration.</p>
+    </div>
+
+    <h3>CRO Priority Score: What to Fix First</h3>
+    <table>
+      <thead><tr><th>Finding</th><th>Effort</th><th>Revenue Impact</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>Email pop-up with compelling offer</td><td>Low (1–2 days)</td><td>High (list growth → all future revenue)</td><td><span class="tag gold">Do This Week</span></td></tr>
+        <tr><td>Homepage dominant CTA (drop state / non-drop state)</td><td>Low–Medium (2–3 days)</td><td>High (homepage is largest single traffic landing point)</td><td><span class="tag gold">Do This Week</span></td></tr>
+        <tr><td>Scarcity signals on PDPs (harvest year, low stock)</td><td>Low (1 day)</td><td>Medium-High (direct conversion rate lift)</td><td><span class="tag gold">Do This Week</span></td></tr>
+        <tr><td>Sample pack repricing + post-purchase cross-sell flow</td><td>Low (price) / Medium (email)</td><td>High (AOV + repeat purchase)</td><td><span class="tag">Week 2</span></td></tr>
+        <tr><td>Klaviyo / abandoned cart recovery</td><td>Medium (3–5 days setup)</td><td>High ($750–$3K/mo recovery)</td><td><span class="tag">Week 2–3</span></td></tr>
+        <tr><td>Green coffee PDP template</td><td>Medium</td><td>Medium (B2B conversion improvement)</td><td><span class="tag">Month 2</span></td></tr>
+        <tr><td>UGC widget activation + press bar</td><td>Low (content needed)</td><td>Medium (trust = conversion for cold traffic)</td><td><span class="tag">Week 2</span></td></tr>
+        <tr><td>Coffee quiz / Find My Roast</td><td>Medium–High (3–5 days dev)</td><td>High (email capture + guided purchase)</td><td><span class="tag">Month 2</span></td></tr>
+        <tr><td>Archive page for retired lots</td><td>Low (1–2 days)</td><td>Medium (brand depth + FOMO)</td><td><span class="tag">Month 2</span></td></tr>
+        <tr><td>Flavor-tier navigation layer</td><td>Medium</td><td>Medium (browse friction reduction)</td><td><span class="tag">Month 2–3</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── 5. AHREFS ── -->
+  <section class="section" id="ahrefs">
+    <div class="section-label">Section 05</div>
+    <h2>SEO &amp; Ahrefs Analysis</h2>
+
+    <p>Ahrefs data pulled May 2026 for elquetzal.coffee (all subdomains).</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-val">16</div>
+        <div class="stat-lbl">Monthly Organic Visits</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">9</div>
+        <div class="stat-lbl">Ranking Keywords</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">26</div>
+        <div class="stat-lbl">Referring Domains</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">$1,305</div>
+        <div class="stat-lbl">Est. Organic Traffic Value</div>
+      </div>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-title">Critical SEO Finding</div>
+      <p>Organic search is essentially non-existent as a traffic source. The site receives roughly <strong>16 visits per month</strong> from organic search despite having category pages optimized for high-value specialty terms (Pacamara, Laurina, Geisha, Yellow Catuai). This represents a massive untapped channel that grows permanently once built.</p>
+    </div>
+
+    <h3>Current Keyword Rankings</h3>
+    <table>
+      <thead>
+        <tr><th>Keyword</th><th>Position</th><th>Monthly Volume</th><th>Est. Traffic</th><th>URL</th><th>Opportunity</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>pacamara coffee beans</td>
+          <td class="kw-pos">5</td>
+          <td>70</td>
+          <td>7</td>
+          <td>/collections/pacamara</td>
+          <td><span class="tag">Page 1 — Push to Top 3</span></td>
+        </tr>
+        <tr>
+          <td>cafe verde</td>
+          <td class="kw-pos">5</td>
+          <td>30</td>
+          <td>3</td>
+          <td>/es/collections/green-coffee</td>
+          <td><span class="tag">Spanish audience</span></td>
+        </tr>
+        <tr>
+          <td>laurina coffee beans</td>
+          <td class="kw-pos">10</td>
+          <td>90</td>
+          <td>2</td>
+          <td>/collections/laurina</td>
+          <td><span class="tag gold">High value — move to Top 5</span></td>
+        </tr>
+        <tr>
+          <td>laurina coffee</td>
+          <td class="kw-pos">8</td>
+          <td>30</td>
+          <td>1</td>
+          <td>/en-ca/products/roasted-washed-laurina</td>
+          <td><span class="tag">Consolidate URLs</span></td>
+        </tr>
+        <tr>
+          <td>yellow catuai coffee</td>
+          <td class="kw-pos">12</td>
+          <td>60</td>
+          <td>1</td>
+          <td>/collections/yellow-catuai</td>
+          <td><span class="tag gold">Strong — needs content depth</span></td>
+        </tr>
+        <tr>
+          <td>el.quetzal (brand)</td>
+          <td class="kw-pos">10</td>
+          <td>60</td>
+          <td>2</td>
+          <td>/</td>
+          <td><span class="tag">Brand — should be #1</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Keyword Opportunities (Not Yet Ranking)</h3>
+    <p>These high-intent, low-competition terms are natural fits for EQCC's existing collection pages and blog. Building authoritative content around them can generate compounding organic traffic with no ad spend:</p>
+
+    <table>
+      <thead>
+        <tr><th>Target Keyword</th><th>Est. Volume</th><th>Difficulty</th><th>Page to Build/Improve</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="kw-opp">geisha coffee beans</td><td>2,400/mo</td><td>Low-Medium</td><td>/collections/geisha — needs content depth</td></tr>
+        <tr><td class="kw-opp">buy geisha coffee online</td><td>480/mo</td><td>Low</td><td>New PDP + landing page</td></tr>
+        <tr><td class="kw-opp">pacamara coffee</td><td>590/mo</td><td>Low</td><td>/collections/pacamara — needs expansion</td></tr>
+        <tr><td class="kw-opp">anaerobic process coffee</td><td>1,200/mo</td><td>Low</td><td>Blog post + collection page</td></tr>
+        <tr><td class="kw-opp">laurina low caffeine coffee</td><td>320/mo</td><td>Very Low</td><td>Landing page — major brand differentiator</td></tr>
+        <tr><td class="kw-opp">specialty green coffee beans</td><td>1,800/mo</td><td>Medium</td><td>/collections/green-coffee — expand content</td></tr>
+        <tr><td class="kw-opp">villa sarchi coffee</td><td>260/mo</td><td>Very Low</td><td>New blog post + PDP optimization</td></tr>
+        <tr><td class="kw-opp">microlot coffee online</td><td>720/mo</td><td>Low</td><td>New hub page + drop landing pages</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">SEO Priority</div>
+      <p>The existing collection pages for Pacamara, Laurina, Geisha, and Yellow Catuai are ranking but starved of content. Adding 400–700 words of structured, informative copy to each collection page — farm origin, flavor profile, process method, roasting recommendations — can push these pages from position 8–12 to positions 2–5 within 60–90 days, without building new pages.</p>
+    </div>
+  </section>
+
+  <!-- ── 4. EXCLUSIVE DROPS ── -->
+  <section class="section" id="exclusive-drops">
+    <div class="section-label">Section 06</div>
+    <h2>Exclusive Drops Strategy</h2>
+
+    <p>EQCC's single-estate sourcing, micro-production volumes, and rare varietals are ideal for a <strong>drop-model commerce strategy</strong>. Limited, announced releases create anticipation, train customers to act quickly, drive email list growth, and establish a premium brand perception that justifies higher price points.</p>
+
+    <h3>The Drop Framework</h3>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">🌱</div>
+        <div class="initiative-meta">
+          <h3>Pre-Drop: Waitlist &amp; Anticipation Phase (7–14 days before release)</h3>
+          <div class="badges">
+            <span class="tag gold">Email</span>
+            <span class="tag gold">SMS</span>
+            <span class="tag">Landing Page</span>
+          </div>
+        </div>
+      </div>
+      <p>Create a dedicated "Coming Soon" landing page for each new microlot arrival. The page should feature: origin story (farm section, harvest date, elevation, varietal), a tasting notes preview, a prominent "Join the Waitlist" email + SMS capture, and a countdown timer to release day.</p>
+      <ul class="checklist">
+        <li>Build a reusable "Drop Launch" Shopify page template with countdown timer embed</li>
+        <li>Drive waitlist sign-ups via Beehiiv newsletter (existing 65.7% OR audience) 10–14 days before release</li>
+        <li>Send SMS blast to SlickText list with pre-drop link 48 hours before launch</li>
+        <li>Tease on Meta/Instagram with farm footage, green coffee imagery</li>
+        <li>Waitlist email capture → auto-enrolls in Drop Launch Email sequence (see Section 8)</li>
+      </ul>
+    </div>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">⚡</div>
+        <div class="initiative-meta">
+          <h3>Drop Day: Urgency + First-Access Windows</h3>
+          <div class="badges">
+            <span class="tag gold">Email</span>
+            <span class="tag gold">SMS</span>
+            <span class="tag">Paid Amplification</span>
+          </div>
+        </div>
+      </div>
+      <p>Launch day is an event, not a product update. Create a 24–48-hour early-access window for email and SMS subscribers before the product goes live publicly.</p>
+      <ul class="checklist">
+        <li><strong>Hour 0:</strong> SMS blast to full SlickText list: "The [Microlot Name] just dropped. Subscriber-exclusive for the next 24 hours. [link]"</li>
+        <li><strong>Hour 0:</strong> Beehiiv launch email with full tasting notes, farm story, and direct PDP link</li>
+        <li><strong>Hour 6:</strong> Meta retargeting campaign goes live (existing pixel audience)</li>
+        <li><strong>Hour 24:</strong> Public launch — Google Shopping + Search activated</li>
+        <li>Use inventory scarcity messaging: "Only 40 bags available at this release"</li>
+        <li>Add a limited-quantity progress bar to the PDP ("32 of 40 bags remaining")</li>
+      </ul>
+    </div>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">🔁</div>
+        <div class="initiative-meta">
+          <h3>Post-Drop: Sold-Out &amp; Waitlist for Next Harvest</h3>
+          <div class="badges">
+            <span class="tag">Retention</span>
+            <span class="tag">List Building</span>
+          </div>
+        </div>
+      </div>
+      <p>When a microlot sells out, do not simply mark it "sold out." Replace the Add-to-Cart with a "Notify Me for Next Harvest" email capture. This converts a dead-end into a list-building asset and signals demand for future crops.</p>
+      <ul class="checklist">
+        <li>Install a Back-in-Stock / Notify Me app (Klaviyo native, Back in Stock by Appikon, or similar)</li>
+        <li>Sold-out page copy: "This lot is gone — but the next harvest is already growing. Be the first to know when [Microlot Name] returns."</li>
+        <li>Email captured → tagged "Next Harvest Waitlist - [Varietal]" in CRM</li>
+        <li>This list becomes the highest-intent segment for next year's crop announcement</li>
+      </ul>
+    </div>
+
+    <h3>Recommended Drop Calendar (Q2–Q3 2026)</h3>
+    <table>
+      <thead>
+        <tr><th>Drop</th><th>Microlot</th><th>Target Date</th><th>Format</th><th>Primary Audience</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Drop 001</td><td>Anaerobic Java — 2026 Harvest</td><td>June 2026</td><td>Roasted + Green</td><td>Email list + Meta retargeting</td></tr>
+        <tr><td>Drop 002</td><td>Laurina — Low Caffeine Special</td><td>July 2026</td><td>Roasted only (D2C focused)</td><td>Email + Google Search</td></tr>
+        <tr><td>Drop 003</td><td>Washed Geisha — Limited Release</td><td>August 2026</td><td>Green + Roasted bundle</td><td>Roastery wholesale + D2C</td></tr>
+        <tr><td>Drop 004</td><td>Pacamara — Fall Edition</td><td>September 2026</td><td>Roasted bags + gift bundle</td><td>Gift season lead-in</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── 5. LANDING PAGES & PDPs ── -->
+  <section class="section" id="landing-pages">
+    <div class="section-label">Section 07</div>
+    <h2>Landing Pages &amp; Product Detail Pages</h2>
+
+    <p>The current site's PDPs are functional but thin. Specialty coffee buyers — especially those spending $25+ on a single bag — need to be convinced, educated, and emotionally connected before they convert. Every microlot deserves a page that tells its full story.</p>
+
+    <h3>Microlot PDP Template: Required Elements</h3>
+    <p>Every high-priority roasted and green coffee PDP should be rebuilt or enhanced to include the following sections:</p>
+
+    <table>
+      <thead>
+        <tr><th>Section</th><th>Content</th><th>CRO Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hero Block</strong></td>
+          <td>High-quality image (farm/bean/cup), varietal name, process, harvest year, urgency signal ("Limited 2026 Harvest")</td>
+          <td>Immediate differentiation; signals rarity</td>
+        </tr>
+        <tr>
+          <td><strong>Flavor Wheel / Tasting Notes</strong></td>
+          <td>Visual tasting note callouts (jasmine, stone fruit, dark chocolate, etc.) — not just text</td>
+          <td>Emotional resonance; justifies price point</td>
+        </tr>
+        <tr>
+          <td><strong>Origin Story</strong></td>
+          <td>Farm section (Finca El Quetzal), elevation (masl), region, varietal history, why this crop matters this year</td>
+          <td>Brand differentiation; builds connection</td>
+        </tr>
+        <tr>
+          <td><strong>Process Notes</strong></td>
+          <td>Washed / Anaerobic / Natural — brief, visual explanation of what the process does to flavor</td>
+          <td>Educates; positions expertise</td>
+        </tr>
+        <tr>
+          <td><strong>Brew Guide / Ideal Preparation</strong></td>
+          <td>2–3 recommended brew methods with brief rationale (e.g., "V60 for clarity; AeroPress for sweetness")</td>
+          <td>Reduces intimidation; increases purchase confidence</td>
+        </tr>
+        <tr>
+          <td><strong>Scarcity Signal</strong></td>
+          <td>Inventory progress bar, harvest year note, "from a single lot of X lbs"</td>
+          <td>Urgency; drives faster decision</td>
+        </tr>
+        <tr>
+          <td><strong>Social Proof</strong></td>
+          <td>Judge.me reviews prominently placed above the fold (or immediately below Add to Cart)</td>
+          <td>Trust; reduces purchase anxiety</td>
+        </tr>
+        <tr>
+          <td><strong>Cross-Sell / Bundle Callout</strong></td>
+          <td>"Pair with: [related product]" or "Try the Microlot Sample Pack first"</td>
+          <td>AOV increase; funnel entry for new customers</td>
+        </tr>
+        <tr>
+          <td><strong>Email Capture (if sold out)</strong></td>
+          <td>Back-in-Stock / Notify Me for Next Harvest form</td>
+          <td>List building from high-intent traffic</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Priority PDP Upgrades</h3>
+    <ul class="checklist">
+      <li><strong>Anaerobic Java</strong> — Highest-trafficked paid product currently; most compelling process story. Prioritize first.</li>
+      <li><strong>Laurina</strong> — Unique low-caffeine positioning. Strong SEO opportunity and lifestyle appeal (position as "the specialty decaf alternative").</li>
+      <li><strong>Geisha</strong> — Premium price point; needs the most editorial depth to justify cost. Add tasting notes, competition context, limited quantity messaging.</li>
+      <li><strong>Microlot Sample Pack</strong> — Key lead-acquisition product. Needs clearer framing: "Try 4 of our rarest microlots in one order."</li>
+    </ul>
+
+    <h3>Dedicated Drop Landing Pages</h3>
+    <p>Distinct from the standard PDP, drop landing pages are built for a single release event and are designed to capture leads before inventory is available. Key structural differences:</p>
+    <ul class="checklist">
+      <li>No standard Shopify header/footer — distraction-free layout</li>
+      <li>Countdown timer to drop date/time</li>
+      <li>Email + SMS opt-in as primary CTA (not Add to Cart)</li>
+      <li>Embedded farm/origin video or photo essay</li>
+      <li>Social share block: "Share to get early access" (referral mechanic)</li>
+      <li>Post-launch: page converts to standard PDP with live Add to Cart + urgency bar</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-title">Quick Win</div>
+      <p>The Anaerobic Java PDP is currently running in a Mother's Day campaign. Before the next campaign goes live for any product, build out the full PDP template above first — the same ad spend will convert meaningfully better to a fuller page experience.</p>
+    </div>
+  </section>
+
+  <!-- ── 6. BUNDLES ── -->
+  <section class="section" id="bundles">
+    <div class="section-label">Section 08</div>
+    <h2>Bundle Strategy</h2>
+
+    <p>Bundles serve a dual purpose: they increase average order value while simultaneously reducing decision fatigue for new customers who don't know where to start. EQCC currently has a bundle section on the homepage but it lacks curation and story. The goal is to make bundles feel like <em>curated experiences</em>, not discounted volume deals.</p>
+
+    <h3>Recommended Bundle Architecture</h3>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">🧪</div>
+        <div class="initiative-meta">
+          <h3>The Microlot Discovery Set</h3>
+          <div class="badges">
+            <span class="tag gold">New Customer Acquisition</span>
+            <span class="tag">High AOV</span>
+          </div>
+        </div>
+      </div>
+      <p><strong>Contents:</strong> 4 × 2oz roasted microlot samples (or 4 × 100g bags) — Laurina, Anaerobic Java, Yellow Catuai, Geisha. Positioned as "the complete El Quetzal experience."</p>
+      <p><strong>Price point:</strong> $45–$55. Includes a printed tasting card (brand touchpoint, shareable, giftable).</p>
+      <ul class="checklist">
+        <li>Lead product for new customer acquisition campaigns (Meta Prospecting)</li>
+        <li>Feature prominently on homepage as "Start Here" CTA</li>
+        <li>Post-purchase email sequence: "Which one was your favorite?" → links to full-size PDP</li>
+      </ul>
+    </div>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">☕</div>
+        <div class="initiative-meta">
+          <h3>The Roaster's Starter Kit (Green Coffee)</h3>
+          <div class="badges">
+            <span class="tag gold">B2B / Home Roaster</span>
+            <span class="tag">Wholesale Bridge</span>
+          </div>
+        </div>
+      </div>
+      <p><strong>Contents:</strong> 3 × 5lb bags of green coffee (roaster's choice from current inventory — e.g., Yellow Catuai + SHG Blend + Anaerobic Java). Positioned as "your first home roasting kit from a single estate."</p>
+      <p><strong>Price point:</strong> $80–$100. Option to upgrade to a 3 × 10lb configuration for small commercial roasters.</p>
+      <ul class="checklist">
+        <li>Targets home roasters — a distinct segment from retail roasted buyers</li>
+        <li>Bridge product toward wholesale relationship for growing roasteries</li>
+        <li>Pair with a basic green coffee storage guide PDF (lead magnet for roastery segment)</li>
+      </ul>
+    </div>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">🎁</div>
+        <div class="initiative-meta">
+          <h3>The Gift Set (Seasonal)</h3>
+          <div class="badges">
+            <span class="tag gold">Gift / Holiday</span>
+            <span class="tag">High Margin</span>
+          </div>
+        </div>
+      </div>
+      <p><strong>Contents:</strong> 2 × 250g roasted bags (e.g., Laurina + Anaerobic Java) + tasting card + optional gift messaging. Packaged for gifting with minimal additional cost.</p>
+      <p><strong>Price point:</strong> $60–$70. Can be extended with a custom note card service ($5 add-on).</p>
+      <ul class="checklist">
+        <li>Ideal for Mother's Day, Father's Day, Christmas, Valentine's Day campaigns</li>
+        <li>Feature in paid social with "gift for the coffee lover" creative angle</li>
+        <li>Add gift messaging option at checkout</li>
+      </ul>
+    </div>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">🔄</div>
+        <div class="initiative-meta">
+          <h3>The Subscription Bundle (Recurring Revenue)</h3>
+          <div class="badges">
+            <span class="tag gold">LTV Driver</span>
+            <span class="tag">New App Required</span>
+          </div>
+        </div>
+      </div>
+      <p><strong>Concept:</strong> A monthly "Microlot of the Month" subscription — one bag of the current featured roasted microlot, delivered monthly. Subscribers get first access to new harvests, a 10% discount vs. one-time pricing, and a personal note from the farm.</p>
+      <p><strong>Required:</strong> Recharge, Bold Subscriptions, or Shopify's native subscription API. This is the single highest-LTV initiative in this plan.</p>
+      <ul class="checklist">
+        <li>Forecasted LTV: $35–45/mo × 6–12 month avg retention = $210–$540 per subscriber</li>
+        <li>Promote through existing email list as an "exclusive club" — not a commodity subscription</li>
+        <li>Waitlist or application model increases perceived exclusivity</li>
+        <li>Cancelation policy page already exists on site (cancellation_policy detected)</li>
+      </ul>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-title">Bundle AOV Impact</div>
+      <p>With an average order somewhere between $25–$60 per current transaction, successfully driving 20% of orders through a bundle product priced at $50–$70 could increase blended AOV by $4–$8 — a 10–15% lift on the same traffic volume with zero additional ad spend.</p>
+    </div>
+  </section>
+
+  <!-- ── 7. EMAIL & SMS ── -->
+  <section class="section" id="email-sms">
+    <div class="section-label">Section 09</div>
+    <h2>Email &amp; SMS Marketing Program</h2>
+
+    <p>The existing Beehiiv newsletter at 65.7% open rate is an exceptional asset — roughly 3× the industry average of ~20%. This confirms EQCC's audience is highly engaged and reads every send. The gap is that this channel is used primarily for content (farm news, coffee selection updates) rather than as a structured revenue engine.</p>
+
+    <h3>Email Architecture: From Newsletter to Revenue Engine</h3>
+
+    <table>
+      <thead>
+        <tr><th>Email Type</th><th>Frequency</th><th>Primary Goal</th><th>Key Content</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Microlot Launch Email</strong></td>
+          <td>Per drop (~4–6x/year)</td>
+          <td>Drive immediate purchase</td>
+          <td>Origin story, tasting notes, scarcity signal, direct PDP link, limited-time subscriber discount</td>
+        </tr>
+        <tr>
+          <td><strong>Harvest Update</strong></td>
+          <td>Monthly or as available</td>
+          <td>Engagement + anticipation</td>
+          <td>Farm conditions, upcoming varietals, processing updates — builds narrative between drops</td>
+        </tr>
+        <tr>
+          <td><strong>Educational Series</strong></td>
+          <td>Bi-weekly</td>
+          <td>List retention + SEO seed</td>
+          <td>Deep dives on varietals (Laurina biology, Pacamara size advantage, Anaerobic fermentation) — mirrors blog content</td>
+        </tr>
+        <tr>
+          <td><strong>Post-Purchase Sequence</strong></td>
+          <td>Triggered</td>
+          <td>Review + repeat purchase</td>
+          <td>Day 3: tasting notes + brew guide; Day 14: "How was it?" + review request; Day 30: reorder prompt + related product</td>
+        </tr>
+        <tr>
+          <td><strong>Win-Back Campaign</strong></td>
+          <td>90-day no-purchase trigger</td>
+          <td>Reactivate lapsed buyers</td>
+          <td>"The farm just dropped something new" + 10% returning customer offer</td>
+        </tr>
+        <tr>
+          <td><strong>Seasonal / Gift Campaigns</strong></td>
+          <td>4–6x/year</td>
+          <td>Drive gift purchases</td>
+          <td>Mother's Day, Father's Day, Christmas, Valentine's Day — gift bundle focus</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>SMS Marketing via SlickText</h3>
+    <p>SMS should be used for high-urgency, time-sensitive communications only. Overuse destroys the channel. Recommended use cases:</p>
+
+    <ul class="checklist">
+      <li><strong>Drop Day alert:</strong> "It's here. The [Microlot] just dropped — subscriber-only for 24 hrs. [link]" — 1–2 per drop</li>
+      <li><strong>Sold-out warning:</strong> "Only 8 bags of [Microlot] left. [link]" — triggered when inventory drops below threshold</li>
+      <li><strong>Flash offer:</strong> "48-hour offer: free shipping on any order over $50 this weekend. [link]"</li>
+      <li><strong>Back-in-stock notification:</strong> Triggered when a waitlisted item becomes available</li>
+    </ul>
+
+    <p>Target: 1–3 SMS sends per month maximum. Position every text as "exclusive intelligence" — the subscriber knows something the general public doesn't.</p>
+
+    <div class="callout">
+      <div class="callout-title">Platform Note</div>
+      <p>Beehiiv is excellent for editorial newsletters but has limited e-commerce automation capability. Consider whether a Klaviyo integration (or Omnisend) should be added to handle triggered post-purchase sequences, abandoned cart, and back-in-stock flows — while keeping Beehiiv for the flagship newsletter content. These tools can run in parallel without conflict.</p>
+    </div>
+  </section>
+
+  <!-- ── 8. LEAD CAPTURE ── -->
+  <section class="section" id="lead-capture">
+    <div class="section-label">Section 10</div>
+    <h2>Lead Capture &amp; Nurture Flows</h2>
+
+    <p>The current on-site lead capture is a footer form with the copy: <em>"Stay connected with our farm and store! Stay connected! Receive notifications regarding our farm's news, coffee selection updates, and special deals. We won't sell your information."</em> This is generic, low-urgency, and below the scroll. It is not converting meaningfully.</p>
+
+    <p>The goal of this section is to build a structured <strong>top-of-funnel capture system</strong> that enrolls visitors in a nurture flow via both email and SMS — creating a warm pipeline from first visit to first purchase and beyond.</p>
+
+    <h3>Lead Capture Mechanism #1: The Specialty Coffee Insider Pop-Up</h3>
+
+    <div class="initiative">
+      <div class="initiative-header">
+        <div class="initiative-icon">📬</div>
+        <div class="initiative-meta">
+          <h3>Exit-Intent / Scroll-Triggered Pop-Up</h3>
+          <div class="badges">
+            <span class="tag gold">Highest Impact</span>
+            <span class="tag">Implement First</span>
+          </div>
+        </div>
+      </div>
+      <p><strong>Trigger:</strong> Exit intent (desktop) or 60% scroll depth (mobile). Show on first visit only; suppress for 30 days after dismissal.</p>
+      <p><strong>Offer:</strong> Not a generic discount. EQCC's brand positioning means a discount pop-up can feel cheap. Instead, offer <em>access</em> and <em>intelligence</em>:</p>
+      <div style="background:#f5f9f6; border:1px solid #b8ddc6; border-radius:8px; padding:20px 24px; margin:16px 0; font-style:italic; color:#1a3d2b;">
+        <strong>Pop-Up Headline:</strong> "Coffee This Rare Doesn't Last Long."<br><br>
+        <strong>Body:</strong> "We grow rare varietals — Geisha, Laurina, Anaerobic Java — on a single estate in Guatemala. New microlots drop a few times a year and sell out fast. Get first access before they go public."<br><br>
+        <strong>CTA:</strong> [Enter email → Get Early Access] + optional [Add phone for drop-day SMS alerts]
+      </div>
+      <ul class="checklist">
+        <li>Two-step form: Email first (lower friction), then optional phone number for SMS</li>
+        <li>Email confirmed → enrolled in Welcome Sequence (see below)</li>
+        <li>Phone confirmed → added to SlickText drop list</li>
+        <li>Suppress on /checkout and /cart pages</li>
+      </ul>
+    </div>
+
+    <h3>Lead Capture Mechanism #2: Microlot Drop Waitlist Pages</h3>
+    <p>As described in Section 4 (Exclusive Drops), each upcoming release has a pre-launch landing page where the primary CTA is joining the waitlist. This captures highly-intent visitors — people who found a specific varietal page and wanted it before it was available.</p>
+
+    <h3>Lead Capture Mechanism #3: Content Lead Magnets</h3>
+    <p>Create 1–2 downloadable or email-gated content pieces that appeal to the highest-intent visitor segments:</p>
+    <ul class="checklist">
+      <li><strong>For D2C buyers:</strong> "The El Quetzal Brew Guide — How to Brew 5 Rare Varietals at Their Best" (PDF, email-gated)</li>
+      <li><strong>For home roasters &amp; small roasteries:</strong> "The Green Coffee Buyer's Field Guide — What to Look for in a Specialty Microlot" (PDF, email-gated)</li>
+    </ul>
+
+    <h3>Welcome Nurture Sequence (Email + SMS)</h3>
+    <p>Every new subscriber — regardless of entry point — enters this automated sequence:</p>
+
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Day 0</div>
+          <div class="phase-name">Email 1</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Welcome to the Farm</h4>
+          <p>Immediate delivery. "You're now on the inner circle list." Brief brand story — who Bill and the team are, where the farm is, why the varietals they grow are rare. One product featured (Microlot Sample Pack as low-friction entry offer). Subject: "A tiny farm in Guatemala. A very big obsession."</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Day 2</div>
+          <div class="phase-name">Email 2</div>
+        </div>
+        <div class="timeline-body">
+          <h4>The Varietals We Grow (That Most People Never Try)</h4>
+          <p>Educational — introduces Laurina, Geisha, Pacamara, Anaerobic Java. Each with one sentence of what makes it extraordinary. Links to collection pages. Subject: "The coffee world's best kept secrets, grown on one farm."</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Day 5</div>
+          <div class="phase-name">SMS 1</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Optional SMS Opt-In Prompt</h4>
+          <p>If they haven't yet provided a phone number: email prompt with a clear value prop. "Want drop-day alerts before anyone else? Reply YES or click here to get SMS-only early access." Keep opt-in explicit and legal.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Day 7</div>
+          <div class="phase-name">Email 3</div>
+        </div>
+        <div class="timeline-body">
+          <h4>The Best Way to Start: Sample Pack Pitch</h4>
+          <p>Direct offer email. Focus on the Microlot Sample Pack as the "right first order." Remove all friction: what's in it, what to expect, how to brew. Light urgency: "We don't always have all four microlots available at once." Direct CTA to PDP. Subject: "The smartest first order you'll make."</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Day 14</div>
+          <div class="phase-name">Email 4</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Social Proof + Reviews</h4>
+          <p>Feature 3–4 customer reviews (pulled from Judge.me — include photo reviews if available). "Here's what happens when people try the farm for the first time." Subject: "What happened when they tried it."</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Day 21</div>
+          <div class="phase-name">Email 5</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Soft Offer: Bundle or Repeat</h4>
+          <p>For non-purchasers: "Still haven't tried us? Here's 10% off your first order." (Can be the first and only discount touch — preserves brand positioning.) For purchasers: skip this email; they're moved to the post-purchase sequence.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Segmentation Strategy</h3>
+    <p>As the list grows, segment into four primary buckets to ensure relevance and prevent list fatigue:</p>
+
+    <table>
+      <thead>
+        <tr><th>Segment</th><th>Definition</th><th>Primary Content</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Engaged Buyers</strong></td><td>Purchased 2+ times in 90 days</td><td>New drops, first access, subscription offer</td></tr>
+        <tr><td><strong>First-Time Buyers</strong></td><td>1 purchase, no repeat</td><td>Post-purchase sequence, review request, cross-sell</td></tr>
+        <tr><td><strong>Warm Subscribers</strong></td><td>Subscribed, never purchased, opened in 60 days</td><td>Educational content, welcome sequence, sample pack offer</td></tr>
+        <tr><td><strong>Cold Subscribers</strong></td><td>No opens/clicks in 90+ days</td><td>Win-back sequence; sunset if unresponsive at 120 days</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── 9. SEO ── -->
+  <section class="section" id="seo-content">
+    <div class="section-label">Section 11</div>
+    <h2>SEO &amp; Content Program</h2>
+
+    <p>Organic search is the only traffic channel with compounding returns — every piece of content or optimized page continues to work without ongoing ad spend. Given that EQCC currently ranks for only 9 keywords and receives 16 organic visits per month, even modest SEO investment will produce measurable results quickly, because there is so little existing competition for these hyper-specific varietal terms.</p>
+
+    <h3>Priority 1: Optimize Existing Collection Pages</h3>
+    <p>This is the fastest path to organic traffic improvement. Each collection page — Pacamara, Laurina, Yellow Catuai, Geisha, Catimor — needs 400–700 words of well-structured, informative content added to it. The page already exists and ranks; it just lacks content depth to outrank competitors.</p>
+    <ul class="checklist">
+      <li>Add an H2 section below the product grid: "[Varietal Name]: What Makes It Extraordinary"</li>
+      <li>Cover: origin (where the varietal came from historically), flavor characteristics, growing conditions, why EQCC's version is unique</li>
+      <li>Add a FAQ section (targets "People Also Ask" SERP features): "What does Laurina coffee taste like?" / "Is Pacamara coffee sweet?"</li>
+      <li>Internal link to relevant blog posts</li>
+      <li>Schema markup: ProductCollection, FAQPage</li>
+    </ul>
+
+    <h3>Priority 2: Blog Content Cadence</h3>
+    <p>The blog ("At the Farm") has three posts and effectively no traffic. A 1–2 post per month cadence targeting specific varietal and process keywords can build meaningful organic traffic within 3–6 months.</p>
+
+    <table>
+      <thead>
+        <tr><th>Title</th><th>Target Keyword</th><th>Est. Volume</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>What Is Laurina Coffee? The Naturally Low-Caffeine Specialty Varietal</td><td>laurina low caffeine coffee</td><td>320/mo</td><td><span class="tag gold">High</span></td></tr>
+        <tr><td>Anaerobic Process Coffee: What It Is and Why It Tastes Different</td><td>anaerobic process coffee</td><td>1,200/mo</td><td><span class="tag gold">High</span></td></tr>
+        <tr><td>Geisha Coffee: Why It's the Most Prized Varietal in Specialty Coffee</td><td>geisha coffee beans</td><td>2,400/mo</td><td><span class="tag gold">High</span></td></tr>
+        <tr><td>Villa Sarchi Coffee: The Rarest Varietal You've Never Heard Of</td><td>villa sarchi coffee</td><td>260/mo</td><td><span class="tag">Medium</span></td></tr>
+        <tr><td>How to Buy Green Coffee Beans Online: A Guide for Home Roasters</td><td>buy green coffee beans online</td><td>1,400/mo</td><td><span class="tag">Medium</span></td></tr>
+        <tr><td>Pacamara Coffee: The Giant Bean with Giant Flavor</td><td>pacamara coffee</td><td>590/mo</td><td><span class="tag">Medium</span></td></tr>
+        <tr><td>Single-Origin vs. Blend: Why Microlot Matters for Specialty Roasters</td><td>microlot coffee online</td><td>720/mo</td><td><span class="tag">Medium</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Priority 3: Technical SEO</h3>
+    <ul class="checklist">
+      <li><strong>URL Consolidation:</strong> Multiple locale variants detected (/en-ca/, /es/) with duplicate content. Ensure canonical tags are properly set, or consolidate to single English URLs with hreflang for international.</li>
+      <li><strong>Capitalized /Collections URL:</strong> /Collections (capital C) is ranking for "laurina" — ensure this redirects properly to /collections (lowercase) to consolidate link equity.</li>
+      <li><strong>Image Alt Text:</strong> All product and farm photography should have descriptive alt text including varietal name and origin (e.g., "Anaerobic Java green coffee beans from Finca El Quetzal, Guatemala").</li>
+      <li><strong>Page Speed:</strong> Shopify with Judge.me and multiple locale scripts can slow load times; audit via PageSpeed Insights and compress images.</li>
+      <li><strong>Schema Markup:</strong> Add Product schema to all PDPs, LocalBusiness schema to homepage, and FAQPage schema to collection pages.</li>
+    </ul>
+  </section>
+
+  <!-- ── 10. ROADMAP ── -->
+  <section class="section" id="roadmap">
+    <div class="section-label">Section 12</div>
+    <h2>Implementation Roadmap</h2>
+
+    <h3>Priority Matrix</h3>
+    <div class="priority-grid">
+      <div class="priority-quad high-now">
+        <div class="quad-label">⚡ High Impact — Do Now (May–June)</div>
+        <ul>
+          <li>Exit-intent pop-up with Early Access offer</li>
+          <li>Beehiiv Welcome Sequence (5 emails)</li>
+          <li>Anaerobic Java PDP upgrade (full template)</li>
+          <li>Laurina PDP upgrade (low-caffeine positioning)</li>
+          <li>Microlot Sample Pack reframe + cross-sell</li>
+          <li>First drop campaign (June — Anaerobic Java 2026)</li>
+          <li>Collection page content for Pacamara + Laurina</li>
+        </ul>
+      </div>
+      <div class="priority-quad high-later">
+        <div class="quad-label">📈 High Impact — Next (July–August)</div>
+        <ul>
+          <li>Klaviyo / triggered email automation setup</li>
+          <li>SMS opt-in flow on site (SlickText integration)</li>
+          <li>Microlot Discovery Set bundle (new product)</li>
+          <li>Back-in-Stock / Notify Me app install</li>
+          <li>Geisha PDP upgrade + drop campaign</li>
+          <li>Blog posts: Laurina, Anaerobic, Geisha</li>
+          <li>Post-purchase email sequence</li>
+        </ul>
+      </div>
+      <div class="priority-quad low-now">
+        <div class="quad-label">🔧 Medium Impact — Q3 Build</div>
+        <ul>
+          <li>Subscription / Microlot of the Month (Recharge)</li>
+          <li>Roaster's Starter Kit bundle (green coffee)</li>
+          <li>Gift Set bundle for Q4 seasonal</li>
+          <li>Loyalty program (Smile.io or similar)</li>
+          <li>Villa Sarchi + Pacamara PDPs</li>
+          <li>Technical SEO audit + fixes</li>
+        </ul>
+      </div>
+      <div class="priority-quad low-later">
+        <div class="quad-label">🗓 Lower Priority — Q4 / 2027</div>
+        <ul>
+          <li>Referral program</li>
+          <li>Affiliate / ambassador program</li>
+          <li>International SEO (Spanish-language pages)</li>
+          <li>Wholesale-specific landing pages</li>
+          <li>Custom bundle builder UX</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>30 / 60 / 90 Day Sprint Plan</h3>
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Days 1–30</div>
+          <div class="phase-name">Foundation</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Conversion Infrastructure + First Drop</h4>
+          <p>Install and launch the pop-up lead capture with Early Access messaging. Build out Anaerobic Java PDP to full template spec. Write and schedule the 5-email Welcome Sequence in Beehiiv. Begin pre-drop campaign for June Anaerobic Java release with waitlist page. Add content copy to Pacamara and Laurina collection pages. Upgrade Microlot Sample Pack page.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Days 31–60</div>
+          <div class="phase-name">Automation</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Email + SMS Automation + Bundle Launch</h4>
+          <p>Evaluate and add Klaviyo (or Omnisend) for triggered flows: post-purchase, abandoned cart, back-in-stock. Build SMS opt-in flow on-site via SlickText. Create and launch Microlot Discovery Set bundle product. Upgrade Laurina PDP (low-caffeine angle). Publish first two SEO blog posts (Laurina low-caffeine, Anaerobic process). Execute June drop campaign from end-to-end.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-phase">
+          <div class="phase-label">Days 61–90</div>
+          <div class="phase-name">Scale</div>
+        </div>
+        <div class="timeline-body">
+          <h4>Subscription + Geisha Drop + SEO Momentum</h4>
+          <p>Install Recharge or Bold Subscriptions; launch Microlot of the Month as invite-only pilot to email list. Pre-drop campaign for Geisha August release. Complete Geisha PDP upgrade. Publish Geisha and Green Coffee Buyer's Guide blog posts. Build out post-purchase sequence and win-back campaign in email automation. Analyze first drop performance data and iterate for Drop 002.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11. KPIs ── -->
+  <section class="section" id="kpis">
+    <div class="section-label">Section 13</div>
+    <h2>KPIs &amp; Measurement Framework</h2>
+
+    <p>Success should be measured at the channel and initiative level, not just total revenue. The following metrics will confirm whether each growth lever is working and where to optimize.</p>
+
+    <h3>Primary Business KPIs</h3>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Current (WBR Baseline)</th><th>30-Day Target</th><th>90-Day Target</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Monthly D2C Revenue</td><td>Est. ~$15–20K/mo</td><td>+15%</td><td>+40%</td></tr>
+        <tr><td>Average Order Value (D2C)</td><td>Est. ~$30–45</td><td>$45–55</td><td>$55–70</td></tr>
+        <tr><td>Email List Size</td><td>(Not disclosed in WBR)</td><td>+20% net new subscribers</td><td>+60% net new subscribers</td></tr>
+        <tr><td>SMS List Size</td><td>(Not disclosed)</td><td>Launch baseline</td><td>500+ opted-in subscribers</td></tr>
+        <tr><td>Repeat Purchase Rate</td><td>24.8%</td><td>27%</td><td>32%</td></tr>
+        <tr><td>Email Revenue Attribution</td><td>Not tracked separately</td><td>Track in Beehiiv/Klaviyo</td><td>30%+ of D2C revenue</td></tr>
+        <tr><td>Organic Traffic</td><td>16 visits/mo</td><td>50 visits/mo</td><td>200+ visits/mo</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Initiative-Level KPIs</h3>
+    <table>
+      <thead>
+        <tr><th>Initiative</th><th>Key Metric</th><th>Success Threshold</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Pop-Up Lead Capture</td><td>Email capture rate (visitors who see it)</td><td>≥4% conversion rate</td></tr>
+        <tr><td>Welcome Sequence</td><td>Sequence-to-purchase conversion rate</td><td>≥12% purchase within 30 days of sign-up</td></tr>
+        <tr><td>Microlot Drop Campaigns</td><td>% of drop inventory sold within 48 hours</td><td>≥50% sold in first 48 hours</td></tr>
+        <tr><td>Bundle Products</td><td>Bundle % of total orders</td><td>≥15% of D2C orders include a bundle</td></tr>
+        <tr><td>PDP Upgrades</td><td>Conversion rate on upgraded PDPs</td><td>+25% vs pre-upgrade baseline</td></tr>
+        <tr><td>SMS Channel</td><td>Click-through rate on SMS blasts</td><td>≥12% CTR per send</td></tr>
+        <tr><td>SEO Content</td><td>Organic impressions, keyword positions</td><td>50+ ranking keywords in 90 days</td></tr>
+        <tr><td>Subscription (Month 3)</td><td>Active subscribers at 90 days</td><td>≥25 active subscribers</td></tr>
+      </tbody>
+    </table>
+
+    <h3>WBR Integration</h3>
+    <p>The existing WBR system already tracks most of the underlying data (Shopify, GA4, Google Ads, Meta Ads, GSC, Beehiiv, Mercury). To add the new metrics above, the following additions to the WBR are recommended:</p>
+    <ul class="checklist">
+      <li>Email list growth (net new subscribers/week + unsubscribes)</li>
+      <li>Email-attributed revenue (Klaviyo or Beehiiv UTM tracking)</li>
+      <li>SMS list size and click-through rate</li>
+      <li>Bundle purchase rate (% of orders including a bundle SKU)</li>
+      <li>Organic traffic trend (already partially in WBR via GSC)</li>
+      <li>Drop campaign performance (waitlist sign-ups, 48-hour sellthrough rate)</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <!-- CLOSING NOTE -->
+  <section class="section">
+    <div class="callout green">
+      <div class="callout-title">A Note on Brand Positioning</div>
+      <p>Every tactical recommendation in this plan is designed to reinforce — not undermine — EQCC's positioning as a rare, single-estate, direct-relationship specialty coffee brand. The instinct to protect price point and brand perception is correct. Discounts should be used sparingly and strategically (first-order only, expiring quickly). The more powerful lever is access, scarcity, and insider community. The best customers don't want a deal — they want to feel like they're in on something.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="doc-footer">
+  <span>El Quetzal Coffee Co. — CRO &amp; Ecom Growth Plan v1.0</span>
+  <span>Prepared by Treetop Growth Strategy · May 6, 2026</span>
+  <span>Confidential — Internal Use Only</span>
+</footer>
+
+</body>
+</html>
