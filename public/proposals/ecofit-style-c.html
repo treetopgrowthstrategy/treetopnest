@@ -161,6 +161,22 @@
 body.spotlight::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;background:radial-gradient(500px circle at var(--cx,-999px) var(--cy,-999px),rgba(132,188,65,0.06),transparent 70%)}
 /* noise */
 body.noisy::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:8999;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+.partners-section{padding:32px 0;border-top:1px solid rgba(128,128,128,0.1);border-bottom:1px solid rgba(128,128,128,0.1);overflow:hidden;position:relative;background:rgba(255,255,255,0.03)}
+.partners-label{text-align:center;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#84BC41;margin:0 0 24px}
+.partners-track-wrap{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%)}
+.partners-track{display:flex;align-items:center;gap:40px;width:max-content;animation:logo-scroll 30s linear infinite}
+.partners-track:hover{animation-play-state:paused}
+@keyframes logo-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.partner-logo{height:44px;width:auto;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.5}
+#exit-overlay{display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px}
+#exit-card{background:#0d1117;border:1px solid rgba(132,188,65,0.25);border-radius:20px;max-width:520px;width:100%;padding:48px 44px;position:relative;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,0.6)}
+#exit-card .exit-icon{font-size:36px;margin-bottom:20px}
+#exit-card h3{font-size:26px;font-weight:700;color:#f2f3f8;margin:0 0 14px;line-height:1.2}
+#exit-card p{color:#9699A2;font-size:15px;line-height:1.65;margin:0 0 32px}
+#exit-card .exit-cta{display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:15px 32px;border-radius:10px;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s}
+#exit-card .exit-cta:hover{background:#9bd151}
+#exit-card .exit-skip{display:block;margin-top:16px;font-size:13px;color:#6b6f7a;cursor:pointer;background:none;border:none;text-decoration:underline;text-underline-offset:3px}
+#exit-close{position:absolute;top:14px;right:18px;background:none;border:none;color:#9699A2;font-size:24px;cursor:pointer;line-height:1;padding:4px}
 </style>
 </head>
 <body class="spotlight noisy">
@@ -204,6 +220,43 @@ body.noisy::before{content:'';position:fixed;inset:0;pointer-events:none;z-index
   <img src="/assets/ecofit/c07_bold_bars.jpg" alt="Peak Usage by Day" style="width:100%;border-radius:4px;display:block;margin-bottom:12px">
   <div class="live-row"><span class="live-dot"></span> Live · Updated 0.4s ago</div>
 </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER LOGO MARQUEE -->
+<section class="partners-section">
+  <p class="partners-label">Compatible with the industry's leading equipment</p>
+  <div class="partners-track-wrap">
+    <div class="partners-track">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
     </div>
   </div>
 </section>
@@ -533,6 +586,17 @@ body.noisy::before{content:'';position:fixed;inset:0;pointer-events:none;z-index
   tick();
 })();
 </script>
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;align-items:center;justify-content:center;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div class="exit-icon">📊</div>
+    <h3>Before you go — find out what your facility is actually worth.</h3>
+    <p>Most operators don't know how much they're losing to equipment inefficiency. Our free 2-minute assessment gives you a personalized OpEx risk report — delivered to your inbox instantly.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Take the Free Assessment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll pass on the free report</button>
+  </div>
+</div>
 <!-- DEMO REQUEST MODAL -->
 <div id="demo-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.82);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;padding:24px;">
   <div id="demo-card" style="background:#0d1117;border:1px solid rgba(132,188,65,0.2);border-radius:16px;max-width:480px;width:100%;padding:40px;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
@@ -623,6 +687,30 @@ body.noisy::before{content:'';position:fixed;inset:0;pointer-events:none;z-index
       alert('Something went wrong. Please try again.');
     }
   };
+})();
+</script>
+<script>
+(function(){
+  if(sessionStorage.getItem('ecf_exit'))return;
+  var shown=false;
+  function showExit(){
+    if(shown)return;
+    shown=true;
+    sessionStorage.setItem('ecf_exit','1');
+    var el=document.getElementById('exit-overlay');
+    el.style.display='flex';
+  }
+  function closeExit(){
+    document.getElementById('exit-overlay').style.display='none';
+  }
+  window.closeExit=closeExit;
+  document.addEventListener('mouseleave',function(e){
+    if(e.clientY<10)showExit();
+  });
+  document.getElementById('exit-overlay').addEventListener('click',function(e){
+    if(e.target===this)closeExit();
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit();});
 })();
 </script>
 </body>
