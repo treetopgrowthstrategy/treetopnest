@@ -435,7 +435,7 @@
     </div>
     <div class="cta-actions">
       <a href="/ecofit-assessment" class="btn-cta-primary">Take the Assessment →</a>
-      <a href="#" class="btn-cta-secondary">Or book a demo</a>
+      <a href="#" class="btn-cta-secondary" onclick="openDemo();return false;">Or book a demo</a>
     </div>
   </div>
 </div>
@@ -559,6 +559,98 @@
   window.addEventListener('mousemove',function(e){var r=heroEl.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;},{passive:true});
   heroEl.addEventListener('mouseleave',function(){mx=-9999;my=-9999;});
   tick();
+})();
+</script>
+<!-- DEMO REQUEST MODAL -->
+<div id="demo-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.82);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div id="demo-card" style="background:#0d1117;border:1px solid rgba(132,188,65,0.2);border-radius:16px;max-width:480px;width:100%;padding:40px;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
+    <button onclick="closeDemo()" style="position:absolute;top:16px;right:18px;background:none;border:none;color:#9699A2;font-size:22px;cursor:pointer;line-height:1;">×</button>
+    <div id="demo-form-wrap">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#84BC41;margin-bottom:12px;">Book a Demo</div>
+      <h2 style="font-size:24px;font-weight:700;color:#f2f3f8;margin:0 0 8px;line-height:1.2;">See Ecofit in action.</h2>
+      <p style="color:#9699A2;font-size:14px;margin:0 0 28px;line-height:1.6;">Tell us a bit about your operation and we'll set up a personalized walkthrough.</p>
+      <form id="demo-form" onsubmit="submitDemo(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div>
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">First Name *</label>
+            <input id="d-name" type="text" required placeholder="Jordan" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(132,188,65,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Company *</label>
+            <input id="d-company" type="text" required placeholder="Apex Fitness" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(132,188,65,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Work Email *</label>
+          <input id="d-email" type="email" required placeholder="jordan@apexfitness.com" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(132,188,65,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Number of Locations</label>
+          <select id="d-locations" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;appearance:none;cursor:pointer;">
+            <option value="1">1 location</option>
+            <option value="2-5">2–5 locations</option>
+            <option value="6-15" selected>6–15 locations</option>
+            <option value="16-50">16–50 locations</option>
+            <option value="51-100">51–100 locations</option>
+            <option value="100+">100+ locations</option>
+          </select>
+        </div>
+        <button type="submit" id="demo-submit-btn" style="width:100%;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;letter-spacing:0.02em;transition:background 0.2s,transform 0.15s;">Book My Demo →</button>
+        <p style="font-size:11px;color:#6b6f7a;text-align:center;margin:12px 0 0;">We'll reach out within one business day. No spam, ever.</p>
+      </form>
+    </div>
+    <div id="demo-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:40px;margin-bottom:16px;">✅</div>
+      <h3 style="color:#f2f3f8;font-size:22px;margin:0 0 10px;">You're on the calendar.</h3>
+      <p style="color:#9699A2;font-size:15px;margin:0 0 28px;line-height:1.6;">Check your inbox — we've sent a confirmation. Or grab a time directly:</p>
+      <a id="demo-booking-link" href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" target="_blank" style="display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:14px;padding:13px 28px;border-radius:8px;text-decoration:none;">Pick a Time on the Calendar →</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var overlay=document.getElementById('demo-overlay');
+  function openDemo(){overlay.style.display='flex';}
+  function closeDemo(){overlay.style.display='none';}
+  window.openDemo=openDemo;
+  window.closeDemo=closeDemo;
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeDemo();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDemo();});
+  // Wire all "Book a Demo" / "Talk to a Partner" buttons that link to #
+  document.querySelectorAll('a[href="#"]').forEach(function(el){
+    var txt=(el.textContent||'').toLowerCase();
+    if(txt.includes('demo')||txt.includes('partner')||txt.includes('talk')||txt.includes('book')){
+      el.addEventListener('click',function(e){e.preventDefault();openDemo();});
+    }
+  });
+  // Also wire any button with data-demo or class containing demo
+  document.querySelectorAll('[data-demo],[class*="demo"]').forEach(function(el){
+    el.addEventListener('click',function(e){e.preventDefault();openDemo();});
+  });
+  window.submitDemo=async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('demo-submit-btn');
+    btn.disabled=true;btn.textContent='Sending…';
+    try{
+      var res=await fetch('/api/ecofit-demo-request',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name:document.getElementById('d-name').value.trim(),
+          email:document.getElementById('d-email').value.trim(),
+          company:document.getElementById('d-company').value.trim(),
+          locations:document.getElementById('d-locations').value
+        })
+      });
+      var json=await res.json();
+      if(json.bookingLink)document.getElementById('demo-booking-link').href=json.bookingLink;
+      document.getElementById('demo-form-wrap').style.display='none';
+      document.getElementById('demo-success').style.display='block';
+    }catch(err){
+      btn.disabled=false;btn.textContent='Book My Demo →';
+      alert('Something went wrong. Please try again.');
+    }
+  };
 })();
 </script>
 </body>
