@@ -145,6 +145,17 @@
     .hamburger{display:block}
     .section{padding:80px 0}
   }
+/* ── SCROLL REVEALS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s cubic-bezier(0.16,1,0.3,1),transform 0.65s cubic-bezier(0.16,1,0.3,1)}
+.reveal.in{opacity:1;transform:none}
+/* ── GRADIENT TEXT ── */
+@keyframes grad-flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.grad-text{background:linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:grad-flow 5s ease infinite}
+/* ── ANIMATED GRADIENT BORDER ── */
+@keyframes border-spin{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.glow-border{padding:1.5px;background:linear-gradient(135deg,rgba(132,188,65,0.85),rgba(132,188,65,0.08),rgba(132,188,65,0.7),rgba(132,188,65,0.08),rgba(132,188,65,0.85));background-size:400% 400%;animation:border-spin 6s ease infinite;border-radius:13px}
+/* ── MAGNETIC BUTTON ── */
+.btn-magnetic{transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)!important}
 </style>
 </head>
 <body>
@@ -169,7 +180,7 @@
     <div class="hero-grid">
       <div>
         <span class="label">The Intelligence Layer for Modern Fitness Facilities</span>
-        <h1>Your gym is alive. Are you listening to it?</h1>
+        <h1>Your gym is <span class="grad-text">alive</span>. Are you listening to it?</h1>
         <p class="hero-sub">Ecofit gives multi-location fitness operators real-time intelligence across equipment, floor, and revenue — so you can run a smarter facility, not just a busier one.</p>
         <div class="hero-ctas">
           <a href="/ecofit-assessment" class="btn">Find Your OpEx Waste →</a>
@@ -177,7 +188,7 @@
         </div>
         <a href="#download" class="hero-tert">Download Overview ↓</a>
       </div>
-      <div class="hero-panel">
+      <div class="glow-border"><div class="hero-panel">
   <h4>What You'll See on Day One</h4>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
     <img src="/assets/ecofit/c01_metric_card_saturation.jpg" alt="Floor Saturation" style="width:100%;border-radius:10px;display:block">
@@ -186,7 +197,7 @@
     <img src="/assets/ecofit/c05_metric_card_growth.jpg" alt="Utilization Growth" style="width:100%;border-radius:10px;display:block">
   </div>
   <img src="/assets/ecofit/c07_bold_bars.jpg" alt="Peak Usage by Day" style="width:100%;border-radius:10px;display:block">
-</div>
+</div></div>
     </div>
   </div>
 </section>
@@ -382,6 +393,68 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var isMobile=window.innerWidth<768;
+
+  // ── SCROLL REVEALS ──
+  if(!reduced){
+    var revEls=document.querySelectorAll('section,.card,.pain-card,.bento-card,.proof-card,.step,.feature-row,.stat-item,.stats-col');
+    var revObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});
+    },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+    revEls.forEach(function(el){el.classList.add('reveal');revObs.observe(el);});
+  }
+
+  // ── STAT COUNTERS ──
+  if(!reduced){
+    var statEls=Array.from(document.querySelectorAll('.stat-num,.stats-num'));
+    document.querySelectorAll('div').forEach(function(el){
+      if((el.style.fontSize==='72px'||el.style.fontSize===''&&el.getAttribute('style')&&el.getAttribute('style').indexOf('font-size:72px')>-1)&&/^\s*[\d.]+[%x+]\s*$/.test(el.textContent)){statEls.push(el);}
+    });
+    // broader net for inline font-size:72px
+    document.querySelectorAll('[style*="font-size:72px"],[style*="font-size: 72px"]').forEach(function(el){
+      if(/^\s*[\d.]+[%x+k]\s*$/.test(el.textContent)&&statEls.indexOf(el)===-1)statEls.push(el);
+    });
+    var statObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting)return;
+        var el=e.target;
+        var raw=el.textContent.trim();
+        var m=raw.match(/^([\$]?)([\d.]+)([%x+kKmM]*)$/);
+        if(!m)return;
+        var pre=m[1],num=parseFloat(m[2]),suf=m[3];
+        var isFloat=raw.indexOf('.')>-1;
+        var dur=1800,t0=performance.now();
+        (function tick(now){
+          var p=Math.min((now-t0)/dur,1);
+          var ease=1-Math.pow(1-p,3);
+          el.textContent=pre+(isFloat?(num*ease).toFixed(1):Math.round(num*ease))+suf;
+          if(p<1)requestAnimationFrame(tick);
+        })(t0);
+        statObs.unobserve(el);
+      });
+    },{threshold:0.5});
+    statEls.forEach(function(el){statObs.observe(el);});
+  }
+
+  // ── MAGNETIC BUTTONS ──
+  if(!reduced&&!isMobile){
+    var btns=document.querySelectorAll('.btn,.btn-primary,.btn-hero-primary,.btn-hero-fill,.btn-cta-fill,.nav-cta,.btn-cta-primary,.btn-hero,.btn-green');
+    btns.forEach(function(btn){
+      btn.classList.add('btn-magnetic');
+      btn.addEventListener('mousemove',function(e){
+        var r=btn.getBoundingClientRect();
+        var x=(e.clientX-r.left-r.width/2)*0.16;
+        var y=(e.clientY-r.top-r.height/2)*0.16;
+        btn.style.transform='translate('+x+'px,'+y+'px)';
+      },{passive:true});
+      btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+    });
+  }
+})();
+</script>
 <script>
 (function(){
   const canvas = document.getElementById('hero-dots');
