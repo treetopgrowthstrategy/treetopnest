@@ -1,0 +1,576 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecofit — Equipment Intelligence Platform for Fitness Operators</title>
+<meta name="description" content="Ecofit gives fitness operators real-time visibility into every asset across their network. Stop guessing. Start knowing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #0d1117; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @keyframes grad-flow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  .grad-text { background: linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: grad-flow 5s ease infinite; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 80px 0; }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 12px; }
+  .section-h2 { font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; color: #0d1117; margin-bottom: 14px; }
+  .section-sub { font-size: 16px; color: #6b7280; line-height: 1.65; max-width: 560px; margin-bottom: 48px; }
+  .btn-primary-dark { font-size: 14px; font-weight: 600; background: #0d1117; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-primary-dark:hover { background: #1f2937; }
+  .btn-green { font-size: 14px; font-weight: 600; background: #84BC41; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-green:hover { background: #75a838; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid #e5e7eb; backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .nav-logo-mark { width: 28px; height: 28px; background: #84BC41; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-mark svg { width: 16px; height: 16px; fill: #fff; }
+  .nav-logo-text { font-size: 16px; font-weight: 700; color: #0d1117; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: #374151; text-decoration: none; }
+  .nav-links a:hover { color: #0d1117; }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .btn-ghost { font-size: 13.5px; font-weight: 500; color: #374151; text-decoration: none; padding: 7px 14px; }
+  .btn-nav-primary { font-size: 13.5px; font-weight: 600; background: #84BC41; color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 6px; }
+  .btn-nav-primary:hover { background: #75a838; }
+
+  /* HERO */
+  .hero { max-width: 1200px; margin: 0 auto; padding: 80px 32px 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #84BC41; background: rgba(132,188,65,0.08); border: 1px solid rgba(132,188,65,0.2); padding: 4px 10px; border-radius: 100px; margin-bottom: 20px; }
+  .hero-tag-dot { width: 6px; height: 6px; background: #84BC41; border-radius: 50%; }
+  .hero h1 { font-size: clamp(2.4rem, 3.5vw, 3.4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: #0d1117; margin-bottom: 20px; }
+  .hero p { font-size: 17px; font-weight: 400; color: #4b5563; line-height: 1.65; margin-bottom: 32px; max-width: 480px; }
+  .hero-ctas { display: flex; align-items: center; gap: 16px; }
+  .btn-hero-primary { font-size: 14px; font-weight: 600; background: #0d1117; color: #fff; padding: 12px 22px; border-radius: 7px; text-decoration: none; }
+  .btn-hero-primary:hover { background: #1f2937; }
+  .btn-hero-secondary { font-size: 14px; font-weight: 500; color: #374151; text-decoration: none; display: flex; align-items: center; gap: 6px; cursor: pointer; background: none; border: none; }
+  .btn-hero-secondary:hover { color: #0d1117; }
+  .hero-checklist { margin-top: 36px; display: flex; flex-direction: column; gap: 8px; }
+  .hero-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b7280; }
+  .hero-check-icon { width: 16px; height: 16px; background: rgba(132,188,65,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; color: #84BC41; font-weight: 700; }
+
+  /* GLOW BORDER */
+  @keyframes border-spin { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  .glow-border { padding: 1.5px; background: linear-gradient(135deg,rgba(132,188,65,0.85),rgba(132,188,65,0.08),rgba(132,188,65,0.7),rgba(132,188,65,0.08),rgba(132,188,65,0.85)); background-size: 400% 400%; animation: border-spin 6s ease infinite; border-radius: 13px; }
+  .hero-visual { background: #f8fafc; border-radius: 12px; overflow: hidden; }
+
+  /* PARTNERS MARQUEE */
+  .partners-section { padding: 32px 0; border-top: 1px solid rgba(128,128,128,0.1); border-bottom: 1px solid rgba(128,128,128,0.1); overflow: hidden; position: relative; background: #f5f6f7; }
+  .partners-label { text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #84BC41; margin: 0 0 24px; }
+  .partners-track-wrap { overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); }
+  .partners-track { display: flex; align-items: center; gap: 40px; width: max-content; animation: logo-scroll 30s linear infinite; }
+  .partners-track:hover { animation-play-state: paused; }
+  @keyframes logo-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .partner-logo { height: 44px; width: auto; object-fit: contain; flex-shrink: 0; filter: grayscale(1); opacity: 0.55; }
+
+  /* LOGOS STRIP */
+  .logos-strip { border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; padding: 22px 32px; background: #fafafa; }
+  .logos-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .logos-label { font-size: 11px; font-weight: 500; color: #9ca3af; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .logos-list { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+  .logo-item { font-size: 13px; font-weight: 700; color: #d1d5db; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* PROBLEM */
+  .pain-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+  .pain-card { background: #fff; padding: 28px 24px; }
+  .pain-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(132,188,65,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .pain-icon svg { width: 18px; height: 18px; stroke: #84BC41; fill: none; stroke-width: 1.8; }
+  .pain-title { font-size: 14px; font-weight: 700; color: #0d1117; margin-bottom: 8px; line-height: 1.3; }
+  .pain-desc { font-size: 13px; color: #6b7280; line-height: 1.6; }
+
+  /* FEATURES */
+  .features-section { padding: 0 32px 80px; }
+  .features-inner { max-width: 1200px; margin: 0 auto; }
+  .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 72px 0; border-top: 1px solid #e5e7eb; }
+  .feature-row.reverse { direction: rtl; }
+  .feature-row.reverse > * { direction: ltr; }
+  .feature-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 14px; }
+  .feature-h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 14px; }
+  .feature-desc { font-size: 15px; color: #6b7280; line-height: 1.7; margin-bottom: 24px; }
+  .feature-link { font-size: 13.5px; font-weight: 600; color: #0d1117; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .feature-link:hover { color: #84BC41; }
+  .feature-visual { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+
+  /* STATS */
+  .stats-section { background: #0d1117; padding: 80px 32px; }
+  .stats-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+  .stats-h2 { font-size: clamp(1.6rem,2.5vw,2rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .stats-sub { font-size: 15px; color: #6b7280; margin-bottom: 56px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: #1f2937; border: 1px solid #1f2937; border-radius: 10px; overflow: hidden; }
+  .stat-item { background: #111827; padding: 48px 32px; }
+  .stat-num { font-size: 3.6rem; font-weight: 800; color: #84BC41; letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; }
+  .stat-label { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .testimonial-card { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; }
+  .testimonial-quote { font-size: 15px; color: #374151; line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+  .testimonial-author { font-size: 13px; font-weight: 700; color: #0d1117; }
+  .testimonial-role { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+  /* CTA */
+  .cta-section { padding: 100px 32px; }
+  .cta-inner { max-width: 1200px; margin: 0 auto; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 16px; padding: 72px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px; }
+  .cta-h2 { font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 12px; }
+  .cta-sub { font-size: 15px; color: #6b7280; line-height: 1.65; max-width: 520px; }
+  .cta-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; white-space: nowrap; }
+  .btn-cta-primary { font-size: 14px; font-weight: 600; background: #0d1117; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; }
+  .btn-cta-secondary { font-size: 13.5px; color: #6b7280; text-decoration: none; cursor: pointer; }
+
+  /* EXIT OVERLAY */
+  #exit-overlay { display: none; position: fixed; inset: 0; background: rgba(5,12,8,0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+  #exit-card { background: #0d1117; border: 1px solid rgba(132,188,65,0.25); border-radius: 20px; max-width: 520px; width: 100%; padding: 48px 44px; position: relative; text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
+  #exit-card .exit-icon { font-size: 36px; margin-bottom: 20px; }
+  #exit-card h3 { font-size: 26px; font-weight: 700; color: #f2f3f8; margin: 0 0 14px; line-height: 1.2; }
+  #exit-card p { color: #9699A2; font-size: 15px; line-height: 1.65; margin: 0 0 32px; }
+  #exit-card .exit-cta { display: inline-block; background: #84BC41; color: #0d1117; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: 10px; text-decoration: none; }
+  #exit-card .exit-skip { display: block; margin-top: 16px; font-size: 13px; color: #6b6f7a; cursor: pointer; background: none; border: none; text-decoration: underline; }
+  #exit-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: #9699A2; font-size: 24px; cursor: pointer; }
+
+  /* DEMO MODAL */
+  #demo-overlay { display: none; position: fixed; inset: 0; background: rgba(5,12,8,0.82); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 24px; }
+
+  /* METRIC CARDS GRID */
+  .metric-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/ecofit/" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 16 16"><path d="M8 2L14 6V10L8 14L2 10V6L8 2Z"/></svg>
+      </div>
+      <span class="nav-logo-text">ecofit</span>
+    </a>
+    <div class="nav-links">
+      <a href="/ecofit/platform">Platform</a>
+      <a href="/ecofit/analytics">Analytics</a>
+      <a href="/ecofit/integrations">Integrations</a>
+      <a href="/ecofit/blog">Blog</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://assets.myecofit.com/" class="btn-ghost">Log in</a>
+      <a href="/ecofit-assessment" class="btn-nav-primary">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Equipment Intelligence Platform</div>
+    <h1>The best operators don't react. <span class="grad-text">They already know.</span></h1>
+    <p>Your members expect every machine to work. Your board expects every dollar to be justified. Your team expects to know before something breaks. Ecofit makes all three possible — in real time, across every location.</p>
+    <div class="hero-ctas">
+      <a href="/ecofit-assessment" class="btn-hero-primary">Find Your OpEx Waste →</a>
+      <button class="btn-hero-secondary" onclick="openDemo()">▶ See how it works</button>
+    </div>
+    <div class="hero-checklist">
+      <div class="hero-check"><span class="hero-check-icon">✓</span>No IT team required — connects in days</div>
+      <div class="hero-check"><span class="hero-check-icon">✓</span>Works with your existing equipment brands</div>
+      <div class="hero-check"><span class="hero-check-icon">✓</span>Enterprise-grade across 1 or 500 locations</div>
+    </div>
+  </div>
+  <div class="glow-border">
+    <div class="hero-visual">
+      <img src="/assets/ecofit/05_kpi_metrics.jpg" alt="KPI Metrics Dashboard" style="width:100%;display:block;border-bottom:1px solid #e5e7eb">
+      <img src="/assets/ecofit/03_avail_pixel_table.jpg" alt="Availability Saturation Summary" style="width:100%;display:block">
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER LOGO MARQUEE -->
+<section class="partners-section">
+  <p class="partners-label">Compatible with the industry's leading equipment</p>
+  <div class="partners-track-wrap">
+    <div class="partners-track">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
+      <!-- Duplicate set for seamless loop -->
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span class="logos-label">Trusted by leading operators</span>
+    <div class="logos-list">
+      <span class="logo-item">UFC Gyms</span>
+      <span class="logo-item">Retro Fitness</span>
+      <span class="logo-item">Crunch Fitness</span>
+      <span class="logo-item">Anytime Fitness</span>
+      <span class="logo-item">YMCA</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM SECTION -->
+<div class="section wrap reveal">
+  <div class="section-tag">The Problem</div>
+  <h2 class="section-h2">Most fitness operators are running million-dollar operations in the dark.</h2>
+  <p class="section-sub">Without real-time equipment intelligence, three compounding costs are quietly draining your OpEx — and your credibility.</p>
+  <div class="pain-grid">
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="pain-title">Reactive by Default</div>
+      <div class="pain-desc">Equipment breaks before your team knows it's coming. Your members notice first. Every unplanned repair costs 3–5x more than a scheduled one, and the damage to member experience is already done by the time you file the ticket.</div>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <div class="pain-title">Decisions Without Data</div>
+      <div class="pain-desc">Purchasing driven by vendor relationships, not usage. Floor layouts built on instinct. Capex cycles defended with stories instead of numbers. When your board asks why you bought 30 treadmills, you should have a better answer than "it felt right."</div>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="pain-title">A Network You Can't See</div>
+      <div class="pain-desc">Which of your machines are overworked right now? Which locations are quietly underperforming? Which floor zones are creating wait times that drive cancellations? Without visibility, you can't manage what you can't measure.</div>
+    </div>
+    <div class="pain-card reveal">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="pain-title">The Maintenance Premium</div>
+      <div class="pain-desc">Reactive repairs cost 3–5x more than planned maintenance for the same work. Without predictive signals, your team isn't running a schedule — they're running a crisis queue. That premium compounds across every location, every year.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES (alternating rows) -->
+<div class="features-section">
+  <div class="features-inner">
+
+    <div class="feature-row reveal">
+      <div>
+        <div class="feature-eyebrow">See Everything, Live</div>
+        <h3 class="feature-h3">Every asset. Every location. Right now.</h3>
+        <p class="feature-desc">Utilization, uptime, wear patterns, session data — live across every machine in your network from day one. No manual audits. No guessing. The visibility your operation has been missing, delivered in real time across every piece of cardio and strength equipment you own.</p>
+        <a href="/ecofit-assessment" class="feature-link">See your facility's risk profile →</a>
+      </div>
+      <div class="feature-visual">
+        <img src="/assets/ecofit/04_mix_saturation_bars.jpg" alt="Equipment Mix & Saturation" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div class="feature-row reverse reveal">
+      <div>
+        <div class="feature-eyebrow">A Schedule, Not a Crisis Queue</div>
+        <h3 class="feature-h3">Know what's going to break before it does.</h3>
+        <p class="feature-desc">Ecofit surfaces degradation signals before equipment fails. Your maintenance team stops reacting and starts planning. Operators on Ecofit's predictive program consistently see a 30–40% reduction in unplanned service spend within the first year of deployment.</p>
+        <a href="/ecofit/platform" class="feature-link">Explore the platform →</a>
+      </div>
+      <div class="feature-visual">
+        <img src="/assets/ecofit/02_avail_weekday.jpg" alt="Weekday Usage Analytics" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div class="feature-row reveal">
+      <div>
+        <div class="feature-eyebrow">Own Every Room</div>
+        <h3 class="feature-h3">Walk into every board meeting knowing what nobody else does.</h3>
+        <p class="feature-desc">Cross-location benchmarking surfaces exactly where the outliers are — which locations are outperforming the network and why, and which are quietly dragging. Your ops team stops operating on quarterly surveys and starts operating on live intelligence that drives real decisions.</p>
+        <a href="/ecofit/analytics" class="feature-link">See the analytics →</a>
+      </div>
+      <div class="feature-visual">
+        <img src="/assets/ecofit/01_avail_donut.jpg" alt="Availability Donut Chart" style="width:100%;display:block">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- METRIC CARDS GRID -->
+<section style="padding:0 32px 80px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="metric-cards-grid reveal">
+      <img src="/assets/ecofit/c01_metric_card_saturation.jpg" alt="Floor Saturation Metric" style="width:100%;display:block;border-radius:8px;border:1px solid #e5e7eb">
+      <img src="/assets/ecofit/c02_metric_card_usage.jpg" alt="Daily Usage Metric" style="width:100%;display:block;border-radius:8px;border:1px solid #e5e7eb">
+      <img src="/assets/ecofit/c04_metric_card_fleet.jpg" alt="Fleet Optimization Metric" style="width:100%;display:block;border-radius:8px;border:1px solid #e5e7eb">
+      <img src="/assets/ecofit/c05_metric_card_growth.jpg" alt="Utilization Growth Metric" style="width:100%;display:block;border-radius:8px;border:1px solid #e5e7eb">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <h2 class="stats-h2">Results from operators who've made the move</h2>
+    <p class="stats-sub">Across multi-location gym chains and single-site operators who've deployed Ecofit in the last 24 months.</p>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Average reduction in equipment refresh costs within 12 months of deployment</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">3.2x</div>
+        <div class="stat-label">Longer equipment lifespan for assets on Ecofit's predictive maintenance schedule</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Assets networked per facility on average across the Ecofit operator network</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section wrap">
+  <div class="section-tag">What Operators Say</div>
+  <h2 class="section-h2">The platform fitness leaders trust.</h2>
+  <p class="section-sub">From franchise chains to boutique studios, Ecofit is becoming the standard for operators who demand accountability.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">"All my new corporate clubs will have Ecofit technology moving forward. This system provides me with unparalleled visibility into my facility's equipment."</p>
+      <div class="testimonial-author">Mike Feeney</div>
+      <div class="testimonial-role">UFC Gyms & Crunch Fitness</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">"We are using Ecofit at the majority of our key national accounts now in North America. It's become an essential part of how we support our operator partners."</p>
+      <div class="testimonial-author">Terry Woods</div>
+      <div class="testimonial-role">Core Health and Fitness</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">"Ecofit is now a standard requirement for all new Retro Fitness franchise clubs. The data it provides is exactly what modern operators need to run efficiently."</p>
+      <div class="testimonial-author">Robbie Sprechman</div>
+      <div class="testimonial-role">CFO, Retro Fitness</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner reveal">
+    <div>
+      <h2 class="cta-h2">Find out how much OpEx your network is leaving on the table.</h2>
+      <p class="cta-sub">The Ecofit Assessment takes 3 minutes. You'll get a personalized facility report with your estimated annual OpEx at risk — and exactly what to do about it.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/ecofit-assessment" class="btn-cta-primary">Take the Assessment →</a>
+      <span class="btn-cta-secondary" onclick="openDemo()">Or book a demo</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #e5e7eb;padding:48px 32px;background:#fff;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px;">ecofit</div>
+      <div style="font-size:13px;color:#9ca3af;max-width:260px;line-height:1.6;">The equipment intelligence platform for fitness operators who demand more than guesswork.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Platform</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/platform" style="font-size:13px;color:#6b7280;text-decoration:none;">Features</a>
+          <a href="/ecofit/analytics" style="font-size:13px;color:#6b7280;text-decoration:none;">Analytics</a>
+          <a href="/ecofit/integrations" style="font-size:13px;color:#6b7280;text-decoration:none;">Integrations</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/blog" style="font-size:13px;color:#6b7280;text-decoration:none;">Blog</a>
+          <a href="https://assets.myecofit.com/" style="font-size:13px;color:#6b7280;text-decoration:none;">Portal Login</a>
+          <a href="/ecofit-assessment" style="font-size:13px;color:#6b7280;text-decoration:none;">Free Assessment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:12px;color:#d1d5db;">© 2025 Ecofit Networks Inc. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Privacy</a>
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div class="exit-icon">📊</div>
+    <h3>Before you go — find out what your facility is actually worth.</h3>
+    <p>Most operators don't know how much they're losing to equipment inefficiency. Our free 2-minute assessment gives you a personalized OpEx risk report — delivered to your inbox instantly.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Take the Free Assessment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll pass on the free report</button>
+  </div>
+</div>
+
+<!-- DEMO REQUEST MODAL -->
+<div id="demo-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.82);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#0d1117;border:1px solid rgba(132,188,65,0.2);border-radius:16px;max-width:480px;width:100%;padding:40px;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
+    <button onclick="closeDemo()" style="position:absolute;top:16px;right:18px;background:none;border:none;color:#9699A2;font-size:22px;cursor:pointer;line-height:1;">×</button>
+    <div id="demo-form-wrap">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#84BC41;margin-bottom:12px;">Book a Demo</div>
+      <h2 style="font-size:24px;font-weight:700;color:#f2f3f8;margin:0 0 8px;line-height:1.2;">See Ecofit in action.</h2>
+      <p style="color:#9699A2;font-size:14px;margin:0 0 28px;line-height:1.6;">Tell us a bit about your operation and we'll set up a personalized walkthrough.</p>
+      <form id="demo-form" onsubmit="submitDemo(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div>
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">First Name *</label>
+            <input id="d-name" type="text" required placeholder="Jordan" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Company *</label>
+            <input id="d-company" type="text" required placeholder="Apex Fitness" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;">
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Work Email *</label>
+          <input id="d-email" type="email" required placeholder="jordan@apexfitness.com" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Number of Locations</label>
+          <select id="d-locations" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;appearance:none;">
+            <option value="1">1 location</option>
+            <option value="2-5">2–5 locations</option>
+            <option value="6-15" selected>6–15 locations</option>
+            <option value="16-50">16–50 locations</option>
+            <option value="51-100">51–100 locations</option>
+            <option value="100+">100+ locations</option>
+          </select>
+        </div>
+        <button type="submit" id="demo-submit-btn" style="width:100%;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;">Book My Demo →</button>
+        <p style="font-size:11px;color:#6b6f7a;text-align:center;margin:12px 0 0;">We'll reach out within one business day. No spam, ever.</p>
+      </form>
+    </div>
+    <div id="demo-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:40px;margin-bottom:16px;">✅</div>
+      <h3 style="color:#f2f3f8;font-size:22px;margin:0 0 10px;">You're on the calendar.</h3>
+      <p style="color:#9699A2;font-size:15px;margin:0 0 28px;line-height:1.6;">Check your inbox — we've sent a confirmation. Or grab a time directly:</p>
+      <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" target="_blank" style="display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:14px;padding:13px 28px;border-radius:8px;text-decoration:none;">Pick a Time on the Calendar →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Scroll reveals
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.08});
+    els.forEach(function(el){io.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('in');}); }
+
+  // Magnetic buttons
+  document.querySelectorAll('.btn-nav-primary,.btn-hero-primary,.btn-cta-primary,.btn-green,.btn-primary-dark').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      var x=(e.clientX-r.left-r.width/2)*0.18;
+      var y=(e.clientY-r.top-r.height/2)*0.18;
+      btn.style.transform='translate('+x+'px,'+y+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  });
+
+  // Demo modal
+  var demoOverlay=document.getElementById('demo-overlay');
+  window.openDemo=function(){demoOverlay.style.display='flex';};
+  window.closeDemo=function(){demoOverlay.style.display='none';};
+  demoOverlay.addEventListener('click',function(e){if(e.target===demoOverlay)closeDemo();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDemo();closeExit();}});
+
+  // Demo form submit
+  window.submitDemo=async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('demo-submit-btn');
+    btn.disabled=true;btn.textContent='Sending…';
+    try{
+      var res=await fetch('/api/ecofit-demo-request',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({name:document.getElementById('d-name').value.trim(),email:document.getElementById('d-email').value.trim(),company:document.getElementById('d-company').value.trim(),locations:document.getElementById('d-locations').value})
+      });
+      document.getElementById('demo-form-wrap').style.display='none';
+      document.getElementById('demo-success').style.display='block';
+    }catch(err){btn.disabled=false;btn.textContent='Book My Demo →';alert('Something went wrong. Please try again.');}
+  };
+
+  // Exit intent (once per session)
+  if(!sessionStorage.getItem('ecf_exit')){
+    var shown=false;
+    document.addEventListener('mouseleave',function(e){
+      if(e.clientY<10&&!shown){
+        shown=true;sessionStorage.setItem('ecf_exit','1');
+        var el=document.getElementById('exit-overlay');
+        if(el)el.style.display='flex';
+      }
+    });
+  }
+  window.closeExit=function(){
+    var el=document.getElementById('exit-overlay');
+    if(el)el.style.display='none';
+  };
+  var exitOverlay=document.getElementById('exit-overlay');
+  if(exitOverlay){exitOverlay.addEventListener('click',function(e){if(e.target===exitOverlay)closeExit();});}
+
+  // Stat counters
+  var statEls=document.querySelectorAll('.stat-num');
+  var statObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target;var raw=el.textContent.trim();
+      var m=raw.match(/^([\d.]+)([%x+]?)$/);
+      if(!m)return;
+      var num=parseFloat(m[1]),suf=m[2],isFloat=raw.indexOf('.')>-1;
+      var dur=1800,t0=performance.now();
+      (function tick(now){
+        var p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3);
+        el.textContent=(isFloat?(num*ease).toFixed(1):Math.round(num*ease))+suf;
+        if(p<1)requestAnimationFrame(tick);
+      })(t0);
+      statObs.unobserve(el);
+    });
+  },{threshold:0.5});
+  statEls.forEach(function(el){statObs.observe(el);});
+})();
+</script>
+</body>
+</html>

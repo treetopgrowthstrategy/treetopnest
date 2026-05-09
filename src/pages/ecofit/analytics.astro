@@ -1,0 +1,348 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics | Ecofit — Equipment Data & Facility Reporting</title>
+<meta name="description" content="Ecofit's analytics platform turns equipment data into decisions. Usage, availability, saturation, and peak period reports delivered automatically.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #0d1117; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @keyframes grad-flow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  .grad-text { background: linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: grad-flow 5s ease infinite; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 12px; }
+  .btn-green { font-size: 14px; font-weight: 600; background: #84BC41; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-green:hover { background: #75a838; }
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid #e5e7eb; backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  /* HERO */
+  .hero-centered { text-align: center; padding: 96px 32px 72px; max-width: 760px; margin: 0 auto; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #84BC41; background: rgba(132,188,65,0.08); border: 1px solid rgba(132,188,65,0.2); padding: 4px 10px; border-radius: 100px; margin-bottom: 20px; }
+  /* REPORT ROWS */
+  .report-row { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 0; border-top: 1px solid #e5e7eb; }
+  .report-row.reverse { direction: rtl; }
+  .report-row.reverse > * { direction: ltr; }
+  .report-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #84BC41; background: rgba(132,188,65,0.08); border: 1px solid rgba(132,188,65,0.2); display: inline-block; padding: 3px 8px; border-radius: 100px; margin-bottom: 14px; }
+  .report-eyebrow.request { color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); }
+  .report-h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 16px; }
+  .report-body { font-size: 15px; color: #6b7280; line-height: 1.75; margin-bottom: 24px; }
+  .report-img { border-radius: 10px; border: 1px solid #e5e7eb; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+  .report-img img { width: 100%; display: block; }
+  .report-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .report-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: #374151; }
+  .report-feature-dot { width: 6px; height: 6px; background: #84BC41; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  /* STATS */
+  .stats-section { background: #0d1117; padding: 80px 32px; }
+  .stats-inner { max-width: 1200px; margin: 0 auto; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: #1f2937; border: 1px solid #1f2937; border-radius: 10px; overflow: hidden; margin-top: 48px; }
+  .stat-item { background: #111827; padding: 48px 32px; text-align: center; }
+  .stat-num { font-size: 2.8rem; font-weight: 800; color: #84BC41; letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; }
+  .stat-label { font-size: 13px; color: #6b7280; line-height: 1.5; }
+  /* CTA */
+  .cta-section { padding: 100px 32px; }
+  .cta-inner { max-width: 1200px; margin: 0 auto; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 16px; padding: 72px; text-align: center; }
+  /* EXIT */
+  #exit-overlay { display: none; position: fixed; inset: 0; background: rgba(5,12,8,0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+  #exit-card { background: #0d1117; border: 1px solid rgba(132,188,65,0.25); border-radius: 20px; max-width: 520px; width: 100%; padding: 48px 44px; position: relative; text-align: center; }
+  #exit-card h3 { font-size: 26px; font-weight: 700; color: #f2f3f8; margin: 0 0 14px; }
+  #exit-card p { color: #9699A2; font-size: 15px; line-height: 1.65; margin: 0 0 32px; }
+  #exit-card .exit-cta { display: inline-block; background: #84BC41; color: #0d1117; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: 10px; text-decoration: none; }
+  #exit-card .exit-skip { display: block; margin-top: 16px; font-size: 13px; color: #6b6f7a; cursor: pointer; background: none; border: none; text-decoration: underline; }
+  #exit-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: #9699A2; font-size: 24px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/ecofit/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+      <div style="width:28px;height:28px;background:#84BC41;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 16 16" style="width:16px;height:16px;fill:#fff;"><path d="M8 2L14 6V10L8 14L2 10V6L8 2Z"/></svg>
+      </div>
+      <span style="font-size:16px;font-weight:700;color:#0d1117;letter-spacing:-0.02em;">ecofit</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="/ecofit/platform" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Platform</a>
+      <a href="/ecofit/analytics" style="font-size:13.5px;font-weight:600;color:#0d1117;text-decoration:none;">Analytics</a>
+      <a href="/ecofit/integrations" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Integrations</a>
+      <a href="/ecofit/blog" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Blog</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="https://assets.myecofit.com/" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;padding:7px 14px;">Log in</a>
+      <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;background:#84BC41;color:#fff;text-decoration:none;padding:8px 18px;border-radius:6px;">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-centered reveal">
+  <div class="hero-tag">
+    <span style="width:6px;height:6px;background:#84BC41;border-radius:50%;display:inline-block;"></span>
+    Analytics
+  </div>
+  <h1 style="font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0d1117;margin-bottom:20px;">Your facility's data, <span class="grad-text">finally working for you.</span></h1>
+  <p style="font-size:17px;color:#4b5563;line-height:1.65;margin-bottom:36px;">Ecofit's analytics platform turns equipment data into decisions — automatically delivered, always current. No data team needed. No manual exports. Just the clarity your operation requires.</p>
+  <a href="/ecofit-assessment" class="btn-green">See Your Facility's Data →</a>
+</div>
+
+<!-- REPORT TYPE 1: EQUIPMENT AVAILABILITY -->
+<section style="padding:0 32px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="report-row reveal">
+      <div>
+        <div class="report-eyebrow">Self-Serve</div>
+        <h3 class="report-h3">Know exactly how your floor is being used.</h3>
+        <p class="report-body">Saturation rates, wait time trends, and availability by time of day — for every cardio and strength piece in your facility. Identify underutilized equipment that's costing you floor space. Optimize your equipment mix based on real demand data. Spot the quiet hours that are eroding member satisfaction before members notice.</p>
+        <div class="report-features">
+          <div class="report-feature"><span class="report-feature-dot"></span>Availability percentage by equipment category, model, and individual unit</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Peak hour heatmaps showing when your floor is busiest by day of week</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Wait time estimates based on saturation patterns and member density</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Underutilized asset flagging — know which machines to retire or relocate</div>
+        </div>
+        <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;color:#84BC41;text-decoration:none;">See your availability data →</a>
+      </div>
+      <div class="report-img">
+        <img src="/assets/ecofit/01_avail_donut.jpg" alt="Equipment Availability Donut Chart">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT TYPE 2: DETAILED FACILITY REVIEW -->
+<section style="padding:0 32px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="report-row reverse reveal">
+      <div>
+        <div class="report-eyebrow">Self-Serve</div>
+        <h3 class="report-h3">Go deep on any location, any time.</h3>
+        <p class="report-body">Peak periods, average daily usage, high-utilization equipment, lifetime usage comparisons. Filter from network level down to a single piece of equipment. Know which machines earn their floor space and which don't. Stop running your operation on gut feel — see exactly which categories drive the most value at each location.</p>
+        <div class="report-features">
+          <div class="report-feature"><span class="report-feature-dot"></span>Location-level drill-down with equipment-level filtering</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Average daily session count by equipment type and brand</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Lifetime usage hours per unit — know which machines are truly worked</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Cross-location comparison — find your best- and worst-performing floors</div>
+        </div>
+        <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;color:#84BC41;text-decoration:none;">Request a facility review →</a>
+      </div>
+      <div class="report-img">
+        <img src="/assets/ecofit/02_avail_weekday.jpg" alt="Weekday Usage Chart">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT TYPE 3: MONTHLY USAGE SUMMARY -->
+<section style="padding:0 32px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="report-row reveal">
+      <div>
+        <div class="report-eyebrow">Self-Serve</div>
+        <h3 class="report-h3">A monthly snapshot delivered automatically.</h3>
+        <p class="report-body">Usage distribution between cardio and strength. Peak days and peak hours. Month-over-month comparison that tracks your trajectory over time. Total usage grouped by model and category. Always in your inbox on the first of the month — no dashboards to check, no exports to run, no data team required.</p>
+        <div class="report-features">
+          <div class="report-feature"><span class="report-feature-dot"></span>Cardio vs. strength usage split with month-over-month trending</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Top 5 busiest days and busiest hours of the month</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Usage by equipment model — see which brands your members actually prefer</div>
+          <div class="report-feature"><span class="report-feature-dot"></span>Auto-delivered to your inbox on the 1st of every month</div>
+        </div>
+        <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;color:#84BC41;text-decoration:none;">Get the monthly report →</a>
+      </div>
+      <div class="report-img">
+        <img src="/assets/ecofit/03_avail_pixel_table.jpg" alt="Availability Pixel Table">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT TYPE 4: EQUIPMENT STUDIES -->
+<section style="padding:0 32px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="report-row reverse reveal">
+      <div>
+        <div class="report-eyebrow request">By Request</div>
+        <h3 class="report-h3">Custom analysis for the decisions that matter most.</h3>
+        <p class="report-body">Some decisions are too important for self-serve reports. When you're rotating your entire cardio fleet, modeling a new location, or making a multi-million dollar procurement call, the Ecofit analytics team builds a custom study for your specific network — using your actual data, your actual floor, your actual usage patterns.</p>
+        <div class="report-features">
+          <div class="report-feature"><span class="report-feature-dot"></span><strong>Equipment Rotation Study:</strong> Balance usage across your floor — know which units to swap, retire, or redeploy</div>
+          <div class="report-feature"><span class="report-feature-dot"></span><strong>Procurement Summary:</strong> Buy based on real usage data — not vendor relationships or last year's instinct</div>
+          <div class="report-feature"><span class="report-feature-dot"></span><strong>Club Modeling:</strong> Extrapolate what works at your best location across your entire network</div>
+        </div>
+        <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;color:#84BC41;text-decoration:none;">Request an equipment study →</a>
+      </div>
+      <div class="report-img">
+        <img src="/assets/ecofit/04_mix_saturation_bars.jpg" alt="Equipment Mix Saturation Bars">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARK STATS BAND -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="section-tag" style="color:#84BC41;">The Scale</div>
+    <h2 style="font-size:clamp(1.6rem,2.5vw,2rem);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-top:12px;max-width:560px;">A decade of equipment data. Millions of data points. All working for you.</h2>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num">100M+</div>
+        <div class="stat-label">Data points collected from fitness equipment across the Ecofit network since 2015</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">1,000+</div>
+        <div class="stat-label">Facility locations actively tracked and analyzed on the Ecofit platform</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">10 yrs</div>
+        <div class="stat-label">Of continuous equipment intelligence data collection — since Ecofit launched in 2015</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT'S DELIVERED -->
+<section style="padding:80px 32px;background:#f8fafc;border-top:1px solid #e5e7eb;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;" class="reveal">
+      <div class="section-tag" style="display:inline-block;">Delivery</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.025em;margin:12px auto 0;max-width:560px;">Data that finds you. Not the other way around.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="reveal">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:32px;">
+        <div style="font-size:24px;margin-bottom:16px;">📥</div>
+        <div style="font-size:15px;font-weight:700;color:#0d1117;margin-bottom:10px;">Monthly Email Reports</div>
+        <div style="font-size:13.5px;color:#6b7280;line-height:1.65;">Auto-delivered to your inbox on the 1st of every month. Usage summary, peak periods, and month-over-month comparison — no login required.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:32px;">
+        <div style="font-size:24px;margin-bottom:16px;">🖥️</div>
+        <div style="font-size:15px;font-weight:700;color:#0d1117;margin-bottom:10px;">Self-Serve Dashboard</div>
+        <div style="font-size:13.5px;color:#6b7280;line-height:1.65;">Log in to your Ecofit portal anytime to run availability, saturation, and usage reports. Filter by location, date range, or equipment type.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:32px;">
+        <div style="font-size:24px;margin-bottom:16px;">📊</div>
+        <div style="font-size:15px;font-weight:700;color:#0d1117;margin-bottom:10px;">Custom Studies On-Request</div>
+        <div style="font-size:13.5px;color:#6b7280;line-height:1.65;">For complex decisions, request a custom equipment study from the Ecofit analytics team. Built for your specific network, not a template.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="section-tag" style="display:inline-block;">Get Started</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.025em;line-height:1.2;margin:14px 0 12px;">See your facility's data in action.</h2>
+    <p style="font-size:15px;color:#6b7280;line-height:1.65;max-width:520px;margin:0 auto 36px;">Take the free assessment to see how Ecofit would apply to your specific operation — and what analytics you'd have access to from day one.</p>
+    <a href="/ecofit-assessment" class="btn-green">Take the Free Assessment →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #e5e7eb;padding:48px 32px;background:#fff;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px;">ecofit</div>
+      <div style="font-size:13px;color:#9ca3af;max-width:260px;line-height:1.6;">The equipment intelligence platform for fitness operators who demand more than guesswork.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Platform</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/platform" style="font-size:13px;color:#6b7280;text-decoration:none;">Features</a>
+          <a href="/ecofit/analytics" style="font-size:13px;color:#6b7280;text-decoration:none;">Analytics</a>
+          <a href="/ecofit/integrations" style="font-size:13px;color:#6b7280;text-decoration:none;">Integrations</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/blog" style="font-size:13px;color:#6b7280;text-decoration:none;">Blog</a>
+          <a href="https://assets.myecofit.com/" style="font-size:13px;color:#6b7280;text-decoration:none;">Portal Login</a>
+          <a href="/ecofit-assessment" style="font-size:13px;color:#6b7280;text-decoration:none;">Free Assessment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:12px;color:#d1d5db;">© 2025 Ecofit Networks Inc. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Privacy</a>
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div style="font-size:36px;margin-bottom:20px;">📈</div>
+    <h3>Want to see what your facility data actually looks like?</h3>
+    <p>Take our free 2-minute assessment and see a preview of the analytics reports your facility would generate — based on your specific operation.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Take the Free Assessment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll manage without the data</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.08});
+    els.forEach(function(el){io.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('in');}); }
+
+  document.querySelectorAll('a[style*="background:#84BC41"],.btn-green').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      btn.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.18)+'px,'+((e.clientY-r.top-r.height/2)*0.18)+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  });
+
+  // Stat counters
+  document.querySelectorAll('.stat-num').forEach(function(el){
+    var io2=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting)return;
+        var raw=el.textContent.trim();
+        var m=raw.match(/^([\d.]+)([^0-9.]*)$/);
+        if(!m)return;
+        var num=parseFloat(m[1]),suf=m[2],isFloat=raw.indexOf('.')>-1;
+        var dur=1800,t0=performance.now();
+        (function tick(now){
+          var p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3);
+          el.textContent=(isFloat?(num*ease).toFixed(1):Math.round(num*ease))+suf;
+          if(p<1)requestAnimationFrame(tick);
+        })(t0);
+        io2.unobserve(el);
+      });
+    },{threshold:0.5});
+    io2.observe(el);
+  });
+
+  if(!sessionStorage.getItem('ecf_exit')){
+    var shown=false;
+    document.addEventListener('mouseleave',function(e){
+      if(e.clientY<10&&!shown){shown=true;sessionStorage.setItem('ecf_exit','1');var el=document.getElementById('exit-overlay');if(el)el.style.display='flex';}
+    });
+  }
+  window.closeExit=function(){var el=document.getElementById('exit-overlay');if(el)el.style.display='none';};
+  var eo=document.getElementById('exit-overlay');
+  if(eo){eo.addEventListener('click',function(e){if(e.target===eo)closeExit();});}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit();});
+})();
+</script>
+</body>
+</html>

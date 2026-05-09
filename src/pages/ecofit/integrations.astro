@@ -1,0 +1,349 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrations | Ecofit — Equipment Manufacturer Integrations</title>
+<meta name="description" content="Direct data integrations with 14 leading fitness equipment manufacturers. No extra hardware required for compatible units.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #0d1117; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @keyframes grad-flow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  .grad-text { background: linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: grad-flow 5s ease infinite; }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 12px; }
+  .btn-green { font-size: 14px; font-weight: 600; background: #84BC41; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-green:hover { background: #75a838; }
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid #e5e7eb; backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  /* HERO */
+  .hero-centered { text-align: center; padding: 96px 32px 72px; max-width: 760px; margin: 0 auto; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #84BC41; background: rgba(132,188,65,0.08); border: 1px solid rgba(132,188,65,0.2); padding: 4px 10px; border-radius: 100px; margin-bottom: 20px; }
+  /* HOW IT WORKS */
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .step-card { text-align: center; padding: 40px 28px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+  .step-num { width: 40px; height: 40px; background: #84BC41; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #fff; margin: 0 auto 20px; }
+  .step-title { font-size: 17px; font-weight: 700; color: #0d1117; margin-bottom: 12px; }
+  .step-desc { font-size: 13.5px; color: #6b7280; line-height: 1.65; }
+  /* LOGO GRID */
+  .logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .logo-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; display: flex; align-items: center; justify-content: center; height: 100px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .logo-card:hover { border-color: #84BC41; box-shadow: 0 4px 16px rgba(132,188,65,0.12); }
+  .logo-card img { height: 56px; width: auto; object-fit: contain; filter: grayscale(0.3); opacity: 0.85; }
+  /* INTEGRATION TYPES */
+  .int-types { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .int-type-card { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 36px; }
+  .int-type-icon { font-size: 28px; margin-bottom: 16px; }
+  .int-type-title { font-size: 17px; font-weight: 700; color: #0d1117; margin-bottom: 10px; }
+  .int-type-desc { font-size: 13.5px; color: #6b7280; line-height: 1.65; margin-bottom: 16px; }
+  .int-type-brands { display: flex; flex-wrap: wrap; gap: 8px; }
+  .int-badge { font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 100px; }
+  .int-badge-green { background: rgba(132,188,65,0.1); color: #5a8a2a; border: 1px solid rgba(132,188,65,0.2); }
+  .int-badge-gray { background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; }
+  /* VALUE PROPS */
+  .value-props { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .value-prop { background: #fff; padding: 32px 24px; }
+  .value-prop-icon { font-size: 24px; margin-bottom: 14px; }
+  .value-prop-title { font-size: 14px; font-weight: 700; color: #0d1117; margin-bottom: 8px; }
+  .value-prop-desc { font-size: 13px; color: #6b7280; line-height: 1.6; }
+  /* EXIT */
+  #exit-overlay { display: none; position: fixed; inset: 0; background: rgba(5,12,8,0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+  #exit-card { background: #0d1117; border: 1px solid rgba(132,188,65,0.25); border-radius: 20px; max-width: 520px; width: 100%; padding: 48px 44px; position: relative; text-align: center; }
+  #exit-card h3 { font-size: 26px; font-weight: 700; color: #f2f3f8; margin: 0 0 14px; }
+  #exit-card p { color: #9699A2; font-size: 15px; line-height: 1.65; margin: 0 0 32px; }
+  #exit-card .exit-cta { display: inline-block; background: #84BC41; color: #0d1117; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: 10px; text-decoration: none; }
+  #exit-card .exit-skip { display: block; margin-top: 16px; font-size: 13px; color: #6b6f7a; cursor: pointer; background: none; border: none; text-decoration: underline; }
+  #exit-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: #9699A2; font-size: 24px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/ecofit/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+      <div style="width:28px;height:28px;background:#84BC41;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 16 16" style="width:16px;height:16px;fill:#fff;"><path d="M8 2L14 6V10L8 14L2 10V6L8 2Z"/></svg>
+      </div>
+      <span style="font-size:16px;font-weight:700;color:#0d1117;letter-spacing:-0.02em;">ecofit</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="/ecofit/platform" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Platform</a>
+      <a href="/ecofit/analytics" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Analytics</a>
+      <a href="/ecofit/integrations" style="font-size:13.5px;font-weight:600;color:#0d1117;text-decoration:none;">Integrations</a>
+      <a href="/ecofit/blog" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Blog</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="https://assets.myecofit.com/" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;padding:7px 14px;">Log in</a>
+      <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;background:#84BC41;color:#fff;text-decoration:none;padding:8px 18px;border-radius:6px;">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-centered reveal">
+  <div class="hero-tag">
+    <span style="width:6px;height:6px;background:#84BC41;border-radius:50%;display:inline-block;"></span>
+    Integrations
+  </div>
+  <h1 style="font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0d1117;margin-bottom:20px;">Works with the equipment <span class="grad-text">you already own.</span></h1>
+  <p style="font-size:17px;color:#4b5563;line-height:1.65;margin-bottom:36px;">Direct data integrations with the industry's leading manufacturers. No extra hardware required for compatible units. Just plug in and start seeing your data — in real time, from day one.</p>
+  <a href="/ecofit-assessment" class="btn-green">Check Your Equipment →</a>
+</div>
+
+<!-- HOW IT WORKS -->
+<section style="padding:0 32px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;" class="reveal">
+      <div class="section-tag" style="display:inline-block;">How It Works</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.025em;margin:12px auto 0;max-width:560px;">Up and running in days, not months.</h2>
+    </div>
+    <div class="steps-grid reveal">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Connect</div>
+        <div class="step-desc">Ecofit sensors attach to your equipment or pull directly from manufacturer consoles via native API integrations. No IT department required. No servers to configure. For most compatible equipment, it's plug-in simple.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Sync</div>
+        <div class="step-desc">Data flows automatically to the Ecofit cloud platform. No manual entry, no spreadsheets, no periodic exports. Everything updates in real time — usage events, status changes, error codes, and session data — continuously and automatically.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">See</div>
+        <div class="step-desc">Usage, status, events, and analytics appear in your Ecofit dashboard within minutes of installation. Your floor comes to life — every asset visible, every session counted, every issue surfaced before your members find it first.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER LOGO GRID -->
+<section style="padding:80px 32px;background:#f8fafc;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;" class="reveal">
+      <div class="section-tag" style="display:inline-block;">Equipment Partners</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.025em;margin:12px auto 0;max-width:640px;">14 industry-leading brands. One unified platform.</h2>
+      <p style="font-size:15px;color:#6b7280;margin:14px auto 0;max-width:520px;line-height:1.65;">Whether your floor is all Life Fitness, all Matrix, or a mix of 12 different brands — Ecofit sees everything and reports on it in one place.</p>
+    </div>
+    <div class="logo-grid reveal">
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      </div>
+      <div class="logo-card">
+        <img src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION TYPES -->
+<section style="padding:80px 32px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:48px;" class="reveal">
+      <div class="section-tag">Integration Types</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.025em;max-width:560px;line-height:1.2;margin-top:12px;">Two ways to connect. One unified view.</h2>
+    </div>
+    <div class="int-types reveal">
+      <div class="int-type-card">
+        <div class="int-type-icon">🔌</div>
+        <div class="int-type-title">Manufacturer Integrations</div>
+        <div class="int-type-desc">Direct console data connections to compatible equipment — no extra hardware or sensors needed. These integrations pull usage events, error codes, session data, and status directly from the machine's own console via native API or protocol.</div>
+        <div style="font-size:12px;font-weight:600;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Direct integration available for:</div>
+        <div class="int-type-brands">
+          <span class="int-badge int-badge-green">Life Fitness</span>
+          <span class="int-badge int-badge-green">Matrix Fitness</span>
+          <span class="int-badge int-badge-green">Woodway</span>
+        </div>
+        <div style="margin-top:16px;font-size:13px;color:#9ca3af;">Additional brands accessible via Ecofit's universal sensor solution.</div>
+      </div>
+      <div class="int-type-card">
+        <div class="int-type-icon">🔗</div>
+        <div class="int-type-title">Service Platform Linking</div>
+        <div class="int-type-desc">Send real-time usage and status data directly to your existing service management platform. When a machine flags an issue, your service team knows immediately — with the full context of usage history and event data already attached to the work order.</div>
+        <div style="font-size:12px;font-weight:600;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Available on select platforms:</div>
+        <div class="int-type-brands">
+          <span class="int-badge int-badge-gray">ServiceChannel</span>
+          <span class="int-badge int-badge-gray">Ask about your platform</span>
+        </div>
+        <div style="margin-top:16px;font-size:13px;color:#9ca3af;">Contact the Ecofit team to discuss your current service platform and integration options.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section style="padding:0 32px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="value-props reveal">
+      <div class="value-prop">
+        <div class="value-prop-icon">🔄</div>
+        <div class="value-prop-title">Cross Brand</div>
+        <div class="value-prop-desc">Track all equipment regardless of manufacturer. Life Fitness next to Precor next to Woodway — one unified view across your entire floor.</div>
+      </div>
+      <div class="value-prop">
+        <div class="value-prop-icon">📡</div>
+        <div class="value-prop-title">Integrated Data</div>
+        <div class="value-prop-desc">Direct console connections on compatible units — no extra hardware, no sensors, no installation complexity. Just pure data from the machine itself.</div>
+      </div>
+      <div class="value-prop">
+        <div class="value-prop-icon">☁️</div>
+        <div class="value-prop-title">Fully Managed</div>
+        <div class="value-prop-desc">Everything on the Ecofit network. No servers to manage, no repos to maintain, no IT resources required from your team — ever.</div>
+      </div>
+      <div class="value-prop">
+        <div class="value-prop-icon">🤝</div>
+        <div class="value-prop-title">Expert Support</div>
+        <div class="value-prop-desc">The Ecofit team helps your team understand the data at every step. Onboarding, reporting setup, and ongoing analytics support are all included.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS PARTNERSHIP CALLOUT -->
+<section style="background:#0d1117;padding:64px 32px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;flex-wrap:wrap;" class="reveal">
+    <div>
+      <div class="section-tag" style="color:#84BC41;">Infrastructure</div>
+      <h2 style="font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;color:#fff;letter-spacing:-0.025em;margin:12px 0 14px;line-height:1.2;">Built on AWS IoT — enterprise-grade infrastructure at every scale.</h2>
+      <p style="font-size:14px;color:#6b7280;line-height:1.65;max-width:560px;">Ecofit was built with Amazon Web Services IoT data services. Whether you have one location or five hundred, the infrastructure scales automatically — and the data is always there when you need it.</p>
+    </div>
+    <div>
+      <a href="/ecofit-assessment" style="font-size:14px;font-weight:600;background:#84BC41;color:#0d1117;text-decoration:none;padding:13px 26px;border-radius:8px;display:inline-block;white-space:nowrap;">Take the Assessment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:100px 32px;">
+  <div style="max-width:1200px;margin:0 auto;background:#f8fafc;border:1px solid #e5e7eb;border-radius:16px;padding:72px;text-align:center;" class="reveal">
+    <div class="section-tag" style="display:inline-block;">Get Connected</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.025em;line-height:1.2;margin:14px 0 12px;">Your equipment is already talking. Let's start listening.</h2>
+    <p style="font-size:15px;color:#6b7280;line-height:1.65;max-width:520px;margin:0 auto 36px;">Take the free assessment to find out which of your equipment brands are compatible with Ecofit — and what a connected floor would look like for your operation.</p>
+    <a href="/ecofit-assessment" class="btn-green">Take the Free Assessment →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #e5e7eb;padding:48px 32px;background:#fff;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px;">ecofit</div>
+      <div style="font-size:13px;color:#9ca3af;max-width:260px;line-height:1.6;">The equipment intelligence platform for fitness operators who demand more than guesswork.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Platform</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/platform" style="font-size:13px;color:#6b7280;text-decoration:none;">Features</a>
+          <a href="/ecofit/analytics" style="font-size:13px;color:#6b7280;text-decoration:none;">Analytics</a>
+          <a href="/ecofit/integrations" style="font-size:13px;color:#6b7280;text-decoration:none;">Integrations</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/blog" style="font-size:13px;color:#6b7280;text-decoration:none;">Blog</a>
+          <a href="https://assets.myecofit.com/" style="font-size:13px;color:#6b7280;text-decoration:none;">Portal Login</a>
+          <a href="/ecofit-assessment" style="font-size:13px;color:#6b7280;text-decoration:none;">Free Assessment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:12px;color:#d1d5db;">© 2025 Ecofit Networks Inc. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Privacy</a>
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div style="font-size:36px;margin-bottom:20px;">🔌</div>
+    <h3>Wondering if your equipment is compatible with Ecofit?</h3>
+    <p>Take our free 2-minute assessment to find out which brands on your floor work with Ecofit natively — and what it would look like to connect your operation.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Check Your Equipment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll figure it out later</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.08});
+    els.forEach(function(el){io.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('in');}); }
+
+  document.querySelectorAll('a[style*="background:#84BC41"],.btn-green').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      btn.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.18)+'px,'+((e.clientY-r.top-r.height/2)*0.18)+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  });
+
+  if(!sessionStorage.getItem('ecf_exit')){
+    var shown=false;
+    document.addEventListener('mouseleave',function(e){
+      if(e.clientY<10&&!shown){shown=true;sessionStorage.setItem('ecf_exit','1');var el=document.getElementById('exit-overlay');if(el)el.style.display='flex';}
+    });
+  }
+  window.closeExit=function(){var el=document.getElementById('exit-overlay');if(el)el.style.display='none';};
+  var eo=document.getElementById('exit-overlay');
+  if(eo){eo.addEventListener('click',function(e){if(e.target===eo)closeExit();});}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit();});
+})();
+</script>
+</body>
+</html>

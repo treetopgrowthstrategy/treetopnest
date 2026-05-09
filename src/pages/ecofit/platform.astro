@@ -1,0 +1,340 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform | Ecofit — Features & Capabilities</title>
+<meta name="description" content="Full inventory management, live equipment status, custom PM scheduling, service tracking, and analytics — all in one platform for fitness operators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #0d1117; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @keyframes grad-flow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  .grad-text { background: linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: grad-flow 5s ease infinite; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 80px 0; }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 12px; }
+  .section-h2 { font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; color: #0d1117; margin-bottom: 14px; }
+  .section-sub { font-size: 16px; color: #6b7280; line-height: 1.65; max-width: 560px; margin-bottom: 48px; }
+  .btn-primary-dark { font-size: 14px; font-weight: 600; background: #0d1117; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-green { font-size: 14px; font-weight: 600; background: #84BC41; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-green:hover { background: #75a838; }
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid #e5e7eb; backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  /* HERO */
+  .hero-centered { text-align: center; padding: 96px 32px 72px; max-width: 800px; margin: 0 auto; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #84BC41; background: rgba(132,188,65,0.08); border: 1px solid rgba(132,188,65,0.2); padding: 4px 10px; border-radius: 100px; margin-bottom: 20px; }
+  .hero-tag-dot { width: 6px; height: 6px; background: #84BC41; border-radius: 50%; display: inline-block; }
+  /* FEATURE GRID */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .feature-card { background: #fff; padding: 32px 28px; }
+  .feature-card-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(132,188,65,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .feature-card-icon svg { width: 20px; height: 20px; stroke: #84BC41; fill: none; stroke-width: 1.8; }
+  .feature-card-title { font-size: 15px; font-weight: 700; color: #0d1117; margin-bottom: 10px; line-height: 1.3; }
+  .feature-card-desc { font-size: 13.5px; color: #6b7280; line-height: 1.65; }
+  /* COMPARISON TABLE */
+  .comparison-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .compare-col { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .compare-col.featured { border-color: #84BC41; }
+  .compare-header { padding: 24px 28px; border-bottom: 1px solid #e5e7eb; }
+  .compare-header.featured { background: #84BC41; border-color: #84BC41; }
+  .compare-tier { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; margin-bottom: 6px; }
+  .compare-tier.featured { color: rgba(255,255,255,0.8); }
+  .compare-name { font-size: 20px; font-weight: 800; color: #0d1117; margin-bottom: 4px; }
+  .compare-name.featured { color: #fff; }
+  .compare-price { font-size: 13px; color: #6b7280; }
+  .compare-price.featured { color: rgba(255,255,255,0.85); }
+  .compare-items { padding: 20px 28px; }
+  .compare-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 13.5px; color: #374151; }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(132,188,65,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; color: #84BC41; font-weight: 700; margin-top: 1px; }
+  .compare-check.dark { background: rgba(13,17,23,0.08); }
+  /* TESTIMONIALS DARK */
+  .testimonials-dark { background: #0d1117; padding: 80px 32px; }
+  .testimonials-dark-inner { max-width: 1200px; margin: 0 auto; }
+  .testimonials-dark-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .testimonial-dark-card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 32px; }
+  .testimonial-dark-quote { font-size: 15px; color: #d1d5db; line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+  .testimonial-dark-author { font-size: 13px; font-weight: 700; color: #f9fafb; }
+  .testimonial-dark-role { font-size: 12px; color: #6b7280; margin-top: 2px; }
+  /* CTA */
+  .cta-section { padding: 100px 32px; }
+  .cta-inner { max-width: 1200px; margin: 0 auto; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 16px; padding: 72px; text-align: center; }
+  /* EXIT */
+  #exit-overlay { display: none; position: fixed; inset: 0; background: rgba(5,12,8,0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+  #exit-card { background: #0d1117; border: 1px solid rgba(132,188,65,0.25); border-radius: 20px; max-width: 520px; width: 100%; padding: 48px 44px; position: relative; text-align: center; }
+  #exit-card h3 { font-size: 26px; font-weight: 700; color: #f2f3f8; margin: 0 0 14px; }
+  #exit-card p { color: #9699A2; font-size: 15px; line-height: 1.65; margin: 0 0 32px; }
+  #exit-card .exit-cta { display: inline-block; background: #84BC41; color: #0d1117; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: 10px; text-decoration: none; }
+  #exit-card .exit-skip { display: block; margin-top: 16px; font-size: 13px; color: #6b6f7a; cursor: pointer; background: none; border: none; text-decoration: underline; }
+  #exit-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: #9699A2; font-size: 24px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/ecofit/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+      <div style="width:28px;height:28px;background:#84BC41;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 16 16" style="width:16px;height:16px;fill:#fff;"><path d="M8 2L14 6V10L8 14L2 10V6L8 2Z"/></svg>
+      </div>
+      <span style="font-size:16px;font-weight:700;color:#0d1117;letter-spacing:-0.02em;">ecofit</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="/ecofit/platform" style="font-size:13.5px;font-weight:600;color:#0d1117;text-decoration:none;">Platform</a>
+      <a href="/ecofit/analytics" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Analytics</a>
+      <a href="/ecofit/integrations" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Integrations</a>
+      <a href="/ecofit/blog" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Blog</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="https://assets.myecofit.com/" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;padding:7px 14px;">Log in</a>
+      <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;background:#84BC41;color:#fff;text-decoration:none;padding:8px 18px;border-radius:6px;">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-centered reveal">
+  <div class="hero-tag"><span class="hero-tag-dot"></span>The Platform</div>
+  <h1 style="font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0d1117;margin-bottom:20px;">Everything you need to run a <span class="grad-text">smarter operation.</span></h1>
+  <p style="font-size:17px;color:#4b5563;line-height:1.65;margin-bottom:36px;max-width:620px;margin-left:auto;margin-right:auto;">From a single location to 500, Ecofit gives you complete visibility into every asset in your network — in real time, without complexity.</p>
+  <a href="/ecofit-assessment" class="btn-green">Take the Free Assessment →</a>
+</div>
+
+<!-- FEATURE GRID -->
+<section class="section wrap">
+  <div class="section-tag">Core Capabilities</div>
+  <h2 class="section-h2">Built for operators who manage real complexity.</h2>
+  <p class="section-sub">Six core modules that cover the full lifecycle of every piece of equipment in your network — from the day it arrives to the day it leaves the floor.</p>
+  <div class="feature-grid reveal">
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+      </div>
+      <div class="feature-card-title">Full Inventory Management</div>
+      <div class="feature-card-desc">Track brand, model, condition, purchase date, and warranty for every cardio and strength piece in your network. Full edit capabilities, archiving, and multi-location organization. Always know exactly what you own and where it is.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="feature-card-title">Live Equipment Status</div>
+      <div class="feature-card-desc">Know which units are running, which need attention, and which are down — across every location, in real time. Stop relying on member complaints as your early warning system. Get ahead of issues before they hit the floor.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="feature-card-title">Custom PM Scheduling</div>
+      <div class="feature-card-desc">Usage-based or calendar-based maintenance notifications delivered automatically to your team. Catch problems before they become member complaints. Build a maintenance culture that prevents, not just reacts.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="feature-card-title">Service & Task Tracking</div>
+      <div class="feature-card-desc">Create and assign service tasks to your team. Track complete history for every machine. Log work orders, technician visits, parts replaced, and resolution time. Keep every machine in working order with a clear paper trail.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        <svg viewBox="0 0 24 24"><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/></svg>
+      </div>
+      <div class="feature-card-title">Equipment Transfer & Storage</div>
+      <div class="feature-card-desc">Move equipment between locations or into storage. Track its complete history wherever it goes. Know the full lifecycle of every asset — from original deployment to transfer to eventual retirement — across your entire portfolio.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <div class="feature-card-title">Analytic Reporting</div>
+      <div class="feature-card-desc">Self-serve reports on usage, availability, saturation, and peak periods — updated automatically. Or request custom equipment studies from the Ecofit analytics team for deeper decisions on procurement, rotation, and club modeling.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT IMAGE -->
+<section style="padding:0 32px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="reveal">
+      <div>
+        <img src="/assets/ecofit/05_kpi_metrics.jpg" alt="KPI Metrics Dashboard" style="width:100%;border-radius:10px;border:1px solid #e5e7eb;display:block;box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+        <p style="font-size:12px;color:#9ca3af;margin-top:10px;text-align:center;">Live KPI dashboard — available, active, and down status at a glance</p>
+      </div>
+      <div>
+        <img src="/assets/ecofit/04_mix_saturation_bars.jpg" alt="Equipment Mix Saturation" style="width:100%;border-radius:10px;border:1px solid #e5e7eb;display:block;box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+        <p style="font-size:12px;color:#9ca3af;margin-top:10px;text-align:center;">Equipment mix saturation — which categories are over- or under-utilized</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECTED VS BASIC COMPARISON -->
+<section style="background:#f8fafc;padding:80px 32px;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;" class="reveal">
+      <div class="section-tag" style="display:inline-block;">Pricing Tiers</div>
+      <h2 class="section-h2" style="margin:12px auto 0;max-width:600px;">Start with Basic. Unlock everything with Connected.</h2>
+    </div>
+    <div class="comparison-wrap reveal">
+      <div class="compare-col">
+        <div class="compare-header">
+          <div class="compare-tier">Tier 1</div>
+          <div class="compare-name">Basic</div>
+          <div class="compare-price">$12 / location / month — Everything you need to manage your inventory</div>
+        </div>
+        <div class="compare-items">
+          <div class="compare-item"><span class="compare-check">✓</span>Full inventory management (cardio & strength)</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Equipment transfers between locations</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Storage tracking</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Custom PM scheduling (calendar-based)</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Service task creation and assignment</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Cleaning logs and hygiene tracking</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Custom equipment statuses</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Multi-location organization</div>
+        </div>
+      </div>
+      <div class="compare-col featured">
+        <div class="compare-header featured">
+          <div class="compare-tier featured">Tier 2</div>
+          <div class="compare-name featured">Connected</div>
+          <div class="compare-price featured">Everything in Basic, plus real-time intelligence — contact for pricing</div>
+        </div>
+        <div class="compare-items">
+          <div class="compare-item"><span class="compare-check">✓</span>Everything included in Basic</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Live equipment status (in-use, available, down)</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Real-time event tracking and usage logging</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Usage-based PM scheduling (not just calendar)</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Full usage analytics and availability reports</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Manufacturer console integrations</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Service platform linking</div>
+          <div class="compare-item"><span class="compare-check">✓</span>Custom equipment studies (by request)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS DARK -->
+<div class="testimonials-dark">
+  <div class="testimonials-dark-inner">
+    <div class="section-tag" style="color:#84BC41;">What Operators Say</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:#fff;letter-spacing:-0.025em;line-height:1.2;max-width:640px;margin-top:12px;">The operators who demand more use Ecofit.</h2>
+    <div class="testimonials-dark-grid">
+      <div class="testimonial-dark-card reveal">
+        <p class="testimonial-dark-quote">"All my new corporate clubs will have Ecofit technology moving forward. This system provides me with unparalleled visibility into my facility's equipment."</p>
+        <div class="testimonial-dark-author">Mike Feeney</div>
+        <div class="testimonial-dark-role">UFC Gyms & Crunch Fitness</div>
+      </div>
+      <div class="testimonial-dark-card reveal">
+        <p class="testimonial-dark-quote">"We are using Ecofit at the majority of our key national accounts now in North America. It's become a standard part of how we support our operator partners."</p>
+        <div class="testimonial-dark-author">Terry Woods</div>
+        <div class="testimonial-dark-role">Core Health and Fitness</div>
+      </div>
+      <div class="testimonial-dark-card reveal">
+        <p class="testimonial-dark-quote">"Ecofit is now a standard requirement for all new Retro Fitness franchise clubs. The data it provides is exactly what modern operators need to run efficiently."</p>
+        <div class="testimonial-dark-author">Robbie Sprechman</div>
+        <div class="testimonial-dark-role">CFO, Retro Fitness</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="section-tag" style="display:inline-block;">Get Started</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.025em;line-height:1.2;margin:14px 0 12px;">Ready to take control of your operation?</h2>
+    <p style="font-size:15px;color:#6b7280;line-height:1.65;max-width:520px;margin:0 auto 36px;">The Ecofit Assessment takes 3 minutes and gives you a personalized picture of your current OpEx risk — and what it would take to fix it.</p>
+    <a href="/ecofit-assessment" class="btn-green" style="margin-right:16px;">Take the Free Assessment →</a>
+    <a href="/ecofit/" style="font-size:14px;color:#6b7280;font-weight:500;">← Back to overview</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #e5e7eb;padding:48px 32px;background:#fff;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px;">ecofit</div>
+      <div style="font-size:13px;color:#9ca3af;max-width:260px;line-height:1.6;">The equipment intelligence platform for fitness operators who demand more than guesswork.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Platform</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/platform" style="font-size:13px;color:#6b7280;text-decoration:none;">Features</a>
+          <a href="/ecofit/analytics" style="font-size:13px;color:#6b7280;text-decoration:none;">Analytics</a>
+          <a href="/ecofit/integrations" style="font-size:13px;color:#6b7280;text-decoration:none;">Integrations</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/blog" style="font-size:13px;color:#6b7280;text-decoration:none;">Blog</a>
+          <a href="https://assets.myecofit.com/" style="font-size:13px;color:#6b7280;text-decoration:none;">Portal Login</a>
+          <a href="/ecofit-assessment" style="font-size:13px;color:#6b7280;text-decoration:none;">Free Assessment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:12px;color:#d1d5db;">© 2025 Ecofit Networks Inc. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Privacy</a>
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div style="font-size:36px;margin-bottom:20px;">📊</div>
+    <h3>Before you go — see what's possible with real equipment data.</h3>
+    <p>Take our free 2-minute assessment and get a personalized OpEx risk report for your facility — delivered to your inbox instantly.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Take the Free Assessment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll figure it out on my own</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.08});
+    els.forEach(function(el){io.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('in');}); }
+
+  document.querySelectorAll('a[style*="background:#84BC41"],a[style*="background:#0d1117"],.btn-green,.btn-primary-dark').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      btn.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.18)+'px,'+((e.clientY-r.top-r.height/2)*0.18)+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  });
+
+  if(!sessionStorage.getItem('ecf_exit')){
+    var shown=false;
+    document.addEventListener('mouseleave',function(e){
+      if(e.clientY<10&&!shown){shown=true;sessionStorage.setItem('ecf_exit','1');var el=document.getElementById('exit-overlay');if(el)el.style.display='flex';}
+    });
+  }
+  window.closeExit=function(){var el=document.getElementById('exit-overlay');if(el)el.style.display='none';};
+  var eo=document.getElementById('exit-overlay');
+  if(eo){eo.addEventListener('click',function(e){if(e.target===eo)closeExit();});}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit();});
+})();
+</script>
+</body>
+</html>

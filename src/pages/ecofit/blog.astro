@@ -1,0 +1,316 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Ecofit — Insights on Fitness Operations & Equipment Intelligence</title>
+<meta name="description" content="News, research, and thinking from the Ecofit team on fitness operations, equipment intelligence, and the future of facility management.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #0d1117; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @keyframes grad-flow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  .grad-text { background: linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: grad-flow 5s ease infinite; }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 12px; }
+  .btn-green { font-size: 14px; font-weight: 600; background: #84BC41; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .btn-green:hover { background: #75a838; }
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid #e5e7eb; backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  /* HERO */
+  .hero-centered { text-align: center; padding: 80px 32px 60px; max-width: 680px; margin: 0 auto; }
+  /* FEATURED ARTICLE */
+  .featured-card { background: #0d1117; border-radius: 16px; padding: 56px; margin-bottom: 64px; }
+  .featured-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #84BC41; background: rgba(132,188,65,0.12); border: 1px solid rgba(132,188,65,0.25); padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 20px; }
+  .featured-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: #f9fafb; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 16px; }
+  .featured-meta { font-size: 12px; color: #6b7280; margin-bottom: 16px; }
+  .featured-excerpt { font-size: 15px; color: #9ca3af; line-height: 1.7; margin-bottom: 28px; max-width: 640px; }
+  .featured-link { font-size: 14px; font-weight: 600; color: #84BC41; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .featured-link:hover { color: #a0d655; }
+  /* ARTICLE GRID */
+  .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .article-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; }
+  .article-card:hover { border-color: #84BC41; box-shadow: 0 4px 20px rgba(132,188,65,0.1); }
+  .article-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 12px; }
+  .article-title { font-size: 16px; font-weight: 700; color: #0d1117; line-height: 1.35; margin-bottom: 10px; flex-grow: 1; }
+  .article-meta { font-size: 11.5px; color: #9ca3af; margin-bottom: 12px; }
+  .article-excerpt { font-size: 13px; color: #6b7280; line-height: 1.65; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .article-link { font-size: 12.5px; font-weight: 600; color: #84BC41; text-decoration: none; margin-top: auto; }
+  .article-link:hover { color: #5a8a2a; }
+  /* CATEGORIES */
+  .category-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+  .cat-tab { font-size: 12.5px; font-weight: 600; padding: 6px 14px; border-radius: 100px; border: 1px solid #e5e7eb; color: #6b7280; cursor: pointer; background: #fff; transition: all 0.15s; }
+  .cat-tab.active { background: #0d1117; color: #fff; border-color: #0d1117; }
+  /* NEWSLETTER */
+  .newsletter-section { background: #f8fafc; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; padding: 72px 32px; text-align: center; }
+  .newsletter-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .newsletter-input { padding: 12px 18px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; width: 280px; outline: none; color: #0d1117; }
+  .newsletter-input:focus { border-color: #84BC41; }
+  .newsletter-btn { font-size: 14px; font-weight: 600; background: #84BC41; color: #fff; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .newsletter-btn:hover { background: #75a838; }
+  /* EXIT */
+  #exit-overlay { display: none; position: fixed; inset: 0; background: rgba(5,12,8,0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+  #exit-card { background: #0d1117; border: 1px solid rgba(132,188,65,0.25); border-radius: 20px; max-width: 520px; width: 100%; padding: 48px 44px; position: relative; text-align: center; }
+  #exit-card h3 { font-size: 26px; font-weight: 700; color: #f2f3f8; margin: 0 0 14px; }
+  #exit-card p { color: #9699A2; font-size: 15px; line-height: 1.65; margin: 0 0 32px; }
+  #exit-card .exit-cta { display: inline-block; background: #84BC41; color: #0d1117; font-weight: 700; font-size: 15px; padding: 15px 32px; border-radius: 10px; text-decoration: none; }
+  #exit-card .exit-skip { display: block; margin-top: 16px; font-size: 13px; color: #6b6f7a; cursor: pointer; background: none; border: none; text-decoration: underline; }
+  #exit-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: #9699A2; font-size: 24px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/ecofit/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+      <div style="width:28px;height:28px;background:#84BC41;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 16 16" style="width:16px;height:16px;fill:#fff;"><path d="M8 2L14 6V10L8 14L2 10V6L8 2Z"/></svg>
+      </div>
+      <span style="font-size:16px;font-weight:700;color:#0d1117;letter-spacing:-0.02em;">ecofit</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="/ecofit/platform" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Platform</a>
+      <a href="/ecofit/analytics" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Analytics</a>
+      <a href="/ecofit/integrations" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;">Integrations</a>
+      <a href="/ecofit/blog" style="font-size:13.5px;font-weight:600;color:#0d1117;text-decoration:none;">Blog</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="https://assets.myecofit.com/" style="font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;padding:7px 14px;">Log in</a>
+      <a href="/ecofit-assessment" style="font-size:13.5px;font-weight:600;background:#84BC41;color:#fff;text-decoration:none;padding:8px 18px;border-radius:6px;">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-centered reveal">
+  <h1 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0d1117;margin-bottom:16px;">Insights from <span class="grad-text">the floor.</span></h1>
+  <p style="font-size:16px;color:#6b7280;line-height:1.65;">News, research, and thinking from the Ecofit team on fitness operations, equipment intelligence, and the future of facility management.</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<section style="padding:0 32px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <!-- FEATURED ARTICLE -->
+    <div class="featured-card reveal">
+      <div class="featured-tag">Featured · Video</div>
+      <div class="featured-title">Watch Now — Driving Member Retention with Healthier Equipment</div>
+      <div class="featured-meta">Sep 24, 2025 &nbsp;·&nbsp; 1 min read &nbsp;·&nbsp; Ecofit Team</div>
+      <p class="featured-excerpt">Ecofit founder Dave Johnson sits down with Woven founder Matt Goebel to discuss the direct link between equipment condition, member experience, and retention rates. When machines are down, members leave — and most operators don't connect those two facts until it's too late. This conversation is a must-watch for any multi-location fitness operator thinking seriously about member retention strategy.</p>
+      <a href="https://www.ecofitnetworks.com/media" target="_blank" class="featured-link">Watch the full session →</a>
+    </div>
+
+    <!-- CATEGORY TABS -->
+    <div class="category-tabs">
+      <span class="cat-tab active">All Posts</span>
+      <span class="cat-tab">Partnerships</span>
+      <span class="cat-tab">Operations</span>
+      <span class="cat-tab">Analytics</span>
+      <span class="cat-tab">Industry</span>
+      <span class="cat-tab">AWS IoT</span>
+    </div>
+
+    <!-- ARTICLE GRID -->
+    <div class="articles-grid">
+
+      <div class="article-card reveal">
+        <div class="article-tag">Partnership</div>
+        <div class="article-title">Ecofit and Life Fitness Partner on Fitness Equipment Management Platform Integration</div>
+        <div class="article-meta">May 25, 2021 &nbsp;·&nbsp; 2 min read</div>
+        <p class="article-excerpt">Fitness facility operators need access to accurate equipment data to make informed decisions about procurement, maintenance, and floor optimization. This partnership brings direct console data from Life Fitness equipment into the Ecofit platform — no extra hardware required.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Partnership</div>
+        <div class="article-title">Ecofit Announces Integration Partnership with Matrix Fitness</div>
+        <div class="article-meta">May 19, 2021 &nbsp;·&nbsp; 2 min read</div>
+        <p class="article-excerpt">Enabling seamless data integration for fitness operators across North America. Matrix Fitness and Ecofit Networks join forces to deliver direct equipment data from Matrix consoles to the Ecofit platform, giving operators unprecedented visibility into their Matrix fleet.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Analytics</div>
+        <div class="article-title">4 Data-based Insights That Can Save Health Clubs Money, Right Now</div>
+        <div class="article-meta">Apr 27, 2021 &nbsp;·&nbsp; 3 min read</div>
+        <p class="article-excerpt">Over the past decade, Ecofit has collected millions of data points from equipment at thousands of health clubs. These four patterns show up again and again — and every time operators act on them, they see measurable reductions in OpEx within months.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Operations</div>
+        <div class="article-title">Big Changes Have Arrived</div>
+        <div class="article-meta">Dec 11, 2020 &nbsp;·&nbsp; 3 min read</div>
+        <p class="article-excerpt">The fitness industry is different now. Issues that were hot topics a year ago have transformed into operational necessities. Cleanliness, equipment spacing, capacity tracking — they've moved from "nice to have" to "mission critical." Here's how Ecofit helps operators adapt.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Operations</div>
+        <div class="article-title">Optimizing Equipment Spacing Post-COVID19</div>
+        <div class="article-meta">Jun 22, 2020 &nbsp;·&nbsp; 2 min read</div>
+        <p class="article-excerpt">How can you decide how many pieces of each cardio equipment group to open on your gym floor, given new spacing requirements? Ecofit's usage data provides a data-driven answer — rather than guesswork — for one of the hardest operational questions fitness operators faced in 2020.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Industry</div>
+        <div class="article-title">Ecofit Update — COVID-19</div>
+        <div class="article-meta">Mar 30, 2020 &nbsp;·&nbsp; 2 min read</div>
+        <p class="article-excerpt">The fitness industry is shifting every day and we are aware of the evolving needs of our partners and clients during this unprecedented period. A message from the Ecofit team on how we're supporting operators through the closure period and preparing for reopening.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">AWS IoT</div>
+        <div class="article-title">Ecofit appears in AWS IoT All The Things | Season 1, Episode 4</div>
+        <div class="article-meta">Jun 24, 2019 &nbsp;·&nbsp; 1 min read</div>
+        <p class="article-excerpt">Join AWS IoT experts as we discuss implementing AWS IoT data services for the fitness industry. Ecofit founder Dave Johnson explains how the platform uses AWS IoT infrastructure to collect, process, and analyze equipment data at scale across thousands of locations.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Watch the episode →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">AWS IoT</div>
+        <div class="article-title">Ecofit Builds Highly Intelligent Solutions for the Fitness Industry with AWS IoT</div>
+        <div class="article-meta">May 14, 2019 &nbsp;·&nbsp; 2 min read</div>
+        <p class="article-excerpt">Ecofit Networks hosted Amazon Web Services at their offices in Victoria, Canada, for a deep dive into how AWS IoT powers the Ecofit platform. A behind-the-scenes look at the infrastructure that makes real-time equipment intelligence possible at enterprise scale.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Partnership</div>
+        <div class="article-title">Ecofit and ServiceChannel Partner for Innovative Asset Management Solution</div>
+        <div class="article-meta">Mar 23, 2018 &nbsp;·&nbsp; 2 min read</div>
+        <p class="article-excerpt">Fitness facilities realize greater control and management of exercise machines and other assets through the Ecofit and ServiceChannel integration. When Ecofit detects an equipment issue, a service ticket is automatically created in ServiceChannel — with full usage context attached.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Partnership</div>
+        <div class="article-title">True Fitness Partners With ECOFIT Networks</div>
+        <div class="article-meta">Sep 15, 2017 &nbsp;·&nbsp; 1 min read</div>
+        <p class="article-excerpt">TRUE Fitness Technology announced it will be a certified partner and distributor of ECOFIT equipment intelligence hardware and software. The partnership brings Ecofit's tracking capabilities to the full True Fitness product line for operators across North America.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <div class="article-card reveal">
+        <div class="article-tag">Partnership</div>
+        <div class="article-title">ECOFIT and Woodway Partnership</div>
+        <div class="article-meta">Mar 2, 2015 &nbsp;·&nbsp; 1 min read</div>
+        <p class="article-excerpt">WOODWAY is excited to announce they will be shipping their equipment "Network Ready" with Ecofit integration built in. Woodway treadmills — known for their durability and commercial quality — will now come pre-configured to connect directly to the Ecofit platform from day one.</p>
+        <a href="https://www.ecofitnetworks.com/media" target="_blank" class="article-link">Read more →</a>
+      </div>
+
+      <!-- CTA CARD -->
+      <div class="article-card reveal" style="background:#f8fafc;border-color:#e5e7eb;justify-content:center;text-align:center;">
+        <div style="font-size:28px;margin-bottom:16px;">📊</div>
+        <div style="font-size:15px;font-weight:700;color:#0d1117;margin-bottom:10px;line-height:1.3;">Ready to see what your facility data looks like?</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:20px;">Take the free 3-minute Ecofit Assessment and get a personalized OpEx risk report for your operation.</p>
+        <a href="/ecofit-assessment" class="btn-green" style="font-size:13px;padding:10px 20px;">Take the Assessment →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div style="max-width:560px;margin:0 auto;" class="reveal">
+    <div class="section-tag" style="display:inline-block;">Stay Current</div>
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-0.025em;line-height:1.2;margin:12px 0 10px;">Stay current on fitness operations.</h2>
+    <p style="font-size:14px;color:#6b7280;line-height:1.65;">New articles, partnership announcements, and industry research from the Ecofit team — delivered to your inbox. No spam, ever.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@gym.com">
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+    <p style="font-size:11px;color:#9ca3af;margin-top:12px;">Join 2,000+ fitness operators who get the Ecofit newsletter.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #e5e7eb;padding:48px 32px;background:#fff;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px;">ecofit</div>
+      <div style="font-size:13px;color:#9ca3af;max-width:260px;line-height:1.6;">The equipment intelligence platform for fitness operators who demand more than guesswork.</div>
+    </div>
+    <div style="display:flex;gap:64px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Platform</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/platform" style="font-size:13px;color:#6b7280;text-decoration:none;">Features</a>
+          <a href="/ecofit/analytics" style="font-size:13px;color:#6b7280;text-decoration:none;">Analytics</a>
+          <a href="/ecofit/integrations" style="font-size:13px;color:#6b7280;text-decoration:none;">Integrations</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d1117;margin-bottom:14px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/ecofit/blog" style="font-size:13px;color:#6b7280;text-decoration:none;">Blog</a>
+          <a href="https://assets.myecofit.com/" style="font-size:13px;color:#6b7280;text-decoration:none;">Portal Login</a>
+          <a href="/ecofit-assessment" style="font-size:13px;color:#6b7280;text-decoration:none;">Free Assessment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:12px;color:#d1d5db;">© 2025 Ecofit Networks Inc. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Privacy</a>
+      <a href="#" style="font-size:12px;color:#9ca3af;text-decoration:none;">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div style="font-size:36px;margin-bottom:20px;">📰</div>
+    <h3>Before you go — get the Ecofit newsletter.</h3>
+    <p>New articles on fitness operations and equipment intelligence, delivered to your inbox. Plus: take our free assessment to see your facility's OpEx risk score.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Take the Free Assessment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll check back manually</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.08});
+    els.forEach(function(el){io.observe(el);});
+  } else { els.forEach(function(el){el.classList.add('in');}); }
+
+  document.querySelectorAll('a[style*="background:#84BC41"],.btn-green,.newsletter-btn').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      btn.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.18)+'px,'+((e.clientY-r.top-r.height/2)*0.18)+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  });
+
+  if(!sessionStorage.getItem('ecf_exit')){
+    var shown=false;
+    document.addEventListener('mouseleave',function(e){
+      if(e.clientY<10&&!shown){shown=true;sessionStorage.setItem('ecf_exit','1');var el=document.getElementById('exit-overlay');if(el)el.style.display='flex';}
+    });
+  }
+  window.closeExit=function(){var el=document.getElementById('exit-overlay');if(el)el.style.display='none';};
+  var eo=document.getElementById('exit-overlay');
+  if(eo){eo.addEventListener('click',function(e){if(e.target===eo)closeExit();});}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit();});
+})();
+</script>
+</body>
+</html>
