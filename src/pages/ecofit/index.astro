@@ -181,7 +181,8 @@
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero dot-grid-section">
+  <canvas class="dot-grid" data-color="100, 100, 100" data-light></canvas>
   <div>
     <div class="hero-tag"><span class="hero-tag-dot"></span>Equipment Intelligence Platform</div>
     <h1>The best operators don't react. <span class="grad-text">They already know.</span></h1>
@@ -636,6 +637,10 @@
 
   document.querySelectorAll('canvas.dot-grid').forEach(function(canvas){
     var ctx = canvas.getContext('2d');
+    var color = canvas.getAttribute('data-color') || '132, 188, 65';
+    var isLight = canvas.hasAttribute('data-light');
+    var baseOpacity = isLight ? 0.08 : 0.10;
+    var glowMax = isLight ? 0.25 : 0.55;
     var parent = canvas.parentElement;
     var width = 0, height = 0, dots = [];
     var mouseX = -9999, mouseY = -9999;
@@ -676,12 +681,12 @@
           var angle = Math.atan2(dy, dx);
           tx += Math.cos(angle) * pushAmount;
           ty += Math.sin(angle) * pushAmount;
-          glow = force * 0.55;
+          glow = force * glowMax;
         }
         d.x += (tx - d.x) * 0.12;
         d.y += (ty - d.y) * 0.12;
-        var opacity = 0.10 + glow;
-        ctx.fillStyle = 'rgba(132, 188, 65, ' + opacity + ')';
+        var opacity = baseOpacity + glow;
+        ctx.fillStyle = 'rgba(' + color + ', ' + opacity + ')';
         ctx.beginPath();
         ctx.arc(d.x, d.y, 1.5, 0, Math.PI * 2);
         ctx.fill();
