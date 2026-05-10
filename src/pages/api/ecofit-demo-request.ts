@@ -90,11 +90,27 @@ async function logToAirtable(data: DemoPayload) {
   });
 }
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type'
+};
+
+export const OPTIONS: APIRoute = async () => {
+  return new Response(null, {
+    status: 204,
+    headers: CORS_HEADERS
+  });
+};
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data: DemoPayload = await request.json();
     if (!data.name || !data.email || !data.company) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      });
     }
 
     await Promise.allSettled([
@@ -105,10 +121,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     return new Response(JSON.stringify({ ok: true, bookingLink: BOOKING_LINK }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
     });
   } catch (err) {
     console.error('Demo request error:', err);
-    return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Server error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+    });
   }
 };

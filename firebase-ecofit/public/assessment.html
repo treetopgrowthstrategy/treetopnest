@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ecofit Facility OpEx Assessment</title><meta name="description" content="Find out how much operational spend your fitness facility could be recovering. Free 2-minute assessment."><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/claude-training.BXgpkJbM.css">
+<link rel="stylesheet" href="/_astro/ecofit-assessment.DL6gwvP4.css"></head> <body> <div id="progress-wrap"><div id="progress-bar"></div></div> <nav class="ec-nav"> <img src="/assets/ecofit-logo-dark.png" alt="Ecofit" onerror="this.outerHTML='<span class=&quot;ec-nav-fallback&quot;>ecofit</span>'"> <span class="ec-nav-label">Facility OpEx Assessment</span> </nav> <!-- ── INTRO ───────────────────────────────────────────────── --> <div class="ec-step" id="step-0"> <div class="ec-inner"> <div class="ec-center"> <div class="ec-eyebrow">Free · 2 Minutes · Personalized Report</div> <h1 class="ec-h1">
+Could your facility be<br> <em>squandering $250K+</em><br>
+every year?
+</h1> <p class="ec-intro-sub">
+Multi-location fitness operators running without real equipment intelligence are absorbing enormous costs invisibly. Eight questions tells you exactly how much is at stake — and where to start closing the gap.
+</p> <div class="ec-stats"> <div class="ec-stat"> <div class="ec-stat-n">40%</div> <div class="ec-stat-l">Reduction in equipment refresh costs</div> </div> <div class="ec-stat"> <div class="ec-stat-n">3.2×</div> <div class="ec-stat-l">Longer equipment lifespan on average</div> </div> <div class="ec-stat"> <div class="ec-stat-n">200+</div> <div class="ec-stat-l">Assets networked per facility</div> </div> </div> <div> <button class="ec-btn" onclick="startAssessment()">Calculate My OpEx Risk →</button> <span class="ec-btn-note">No cost · Personalized report delivered to your inbox</span> </div> </div> </div> </div> <!-- ── QUESTION STEPS (server-rendered) ─────────────────────── --> <div class="ec-step hidden" id="step-q0"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">01 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Your Network</span> </div> <div class="ec-q-text">How many locations do you currently operate?</div> <div class="ec-q-hint">Include all active locations — owned, managed, or franchised.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('locations','1',0,this)"> <span class="ec-opt-dot"></span> <span>1 location</span> </button><button class="ec-opt" type="button" onclick="selectOpt('locations','2-5',0,this)"> <span class="ec-opt-dot"></span> <span>2–5 locations</span> </button><button class="ec-opt" type="button" onclick="selectOpt('locations','6-15',0,this)"> <span class="ec-opt-dot"></span> <span>6–15 locations</span> </button><button class="ec-opt" type="button" onclick="selectOpt('locations','16-50',0,this)"> <span class="ec-opt-dot"></span> <span>16–50 locations</span> </button><button class="ec-opt" type="button" onclick="selectOpt('locations','51-100',0,this)"> <span class="ec-opt-dot"></span> <span>51–100 locations</span> </button><button class="ec-opt" type="button" onclick="selectOpt('locations','100+',0,this)"> <span class="ec-opt-dot"></span> <span>100+ locations</span> </button> </div>  </div> </div><div class="ec-step hidden" id="step-q1"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">02 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Your Network</span> </div> <div class="ec-q-text">Roughly how many pieces of equipment does your average location run?</div> <div class="ec-q-hint">Count everything — cardio, strength, functional, specialty. Estimate is fine.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('equipment','under-30',1,this)"> <span class="ec-opt-dot"></span> <span>Under 30 pieces</span> </button><button class="ec-opt" type="button" onclick="selectOpt('equipment','30-75',1,this)"> <span class="ec-opt-dot"></span> <span>30–75 pieces</span> </button><button class="ec-opt" type="button" onclick="selectOpt('equipment','76-150',1,this)"> <span class="ec-opt-dot"></span> <span>76–150 pieces</span> </button><button class="ec-opt" type="button" onclick="selectOpt('equipment','151-300',1,this)"> <span class="ec-opt-dot"></span> <span>151–300 pieces</span> </button><button class="ec-opt" type="button" onclick="selectOpt('equipment','300+',1,this)"> <span class="ec-opt-dot"></span> <span>300+ pieces</span> </button> </div> <button class="ec-back" onclick="prevStep(1)">← Back</button> </div> </div><div class="ec-step hidden" id="step-q2"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">03 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Current Operations</span> </div> <div class="ec-q-text">How are you currently tracking equipment performance and utilization?</div> <div class="ec-q-hint">This is the single biggest driver of OpEx waste we see across operators.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('tracking','software',2,this)"> <span class="ec-opt-dot"></span> <span>Dedicated software or IoT-connected equipment</span> </button><button class="ec-opt" type="button" onclick="selectOpt('tracking','tickets',2,this)"> <span class="ec-opt-dot"></span> <span>Service tickets and staff reports</span> </button><button class="ec-opt" type="button" onclick="selectOpt('tracking','manual',2,this)"> <span class="ec-opt-dot"></span> <span>Periodic manual audits</span> </button><button class="ec-opt" type="button" onclick="selectOpt('tracking','none',2,this)"> <span class="ec-opt-dot"></span> <span>We don&#39;t have a formal system</span> </button> </div> <button class="ec-back" onclick="prevStep(2)">← Back</button> </div> </div><div class="ec-step hidden" id="step-q3"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">04 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Current Operations</span> </div> <div class="ec-q-text">How much of your maintenance spend last year was reactive — unplanned repairs after something broke?</div> <div class="ec-q-hint">Industry benchmark: best-in-class operators keep reactive spend under 20%.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('maintenance','planned',3,this)"> <span class="ec-opt-dot"></span> <span>Mostly planned — under 25% reactive</span> </button><button class="ec-opt" type="button" onclick="selectOpt('maintenance','mixed',3,this)"> <span class="ec-opt-dot"></span> <span>Roughly half and half</span> </button><button class="ec-opt" type="button" onclick="selectOpt('maintenance','reactive',3,this)"> <span class="ec-opt-dot"></span> <span>Mostly reactive — over 50% unplanned</span> </button><button class="ec-opt" type="button" onclick="selectOpt('maintenance','unknown',3,this)"> <span class="ec-opt-dot"></span> <span>We don&#39;t track this breakdown</span> </button> </div> <button class="ec-back" onclick="prevStep(3)">← Back</button> </div> </div><div class="ec-step hidden" id="step-q4"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">05 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Equipment Profile</span> </div> <div class="ec-q-text">What&#39;s the average age of your primary cardio and strength equipment?</div> <div class="ec-q-hint">Older fleets without visibility data carry compounding capex risk.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('age','under-3',4,this)"> <span class="ec-opt-dot"></span> <span>Under 3 years — relatively new fleet</span> </button><button class="ec-opt" type="button" onclick="selectOpt('age','3-6',4,this)"> <span class="ec-opt-dot"></span> <span>3–6 years — starting to see more service calls</span> </button><button class="ec-opt" type="button" onclick="selectOpt('age','6-10',4,this)"> <span class="ec-opt-dot"></span> <span>6–10 years — significant maintenance pressure</span> </button><button class="ec-opt" type="button" onclick="selectOpt('age','10+',4,this)"> <span class="ec-opt-dot"></span> <span>10+ years — major replacement cycle coming</span> </button> </div> <button class="ec-back" onclick="prevStep(4)">← Back</button> </div> </div><div class="ec-step hidden" id="step-q5"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">06 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Equipment Profile</span> </div> <div class="ec-q-text">Do you have a dedicated recovery or wellness zone at your locations?</div> <div class="ec-q-hint">Recovery zones are the fastest-growing capex category in fitness — and the least measured.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('recovery','none',5,this)"> <span class="ec-opt-dot"></span> <span>No dedicated recovery area</span> </button><button class="ec-opt" type="button" onclick="selectOpt('recovery','small',5,this)"> <span class="ec-opt-dot"></span> <span>Small zone — under 500 sq ft</span> </button><button class="ec-opt" type="button" onclick="selectOpt('recovery','medium',5,this)"> <span class="ec-opt-dot"></span> <span>Medium zone — 500–1,500 sq ft</span> </button><button class="ec-opt" type="button" onclick="selectOpt('recovery','large',5,this)"> <span class="ec-opt-dot"></span> <span>Large or premium recovery area — 1,500+ sq ft</span> </button> </div> <button class="ec-back" onclick="prevStep(5)">← Back</button> </div> </div><div class="ec-step hidden" id="step-q6"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">07 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Member Experience</span> </div> <div class="ec-q-text">In the last 12 months, how often has equipment downtime visibly impacted member experience?</div> <div class="ec-q-hint">Out-of-order equipment, member complaints, or staff scrambling to respond.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('impact','rarely',6,this)"> <span class="ec-opt-dot"></span> <span>Rarely — equipment is mostly reliable</span> </button><button class="ec-opt" type="button" onclick="selectOpt('impact','occasionally',6,this)"> <span class="ec-opt-dot"></span> <span>Occasionally — a few incidents per quarter</span> </button><button class="ec-opt" type="button" onclick="selectOpt('impact','frequently',6,this)"> <span class="ec-opt-dot"></span> <span>Frequently — members notice and sometimes complain</span> </button><button class="ec-opt" type="button" onclick="selectOpt('impact','known-pain',6,this)"> <span class="ec-opt-dot"></span> <span>It&#39;s a known pain point we haven&#39;t solved</span> </button> </div> <button class="ec-back" onclick="prevStep(6)">← Back</button> </div> </div><div class="ec-step hidden" id="step-q7"> <div class="ec-inner"> <div class="ec-q-meta"> <span class="ec-q-num">08 / 08</span> <span class="ec-q-div"></span> <span class="ec-q-cat">Visibility &amp; Analytics</span> </div> <div class="ec-q-text">How confident are you in the accuracy of your equipment ROI data right now?</div> <div class="ec-q-hint">This is what Ecofit gives you. Most operators feel the gap as soon as they answer this.</div> <div class="ec-options"> <button class="ec-opt" type="button" onclick="selectOpt('data_confidence','high',7,this)"> <span class="ec-opt-dot"></span> <span>Very confident — we have real-time visibility</span> </button><button class="ec-opt" type="button" onclick="selectOpt('data_confidence','medium',7,this)"> <span class="ec-opt-dot"></span> <span>Somewhat confident — we track it but it&#39;s incomplete</span> </button><button class="ec-opt" type="button" onclick="selectOpt('data_confidence','low',7,this)"> <span class="ec-opt-dot"></span> <span>Not very confident — our data has significant gaps</span> </button><button class="ec-opt" type="button" onclick="selectOpt('data_confidence','none',7,this)"> <span class="ec-opt-dot"></span> <span>We don&#39;t have equipment ROI data</span> </button> </div> <button class="ec-back" onclick="prevStep(7)">← Back</button> </div> </div> <!-- ── LEAD CAPTURE ──────────────────────────────────────────── --> <div class="ec-step hidden" id="step-lead"> <div class="ec-inner"> <div class="ec-center"> <div class="ec-risk-block"> <div class="ec-risk-lbl">Estimated Annual OpEx at Risk</div> <span class="ec-risk-amt" id="score-display">—</span> <div class="ec-risk-sub" id="score-sublabel"></div> </div> <h2 style="font-family:'Raleway',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px;color:#F2F3F8;">Get your full Facility Intelligence Report.</h2> <p style="font-size:14px;color:#9699A2;margin-bottom:22px;line-height:1.75;font-weight:300;">Your personalized report breaks down OpEx exposure by category, benchmarks your network against comparable operators, and gives you three priority actions.</p> <form id="lead-form"> <div class="ec-form-grid"> <div class="ec-form-field"> <label class="ec-form-label" for="f-name">First Name *</label> <input class="ec-form-input" type="text" id="f-name" placeholder="Jordan" required> </div> <div class="ec-form-field"> <label class="ec-form-label" for="f-company">Company *</label> <input class="ec-form-input" type="text" id="f-company" placeholder="Apex Fitness" required> </div> <div class="ec-form-field full"> <label class="ec-form-label" for="f-email">Work Email *</label> <input class="ec-form-input" type="email" id="f-email" placeholder="jordan@apexfitness.com" required> </div> <div class="ec-form-field"> <label class="ec-form-label" for="f-title">Title</label> <input class="ec-form-input" type="text" id="f-title" placeholder="VP Operations, CEO…"> </div> <div class="ec-form-field"> <label class="ec-form-label" for="f-phone">Phone</label> <input class="ec-form-input" type="tel" id="f-phone" placeholder="(555) 000-0000"> </div> </div> <p class="ec-form-note">Report arrives within 5 minutes. We don't share your information.</p> <button class="ec-btn" id="submit-btn" type="submit">Send My Facility Report →</button> <div id="error-msg">Something went wrong — please try again.</div> </form> </div> </div> </div> <!-- ── CONFIRM ───────────────────────────────────────────────── --> <div class="ec-step hidden" id="step-confirm"> <div class="ec-inner"> <div class="ec-center"> <div class="ec-check"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84BC41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"> <polyline points="20 6 9 17 4 12"></polyline> </svg> </div> <h2 class="ec-confirm-h">Your report is on its way.</h2> <p class="ec-confirm-sub">Check your inbox in the next few minutes. Your Ecofit Facility Intelligence Report includes a full OpEx breakdown, benchmarks for your facility type, and three priority actions.</p> <div class="ec-confirm-stats"> <div class="ec-confirm-stat"> <div class="ec-confirm-stat-l">Estimated at risk</div> <div class="ec-confirm-stat-v" id="confirm-risk">—</div> </div> <div class="ec-confirm-stat"> <div class="ec-confirm-stat-l">Network size</div> <div class="ec-confirm-stat-v" id="confirm-network">—</div> </div> </div> <p style="font-size:14px;color:#9699A2;line-height:1.8;margin-bottom:26px;max-width:460px;font-weight:300;">If you'd like to see what the intelligence layer looks like for your specific network, an Ecofit analyst is available for a 30-minute no-commitment demo.</p> <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="ec-btn" target="_blank" rel="noopener">Book a Demo →</a> <a href="https://treetopgrowthstrategy.com" class="ec-back-link">← Back to Treetop Growth Strategy</a> </div> </div> </div> <script>
+  let answers = {};
+  const totalQ = document.querySelectorAll('[id^="step-q"]').length;
+
+  function showStep(id) {
+    document.querySelectorAll('.ec-step').forEach(s => {
+      if (!s.classList.contains('hidden')) {
+        s.classList.add('exit');
+        setTimeout(() => { s.classList.add('hidden'); s.classList.remove('exit'); }, 260);
+      }
+    });
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.classList.remove('hidden'); el.scrollTop = 0; }
+    }, 160);
+  }
+
+  function updateProgress(n) {
+    document.getElementById('progress-bar').style.width = Math.round((n / totalQ) * 100) + '%';
+  }
+
+  function startAssessment() {
+    showStep('step-q0');
+    updateProgress(0);
+  }
+
+  function selectOpt(qId, value, stepIdx, el) {
+    el.closest('.ec-options').querySelectorAll('.ec-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[qId] = value;
+    setTimeout(() => {
+      const next = stepIdx + 1;
+      if (next < totalQ) {
+        showStep('step-q' + next);
+        updateProgress(next);
+      } else {
+        computeAndShowLead();
+      }
+    }, 340);
+  }
+
+  function prevStep(i) {
+    showStep(i <= 0 ? 'step-0' : 'step-q' + (i - 1));
+    updateProgress(Math.max(0, i - 1));
+  }
+
+  // ── SCORING ────────────────────────────────────────────────
+  function computeRisk() {
+    const locMap     = {'1':1,'2-5':3,'6-15':10,'16-50':30,'51-100':75,'100+':150};
+    const equipMap   = {'under-30':18,'30-75':50,'76-150':110,'151-300':220,'300+':350};
+    const trackMult  = {'software':0.55,'tickets':1.0,'manual':1.25,'none':1.5};
+    const maintMult  = {'planned':0.65,'mixed':1.0,'reactive':1.45,'unknown':1.25};
+    const ageRisk    = {'under-3':0,'3-6':12000,'6-10':38000,'10+':75000};
+    const recovMap   = {'none':0,'small':10000,'medium':24000,'large':48000};
+    const impactMult = {'rarely':0.85,'occasionally':1.0,'frequently':1.2,'known-pain':1.35};
+    const dataMult   = {'high':0.5,'medium':0.9,'low':1.2,'none':1.45};
+
+    const locs  = locMap[answers.locations]   || 1;
+    const equip = equipMap[answers.equipment] || 18;
+    const tM    = trackMult[answers.tracking] || 1.0;
+    const mM    = maintMult[answers.maintenance] || 1.0;
+    const capex = (ageRisk[answers.age]   || 0) * locs;
+    const recov = (recovMap[answers.recovery] || 0) * locs;
+    const iM    = impactMult[answers.impact] || 1.0;
+    const dM    = dataMult[answers.data_confidence] || 1.0;
+
+    return Math.round((equip * locs * 2000 * tM * mM * iM * dM) + (capex * mM) + (recov * dM));
+  }
+
+  function fmtM(n) {
+    if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+    if (n >= 1000)    return '$' + Math.round(n/1000) + 'K';
+    return '$' + n.toLocaleString();
+  }
+
+  function riskLabel(n) {
+    if (n < 100000) return 'Emerging exposure — targeted quick wins available';
+    if (n < 300000) return 'Significant exposure — clear ROI opportunity at this scale';
+    if (n < 750000) return 'High exposure — network-wide intelligence pays for itself fast';
+    return 'Critical exposure — every quarter without visibility compounds the cost';
+  }
+
+  function networkLabel() {
+    return ({'1':'1 location','2-5':'2–5 locations','6-15':'6–15 locations',
+             '16-50':'16–50 locations','51-100':'51–100 locations','100+':'100+ locations'}
+            [answers.locations] || 'your network');
+  }
+
+  function computeAndShowLead() {
+    const r = computeRisk();
+    const lo = fmtM(Math.round(r * 0.75));
+    const hi = fmtM(Math.round(r * 1.35));
+    document.getElementById('score-display').textContent  = lo + '–' + hi;
+    document.getElementById('score-sublabel').textContent = riskLabel(r);
+    window._riskDisplay = lo + '–' + hi;
+    showStep('step-lead');
+    updateProgress(totalQ);
+  }
+
+  // ── SUBMIT ─────────────────────────────────────────────────
+  document.getElementById('lead-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn   = document.getElementById('submit-btn');
+    var errEl = document.getElementById('error-msg');
+    btn.disabled = true;
+    btn.textContent = 'Generating your report…';
+    errEl.style.display = 'none';
+
+    var r = computeRisk();
+    var payload = {
+      name:         document.getElementById('f-name').value.trim(),
+      email:        document.getElementById('f-email').value.trim(),
+      company:      document.getElementById('f-company').value.trim(),
+      title:        document.getElementById('f-title').value.trim(),
+      phone:        document.getElementById('f-phone').value.trim(),
+      answers:      answers,
+      riskLow:      Math.round(r * 0.75),
+      riskHigh:     Math.round(r * 1.35),
+      riskMid:      r,
+      networkLabel: networkLabel(),
+    };
+
+    try {
+      var res = await fetch('https://treetopgrowthstrategy.com/api/ecofit-assessment-submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error();
+      document.getElementById('confirm-risk').textContent    = window._riskDisplay || (fmtM(payload.riskLow) + '–' + fmtM(payload.riskHigh));
+      document.getElementById('confirm-network').textContent = networkLabel();
+      showStep('step-confirm');
+      document.getElementById('progress-bar').style.width = '100%';
+    } catch(_) {
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Send My Facility Report →';
+    }
+  });
+</script> </body> </html>

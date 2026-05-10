@@ -494,11 +494,27 @@ async function logToAirtable(data: AssessmentPayload, reportUrl: string | null, 
 
 // ─── ROUTE ────────────────────────────────────────────────────────────────────
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type'
+};
+
+export const OPTIONS: APIRoute = async () => {
+  return new Response(null, {
+    status: 204,
+    headers: CORS_HEADERS
+  });
+};
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data: AssessmentPayload = await request.json();
     if (!data.email || !data.name || !data.company) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      });
     }
 
     const dateStr = new Date().toISOString().slice(0, 10);
@@ -522,11 +538,14 @@ export const POST: APIRoute = async ({ request }) => {
 
     return new Response(JSON.stringify({ success: true, reportUrl }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
     });
 
   } catch (err) {
     console.error('ecofit-assessment-submit error:', err);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+    });
   }
 };

@@ -1,0 +1,33 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      { "source": "/platform", "destination": "/platform.html" },
+      { "source": "/analytics", "destination": "/analytics.html" },
+      { "source": "/integrations", "destination": "/integrations.html" },
+      { "source": "/blog", "destination": "/blog.html" },
+      { "source": "/assessment", "destination": "/assessment.html" }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|woff2)",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+        ]
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}
