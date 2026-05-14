@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoFit — Content Calendar 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #14191f;
+    --bg-dark:   #0d1117;
+    --surface:   #1a2130;
+    --surface2:  #2F3535;
+    --border:    rgba(255,255,255,0.08);
+    --border-h:  rgba(132,188,65,0.3);
+    --green:     #84BC41;
+    --green-dk:  #6aa130;
+    --green-glow:rgba(132,188,65,0.08);
+    --green-glow2:rgba(132,188,65,0.14);
+    --teal:      #58BCC5;
+    --amber:     #f59e0b;
+    --red:       #ef4444;
+    --text:      #F2F3F8;
+    --text-sub:  #9699A2;
+    --text-muted:#6b6f7a;
+    --text-dim:  #c8cad1;
+    --r:         12px;
+    --r-lg:      14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh;padding-bottom:100px;}
+  h1,h2,h3,h4,h5,h6{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;color:var(--text);}
+
+  /* DOT BG */
+  .dot-bg{position:relative;overflow:hidden;}
+  .dot-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  .dot-bg>*{position:relative;z-index:1;}
+
+  /* NAV */
+  nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:relative;z-index:10;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo img{height:26px;width:auto;display:block;}
+  .nav-logo .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-right{display:flex;align-items:center;gap:20px;}
+  .nav-pill{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-sub);}
+  .nav-badge{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);}
+  .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:livepulse 2s infinite;flex-shrink:0;}
+  @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(88,188,197,0.6)}70%{box-shadow:0 0 0 8px rgba(88,188,197,0)}100%{box-shadow:0 0 0 0 rgba(88,188,197,0)}}
+
+  /* HERO */
+  .hero{padding:64px 40px 56px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 0%,rgba(132,188,65,0.07),transparent 60%);pointer-events:none;}
+  .hero-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative;z-index:1;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;max-width:560px;}
+  .hero h1 em{color:var(--green);font-style:italic;}
+  .hero p{margin-top:14px;font-size:15px;color:var(--text-sub);font-weight:300;max-width:480px;line-height:1.65;}
+  .hero-meta{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+  .meta-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;min-width:190px;}
+  .meta-label{font-size:9.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+  .meta-value{font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;color:var(--text);}
+
+  /* STRUCTURE */
+  .structure-strip{background:var(--surface2);border-bottom:1px solid var(--border);padding:16px 40px;}
+  .structure-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .s-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-right:6px;flex-shrink:0;}
+  .s-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-sub);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;padding:5px 13px;white-space:nowrap;}
+  .s-item .sd{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+  .sdiv{color:var(--text-muted);font-size:16px;line-height:1;}
+
+  /* CONTROLS */
+  .controls-outer{max-width:1200px;margin:0 auto;padding:24px 40px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .c-label-top{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-right:4px;}
+  .filter-btn{background:transparent;border:1px solid var(--border);color:var(--text-sub);font-family:'Work Sans',sans-serif;font-size:12px;font-weight:500;padding:6px 16px;border-radius:20px;cursor:pointer;transition:all 0.2s cubic-bezier(.16,1,.3,1);}
+  .filter-btn:hover{border-color:var(--border-h);color:var(--green);background:var(--green-glow);}
+  .filter-btn.active{border-color:var(--green);color:var(--green);background:var(--green-glow2);}
+
+  /* GRID */
+  .calendar-wrap{max-width:1200px;margin:0 auto;padding:24px 40px 60px;}
+  .calendar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:20px;}
+
+  /* MONTH CARD */
+  .month-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;transition:transform 0.3s cubic-bezier(.16,1,.3,1),box-shadow 0.3s,border-color 0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.4),0 0 0 1px rgba(132,188,65,0.04);position:relative;overflow:hidden;}
+  .month-card::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle at top right,rgba(132,188,65,0.05),transparent 65%);pointer-events:none;}
+  .month-card:hover{transform:translateY(-2px);border-color:var(--border-h);box-shadow:0 12px 32px rgba(0,0,0,0.5),0 0 0 1px rgba(132,188,65,0.3);}
+  .month-card.hidden{display:none;}
+  .month-card.card-approved{border-color:rgba(132,188,65,0.5)!important;box-shadow:0 0 0 1px rgba(132,188,65,0.4),0 8px 24px rgba(0,0,0,0.4)!important;}
+  .month-card.card-changes{border-color:rgba(245,158,11,0.5)!important;box-shadow:0 0 0 1px rgba(245,158,11,0.3),0 8px 24px rgba(0,0,0,0.4)!important;}
+
+  /* CARD TOP */
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px;}
+  .card-month{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .card-title{font-family:'Raleway',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;line-height:1.3;max-width:310px;}
+
+  /* BADGES */
+  .pillar-badge{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+  .pb-thought{color:#84BC41;background:rgba(132,188,65,0.12);}
+  .pb-operator{color:#58BCC5;background:rgba(88,188,197,0.12);}
+  .pb-metric{color:#f59e0b;background:rgba(245,158,11,0.12);}
+  .pb-partner{color:#c084fc;background:rgba(192,132,252,0.12);}
+
+  /* CAMPAIGN ROWS */
+  .campaign-rows{display:flex;flex-direction:column;gap:8px;}
+  .c-row{display:grid;grid-template-columns:106px 1fr;gap:14px;align-items:start;padding:11px 14px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:8px;transition:border-color 0.2s,background 0.2s;}
+  .c-row:hover{background:rgba(132,188,65,0.04);border-color:rgba(132,188,65,0.15);}
+  .row-label{font-size:9.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);padding-top:2px;line-height:1.5;}
+  .row-title{font-size:12.5px;font-weight:600;color:var(--text-dim);margin-bottom:3px;line-height:1.4;}
+  .row-desc{font-size:11.5px;color:var(--text-muted);line-height:1.55;}
+  .partner-chip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--text-sub);background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:3px 9px;border-radius:20px;margin-top:5px;}
+  .chip-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+  /* POST COPY BOX */
+  .post-copy-box{margin-bottom:14px;background:rgba(132,188,65,0.04);border:1px solid rgba(132,188,65,0.15);border-radius:8px;padding:16px 18px;}
+  .post-copy-label{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+  .post-copy-text{font-size:12.5px;color:var(--text-dim);line-height:1.7;white-space:pre-line;}
+
+  /* CARD FOOTER */
+  .card-footer{margin-top:18px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .cta-eyebrow{font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px;}
+  .cta-text{font-size:12.5px;font-weight:600;color:var(--green);}
+  .status{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+  .s-draft{color:var(--green);background:rgba(132,188,65,0.12);}
+  .s-planned{color:var(--text-muted);background:rgba(255,255,255,0.05);}
+
+  /* ─── FEEDBACK SECTION ─── */
+  .feedback-section{margin-top:18px;border-top:1px solid var(--border);padding-top:16px;}
+  .feedback-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .approve-btns{display:flex;gap:6px;flex-wrap:wrap;}
+  .btn-approve,.btn-changes,.btn-pending{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:20px;cursor:pointer;border:1px solid;transition:all 0.18s cubic-bezier(.16,1,.3,1);}
+  .btn-approve{color:var(--green);border-color:rgba(132,188,65,0.3);background:rgba(132,188,65,0.06);}
+  .btn-approve:hover,.btn-approve.active{background:rgba(132,188,65,0.18);border-color:var(--green);box-shadow:0 0 12px rgba(132,188,65,0.2);}
+  .btn-approve.active{background:rgba(132,188,65,0.22);color:#a8d96b;}
+  .btn-changes{color:var(--amber);border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06);}
+  .btn-changes:hover,.btn-changes.active{background:rgba(245,158,11,0.18);border-color:var(--amber);}
+  .btn-pending{color:var(--text-muted);border-color:var(--border);background:transparent;}
+  .btn-pending:hover{border-color:rgba(255,255,255,0.2);color:var(--text-sub);}
+  .comment-toggle-btn{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:500;color:var(--text-muted);background:transparent;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;padding:4px 0;transition:color 0.15s;}
+  .comment-toggle-btn:hover{color:var(--text-sub);}
+  .comment-area{margin-top:12px;display:none;}
+  .comment-area.open{display:block;}
+  .comment-area textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:12px;line-height:1.6;padding:10px 13px;resize:vertical;min-height:72px;outline:none;transition:border-color 0.15s;}
+  .comment-area textarea::placeholder{color:var(--text-muted);}
+  .comment-area textarea:focus{border-color:rgba(132,188,65,0.3);}
+  .comment-meta{display:flex;align-items:center;justify-content:space-between;margin-top:6px;gap:8px;flex-wrap:wrap;}
+  .commenter-input{flex:1;min-width:120px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:11px;padding:5px 10px;outline:none;transition:border-color 0.15s;}
+  .commenter-input::placeholder{color:var(--text-muted);}
+  .commenter-input:focus{border-color:rgba(132,188,65,0.3);}
+  .save-comment-btn{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:6px;cursor:pointer;border:1px solid rgba(132,188,65,0.3);color:var(--green);background:rgba(132,188,65,0.08);transition:all 0.15s;}
+  .save-comment-btn:hover{background:rgba(132,188,65,0.18);border-color:var(--green);}
+  .saved-comments{margin-top:8px;display:flex;flex-direction:column;gap:6px;}
+  .saved-comment{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:9px 12px;}
+  .saved-comment-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+  .saved-comment-author{font-size:9.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);}
+  .saved-comment-time{font-size:9px;color:var(--text-muted);}
+  .saved-comment-text{font-size:12px;color:var(--text-sub);line-height:1.55;}
+  .delete-comment{background:transparent;border:none;cursor:pointer;color:var(--text-muted);font-size:11px;padding:0 4px;transition:color 0.15s;}
+  .delete-comment:hover{color:var(--red);}
+  .approval-pill{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+  .pill-approved{color:var(--green);background:rgba(132,188,65,0.12);}
+  .pill-changes{color:var(--amber);background:rgba(245,158,11,0.12);}
+  .pill-pending{color:var(--text-muted);background:rgba(255,255,255,0.05);}
+
+  /* ─── FLOATING FEEDBACK BAR ─── */
+  .feedback-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:100;flex-wrap:wrap;}
+  .feedback-bar-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .fb-label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
+  .fb-count{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;}
+  .fb-count .dot{width:6px;height:6px;border-radius:50%;}
+  .fb-send-btn{font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:9px 22px;border-radius:8px;cursor:pointer;border:none;background:var(--green);color:#0d1117;letter-spacing:0.02em;transition:all 0.2s cubic-bezier(.16,1,.3,1);}
+  .fb-send-btn:hover{background:#a8d96b;transform:translateY(-1px);box-shadow:0 6px 20px rgba(132,188,65,0.3);}
+  .fb-clear-btn{font-family:'Work Sans',sans-serif;font-size:11px;font-weight:500;padding:8px 16px;border-radius:8px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all 0.15s;}
+  .fb-clear-btn:hover{border-color:rgba(239,68,68,0.4);color:var(--red);}
+
+  /* LEGEND */
+  .legend-bar{border-top:1px solid var(--border);padding:18px 40px;background:var(--bg-dark);}
+  .legend-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+  .legend-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-right:4px;}
+  .legend-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--text-sub);}
+  .l-swatch{width:8px;height:8px;border-radius:50%;}
+
+  footer{border-top:1px solid var(--border);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-dark);}
+  footer p{font-size:11px;color:var(--text-muted);}
+  footer a{color:var(--green-dk);text-decoration:none;}
+  footer a:hover{color:var(--green);}
+
+  @media(max-width:720px){
+    nav,.structure-strip,.controls-outer,.calendar-wrap,.legend-bar,footer,.feedback-bar{padding-left:20px;padding-right:20px;}
+    .calendar-grid{grid-template-columns:1fr;gap:14px;}
+    .hero{padding:40px 20px 36px;}
+    .hero-meta{display:none;}
+    .card-title{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">
+    <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
+    <span class="nav-div">Content Strategy</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-pill">May – Dec 2026</span>
+    <div class="nav-badge"><span class="pulse-dot"></span>Treetop Growth Strategy</div>
+  </div>
+</nav>
+
+<div class="hero dot-bg">
+  <div class="hero-inner">
+    <div>
+      <div class="section-tag"><span class="section-tag-dot"></span>Content Calendar</div>
+      <h1>The campaigns that put<br><em>EcoFit on the map.</em></h1>
+      <p>One campaign per month. LinkedIn post linked to long-form content, partner cross-shares, partner email send, and lead capture on ECOFITnetworks.com. Review each month and leave your feedback below.</p>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-card"><div class="meta-label">Campaign Window</div><div class="meta-value">May – December 2026</div></div>
+      <div class="meta-card"><div class="meta-label">Total Campaigns</div><div class="meta-value">8 Months · 4 Pillars</div></div>
+      <div class="meta-card"><div class="meta-label">Primary Channel</div><div class="meta-value">LinkedIn + Partner Email</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="structure-strip">
+  <div class="structure-inner">
+    <span class="s-label">Each campaign</span>
+    <div class="s-item"><span class="sd"></span>LinkedIn post → long-form article</div>
+    <span class="sdiv">·</span>
+    <div class="s-item"><span class="sd"></span>Partner cross-share on LinkedIn</div>
+    <span class="sdiv">·</span>
+    <div class="s-item"><span class="sd"></span>Partner email to their list</div>
+    <span class="sdiv">·</span>
+    <div class="s-item"><span class="sd"></span>Lead capture on ECOFITnetworks.com</div>
+  </div>
+</div>
+
+<div class="controls-outer">
+  <span class="c-label-top">Filter by pillar</span>
+  <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+  <button class="filter-btn" onclick="filterCards('thought',this)">Thought Leadership</button>
+  <button class="filter-btn" onclick="filterCards('partner',this)">Partner Deep Dive</button>
+  <button class="filter-btn" onclick="filterCards('operator',this)">Operator Story</button>
+  <button class="filter-btn" onclick="filterCards('metric',this)">Key Metric</button>
+</div>
+
+<div class="calendar-wrap">
+<div class="calendar-grid" id="grid">
+
+  <!-- ── MAY 25 ── -->
+  <div class="month-card" data-pillar="thought" data-card-id="may25" style="border-color:rgba(132,188,65,0.35);box-shadow:0 0 0 1px rgba(132,188,65,0.2),0 12px 40px rgba(0,0,0,0.4);">
+    <div class="card-top">
+      <div>
+        <div class="card-month">
+          <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(132,188,65,0.12);border:1px solid rgba(132,188,65,0.3);border-radius:20px;padding:2px 10px;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#84BC41;">✦ READY TO POST</span>
+          May 25, 2026
+        </div>
+        <div class="card-title" style="margin-top:10px;">Podcast Reaction: What Al Mochavani Got Right — And Where Equipment Intelligence Goes Next</div>
+      </div>
+      <span class="pillar-badge pb-thought">Thought Leadership</span>
+    </div>
+
+    <div class="post-copy-box">
+      <div class="post-copy-label">LinkedIn Post Copy — Dave Johnson</div>
+      <div class="post-copy-text">Caught the latest Lifts podcast with Al Mochavani and one framework stuck with me:
+
+Any technology you invest in should do at least 2 of these 3 things:
+→ Enhance the member experience
+→ Increase staff productivity
+→ Contribute to the bottom line
+
+Simple filter. Most of what gets pitched to operators right now doesn't survive it.
+
+Here's what does — and where I think the next wave of equipment intelligence is going:
+
+We've done a solid job tracking cardio. Treadmill sessions, usage windows, error codes. That's table stakes now.
+
+The real gap? Everything else on the floor.
+
+Recovery areas. Functional fitness zones. Turf. Sauna. Cold plunge. These spaces represent significant capital and significant member time — and most operators have almost zero visibility into how they're being used.
+
+Who's using them? When? How long? Are those members retaining better?
+
+Layer in camera-based dwell time analysis and you start filling gaps that on-machine sensors can't reach. Which zones create friction. Where members congregate before they commit to a machine. Where the hidden bottlenecks are at peak hours.
+
+When you combine that with on-machine data, you stop reporting and start recommending.
+
+That's where EcoFit is headed. Total asset intelligence — not just cardio, not just the machines with sensors on them, but the full picture of how your facility is actually being used.
+
+Al said something else that landed: operators need to stop treating technology as an IT conversation and start treating it as an operations conversation. A retention conversation. A capital allocation conversation.
+
+Couldn't agree more.
+
+If you've ever wondered how much more you could know about your facility —
+
+Take our assessment → [LINK HERE]</div>
+    </div>
+
+    <div class="campaign-rows">
+      <div class="c-row">
+        <div class="row-label">Post On</div>
+        <div><div class="row-title">Dave Johnson's LinkedIn — Sunday May 25, 2026</div><div class="row-desc">Standalone thought leadership post. Link to blog post in first comment. Tag the Lifts Podcast and Al Mochavani for organic reach.</div></div>
+      </div>
+      <div class="c-row">
+        <div class="row-label">Long-Form Link</div>
+        <div><div class="row-title">Blog post on ECOFITnetworks.com (drafted)</div><div class="row-desc">500+ word article. Posted as link in first comment. Drives to the Facility Assessment lead capture.</div></div>
+      </div>
+      <div class="c-row">
+        <div class="row-label">Notes</div>
+        <div><div class="row-title">Kickoff post — sets tone for H2 campaign</div><div class="row-desc">No partner coordination needed. Warm up the audience before the formal June Woodway partnership launch.</div></div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Take the Facility Assessment</div></div>
+      <span class="status s-draft">✦ Post May 25</span>
+    </div>
+    <div class="feedback-section" id="feedback-may25"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── JUNE ── -->
+  <div class="month-card" data-pillar="thought" data-card-id="june">
+    <div class="card-top">
+      <div><div class="card-month">June 2026</div><div class="card-title">The Gym Floor Knows More Than You Do</div></div>
+      <span class="pillar-badge pb-thought">Thought Leadership</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">Reaction to the Lifts Podcast ft. Al Mochavani</div><div class="row-desc">Dave's take on total asset tracking — recovery areas, functional fitness zones, camera-based dwell time. Article written and ready.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">Woodway USA reposts the ProSmart integration story</div><div class="row-desc">Tags EcoFit as collaborator. Reaches Woodway's gym operator audience the same week.</div><span class="partner-chip"><span class="chip-dot"></span>Maggie Kelly · Digital Marketing, Woodway</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">Woodway sends to their gym and operator list</div><div class="row-desc">Subject angle: "How Woodway ProSmart is now connected to EcoFit — what that means for your facility."</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">Blog post live on ECOFITnetworks.com</div><div class="row-desc">500+ word article drafted. CTA: Take the Facility Assessment → [LINK]</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Take the Facility Assessment</div></div><span class="status s-draft">✦ Draft Ready</span></div>
+    <div class="feedback-section" id="feedback-june"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── JULY ── -->
+  <div class="month-card" data-pillar="operator" data-card-id="july">
+    <div class="card-top">
+      <div><div class="card-month">July 2026</div><div class="card-title">What a 300-Location Chain Discovered When It Started Tracking Everything</div></div>
+      <span class="pillar-badge pb-operator">Operator Story</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">Anonymized EoS Fitness data story</div><div class="row-desc">How a major value-chain operator used EcoFit usage data to rebalance their cardio floor, cut service costs, and surface underperforming zones across locations.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">EoS Fitness reposts the operator story</div><div class="row-desc">EcoFit tags EoS as collaborator. Reaches decision makers in EoS's operator audience.</div><span class="partner-chip"><span class="chip-dot"></span>EoS Fitness · Operator Client</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">EoS internal or co-branded operator communication</div><div class="row-desc">Angle: "Here's what we've learned from our equipment data — and what other operators should know."</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">Anonymized case study on ECOFITnetworks.com</div><div class="row-desc">Metrics-forward. Tells the story of floor rebalancing decisions driven by usage data.</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Request Your Usage Analytics Report</div></div><span class="status s-planned">Planned</span></div>
+    <div class="feedback-section" id="feedback-july"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── AUGUST ── -->
+  <div class="month-card" data-pillar="metric" data-card-id="august">
+    <div class="card-top">
+      <div><div class="card-month">August 2026</div><div class="card-title">The Metric Nobody Is Tracking — And Why It's Costing You Members</div></div>
+      <span class="pillar-badge pb-metric">Key Metric</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">Dwell Time: what camera-based analysis reveals</div><div class="row-desc">A sensor tells you a treadmill ran 38 min. Camera dwell time tells you 6 members looked at it before committing — and Friday morning friction is throttling throughput and driving silent cancellations.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">Concept2 or Octane Fitness</div><div class="row-desc">Rowing and functional machines are prime candidates for dwell time misunderstanding. Partner amplifies the data angle.</div><span class="partner-chip"><span class="chip-dot"></span>Concept2 or Octane · Equipment Partner</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">CORE Health & Fitness sends to their dealer and gym accounts</div><div class="row-desc">Angle: "Are your members actually using what they buy? Here's how to know for sure."</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">"What Dwell Time Tells You" explainer on ECOFITnetworks.com</div><div class="row-desc">Anonymized data, heat map examples, operator implications. Accessible, not technical.</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Take the Facility Assessment</div></div><span class="status s-planned">Planned</span></div>
+    <div class="feedback-section" id="feedback-august"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── SEPTEMBER ── -->
+  <div class="month-card" data-pillar="partner" data-card-id="september">
+    <div class="card-top">
+      <div><div class="card-month">September 2026</div><div class="card-title">No Extra Hardware. No Guessing. Direct From the Console.</div></div>
+      <span class="pillar-badge pb-partner">Partner Deep Dive</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">EcoFit x Life Fitness and Matrix integration story</div><div class="row-desc">How native API integrations eliminate sensor overhead and deliver real-time error codes directly to operator dashboards — connected in days, not months.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">Life Fitness and/or Matrix Fitness</div><div class="row-desc">Both partners reach their existing gym client base with EcoFit as their native data intelligence layer.</div><span class="partner-chip"><span class="chip-dot"></span>Life Fitness · Matrix · Manufacturer Partners</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">Life Fitness or Matrix sends to their operator accounts</div><div class="row-desc">Angle: "Your equipment is already connected — here's how to unlock the data."</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">Integration explainer on ECOFITnetworks.com</div><div class="row-desc">Technical-yet-accessible. How connected equipment data flows into EcoFit with zero installation overhead.</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Book a Connected Equipment Demo</div></div><span class="status s-planned">Planned</span></div>
+    <div class="feedback-section" id="feedback-september"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── OCTOBER ── -->
+  <div class="month-card" data-pillar="operator" data-card-id="october">
+    <div class="card-top">
+      <div><div class="card-month">October 2026</div><div class="card-title">Recovery Areas, Turf Zones, Functional Fitness — Are You Flying Blind?</div></div>
+      <span class="pillar-badge pb-operator">Operator Story</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">The fastest-growing square footage in fitness has zero data coverage</div><div class="row-desc">Recovery suites, cold plunge, red light, battle rope turf — significant capital, almost no visibility into how these spaces perform.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">Retro Fitness or UFC Gym</div><div class="row-desc">Both run EcoFit as a franchise standard. A franchise lens makes the recovery tracking story credible at scale.</div><span class="partner-chip"><span class="chip-dot"></span>Retro Fitness · UFC Gym · Franchise Clients</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">Retro Fitness franchise comms or UFC Gym operator newsletter</div><div class="row-desc">Angle: "What our franchisees are learning about their recovery areas — and why it matters for retention."</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">"Beyond the Cardio Deck" guide on ECOFITnetworks.com</div><div class="row-desc">Practical look at expanding tracking to recovery zones, functional areas, and group fitness.</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Get a Full Floor Coverage Assessment</div></div><span class="status s-planned">Planned</span></div>
+    <div class="feedback-section" id="feedback-october"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── NOVEMBER ── -->
+  <div class="month-card" data-pillar="metric" data-card-id="november">
+    <div class="card-top">
+      <div><div class="card-month">November 2026</div><div class="card-title">What Every Hour of Equipment Downtime Is Really Costing You</div></div>
+      <span class="pillar-badge pb-metric">Key Metric</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">Equipment uptime: the metric operators feel but rarely measure</div><div class="row-desc">Reactive maintenance is the default. Proactive maintenance — triggered by real-time error codes — changes the math on labor, member experience, and equipment lifespan.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">CORE Health & Fitness (StairMaster / Star Trac)</div><div class="row-desc">Steppers and StairMasters are the highest-maintenance cardio assets in most facilities. Natural partner story.</div><span class="partner-chip"><span class="chip-dot"></span>CORE · StairMaster · Star Trac</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">CORE sends to their gym and dealer accounts</div><div class="row-desc">Angle: "The difference between reactive and proactive maintenance — and how EcoFit data makes the shift possible."</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">Downtime ROI explainer on ECOFITnetworks.com</div><div class="row-desc">Simple framework: cost per down hour × monthly events × locations. Anchors demo conversations with CFOs and ops directors.</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Calculate Your Downtime Cost</div></div><span class="status s-planned">Planned</span></div>
+    <div class="feedback-section" id="feedback-november"><!-- injected by JS --></div>
+  </div>
+
+  <!-- ── DECEMBER ── -->
+  <div class="month-card" data-pillar="thought" data-card-id="december">
+    <div class="card-top">
+      <div><div class="card-month">December 2026</div><div class="card-title">What 2026 Taught Us About Fitness Equipment Intelligence</div></div>
+      <span class="pillar-badge pb-thought">Thought Leadership</span>
+    </div>
+    <div class="campaign-rows">
+      <div class="c-row"><div class="row-label">LinkedIn Post</div><div><div class="row-title">State of Equipment Analytics in Fitness — Year-End from Dave Johnson</div><div class="row-desc">What operators learned. What the data revealed. Where total asset intelligence goes in 2027 — recovery tracking, AI-assisted maintenance prediction, floor design driven by usage data.</div></div></div>
+      <div class="c-row"><div class="row-label">Partner Cross-Share</div><div><div class="row-title">Woodway USA — year-end bookend</div><div class="row-desc">Full circle from the May/June launch posts. Closes the campaign arc and sets up 2027.</div><span class="partner-chip"><span class="chip-dot"></span>Woodway · Flagship Partner</span></div></div>
+      <div class="c-row"><div class="row-label">Partner Email</div><div><div class="row-title">EcoFit sends year-end email to full house list</div><div class="row-desc">Warm, forward-looking. Wraps the campaign narrative and sets up the 2027 outreach cycle.</div></div></div>
+      <div class="c-row"><div class="row-label">Long-Form & Lead Capture</div><div><div class="row-title">"2027 State of Equipment Analytics" guide on ECOFITnetworks.com</div><div class="row-desc">Positions EcoFit as the industry thought leader heading into the new year. Doubles as a Q1 2027 sales tool.</div></div></div>
+    </div>
+    <div class="card-footer"><div><div class="cta-eyebrow">Lead Capture CTA</div><div class="cta-text">→ Book a 2027 Strategy Session</div></div><span class="status s-planned">Planned</span></div>
+    <div class="feedback-section" id="feedback-december"><!-- injected by JS --></div>
+  </div>
+
+</div><!-- /grid -->
+</div><!-- /calendar-wrap -->
+
+<div class="legend-bar">
+  <div class="legend-inner">
+    <span class="legend-label">Pillar Key</span>
+    <div class="legend-item"><div class="l-swatch" style="background:#84BC41"></div>Thought Leadership</div>
+    <div class="legend-item"><div class="l-swatch" style="background:#c084fc"></div>Partner Deep Dive</div>
+    <div class="legend-item"><div class="l-swatch" style="background:#58BCC5"></div>Operator Story</div>
+    <div class="legend-item"><div class="l-swatch" style="background:#f59e0b"></div>Key Metric</div>
+  </div>
+</div>
+
+<footer>
+  <p>EcoFit Networks · Content Strategy 2026 · Prepared by <a href="https://treetopgrowthstrategy.com" target="_blank">Treetop Growth Strategy</a></p>
+  <p>Confidential · Not for distribution</p>
+</footer>
+
+<!-- ─── FLOATING FEEDBACK BAR ─── -->
+<div class="feedback-bar" id="feedbackBar">
+  <div class="feedback-bar-left">
+    <span class="fb-label">Review Status</span>
+    <span class="fb-count"><span class="dot" style="background:var(--green)"></span><span id="countApproved">0</span> approved</span>
+    <span class="fb-count"><span class="dot" style="background:var(--amber)"></span><span id="countChanges">0</span> needs changes</span>
+    <span class="fb-count"><span class="dot" style="background:var(--text-muted)"></span><span id="countPending">8</span> pending</span>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <button class="fb-clear-btn" onclick="clearAllFeedback()">Clear All</button>
+    <button class="fb-send-btn" onclick="sendFeedback()">✉ Send Feedback to Bill</button>
+  </div>
+</div>
+
+<script>
+const CARDS = ['may25','june','july','august','september','october','november','december'];
+const CARD_LABELS = {
+  may25: 'May 25 — Podcast Reaction',
+  june: 'June — The Gym Floor Knows More Than You Do',
+  july: 'July — What a 300-Location Chain Discovered',
+  august: 'August — The Metric Nobody Is Tracking',
+  september: 'September — No Extra Hardware',
+  october: 'October — Recovery Areas & Turf Zones',
+  november: 'November — Equipment Downtime Cost',
+  december: 'December — What 2026 Taught Us'
+};
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem('ecofit_calendar_v2') || '{}'); }
+  catch(e) { return {}; }
+}
+function setState(s) { localStorage.setItem('ecofit_calendar_v2', JSON.stringify(s)); }
+
+function buildFeedback(cardId) {
+  const el = document.getElementById('feedback-' + cardId);
+  if (!el) return;
+  const state = getState();
+  const cardState = state[cardId] || { status: 'pending', comments: [] };
+  const s = cardState.status;
+
+  el.innerHTML = `
+    <div class="feedback-toggle">
+      <div class="approve-btns">
+        <button class="btn-approve ${s==='approved'?'active':''}" onclick="setStatus('${cardId}','approved')">✓ Approved</button>
+        <button class="btn-changes ${s==='changes'?'active':''}" onclick="setStatus('${cardId}','changes')">⚠ Needs Changes</button>
+        ${s!=='pending'?`<button class="btn-pending" onclick="setStatus('${cardId}','pending')">Reset</button>`:''}
+      </div>
+      <button class="comment-toggle-btn" onclick="toggleComment('${cardId}')">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style="opacity:0.5"><path d="M14 1H2C1.45 1 1 1.45 1 2v9c0 .55.45 1 1 1h2v3l3-3h7c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        ${cardState.comments.length > 0 ? cardState.comments.length + ' comment' + (cardState.comments.length>1?'s':'') : 'Add comment'}
+      </button>
+    </div>
+    ${cardState.comments.length > 0 ? `<div class="saved-comments">${cardState.comments.map((c,i)=>`
+      <div class="saved-comment">
+        <div class="saved-comment-meta">
+          <span class="saved-comment-author">${c.author||'Reviewer'}</span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="saved-comment-time">${c.time}</span>
+            <button class="delete-comment" onclick="deleteComment('${cardId}',${i})" title="Delete">✕</button>
+          </div>
+        </div>
+        <div class="saved-comment-text">${c.text}</div>
+      </div>`).join('')}</div>` : ''}
+    <div class="comment-area" id="comment-area-${cardId}">
+      <textarea id="comment-text-${cardId}" placeholder="Leave a comment on this month's campaign..." rows="3"></textarea>
+      <div class="comment-meta">
+        <input class="commenter-input" id="commenter-${cardId}" placeholder="Your name (e.g. Dave Johnson)" />
+        <button class="save-comment-btn" onclick="saveComment('${cardId}')">Save Comment</button>
+      </div>
+    </div>
+  `;
+
+  // Update card border
+  const card = el.closest('.month-card');
+  card.classList.remove('card-approved','card-changes');
+  if (s==='approved') card.classList.add('card-approved');
+  if (s==='changes') card.classList.add('card-changes');
+}
+
+function toggleComment(cardId) {
+  const area = document.getElementById('comment-area-' + cardId);
+  area.classList.toggle('open');
+  if (area.classList.contains('open')) {
+    document.getElementById('comment-text-' + cardId).focus();
+  }
+}
+
+function setStatus(cardId, status) {
+  const state = getState();
+  if (!state[cardId]) state[cardId] = { status: 'pending', comments: [] };
+  state[cardId].status = status;
+  setState(state);
+  buildFeedback(cardId);
+  updateCounts();
+}
+
+function saveComment(cardId) {
+  const text = document.getElementById('comment-text-' + cardId).value.trim();
+  const author = document.getElementById('commenter-' + cardId).value.trim() || 'Reviewer';
+  if (!text) return;
+  const state = getState();
+  if (!state[cardId]) state[cardId] = { status: 'pending', comments: [] };
+  state[cardId].comments.push({
+    text, author,
+    time: new Date().toLocaleDateString('en-US', {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'})
+  });
+  setState(state);
+  buildFeedback(cardId);
+  updateCounts();
+}
+
+function deleteComment(cardId, idx) {
+  const state = getState();
+  if (!state[cardId]) return;
+  state[cardId].comments.splice(idx, 1);
+  setState(state);
+  buildFeedback(cardId);
+}
+
+function updateCounts() {
+  const state = getState();
+  let approved=0, changes=0, pending=0;
+  CARDS.forEach(id => {
+    const s = (state[id] || {}).status || 'pending';
+    if (s==='approved') approved++;
+    else if (s==='changes') changes++;
+    else pending++;
+  });
+  document.getElementById('countApproved').textContent = approved;
+  document.getElementById('countChanges').textContent = changes;
+  document.getElementById('countPending').textContent = pending;
+}
+
+function clearAllFeedback() {
+  if (!confirm('Clear all feedback and approvals? This cannot be undone.')) return;
+  localStorage.removeItem('ecofit_calendar_v2');
+  CARDS.forEach(buildFeedback);
+  updateCounts();
+}
+
+function sendFeedback() {
+  const state = getState();
+  let body = 'EcoFit Content Calendar Feedback\n';
+  body += '================================\n\n';
+  CARDS.forEach(id => {
+    const d = state[id] || { status: 'pending', comments: [] };
+    const label = CARD_LABELS[id];
+    const statusLabel = d.status === 'approved' ? '✓ APPROVED' : d.status === 'changes' ? '⚠ NEEDS CHANGES' : '— PENDING';
+    body += `${label}\nStatus: ${statusLabel}\n`;
+    if (d.comments.length > 0) {
+      body += 'Comments:\n';
+      d.comments.forEach(c => { body += `  ${c.author} (${c.time}): ${c.text}\n`; });
+    }
+    body += '\n';
+  });
+  const subject = 'EcoFit Content Calendar Review — ' + new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  window.location.href = 'mailto:william.colbert@treetopgrowthstrategy.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+function filterCards(pillar, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.month-card').forEach(card => {
+    card.classList.toggle('hidden', pillar !== 'all' && card.dataset.pillar !== pillar);
+  });
+}
+
+// Init
+CARDS.forEach(buildFeedback);
+updateCounts();
+</script>
+
+</body>
+</html>
