@@ -1,0 +1,290 @@
+---
+export const prerender = true;
+import GlobalFooter from '../../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is a Fractional CMO? (And Do You Actually Need One?) | Treetop Growth Strategy</title>
+  <meta name="description" content="What a fractional CMO actually does, when it makes sense versus a full-time hire, what it costs, and how to evaluate whether you're getting one who can execute." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/resources/what-is-a-fractional-cmo" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    @media(max-width:768px){ .hide-mob{display:none!important} }
+
+    .page-wrap { padding-top: 64px; display: flex; max-width: 1200px; margin: 0 auto; gap: 4rem; padding-left: 2.5rem; padding-right: 2.5rem; padding-bottom: 6rem; }
+    .article-col { flex: 1; max-width: 760px; min-width: 0; }
+    .toc-col { width: 220px; flex-shrink: 0; }
+    @media(max-width:1024px){ .toc-col { display: none; } }
+
+    .toc { position: sticky; top: 5rem; padding-top: 3rem; }
+    .toc-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0.6rem; }
+    .toc-list a { font-size: 0.8rem; color: #4A6A4A; text-decoration: none; line-height: 1.4; transition: color 0.2s; display: block; }
+    .toc-list a:hover { color: #00C853; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #4A6A4A; padding-top: 2.5rem; padding-bottom: 2rem; }
+    .breadcrumb a { color: #4A6A4A; text-decoration: none; }
+    .breadcrumb a:hover { color: #00C853; }
+
+    .article-header { padding-bottom: 2.5rem; border-bottom: 1px solid #1A3A1A; margin-bottom: 2.5rem; }
+    .article-cat { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    .article-h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: #4A6A4A; }
+
+    .prose p { font-size: 0.97rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1.4rem; }
+    .prose h2 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: #F0FFF0; font-weight: 400; line-height: 1.2; margin-top: 3rem; margin-bottom: 1rem; scroll-margin-top: 5rem; }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+    .prose ul { list-style: none; margin-bottom: 1.4rem; }
+    .prose ul li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
+    .prose ul li::before { content: '—'; position: absolute; left: 0; color: rgba(0,200,83,0.5); }
+    .prose strong { color: #F0FFF0; font-weight: 500; }
+
+    .callout { background: rgba(0,200,83,0.05); border: 1px solid rgba(0,200,83,0.2); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p { margin-bottom: 0; color: #8FAF8F; font-size: 0.9rem; }
+    .callout strong { color: #00C853; }
+
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.88rem; }
+    .cost-table th { background: #0A1A0A; color: #F0FFF0; font-weight: 600; padding: 0.8rem 1.25rem; text-align: left; border: 1px solid #1A3A1A; font-size: 0.78rem; letter-spacing: 0.04em; }
+    .cost-table td { padding: 0.8rem 1.25rem; border: 1px solid #1A3A1A; color: #8FAF8F; line-height: 1.6; }
+    .cost-table td:first-child { color: #F0FFF0; font-weight: 500; background: #0A1A0A; font-size: 0.85rem; }
+    .cost-table .green { color: #00C853; font-weight: 500; }
+
+    .article-cta { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-top: 3rem; text-align: center; }
+    .article-cta-h { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; margin-bottom: 0.75rem; font-weight: 400; }
+    .article-cta p { font-size: 0.88rem; color: #8FAF8F; margin-bottom: 1.5rem; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .red-flag { border-left: 3px solid rgba(240,100,100,0.4); padding-left: 1.25rem; margin-bottom: 1.5rem; }
+    .red-flag-title { font-weight: 600; color: #F0FFF0; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .red-flag-body { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Work with Us</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="article-col">
+    <div class="breadcrumb">
+      <a href="/resources">Resources</a>
+      <span>/</span>
+      <span style="color:#8FAF8F;">What Is a Fractional CMO?</span>
+    </div>
+
+    <div class="article-header">
+      <span class="article-cat">Strategy</span>
+      <h1 class="article-h1">What Is a Fractional CMO?<br/>(And Do You Actually Need One?)</h1>
+      <div class="article-meta">
+        <span>May 2026</span>
+        <span>·</span>
+        <span>8 min read</span>
+        <span>·</span>
+        <span>By Bill Colbert</span>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>
+        "Fractional CMO" has become one of those terms that means something different depending on who's using it. For some, it's a glorified title for a part-time marketing consultant who reviews your monthly reports. For others — and this is the version that actually creates value — it's senior marketing leadership working inside your business on a part-time basis, owning outcomes, making real decisions, and building the team and systems that outlast the engagement.
+      </p>
+      <p>
+        If you're a business with $2M–$20M in revenue, no VP of Marketing or CMO on payroll, and a marketing function that's either stalled or growing faster than your ability to manage it — the fractional model is probably worth understanding. Let's cut through the noise.
+      </p>
+
+      <h2 id="definition">What a fractional CMO actually is</h2>
+      <p>
+        A fractional CMO is an experienced marketing executive who works with your company part-time — typically 1–3 days per week — in a leadership capacity. They're not a consultant who hands you a strategy deck and disappears. They're embedded in your business: attending leadership meetings, managing (or building) your marketing team, running vendor relationships, owning the marketing budget, and being accountable for results.
+      </p>
+      <p>
+        The "fractional" part means you're buying a fraction of their time and attention, not a full-time seat. In exchange, you get CMO-level capability at a fraction of the cost. Most engagements run 6–18 months — long enough to build something real, not so long that it becomes a permanent dependency.
+      </p>
+
+      <div class="callout">
+        <p><strong>The key distinction:</strong> A fractional CMO owns outcomes. A marketing consultant delivers deliverables. If the person you're talking to can't tell you what they'll be accountable for at the end of the engagement, they're the latter, not the former.</p>
+      </div>
+
+      <h2 id="what-they-do">What a fractional CMO does day-to-day</h2>
+      <p>
+        The day-to-day work varies by company stage and what's needed, but in a typical fractional CMO engagement:
+      </p>
+      <ul>
+        <li><strong>Strategy ownership</strong> — defines the annual marketing plan, ICP, positioning, and channel priorities. Not in a document that sits in a drive, but a working plan tied to revenue goals.</li>
+        <li><strong>Team leadership</strong> — manages internal marketing staff and external agencies/contractors. Sets priorities, removes blockers, reviews work, makes hiring decisions.</li>
+        <li><strong>Campaign execution oversight</strong> — signs off on messaging, creative direction, and channel strategy. Gets into the details where it matters.</li>
+        <li><strong>Budget management</strong> — owns the marketing budget. Decides what to spend on, what to cut, and how to measure ROI.</li>
+        <li><strong>Reporting to leadership</strong> — presents to the CEO/board on a regular cadence. The marketing function has an accountable leader in the room.</li>
+        <li><strong>Systems and infrastructure</strong> — builds or fixes the marketing tech stack, attribution, and operational processes so the function can scale.</li>
+      </ul>
+      <p>
+        What they're <em>not</em> doing: writing every piece of copy, running every ad, or doing the work that your team or agencies should be doing. The leverage is in leadership and strategy, not individual contributor execution.
+      </p>
+
+      <h2 id="when-it-makes-sense">When fractional makes sense (and when it doesn't)</h2>
+
+      <h3>Good fit for fractional CMO</h3>
+      <ul>
+        <li>Revenue between $2M–$20M with no senior marketing leader</li>
+        <li>Marketing team exists but lacks strategic direction or leadership</li>
+        <li>Preparing for a fundraise or acquisition and need marketing professionalized</li>
+        <li>Launching a new product or entering a new market</li>
+        <li>Recently lost a CMO and need coverage during the search</li>
+        <li>Want to vet the role before making a full-time hire</li>
+      </ul>
+
+      <h3>Not the right fit</h3>
+      <ul>
+        <li>Under $1M in revenue — you need execution, not strategy leadership</li>
+        <li>You want someone to "just run the ads" — that's a marketing manager or agency</li>
+        <li>You need 40 hours a week of marketing leadership — hire full-time</li>
+        <li>Your CEO wants to maintain full control of marketing decisions — fractional won't work if there's no actual authority delegated</li>
+      </ul>
+
+      <h2 id="cost">What it costs: fractional vs full-time</h2>
+
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Typical Cost</th>
+            <th>What You Get</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Full-time CMO</td>
+            <td>$200K–$350K/yr + equity + benefits</td>
+            <td>40 hrs/week, one person's full attention</td>
+          </tr>
+          <tr>
+            <td>Fractional CMO</td>
+            <td class="green">$6K–$15K/month</td>
+            <td>8–15 hrs/week of senior leadership</td>
+          </tr>
+          <tr>
+            <td>Marketing agency (strategy)</td>
+            <td>$5K–$20K/month</td>
+            <td>Strategy deliverables, no ownership or leadership</td>
+          </tr>
+          <tr>
+            <td>Marketing manager (FT hire)</td>
+            <td>$65K–$95K/yr</td>
+            <td>Execution capacity, limited strategic range</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        At $8K–$12K per month, a fractional CMO costs roughly what a junior marketing manager costs in salary — but you're getting VP-level capability and leadership. For most companies in the $2M–$10M range, that's the most efficient use of marketing leadership budget available.
+      </p>
+
+      <h2 id="evaluating">How to evaluate whether someone is actually good</h2>
+      <p>
+        The fractional CMO market has gotten crowded fast. There are genuinely skilled senior marketing leaders operating this way, and there are people who've added "fractional CMO" to their LinkedIn profile because they consult on marketing. How to tell them apart:
+      </p>
+
+      <div class="red-flag">
+        <div class="red-flag-title">Red flag: They lead with frameworks, not results</div>
+        <div class="red-flag-body">If their pitch is about their proprietary process or marketing methodology before you've heard a single specific outcome they produced, that's a warning sign. Good fractional CMOs lead with what they've built and what happened as a result.</div>
+      </div>
+
+      <div class="red-flag">
+        <div class="red-flag-title">Red flag: They can't explain how they'll measure success</div>
+        <div class="red-flag-body">Ask: "What metrics will we use to know whether this engagement is working, and what would cause you to recommend we end it early?" Vague answers or deflection are problems. Good fractional CMOs want to be accountable.</div>
+      </div>
+
+      <div class="red-flag">
+        <div class="red-flag-title">Red flag: Too many clients</div>
+        <div class="red-flag-body">A fractional CMO working with 8–10 companies simultaneously isn't providing leadership — they're doing light consulting and calling it something else. Serious fractional leaders cap themselves at 3–4 clients. Ask how many they're currently working with.</div>
+      </div>
+
+      <div class="red-flag">
+        <div class="red-flag-title">Red flag: No ability to reference check</div>
+        <div class="red-flag-body">Request two or three client references from recent engagements and actually call them. Ask the references: "Did they show up as a leader, or as an advisor?" The answer will tell you everything.</div>
+      </div>
+
+      <h3>Green flags</h3>
+      <ul>
+        <li>They ask substantive questions about your business before pitching anything</li>
+        <li>They're direct about what the role requires from you (delegated authority, budget access, team access)</li>
+        <li>They've built and managed teams before, not just consulted</li>
+        <li>They can name specific campaigns, channels, or go-to-market moves that they owned and what happened</li>
+        <li>Their references describe them as someone who operated inside the business, not someone who sent decks</li>
+      </ul>
+
+      <h2 id="conclusion">So do you actually need one?</h2>
+      <p>
+        If marketing is a recurring conversation topic on your leadership team — where the team is, why results are inconsistent, what the strategy is — and you don't have someone senior enough to own those answers, you probably need fractional CMO-level leadership. The question is whether you need it now or can build toward it.
+      </p>
+      <p>
+        If you're running a tight operation where AI is handling a significant chunk of your marketing output and you have a small team executing — you may find that a fractional CMO combined with strong AI infrastructure is more leveraged than either one alone. That's the model we run at <a href="/services" style="color:#00C853;">Treetop</a>.
+      </p>
+      <p>
+        If you want to explore what fractional marketing leadership looks like for your specific situation, the <a href="/fractional-cmo" style="color:#00C853;">Fractional CMO service page</a> goes deeper into how we structure engagements and what the onboarding process looks like.
+      </p>
+
+      <div class="article-cta">
+        <div class="article-cta-h">Fractional CMO built for the AI era</div>
+        <p>
+          Treetop's fractional CMO engagements aren't just strategic marketing leadership — they come with AI-native infrastructure built in. Your marketing function gets senior leadership and the operational leverage that comes with properly implemented AI workflows.
+        </p>
+        <div class="cta-btns">
+          <a href="/fractional-cmo" class="btn-p">Explore Fractional CMO →</a>
+          <a href="/services" class="btn-g">All Services</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc-col">
+    <div class="toc">
+      <span class="toc-label">In this article</span>
+      <ul class="toc-list">
+        <li><a href="#definition">What a fractional CMO is</a></li>
+        <li><a href="#what-they-do">Day-to-day work</a></li>
+        <li><a href="#when-it-makes-sense">When it makes sense</a></li>
+        <li><a href="#cost">Cost comparison</a></li>
+        <li><a href="#evaluating">How to evaluate one</a></li>
+        <li><a href="#conclusion">Do you actually need one?</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<GlobalFooter />
+
+</body>
+</html>

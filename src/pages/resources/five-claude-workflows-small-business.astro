@@ -1,0 +1,390 @@
+---
+export const prerender = true;
+import GlobalFooter from '../../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 Claude Workflows Every Small Business Should Have Running | Treetop Growth Strategy</title>
+  <meta name="description" content="Five specific Claude workflows that save small businesses 5–10 hours a week: email drafting, proposal writing, weekly reports, social content, and meeting notes to action items." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/resources/five-claude-workflows-small-business" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    @media(max-width:768px){ .hide-mob{display:none!important} }
+
+    .page-wrap { padding-top: 64px; display: flex; max-width: 1200px; margin: 0 auto; gap: 4rem; padding-left: 2.5rem; padding-right: 2.5rem; padding-bottom: 6rem; }
+    .article-col { flex: 1; max-width: 760px; min-width: 0; }
+    .toc-col { width: 220px; flex-shrink: 0; }
+    @media(max-width:1024px){ .toc-col { display: none; } }
+
+    .toc { position: sticky; top: 5rem; padding-top: 3rem; }
+    .toc-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0.6rem; }
+    .toc-list a { font-size: 0.8rem; color: #4A6A4A; text-decoration: none; line-height: 1.4; transition: color 0.2s; display: block; }
+    .toc-list a:hover { color: #00C853; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #4A6A4A; padding-top: 2.5rem; padding-bottom: 2rem; }
+    .breadcrumb a { color: #4A6A4A; text-decoration: none; }
+    .breadcrumb a:hover { color: #00C853; }
+
+    .article-header { padding-bottom: 2.5rem; border-bottom: 1px solid #1A3A1A; margin-bottom: 2.5rem; }
+    .article-cat { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    .article-h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: #4A6A4A; }
+
+    .prose p { font-size: 0.97rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1.4rem; }
+    .prose h2 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: #F0FFF0; font-weight: 400; line-height: 1.2; margin-top: 3rem; margin-bottom: 1rem; scroll-margin-top: 5rem; }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+    .prose ul { list-style: none; margin-bottom: 1.4rem; }
+    .prose ul li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
+    .prose ul li::before { content: '—'; position: absolute; left: 0; color: rgba(0,200,83,0.5); }
+    .prose strong { color: #F0FFF0; font-weight: 500; }
+
+    .code-block { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.5rem; margin: 1.5rem 0 2rem; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; overflow-x: auto; }
+    .code-block .comment { color: #4A6A4A; }
+    .code-block .highlight { color: #00C853; }
+
+    .callout { background: rgba(0,200,83,0.05); border: 1px solid rgba(0,200,83,0.2); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p { margin-bottom: 0; color: #8FAF8F; font-size: 0.9rem; }
+    .callout strong { color: #00C853; }
+
+    .workflow-block { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; margin: 2.5rem 0; }
+    .workflow-num { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.6rem; display: block; }
+    .workflow-title { font-family: 'Instrument Serif', serif; font-size: 1.35rem; color: #F0FFF0; font-weight: 400; margin-bottom: 1rem; }
+    .workflow-meta { display: flex; gap: 1.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .workflow-tag { font-size: 0.72rem; color: #4A6A4A; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.25rem 0.65rem; }
+    .workflow-tag span { color: #00C853; font-weight: 600; }
+
+    .article-cta { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-top: 3rem; text-align: center; }
+    .article-cta-h { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; margin-bottom: 0.75rem; font-weight: 400; }
+    .article-cta p { font-size: 0.88rem; color: #8FAF8F; margin-bottom: 1.5rem; line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Work with Us</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="article-col">
+    <div class="breadcrumb">
+      <a href="/resources">Resources</a>
+      <span>/</span>
+      <span style="color:#8FAF8F;">5 Claude Workflows for Small Business</span>
+    </div>
+
+    <div class="article-header">
+      <span class="article-cat">Implementation</span>
+      <h1 class="article-h1">5 Claude Workflows Every Small Business<br/>Should Have Running</h1>
+      <div class="article-meta">
+        <span>May 2026</span>
+        <span>·</span>
+        <span>10 min read</span>
+        <span>·</span>
+        <span>By Bill Colbert</span>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>
+        Most small businesses use Claude the same way they use Google — open a tab, type a question, close the tab. That's not a workflow. That's a parlor trick. The businesses getting real productivity gains from AI have specific, repeatable workflows configured and running. Their team uses them the same way every time. The output is consistent. The time savings are measurable.
+      </p>
+      <p>
+        These five workflows are where I start with every client. Together they typically recover 5–10 hours per week of knowledge-worker time. Each one is buildable in an afternoon. None of them require a developer.
+      </p>
+      <p>
+        Before you set these up, read the guide on <a href="/resources/how-to-set-up-claude-projects" style="color:#00C853;">configuring Claude Projects</a>. Each workflow below assumes you have a Project set up with your company context and brand voice locked in — that's the foundation that makes everything else consistent.
+      </p>
+
+      <h2 id="workflow-1">Workflow 1 — Customer Email Drafting &amp; Response</h2>
+
+      <div class="workflow-block">
+        <span class="workflow-num">Workflow 01</span>
+        <div class="workflow-title">Customer Email Drafting &amp; Response</div>
+        <div class="workflow-meta">
+          <div class="workflow-tag">Time saved: <span>2–3 hrs/week</span></div>
+          <div class="workflow-tag">Skill level: <span>Beginner</span></div>
+          <div class="workflow-tag">Setup time: <span>1–2 hrs</span></div>
+        </div>
+      </div>
+
+      <h3>What it is</h3>
+      <p>
+        A structured process for drafting all outbound customer email — responses to inquiries, follow-ups, check-ins, proposals, and updates. Instead of writing from scratch each time, your team pastes context into Claude and gets a draft back in 30 seconds that sounds like you, follows your brand voice, and covers what needs to be covered.
+      </p>
+
+      <h3>How to set it up</h3>
+      <p>
+        In your Claude Project's system prompt, include a section that describes your email communication style: the tone, typical structure, how you handle common situations (complaints, delays, pricing questions), and phrases you never use. Then upload a document with 5–10 example emails that represent your best work — these become Claude's style reference.
+      </p>
+      <p>
+        Create a short one-pager for your team explaining the trigger phrases to use. Anyone can use this; it doesn't require technical skill.
+      </p>
+
+      <h3>Example prompt</h3>
+      <div class="code-block"><span class="comment"># Customer email draft</span>
+Draft a reply to this customer email. Keep it warm but professional.
+Match our brand voice. No more than 150 words unless the situation requires more.
+
+<span class="highlight">Customer email:</span>
+[paste email here]
+
+<span class="highlight">Context (what's actually happening):</span>
+[your 2–3 sentence explanation]
+
+<span class="highlight">Outcome you want:</span>
+[e.g. "schedule a call" / "explain the delay" / "close the deal"]</div>
+
+      <h3>Time saved</h3>
+      <p>
+        The average knowledge worker spends 2.5 hours per day on email. Customer-facing email for a service business probably runs 45–90 minutes. Getting a strong first draft in 30 seconds versus 8–12 minutes per email recovers roughly 2–3 hours per week per person handling customer correspondence.
+      </p>
+
+      <h2 id="workflow-2">Workflow 2 — Proposal &amp; Scope Writing</h2>
+
+      <div class="workflow-block">
+        <span class="workflow-num">Workflow 02</span>
+        <div class="workflow-title">Proposal &amp; Scope Writing</div>
+        <div class="workflow-meta">
+          <div class="workflow-tag">Time saved: <span>3–5 hrs/proposal</span></div>
+          <div class="workflow-tag">Skill level: <span>Intermediate</span></div>
+          <div class="workflow-tag">Setup time: <span>2–3 hrs</span></div>
+        </div>
+      </div>
+
+      <h3>What it is</h3>
+      <p>
+        A systematic approach to generating first-draft proposals, statements of work, and engagement letters. Not a template filler — a genuine first draft that includes your methodology, your language, your pricing structure, and is tailored to the specific client and their situation.
+      </p>
+
+      <h3>How to set it up</h3>
+      <p>
+        Upload two or three of your strongest past proposals (scrubbed of confidential client data if needed) to your Project knowledge base. Add a proposal structure document that outlines your typical sections, how you describe your process, and how you frame ROI and deliverables. Include your standard pricing ranges so Claude knows what's realistic.
+      </p>
+
+      <h3>Example prompt</h3>
+      <div class="code-block"><span class="comment"># Proposal draft</span>
+Draft a proposal for a new prospect. Use our standard proposal structure
+from the knowledge base. Match the tone of our past proposals.
+
+<span class="highlight">Client:</span> [company name + brief description]
+
+<span class="highlight">What they need:</span> [2–3 sentence summary of the engagement]
+
+<span class="highlight">Services involved:</span> [which of our services apply]
+
+<span class="highlight">Budget range discussed:</span> [if known]
+
+<span class="highlight">Key concern or priority they mentioned:</span> [specific thing they care most about]
+
+<span class="highlight">Desired length:</span> 2–3 pages, professional but not formal</div>
+
+      <h3>Time saved</h3>
+      <p>
+        A quality proposal used to take 3–6 hours to write from scratch. With this workflow, the first draft comes back in under a minute and requires 30–60 minutes of editing, personalizing, and pricing refinement. That's a 4–5 hour recovery per proposal. For a business sending 3–4 proposals a month, that's 12–20 hours of time returned to billable work.
+      </p>
+
+      <h2 id="workflow-3">Workflow 3 — Weekly Report Summarization</h2>
+
+      <div class="workflow-block">
+        <span class="workflow-num">Workflow 03</span>
+        <div class="workflow-title">Weekly Report Summarization</div>
+        <div class="workflow-meta">
+          <div class="workflow-tag">Time saved: <span>1–2 hrs/week</span></div>
+          <div class="workflow-tag">Skill level: <span>Beginner</span></div>
+          <div class="workflow-tag">Setup time: <span>1 hr</span></div>
+        </div>
+      </div>
+
+      <h3>What it is</h3>
+      <p>
+        A workflow for converting raw data, notes, and metrics into polished weekly status updates — for clients, for your team, or for your own business review. You paste in the raw stuff; Claude shapes it into something readable and useful.
+      </p>
+
+      <h3>How to set it up</h3>
+      <p>
+        Define the structure of your weekly report in your system prompt or a separate document in the knowledge base. Specify what sections matter (metrics, wins, blockers, next week's priorities), the format (headers, bullets, or paragraph), and the audience (client-facing vs internal). Once that template exists, running the workflow is a 90-second task.
+      </p>
+
+      <h3>Example prompt</h3>
+      <div class="code-block"><span class="comment"># Weekly report</span>
+Generate our weekly status report using the format in the knowledge base.
+Audience: [client name / internal team].
+Tone: [concise and professional / casual / executive summary].
+
+<span class="highlight">Metrics this week:</span>
+[paste raw numbers]
+
+<span class="highlight">Work completed:</span>
+[bullet list of what actually happened]
+
+<span class="highlight">Issues or blockers:</span>
+[anything worth flagging]
+
+<span class="highlight">Priority for next week:</span>
+[what's up next]</div>
+
+      <h3>Time saved</h3>
+      <p>
+        Assembling a weekly report from raw inputs takes most people 45–90 minutes. This workflow gets the draft done in under 2 minutes, with 10–15 minutes of editing. That's a 1.5–2 hour weekly recovery, and the output is often more consistently structured than what humans produce under time pressure.
+      </p>
+
+      <h2 id="workflow-4">Workflow 4 — Social Content Calendar</h2>
+
+      <div class="workflow-block">
+        <span class="workflow-num">Workflow 04</span>
+        <div class="workflow-title">Social Content Calendar</div>
+        <div class="workflow-meta">
+          <div class="workflow-tag">Time saved: <span>2–3 hrs/week</span></div>
+          <div class="workflow-tag">Skill level: <span>Beginner</span></div>
+          <div class="workflow-tag">Setup time: <span>1–2 hrs</span></div>
+        </div>
+      </div>
+
+      <h3>What it is</h3>
+      <p>
+        A batch content generation workflow that produces a week or month of social posts in a single session. Instead of staring at a blank page every Tuesday morning, your team runs one prompt and gets 10–20 posts ready for editing and scheduling.
+      </p>
+
+      <h3>How to set it up</h3>
+      <p>
+        Include in your system prompt or knowledge base: which platforms you post on, what types of content perform well for you, your voice guidelines, and any topics or angles you return to regularly (thought leadership, behind-the-scenes, client results, industry commentary). Upload past posts that performed well so Claude has style references.
+      </p>
+
+      <h3>Example prompt</h3>
+      <div class="code-block"><span class="comment"># Social content batch</span>
+Generate [number] social media posts for [platform(s)] for the upcoming [week/month].
+
+<span class="highlight">Theme or focus for this period:</span> [e.g. "our onboarding process" / "spring promotion" / "thought leadership on AI"]
+
+<span class="highlight">Mix:</span>
+- [X] educational posts
+- [X] behind-the-scenes / process posts
+- [X] direct offer or CTA posts
+- [X] engagement questions
+
+<span class="highlight">Avoid:</span> [topics, tones, or approaches to steer clear of]
+
+Format each post with the copy, a suggested image concept, and best-time-to-post note.</div>
+
+      <h3>Time saved</h3>
+      <p>
+        Writing 15–20 posts individually, researching what to say, and making each one sound different takes most marketing-adjacent business owners 3+ hours. This workflow produces the batch in one session. Budget 45–60 minutes to edit, refine, and schedule. Net recovery: 2+ hours per week.
+      </p>
+
+      <h2 id="workflow-5">Workflow 5 — Meeting Notes to Action Items</h2>
+
+      <div class="workflow-block">
+        <span class="workflow-num">Workflow 05</span>
+        <div class="workflow-title">Meeting Notes → Action Items</div>
+        <div class="workflow-meta">
+          <div class="workflow-tag">Time saved: <span>30–60 min/meeting</span></div>
+          <div class="workflow-tag">Skill level: <span>Beginner</span></div>
+          <div class="workflow-tag">Setup time: <span>30 min</span></div>
+        </div>
+      </div>
+
+      <h3>What it is</h3>
+      <p>
+        A post-meeting processing workflow that converts raw notes (or auto-transcripts from tools like Otter or Fathom) into a clean summary, a list of action items with owners, and follow-up emails. No more losing hours of meeting productivity because the notes are incomplete and no one remembers who was supposed to do what.
+      </p>
+
+      <h3>How to set it up</h3>
+      <p>
+        This is the simplest workflow to stand up — it requires almost no custom configuration. Your Project's base context is enough. The main thing to specify is the output format you want: do you want a summary paragraph, or just bullets? Do you want action items with due dates? Do you want a follow-up email drafted at the end?
+      </p>
+
+      <h3>Example prompt</h3>
+      <div class="code-block"><span class="comment"># Meeting debrief</span>
+Process these meeting notes into a structured debrief.
+
+<span class="highlight">Meeting type:</span> [client call / internal team / sales / vendor]
+<span class="highlight">Attendees:</span> [names and roles]
+<span class="highlight">Date:</span> [date]
+
+<span class="highlight">Raw notes / transcript:</span>
+[paste notes or transcript here]
+
+<span class="highlight">Output I need:</span>
+1. Summary (3–5 bullet points, key decisions made)
+2. Action items (who, what, by when)
+3. Open questions or unresolved items
+4. Draft follow-up email to [recipient] summarizing next steps</div>
+
+      <h3>Time saved</h3>
+      <p>
+        Writing up a proper meeting debrief manually takes 20–45 minutes depending on the meeting length. This workflow produces the full output in under 2 minutes. Even accounting for editing, you're recovering 30–40 minutes per meeting. For a business running 5–10 meaningful meetings per week, that's 3–5 hours back.
+      </p>
+
+      <h2 id="putting-it-together">Putting it all together: 5–10 hours a week</h2>
+      <p>
+        These five workflows aren't additive — they're compounding. When your team stops wasting cognitive energy on first drafts, they have more left for the judgment calls that actually move the business forward. The work that was getting delayed because no one had time to write it up gets done. The client communication is more consistent. The proposals go out faster.
+      </p>
+      <p>
+        The key is implementation, not intention. Every business owner I've talked to already knows they should be using AI better. The gap isn't awareness — it's the three hours of upfront work required to set up the systems. That's what Treetop handles: we build the systems, document the prompts, and train your team so the workflows actually stick.
+      </p>
+      <p>
+        If you want to understand what's possible for your specific business before committing to anything, start with our <a href="/services/ai-audit" style="color:#00C853;">AI Audit</a> — a structured assessment of where your biggest time and quality gains are.
+      </p>
+
+      <div class="article-cta">
+        <div class="article-cta-h">Skip the setup work. We'll build these for you.</div>
+        <p>
+          Most businesses don't need help knowing what to automate — they need someone to actually build the system, configure the prompts correctly, and make sure the team uses it. That's our implementation service.
+        </p>
+        <a href="/services/implementation" class="btn-p">See How Implementation Works →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc-col">
+    <div class="toc">
+      <span class="toc-label">In this article</span>
+      <ul class="toc-list">
+        <li><a href="#workflow-1">1 — Customer Email</a></li>
+        <li><a href="#workflow-2">2 — Proposals &amp; Scope</a></li>
+        <li><a href="#workflow-3">3 — Weekly Reports</a></li>
+        <li><a href="#workflow-4">4 — Social Content</a></li>
+        <li><a href="#workflow-5">5 — Meeting Notes</a></li>
+        <li><a href="#putting-it-together">Putting it all together</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<GlobalFooter />
+
+</body>
+</html>

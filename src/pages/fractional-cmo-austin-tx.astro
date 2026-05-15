@@ -1,0 +1,284 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fractional CMO in Austin, TX | Treetop Growth Strategy</title>
+  <meta name="description" content="Austin's fractional CMO for B2B companies doing $5M–$50M. In-person availability, deep local market knowledge, AI-native marketing strategy. Treetop Growth Strategy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-cell-alt { background: #0A1A0A; padding: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .cell-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .cell-title { font-size: 0.9rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .cell-desc { font-size: 0.82rem; color: #8FAF8F; line-height: 1.65; }
+    .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .compare-cell { background: #0A1A0A; padding: 1.5rem 2rem; }
+    .compare-cell.dark { background: #050D05; }
+    .compare-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .compare-item { font-size: 0.85rem; color: #8FAF8F; padding: 0.5rem 0; border-bottom: 1px solid #1A3A1A; line-height: 1.5; }
+    .compare-item:last-child { border-bottom: none; }
+    .compare-item.yes { color: #F0FFF0; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .stat-num { font-family: 'Instrument Serif', serif; font-size: 3rem; font-style: italic; color: #00C853; line-height: 1; }
+    .stat-label { font-size: 0.82rem; color: #8FAF8F; margin-top: 0.4rem; line-height: 1.5; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .compare-row{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Austin, TX · In-Person Available</div>
+    <h1 class="hero-h">Austin's Fractional CMO<br/>for <em style="color:#00C853;font-style:italic;">B2B Growth</em></h1>
+    <p class="hero-sub">Senior marketing leadership for Austin B2B companies that are past early traction and ready to build something repeatable. No full-time hire required.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Start the Conversation →</a>
+      <a href="/fractional-cmo" class="btn-g">How It Works</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Who This Is For</span>
+    <h2 class="h2">Austin B2B companies that have grown<br/>past the founder-led sales stage.</h2>
+    <p class="sub">You've got product-market fit. You're doing $5M–$50M. The problem isn't what you sell — it's that you don't have a repeatable, scalable way to tell the market about it.</p>
+    <div class="grid-4" style="margin-top:2rem;">
+      <div class="grid-cell-alt">
+        <span class="cell-icon">🏗️</span>
+        <div class="cell-title">SaaS & Tech Companies</div>
+        <div class="cell-desc">You need positioning that translates to pipeline, not just a prettier website. Product-led growth needs a marketing layer to work at scale.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">⚖️</span>
+        <div class="cell-title">Professional Services</div>
+        <div class="cell-desc">Law firms, consultancies, agencies. Business development has been founder-led. Time to build a system that doesn't depend on one person's Rolodex.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">🏭</span>
+        <div class="cell-title">Mid-Market Manufacturing</div>
+        <div class="cell-desc">Austin's manufacturing base is modernizing fast. Digital marketing for industrial B2B is its own discipline — we know it.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">🔬</span>
+        <div class="cell-title">Life Sciences & Biotech</div>
+        <div class="cell-desc">Domain-specific, compliance-aware marketing. Austin's LS ecosystem is growing. Your marketing should reflect the sophistication of your science.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">What You Get</span>
+    <h2 class="h2">This isn't consulting. It's embedded<br/>marketing leadership.</h2>
+    <p class="sub">A fractional CMO from Treetop works inside your business — attending your leadership meetings, owning your marketing strategy, and accountable to your pipeline.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Marketing Strategy & Positioning</div>
+          <div class="step-desc">ICP definition, competitive positioning, messaging framework. The foundation everything else is built on. Done right the first time.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Demand Generation Architecture</div>
+          <div class="step-desc">Content, SEO, outbound, events, paid — prioritized against your budget and timeline. No spray and pray. A real roadmap with real resource requirements.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Team & Vendor Management</div>
+          <div class="step-desc">We manage your marketing team and agency partners so you're not the bottleneck. Includes performance management and hiring when it's time to grow the team.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Sales & Marketing Alignment</div>
+          <div class="step-desc">The gap between marketing and sales kills more pipelines than bad leads do. We build the handoff processes, SLAs, and feedback loops that make both sides better.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">AI-Native Marketing Operations</div>
+          <div class="step-desc">We implement Claude and other AI tools into your marketing workflows from day one. Not as an experiment — as operating infrastructure.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Fractional vs. Full-Time</span>
+    <h2 class="h2">Why Austin companies choose fractional<br/>over hiring a full-time CMO.</h2>
+    <div class="compare-row">
+      <div class="compare-cell">
+        <span class="compare-label">Full-Time CMO Hire</span>
+        <div class="compare-item">$250K–$400K base salary + equity</div>
+        <div class="compare-item">3–6 month ramp before meaningful contribution</div>
+        <div class="compare-item">Single perspective, one set of experiences</div>
+        <div class="compare-item">High risk: bad hire costs 18+ months</div>
+        <div class="compare-item">Benefits, payroll taxes, recruiting fees</div>
+        <div class="compare-item">Hard to downsize when priorities shift</div>
+      </div>
+      <div class="compare-cell">
+        <span class="compare-label" style="color:#00C853;">Treetop Fractional CMO</span>
+        <div class="compare-item yes">Starting from $8K/mo, no equity required</div>
+        <div class="compare-item yes">Week-one impact, day-one accountability</div>
+        <div class="compare-item yes">Pattern recognition across 20+ B2B companies</div>
+        <div class="compare-item yes">Low risk: cancel with 30 days notice</div>
+        <div class="compare-item yes">No benefits, no payroll taxes</div>
+        <div class="compare-item yes">Scale up or down as your needs change</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#4A6A4A;margin-top:1.5rem;">The math usually isn't close. Most Austin companies at the $5M–$15M range get more from a great fractional CMO than they would from a mediocre full-time hire at 3x the cost.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Austin Market Context</span>
+    <h2 class="h2">Why local knowledge actually<br/>matters in Austin B2B.</h2>
+    <p class="sub">Austin isn't a generic B2B market. It has specific dynamics that affect your go-to-market in ways that matter.</p>
+    <div class="grid-3" style="margin-top:2rem;">
+      <div class="grid-cell-alt">
+        <div class="cell-title">The Talent Market</div>
+        <div class="cell-desc">Austin's marketing talent pool is deep but expensive. Knowing who's worth hiring at what rates — and which agencies are actually good versus just well-branded — saves you six months of trial and error.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <div class="cell-title">The Network Effect</div>
+        <div class="cell-desc">Austin's B2B community is dense and well-connected. The right introductions at the Capital Factory, Austin Chamber events, or through the tech ecosystem can compress your sales cycle significantly.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <div class="cell-title">In-Person Availability</div>
+        <div class="cell-desc">We're based in Austin. Leadership meetings, board presentations, team workshops — we show up in person when it counts. That's different from a remote fractional who you never actually meet.</div>
+      </div>
+    </div>
+    <div style="margin-top:3rem;">
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+        <a href="/about" class="btn-g">About Bill Colbert →</a>
+        <a href="/services" class="btn-g">All Services →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Let's Talk</span>
+    <h2 class="h2">Ready to add a senior marketing<br/>leader to your team?</h2>
+    <p class="sub">Tell us where you're at and what you're trying to build. We'll come back with an honest assessment of whether fractional is the right fit.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What's your biggest AI or marketing challenge right now?</label>
+        <textarea class="input-field" id="gain" placeholder="No repeatable demand gen, pipeline is too founder-dependent..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <input type="hidden" id="source" value="fractional-cmo-austin" />
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Start the Conversation →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. No hard sell.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">Good to meet you.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, gain: document.getElementById('gain').value, source: document.getElementById('source').value }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Start the Conversation →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

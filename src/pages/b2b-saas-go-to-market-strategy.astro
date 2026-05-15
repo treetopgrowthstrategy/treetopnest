@@ -1,0 +1,364 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B2B SaaS Go-to-Market Strategy: What Works at $1M–$20M ARR | Treetop Growth Strategy</title>
+  <meta name="description" content="The B2B SaaS GTM playbook for $1M–$20M ARR. ICP definition, channel selection, PLG vs sales-led, and the 90-day execution plan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .prose { font-size: 0.95rem; color: #8FAF8F; line-height: 1.85; max-width: 760px; }
+    .prose p { margin-bottom: 1.25rem; }
+    .prose strong { color: #F0FFF0; font-weight: 600; }
+    .stage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2.5rem; }
+    .stage-cell { background: #0A1A0A; padding: 2rem; }
+    .stage-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .stage-title { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .stage-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; }
+    .motion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2.5rem; }
+    .motion-cell { background: #050D05; padding: 2rem; }
+    .motion-title { font-size: 0.9rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.5rem; }
+    .motion-when { font-size: 0.78rem; color: #00C853; margin-bottom: 0.75rem; font-weight: 500; }
+    .motion-desc { font-size: 0.83rem; color: #8FAF8F; line-height: 1.65; }
+    .callout { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.75rem; margin: 2rem 0; max-width: 760px; }
+    .callout p { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin: 0; }
+    .callout strong { color: #F0FFF0; }
+    .plan-row { padding: 1.75rem 0; border-bottom: 1px solid #1A3A1A; }
+    .plan-row:last-child { border-bottom: none; }
+    .plan-week { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.5rem; }
+    .plan-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .plan-desc { font-size: 0.87rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>B2B SaaS GTM</div>
+    <h1 class="hero-h">B2B SaaS GTM Strategy: What Actually<br/><em style="color:#00C853;font-style:italic;">Moves the Needle at $1M–$20M</em></h1>
+    <p class="hero-sub">The GTM playbook changes at every stage of SaaS growth. What got you to $1M won't get you to $10M. Here's what actually works — broken down by where you are right now.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Build Your GTM Playbook →</a>
+      <a href="/services" class="btn-g">See Our Services</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">GTM Maturity</span>
+    <h2 class="h2">The stages of SaaS GTM maturity.</h2>
+    <p class="sub">Most B2B SaaS companies are stuck between stages. The goal isn't to skip steps — it's to know which stage you're in and execute it cleanly.</p>
+    <div class="stage-grid">
+      <div class="stage-cell">
+        <span class="stage-label">Stage 1 · $0–$1M ARR</span>
+        <div class="stage-title">Founder-Led Discovery</div>
+        <div class="stage-desc">GTM at this stage is conversation. You're not running campaigns — you're learning. Every deal should surface why someone bought, what almost stopped them, and what they'd tell a peer. The output of Stage 1 is a validated ICP and a repeatable sales story, not a marketing engine.</div>
+      </div>
+      <div class="stage-cell">
+        <span class="stage-label">Stage 2 · $1M–$5M ARR</span>
+        <div class="stage-title">Repeatability</div>
+        <div class="stage-desc">You have enough data to know who your best customers are. Now the job is to codify the sales motion, document what works in discovery and demos, and start building the inbound channel that your stage 3 depends on. One or two channels, done well. Not five channels at 20% effort each.</div>
+      </div>
+      <div class="stage-cell">
+        <span class="stage-label">Stage 3 · $5M–$15M ARR</span>
+        <div class="stage-title">Scalable Demand</div>
+        <div class="stage-desc">Pipeline can no longer be founder-dependent. This is where you invest in content, SEO, and outbound infrastructure. The GTM motion has to work without the founders in the room. Conversion rates, not lead volume, become the primary diagnostic. Churn becomes a strategic problem, not an operational one.</div>
+      </div>
+      <div class="stage-cell">
+        <span class="stage-label">Stage 4 · $15M–$30M ARR</span>
+        <div class="stage-title">Multi-Segment Expansion</div>
+        <div class="stage-desc">You're serving multiple customer profiles. The GTM that worked for your original segment may not translate to upmarket or horizontal expansion. This is where most SaaS companies get stuck — trying to run one GTM motion across two distinct customer journeys.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">ICP Definition</span>
+    <h2 class="h2">ICP definition done right.</h2>
+    <div class="prose">
+      <p>Most SaaS companies have an ICP document that says something like "50–500 employee B2B companies in North America." That's not an ICP — that's a TAM filter. A real ICP tells your sales team exactly which account to call first on a Monday morning.</p>
+      <p><strong>A working SaaS ICP has six dimensions:</strong></p>
+    </div>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Firmographic fit</div>
+          <div class="step-desc">Revenue range, headcount range, industry vertical, geography. Narrow enough that your reps can build a list in one afternoon.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Tech stack signals</div>
+          <div class="step-desc">Which tools does your best customer use? What does their stack tell you about their maturity, their budget, and their receptivity to your category?</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Org structure</div>
+          <div class="step-desc">Who owns the problem you solve? Who signs the check? Who can kill the deal? These are three different people — map them.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Triggering events</div>
+          <div class="step-desc">What has to be true for them to be actively looking for your solution right now? New funding, a leadership change, a compliance deadline, a competitive threat — these triggers 3x conversion rates when you surface them in outreach.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Pain intensity</div>
+          <div class="step-desc">Not every ICP-fit account feels the pain acutely. Your best customers have a high urgency version of the problem — not a "we should probably fix that eventually" version.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-title">Negative ICP</div>
+          <div class="step-desc">Who looks like a fit but churns, underutilizes, or creates support burden? Defining who to avoid is as valuable as defining who to pursue.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Channel Strategy</span>
+    <h2 class="h2">The channels that work at each stage.</h2>
+    <p class="sub">Channel selection is one of the most consequential GTM decisions you'll make. Here's what the data shows for $1M–$20M B2B SaaS.</p>
+    <div class="stage-grid">
+      <div class="stage-cell">
+        <span class="stage-label">$1M–$3M ARR</span>
+        <div class="stage-title">Founder outbound + referral network</div>
+        <div class="stage-desc">Direct founder outreach to tight ICP lists. Warm intros from investors, advisors, and existing customers. Content only if a founder has an existing audience. Don't build an SDR team yet — you don't have a repeatable sales motion to hand off.</div>
+      </div>
+      <div class="stage-cell">
+        <span class="stage-label">$3M–$8M ARR</span>
+        <div class="stage-title">Inbound content + structured outbound</div>
+        <div class="stage-desc">SEO content targeting the exact searches your ICP makes when they have your problem. LinkedIn thought leadership from founders. First SDR or BDR, armed with tight messaging and ICP lists. Partnerships with adjacent SaaS tools your ICP already uses.</div>
+      </div>
+      <div class="stage-cell">
+        <span class="stage-label">$8M–$20M ARR</span>
+        <div class="stage-title">Multi-channel demand engine</div>
+        <div class="stage-desc">Paid search and LinkedIn for ICP-matched audiences. Events (in-person and virtual) for relationship-building at scale. Community plays — Slack groups, Circles, LinkedIn newsletters. Customer expansion motion — CS-led upsell and cross-sell into the installed base.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Sales Motion</span>
+    <h2 class="h2">PLG vs sales-led vs hybrid.</h2>
+    <p class="sub">The motion should come from your buyer — not from what's easiest to build or what your investors are excited about.</p>
+    <div class="motion-grid">
+      <div class="motion-cell">
+        <div class="motion-title">Product-Led Growth (PLG)</div>
+        <div class="motion-when">Best for: ACV under $5K, technical buyer, low switching cost</div>
+        <div class="motion-desc">Free trial or freemium. The product sells itself through activation. Works when time-to-value is fast and the person evaluating can deploy without IT approval. Fails when the problem requires change management or the champion isn't the end user.</div>
+      </div>
+      <div class="motion-cell">
+        <div class="motion-title">Sales-Led</div>
+        <div class="motion-when">Best for: ACV $20K+, complex buyer, multi-stakeholder</div>
+        <div class="motion-desc">Discovery, demo, proposal, negotiation. Works when there's a consultative value sell, procurement is involved, or customization is expected. Requires reps who can own a room and manage a 60–90 day cycle without hand-holding.</div>
+      </div>
+      <div class="motion-cell">
+        <div class="motion-title">Hybrid</div>
+        <div class="motion-when">Best for: ACV $5K–$20K, prosumer or team buyer</div>
+        <div class="motion-desc">Free trial or self-serve start, sales-assisted close. The product creates pull; a rep accelerates and expands. Requires tight alignment between product activation milestones and sales handoff triggers. Messy to execute but often highest-velocity when done well.</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:2.5rem;">
+      <p><strong>The most expensive GTM mistake in SaaS:</strong> building a PLG motion for a product that requires a consultative sale, or building a full sales team before you have a repeatable story to give them. Match the motion to the buyer, not to your preferred model.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">AI's Role</span>
+    <h2 class="h2">AI's role in modern SaaS GTM.</h2>
+    <div class="prose">
+      <p>The SaaS companies pulling ahead right now aren't just using AI tools — they've rebuilt their GTM operating model around AI as a core layer. The implications are significant.</p>
+      <p><strong>On the content side:</strong> companies with 3-person marketing teams are publishing as much qualified content as companies with 12-person teams — because AI handles the drafting, variation, and distribution formatting while humans own strategy and final edit.</p>
+      <p><strong>On outbound:</strong> AI research agents are doing prospect research that used to take SDRs 30 minutes per account — in seconds. That changes pipeline math. A two-person sales team with AI assist can cover outbound volume that used to require five.</p>
+      <p><strong>On feedback loops:</strong> AI synthesis of call recordings, CRM data, and churn patterns is compressing the learning cycle from quarters to weeks. The companies that iterate fastest are winning — and AI is the multiplier on iteration speed.</p>
+    </div>
+    <div class="internal-links">
+      <a href="/what-is-ai-native-gtm" class="internal-link">What is AI-Native GTM? →</a>
+      <a href="/services/implementation" class="internal-link">Claude Implementation Services →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">90-Day Playbook</span>
+    <h2 class="h2">The 90-day GTM reset.</h2>
+    <p class="sub">For companies between $1M and $20M who know something is off — but aren't sure where to start.</p>
+    <div>
+      <div class="plan-row">
+        <div class="plan-week">Days 1–14</div>
+        <div class="plan-title">Diagnostic — Win/Loss, ICP Validation, Channel Audit</div>
+        <div class="plan-desc">Interview recent wins, recent losses, and churned customers. Audit your current ICP definition against your actual best customers. Map your current channel spend against pipeline source data. Find the gap between where you're investing and where deals actually come from.</div>
+      </div>
+      <div class="plan-row">
+        <div class="plan-week">Days 15–30</div>
+        <div class="plan-title">Positioning Refresh + Sales Story Rebuild</div>
+        <div class="plan-desc">Rebuild positioning based on what you learned — not what sounds right in a conference room. Rewrite the sales deck, the discovery call guide, and the top-of-funnel messaging to match. Run it by 3–5 current customers before it goes live.</div>
+      </div>
+      <div class="plan-row">
+        <div class="plan-week">Days 31–60</div>
+        <div class="plan-title">Channel Focus + Pipeline Sprint</div>
+        <div class="plan-desc">Cut the channels that aren't producing. Double down on one or two. Run a focused outbound sprint using the new positioning against your tightest ICP list. Measure meeting rate and quality — not volume.</div>
+      </div>
+      <div class="plan-row">
+        <div class="plan-week">Days 61–90</div>
+        <div class="plan-title">Feedback Loop + Iteration</div>
+        <div class="plan-desc">Weekly pipeline reviews tied to GTM hypothesis testing. What's converting? What's stalling? Where is the new messaging outperforming the old? Build the review cadence that makes GTM a system, not a one-time event.</div>
+      </div>
+    </div>
+    <div class="internal-links" style="margin-top:2rem;">
+      <a href="/services" class="internal-link">See Treetop's GTM Services →</a>
+      <a href="/fractional-cmo-b2b-saas" class="internal-link">Fractional CMO for B2B SaaS →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#0A1A0A;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Let's audit your SaaS GTM<br/>and find the leverage.</h2>
+    <p class="sub">Tell us where you are in the journey. We'll tell you what we'd focus on first.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your business?</label>
+        <textarea class="input-field" id="gain" placeholder="Faster pipeline, better content, more efficient GTM..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Build My GTM Playbook →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. No sales pressure.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'b2b-saas-gtm'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Build My GTM Playbook →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

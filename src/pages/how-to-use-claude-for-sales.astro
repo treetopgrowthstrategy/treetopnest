@@ -1,0 +1,390 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for Sales: 7 Workflows That Close More Deals | Treetop Growth Strategy</title>
+  <meta name="description" content="7 Claude AI sales workflows that actually work — from prospect research to CRM updates. With example prompts and setup instructions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .prose { font-size: 0.95rem; color: #8FAF8F; line-height: 1.85; max-width: 760px; }
+    .prose p { margin-bottom: 1.25rem; }
+    .prose strong { color: #F0FFF0; font-weight: 600; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .prompt-text em { color: #4A6A4A; font-style: italic; }
+    .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .vs-cell { background: #0A1A0A; padding: 2rem; }
+    .vs-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .vs-list { list-style: none; }
+    .vs-list li { font-size: 0.87rem; color: #8FAF8F; padding: 0.5rem 0; border-bottom: 1px solid rgba(26,58,26,0.5); display: flex; gap: 0.75rem; line-height: 1.5; }
+    .vs-list li:last-child { border-bottom: none; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .vs-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Sales</div>
+    <h1 class="hero-h">How to Use Claude AI for Sales<br/><em style="color:#00C853;font-style:italic;">(7 Workflows That Actually Work)</em></h1>
+    <p class="hero-sub">Not generic AI tips. Seven specific Claude workflows — with real prompts — that B2B sales teams are using right now to do better research, write better outreach, and close more deals.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in Your Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Why Claude</span>
+    <h2 class="h2">Why Claude beats ChatGPT<br/>for sales use cases.</h2>
+    <div class="vs-grid">
+      <div class="vs-cell">
+        <div class="vs-title" style="color:#4A6A4A;">ChatGPT for Sales</div>
+        <ul class="vs-list">
+          <li><span>✗</span><span>Generic outputs unless you do heavy prompt engineering every time</span></li>
+          <li><span>✗</span><span>No persistent company context — you re-explain your product on every session</span></li>
+          <li><span>✗</span><span>Voice and tone drifts — outputs rarely sound like your brand</span></li>
+          <li><span>✗</span><span>No native way to share a configured assistant with your whole team</span></li>
+          <li><span>✗</span><span>Short context window limits for pasting full call transcripts</span></li>
+        </ul>
+      </div>
+      <div class="vs-cell">
+        <div class="vs-title" style="color:#00C853;">Claude for Sales</div>
+        <ul class="vs-list">
+          <li><span style="color:#00C853;">✓</span><span>Claude Projects: your product docs, ICP, talk tracks, and voice live in the Project</span></li>
+          <li><span style="color:#00C853;">✓</span><span>200K token context window — paste an entire earnings call or 10-page proposal</span></li>
+          <li><span style="color:#00C853;">✓</span><span>Instruction-following is precise: "write like a senior AE, not a marketer" actually sticks</span></li>
+          <li><span style="color:#00C853;">✓</span><span>Shared Projects — the whole sales team runs from the same configured assistant</span></li>
+          <li><span style="color:#00C853;">✓</span><span>Better at nuanced judgment calls: tone calibration, objection navigation, risk flags</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">7 Sales Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">Copy these prompts directly. Adjust the bracketed fields. The ones that work best are the ones you put into a Claude Project with your company context already loaded.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">Prospect Research</div>
+      <div class="wf-desc">Before any outreach or call, Claude builds you a structured account brief — what they do, who the buyers are, what recent news or signals matter, and why your solution is relevant to them right now. Takes 90 seconds instead of 30 minutes.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">I'm preparing to reach out to [Company Name]. They're a [industry] company with about [headcount] employees.
+
+Research this company and give me:
+1. What they actually do (in plain language, not their website copy)
+2. Who likely owns the problem I solve ([describe your solution category])
+3. Any recent news, funding, leadership changes, or hiring signals from the last 6 months
+4. 2–3 specific reasons why they'd care about [your product] right now
+5. One risk or reason they might not be a fit
+
+Be specific and direct. Skip filler.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Personalized Outreach</div>
+      <div class="wf-desc">Claude writes outreach that doesn't sound like it came from a template — because it's built on real research. The key is feeding it the account brief from Workflow 1 and being specific about what "personalized" actually means.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a cold email to [First Name] at [Company]. Here's what I know about them:
+[paste account brief from Workflow 1]
+
+My product: [1-2 sentence description]
+What we do for companies like them: [specific outcome]
+The one insight I want to lead with: [specific hook from research]
+
+Write a 5-sentence email. First line: specific to them, not generic. Don't start with "I" or "We." No "I hope this finds you well." End with a low-friction ask (15-min call or simple question). Sound like a peer, not a vendor.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Objection Handling Prep</div>
+      <div class="wf-desc">Before a big demo or follow-up call, Claude stress-tests your positioning by playing the skeptical buyer. This is more useful than any objection handling doc because it's specific to the account and the deal.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">I have a demo with [Company] tomorrow. They're a [type of company], currently using [competitor or current solution]. Their main concern going in is [known objection or hesitation].
+
+Play the skeptical buyer. Give me the 5 hardest objections they're likely to raise, then help me craft a response to each one. Responses should be direct, not defensive. Don't over-explain. Acknowledge the concern before addressing it.
+
+After the objections, tell me the one thing most likely to kill this deal and how I'd handle it.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Proposal Drafting</div>
+      <div class="wf-desc">After a discovery call, Claude turns your notes into a structured proposal draft in 10 minutes. The output isn't polished enough to send immediately — but it's 80% there, and it's built from what you actually learned in the call, not a generic template.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">I just finished a discovery call with [Company]. Here are my notes:
+[paste raw call notes]
+
+Based on these notes, draft a proposal outline with:
+- Their situation as I understand it (2–3 sentences — they should read this and feel understood)
+- The specific problem we're solving
+- Our recommended approach / what we'd do
+- Expected outcomes (use their words from the call where possible)
+- Investment / pricing section placeholder
+- Next steps
+
+Write in a clear, direct tone. No buzzwords. Flag anything I said in the notes that's vague or that I should clarify before sending.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">Call Debrief Notes</div>
+      <div class="wf-desc">Drop a call transcript into Claude and get structured CRM notes, key takeaways, and next steps — in 2 minutes. This workflow alone saves most AEs 20–30 minutes per day and dramatically improves CRM data quality.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Here's the transcript from my call with [Name] at [Company]:
+[paste transcript]
+
+Give me:
+1. A 3-sentence CRM note summary (past tense, third person, factual)
+2. Key pain points they mentioned (direct quotes where possible)
+3. Objections or concerns raised
+4. What they said about timeline and decision process
+5. Agreed next steps from the call
+6. My assessment: hot/warm/cold and why
+
+Format this so I can paste it directly into Salesforce/HubSpot.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Follow-Up Sequences</div>
+      <div class="wf-desc">Claude writes multi-touch follow-up sequences that don't feel like automated drip campaigns — because each one is built around what actually happened in the conversation, not a generic template.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a 4-email follow-up sequence for [Name] at [Company] after our discovery call. Context:
+- Main interest: [what they cared about most]
+- Main concern: [their biggest hesitation]
+- Their timeline: [when they're looking to decide]
+- Next formal step: [demo, proposal review, etc.]
+
+Email 1 (same-day): recap + one valuable insight from the call
+Email 2 (3 days later): address the main concern with proof or example
+Email 3 (7 days later): relevant resource or case study, no pressure
+Email 4 (14 days later): direct ask about status, easy out offered
+
+Each email: under 100 words, no fluff, clear subject line. Sound like a person, not a sequence.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">CRM Update Summaries</div>
+      <div class="wf-desc">At the end of every week, Claude synthesizes your deal notes and tells you which deals need attention, which are stalling, and what to do about it. Better than any pipeline review meeting.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Here are my active deals with their current notes:
+[paste deal names, stages, last activity, and notes]
+
+Give me:
+1. Which 3 deals need my attention most urgently and why
+2. Any deals that look like they're quietly going cold (and what the signal is)
+3. The one deal I'm probably underestimating or underworking
+4. Suggested next action for each deal (one sentence each)
+
+Be direct. If a deal looks dead, say so.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Setup Guide</span>
+    <h2 class="h2">How to set up Claude Projects<br/>for your sales team.</h2>
+    <p class="sub">The prompts above work better inside a properly configured Claude Project. Here's how to build one in an afternoon.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create a "Sales" Project in Claude</div>
+          <div class="setup-desc">Go to claude.ai → Projects → New Project. Name it something like "[Company] Sales" so the whole team knows where it lives. This becomes the single place your sales team runs all their AI workflows from.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Write a Project System Prompt</div>
+          <div class="setup-desc">This is the most important step. Include: what your company does (in one paragraph), your ICP description, your product's key differentiators, your brand voice for written communication, and what you want Claude to always/never do. The better this is, the better every output will be.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Your Context Documents</div>
+          <div class="setup-desc">Add to the Project: your one-page pitch/deck, your top 2–3 case studies, your FAQ doc, your competitor comparison sheet, and your pricing structure. Claude will reference these in every conversation in this Project without you having to paste them every time.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build a Prompt Library</div>
+          <div class="setup-desc">Take the 7 prompts above and customize them with your company details. Save them in a shared doc that the team can reference. The goal is that any rep can start a Claude conversation and get a great output in under 2 minutes — without having to think about how to prompt.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">05</div>
+        <div>
+          <div class="setup-title">Run a Team Training Session</div>
+          <div class="setup-desc">One 60-minute session where you walk through each workflow live, run each prompt with a real account, and show the team how to edit and improve outputs. The goal is comfort and confidence — not just tool awareness.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows deployed<br/>inside your sales team?</h2>
+    <p class="sub">We build Claude Projects configured for your product, your ICP, and your team — and train everyone to use them. Usually done in 2–3 weeks.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your business?</label>
+        <textarea class="input-field" id="gain" placeholder="More pipeline, faster outreach, better call notes..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My Sales Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-sales'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My Sales Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

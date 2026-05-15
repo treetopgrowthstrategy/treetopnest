@@ -1,0 +1,319 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best AI Tools for Small Business in 2025 (What Actually Works)</title>
+  <meta name="description" content="An honest look at the AI tools small businesses are actually using in 2025. What's worth the subscription, what's overhyped, and how to close the implementation gap." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .tool-card { border: 1px solid #1A3A1A; padding: 2rem; margin-bottom: 1.5rem; }
+    .tool-card.featured { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.03); }
+    .tool-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .tool-name { font-size: 1.1rem; font-weight: 600; color: #F0FFF0; }
+    .tool-verdict { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.75rem; flex-shrink: 0; }
+    .verdict-yes { background: rgba(0,200,83,0.15); color: #00C853; }
+    .verdict-conditional { background: rgba(240,255,240,0.08); color: #8FAF8F; }
+    .verdict-no { background: rgba(255,50,50,0.1); color: #FF6666; }
+    .tool-category { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 0.5rem; }
+    .tool-cost { font-size: 0.8rem; color: #8FAF8F; margin-bottom: 1rem; }
+    .tool-desc { font-size: 0.88rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1rem; }
+    .tool-best-for { font-size: 0.8rem; color: #F0FFF0; font-weight: 500; }
+    .tool-best-for span { color: #4A6A4A; font-weight: 300; }
+    .eval-row { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; }
+    .eval-row:last-child { border-bottom: none; }
+    .eval-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .eval-title { font-size: 0.9rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .eval-desc { font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; }
+    .gap-block { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .tool-header{flex-direction:column;align-items:flex-start} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>2025 Honest Review</div>
+    <h1 class="hero-h">The AI Tools Small Businesses<br/><em style="color:#00C853;font-style:italic;">Are Actually Using in 2025</em></h1>
+    <p class="hero-sub">Most AI tool roundups are sponsored content dressed as advice. This one isn't. Here's what's actually worth paying for — and the implementation gap that determines whether any of it matters.</p>
+    <div class="hero-actions">
+      <a href="#tools" class="btn-p">See the Tools →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Honest Landscape</span>
+    <h2 class="h2">Most AI tools are overhyped.<br/>A few aren't.</h2>
+    <p class="sub" style="max-width:760px;">The AI tool market in 2025 is noisy. There are hundreds of "AI-powered" products competing for your subscription. The reality: most of them are wrappers around GPT or Claude with a pretty UI and a markup. A small number are genuinely useful. The difference isn't the technology — it's whether the tool fits naturally into your existing workflow and whether your team actually uses it consistently.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#1A3A1A;margin-top:2rem;">
+      <div style="background:#050D05;padding:2rem;">
+        <div style="font-family:'Instrument Serif',serif;font-size:3rem;font-style:italic;color:#00C853;line-height:1;">~30%</div>
+        <div style="font-size:0.82rem;color:#8FAF8F;margin-top:0.5rem;line-height:1.6;">of small businesses that subscribe to AI tools use them consistently after 3 months</div>
+      </div>
+      <div style="background:#050D05;padding:2rem;border-left:1px solid #1A3A1A;">
+        <div style="font-family:'Instrument Serif',serif;font-size:3rem;font-style:italic;color:#00C853;line-height:1;">5–8</div>
+        <div style="font-size:0.82rem;color:#8FAF8F;margin-top:0.5rem;line-height:1.6;">the number of AI tools that actually move the needle for most B2B small businesses — out of hundreds marketed</div>
+      </div>
+      <div style="background:#050D05;padding:2rem;border-left:1px solid #1A3A1A;">
+        <div style="font-family:'Instrument Serif',serif;font-size:3rem;font-style:italic;color:#00C853;line-height:1;">80%</div>
+        <div style="font-size:0.82rem;color:#8FAF8F;margin-top:0.5rem;line-height:1.6;">of available value from AI tools is left on the table without deliberate implementation and team training</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="sec-inner">
+    <span class="lbl">The Tools Worth Using</span>
+    <h2 class="h2">What's actually delivering value<br/>for small B2B businesses.</h2>
+    <p class="sub">Verdict key: Buy It = worth the subscription, Conditional = worth it in specific situations, Skip It = rarely worth it for SMB.</p>
+
+    <div class="tool-card featured">
+      <div class="tool-category">AI Assistant · Core Infrastructure</div>
+      <div class="tool-header">
+        <div class="tool-name">Claude (Anthropic)</div>
+        <div class="tool-verdict verdict-yes">Buy It</div>
+      </div>
+      <div class="tool-cost">$20/month (Pro) · $25/user/month (Teams)</div>
+      <div class="tool-desc">The foundational AI tool for B2B small businesses. Claude Pro gives you access to Claude 3.5 Sonnet and Opus with Projects — which lets you build persistent, customized AI workspaces for specific use cases. Proposal writing, research synthesis, client communication, content creation, strategy work. The thing that makes Claude different from a generic chatbot is the Projects feature: upload your brand guidelines, SOPs, and client context once; use it in every conversation forever.</div>
+      <div class="tool-best-for"><span>Best for: </span>Any B2B company that does significant writing, research, or client deliverable work. That's most of them.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">AI Research · Search & Synthesis</div>
+      <div class="tool-header">
+        <div class="tool-name">Perplexity AI</div>
+        <div class="tool-verdict verdict-yes">Buy It</div>
+      </div>
+      <div class="tool-cost">$20/month (Pro)</div>
+      <div class="tool-desc">Perplexity is AI-powered search done right. Where Google gives you links, Perplexity gives you answers — with citations. Exceptional for competitive research, industry analysis, market landscape work, and staying current on fast-moving topics. The Pro tier adds access to Claude and GPT-4 models for deeper analysis. Works best in combination with Claude: Perplexity for research and synthesis, Claude for writing and structured work product.</div>
+      <div class="tool-best-for"><span>Best for: </span>Sales teams, marketers, and consultants who spend significant time on research. Pays for itself fast.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Productivity · Knowledge Management</div>
+      <div class="tool-header">
+        <div class="tool-name">Notion AI</div>
+        <div class="tool-verdict verdict-conditional">Conditional</div>
+      </div>
+      <div class="tool-cost">$10/month add-on (on top of Notion subscription)</div>
+      <div class="tool-desc">If your company runs on Notion — meeting notes, project docs, SOPs, knowledge base — Notion AI adds meaningful value. It can summarize long docs, generate first drafts within your existing workspace, and answer questions about your internal knowledge base. The catch: it only works if you're already in Notion. If you're not, start with Claude. If you are, the $10/month add-on is worth it.</div>
+      <div class="tool-best-for"><span>Best for: </span>Teams already using Notion as their primary workspace. Skip if you're not already there.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Meeting Intelligence · Async Communication</div>
+      <div class="tool-header">
+        <div class="tool-name">Otter.ai / Fireflies.ai</div>
+        <div class="tool-verdict verdict-yes">Buy It</div>
+      </div>
+      <div class="tool-cost">$10–$20/month per user</div>
+      <div class="tool-desc">AI meeting transcription and summarization. Every sales call, client meeting, and internal planning session gets auto-transcribed with action items extracted. Fireflies.ai is the better option for B2B sales teams (CRM integrations, deal intelligence). Otter.ai is simpler and works well for internal meetings and interviews. Either one pays for itself in the first week — you'll stop losing information from conversations.</div>
+      <div class="tool-best-for"><span>Best for: </span>Any team with regular client calls. Non-negotiable for sales-heavy organizations.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">AI Image & Design · Marketing</div>
+      <div class="tool-header">
+        <div class="tool-name">Midjourney / DALL-E 3</div>
+        <div class="tool-verdict verdict-conditional">Conditional</div>
+      </div>
+      <div class="tool-cost">$10–$30/month</div>
+      <div class="tool-desc">AI image generation has legitimate B2B applications — blog imagery, presentation visuals, concept illustrations, social content. But it's not a replacement for brand design work, and generic AI imagery is becoming recognizable and devaluing fast. Useful if you produce a lot of visual content and your brand doesn't rely on polished custom photography. Not useful if visual quality is core to your brand positioning.</div>
+      <div class="tool-best-for"><span>Best for: </span>Content-heavy businesses that need illustration and visual support at scale. Not a design system replacement.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Sales Intelligence · Lead Research</div>
+      <div class="tool-header">
+        <div class="tool-name">Apollo.io</div>
+        <div class="tool-verdict verdict-yes">Buy It</div>
+      </div>
+      <div class="tool-cost">$49–$99/month</div>
+      <div class="tool-desc">B2B contact data and sales intelligence with AI-powered features. Valuable for outbound prospecting — building targeted lists, enriching contacts, and sequencing outreach. The AI features (email personalization, intent signals) are useful but require deliberate setup to work. Use Claude alongside Apollo: Apollo finds and qualifies the contacts, Claude writes the personalized outreach at scale. That combination is genuinely powerful.</div>
+      <div class="tool-best-for"><span>Best for: </span>B2B companies with active outbound motion. Requires commitment to actually work the system.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Social & Content · Scheduling</div>
+      <div class="tool-header">
+        <div class="tool-name">Dedicated AI Content Tools (Jasper, Copy.ai, etc.)</div>
+        <div class="tool-verdict verdict-no">Skip It</div>
+      </div>
+      <div class="tool-cost">$39–$99/month</div>
+      <div class="tool-desc">Most dedicated AI writing tools are Claude or GPT wrappers with a B2B content UI. They charge 2–5x what a direct Claude subscription costs. If you already have Claude Pro with Projects, you can build your own "content tool" in an afternoon with better customization than anything Jasper offers. We've yet to find a content-specific AI tool that justifies the premium over a well-configured Claude Project.</div>
+      <div class="tool-best-for"><span>Instead: </span>Build a Claude Project with your brand voice, content templates, and SEO guidelines. Same output, better control, fraction of the cost.</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Evaluation Framework</span>
+    <h2 class="h2">How to evaluate any AI tool<br/>before you pay for it.</h2>
+    <div style="margin-top:2rem;">
+      <div class="eval-row">
+        <div class="eval-num">1</div>
+        <div>
+          <div class="eval-title">Does it fit into how your team already works?</div>
+          <div class="eval-desc">The best AI tool is the one people actually use. A tool that requires context-switching or a new workflow will be abandoned. Before subscribing, ask: does this tool live where my team already spends time, or does it require them to go somewhere new?</div>
+        </div>
+      </div>
+      <div class="eval-row">
+        <div class="eval-num">2</div>
+        <div>
+          <div class="eval-title">Is this a wrapper or a real product?</div>
+          <div class="eval-desc">A lot of AI tools are GPT or Claude with a custom UI. That's not inherently bad, but you should know what you're paying for. Ask: what does this tool do that I can't do with a well-configured Claude Project? If the answer is "not much," skip it.</div>
+        </div>
+      </div>
+      <div class="eval-row">
+        <div class="eval-num">3</div>
+        <div>
+          <div class="eval-title">Can you measure the impact?</div>
+          <div class="eval-desc">Set a baseline before you start. Time spent on the task, output quality, volume produced. Measure again at 30 and 60 days. If you can't show meaningful improvement, the tool isn't working — whether because of the tool or because of adoption.</div>
+        </div>
+      </div>
+      <div class="eval-row">
+        <div class="eval-num">4</div>
+        <div>
+          <div class="eval-title">What's the adoption plan?</div>
+          <div class="eval-desc">Who is going to use this, in what workflow, how often, and what does success look like? If you can't answer these before buying, you're not ready to buy. The implementation plan matters more than the tool.</div>
+        </div>
+      </div>
+      <div class="eval-row">
+        <div class="eval-num">5</div>
+        <div>
+          <div class="eval-title">Is there a trial or refund window?</div>
+          <div class="eval-desc">Most legitimate AI tools offer trials. If a tool doesn't have a trial and costs more than $50/month, be skeptical. You should be able to validate the value before committing to an annual plan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The Implementation Gap</span>
+    <h2 class="h2">Having the tool is step one.<br/>Getting it to work is the whole game.</h2>
+    <div class="gap-block">
+      <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.85;margin-bottom:1.5rem;">Here's what we see constantly: a company subscribes to Claude, or Apollo, or five other AI tools. A few people use them sporadically. The subscription renews. Six months later, the CEO asks "are we actually getting value from all this AI stuff?" and nobody has a good answer.</p>
+      <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.85;margin-bottom:1.5rem;">The tools aren't the problem. The absence of deliberate implementation is. You need someone to design the workflows, configure the tools, train the team, and hold the system together until it becomes habitual. That's the gap between AI as a curiosity and AI as operating infrastructure.</p>
+      <p style="font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;line-height:1.5;margin-bottom:2rem;">That's what we do at Treetop.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/claude-for-small-business" class="btn-p">Claude for SMB →</a>
+        <a href="/services/ai-audit" class="btn-g">AI Audit →</a>
+        <a href="/services/implementation" class="btn-g">Implementation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Implementation Help</span>
+    <h2 class="h2">Want AI tools that actually change<br/>how your business operates?</h2>
+    <p class="sub">Tell us where you're at. We'll tell you which tools are worth it for your situation and what an implementation would look like.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What's your biggest AI or marketing challenge right now?</label>
+        <textarea class="input-field" id="gain" placeholder="We've got a bunch of AI subscriptions but nobody uses them consistently..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <input type="hidden" id="source" value="ai-tools-small-business" />
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Get Implementation Help →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">Talk soon.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, gain: document.getElementById('gain').value, source: document.getElementById('source').value }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Get Implementation Help →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

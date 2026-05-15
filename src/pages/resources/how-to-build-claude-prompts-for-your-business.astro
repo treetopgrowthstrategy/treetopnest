@@ -1,0 +1,403 @@
+---
+export const prerender = true;
+import GlobalFooter from '../../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Write Claude Prompts That Actually Work for Your Business | Treetop Growth Strategy</title>
+  <meta name="description" content="The anatomy of a good business prompt, system prompts vs user prompts, Claude Projects setup, and 10 ready-to-use business prompt templates you can copy today." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/resources/how-to-build-claude-prompts-for-your-business" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    @media(max-width:768px){ .hide-mob{display:none!important} }
+
+    .page-wrap { padding-top: 64px; display: flex; max-width: 1200px; margin: 0 auto; gap: 4rem; padding-left: 2.5rem; padding-right: 2.5rem; padding-bottom: 6rem; }
+    .article-col { flex: 1; max-width: 760px; min-width: 0; }
+    .toc-col { width: 220px; flex-shrink: 0; }
+    @media(max-width:1024px){ .toc-col { display: none; } }
+
+    .toc { position: sticky; top: 5rem; padding-top: 3rem; }
+    .toc-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0.6rem; }
+    .toc-list a { font-size: 0.8rem; color: #4A6A4A; text-decoration: none; line-height: 1.4; transition: color 0.2s; display: block; }
+    .toc-list a:hover { color: #00C853; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #4A6A4A; padding-top: 2.5rem; padding-bottom: 2rem; }
+    .breadcrumb a { color: #4A6A4A; text-decoration: none; }
+    .breadcrumb a:hover { color: #00C853; }
+
+    .article-header { padding-bottom: 2.5rem; border-bottom: 1px solid #1A3A1A; margin-bottom: 2.5rem; }
+    .article-cat { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    .article-h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: #4A6A4A; }
+
+    .prose p { font-size: 0.97rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1.4rem; }
+    .prose h2 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: #F0FFF0; font-weight: 400; line-height: 1.2; margin-top: 3rem; margin-bottom: 1rem; scroll-margin-top: 5rem; }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+    .prose ul { list-style: none; margin-bottom: 1.4rem; }
+    .prose ul li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
+    .prose ul li::before { content: '—'; position: absolute; left: 0; color: rgba(0,200,83,0.5); }
+    .prose ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .prose ol li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 0.5rem; }
+    .prose strong { color: #F0FFF0; font-weight: 500; }
+
+    .code-block { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.5rem; margin: 1.5rem 0 2rem; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; overflow-x: auto; }
+    .code-block .comment { color: #4A6A4A; }
+    .code-block .highlight { color: #00C853; }
+    .code-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 0.5rem; display: block; }
+
+    .callout { background: rgba(0,200,83,0.05); border: 1px solid rgba(0,200,83,0.2); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p { margin-bottom: 0; color: #8FAF8F; font-size: 0.9rem; }
+    .callout strong { color: #00C853; }
+
+    .template-block { background: #0A1A0A; border: 1px solid #1A3A1A; margin-bottom: 1.5rem; }
+    .template-header { padding: 0.875rem 1.25rem; border-bottom: 1px solid #1A3A1A; display: flex; align-items: center; justify-content: space-between; }
+    .template-name { font-size: 0.8rem; font-weight: 600; color: #F0FFF0; }
+    .template-num { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; color: #00C853; }
+    .template-body { padding: 1.25rem; font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .template-body .ph { color: #00C853; }
+
+    .article-cta { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-top: 3rem; text-align: center; }
+    .article-cta-h { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; margin-bottom: 0.75rem; font-weight: 400; }
+    .article-cta p { font-size: 0.88rem; color: #8FAF8F; margin-bottom: 1.5rem; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Work with Us</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="article-col">
+    <div class="breadcrumb">
+      <a href="/resources">Resources</a>
+      <span>/</span>
+      <span style="color:#8FAF8F;">How to Build Claude Prompts</span>
+    </div>
+
+    <div class="article-header">
+      <span class="article-cat">Implementation</span>
+      <h1 class="article-h1">How to Write Claude Prompts That<br/>Actually Work for Your Business</h1>
+      <div class="article-meta">
+        <span>May 2026</span>
+        <span>·</span>
+        <span>11 min read</span>
+        <span>·</span>
+        <span>By Bill Colbert</span>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>
+        The quality of what you get from Claude is almost entirely determined by the quality of what you put in. This is less about magic words and more about clear communication — being specific about what you want, providing the context Claude needs, and structuring the request in a way that sets up a good output.
+      </p>
+      <p>
+        Most people use Claude the way they use a search engine: short, vague queries that produce generic results. The gap between that and a well-crafted business prompt is enormous — and closing it doesn't take advanced technical skill. It takes understanding a few core principles and then building a library of prompts that work for your specific business.
+      </p>
+
+      <h2 id="anatomy">The anatomy of a good business prompt</h2>
+      <p>
+        A strong business prompt has five elements. You won't need all five every time, but when output is missing the mark, the issue is almost always a missing element.
+      </p>
+      <ul>
+        <li><strong>Role or context:</strong> Who is Claude playing? What does it know about your business? <em>"You are the marketing lead for [Company], a B2B SaaS serving mid-market HR teams."</em></li>
+        <li><strong>Task:</strong> What specifically are you asking for? The more precise, the better. Not "write an email" but "write a follow-up email to a prospect who attended our webinar but hasn't responded to the initial outreach."</li>
+        <li><strong>Audience:</strong> Who is the output for? Claude adjusts tone and complexity when it knows this.</li>
+        <li><strong>Constraints:</strong> Format, length, tone, things to avoid. "Keep it under 200 words. No bullet points. Don't mention pricing yet."</li>
+        <li><strong>Raw material:</strong> Any information Claude needs to do the job well — the meeting notes, the data, the previous email thread, the brief.</li>
+      </ul>
+      <p>
+        Run any prompt that isn't working through this checklist. You'll almost always find which element is missing.
+      </p>
+
+      <h2 id="system-vs-user">System prompts vs user prompts: what's the difference</h2>
+      <p>
+        If you're using Claude Projects (and if you're using Claude for business, you should be — read the <a href="/resources/how-to-set-up-claude-projects" style="color:#00C853;">Project setup guide</a> first), you'll encounter two types of prompts: system prompts and user prompts.
+      </p>
+      <h3>System prompt</h3>
+      <p>
+        The system prompt is set once in your Project configuration. It's always-on background context. It establishes who Claude is in the context of your business, what it knows about you, how it should behave, and what rules apply to every conversation. You write it once; it shapes every interaction.
+      </p>
+      <p>
+        Think of it as onboarding a new team member: everything they need to know about the company, the voice, the rules, and the typical work — written down before their first day.
+      </p>
+      <h3>User prompt</h3>
+      <p>
+        The user prompt is what you type for each specific task. It's the request you make once the background context is already loaded. A good user prompt assumes Claude already knows your business (because it does, via the system prompt) and focuses on what's specific to this particular request.
+      </p>
+      <p>
+        Practical consequence: if your system prompt says "we never use the word 'leverage' as a verb," you don't have to say that in every user prompt. It's already handled. Write your system prompt to carry the stable, recurring rules. Write user prompts for the specific, dynamic request.
+      </p>
+
+      <div class="callout">
+        <p><strong>The two-layer rule:</strong> System prompt = what's always true about your business. User prompt = what's specific to this task. Never repeat in user prompts what your system prompt already covers.</p>
+      </div>
+
+      <h2 id="claude-projects">Setting up Claude Projects for prompt consistency</h2>
+      <p>
+        The single highest-leverage action most businesses can take is building a Claude Project with a strong system prompt and relevant knowledge base. Every prompt you write after that is building on a foundation of context that Claude already has — which means shorter prompts, more consistent output, and results that sound like your company rather than a generic AI.
+      </p>
+      <p>
+        The architecture looks like this:
+      </p>
+      <ol>
+        <li><strong>Project system prompt</strong> → company context, voice, rules, services, audience profiles</li>
+        <li><strong>Knowledge base documents</strong> → your best past work, SOPs, FAQs, brand guidelines</li>
+        <li><strong>Workflow prompt templates</strong> → reusable starter prompts for your most common tasks</li>
+        <li><strong>Individual user prompts</strong> → specific task requests that build on everything above</li>
+      </ol>
+      <p>
+        When this stack is configured correctly, even a team member who isn't a skilled prompter can get professional-quality output by using the workflow templates. The expertise is built into the system, not required on the fly.
+      </p>
+
+      <h2 id="templates">10 ready-to-use business prompt templates</h2>
+      <p>
+        These are templates you can copy directly into your Claude Project. Replace the bracketed placeholders with your specifics. Each one is written to be used as a user prompt, assuming your system prompt already has your business context loaded.
+      </p>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Client Proposal Draft</span>
+          <span class="template-num">01</span>
+        </div>
+        <div class="template-body">Draft a proposal for the following prospect.
+Use our standard proposal structure. Match our brand voice.
+
+Client: <span class="ph">[company name + 1-sentence description]</span>
+What they need: <span class="ph">[brief description of the engagement]</span>
+Services: <span class="ph">[which of our services apply]</span>
+Budget discussed: <span class="ph">[range, or "not yet discussed"]</span>
+Key priority they mentioned: <span class="ph">[specific concern or goal]</span>
+Length: 2–3 pages, professional tone</div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Customer Email Response</span>
+          <span class="template-num">02</span>
+        </div>
+        <div class="template-body">Draft a reply to this customer email.
+Match our voice. Under 150 words unless the situation requires more.
+
+Customer email:
+<span class="ph">[paste email]</span>
+
+Situation: <span class="ph">[what's actually happening — 2–3 sentences]</span>
+Desired outcome: <span class="ph">[what you want to happen next]</span></div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Meeting Notes to Action Items</span>
+          <span class="template-num">03</span>
+        </div>
+        <div class="template-body">Process these meeting notes.
+
+Meeting: <span class="ph">[type]</span> | Attendees: <span class="ph">[names/roles]</span> | Date: <span class="ph">[date]</span>
+
+Notes:
+<span class="ph">[paste raw notes or transcript]</span>
+
+Output:
+1. Summary (3–5 bullets, key decisions)
+2. Action items (owner, task, due date)
+3. Open questions
+4. Follow-up email draft to <span class="ph">[recipient]</span></div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Social Post Batch</span>
+          <span class="template-num">04</span>
+        </div>
+        <div class="template-body">Write <span class="ph">[number]</span> social posts for <span class="ph">[platform]</span>.
+Theme: <span class="ph">[topic or campaign focus]</span>
+Mix: <span class="ph">[X]</span> educational, <span class="ph">[X]</span> behind-the-scenes, <span class="ph">[X]</span> direct CTA
+Avoid: <span class="ph">[any specific angles or topics to skip]</span>
+
+For each post: copy + image concept + best posting time.</div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Weekly Status Report</span>
+          <span class="template-num">05</span>
+        </div>
+        <div class="template-body">Generate our weekly report.
+Audience: <span class="ph">[client name / internal]</span>
+Tone: <span class="ph">[concise / executive summary / detailed]</span>
+
+Metrics: <span class="ph">[paste numbers]</span>
+Completed: <span class="ph">[bullet list]</span>
+Issues: <span class="ph">[blockers or concerns]</span>
+Next week: <span class="ph">[priorities]</span></div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Cold Outreach Email</span>
+          <span class="template-num">06</span>
+        </div>
+        <div class="template-body">Write a cold outreach email to a new prospect.
+Do not use buzzwords. No fake urgency. Under 100 words.
+
+Prospect: <span class="ph">[name, title, company]</span>
+Their situation: <span class="ph">[what you know about their business/challenge]</span>
+Reason we're reaching out: <span class="ph">[specific hook — not generic]</span>
+One ask: <span class="ph">[15-min call / reply / specific action]</span></div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Case Study Draft</span>
+          <span class="template-num">07</span>
+        </div>
+        <div class="template-body">Draft a client case study.
+Tone: confident, specific, no hyperbole. Let results speak.
+
+Client: <span class="ph">[name or anonymized descriptor]</span>
+Challenge: <span class="ph">[what they were dealing with before]</span>
+What we did: <span class="ph">[specific work/services]</span>
+Results: <span class="ph">[numbers, outcomes, timeline]</span>
+Quote available: <span class="ph">[yes/no — if yes, paste it]</span>
+Length: 400–600 words</div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Job Description</span>
+          <span class="template-num">08</span>
+        </div>
+        <div class="template-body">Write a job description for the following role.
+Tone: clear and direct, no corporate fluff. We want people who read it to self-select.
+
+Role: <span class="ph">[title]</span>
+What they'll own: <span class="ph">[2–4 main responsibilities]</span>
+What good looks like: <span class="ph">[specific outcomes in the first 90 days]</span>
+Must-haves: <span class="ph">[non-negotiables]</span>
+Nice-to-haves: <span class="ph">[preferred but not required]</span>
+Comp range: <span class="ph">[range or "competitive, to be discussed"]</span></div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Competitive Analysis Summary</span>
+          <span class="template-num">09</span>
+        </div>
+        <div class="template-body">Analyze this competitor based on the information below.
+Identify: their positioning, apparent ICP, pricing signals, content strategy,
+and any gaps or weaknesses we could exploit.
+
+Competitor: <span class="ph">[name]</span>
+
+Information available:
+<span class="ph">[paste website copy, pricing page info, LinkedIn info, reviews, etc.]</span>
+
+Finish with: one recommended counter-positioning move for us.</div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-name">Internal SOP / Process Document</span>
+          <span class="template-num">10</span>
+        </div>
+        <div class="template-body">Write an SOP for the following process.
+Audience: internal team member who is new to this task.
+Format: numbered steps, clear language, no assumed knowledge.
+
+Process: <span class="ph">[name of the process]</span>
+Goal: <span class="ph">[what successful completion looks like]</span>
+Steps I know of: <span class="ph">[rough bullet list of what happens]</span>
+Tools involved: <span class="ph">[software, systems, accounts used]</span>
+Edge cases: <span class="ph">[anything that can go wrong or varies]</span></div>
+      </div>
+
+      <h2 id="common-mistakes">What makes a prompt fail</h2>
+      <p>
+        The most common failure modes — and what to do instead:
+      </p>
+      <ul>
+        <li><strong>Too vague on the task:</strong> "Write something about our new service" → "Write a 300-word email announcing our new AI audit service to existing clients who haven't yet purchased it"</li>
+        <li><strong>No audience specified:</strong> Claude doesn't know if it's writing for a CEO, a junior manager, or a customer. Always say who the output is for.</li>
+        <li><strong>No format constraint:</strong> Without guidance, Claude defaults to a structure it thinks fits. If you want bullets, say bullets. If you want one paragraph, say one paragraph.</li>
+        <li><strong>Missing raw material:</strong> If Claude needs to know specific facts to do the job, give it those facts. Don't ask it to draft a meeting recap without giving it the meeting notes.</li>
+        <li><strong>Prompting for effort instead of outcome:</strong> "Write me a really detailed and comprehensive analysis" → "Produce a 500-word analysis covering X, Y, and Z, with a recommendation at the end"</li>
+      </ul>
+
+      <h2 id="building-your-library">Building your prompt library</h2>
+      <p>
+        The 10 templates above are a starting point. Your prompt library should eventually contain 20–30 prompts tuned specifically to how your business operates. Every time you write a prompt that produces great output, save it. Every time a team member finds one that works, add it to the shared library.
+      </p>
+      <p>
+        Store your library somewhere accessible — a Notion page, a Google Doc, or as documents in your Claude Project knowledge base. Treat it as living documentation that gets refined over time, not a one-time deliverable.
+      </p>
+      <p>
+        The businesses doing this right treat their prompt library the same way they'd treat an SOP library: it's documented, it's shared, it's updated when something changes, and it's part of how the team is trained on new hires.
+      </p>
+
+      <div class="article-cta">
+        <div class="article-cta-h">Want these built for your specific business?</div>
+        <p>
+          A general prompt library is a starting point. A library tuned to your business — your services, your clients, your voice, your workflows — is what actually moves the needle. That's what our implementation service delivers.
+        </p>
+        <div class="cta-btns">
+          <a href="/services/implementation" class="btn-p">See Implementation →</a>
+          <a href="/claude-for-small-business" class="btn-g">Claude for Small Business</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc-col">
+    <div class="toc">
+      <span class="toc-label">In this article</span>
+      <ul class="toc-list">
+        <li><a href="#anatomy">Anatomy of a good prompt</a></li>
+        <li><a href="#system-vs-user">System vs user prompts</a></li>
+        <li><a href="#claude-projects">Claude Projects setup</a></li>
+        <li><a href="#templates">10 prompt templates</a></li>
+        <li><a href="#common-mistakes">What makes a prompt fail</a></li>
+        <li><a href="#building-your-library">Building your library</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<GlobalFooter />
+
+</body>
+</html>

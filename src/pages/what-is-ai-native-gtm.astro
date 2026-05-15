@@ -1,0 +1,334 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is AI-Native GTM? (And Why It's Different from 'Using AI Tools') | Treetop Growth Strategy</title>
+  <meta name="description" content="Bill Colbert coined 'AI-native GTM.' Here's what it actually means, why it's different from using AI tools, and the 4 pillars that define it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .prose { font-size: 0.95rem; color: #8FAF8F; line-height: 1.85; max-width: 760px; }
+    .prose p { margin-bottom: 1.25rem; }
+    .prose strong { color: #F0FFF0; font-weight: 600; }
+    .compare-table { width: 100%; max-width: 900px; border-collapse: collapse; margin-top: 2.5rem; }
+    .compare-table th { padding: 1rem 1.5rem; text-align: left; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 2px solid #1A3A1A; }
+    .compare-table th:first-child { color: #4A6A4A; }
+    .compare-table th:last-child { color: #00C853; }
+    .compare-table td { padding: 1rem 1.5rem; font-size: 0.88rem; line-height: 1.6; border-bottom: 1px solid #1A3A1A; vertical-align: top; }
+    .compare-table td:first-child { color: #4A6A4A; background: rgba(255,255,255,0.01); }
+    .compare-table td:last-child { color: #8FAF8F; background: #0A1A0A; }
+    .compare-table td:first-child strong { color: #6A8A6A; }
+    .compare-table td:last-child strong { color: #F0FFF0; }
+    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2.5rem; }
+    .pillar-cell { background: #0A1A0A; padding: 2.25rem; }
+    .pillar-num { font-family: 'Instrument Serif', serif; font-size: 2.5rem; font-style: italic; color: rgba(0,200,83,0.15); display: block; margin-bottom: 0.5rem; }
+    .pillar-title { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .pillar-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .pillar-example { font-size: 0.8rem; color: #4A6A4A; margin-top: 0.75rem; font-style: italic; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; }
+    .callout { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.75rem; margin: 2rem 0; max-width: 760px; }
+    .callout p { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin: 0; }
+    .callout strong { color: #F0FFF0; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .compare-table td,.compare-table th{padding:0.75rem 1rem;font-size:0.82rem} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Coined by Bill Colbert · Treetop Growth Strategy</div>
+    <h1 class="hero-h">AI-Native GTM: What It Means<br/><em style="color:#00C853;font-style:italic;">and Why It Changes Everything</em></h1>
+    <p class="hero-sub">Everyone is "using AI tools." That's not AI-native GTM. Here's the actual definition — and why the difference determines whether AI gives you a marginal productivity boost or a structural competitive advantage.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">See If You're AI-Native Ready →</a>
+      <a href="/services" class="btn-g">See Our Services</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Definition</span>
+    <h2 class="h2">What AI-native GTM actually means.</h2>
+    <div class="prose">
+      <p><strong>AI-native GTM is a go-to-market system designed from the ground up with AI as a core operating layer — not a layer added on top of existing processes.</strong></p>
+      <p>The distinction matters more than it sounds. When you use AI tools on top of a traditional GTM motion, you get faster execution of the same processes. That's a 10–20% efficiency gain. Useful, but not transformational.</p>
+      <p>When you redesign the GTM system with AI as a core layer — changing who does what, how information flows, what content gets produced, how outbound works, how feedback loops function — you unlock a fundamentally different operating model. Smaller teams out-executing larger ones. Faster iteration cycles. Content and pipeline output that doesn't scale linearly with headcount.</p>
+      <p>I coined this term because I kept watching companies bolt AI tools onto broken GTM processes and wonder why the needle wasn't moving. The tool isn't the problem. The underlying architecture is.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The Critical Distinction</span>
+    <h2 class="h2">"Using AI tools" vs. AI-native GTM.</h2>
+    <p class="sub">The gap between these two isn't the tools — it's the architecture. Here's how they look side by side.</p>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Old GTM (with AI tools bolted on)</th>
+            <th>AI-Native GTM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Marketers use ChatGPT to write blog posts faster</td>
+            <td><strong>Content system</strong> produces 30+ assets/month from one strategic brief</td>
+          </tr>
+          <tr>
+            <td>SDRs copy-paste AI-generated outreach that sounds AI-generated</td>
+            <td><strong>Intelligent outbound</strong> uses research agents + custom prompts for genuinely personalized sequences</td>
+          </tr>
+          <tr>
+            <td>Sales team uses AI for call notes, sometimes</td>
+            <td><strong>Sales enablement layer</strong> synthesizes every call into CRM updates, objection patterns, and coaching signals automatically</td>
+          </tr>
+          <tr>
+            <td>Operations reports are built manually in spreadsheets</td>
+            <td><strong>AI-powered ops backbone</strong> synthesizes pipeline, content performance, and churn signals weekly</td>
+          </tr>
+          <tr>
+            <td>Headcount grows in proportion to output expectations</td>
+            <td>Output grows faster than headcount — sustainable leverage at every stage</td>
+          </tr>
+          <tr>
+            <td>AI saves time on individual tasks</td>
+            <td>AI changes what's possible at the system level</td>
+          </tr>
+          <tr>
+            <td>Monthly content cadence — limited by production capacity</td>
+            <td>Weekly content cadence — limited by strategy and editorial judgment, not production</td>
+          </tr>
+          <tr>
+            <td>Win/loss reviews happen quarterly, informally</td>
+            <td>Win/loss signals surface weekly from AI synthesis of call recordings and CRM data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Framework</span>
+    <h2 class="h2">The 4 pillars of AI-native GTM.</h2>
+    <p class="sub">Every AI-native GTM system we build at Treetop is built on these four pillars. The companies that have all four operating are the ones pulling ahead.</p>
+    <div class="pillar-grid">
+      <div class="pillar-cell">
+        <span class="pillar-num">01</span>
+        <div class="pillar-title">The Content Engine</div>
+        <div class="pillar-desc">A system — not a workflow, a system — for producing thought leadership, SEO content, email sequences, case studies, and social content at a volume that traditional teams can't match. Built on Claude Projects with your company's voice, positioning, and product knowledge baked in. One strategist running it can produce what a 4-person team used to.</div>
+        <div class="pillar-example">What it looks like: a 10-part content series from one customer interview. 6 email variations from one campaign brief. Weekly thought leadership drafted in 20 minutes.</div>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-num">02</span>
+        <div class="pillar-title">Intelligent Outbound</div>
+        <div class="pillar-desc">Outbound that's actually personalized — not "Hi [first name], I noticed you work at [company]" personalized, but grounded in research about what's happening at the account, what the prospect cares about, and why right now is the right moment to reach out. AI does the research; humans write the judgment calls; Claude assembles the outreach.</div>
+        <div class="pillar-example">What it looks like: 50 personalized first lines in an hour. Account research summaries that surface triggering events. Reply handling that stays on-brand without copy-paste responses.</div>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-num">03</span>
+        <div class="pillar-title">AI-Powered Sales Enablement</div>
+        <div class="pillar-desc">Every sales conversation becomes a data point. AI synthesizes call recordings into CRM notes, surfaces objection patterns across deals, generates proposal drafts from discovery notes, and keeps the sales team's knowledge base current without anyone doing manual documentation work.</div>
+        <div class="pillar-example">What it looks like: call debrief notes written in 2 minutes. Proposal drafts from a discovery summary. "Top 5 objections this quarter" surfaces automatically from call data.</div>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-num">04</span>
+        <div class="pillar-title">The Ops Backbone</div>
+        <div class="pillar-desc">The synthesizing layer that keeps leadership informed without requiring manual reporting. Weekly GTM health signals from CRM, content, and pipeline data — analyzed and surfaced by AI rather than built in a spreadsheet. The ops backbone is what makes iteration fast instead of slow.</div>
+        <div class="pillar-example">What it looks like: weekly GTM digest written automatically. Pipeline trend analysis without a BI tool. Churn signal detection from usage and sentiment patterns.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">In Practice</span>
+    <h2 class="h2">What AI-native GTM looks like at a $10M ARR company.</h2>
+    <div class="prose">
+      <p>Here's a concrete picture. A B2B SaaS company at $10M ARR with a 4-person revenue team (1 marketer, 2 AEs, 1 CS lead) running AI-native GTM.</p>
+      <p><strong>Monday:</strong> The content engine, running on a Claude Project with the company's voice and positioning baked in, generates first drafts of 3 blog posts, 2 LinkedIn threads, and 4 email sequences — all from a single strategic brief written by the marketer on Friday. She spends 2 hours editing and scheduling, not writing from scratch.</p>
+      <p><strong>Tuesday:</strong> One AE uses the intelligent outbound system to research 20 accounts and generate personalized first-line variants for a prospecting sequence. What used to take a full day takes 90 minutes.</p>
+      <p><strong>Wednesday:</strong> After every discovery call, the AE drops the transcript into a Claude workflow that generates structured CRM notes, follow-up email draft, and flags any objections or technical questions for the CS team. 2 minutes, not 20.</p>
+      <p><strong>Friday:</strong> Leadership reads a 1-page weekly GTM digest — pipeline velocity by segment, top-performing content assets, churn risk flags from CS notes — generated automatically. No one built a report.</p>
+      <p>This isn't science fiction. It's what we build for companies right now.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">How to Get There</span>
+    <h2 class="h2">How to become AI-native.</h2>
+    <p class="sub">The path isn't "buy more AI tools." It's a deliberate architectural change. Here's how it unfolds.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Audit your current GTM motion for AI leverage points</div>
+          <div class="step-desc">Map every recurring task in your GTM — content creation, outreach research, call documentation, reporting. Rank by time cost and AI automation potential. You'll find 3–5 high-leverage opportunities in the first hour.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Build Claude Projects for each function</div>
+          <div class="step-desc">Not one general-purpose AI assistant — dedicated Claude Projects for content, for outbound, for sales enablement. Each project gets your company knowledge, voice guidelines, positioning, and product details baked in. The quality difference is significant.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Build the workflows, not just the prompts</div>
+          <div class="step-desc">A great prompt is a starting point, not a system. The workflow defines: what goes in, what comes out, who reviews, how it gets published or sent. Without a workflow, AI use stays ad hoc — dependent on who remembers to use it.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Train the team on the system, not just the tools</div>
+          <div class="step-desc">The team needs to understand why each workflow is designed the way it is — not just how to press go. That context is what allows them to troubleshoot, improve, and extend the system over time instead of reverting to old habits when AI outputs aren't perfect.</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <p><strong>Want a gap assessment?</strong> We've built a 15-minute diagnostic that shows you exactly where your GTM is AI-native and where it's still running on manual processes. <a href="/quiz" style="color:#00C853;">Take the AI-native GTM gap assessment →</a></p>
+    </div>
+    <div class="internal-links">
+      <a href="/services" class="internal-link">See Treetop's Services →</a>
+      <a href="/services/implementation" class="internal-link">Claude Implementation →</a>
+      <a href="/quiz" class="internal-link">Take the Gap Assessment →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Let's map your path to<br/>AI-native GTM.</h2>
+    <p class="sub">Tell us where you are. We'll show you the gaps and what it takes to close them.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your business?</label>
+        <textarea class="input-field" id="gain" placeholder="More pipeline, faster content, smarter outbound..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Map My AI-Native Path →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'what-is-ai-native-gtm'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Map My AI-Native Path →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

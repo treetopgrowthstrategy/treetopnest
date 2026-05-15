@@ -1,0 +1,400 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Much Does a Fractional CMO Cost? (2025 Pricing Guide)</title>
+  <meta name="description" content="Fractional CMO pricing in 2025: typical ranges, what drives cost up or down, equity vs. cash, and how to evaluate ROI. Real numbers, not vague estimates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a fractional CMO cost per month?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fractional CMO costs typically range from $3,000 to $20,000 per month depending on scope, hours committed, and experience level. Most B2B companies in the $5M–$50M range land between $6,000 and $12,000 per month for a meaningful engagement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What hourly rate does a fractional CMO charge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fractional CMO hourly rates range from $150 to $400 per hour. Most don't work on a pure hourly basis — they package a set number of hours per week into a monthly retainer for predictability on both sides."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do fractional CMOs take equity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Some do, most don't. Equity arrangements are more common at early-stage startups where cash is tight. For companies doing $5M+, most fractional CMOs prefer all-cash arrangements. If equity is offered, typical grants range from 0.1% to 0.5% vesting over 2–4 years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a fractional CMO worth the cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For most B2B companies between $5M and $50M, yes — if the alternative is either no marketing leadership or a full-time hire. A $10,000/month fractional CMO driving 20% pipeline improvement on a $5M ARR business pays back in weeks. The ROI math is usually obvious when you run it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long do fractional CMO contracts last?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most fractional CMO engagements start with a 3-month pilot, then move to rolling monthly retainers. Average engagement length is 12–18 months. Companies that hire full-time marketing leadership eventually graduate out — which is the point."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    /* Pricing table */
+    .pricing-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+    .pricing-table th { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A6A4A; padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid #1A3A1A; background: #050D05; }
+    .pricing-table td { font-size: 0.85rem; color: #8FAF8F; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(26,58,26,0.5); vertical-align: top; line-height: 1.6; }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table tr:hover td { background: rgba(0,200,83,0.03); }
+    .pricing-table .tier-name { color: #F0FFF0; font-weight: 500; }
+    .pricing-table .price { color: #00C853; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+    .pricing-table .highlight-row td { background: rgba(0,200,83,0.05); }
+    .pricing-table .highlight-row .tier-name::after { content: " ← Most common"; font-size: 0.7rem; color: #00C853; font-weight: 400; }
+    .driver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .driver-cell { background: #0A1A0A; padding: 2rem; }
+    .driver-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .driver-item { font-size: 0.85rem; color: #8FAF8F; padding: 0.45rem 0; border-bottom: 1px solid rgba(26,58,26,0.4); line-height: 1.6; }
+    .driver-item:last-child { border-bottom: none; }
+    .driver-item.up { color: #F0FFF0; }
+    .faq-item { padding: 1.75rem 0; border-bottom: 1px solid #1A3A1A; }
+    .faq-q { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .faq-a { font-size: 0.88rem; color: #8FAF8F; line-height: 1.75; }
+    .roi-calc { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-top: 2rem; }
+    .roi-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid rgba(26,58,26,0.5); }
+    .roi-row:last-child { border-bottom: none; border-top: 1px solid #1A3A1A; padding-top: 1.25rem; margin-top: 0.5rem; }
+    .roi-label { font-size: 0.85rem; color: #8FAF8F; }
+    .roi-value { font-size: 0.95rem; color: #F0FFF0; font-weight: 500; }
+    .roi-value.green { color: #00C853; font-weight: 600; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .driver-grid{grid-template-columns:1fr} .pricing-table{font-size:0.78rem} .pricing-table th,.pricing-table td{padding:0.875rem 1rem} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>2025 Pricing Guide</div>
+    <h1 class="hero-h">Fractional CMO Cost:<br/><em style="color:#00C853;font-style:italic;">What You Should Expect to Pay in 2025</em></h1>
+    <p class="hero-sub">Real pricing ranges, what drives cost up or down, how to evaluate ROI, and Treetop's transparent starting-from rates. No games, no fake anchor pricing.</p>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Pricing Landscape</span>
+    <h2 class="h2">Fractional CMO rates by engagement scope.</h2>
+    <p class="sub">The range is wide because scope varies enormously. Here's how to read the market.</p>
+    <div style="overflow-x:auto;">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Monthly Range</th>
+            <th>Hours / Week</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier-name">Strategic Advisor</td>
+            <td class="price">$3,000–$5,000</td>
+            <td>4–8 hrs</td>
+            <td>Early-stage companies that need direction, not execution management. Limited strategic oversight only.</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="tier-name">Fractional CMO</td>
+            <td class="price">$6,000–$12,000</td>
+            <td>10–16 hrs</td>
+            <td>B2B companies $5M–$30M with a small team to manage. Full strategy plus team/vendor oversight.</td>
+          </tr>
+          <tr>
+            <td class="tier-name">Senior Fractional CMO</td>
+            <td class="price">$12,000–$18,000</td>
+            <td>16–24 hrs</td>
+            <td>Larger teams, complex go-to-market, multi-product or multi-market companies.</td>
+          </tr>
+          <tr>
+            <td class="tier-name">Heavy Engagement</td>
+            <td class="price">$18,000–$25,000+</td>
+            <td>20–32 hrs</td>
+            <td>Near-full-time, typically companies $30M+ in active growth or transformation phases.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.8rem;color:#4A6A4A;margin-top:1rem;">Rates reflect 2025 U.S. market. Remote engagements run 10–20% lower than in-market. Rates for specialized verticals (fintech, healthcare, industrial) trend higher.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Pricing Drivers</span>
+    <h2 class="h2">What moves the number<br/>up or down.</h2>
+    <div class="driver-grid">
+      <div class="driver-cell">
+        <span class="driver-label">Pushes Price Higher</span>
+        <div class="driver-item up">Deep industry specialization (fintech, healthcare, enterprise SaaS)</div>
+        <div class="driver-item up">Management of a large internal team or multiple agencies</div>
+        <div class="driver-item up">Complex multi-channel demand gen (events, paid, ABM, content all running)</div>
+        <div class="driver-item up">Board-level reporting and investor communications</div>
+        <div class="driver-item up">Short-term urgency or active fundraise timeline</div>
+        <div class="driver-item up">In-person presence required in a specific market</div>
+      </div>
+      <div class="driver-cell">
+        <span class="driver-label">Keeps Price Lower</span>
+        <div class="driver-item">Fewer hours required (strategy only, execution handled internally)</div>
+        <div class="driver-item">Clear scope with well-defined deliverables</div>
+        <div class="driver-item">Longer initial commitment (6+ month contracts)</div>
+        <div class="driver-item">Remote-only engagement</div>
+        <div class="driver-item">Small team, straightforward GTM motion</div>
+        <div class="driver-item">Early-stage company with equity component</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Equity vs. Cash</span>
+    <h2 class="h2">Should your fractional CMO<br/>take equity?</h2>
+    <p class="sub">Short answer: probably not if you're doing $5M+. Here's the full picture.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">→</div>
+        <div>
+          <div class="step-title">Equity makes sense at early stage</div>
+          <div class="step-desc">Pre-revenue or seed-stage companies often attract fractional talent with equity + reduced cash. If you're capital-constrained and the CMO genuinely believes in the business, a 0.2–0.5% grant vesting over 2–4 years is reasonable.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">→</div>
+        <div>
+          <div class="step-title">Cash is cleaner once you have revenue</div>
+          <div class="step-desc">At $5M+ ARR, most good fractional CMOs want cash. Equity arrangements complicate the relationship — misaligned on exit strategy, cap table concerns, vesting cliffs creating weird incentives at the wrong times.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">→</div>
+        <div>
+          <div class="step-title">Beware equity-heavy proposals</div>
+          <div class="step-desc">A fractional CMO pushing hard for significant equity at your stage is either (a) not confident they can deliver measurable results or (b) not actually fractional — they want founder-level comp without founder-level commitment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">ROI Framework</span>
+    <h2 class="h2">How to evaluate if the cost<br/>makes financial sense.</h2>
+    <p class="sub">Run the math before you sign. This is the framework we use with every prospective client.</p>
+    <div class="roi-calc">
+      <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#4A6A4A;margin-bottom:1.5rem;">Sample ROI Calculation · $10M ARR B2B Company</div>
+      <div class="roi-row">
+        <div class="roi-label">Current monthly pipeline (marketing-sourced)</div>
+        <div class="roi-value">$500K</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">Fractional CMO cost (monthly)</div>
+        <div class="roi-value">−$9,000</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">Conservative pipeline improvement at month 4 (15%)</div>
+        <div class="roi-value">+$75K/mo added pipeline</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">At 25% close rate, added revenue per month</div>
+        <div class="roi-value">+$18,750/mo revenue</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">ROI at conservative assumptions</div>
+        <div class="roi-value green">2.1x in month 4, 5x+ at month 12</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#4A6A4A;margin-top:1.5rem;">Pipeline improvement of 15% at month 4 is conservative. Companies that haven't had marketing leadership before often see 30–50% pipeline growth. The real question: what's the cost of not having this?</p>
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="/fractional-cmo" class="btn-g">Fractional CMO Details →</a>
+      <a href="/services/retainer" class="btn-g">Retainer Options →</a>
+      <a href="/services" class="btn-g">All Services →</a>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Treetop's Approach</span>
+    <h2 class="h2">Our pricing, stated plainly.</h2>
+    <p class="sub">We don't do pricing games. No fake anchor prices, no mysterious "it depends" without a starting point.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#1A3A1A;margin-top:2rem;">
+      <div style="background:#050D05;padding:2rem;">
+        <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#4A6A4A;margin-bottom:0.75rem;">Strategy Engagement</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:2.5rem;color:#00C853;margin-bottom:0.5rem;">$6K<span style="font-size:1rem;color:#4A6A4A;">/mo</span></div>
+        <div style="font-size:0.82rem;color:#8FAF8F;line-height:1.65;">10 hours/week. Strategy, planning, and team oversight. Best for companies with execution resources in place.</div>
+      </div>
+      <div style="background:#050D05;padding:2rem;border-left:1px solid #1A3A1A;">
+        <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;">Full Fractional CMO ← Most Popular</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:2.5rem;color:#00C853;margin-bottom:0.5rem;">$10K<span style="font-size:1rem;color:#4A6A4A;">/mo</span></div>
+        <div style="font-size:0.82rem;color:#8FAF8F;line-height:1.65;">15 hours/week. Full leadership including team/vendor management, board reporting, and AI-native workflow implementation.</div>
+      </div>
+      <div style="background:#050D05;padding:2rem;border-left:1px solid #1A3A1A;">
+        <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#4A6A4A;margin-bottom:0.75rem;">Heavy Engagement</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:2.5rem;color:#00C853;margin-bottom:0.5rem;">$16K<span style="font-size:1rem;color:#4A6A4A;">/mo</span></div>
+        <div style="font-size:0.82rem;color:#8FAF8F;line-height:1.65;">20+ hours/week. Near-full-time presence. Complex organizations, active fundraise, or transformation initiatives.</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#4A6A4A;margin-top:1.5rem;">All engagements start with a 3-month pilot. Cancel with 30 days notice. No long-term contracts required.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner" style="max-width:800px;">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions about<br/>fractional CMO pricing.</h2>
+    <div class="faq-item">
+      <div class="faq-q">How much does a fractional CMO cost per month?</div>
+      <div class="faq-a">Typically $3,000–$20,000 per month depending on scope, hours, and seniority. Most B2B companies in the $5M–$50M range land between $6,000 and $12,000/month for a meaningful engagement with real accountability.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What hourly rate does a fractional CMO charge?</div>
+      <div class="faq-a">Rates range from $150–$400/hour depending on experience and specialization. Most don't work pure-hourly — they package into monthly retainers for predictability. If you're being quoted hourly, ask for a monthly package instead.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do fractional CMOs take equity?</div>
+      <div class="faq-a">Some do, most don't — especially at $5M+ revenue. Equity makes sense at pre-seed/seed stages where cash is tight. For companies with revenue, cash arrangements are cleaner. If offered, typical grants are 0.1–0.5% vesting over 2–4 years.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is a fractional CMO worth the cost?</div>
+      <div class="faq-a">For most B2B companies at $5M–$50M, yes — if the alternative is no marketing leadership or an expensive full-time hire. Run the ROI math: even a 15% improvement in marketing-sourced pipeline usually pays back within 60 days at typical close rates and deal sizes.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long do fractional CMO contracts last?</div>
+      <div class="faq-a">Most engagements start with a 3-month pilot, then move to rolling monthly. Average engagement length is 12–18 months. Companies graduate out when they hire full-time marketing leadership — which is the intended outcome for healthy, growing businesses.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get a Transparent Quote</span>
+    <h2 class="h2">Tell us your situation. We'll give you<br/>an honest starting-from number.</h2>
+    <p class="sub">No fake discovery calls that are really sales pitches. A 15-minute conversation to understand your scope and give you a real number.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What's your biggest AI or marketing challenge right now?</label>
+        <textarea class="input-field" id="gain" placeholder="Trying to decide between fractional CMO and full-time hire, need to understand real cost/scope..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <input type="hidden" id="source" value="fractional-cmo-cost" />
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Get a Transparent Quote →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day with a real number.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">Expect a real answer.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day with transparent pricing for your situation.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, gain: document.getElementById('gain').value, source: document.getElementById('source').value }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Get a Transparent Quote →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

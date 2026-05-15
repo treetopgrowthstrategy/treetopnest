@@ -1,0 +1,463 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for Marketing: Content, Campaigns & Strategy | Treetop Growth Strategy</title>
+  <meta name="description" content="8 Claude AI marketing workflows that save 10+ hours per week — content strategy, email sequences, SEO briefs, competitive analysis, and more. With real prompts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .prose { font-size: 0.95rem; color: #8FAF8F; line-height: 1.85; max-width: 760px; }
+    .prose p { margin-bottom: 1.25rem; }
+    .prose strong { color: #F0FFF0; font-weight: 600; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .time-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .time-cell { background: #0A1A0A; padding: 1.75rem; }
+    .time-task { font-size: 0.85rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .time-before { font-size: 0.78rem; color: #4A6A4A; margin-bottom: 0.25rem; }
+    .time-after { font-size: 0.78rem; color: #00C853; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Marketing</div>
+    <h1 class="hero-h">How to Use Claude AI for Marketing<br/><em style="color:#00C853;font-style:italic;">(The Workflows That Save 10+ Hours/Week)</em></h1>
+    <p class="hero-sub">Eight specific marketing workflows — with real prompts — for B2B marketers who need to produce more with the same team. Content strategy, email sequences, SEO briefs, and more.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in Your Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Time Math</span>
+    <h2 class="h2">What 10+ hours/week actually looks like.</h2>
+    <p class="sub">Here's where the time comes from, task by task.</p>
+    <div class="time-grid">
+      <div class="time-cell">
+        <div class="time-task">Blog post draft</div>
+        <div class="time-before">Before: 4–6 hours</div>
+        <div class="time-after">After: 45 min (strategy + edit)</div>
+      </div>
+      <div class="time-cell">
+        <div class="time-task">Email sequence (5 emails)</div>
+        <div class="time-before">Before: 3–4 hours</div>
+        <div class="time-after">After: 30 min</div>
+      </div>
+      <div class="time-cell">
+        <div class="time-task">SEO content brief</div>
+        <div class="time-before">Before: 2–3 hours</div>
+        <div class="time-after">After: 20 min</div>
+      </div>
+      <div class="time-cell">
+        <div class="time-task">Competitive analysis</div>
+        <div class="time-before">Before: 4–5 hours</div>
+        <div class="time-after">After: 45 min</div>
+      </div>
+      <div class="time-cell">
+        <div class="time-task">Monthly campaign report</div>
+        <div class="time-before">Before: 2–3 hours</div>
+        <div class="time-after">After: 20 min</div>
+      </div>
+      <div class="time-cell">
+        <div class="time-task">Social calendar (2 weeks)</div>
+        <div class="time-before">Before: 2 hours</div>
+        <div class="time-after">After: 25 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">8 Marketing Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">These work best inside a Claude Project with your company context loaded. But they'll produce useful output even without that setup — just add context inline.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">Content Strategy</div>
+      <div class="wf-desc">Claude builds a quarter's worth of content themes, angles, and formats from a single strategy input. Not a random list of blog ideas — a structured content plan tied to your ICP's questions and your business goals.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Build a Q3 content strategy for [Company].
+
+Context:
+- What we do: [description]
+- ICP: [who we're marketing to]
+- Business goal this quarter: [pipeline, brand, retention, etc.]
+- Our POV / what we believe: [your differentiated perspective]
+- Competitors we're up against: [2–3 names]
+
+Give me:
+1. 3 content themes that connect our POV to our ICP's real questions
+2. For each theme: 4 specific article/post angles
+3. Recommended format mix (blog, LinkedIn, email, video, etc.) with rationale
+4. One "anchor" piece that every other piece ladders up to
+5. What we should NOT write about (and why)</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Blog Post Drafting</div>
+      <div class="wf-desc">Claude drafts a full 1,200–1,800 word blog post from an outline or brief. The output needs editing — but it's 80% there, written in your brand voice, with your positioning embedded. This workflow alone reclaims 3–4 hours per post.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a 1,400-word blog post for [Company] on the topic: "[Post Title]"
+
+Target reader: [ICP description]
+Their question this post answers: [specific question]
+Our POV: [what we believe that others don't]
+Key argument: [what we want them to walk away knowing]
+Tone: direct, practitioner, no fluff — like a founder explaining this to a peer
+Include: one specific example, one comparison or contrast, one actionable takeaway
+
+Do NOT: use buzzwords like "leverage," "synergy," "game-changer." Don't start with a rhetorical question. Don't end with "the future of X is Y."
+
+Format: H1, intro, 3–4 H2 sections, conclusion with clear next step.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Email Sequences</div>
+      <div class="wf-desc">Nurture sequences, onboarding sequences, re-engagement campaigns — Claude writes them all from a brief. The prompts below produce sequences that don't feel like they were written by a committee.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a 5-email nurture sequence for [Company].
+
+Audience: [describe who these leads are — where they came from, what they expressed interest in]
+Goal: get them to [desired action — book a call, start a trial, etc.]
+Tone: [warm/direct/educational — pick one]
+
+Email 1 (Day 0): Welcome + deliver on the promise that got them on the list
+Email 2 (Day 3): Teach them something genuinely useful — no pitch
+Email 3 (Day 7): Social proof — customer story or result (can be brief)
+Email 4 (Day 12): Address the most common objection to working with us
+Email 5 (Day 18): Direct ask with easy out
+
+Rules: Subject lines under 9 words. No "just checking in." No fake urgency. Each email under 150 words.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Ad Copy Variations</div>
+      <div class="wf-desc">For any paid campaign, Claude generates 10–15 copy variations in minutes — different hooks, angles, and CTAs — so you can test what resonates without burning a week on creative.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write 10 LinkedIn ad variations for [Company] targeting [audience].
+
+Product/offer: [what we're promoting]
+Primary benefit: [the most compelling thing about it]
+Secondary benefit: [supporting benefit]
+
+For each ad, give me:
+- Headline (under 8 words)
+- Body copy (under 120 words)
+- CTA (3–5 words)
+
+Use 5 different angles across the 10:
+1. Pain-first (lead with the problem)
+2. Outcome-first (lead with the result)
+3. Skeptic-facing (acknowledge doubt, then resolve it)
+4. Social proof (lead with who else has done this)
+5. Specificity (lead with a number, stat, or timeframe)
+
+Two variations per angle. No exclamation points. No questions in headlines.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">SEO Content Briefs</div>
+      <div class="wf-desc">Claude produces a full SEO content brief — target keyword, intent analysis, outline, internal links, and semantic keywords — in 20 minutes. Writers can start producing from it immediately.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Create an SEO content brief for the keyword: "[target keyword]"
+
+Our site: [company URL and description]
+Our ICP: [who we're writing for]
+Business goal for this piece: [rank for this keyword / drive X type of leads]
+
+Brief should include:
+1. Search intent analysis — what is the person actually looking for?
+2. Recommended article title and H1
+3. Recommended article structure (H2s and H3s with one-line descriptions)
+4. 10 semantically related terms to naturally include
+5. What the top 3 ranking articles are missing (opportunities to be better)
+6. Recommended word count and format
+7. Internal linking suggestions (what other content on our site should this link to?)
+8. CTA recommendation at the end of the piece</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Social Calendar</div>
+      <div class="wf-desc">Claude builds a two-week LinkedIn content calendar from a single brief — with post copy, format, and timing rationale for each. A 30-minute input produces what used to take a full afternoon.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Build a 2-week LinkedIn content calendar for [Name/Company].
+
+Context:
+- Who I am/what we do: [description]
+- Audience: [who follows us]
+- Content goals: [build trust / drive traffic / generate leads / thought leadership]
+- Topics I want to cover this month: [list 3–5]
+- My posting voice: [adjectives — direct, warm, data-driven, etc.]
+
+For each of 10 posts:
+- Day and format (text post, carousel, short video script, image with caption)
+- Post copy (ready to publish, light editing only)
+- Rationale (why this format for this content)
+
+Vary the content type. Don't make every post a listicle. Include at least 2 posts that are just direct opinions — no tips, no frameworks.</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">Competitive Analysis</div>
+      <div class="wf-desc">Claude synthesizes competitive intelligence into a structured analysis — positioning gaps, messaging patterns, and where your competitors are vulnerable. Feed it their website copy, G2 reviews, and press releases for the best output.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Analyze our competitive landscape. Here's what I've gathered:
+
+Our positioning: [your current positioning]
+
+Competitor 1 — [Name]:
+[paste their homepage headline, tagline, key messaging, any customer reviews]
+
+Competitor 2 — [Name]:
+[same]
+
+Competitor 3 — [Name]:
+[same]
+
+Give me:
+1. Where all three competitors are saying the same thing (the crowded positioning)
+2. Where each one is vulnerable (what they're not saying or not credibly saying)
+3. The messaging gap we could own that none of them are claiming
+4. 3 positioning angles we should test based on this analysis
+5. What words/phrases we should avoid because our competitors have already claimed them</div>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 08</span>
+      <div class="wf-title">Campaign Reporting Summaries</div>
+      <div class="wf-desc">Drop your campaign metrics into Claude and get a clean narrative summary — what worked, what didn't, and what to do differently next time. Makes reporting faster and more useful than a spreadsheet full of numbers.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a campaign performance summary for [Campaign Name] — [Month/Quarter].
+
+Here are the metrics:
+[paste your raw metrics — impressions, clicks, CTR, conversions, cost, etc.]
+
+Campaign goal: [what we were trying to achieve]
+Hypothesis going in: [what we thought would work]
+
+Give me:
+1. A 2-sentence executive summary (what happened)
+2. What worked and why (specific, not vague)
+3. What underperformed and likely why
+4. The one thing we should do differently in the next campaign
+5. A recommendation for budget allocation next time (more/less on each channel)
+
+Write this for an audience of executives who won't read a wall of numbers. Lead with insight, not data.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Setup Guide</span>
+    <h2 class="h2">Setting up a Marketing<br/>Claude Project.</h2>
+    <p class="sub">These workflows become significantly more powerful when they run inside a Claude Project with your brand context loaded. Here's how to build it.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create a "Marketing" Project in Claude</div>
+          <div class="setup-desc">Go to claude.ai → Projects → New Project. Name it "[Company] Marketing." This becomes the home for all marketing work — content, campaigns, copy, analysis. Every team member works from the same configured assistant.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Write a Brand + Voice System Prompt</div>
+          <div class="setup-desc">The most important setup step. Include: who you are, who your ICP is, your brand voice (with examples of good and bad), words you never use, your key messaging pillars, and what makes you different. This prompt runs in the background of every conversation in the Project.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Brand Context Documents</div>
+          <div class="setup-desc">Add your brand guide, your best-performing blog posts (as writing examples), your positioning document, your customer personas, and any product sheets. Claude will reference all of these without you having to paste them every time.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build a Prompt Library</div>
+          <div class="setup-desc">Save the 8 prompts above in a shared doc with your company context pre-filled. The goal: any marketer on the team can open a new Claude conversation, copy the right prompt, and get a useful output in under 5 minutes.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">05</div>
+        <div>
+          <div class="setup-title">Run Outputs Through an Editorial Review</div>
+          <div class="setup-desc">Claude's output is a starting point, not a final draft. Build an editing checklist: does it sound like us? Is the positioning on-brand? Does it serve the reader? The quality of your editing is the quality ceiling on your content — AI raises your floor, your editorial judgment sets the ceiling.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows running<br/>in your marketing team?</h2>
+    <p class="sub">We build the Claude Project, configure it for your brand, and train your team. Usually done in 2–3 weeks.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your business?</label>
+        <textarea class="input-field" id="gain" placeholder="More content output, faster campaigns, better copy..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My Marketing Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-marketing'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My Marketing Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

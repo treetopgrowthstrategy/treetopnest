@@ -1,0 +1,634 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>50 AI Prompts for B2B Sales Teams (Copy-Paste Ready) | Treetop Growth Strategy</title>
+  <meta name="description" content="50 copy-paste AI prompts for B2B sales — organized by category. Prospecting, outreach, discovery, proposals, objection handling, and follow-up." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .cat-header { margin-bottom: 2.5rem; padding-top: 3.5rem; }
+    .cat-header:first-child { padding-top: 0; }
+    .cat-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .cat-title { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.5rem; }
+    .cat-desc { font-size: 0.9rem; color: #8FAF8F; line-height: 1.7; max-width: 680px; }
+    .prompt-item { margin-bottom: 1.5rem; max-width: 900px; }
+    .prompt-context { font-size: 0.78rem; color: #4A6A4A; margin-bottom: 0.5rem; font-style: italic; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.25rem 1.5rem; position: relative; }
+    .prompt-num { position: absolute; top: 1rem; right: 1.25rem; font-size: 0.7rem; color: #1A3A1A; font-weight: 600; letter-spacing: 0.05em; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.84rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; padding-right: 2rem; }
+    .prompt-text em { color: #4A6A4A; font-style: italic; }
+    .cat-divider { border: none; border-top: 1px solid #1A3A1A; margin: 3.5rem 0 0; }
+    .cta-band { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin: 3rem 0; max-width: 760px; }
+    .cta-band-title { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .cta-band-desc { font-size: 0.9rem; color: #8FAF8F; line-height: 1.7; margin-bottom: 1.5rem; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Resource · 50 Prompts</div>
+    <h1 class="hero-h">50 AI Prompts for B2B Sales —<br/><em style="color:#00C853;font-style:italic;">Copy, Paste, Close More Deals</em></h1>
+    <p class="hero-sub">Not generic prompts. These are built for B2B sales — organized by what you're actually trying to do. Prospecting, outreach, discovery, proposals, objections, follow-up. Copy them, customize the brackets, go.</p>
+    <div class="hero-actions">
+      <a href="#prompts" class="btn-p">Jump to the Prompts →</a>
+      <a href="/how-to-use-claude-for-sales" class="btn-g">Full Claude Sales Guide</a>
+    </div>
+  </div>
+</div>
+
+<section id="prompts" style="background:#050D05;">
+  <div class="sec-inner">
+
+    <!-- CATEGORY 1: PROSPECTING -->
+    <div class="cat-header">
+      <span class="cat-label">Category 01 · 10 Prompts</span>
+      <div class="cat-title">Prospecting</div>
+      <div class="cat-desc">Research prompts that turn a company name into a qualified opportunity — or tell you quickly that it's not worth your time.</div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Use before any cold outreach. Feed it what you know; get back a structured brief.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#01</span>
+        <div class="prompt-text">Research [Company Name] and give me: (1) What they actually do in plain language, (2) Who likely owns the budget for [your solution category], (3) Any signals from the past 6 months — hiring, funding, news, leadership changes, (4) Why they'd care about [your product] right now, (5) One reason they might not be a fit. Be specific. Skip the filler.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Find the right person to contact, not just the right title.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#02</span>
+        <div class="prompt-text">For a company like [Company] — [describe their type] — who typically owns the decision to buy [your solution category]? Walk me through: (1) The primary buyer, (2) The economic buyer who approves budget, (3) The champion who would use it daily, (4) Who can kill the deal. What signals on LinkedIn would confirm I've found the right person?</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Build an ICP-matched target list from firmographic criteria.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#03</span>
+        <div class="prompt-text">I'm targeting companies that match this ICP: [describe ICP — size, industry, tech stack, geography, growth stage]. Give me: (1) The specific LinkedIn Sales Navigator filters that would surface this ICP, (2) 5 industry-specific signals that indicate they're likely in-market, (3) Companies or types of companies I should explicitly exclude, (4) Where else besides LinkedIn I could find this ICP.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Identify triggering events — the moments that make a prospect actually ready to buy.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#04</span>
+        <div class="prompt-text">What events or circumstances typically trigger B2B companies to urgently need [your solution category]? List 8–10 specific triggering events, from most to least urgent. For each one, tell me: what the event is, why it creates urgency for my solution, and how I'd know it just happened (what signal to look for).</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Decode a prospect's LinkedIn activity to find personalization angles.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#05</span>
+        <div class="prompt-text">Here is [Prospect Name]'s recent LinkedIn activity: [paste their recent posts, comments, or articles]. Based on this, tell me: (1) What they clearly care about professionally, (2) Any problems or frustrations they've expressed (directly or indirectly), (3) 2–3 specific hooks I could use to open a conversation that would feel relevant to them, (4) What I should avoid saying based on what I know about them.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Analyze a company's job postings to understand their pain points before you call.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#06</span>
+        <div class="prompt-text">Here are the current job postings for [Company]: [paste job listings]. What do these postings tell me about: (1) Where they're investing right now, (2) Problems they're trying to solve with new hires, (3) Gaps in their current team or capabilities, (4) How [your product] could help them get to where they're hiring toward faster.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Prioritize a list of accounts by likelihood to buy.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#07</span>
+        <div class="prompt-text">Here are 10 accounts I'm considering prospecting this week: [list accounts with brief notes on each]. Based on my ICP ([describe ICP]) and my product ([describe solution]), rank these 10 accounts from most to least likely to be in-market right now. For the top 3, tell me why and what I'd lead with in outreach.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Research a prospect's current solution to understand what you're replacing.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#08</span>
+        <div class="prompt-text">[Company] appears to currently be using [competitor or solution category]. Based on what you know about [that solution], what are its most common user complaints? What are the top 3 reasons companies switch away from it? How would I position [my product] for someone who's currently using [competitor] and hasn't thought about switching?</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Build a quick pain hypothesis before you go into a cold call blind.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#09</span>
+        <div class="prompt-text">I'm calling [Name], [Title] at [Company] in 10 minutes. Here's what I know: [paste any info you have]. Give me: (1) The 2 most likely business pains they face related to [your solution], (2) An opening question that sounds natural and leads toward that pain, (3) One thing I should avoid assuming, (4) If they push back immediately, the one question that keeps the conversation alive.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Evaluate if an account is worth pursuing before you invest time.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#10</span>
+        <div class="prompt-text">Help me do a 5-minute ICP fit assessment for [Company]. My ICP is: [describe]. Based on what you know about [Company], score them 1–5 on: company size fit, industry fit, likely pain fit, tech stack compatibility, and timing/urgency. Give me a total score and a one-sentence go/no-go recommendation.</div>
+      </div>
+    </div>
+
+    <hr class="cat-divider" />
+
+    <!-- CATEGORY 2: OUTREACH -->
+    <div class="cat-header">
+      <span class="cat-label">Category 02 · 10 Prompts</span>
+      <div class="cat-title">Outreach</div>
+      <div class="cat-desc">Cold email and LinkedIn outreach prompts that produce messages people actually respond to — because they're specific, not generic.</div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a cold email that doesn't sound like one.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#11</span>
+        <div class="prompt-text">Write a cold email to [Name], [Title] at [Company]. What I know about them: [brief research notes]. My product: [description]. What we do for companies like theirs: [specific outcome]. Rules: under 120 words, no "I hope this finds you well," don't start with "I," specific first line tied to them (not generic), end with a low-friction ask. Sound like a peer, not a vendor.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Generate 10 personalized first-line variants for a prospecting campaign.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#12</span>
+        <div class="prompt-text">Write 10 different personalized opening lines for cold emails targeting [ICP description]. Each line should: be specific to something real (job change, company news, content they published, role context), create a natural bridge to [your solution], be under 25 words, sound like something a human would actually write. No templates. No flattery. No "I saw you posted about X."</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a LinkedIn connection request message that gets accepted.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#13</span>
+        <div class="prompt-text">Write a LinkedIn connection request message to [Name] at [Company]. Context: [why you're reaching out, any common ground]. Rules: under 250 characters, no pitch in the connection request, give a genuine reason to connect, don't mention your product. The goal is just to get connected — the pitch comes later.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a LinkedIn DM sequence after connecting.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#14</span>
+        <div class="prompt-text">Write a 3-message LinkedIn DM sequence to [Name] after connecting. Context: [what you know about them, why your product is relevant]. Message 1 (Day 1 after connect): warm opener, no pitch. Message 2 (Day 4): share something genuinely useful — insight, resource, or question. Message 3 (Day 10): soft ask. Keep each under 80 words. Sound like a person.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a cold call opener that buys you 30 more seconds.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#15</span>
+        <div class="prompt-text">Write 5 different cold call opening lines for reaching [ICP title] at [company type]. Each opener should: state who you are in 5 words or less, give them a reason to stay on (specific and relevant), not sound scripted, not ask "Is this a good time?" Give me openers for both gatekeepers and direct lines.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a breakup email that sometimes gets a response.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#16</span>
+        <div class="prompt-text">Write a final "breakup" email to [Name] at [Company] after [X] unanswered follow-ups. Context: [brief deal history]. Make it: short (under 80 words), non-pressuring, honest that this is the last message, with a clear easy-out option, and one last value statement. Sometimes these get a response — write one that could.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a referral request to an existing customer.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#17</span>
+        <div class="prompt-text">Write an email to [Customer Name] asking for an introduction to [Target Company or ICP type]. Context: [relationship with customer, what results they've gotten from your product]. Make it: specific (not "anyone you know"), easy to forward, brief, and honest about why the introduction would be valuable for both parties. Give me two versions — warm and direct.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a re-engagement email to a prospect who went cold 3–6 months ago.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#18</span>
+        <div class="prompt-text">Write a re-engagement email to [Name] at [Company]. We spoke [timeframe] ago about [topic]. They went cold after [last touchpoint]. Re-engage with: a new reason to care that didn't exist last time (product update, market change, or relevant event), no guilt or pressure, a simple question rather than a meeting ask. Under 100 words.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a multi-touch outreach sequence for a high-value target account.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#19</span>
+        <div class="prompt-text">Build a 5-touch outreach sequence for [Company] — a high-priority account. Target: [Name, Title]. Context: [what you know about the account and why they're a fit]. Touch 1 (email): specific hook + value prop. Touch 2 (LinkedIn): connect + add value. Touch 3 (email): different angle, new insight. Touch 4 (call): short voicemail script. Touch 5 (email): direct ask or clean exit. Each touch: under 80 words.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write subject lines that get opened — not filtered as sales email.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#20</span>
+        <div class="prompt-text">Write 15 email subject lines for cold outreach to [ICP] about [your solution]. Mix these angles: curiosity, specificity, directness, relevance to a common pain, and social proof. Rules: under 9 words each, no clickbait, no "quick question," no ALL CAPS, no generic phrases like "partnership opportunity." Test the best 3 against each other.</div>
+      </div>
+    </div>
+
+    <hr class="cat-divider" />
+
+    <!-- CATEGORY 3: DISCOVERY & QUALIFICATION -->
+    <div class="cat-header">
+      <span class="cat-label">Category 03 · 8 Prompts</span>
+      <div class="cat-title">Discovery & Qualification</div>
+      <div class="cat-desc">Prompts for preparing discovery calls, building question banks, and qualifying deals faster and more accurately.</div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Build a discovery question bank for a specific ICP and use case.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#21</span>
+        <div class="prompt-text">Write a 20-question discovery question bank for selling [your product] to [ICP]. Organize by: Situation (4 questions to understand their current state), Problem (4 questions to surface pain), Implication (4 questions to help them feel the cost of inaction), Need-Payoff (4 questions to have them articulate the value of solving it), and Deal Qualification (4 questions to assess timeline, budget, authority, and fit). Use direct, conversational language — not corporate.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Prepare for a specific discovery call in 10 minutes.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#22</span>
+        <div class="prompt-text">I have a discovery call with [Name], [Title] at [Company] in [timeframe]. Context: [how they came in, any notes from prior touchpoints]. Give me: (1) My hypothesis about their pain, (2) The 3 most important things I need to learn on this call, (3) The 5 questions most likely to surface those insights, (4) What a successful call outcome looks like, (5) The one thing I should not assume.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Qualify or disqualify a deal based on discovery notes.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#23</span>
+        <div class="prompt-text">Based on these discovery call notes: [paste notes] — help me qualify this deal. Score them on: (1) Pain severity (1–5), (2) Budget availability (1–5), (3) Timeline urgency (1–5), (4) Decision-maker access (1–5), (5) Competitive risk (1–5). Give me a total score out of 25 and a recommendation: pursue aggressively, nurture, or disqualify. Be direct if it's a bad deal.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Identify the real decision-making process from what a prospect told you.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#24</span>
+        <div class="prompt-text">Based on what my prospect told me — [paste what they said about their decision process, who's involved, timeline] — help me map the real buying process. Who are the likely stakeholders I haven't met yet? What internal steps will this go through that they didn't mention? What's the most likely stall point? What should I do in the next 2 weeks to keep this moving?</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write discovery call debrief notes from raw memory or bullet points.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#25</span>
+        <div class="prompt-text">Turn these rough discovery call notes into structured CRM notes: [paste bullet points or stream-of-consciousness notes]. Give me: (1) 3-sentence summary (past tense, third person), (2) Pain points confirmed, (3) Qualifying information (budget, timeline, authority, need), (4) Objections or concerns, (5) Next steps agreed, (6) My assessment of the deal (hot/warm/cold and why).</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Get a prospect talking about pain they didn't volunteer.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#26</span>
+        <div class="prompt-text">I'm in a discovery call with [prospect type] and they're being polite but surface-level. They haven't volunteered much pain. Give me 5 questions that help surface the real problem without being pushy — questions that create space for them to share what's actually frustrating them about [relevant area]. Make the questions feel like genuine curiosity, not a qualification checklist.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Understand the cost of inaction — a key discovery milestone.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#27</span>
+        <div class="prompt-text">For a company in [industry] dealing with [problem your product solves], what is the true cost of inaction? Give me: (1) The direct financial costs that are easy to quantify, (2) The indirect costs (time, morale, opportunity cost) that are harder to quantify, (3) The risk that materializes if they wait 12 more months, (4) How I'd phrase a question in a discovery call that helps the prospect arrive at this cost themselves.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Build a multi-stakeholder discovery plan for a complex deal.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#28</span>
+        <div class="prompt-text">I'm selling into [Company] and I've identified these stakeholders: [list roles/names]. Build me a discovery plan: (1) The unique perspective and concern of each stakeholder, (2) The top question to ask each of them, (3) The information I need from each to build a complete business case, (4) Potential conflicts between stakeholders that could complicate the deal, (5) Who I should meet with first and why.</div>
+      </div>
+    </div>
+
+    <hr class="cat-divider" />
+
+    <!-- CATEGORY 4: PROPOSALS -->
+    <div class="cat-header">
+      <span class="cat-label">Category 04 · 8 Prompts</span>
+      <div class="cat-title">Proposals</div>
+      <div class="cat-desc">Prompts for drafting proposals, building business cases, and creating documents that accelerate decisions instead of stalling them.</div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Turn discovery notes into a proposal outline.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#29</span>
+        <div class="prompt-text">Based on these discovery notes: [paste notes] — build a proposal outline. Include: (1) Situation summary (2–3 sentences — they should read this and feel understood), (2) The specific problem we're solving, (3) Our recommended approach, (4) Expected outcomes (use their words where possible), (5) Investment summary placeholder, (6) Next steps. Flag anything I said in discovery that's vague or needs clarification before I send this.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write the executive summary section — the most read part of any proposal.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#30</span>
+        <div class="prompt-text">Write an executive summary for a proposal to [Company]. Their situation: [describe]. The problem we're solving: [describe]. Our solution: [describe]. Expected business outcome: [describe]. The summary should be: 3 short paragraphs, written for a CEO or CFO who will read only this section, focused on business impact not features, and confident without being overselling. No buzzwords.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Build a ROI/business case section from what you learned in discovery.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#31</span>
+        <div class="prompt-text">Build a business case / ROI section for a proposal to [Company]. From discovery, I learned: [list specific numbers, time costs, pain metrics they mentioned]. Our solution costs: [price]. Help me build a conservative ROI calculation showing: payback period, first-year impact, 3-year impact. Show the math clearly. Flag any assumptions I need to validate before including this in a formal proposal.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a competitive differentiation section without badmouthing competitors.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#32</span>
+        <div class="prompt-text">Write a "Why Us" section for a proposal to [Company] who is also evaluating [Competitor]. Our key differentiators: [list 3–4]. The prospect cares most about: [their stated priorities from discovery]. Write this section so it highlights our strengths without naming or attacking the competitor. Make it feel objective, not defensive. 200 words max.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a proposal cover email that sets the right tone before they open the doc.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#33</span>
+        <div class="prompt-text">Write an email to send with my proposal to [Name] at [Company]. Context: [brief deal history, what they care most about]. The email should: (1) Reference our conversation specifically, (2) Tell them what's in the proposal and what to focus on first, (3) Set expectations for next steps, (4) Give a gentle deadline for feedback, (5) Be under 120 words. Not a cover letter. A real email from a real person.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Anticipate and pre-empt objections inside the proposal itself.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#34</span>
+        <div class="prompt-text">Based on what I know about [Company] — their main hesitations are: [list 2–3 concerns from discovery]. Help me address each of these proactively inside the proposal before they surface as objections. For each concern: (1) The subtle way to acknowledge it, (2) The evidence or framing that resolves it, (3) How to weave it naturally into the proposal (not a "FAQ" section that signals defensiveness).</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a proposal summary slide for stakeholders who won't read the full doc.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#35</span>
+        <div class="prompt-text">Write a one-page proposal summary for [Company] — designed for stakeholders who won't read the full proposal. Include: the problem in one sentence, our solution in two sentences, three key outcomes with rough metrics, investment summary, and a clear next step. No jargon. Designed to be forwarded internally and understood in 60 seconds.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Diagnose why a proposal isn't moving and what to do about it.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#36</span>
+        <div class="prompt-text">I sent a proposal to [Company] [timeframe] ago. Here's what I know about the deal: [paste deal notes, what you know about internal dynamics, any follow-up communication]. The deal has stalled. What are the 3 most likely reasons it's stalled? For each one, what should I do or say to unblock it? What's the one thing I shouldn't do?</div>
+      </div>
+    </div>
+
+    <hr class="cat-divider" />
+
+    <!-- CATEGORY 5: OBJECTION HANDLING -->
+    <div class="cat-header">
+      <span class="cat-label">Category 05 · 7 Prompts</span>
+      <div class="cat-title">Objection Handling</div>
+      <div class="cat-desc">Prompts for preparing responses to the objections you'll actually face — not the ones that are easy to handle.</div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Prep for the objections you'll face in tomorrow's meeting.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#37</span>
+        <div class="prompt-text">I have a [demo / proposal review / contract call] with [Company] tomorrow. Their known concerns: [list]. Play the skeptical buyer. Give me the 5 hardest objections they'll raise, then help me craft a response to each. Responses should be: direct (not defensive), acknowledge the concern before addressing it, use evidence or examples where possible, and under 60 words each.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Handle the "too expensive" objection without discounting.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#38</span>
+        <div class="prompt-text">A prospect just said our price is too high. Context: [deal context — what they said, what the price is, what I know about their budget]. Give me 4 different ways to handle this objection without immediately discounting. Each response should acknowledge the concern and redirect to value, not just restate features. Include one response that gently tests whether this is a real budget constraint or a negotiating position.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Handle "we're going with [competitor]" before it's final.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#39</span>
+        <div class="prompt-text">A prospect told me they're leaning toward [Competitor]. I know their top priorities are: [list]. I know [Competitor] is weak on: [list]. Write a response that: (1) Doesn't attack the competitor, (2) Acknowledges their decision-making process, (3) Asks one specific question that surfaces a gap [competitor] won't fill, (4) Earns one more conversation without being desperate. Under 100 words.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Handle "we need to think about it" — the polite stall.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#40</span>
+        <div class="prompt-text">After a proposal presentation, my prospect said "we need to think about it" and got vague about next steps. Write a response for right now (in the meeting) and a follow-up email for the next day. Both should: clarify what "thinking about it" means without being pushy, surface any unstated concerns, and establish a specific next step with a date. Don't let it go to "I'll reach out next week."</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Handle "we're not ready yet / bad timing."</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#41</span>
+        <div class="prompt-text">A prospect told me "the timing isn't right right now." Context: [what they said, what I know about their situation]. Help me: (1) Determine if this is a real timing issue or a polite no, (2) Respond in a way that keeps the door open without being clingy, (3) Set up a follow-up moment 30–60 days from now that has a real reason to reconnect. Give me the exact language to use in my response.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Handle procurement or legal stalls without escalating.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#42</span>
+        <div class="prompt-text">My deal is stuck in [procurement / legal / IT review]. My champion says it's moving but I'm not getting updates. Write: (1) A check-in message to my champion that gives them something to respond to (not just "any update?"), (2) Questions to understand where the real stall is, (3) One thing I can proactively do or offer that makes internal approval easier for my champion.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Build an objection handling reference doc for your whole sales team.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#43</span>
+        <div class="prompt-text">Build an objection handling guide for selling [your product] to [ICP]. Include the 10 most common objections we face and a 2–3 sentence response for each. Make responses sound like a real person talking, not a script. For each objection, also include: one follow-up question that deepens the conversation and one signal that tells me whether the objection is real or a negotiating tactic.</div>
+      </div>
+    </div>
+
+    <hr class="cat-divider" />
+
+    <!-- CATEGORY 6: FOLLOW-UP -->
+    <div class="cat-header">
+      <span class="cat-label">Category 06 · 7 Prompts</span>
+      <div class="cat-title">Follow-Up</div>
+      <div class="cat-desc">Prompts for follow-up that doesn't feel like follow-up — each touch needs to add something, not just ask for a response.</div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a same-day follow-up after a great discovery call.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#44</span>
+        <div class="prompt-text">Write a same-day follow-up email after a discovery call with [Name] at [Company]. Key things I learned: [3–4 bullet points]. Agreed next step: [what you agreed to]. The email should: (1) Reference one specific thing they said that shows you were listening, (2) Confirm next steps clearly, (3) Add one piece of value they didn't expect (insight, resource, or relevant example), (4) Be under 150 words. No "per our conversation."</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a multi-touch follow-up sequence post-demo.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#45</span>
+        <div class="prompt-text">Write a 5-email follow-up sequence after a demo with [Company]. They seemed interested but haven't committed. Context: [their top interest, their main concern, their timeline]. Email 1 (day 1): recap + address main concern. Email 2 (day 4): relevant case study or proof point. Email 3 (day 9): new angle or insight. Email 4 (day 15): direct ask about status. Email 5 (day 22): final check-in. Each under 100 words. Add something new to each touch.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Add value in a follow-up without being salesy.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#46</span>
+        <div class="prompt-text">I need to follow up with [Name] at [Company] but I don't want to just ask "any update?" They care about: [their priorities from discovery]. Give me 5 value-add follow-up ideas — things I could share (articles, data, examples, questions) that would be genuinely useful to them and create a natural reason to respond. Make them specific to their situation, not generic industry content.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Follow up after a proposal with no response for 5+ days.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#47</span>
+        <div class="prompt-text">I sent a proposal to [Name] at [Company] [X] days ago. No response. Last contact: [describe]. Write a follow-up that: acknowledges time has passed without guilt-tripping, adds one new piece of information or perspective they didn't have when they read the proposal, asks a specific question (not "any thoughts?"), and includes a clear suggested next step. Under 100 words.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Follow up after a verbal yes while waiting for contract signatures.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#48</span>
+        <div class="prompt-text">I got a verbal commitment from [Company] but the contract has been sitting unsigned for [X] days. Write a follow-up email that: (1) Keeps momentum without being pushy, (2) Offers to make signing easier (e-sign, answer questions, adjust anything), (3) Reminds them of the value without restating the pitch, (4) Sets a clear expected signing date. Also give me a short version for a LinkedIn DM.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a pipeline review for yourself each Friday.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#49</span>
+        <div class="prompt-text">Here are my active deals with current status: [paste deal list with stage and last activity]. Give me: (1) The 3 deals I should prioritize next week and why, (2) Any deals that are quietly dying that I'm probably underweighting, (3) The single best action I could take on each of my top 5 deals, (4) Deals I should consider disqualifying or deprioritizing. Be direct. If something looks dead, say so.</div>
+      </div>
+    </div>
+
+    <div class="prompt-item">
+      <div class="prompt-context">Write a win/loss note that's actually useful for improving future deals.</div>
+      <div class="prompt-block">
+        <span class="prompt-num">#50</span>
+        <div class="prompt-text">I just [won / lost] a deal with [Company]. Here's what happened: [brief narrative]. Help me write a win/loss note that captures: (1) Why we won or lost (real reason, not polished version), (2) What I'd do differently starting from the first touch, (3) What worked that I should repeat, (4) Any signals I missed or misread, (5) What this deal tells me about my ICP or sales motion more broadly. Make it useful for future me, not for CRM compliance.</div>
+      </div>
+    </div>
+
+    <!-- MIDPAGE CTA -->
+    <div class="cta-band" style="margin-top:4rem;">
+      <div class="cta-band-title">Want these prompts deployed inside a Claude Project for your team?</div>
+      <div class="cta-band-desc">These prompts work even better when they live in a Claude Project configured with your company's ICP, positioning, product knowledge, and voice. We build that setup for sales teams in 2–3 weeks — and train everyone to use it confidently.</div>
+      <a href="#contact" class="btn-p">Set Up My Sales Claude Project →</a>
+    </div>
+
+    <div class="internal-links">
+      <a href="/how-to-use-claude-for-sales" class="internal-link">Full Claude for Sales Guide →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" style="background:#0A1A0A;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these prompts deployed<br/>inside your team's Claude Project?</h2>
+    <p class="sub">We configure Claude Projects for your specific product, ICP, and sales motion — then train your team to use them. Most setups take 2–3 weeks.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your business?</label>
+        <textarea class="input-field" id="gain" placeholder="Faster pipeline, better outreach, smarter follow-up..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My Sales Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'ai-prompts-b2b-sales'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My Sales Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fractional CMO vs Full-Time CMO: Which Is Right for Your Stage? | Treetop Growth Strategy</title>
+  <meta name="description" content="Fractional CMO vs full time CMO — a straight comparison on cost, accountability, and who each model actually serves. $5M-$50M companies, read this first." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/fractional-cmo-vs-full-time-cmo" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 2.5rem; }
+    .prose { font-size: 0.95rem; color: #8FAF8F; line-height: 1.8; margin-bottom: 1.25rem; }
+    .prose strong { color: #F0FFF0; font-weight: 500; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .grid-cell { background: #050D05; padding: 2rem; }
+    .grid-cell-alt { background: #0A1A0A; padding: 2rem; }
+    .cell-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.5rem; }
+    .cell-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    /* Comparison table */
+    .cmp-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.875rem; }
+    .cmp-table th { background: #0A1A0A; color: #00C853; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 1.25rem; text-align: left; border: 1px solid #1A3A1A; }
+    .cmp-table th:first-child { color: #4A6A4A; }
+    .cmp-table td { padding: 0.875rem 1.25rem; border: 1px solid #1A3A1A; color: #8FAF8F; vertical-align: top; line-height: 1.6; }
+    .cmp-table td:first-child { color: #F0FFF0; font-weight: 500; font-size: 0.82rem; white-space: nowrap; }
+    .cmp-table tr:nth-child(even) td { background: #0A1A0A; }
+    .cmp-table tr:nth-child(odd) td { background: #050D05; }
+    .highlight { color: #00C853 !important; font-weight: 500; }
+    .callout { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem 2rem; margin: 2rem 0; }
+    .callout p { font-size: 0.9rem; color: #8FAF8F; line-height: 1.75; }
+    .callout strong { color: #F0FFF0; }
+    .link { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); transition: border-color 0.2s; }
+    .link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .thankyou-p { color: #8FAF8F; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .cmp-table{font-size:0.78rem} .cmp-table td,.cmp-table th{padding:0.625rem 0.75rem} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Fractional CMO</div>
+    <h1 class="hero-h">Fractional CMO vs Full-Time CMO:<br/><em style="color:#00C853;font-style:italic;">Which Is Right for Your Stage?</em></h1>
+    <p class="hero-sub">One costs $250k+ a year and takes 6 months to hire. The other is running your marketing in 30 days. Here's how to think through it honestly.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Is a Fractional CMO Right for You? →</a>
+      <a href="/fractional-cmo" class="btn-g">See How It Works</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The basics</span>
+    <h2 class="h2">What each role actually is.</h2>
+    <div class="grid-2">
+      <div class="grid-cell-alt">
+        <div class="cell-title" style="color:#00C853;margin-bottom:0.75rem;">Fractional CMO</div>
+        <div class="cell-desc">A senior marketing executive who works with you on a part-time, contracted basis — typically 2–3 days per week or a set monthly retainer. They own the marketing function: strategy, team direction, agency management, channel decisions. They're not a consultant who hands you a deck. They're in it with you, accountable to the same revenue targets a full-time CMO would carry. The difference is you're paying for the fraction of their time you actually need.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <div class="cell-title" style="color:#8FAF8F;margin-bottom:0.75rem;">Full-Time CMO</div>
+        <div class="cell-desc">A W-2 executive, fully embedded, full-time in your business. They're building a team, attending every leadership meeting, responsible for brand, demand generation, product marketing, and PR simultaneously. For the right company at the right stage, this is exactly what's needed. The question isn't which is "better" — it's which one matches your actual situation right now.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The numbers</span>
+    <h2 class="h2">What you're actually paying for.</h2>
+    <p class="sub">The sticker price is only part of the story. Here's what each model costs all-in.</p>
+
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>Cost Factor</th>
+          <th>Fractional CMO</th>
+          <th>Full-Time CMO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Base Monthly Cost</td>
+          <td class="highlight">$5,000 – $15,000/mo</td>
+          <td>$15,000 – $23,000/mo salary alone</td>
+        </tr>
+        <tr>
+          <td>Annual All-In</td>
+          <td class="highlight">$60,000 – $180,000</td>
+          <td>$180,000 – $280,000+ salary + bonus</td>
+        </tr>
+        <tr>
+          <td>Equity</td>
+          <td class="highlight">None (typically)</td>
+          <td>0.5% – 1.5% of company equity</td>
+        </tr>
+        <tr>
+          <td>Benefits & Payroll Tax</td>
+          <td class="highlight">None</td>
+          <td>+20–30% of salary</td>
+        </tr>
+        <tr>
+          <td>Time to Hire</td>
+          <td class="highlight">2–4 weeks</td>
+          <td>3–6 months</td>
+        </tr>
+        <tr>
+          <td>Ramp Time</td>
+          <td class="highlight">30 days (experienced operators)</td>
+          <td>90–180 days</td>
+        </tr>
+        <tr>
+          <td>Severance Risk</td>
+          <td class="highlight">Contract terms only</td>
+          <td>Often 3–6 months of salary</td>
+        </tr>
+        <tr>
+          <td>Access to Expertise</td>
+          <td class="highlight">Senior exec with multi-industry pattern recognition</td>
+          <td>Senior exec with single-company focus</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>The hidden cost nobody mentions:</strong> when you hire a full-time CMO and it doesn't work out at 12 months, you've spent $250k–$350k all-in, burned runway, and lost 6 months of strategic momentum while you re-hire. A fractional engagement gone wrong costs you a quarter of that and you can pivot in 30 days.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Fit</span>
+    <h2 class="h2">Who each model actually serves.</h2>
+    <div class="grid-2" style="margin-top:0;">
+      <div class="grid-cell-alt" style="padding:2.5rem;">
+        <div class="cell-title" style="font-size:1.1rem;color:#00C853;margin-bottom:1.25rem;">A Fractional CMO is right if:</div>
+        <div style="display:flex;flex-direction:column;gap:0.875rem;">
+          <div class="step-desc">→ You're doing $3M–$50M in revenue and marketing isn't fully systematized yet</div>
+          <div class="step-desc">→ You don't have enough consistent marketing work to justify a full-time executive</div>
+          <div class="step-desc">→ You need senior strategic leadership but you're spending your budget on execution (ads, content, sales)</div>
+          <div class="step-desc">→ You've had bad agency experiences and need someone accountable for results, not deliverables</div>
+          <div class="step-desc">→ You're in a transition — new market, new product, new leadership — and need clear direction fast</div>
+          <div class="step-desc">→ You're 12–18 months away from the scale that justifies a full-time hire</div>
+        </div>
+      </div>
+      <div class="grid-cell-alt" style="padding:2.5rem;">
+        <div class="cell-title" style="font-size:1.1rem;color:#8FAF8F;margin-bottom:1.25rem;">A Full-Time CMO is right if:</div>
+        <div style="display:flex;flex-direction:column;gap:0.875rem;">
+          <div class="step-desc">→ You're past $50M and marketing complexity justifies full-time executive attention</div>
+          <div class="step-desc">→ You need to build a marketing team of 8+ people and need daily leadership</div>
+          <div class="step-desc">→ You have board pressure for a "real CMO" on the org chart (fair, it matters for optics)</div>
+          <div class="step-desc">→ Marketing is a core competitive moat that requires 100% of someone's attention</div>
+          <div class="step-desc">→ You've found the right person and the timing is right — the market rewards execution speed</div>
+          <div class="step-desc">→ You have the cash flow and the stage to absorb the full cost without strain</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The transition</span>
+    <h2 class="h2">When to move from fractional to full-time.</h2>
+    <p class="sub">Fractional isn't forever. Here's how to know you're ready to make the switch.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Marketing is generating enough pipeline that someone needs to own it full-time</div>
+          <div class="step-desc">If your fractional CMO is consistently capacity-constrained and you're leaving opportunities on the table, that's a signal. The bottleneck should move to full-time execution, not more fractional hours.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">You're building a marketing team that needs daily management</div>
+          <div class="step-desc">A fractional CMO can direct a lean team. Once you're adding content managers, demand gen leads, and product marketers, that team needs a full-time leader in the room.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Revenue is consistently above $30M–$40M and growing</div>
+          <div class="step-desc">At this scale, the cost of a full-time CMO is a smaller percentage of revenue, and the complexity typically justifies it. You'll know — your fractional CMO should be telling you this.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">The right person surfaced and the timing aligns</div>
+          <div class="step-desc">Great executives are rare. If someone exceptional becomes available and your business can support it, move. Don't let a framework stop you from a great hire.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Your fractional CMO recommends it</div>
+          <div class="step-desc">A good fractional CMO isn't trying to hold on forever. If they're doing their job well, they'll tell you when you've outgrown them. That's a green flag, not a red one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Self-assessment</span>
+    <h2 class="h2">5 questions to ask before you decide.</h2>
+    <p class="sub">Answer these honestly. The answers will tell you more than any framework.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Can you afford a bad full-time CMO hire?</div>
+          <div class="step-desc">Hiring a CMO who doesn't work out costs you $300k+ and 12 months. If that would materially damage your business, fractional is the better bet while you get your strategy right.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Do you know what a great CMO looks like in your industry?</div>
+          <div class="step-desc">If you haven't had a CMO before, you'll struggle to evaluate candidates well. A fractional engagement first gives you a reference point. You'll know what good looks like before you commit to full-time.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">How systematized is your marketing right now?</div>
+          <div class="step-desc">If you have no documented strategy, no defined ICP, no repeatable pipeline — a full-time CMO is going to spend their first 6 months on foundation work you could have done faster and cheaper fractionally.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Do you need a marketing builder or a marketing manager?</div>
+          <div class="step-desc">Fractional CMOs tend to be builders — they're wired to come in, create structure, and move. Full-time CMOs often thrive when there's already a machine to manage and scale. Know which phase you're in.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">How fast do you need results?</div>
+          <div class="step-desc">A fractional CMO with deep experience can have a real strategy running in 4 weeks. A full-time hire typically takes 3 months to recruit, 2 months to ramp. If you need to move, fractional moves faster.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:3rem;">
+      <p><strong>The honest answer for most $5M–$50M companies:</strong> fractional is the smarter path. Not because it's cheaper — because you get senior experience, immediate traction, and no expensive hiring risk while you figure out what your marketing actually needs to become. When you outgrow it, a good fractional CMO will tell you. That's the goal. Learn more about <a href="/fractional-cmo" class="link">how Treetop's fractional CMO model works</a> or explore <a href="/services" class="link">all services</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:5rem 2.5rem;background:#050D05;">
+  <div style="max-width:640px;margin:0 auto;">
+    <span class="lbl">Get clarity</span>
+    <h2 class="h2">Is a Fractional CMO<br/>Right for You?</h2>
+    <p class="sub">Tell us where you are and we'll give you a straight answer — including if you shouldn't hire us.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would having the right marketing leadership unlock for your business?</label>
+        <textarea class="input-field" id="gain" placeholder="More pipeline, clearer positioning, a real growth plan..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <input type="hidden" id="source" value="fractional-cmo-vs-full-time" />
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Is a Fractional CMO Right for You? →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. No sales pressure.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">We'll take it from here.</div>
+      <p class="thankyou-p">Expect a direct response within one business day — not a newsletter.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  const body = {
+    first_name: document.getElementById('first_name').value,
+    last_name: document.getElementById('last_name').value,
+    email: document.getElementById('email').value,
+    company: document.getElementById('company').value,
+    gain: document.getElementById('gain').value,
+    source: document.getElementById('source').value
+  };
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Is a Fractional CMO Right for You? →';
+    btn.disabled = false;
+  }
+}
+</script>
+
+</body>
+</html>
