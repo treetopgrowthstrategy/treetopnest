@@ -19,10 +19,12 @@ const currentPath = Astro.url.pathname;
       <div style="min-width:160px;">
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Services</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="/#how-it-works" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">AI-Native GTM</a>
+          <a href="/services" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services' ? '#00C853' : '#4A6A4A'}'`}>All Services</a>
+          <a href="/services/ai-audit" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services/ai-audit' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services/ai-audit' ? '#00C853' : '#4A6A4A'}'`}>AI Audit</a>
+          <a href="/services/implementation" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services/implementation' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services/implementation' ? '#00C853' : '#4A6A4A'}'`}>Implementation</a>
+          <a href="/services/retainer" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services/retainer' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services/retainer' ? '#00C853' : '#4A6A4A'}'`}>Monthly Retainer</a>
           <a href="/claude-training" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/claude-training' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/claude-training' ? '#00C853' : '#4A6A4A'}'`}>Claude Training</a>
-          <a href="/#about" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Fractional CMO/CRO</a>
-          <a href="/#who" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Who It's For</a>
+          <a href="/fractional-cmo" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/fractional-cmo' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/fractional-cmo' ? '#00C853' : '#4A6A4A'}'`}>Fractional CMO/CRO</a>
         </div>
       </div>
 
@@ -30,9 +32,10 @@ const currentPath = Astro.url.pathname;
       <div style="min-width:160px;">
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Resources</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="/claude-for-small-business" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/claude-for-small-business' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/claude-for-small-business' ? '#00C853' : '#4A6A4A'}'`}>Claude for Small Business</a>
+          <a href="/resources" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/resources' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/resources' ? '#00C853' : '#4A6A4A'}'`}>Articles & Guides</a>
           <a href="/quiz" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/quiz' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/quiz' ? '#00C853' : '#4A6A4A'}'`}>AI-GTM Gap Assessment</a>
-          <a href="/#how-it-works" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">The Process</a>
-          <a href="/#about" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">About Bill</a>
+          <a href="/about" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/about' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/about' ? '#00C853' : '#4A6A4A'}'`}>About Bill</a>
         </div>
       </div>
 

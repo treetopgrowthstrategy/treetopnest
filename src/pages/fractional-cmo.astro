@@ -127,9 +127,9 @@ import GlobalFooter from '../components/GlobalFooter.astro';
   <div style="max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;">
     <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none;">Treetop</a>
     <div class="hide-mob" style="display:flex;gap:2.5rem;align-items:center;">
-      <a href="#process" class="nav-link">How It Works</a>
-      <a href="#who" class="nav-link">Who It's For</a>
-      <a href="#about" class="nav-link">About</a>
+      <a href="/services" class="nav-link">All Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/about" class="nav-link">About</a>
     </div>
     <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Start the Conversation</a>
   </div>
@@ -288,5 +288,29 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     </div>
   </div>
 </section>
+
+<!-- CROSS-LINK STRIP -->
+<div style="border-top:1px solid #1A3A1A;background:#050D05;padding:3rem 2.5rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1.5rem;">More from Treetop</div>
+    <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
+      <a href="/services/implementation" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Claude Implementation</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">From $3,500</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">AI deployed across your full business in 4 weeks.</div>
+      </a>
+      <a href="/services/ai-audit" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">AI Audit</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">$1,500</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Workflow analysis + custom Claude implementation plan.</div>
+      </a>
+      <a href="/claude-for-small-business" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Claude for Small Business</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Overview & Packages</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Everything we do to get Claude working for your team.</div>
+      </a>
+    </div>
+  </div>
+</div>
 
 <GlobalFooter />
