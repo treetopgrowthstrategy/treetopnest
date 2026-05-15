@@ -1,0 +1,248 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlobalFooter from '../../components/GlobalFooter.astro';
+---
+
+<Layout
+  title="AI Audit | Treetop Growth Strategy"
+  description="The Treetop AI Audit identifies your highest-leverage AI opportunities in one week. Fixed price starting at $1,500. Includes implementation roadmap and readout call."
+  canonicalUrl="https://treetopgrowthstrategy.com/services/ai-audit"
+  pageType="service"
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Treetop</a>
+      <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+        <a href="/about" class="nav-link">About</a>
+      </div>
+      <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Start the Conversation</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="min-height:70vh;display:flex;align-items:center;padding-top:7rem;padding-bottom:4rem;">
+    <div class="section-inner" style="max-width:820px;">
+      <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:1.5rem;">
+        <a href="/services" style="font-size:0.8rem;color:#4A6A4A;text-decoration:none;">Services</a>
+        <span style="color:#1A3A1A;font-size:0.8rem;">/</span>
+        <span style="font-size:0.8rem;color:#8FAF8F;">AI Audit</span>
+      </div>
+      <span class="lbl">AI Audit</span>
+      <h1 class="h2" style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(2.5rem,5vw,3.75rem);margin-bottom:1.5rem;">
+        Know exactly where<br/><em style="color:#00C853">AI helps your business.</em>
+      </h1>
+      <p class="body-text" style="font-size:1.05rem;max-width:560px;margin-bottom:2rem;">
+        One week. A complete map of your operations, ranked by AI leverage. You walk away knowing exactly what to build and in what order.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem;">
+        <a href="#contact" class="btn-p">Get started — from $1,500</a>
+        <a href="/services" class="btn-g">All services</a>
+      </div>
+      <p style="font-size:0.8rem;color:#4A6A4A;">Fixed price. One week. Audit fee credited toward Implementation.</p>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section style="padding-top:0;padding-bottom:5rem;border-top:1px solid #1A3A1A;">
+    <div class="section-inner">
+      <span class="lbl">What You Get</span>
+      <h2 class="h2" style="font-size:clamp(1.75rem,3vw,2.25rem);margin-bottom:3rem;">Five deliverables. One week.</h2>
+
+      <div style="display:flex;flex-direction:column;gap:0;">
+        {[
+          { n: '01', title: 'Process Map', desc: 'A structured diagram of your key business workflows — where time goes, where handoffs happen, and where bottlenecks live.' },
+          { n: '02', title: 'AI Opportunity Analysis', desc: 'Every workflow scored by AI leverage: time savings, quality improvement, and implementation effort. Ranked by ROI.' },
+          { n: '03', title: 'Prioritized Roadmap', desc: 'Quick wins identified for week one, medium-term builds for month one, and a strategic horizon for the next six months.' },
+          { n: '04', title: 'Tool & Workflow Recommendations', desc: 'Specific Claude use cases, prompt approaches, and tool integrations recommended for your exact business context.' },
+          { n: '05', title: '60-Minute Readout Call', desc: 'A live walkthrough of findings, roadmap Q&A, and a clear decision point: what to build first and how.' },
+        ].map(({ n, title, desc }) => (
+          <div style="display:flex;gap:0;border-top:1px solid #1A3A1A;padding:2rem 0;align-items:stretch;">
+            <div style="width:3px;background:rgba(0,200,83,0.4);flex-shrink:0;align-self:stretch;margin-right:2rem;"></div>
+            <div style="display:flex;gap:2rem;flex:1;flex-wrap:wrap;">
+              <div style="font-family:'Instrument Serif',serif;font-size:1.5rem;color:rgba(0,200,83,0.4);flex-shrink:0;width:2rem;">{n}</div>
+              <div style="flex:1;min-width:200px;">
+                <div class="h3" style="margin-bottom:0.5rem;">{title}</div>
+                <p class="body-text">{desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+        <div style="border-top:1px solid #1A3A1A;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right for you if -->
+  <section style="padding:5rem 2.5rem;background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;">
+    <div class="section-inner">
+      <span class="lbl">Is This Right for You?</span>
+      <h2 class="h2" style="font-size:clamp(1.75rem,3vw,2.25rem);margin-bottom:2.5rem;">The AI Audit is right for you if…</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
+        {[
+          { title: "You're curious but not sure where to start", desc: "You've heard about AI and want to use it strategically, but don't know which problems it actually solves for your business." },
+          { title: "You're doing things manually that feel automatable", desc: "You have a sense that certain tasks take too long, but you haven't mapped out where AI could step in." },
+          { title: "You want a second opinion before investing", desc: "You're about to hire for a role or buy software. Before you do, you want to know if AI could cover it instead." },
+          { title: "You need something to show your team", desc: "Leadership wants to see a roadmap before committing budget. The Audit produces that document." },
+        ].map(({ title, desc }) => (
+          <div class="card-mid">
+            <div class="h3" style="font-size:1rem;margin-bottom:0.6rem;">{title}</div>
+            <p class="body-text" style="font-size:0.88rem;">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process timeline -->
+  <section style="padding:5rem 2.5rem;">
+    <div class="section-inner">
+      <span class="lbl">How It Works</span>
+      <h2 class="h2" style="font-size:clamp(1.75rem,3vw,2.25rem);margin-bottom:3rem;">One week, start to finish.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+        {[
+          { day: 'Monday', title: 'Kickoff call', desc: '45 minutes. We map your workflows, understand your team, and identify what matters most.' },
+          { day: 'Tue – Wed', title: 'Deep analysis', desc: 'We analyze your processes against current AI capabilities and score every opportunity.' },
+          { day: 'Thu – Fri', title: 'Roadmap build', desc: 'We write the prioritized roadmap, tool recommendations, and readout deck.' },
+          { day: 'Friday', title: 'Readout call', desc: '60 minutes. Walk through every finding, answer every question, and decide what to do next.' },
+        ].map(({ day, title, desc }) => (
+          <div style="background:#050D05;border:1px solid #1A3A1A;padding:1.75rem;position:relative;">
+            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;">{day}</div>
+            <div class="h3" style="margin-bottom:0.5rem;">{title}</div>
+            <p class="body-text" style="font-size:0.88rem;">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section style="padding:5rem 2.5rem;background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;">
+    <div class="section-inner" style="max-width:680px;">
+      <span class="lbl">Pricing</span>
+      <div style="font-family:'Instrument Serif',serif;font-size:clamp(3rem,6vw,4.5rem);font-style:italic;color:#F0FFF0;margin-bottom:0.5rem;">$1,500</div>
+      <p class="body-text" style="margin-bottom:2rem;">Fixed price. No hourly billing. No surprises.</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;">
+        {[
+          'Full process mapping session',
+          'AI opportunity analysis across all workflows',
+          'Prioritized implementation roadmap',
+          'Prompt and tool recommendations',
+          '60-minute readout call with Q&A',
+          'Written deliverable you keep forever',
+        ].map(item => (
+          <li style="display:flex;gap:0.75rem;font-size:0.9rem;color:#8FAF8F;align-items:flex-start;">
+            <span style="color:#00C853;flex-shrink:0;margin-top:0.1em;">✓</span> {item}
+          </li>
+        ))}
+      </ul>
+      <div style="background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2);padding:1.25rem 1.5rem;margin-bottom:2rem;">
+        <p style="font-size:0.88rem;color:#8FAF8F;">The $1,500 Audit fee is <strong style="color:#F0FFF0;">fully credited</strong> toward any Claude Implementation engagement.</p>
+      </div>
+      <a href="#contact" class="btn-p">Start my Audit →</a>
+    </div>
+  </section>
+
+  <!-- Contact form -->
+  <section id="contact" style="padding:5rem 2.5rem;background:#050D05;border-top:1px solid #1A3A1A;">
+    <div class="section-inner" style="max-width:680px;margin:0 auto;">
+      <span class="lbl">Get Started</span>
+      <h2 class="h2" style="margin-bottom:0.75rem;">Start your AI Audit.</h2>
+      <p class="body-text" style="margin-bottom:2.5rem;">Tell us a bit about your business. We'll confirm availability and send a link to book the kickoff call.</p>
+
+      <form id="audit-form" style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <input class="input-field" type="text" name="first_name" placeholder="First name" required style="flex:1;min-width:200px;" />
+          <input class="input-field" type="text" name="last_name" placeholder="Last name" style="flex:1;min-width:200px;" />
+        </div>
+        <input class="input-field" type="email" name="email" placeholder="Email address" required />
+        <input class="input-field" type="text" name="company" placeholder="Company name" />
+        <select class="input-field" name="team_size" style="cursor:pointer;">
+          <option value="" disabled selected>Team size</option>
+          <option value="Solo">Solo / just me</option>
+          <option value="2–5">2–5 people</option>
+          <option value="6–15">6–15 people</option>
+          <option value="16–50">16–50 people</option>
+          <option value="50+">50+ people</option>
+        </select>
+        <textarea class="input-field" name="gain" rows="4" placeholder="What's the biggest time drain in your business right now?"></textarea>
+        <div id="form-error" style="display:none;color:#ff6b6b;font-size:0.85rem;"></div>
+        <button type="submit" class="btn-p" id="submit-btn" style="align-self:flex-start;">Start my Audit →</button>
+      </form>
+
+      <div id="form-success" style="display:none;padding:2rem;background:#0A1A0A;border:1px solid rgba(0,200,83,0.4);margin-top:1rem;">
+        <p style="color:#00C853;font-weight:600;margin-bottom:0.5rem;">We got it — thanks!</p>
+        <p class="body-text">We'll be in touch within one business day to confirm availability and send you a booking link.</p>
+      </div>
+    </div>
+  </section>
+
+  <GlobalFooter />
+</Layout>
+
+<script>
+  const form = document.getElementById('audit-form') as HTMLFormElement;
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const errorEl = document.getElementById('form-error') as HTMLElement;
+  const successEl = document.getElementById('form-success') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    errorEl.style.display = 'none';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    try {
+      const res = await fetch('/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, source: 'ai-audit' }),
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else throw new Error();
+    } catch {
+      errorEl.textContent = 'Something went wrong. Please email us at bill@treetopgrowthstrategy.com.';
+      errorEl.style.display = 'block';
+      btn.textContent = 'Start my Audit →';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+  .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+  .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-link:hover { color: #F0FFF0; }
+  .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; white-space: nowrap; }
+  .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+  .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .card-mid { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; transition: border-color 0.2s, background 0.2s; }
+  .card-mid:hover { border-color: rgba(0,200,83,0.35); background: #0f200f; }
+  section { padding: 5rem 2.5rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+  .h3 { font-size: 1.1rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.75rem; }
+  .body-text { font-size: 0.95rem; color: #8FAF8F; line-height: 1.75; }
+  .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .input-field:focus { border-color: rgba(0,200,83,0.5); }
+  .input-field::placeholder { color: #4A6A4A; }
+  @media (max-width: 768px) { .mob-col { flex-direction: column !important; } .hide-mob { display: none !important; } section { padding: 3.5rem 1.5rem; } }
+</style>

@@ -1,0 +1,243 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude for Consultants | Treetop Growth Strategy</title>
+  <meta name="description" content="Claude transforms consulting practices — faster research, better deliverables, more client capacity. Treetop implements Claude for independent consultants and boutique firms." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-cell-alt { background: #0A1A0A; padding: 2rem; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .cell-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .cell-title { font-size: 0.9rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .cell-desc { font-size: 0.82rem; color: #8FAF8F; line-height: 1.65; }
+    .chip { display: inline-flex; align-items: center; background: #0A1A0A; border: 1px solid #1A3A1A; padding: 0.5rem 1rem; font-size: 0.8rem; color: #8FAF8F; }
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Consultants</div>
+    <h1 class="hero-h">More clients.<br/><em style="color:#00C853;font-style:italic;">Less time per engagement.</em></h1>
+    <p class="hero-sub">Claude compresses the production work around your expertise — faster research, sharper deliverables, more capacity to take on clients without adding hours.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Get Claude Implemented →</a>
+      <a href="/services/implementation" class="btn-g">How It Works</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The consulting margin problem</span>
+    <h2 class="h2">Your expertise is the product.<br/>Production work is eating the margin.</h2>
+    <div class="grid-4" style="margin-top:2rem;">
+      <div class="grid-cell-alt">
+        <span class="cell-icon">📋</span>
+        <div class="cell-title">Deliverable production eats margin</div>
+        <div class="cell-desc">You know what the client needs. Writing it up, formatting it, iterating on it — that's where the hours go.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">🔬</span>
+        <div class="cell-title">Research too slow</div>
+        <div class="cell-desc">Market research, competitive analysis, synthesizing third-party sources — deep work that shouldn't take as long as it does.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">📝</span>
+        <div class="cell-title">Proposals take half a day</div>
+        <div class="cell-desc">Custom proposals for every prospect. The same structure, adapted each time, manually — instead of a process that runs.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">🔁</span>
+        <div class="cell-title">Rebuilding frameworks from scratch</div>
+        <div class="cell-desc">You've solved similar problems before. The frameworks exist in your head — not structured somewhere Claude can reference.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">What Claude handles</span>
+    <h2 class="h2">Six high-leverage use cases<br/>for consulting practices.</h2>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Deliverable Drafting</div>
+          <div class="step-desc">Strategy docs, reports, frameworks, assessments — Claude drafts to your structure and voice. You refine rather than write from scratch.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Research & Synthesis</div>
+          <div class="step-desc">Feed Claude sources, documents, transcripts, industry data — get synthesis you'd otherwise spend hours producing.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Proposal Generation</div>
+          <div class="step-desc">A working proposal workflow: intake context, structure the approach, draft the SOW. 30 minutes instead of half a day.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Framework Application</div>
+          <div class="step-desc">Your frameworks and methodologies loaded into Claude Projects — applied consistently across engagements without starting from scratch.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Client Communication</div>
+          <div class="step-desc">Status updates, meeting summaries, follow-up emails — drafted at your level, in your voice, in minutes.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-title">Knowledge Base</div>
+          <div class="step-desc">Your IP, templates, case studies, and methodologies organized so Claude can draw on them in any engagement.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Use Cases</span>
+    <h2 class="h2">What consultants use Claude for.</h2>
+    <div class="chip-grid">
+      <span class="chip">Strategy Decks</span>
+      <span class="chip">Market Research</span>
+      <span class="chip">Competitive Analysis</span>
+      <span class="chip">Proposal Writing</span>
+      <span class="chip">Client Communications</span>
+      <span class="chip">Meeting Summaries</span>
+      <span class="chip">Framework Application</span>
+      <span class="chip">SOW & Scoping</span>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;padding-top:3rem;">
+      <a href="/services/implementation" class="btn-g">See Implementation Details →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for Small Business →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Let's build Claude into<br/>your consulting practice.</h2>
+    <p class="sub">Tell us about your practice and we'll show you exactly where Claude creates the most leverage.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@firm.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company / Practice</label>
+        <input class="input-field" type="text" id="company" placeholder="Smith Consulting" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain if Claude handled the work that's slowing your team down?</label>
+        <textarea class="input-field" id="message" placeholder="More capacity, faster deliverables, less time per engagement..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Get Claude Implemented →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. Takes 3 min.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, message: document.getElementById('message').value, source: 'claude-for-consultants' }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Get Claude Implemented →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

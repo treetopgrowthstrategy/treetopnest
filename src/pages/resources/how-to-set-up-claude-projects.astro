@@ -1,0 +1,419 @@
+---
+import GlobalFooter from '../../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Set Up Claude Projects for Your Small Business | Treetop Growth Strategy</title>
+  <meta name="description" content="Claude Projects are the most powerful feature most small businesses never use. This guide shows you exactly how to set them up — system prompts, knowledge base, and workflows." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/resources/how-to-set-up-claude-projects" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    @media(max-width:768px){ .hide-mob{display:none!important} }
+
+    /* Layout */
+    .page-wrap {
+      padding-top: 64px;
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 4rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      padding-bottom: 6rem;
+    }
+    .article-col {
+      flex: 1;
+      max-width: 760px;
+      min-width: 0;
+    }
+    .toc-col {
+      width: 220px;
+      flex-shrink: 0;
+    }
+    @media(max-width:1024px){ .toc-col { display: none; } }
+
+    /* TOC */
+    .toc {
+      position: sticky;
+      top: 5rem;
+      padding-top: 3rem;
+    }
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #4A6A4A;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0.6rem; }
+    .toc-list a {
+      font-size: 0.8rem;
+      color: #4A6A4A;
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color 0.2s;
+      display: block;
+    }
+    .toc-list a:hover { color: #00C853; }
+
+    /* Article */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: #4A6A4A;
+      padding-top: 2.5rem;
+      padding-bottom: 2rem;
+    }
+    .breadcrumb a { color: #4A6A4A; text-decoration: none; }
+    .breadcrumb a:hover { color: #00C853; }
+
+    .article-header { padding-bottom: 2.5rem; border-bottom: 1px solid #1A3A1A; margin-bottom: 2.5rem; }
+    .article-cat { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    .article-h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: #F0FFF0;
+      margin-bottom: 1.25rem;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.78rem;
+      color: #4A6A4A;
+    }
+    .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    /* Prose */
+    .prose p {
+      font-size: 0.97rem;
+      color: #8FAF8F;
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+    .prose h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      color: #F0FFF0;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      scroll-margin-top: 5rem;
+    }
+    .prose h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #F0FFF0;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose ul {
+      list-style: none;
+      margin-bottom: 1.4rem;
+    }
+    .prose ul li {
+      font-size: 0.97rem;
+      color: #8FAF8F;
+      line-height: 1.75;
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .prose ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(0,200,83,0.5);
+    }
+    .prose strong { color: #F0FFF0; font-weight: 500; }
+
+    .code-block {
+      background: #0A1A0A;
+      border: 1px solid #1A3A1A;
+      padding: 1.5rem;
+      margin: 1.5rem 0 2rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      color: #8FAF8F;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .code-block .comment { color: #4A6A4A; }
+    .code-block .highlight { color: #00C853; }
+
+    .callout {
+      background: rgba(0,200,83,0.05);
+      border: 1px solid rgba(0,200,83,0.2);
+      border-left: 3px solid #00C853;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .callout p { margin-bottom: 0; color: #8FAF8F; font-size: 0.9rem; }
+    .callout strong { color: #00C853; }
+
+    .mistake-item {
+      border-left: 3px solid rgba(240,100,100,0.4);
+      padding-left: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .mistake-title { font-weight: 600; color: #F0FFF0; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .mistake-body { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; }
+
+    .article-cta {
+      background: #0A1A0A;
+      border: 1px solid #1A3A1A;
+      padding: 2.5rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .article-cta-h {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.5rem;
+      color: #F0FFF0;
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+    .article-cta p { font-size: 0.88rem; color: #8FAF8F; margin-bottom: 1.5rem; line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/services/implementation" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Work with Us</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- Article -->
+  <div class="article-col">
+    <div class="breadcrumb">
+      <a href="/resources">Resources</a>
+      <span>/</span>
+      <span style="color:#8FAF8F;">How to Set Up Claude Projects</span>
+    </div>
+
+    <div class="article-header">
+      <span class="article-cat">Implementation</span>
+      <h1 class="article-h1">How to Set Up Claude Projects<br/>for Your Small Business</h1>
+      <div class="article-meta">
+        <span>May 2026</span>
+        <span>·</span>
+        <span>8 min read</span>
+        <span>·</span>
+        <span>By Bill Colbert</span>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>
+        Claude Projects are the feature that separates businesses that get real value from Claude from those who just dabble. Without Projects, every Claude conversation starts from scratch — no memory of your brand, your products, your team's workflows. You're explaining yourself every single time. That's not a tool. That's a chore.
+      </p>
+      <p>
+        With Projects, Claude knows who you are. It knows your tone, your offerings, your customers, your non-negotiables. You start every conversation halfway done. That's the leverage most small businesses are leaving on the table — and it takes less than an afternoon to set up correctly.
+      </p>
+
+      <h2 id="what-is-a-claude-project">What is a Claude Project?</h2>
+      <p>
+        A Claude Project is a persistent workspace inside Claude.ai where you can store a custom system prompt, upload reference documents, and set behavior instructions that apply to every conversation within that Project. Think of it as hiring a staff member who has already read your entire operations manual before their first day.
+      </p>
+      <p>
+        Here's a concrete example: without a Project, if you ask Claude to write a proposal, you'd have to explain your company, your services, your pricing model, your tone, and your ideal client in every single session. With a Project configured correctly, you just say "write a proposal for a retail client interested in our email marketing service" — and Claude already knows everything else.
+      </p>
+
+      <div class="callout">
+        <p><strong>Who this is for:</strong> Any small business using Claude more than a few times per week. If you're only using Claude occasionally, a Project still adds value — but the bigger your team's usage, the more time you save.</p>
+      </div>
+
+      <h2 id="step-1-create-your-project">Step 1 — Create your Project</h2>
+      <p>
+        Log into Claude.ai and look for the Projects section in the left sidebar. Create a new Project and give it a name that reflects its scope. Most small businesses should start with one core Project — something like "[Your Company] — Main" — and expand from there once you understand what the system can do.
+      </p>
+      <p>
+        Name it something your team will recognize. If you have multiple team members sharing a Claude Team plan, they'll all see the Project name and you want it to be immediately obvious what it's for.
+      </p>
+
+      <h2 id="step-2-write-your-system-prompt">Step 2 — Write your system prompt</h2>
+      <p>
+        The system prompt is the most important thing you'll configure. This is the standing instruction set Claude reads before every conversation in this Project. It's where you establish who you are, how you communicate, and what Claude should always know.
+      </p>
+      <p>
+        A strong system prompt covers:
+      </p>
+      <ul>
+        <li><strong>Company context</strong> — what you do, who you serve, what makes you different</li>
+        <li><strong>Brand voice</strong> — specific adjectives, examples of your tone, what to avoid</li>
+        <li><strong>Products and services</strong> — names, brief descriptions, pricing tiers if relevant</li>
+        <li><strong>Typical workflows</strong> — what kinds of tasks Claude will be doing most often</li>
+        <li><strong>Hard rules</strong> — things Claude should never say, claim, or do</li>
+        <li><strong>Output format preferences</strong> — how you want responses structured</li>
+      </ul>
+      <p>
+        Here's a template you can adapt:
+      </p>
+
+      <div class="code-block"><span class="comment"># Company Context</span>
+You are an AI assistant for <span class="highlight">[Company Name]</span>, a <span class="highlight">[brief description]</span> that serves <span class="highlight">[ideal client description]</span>.
+
+Our core services are:
+- <span class="highlight">[Service 1]</span>: <span class="highlight">[one-line description + starting price]</span>
+- <span class="highlight">[Service 2]</span>: <span class="highlight">[one-line description + starting price]</span>
+- <span class="highlight">[Service 3]</span>: <span class="highlight">[one-line description + starting price]</span>
+
+<span class="comment"># Brand Voice</span>
+Our tone is <span class="highlight">[3–4 adjectives, e.g. "direct, warm, authoritative, and practical"]</span>.
+We avoid: corporate jargon, passive voice, excessive qualifiers, hype.
+We use: plain language, short sentences, specific examples over vague claims.
+
+<span class="comment"># Our Customers</span>
+We primarily work with <span class="highlight">[customer profile]</span>. Their main challenges are <span class="highlight">[key pain points]</span>. They care most about <span class="highlight">[what matters to them]</span>.
+
+<span class="comment"># Hard Rules</span>
+- Never make claims about results we can't substantiate
+- Never quote prices outside the ranges above without checking with the team
+- Never use the phrase "game-changer" or "revolutionary"
+- Always recommend a consultation call rather than making binding commitments
+
+<span class="comment"># Output Defaults</span>
+Unless asked otherwise: use clear headings, short paragraphs, and bullet points for lists.
+Keep responses concise — we prefer actionable over comprehensive.</div>
+
+      <p>
+        Write this once, refine it over the first week as you notice gaps, and then leave it alone. A good system prompt is stable, not something you're editing constantly.
+      </p>
+
+      <h2 id="step-3-build-your-knowledge-base">Step 3 — Build your knowledge base</h2>
+      <p>
+        Projects let you upload documents that Claude can reference in any conversation. This is where the real leverage lives. The right files in your knowledge base means Claude can answer detailed questions about your business, maintain consistency across all team output, and produce work that's actually specific to how you operate.
+      </p>
+      <p>
+        Files worth uploading:
+      </p>
+      <ul>
+        <li><strong>Brand guidelines</strong> — logo usage rules, color palette, tone examples, approved messaging</li>
+        <li><strong>Service/product documentation</strong> — what each offering includes, what it doesn't, how it's priced</li>
+        <li><strong>SOPs and process docs</strong> — your intake process, fulfillment steps, communication protocols</li>
+        <li><strong>Past proposals or work samples</strong> — so Claude can match your style and structure</li>
+        <li><strong>FAQ document</strong> — answers to questions your team handles repeatedly</li>
+        <li><strong>Client personas</strong> — detailed profiles of your target customer segments</li>
+      </ul>
+      <p>
+        Keep documents clean and well-organized. Claude reads these exactly as written — a messy, internally inconsistent document will produce inconsistent outputs. Take an hour to clean up anything you upload before it goes in.
+      </p>
+
+      <div class="callout">
+        <p><strong>File format note:</strong> Plain text (.txt) and PDF files work best. If you're uploading from Word, export to PDF first. Avoid uploading files with heavy formatting that adds noise without adding information.</p>
+      </div>
+
+      <h2 id="step-4-create-workflow-instructions">Step 4 — Create workflow instructions</h2>
+      <p>
+        Beyond the system prompt, you can create specific instruction sets for your most common task types. The most practical approach: create a short instruction document for each major workflow and upload it to your knowledge base, then teach your team to reference it by name at the start of relevant sessions.
+      </p>
+      <p>
+        For example, your team might use prompts like:
+      </p>
+      <ul>
+        <li>"Following our proposal workflow, draft a proposal for..." </li>
+        <li>"Using our social media post format, write five posts about..."</li>
+        <li>"Per our client email templates, draft a follow-up for..."</li>
+      </ul>
+      <p>
+        This is where configuration becomes a real operational system. Each team member knows the trigger phrases, Claude knows the instructions, and you get consistent output without micromanaging every task.
+      </p>
+
+      <h2 id="what-most-businesses-get-wrong">What most businesses get wrong</h2>
+
+      <div class="mistake-item">
+        <div class="mistake-title">1. Writing a system prompt that's too vague</div>
+        <div class="mistake-body">"We're a marketing agency that helps clients grow." That tells Claude almost nothing useful. Be specific about services, clients, voice, and rules. Vague input produces generic output — which defeats the entire purpose.</div>
+      </div>
+
+      <div class="mistake-item">
+        <div class="mistake-title">2. Uploading too many documents without organizing them</div>
+        <div class="mistake-body">More documents isn't always better. Uploading 40 internal files, many of which contradict each other or contain outdated information, creates noise. Curate ruthlessly. Five clean, current documents will outperform twenty stale ones every time.</div>
+      </div>
+
+      <div class="mistake-item">
+        <div class="mistake-title">3. Setting it up once and never revisiting it</div>
+        <div class="mistake-body">Your business evolves. Your Project should too. Put a recurring calendar reminder — quarterly at minimum — to review your system prompt and knowledge base for anything outdated or missing. The businesses getting the most from Claude treat their Project configuration as a living document.</div>
+      </div>
+
+      <h2 id="conclusion">Putting it all together</h2>
+      <p>
+        A well-configured Claude Project is the difference between a tool your team uses occasionally and a system that's quietly running in the background of everything you produce. When it's done right, the output sounds like your company, follows your processes, and scales without adding headcount.
+      </p>
+      <p>
+        The setup process described here takes most businesses three to five hours the first time — longer if you need to write SOPs that don't yet exist, shorter if you already have strong documentation. Either way, the time you invest comes back quickly.
+      </p>
+
+      <div class="article-cta">
+        <div class="article-cta-h">If this sounds like work, that's because it is.</div>
+        <p>
+          This is exactly what Treetop implements for clients — we handle every step of this, configure your system prompt with precision, build your knowledge base, create workflow instructions for your team's most common tasks, and then we measure the results. You get a working system, not homework.
+        </p>
+        <a href="/services/implementation" class="btn-p">See How Implementation Works →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc-col">
+    <div class="toc">
+      <span class="toc-label">In this article</span>
+      <ul class="toc-list">
+        <li><a href="#what-is-a-claude-project">What is a Claude Project?</a></li>
+        <li><a href="#step-1-create-your-project">Step 1 — Create your Project</a></li>
+        <li><a href="#step-2-write-your-system-prompt">Step 2 — Write your system prompt</a></li>
+        <li><a href="#step-3-build-your-knowledge-base">Step 3 — Build your knowledge base</a></li>
+        <li><a href="#step-4-create-workflow-instructions">Step 4 — Create workflow instructions</a></li>
+        <li><a href="#what-most-businesses-get-wrong">What most businesses get wrong</a></li>
+        <li><a href="#conclusion">Putting it all together</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<GlobalFooter />
+
+</body>
+</html>

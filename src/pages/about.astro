@@ -1,0 +1,337 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Treetop Growth Strategy</title>
+  <meta name="description" content="Bill Colbert is the founder of Treetop Growth Strategy — a boutique AI implementation consultancy helping small businesses get real results from Claude." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .body-text { font-size: 0.95rem; color: #8FAF8F; line-height: 1.75; }
+    .card-mid { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; transition: border-color 0.2s; }
+    .card-mid:hover { border-color: rgba(0,200,83,0.35); }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    @media(max-width:768px){ .mob-col{flex-direction:column!important} .hide-mob{display:none!important} section{padding:3.5rem 1.5rem} }
+
+    /* Page-specific */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding-top: 7rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: #F0FFF0;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: #8FAF8F;
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    /* About Bill */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    @media(max-width:768px){ .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .about-para { font-size: 0.95rem; color: #8FAF8F; line-height: 1.8; margin-bottom: 1.25rem; }
+    .about-para:last-child { margin-bottom: 0; }
+
+    .cred-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .cred-title { font-size: 0.78rem; font-weight: 600; color: #00C853; margin-bottom: 0.4rem; letter-spacing: 0.04em; }
+    .cred-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.6; }
+
+    /* Why Treetop */
+    .statement-block {
+      border-left: 3px solid rgba(0,200,83,0.4);
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .statement-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.45rem;
+      color: #F0FFF0;
+      margin-bottom: 0.6rem;
+      font-weight: 400;
+    }
+    .statement-body { font-size: 0.93rem; color: #8FAF8F; line-height: 1.75; }
+
+    /* Services links */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media(max-width:768px){ .services-grid { grid-template-columns: 1fr; } }
+
+    .svc-card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; transition: border-color 0.2s; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; }
+    .svc-card:hover { border-color: rgba(0,200,83,0.35); }
+    .svc-name { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: #F0FFF0; font-weight: 400; }
+    .svc-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.6; flex: 1; }
+    .svc-price { font-size: 0.78rem; color: #00C853; font-weight: 600; }
+    .svc-arrow { font-size: 0.82rem; color: rgba(240,255,240,0.4); margin-top: 0.5rem; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    @media(max-width:768px){ .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    @media(max-width:768px){ .form-row { grid-template-columns: 1fr; } }
+
+    .form-field { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.75rem; font-weight: 600; color: rgba(240,255,240,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+
+    .success-msg { display: none; background: rgba(0,200,83,0.08); border: 1px solid rgba(0,200,83,0.3); padding: 1.5rem; text-align: center; }
+    .success-msg p { color: #00C853; font-size: 0.9rem; }
+
+    .about-section { background: #0A1A0A; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      About Treetop
+    </div>
+    <h1 class="hero-h">
+      Built by someone who<br/>
+      <em style="color:#00C853;font-style:italic;">does the work.</em>
+    </h1>
+    <p class="hero-sub">
+      Treetop Growth Strategy is a boutique AI implementation consultancy. We don't train. We implement. We build Claude workflows inside your business and prove they work before we leave.
+    </p>
+  </div>
+</div>
+
+<!-- About Bill -->
+<section class="about-section">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div>
+        <span class="lbl">Bill Colbert · Founder</span>
+        <h2 class="h2">20 years building<br/>revenue systems.</h2>
+        <p class="about-para">
+          I've spent two decades in B2B sales, marketing, and revenue operations — building the systems that make businesses grow. I've run fractional CMO engagements, built AI-native GTM architectures, and helped companies from early-stage startups to $50M+ businesses find the system behind their growth.
+        </p>
+        <p class="about-para">
+          Claude changed what's possible for small businesses. I saw it firsthand — the hours my own team reclaimed, the quality of work that came out, the things we could now do that used to require a bigger team. Treetop's Claude implementation practice exists because every small business deserves access to that leverage.
+        </p>
+        <p class="about-para">
+          I implement Claude the way I'd want it done for my own business: real workflows, trained team, measured results.
+        </p>
+      </div>
+
+      <div class="cred-grid">
+        <div class="card-mid">
+          <div class="cred-title">20+ Years</div>
+          <div class="cred-desc">Revenue operations, GTM strategy, and AI implementation across B2B services.</div>
+        </div>
+        <div class="card-mid">
+          <div class="cred-title">Treetop Growth Strategy</div>
+          <div class="cred-desc">Founded to give small businesses the AI leverage that was previously only accessible to enterprise.</div>
+        </div>
+        <div class="card-mid">
+          <div class="cred-title">Claude Early Adopter</div>
+          <div class="cred-desc">Implementing Claude since early access — we know what works and what's hype.</div>
+        </div>
+        <div class="card-mid">
+          <div class="cred-title">Austin, TX</div>
+          <div class="cred-desc">Serving clients across the US remotely, with occasional on-site engagements for larger teams.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Treetop -->
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Our approach</span>
+    <h2 class="h2" style="max-width:560px;">We don't hand you<br/>a prompt sheet.</h2>
+    <div style="max-width:720px;margin-top:3rem;">
+      <div class="statement-block">
+        <div class="statement-title">Implementation, not training.</div>
+        <p class="statement-body">
+          Trainers teach you what's possible. We build what's possible. There's a significant difference between knowing Claude can help and having Claude actually integrated into your daily workflows — doing real work, producing real output, saving real hours.
+        </p>
+      </div>
+      <div class="statement-block">
+        <div class="statement-title">Measured outcomes, not vibes.</div>
+        <p class="statement-body">
+          Every engagement starts with baselines and ends with data. Hours saved. Output volume. Quality metrics. You know exactly what the investment returned — not because we say so, but because you can see it in the numbers.
+        </p>
+      </div>
+      <div class="statement-block">
+        <div class="statement-title">Your business, not a template.</div>
+        <p class="statement-body">
+          We configure Claude with your brand voice, your product knowledge, your SOPs. The output sounds like you — not a generic AI that could belong to any company. Every system we build is specific to how your business actually operates.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Quick Links -->
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Work with Treetop</span>
+    <h2 class="h2" style="margin-bottom:3rem;">Three ways to get started.</h2>
+    <div class="services-grid">
+      <a href="/services/ai-audit" class="svc-card">
+        <div class="svc-name">AI Readiness Audit</div>
+        <div class="svc-desc">A structured assessment of your business's current workflows and where Claude can generate the most leverage.</div>
+        <div class="svc-price">Starting at $500</div>
+        <div class="svc-arrow">Read more →</div>
+      </a>
+      <a href="/services/implementation" class="svc-card">
+        <div class="svc-name">Claude Implementation</div>
+        <div class="svc-desc">Full-service implementation of Claude workflows inside your business — configured, trained, and measured.</div>
+        <div class="svc-price">Starting at $2,500</div>
+        <div class="svc-arrow">Read more →</div>
+      </a>
+      <a href="/services/retainer" class="svc-card">
+        <div class="svc-name">Ongoing Retainer</div>
+        <div class="svc-desc">Continuous optimization, new workflow builds, and strategic guidance as your business evolves.</div>
+        <div class="svc-price">Starting at $1,500/mo</div>
+        <div class="svc-arrow">Read more →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="sec-inner">
+    <div class="contact-grid">
+      <div>
+        <span class="lbl">Get in Touch</span>
+        <h2 class="h2">Let's talk about<br/>your business.</h2>
+        <p class="body-text" style="margin-top:1rem;">
+          Direct form — no Calendly friction, no intake form maze. Tell us what you're working on and we'll respond within a business day.
+        </p>
+        <p style="margin-top:2rem;font-size:0.85rem;color:#4A6A4A;">
+          Or email directly:<br/>
+          <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;text-decoration:none;">bill@treetopgrowthstrategy.com</a>
+        </p>
+      </div>
+
+      <div>
+        <form id="contact-form">
+          <div class="form-row">
+            <div>
+              <label class="form-label" for="first_name">First name</label>
+              <input class="input-field" type="text" id="first_name" name="first_name" placeholder="Jane" required />
+            </div>
+            <div>
+              <label class="form-label" for="last_name">Last name</label>
+              <input class="input-field" type="text" id="last_name" name="last_name" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="email">Email</label>
+            <input class="input-field" type="email" id="email" name="email" placeholder="jane@company.com" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="company">Company</label>
+            <input class="input-field" type="text" id="company" name="company" placeholder="Your company name" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="message">What are you trying to solve?</label>
+            <textarea class="input-field" id="message" name="message" rows="5" placeholder="Tell us what's on your mind — the problem you're trying to solve, the workflows eating your time, or the team capacity you wish you had." required></textarea>
+          </div>
+          <button type="submit" class="btn-p" style="width:100%;justify-content:center;">
+            Send message →
+          </button>
+        </form>
+
+        <div class="success-msg" id="success-msg" style="margin-top:1rem;">
+          <p>Message received. We'll be in touch within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMsg = document.getElementById('success-msg') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const body = {
+      first_name: data.get('first_name'),
+      last_name: data.get('last_name'),
+      email: data.get('email'),
+      company: data.get('company'),
+      message: data.get('message'),
+      source: 'about',
+    };
+    try {
+      await fetch('/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    } catch {
+      alert('Something went wrong. Please email us directly at bill@treetopgrowthstrategy.com');
+    }
+  });
+</script>
+
+</body>
+</html>
