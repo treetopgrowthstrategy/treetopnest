@@ -1,0 +1,528 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for Project Management: Plans, Updates & Comms | Treetop Growth Strategy</title>
+  <meta name="description" content="7 Claude AI workflows for project managers — project briefs, stakeholder updates, risk registers, retros and more. With copy-paste prompts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .why-card { background: #0A1A0A; padding: 2rem; }
+    .why-card-title { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: #F0FFF0; margin-bottom: 0.6rem; }
+    .why-card-desc { font-size: 0.87rem; color: #8FAF8F; line-height: 1.7; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .wf-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; color: #00C853; letter-spacing: 0.06em; margin-top: 1rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .why-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Project Management</div>
+    <h1 class="hero-h">How to Use Claude for Project Management:<br/><em style="color:#00C853;font-style:italic;">7 Workflows PMs Actually Use</em></h1>
+    <p class="hero-sub">Project managers spend half their time on documentation and communication — briefs, updates, status reports, retros. Claude drafts all of it in minutes so you can spend more time on the actual management: removing blockers, aligning stakeholders, and making decisions.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in My Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Why Claude</span>
+    <h2 class="h2">Why Claude is a force multiplier<br/>for project managers.</h2>
+    <p class="sub">PMs are the communication layer of every project. Claude takes that writing work off your plate — so you can keep stakeholders aligned, document decisions, and run tighter projects without spending your evenings on update emails.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Turns context into clear documents</div>
+        <div class="why-card-desc">You have all the context in your head — Claude turns it into a structured, readable document. Project briefs, risk registers, scope docs: paste your notes, get a professional output in minutes.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Calibrates stakeholder communication</div>
+        <div class="why-card-desc">Executive updates need a different voice than team updates or client status reports. Claude adjusts tone, level of detail, and framing based on the audience — so you're not rewriting the same update three different ways from scratch.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Captures decisions from chaos</div>
+        <div class="why-card-desc">Messy meeting notes become clean action items. Verbal agreements become documented decisions. Claude extracts structure from the raw input of how projects actually run — not how they're supposed to run.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Makes retrospectives actually useful</div>
+        <div class="why-card-desc">Most retros produce observations that never become improvements. Claude structures retro outputs into insights with specific, actionable follow-through — and formats them in a way the team can actually reference next sprint.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">7 Project Management Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">These prompts work best inside a Claude Project that has your project context, team structure, and client details already loaded. They also work standalone — just add more context inline.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">Project Brief Writing</div>
+      <div class="wf-desc">A good project brief is the difference between a project that stays aligned and one that drifts into scope creep and missed expectations. Claude writes a complete brief from your rough notes — with goals, constraints, stakeholders, success criteria, and open questions — in 10 minutes instead of two days.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a project brief for the following initiative. I'll give you rough notes and you'll build the complete document.
+
+Project name: [name]
+What we're building / doing: [describe in plain language]
+Why this project exists (the business reason): [what problem are we solving or what opportunity are we capturing]
+Who requested it: [stakeholder or team]
+Who's doing the work: [team or roles involved]
+
+Goals (what does success look like):
+- [Goal 1 — specific and measurable where possible]
+- [Goal 2]
+- [Goal 3]
+
+What's in scope: [list]
+What's explicitly out of scope: [list — this is important]
+Key constraints: [budget / timeline / resource / technical]
+
+Timeline: [rough dates or duration]
+Budget: [if relevant]
+Key milestones: [list any you know]
+
+Risks or open questions I have: [list — even rough]
+
+Write a project brief with:
+1. Project overview (2–3 sentences — what, why, and for whom)
+2. Goals and success criteria
+3. Scope (in / out)
+4. Stakeholders and roles (RACI-style or narrative)
+5. Timeline and milestones
+6. Constraints and assumptions
+7. Open questions that need to be resolved before kickoff
+
+Plain language. No PM jargon. Someone reading this for the first time should understand the project in under 5 minutes.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–4 hrs per project brief; reduces kickoff misalignment</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Stakeholder Update Emails</div>
+      <div class="wf-desc">Writing update emails that give leadership exactly what they need — no more, no less — is one of the most undervalued PM skills. Claude drafts stakeholder updates at the right level of detail for the audience: executive summary for the C-suite, fuller context for the project sponsor, tactical detail for the team lead.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a stakeholder update email for [project name].
+
+Audience: [executive sponsor / board member / client / department head / cross-functional team]
+Update frequency: [weekly / bi-weekly / ad hoc]
+Current project phase: [planning / execution / review / closeout]
+
+Status this period:
+- Overall status: [Green / Yellow / Red] and why in one sentence
+- What we accomplished: [list]
+- What we're working on next: [list]
+- Any blockers or risks: [list — be honest]
+- Any decisions needed from the stakeholder: [specific — if none, say so]
+
+Tone: [executive-facing and brief / detailed and collaborative / client-facing and professional]
+Length: [under 200 words / one page / no constraint]
+
+Write an update that:
+- Leads with the headline (status and one key fact) — not background
+- Is scannable (use short bullets, not paragraphs, for lists)
+- Is honest about what's at risk without being alarmist
+- Makes any ask or decision explicit and easy to action
+
+Subject line options: give me three versions (urgent / informational / check-in).</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 30–60 min/week on stakeholder communication</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Risk Register Documentation</div>
+      <div class="wf-desc">Most risk registers get created at kickoff and never looked at again — because they're too generic to be useful. Claude builds a risk register from your actual project context, with specific risks, realistic likelihood and impact assessments, and concrete mitigation actions.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Build a risk register for this project: [project name and brief description]
+
+Project context:
+- What we're delivering: [description]
+- Key dependencies: [teams, vendors, systems, approvals we're depending on]
+- Timeline pressure: [fixed deadline / flexible / unknown]
+- Budget status: [comfortable / tight / unknown]
+- Team or stakeholder dynamics: [any known issues — e.g. "key SME is only 20% allocated" or "client is known for late approvals"]
+
+Known risks I'm already aware of: [list what you already know]
+
+Build a risk register with columns: Risk | Category | Likelihood (H/M/L) | Impact (H/M/L) | Risk Score | Mitigation Strategy | Owner | Status
+
+For each risk:
+- Be specific — not "timeline risk" but "SME availability for UAT is uncertain and could compress testing by 2 weeks"
+- Give a realistic mitigation, not just "monitor closely"
+- Assign ownership to a role, not a person (I'll fill in names)
+
+Also: flag the top 3 risks that need immediate attention and tell me why.
+
+Include at least 10–12 risks. Don't just cover the obvious ones — look at stakeholder, dependency, scope, resource, and external risks.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–3 hrs on risk documentation; improves proactive management</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Meeting Notes → Action Items</div>
+      <div class="wf-desc">Raw meeting notes — even messy ones — become structured action items, documented decisions, and a shareable summary in under 2 minutes. This is one of the highest-leverage Claude workflows for PMs because it happens after every meeting, every day.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Here are my raw notes from our [meeting type — e.g. weekly project sync / stakeholder review / kickoff] today:
+
+[Paste raw notes — messy is fine]
+
+Meeting attendees: [list roles or names]
+Project context: [1 sentence — what project is this]
+
+Extract and format the following:
+
+1. Decisions made (state them clearly — "We decided to..." not "There was discussion about...")
+2. Action items as a table:
+   | Action Item | Owner | Due Date | Notes |
+3. Open questions that came up but weren't resolved (and who owns getting the answer)
+4. A 3-sentence meeting summary I can paste into Slack or email to people who weren't there
+5. Any risks or blockers that surfaced in the discussion
+
+Flag: any action item where owner or due date wasn't explicitly stated in my notes. I'll need to follow up on those.
+
+Format this so I can paste it directly into Confluence / Notion / our project tracker.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 20–40 min per meeting; dramatically improves follow-through</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">Project Retrospective Summaries</div>
+      <div class="wf-desc">Retros are only valuable if the insights survive the meeting. Claude takes your retro notes and turns them into a structured summary with specific themes, clear learnings, and concrete changes to make on the next project — not a wall of sticky note exports.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Analyze these retrospective notes from [project name] and produce a retro summary document.
+
+What went well (I'll paste the raw contributions):
+[Paste]
+
+What didn't go well / what we'd change:
+[Paste]
+
+What we want to try or experiment with next:
+[Paste]
+
+Project context:
+- Project type: [software build / campaign / event / process change / etc.]
+- Duration: [how long it ran]
+- Team size: [rough number]
+- Overall outcome: [delivered on time / late / scope changed / etc.]
+
+Produce a retro summary with:
+1. Top 3 themes from "what went well" (with supporting observations)
+2. Top 3 themes from "what didn't go well" (with root cause analysis — don't just restate the symptom)
+3. Specific process improvements to implement on the next project (not suggestions — commitments)
+4. One team recognition worth calling out
+5. A "what we learned" section (2–3 sentences that capture the real insight from this project)
+
+Format this so the team can reference it at the start of the next similar project. Make the process improvements specific enough that someone could actually use them.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs on retro synthesis; turns insights into actual improvements</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Timeline Narrative for Decks</div>
+      <div class="wf-desc">Project timelines in spreadsheets don't communicate to executives — you need a narrative version that explains the logic, the dependencies, and the key decision points in plain language. Claude writes the slide narrative from your timeline data in minutes.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a timeline narrative for a [project name] presentation deck. The audience is [executive team / client / board].
+
+Here's the timeline (paste your Gantt, milestones, or phase dates):
+[Paste your timeline data — even rough dates work]
+
+Key phases:
+- Phase 1: [name and dates] — what happens in this phase
+- Phase 2: [name and dates] — what happens in this phase
+- [Continue for each phase]
+
+Key dependencies to explain: [e.g. "Phase 2 can't start until legal review is complete in Phase 1"]
+Key decision points: [moments where leadership will need to review or approve]
+Buffer or contingency built in: [is there any? Where?]
+The riskiest part of the timeline: [be honest]
+
+Write a timeline narrative that:
+- Explains the logic of the phasing (why we're doing it in this order)
+- Calls out the key milestones that matter to this audience
+- Names the dependencies without burying them
+- Is honest about where we're tight on time
+- Fits on 2–3 presentation slides (written as slide text, not paragraphs)
+
+Give me slide titles and bullet text. I'll handle the visual formatting.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs per deck preparation; improves executive communication</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">Client Status Report Drafting</div>
+      <div class="wf-desc">Client status reports are one of the most recurring, time-consuming PM deliverables — and they're often written at the last minute. Claude drafts a complete client-ready status report from your project notes and status data, in a professional format the client can read and act on.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Draft a client status report for [client name] for the period [date range].
+
+Project: [project name and brief description]
+Client relationship: [new / established — how formal should this be]
+Reporting cadence: [weekly / bi-weekly / monthly]
+
+Status this period:
+Overall status: [Green / Yellow / Red]
+Reason for status: [one clear sentence]
+
+Accomplishments this period:
+[List what was completed — be specific, clients notice vague updates]
+
+In progress / coming up next:
+[List what's in flight and what's starting next]
+
+Items requiring client input or decision:
+[List any — with deadlines if applicable]
+[If none, write "None this period"]
+
+Issues or risks to flag:
+[Be honest — clients respect transparency more than surprises later]
+
+Report format the client prefers: [email / PDF doc / shared doc / structured template]
+Tone: [formal / professional but warm / project-partner style]
+
+Write a status report that:
+- Starts with the headline (overall status in one sentence)
+- Is specific about what was accomplished (not "we made progress on Phase 2")
+- Makes any client action needed explicit with a clear deadline
+- Is honest about issues without being alarmist
+- Ends with a clear next touchpoint
+
+Under 400 words. Clients don't read long status reports.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs/week on client reporting; improves client confidence</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 08</span>
+      <div class="wf-title">Scope Change Documentation</div>
+      <div class="wf-desc">Scope changes that aren't documented properly turn into disputes. Claude writes a clear scope change document from your description of what's changing and why — covering the impact on timeline, budget, and resources in a format that both the team and client can sign off on.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a scope change request document for the following change:
+
+Project: [project name]
+What's changing: [describe the scope change clearly — what's being added, removed, or modified]
+Why it's changing: [business reason — not "the client asked for it" but what's driving the request]
+Who requested the change: [client / internal stakeholder / discovered during execution]
+
+Impact analysis:
+- Timeline impact: [add X days / weeks / no change — be specific]
+- Budget impact: [add $X / no change — or "to be estimated"]
+- Resource impact: [who needs to do additional work, and how much]
+- Risk impact: [does this change introduce new risks?]
+- Dependencies affected: [does this change anything downstream]
+
+Approval needed from: [client / project sponsor / budget owner]
+Decision deadline: [when we need an answer to stay on track]
+
+Write a scope change document with:
+1. Change description (clear, specific — what exactly is changing)
+2. Reason for change
+3. Impact summary (timeline / budget / resources — in a table)
+4. Options (if there are alternatives — e.g. "we can include this in the current phase for $X or defer it to Phase 2 at no additional cost")
+5. Recommendation (what you think they should do and why)
+6. Approval signature lines
+
+Tone: professional, factual, no defensiveness about the impact. Scope changes happen — document them cleanly.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs per change request; prevents scope dispute downstream</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Claude Projects Setup</span>
+    <h2 class="h2">Set up Claude Projects<br/>for project management.</h2>
+    <p class="sub">A PM Claude Project keeps your project context, stakeholder profiles, and communication standards loaded — so every document and update Claude produces is already tailored to your project and audience.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create a Project-Specific Claude Project</div>
+          <div class="setup-desc">For large or long-running projects, create a dedicated Claude Project for each one. For ongoing PM work, create a general "Project Management" Project with your standards and templates. Either way, go to claude.ai → Projects → New Project.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Load Project Context into the System Prompt</div>
+          <div class="setup-desc">Include: project name and description, the client or sponsor and what they care about, the team structure, the communication norms (formal vs. casual), the project methodology (agile / waterfall / hybrid), and any terminology specific to this project or client.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Key Project Documents</div>
+          <div class="setup-desc">Add: the project brief, the master timeline, the stakeholder map, and any existing status report templates. Claude will match your established format and reference project details accurately — without you having to paste them every time.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build Recurring Prompt Templates</div>
+          <div class="setup-desc">Save a template prompt for each recurring deliverable: the weekly status report, the meeting notes summary, the stakeholder update. Each template should have your standard structure pre-filled — you paste in the current period's data and run it. Weekly reporting goes from 90 minutes to 15.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+      <a href="/resources" class="internal-link">All Resources →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows running<br/>in your project management practice?</h2>
+    <p class="sub">We configure Claude Projects for your project types, clients, and team — and train your PMs to use them. Most PMs reclaim 5+ hours a week within the first two weeks.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your project management workflows?</label>
+        <textarea class="input-field" id="gain" placeholder="Faster status reports, better briefs, more time for actual project work..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My PM Practice →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-project-management'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My PM Practice →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

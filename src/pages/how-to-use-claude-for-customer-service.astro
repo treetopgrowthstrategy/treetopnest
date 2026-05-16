@@ -1,0 +1,422 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for Customer Service: 7 Workflows That Scale Support | Treetop Growth Strategy</title>
+  <meta name="description" content="7 Claude AI customer service workflows — from FAQ drafting to win-back sequences. With copy-paste prompts and Claude Projects setup guide." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .why-card { background: #0A1A0A; padding: 2rem; }
+    .why-card-title { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: #F0FFF0; margin-bottom: 0.6rem; }
+    .why-card-desc { font-size: 0.87rem; color: #8FAF8F; line-height: 1.7; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .wf-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; color: #00C853; letter-spacing: 0.06em; margin-top: 1rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .why-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Customer Service</div>
+    <h1 class="hero-h">How to Use Claude for Customer Service<br/><em style="color:#00C853;font-style:italic;">(Without Losing the Human Touch)</em></h1>
+    <p class="hero-sub">Seven workflows your support team can run today — drafting responses, handling escalations, building knowledge bases, and winning back lost customers — with prompts you can copy and use immediately.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in My Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Why Claude</span>
+    <h2 class="h2">Why Claude works for customer service.</h2>
+    <p class="sub">Most teams use Claude to draft responses faster. The ones who do it well use it for something more valuable: consistency, tone, and handling edge cases without escalating everything to a manager.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Consistent voice, every time</div>
+        <div class="why-card-desc">When your brand voice, policies, and tone guidelines live in a Claude Project, every response — regardless of who wrote it — sounds like your company, not like whoever happened to be on shift.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Policy-aware responses</div>
+        <div class="why-card-desc">Upload your return policy, SLA docs, and FAQ. Claude won't promise things you can't deliver, and it won't give different answers to the same question depending on which rep drafted the response.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Handles emotional tone well</div>
+        <div class="why-card-desc">Claude is unusually good at calibrating empathy without being saccharine. A complaint response that acknowledges the customer's frustration without over-apologizing or being defensive takes Claude about 20 seconds.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Scales the hard stuff</div>
+        <div class="why-card-desc">Onboarding sequences, win-back campaigns, and knowledge base articles are the high-value work that never gets done because tickets are always on fire. Claude gets these done in minutes, not days.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">7 Customer Service Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">These prompts are designed to be used inside a Claude Project that already has your product docs, policies, and brand voice loaded. They work without that — but they work much better with it.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">FAQ Response Drafting</div>
+      <div class="wf-desc">The same 20 questions account for 80% of your ticket volume. Claude drafts polished, on-brand responses to each one in minutes. The goal isn't to send these unedited — it's to have a reviewed library your team pulls from so they're not writing from scratch every time.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">I need to build a response library for our most common support questions. Here's the question:
+
+"[Customer question — e.g. 'How do I cancel my subscription?']"
+
+Our policy: [describe the actual policy in plain language]
+Our tone: [e.g. warm but direct, no corporate speak, first-person singular]
+What customers usually feel when they ask this: [frustrated / confused / just exploring]
+
+Write three versions of a response:
+1. A short version (2–3 sentences) for email or chat
+2. A longer version with step-by-step instructions for a help article
+3. A version for when the customer sounds frustrated or is threatening to churn
+
+For each, flag anything I should double-check for policy accuracy.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves ~3–4 hrs/week on ticket drafting</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Complaint Escalation Responses</div>
+      <div class="wf-desc">The hardest tickets aren't the ones with complex issues — they're the ones with angry customers who've already been let down once. Claude writes responses that de-escalate without being defensive, and takes ownership without making promises you can't keep.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">I need to respond to a complaint from a customer who is [angry / threatening to leave / publicly frustrated]. Here's their message:
+
+"[Paste customer message]"
+
+Context:
+- What actually went wrong: [brief description]
+- Whether we're at fault: [yes / partially / they misunderstood]
+- What we can offer: [refund / credit / fix / explanation]
+- What we can't offer: [any limits]
+
+Write a response that:
+1. Opens by acknowledging how they feel (don't start with "I'm sorry for the inconvenience")
+2. Takes responsibility for what's ours to own — nothing more
+3. Explains what happened in plain language (not excuses)
+4. Offers the specific resolution we're providing
+5. Closes with a clear next step
+
+Tone: direct, human, calm. No corporate filler. Under 200 words.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves ~2 hrs/week on escalation handling</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Onboarding Email Sequences</div>
+      <div class="wf-desc">A well-written onboarding sequence reduces support tickets, increases activation, and makes customers feel taken care of — but it almost never gets written because there are always more urgent fires. Claude builds the first draft of a full sequence in one session.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a 5-email onboarding sequence for new customers of [product/service]. Here's what they need to do to get value quickly:
+
+Step 1 (Day 0): [first action they should take]
+Step 2 (Day 2): [second milestone]
+Step 3 (Day 5): [key feature or habit to establish]
+Step 4 (Day 10): [social proof or advanced feature]
+Step 5 (Day 14): [check-in / success moment]
+
+Customer profile: [who they are, what they bought, what success looks like for them]
+Common reasons people don't activate: [list 2–3]
+Our tone: [conversational / professional / etc.]
+
+For each email: subject line, preview text, body (under 150 words), one clear CTA. No filler. Write like a helpful colleague, not a marketing department.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves ~4–5 hrs on sequence creation; ongoing ticket reduction</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Product Knowledge Base Writing</div>
+      <div class="wf-desc">Help articles that are actually helpful — clear, scannable, written for someone who's frustrated, not someone who's already an expert. Claude drafts these from bullet points or rough notes. Your team reviews and publishes. The bottleneck moves from writing to editing.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a help center article for this topic: "[Feature or process name]"
+
+Here are my rough notes on how it works:
+[Paste bullet points, notes, or a rough explanation]
+
+Who's reading this: a customer who [describe their situation — e.g. "just ran into an error" or "is setting this up for the first time"]
+What they want to accomplish: [goal]
+Common mistakes or points of confusion: [list them]
+
+Format:
+- H1 title (clear, specific — what they're trying to do, not what the feature is called)
+- 1-sentence intro that tells them what this article covers
+- Numbered steps where order matters, bullets where it doesn't
+- A "common issues" section at the bottom
+- Under 400 words
+
+Write in plain English. If something needs a screenshot, flag it with [SCREENSHOT: description].</div>
+      </div>
+      <div class="wf-meta">⏱ Saves ~3 hrs per article; reduces ticket volume over time</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">Support Ticket Categorization Summaries</div>
+      <div class="wf-desc">At the end of each week, paste your support volume into Claude and get a structured summary: what the top issues were, what caused them, which ones signal a product or process problem, and what to prioritize. Turns raw ticket data into something you can act on.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Here is a summary of support tickets from this week:
+[Paste ticket list, categories, or raw ticket text — even messy is fine]
+
+Analyze this and give me:
+1. The top 5 issue categories by volume (with rough counts or percentages)
+2. For each category: what's causing it (product bug / user confusion / policy gap / one-off)
+3. Which issues are likely to repeat and should be addressed at the root
+4. Which issues could be deflected with a better FAQ or help article
+5. Any single issue that seems like a signal of a bigger problem worth flagging
+
+Format as a weekly support summary I can share with the product and ops team. Plain language, no jargon.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves ~2 hrs/week on reporting; improves product feedback loops</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Refund & Policy Explanation Templates</div>
+      <div class="wf-desc">Saying no is one of the hardest things in customer service. Claude writes policy explanation responses that are firm, clear, and still leave the customer feeling respected — which matters whether they accept the outcome or not.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a response explaining to a customer why their request falls outside our policy. Here's the situation:
+
+Customer request: [what they asked for — e.g. refund outside the return window]
+Our policy: [the actual policy, verbatim if you have it]
+Why we're declining: [the specific reason]
+What we can offer instead (if anything): [alternative or goodwill gesture]
+Customer tone: [frustrated / understanding / threatening / confused]
+
+Write a response that:
+- Acknowledges what they asked for
+- Explains the policy clearly without hiding behind it
+- Offers the alternative (if any) as a genuine option, not a consolation prize
+- Closes the loop without leaving them hanging
+
+Keep it under 150 words. No "unfortunately" as the first word. Don't apologize for the policy existing — just explain it.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves ~1.5 hrs/week; reduces re-open rate on declined requests</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">Customer Win-Back Sequences</div>
+      <div class="wf-desc">Customers who churned — especially those who left for a known reason — are often the most convertible. Claude writes win-back sequences that acknowledge why they left, speak to what's changed, and make a specific, relevant offer. More effective than a generic "we miss you" email.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a 3-email win-back sequence for customers who cancelled [product/service]. Here's the context:
+
+Main reasons they cancelled: [list 2–3 from exit surveys or support notes]
+What's changed since they left: [product updates / pricing / features / team]
+What we can offer to win them back: [discount / extended trial / free onboarding / etc.]
+How long they were customers: [short-term / long-term]
+Our tone: [honest and direct — not desperate]
+
+Email 1 (1 week after churn): acknowledge they left, don't oversell — ask what went wrong
+Email 2 (3 weeks after): share what's changed that addresses their likely reason for leaving
+Email 3 (6 weeks after): make the specific offer with a clear expiration
+
+Each email: under 120 words, real subject line, one CTA. Don't start with "We noticed you left." Write like a person, not a retention team.</div>
+      </div>
+      <div class="wf-meta">⏱ Win-back sequences save ~5 hrs to build; improve reactivation 15–30%</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Claude Projects Setup</span>
+    <h2 class="h2">Set up Claude Projects<br/>for your support team.</h2>
+    <p class="sub">A properly configured Claude Project means your whole support team gets consistent, on-brand, policy-accurate outputs without having to prompt from scratch every time.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create a "Customer Support" Project in Claude</div>
+          <div class="setup-desc">Go to claude.ai → Projects → New Project. Name it something your team will recognize. This is where all support workflows will live — and it's what you share with every rep so they're all working from the same configured assistant.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Write a Project System Prompt</div>
+          <div class="setup-desc">Include: what your company does and who you serve, your brand voice for customer communication (with specific examples of what to do and not do), your service philosophy (e.g. "we always acknowledge before we explain"), and any non-negotiable policy lines.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Your Policy and Product Docs</div>
+          <div class="setup-desc">Add: your return/refund policy, your SLA and response time commitments, your top 20 FAQ answers, and any product documentation that's relevant to common support questions. Claude will reference these without you having to paste them every time.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build a Response Library Over Time</div>
+          <div class="setup-desc">Every time a rep uses Claude to draft a great response, save the prompt and output to a shared doc. Within a month you'll have a library of tested, approved responses your whole team can draw from. The quality compounds.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">05</div>
+        <div>
+          <div class="setup-title">Set a "Review Before Send" Norm</div>
+          <div class="setup-desc">Claude drafts, humans review and send. This isn't a limitation — it's the right workflow. Claude gets you 90% there in 30 seconds; your rep does the final 10% that requires actual judgment about this specific customer. Speed and quality both go up.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+      <a href="/resources" class="internal-link">All Resources →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows running<br/>in your support team?</h2>
+    <p class="sub">We configure Claude Projects for your product, policies, and team — and train every rep to use them. Most teams are up and running within two weeks.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your customer service workflows?</label>
+        <textarea class="input-field" id="gain" placeholder="Faster response times, consistent tone, fewer escalations..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My Support Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-customer-service'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My Support Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

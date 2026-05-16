@@ -1,0 +1,300 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fractional CMO in Texas | B2B GTM Consulting | Treetop Growth Strategy</title>
+  <meta name="description" content="Fractional CMO for Texas B2B companies in Austin, Dallas, Houston, and San Antonio. Senior marketing leadership for growth-stage companies. Treetop Growth Strategy." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/fractional-cmo-texas" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-cell { background: #0A1A0A; padding: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .cell-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #00C853; margin-bottom: 0.6rem; display: block; }
+    .cell-title { font-size: 0.9rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .cell-desc { font-size: 0.82rem; color: #8FAF8F; line-height: 1.65; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .market-row { display: flex; gap: 2rem; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .market-row:last-child { border-bottom: none; }
+    .market-city { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: #00C853; flex-shrink: 0; width: 120px; font-weight: 400; }
+    .market-desc { font-size: 0.9rem; color: #8FAF8F; line-height: 1.75; }
+    .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .compare-cell { background: #0A1A0A; padding: 1.5rem 2rem; }
+    .compare-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .compare-item { font-size: 0.85rem; color: #8FAF8F; padding: 0.5rem 0; border-bottom: 1px solid #1A3A1A; line-height: 1.5; }
+    .compare-item:last-child { border-bottom: none; }
+    .compare-item.yes { color: #F0FFF0; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .compare-row{grid-template-columns:1fr} .market-row{flex-direction:column;gap:0.5rem} .market-city{width:auto} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Texas · Austin · Dallas · Houston · San Antonio</div>
+    <h1 class="hero-h">Texas Fractional CMO<br/>for <em style="color:#00C853;font-style:italic;">B2B Growth Companies</em></h1>
+    <p class="hero-sub">Senior marketing leadership for Texas B2B companies that have found their footing and are ready to build something repeatable. No full-time executive hire required.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Start the Conversation →</a>
+      <a href="/fractional-cmo" class="btn-g">How Fractional CMO Works</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Texas B2B Landscape</span>
+    <h2 class="h2">Texas has one of the most dynamic B2B ecosystems in the country — and one of the most underserved for senior marketing talent.</h2>
+    <p class="sub">From Austin's tech corridor to Dallas's enterprise hub to Houston's energy and industrial base, Texas B2B companies are scaling fast. Most of them are doing it without the marketing leadership they need.</p>
+    <div class="grid-3" style="margin-top:2rem;">
+      <div class="grid-cell">
+        <span class="cell-tag">Austin</span>
+        <div class="cell-title">The Tech & Venture Ecosystem</div>
+        <div class="cell-desc">High-growth SaaS and tech companies, a dense network of VCs and accelerators, and a talent market that's deep but expensive. The pace of growth creates an urgent need for senior marketing leadership — but the cost of a full-time CMO is often hard to justify pre-Series B.</div>
+      </div>
+      <div class="grid-cell">
+        <span class="cell-tag">Dallas / Fort Worth</span>
+        <div class="cell-title">Enterprise & Professional Services</div>
+        <div class="cell-desc">Dallas is home to a massive concentration of enterprise companies, professional services firms, and financial services businesses. The B2B buying cycle is longer, stakeholder maps are complex, and marketing needs to support a sophisticated sales motion — not just generate leads.</div>
+      </div>
+      <div class="grid-cell">
+        <span class="cell-tag">Houston</span>
+        <div class="cell-title">Energy, Industrial & Healthcare</div>
+        <div class="cell-desc">Houston's economy is anchored in energy, industrial services, and one of the largest medical centers in the world. B2B marketing in these sectors requires domain knowledge, regulatory awareness, and a patience for long sales cycles that most marketers don't have.</div>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:1px;background:#1A3A1A;">
+      <div class="grid-cell">
+        <span class="cell-tag">San Antonio</span>
+        <div class="cell-title">Defense, Government & Tech Services</div>
+        <div class="cell-desc">San Antonio's economy is heavily influenced by military and government contracting, plus a growing tech services sector. Marketing that works here needs to understand procurement cycles, compliance constraints, and how to reach buyers who aren't on LinkedIn.</div>
+      </div>
+      <div class="grid-cell">
+        <span class="cell-tag">Across Texas</span>
+        <div class="cell-title">Bootstrapped B2B Companies</div>
+        <div class="cell-desc">One of the defining characteristics of Texas B2B is the density of profitable, bootstrapped companies that have grown through relationships and word of mouth — and now need a scalable marketing function to take the next step without raising outside capital.</div>
+      </div>
+      <div class="grid-cell">
+        <span class="cell-tag">The Common Thread</span>
+        <div class="cell-title">Founder-Led Sales That Needs to Scale</div>
+        <div class="cell-desc">Whether it's Austin SaaS or Houston industrial services, the most common challenge is the same: the founder has been the primary sales and marketing engine, and the company has grown to the point where that can't continue. The fractional CMO builds what comes next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">What You Get</span>
+    <h2 class="h2">Embedded marketing leadership —<br/>not another consultant with a deck.</h2>
+    <p class="sub">A Treetop fractional CMO works inside your Texas business. We attend your leadership meetings, own your marketing strategy, manage your team and vendors, and stay accountable to your pipeline.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">ICP Definition & Market Positioning</div>
+          <div class="step-desc">Most Texas B2B companies have never done this rigorously. We define your ideal customer with precision — industry, company size, titles, trigger events, and disqualifiers — then build the positioning and messaging that speaks to that customer specifically. The foundation that everything else is built on.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Demand Generation Architecture</div>
+          <div class="step-desc">Content, SEO, outbound, events, paid — prioritized against your actual budget and your specific market. Texas B2B markets vary significantly in what works. Dallas enterprise buyers respond differently than Austin SaaS buyers. We build the strategy to match your actual sales environment.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">AI-Native Marketing Implementation</div>
+          <div class="step-desc">We implement Claude and AI tools into your marketing operations from day one — not as an experiment, as standard operating infrastructure. Texas companies that build AI-native marketing functions now will have a significant operational advantage over peers that wait.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Team & Vendor Oversight</div>
+          <div class="step-desc">We manage your internal marketing team and agency partners — setting direction, reviewing output, running performance reviews, and making hiring recommendations when it's time to grow. You stop being the bottleneck without having to manage the managers.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Sales & Marketing Integration</div>
+          <div class="step-desc">The handoff between marketing and sales is where most Texas B2B pipelines leak. We build the processes, SLAs, and feedback loops that make marketing output useful to the sales team and make sales feedback actionable for marketing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Texas Market Context</span>
+    <h2 class="h2">Why Texas-specific context matters<br/>for your go-to-market.</h2>
+    <p class="sub">Texas isn't a generic B2B market. Each major metro has distinct buyer behavior, network dynamics, and competitive landscapes. Generic marketing strategy produces generic results.</p>
+    <div>
+      <div class="market-row">
+        <div class="market-city">Austin</div>
+        <div class="market-desc">Austin's B2B community is dense and fast-moving. Capital Factory, Austin Chamber events, and the tech ecosystem create genuine network effects. The right introductions can compress sales cycles. The marketing talent pool is deep but expensive — knowing what to pay and who's worth it saves you months of trial and error. In-person presence matters here: Austin buyers meet in person.</div>
+      </div>
+      <div class="market-row">
+        <div class="market-city">Dallas</div>
+        <div class="market-desc">DFW is a market that rewards patience and relationship-building. Enterprise buying committees are large, procurement cycles are long, and the most effective business development happens through trusted networks — YPO, Vistage, industry associations. Marketing strategy here needs to support a longer, more complex sales motion than what works in a faster-moving market.</div>
+      </div>
+      <div class="market-row">
+        <div class="market-city">Houston</div>
+        <div class="market-desc">Houston's business culture is relationship-first and industry-specific. Energy sector buyers, healthcare buyers, and industrial buyers each have their own conferences, associations, and media channels. Generic content marketing doesn't move the needle here — domain credibility and industry presence do. The marketing strategy needs to meet buyers where they actually are.</div>
+      </div>
+      <div class="market-row">
+        <div class="market-city">San Antonio</div>
+        <div class="market-desc">San Antonio's government and defense contracting ecosystem operates on timelines and procurement rules that require specific expertise. The growing tech sector is distinct from the contracting economy and requires a different marketing approach. Understanding which market you're actually in — and building for it — is the difference between a strategy that works and one that doesn't.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Why Fractional</span>
+    <h2 class="h2">The economics of fractional CMO<br/>make sense for Texas B2B companies.</h2>
+    <div class="compare-row">
+      <div class="compare-cell">
+        <span class="compare-label">Full-Time CMO Hire</span>
+        <div class="compare-item">$250K–$400K base + equity in the Texas market</div>
+        <div class="compare-item">3–6 month ramp to meaningful contribution</div>
+        <div class="compare-item">High hiring risk — one bad CMO hire costs 18 months</div>
+        <div class="compare-item">Benefits, payroll taxes, recruiting fees add 30–40%</div>
+        <div class="compare-item">Single perspective; limited cross-industry pattern recognition</div>
+        <div class="compare-item">Hard to downsize when the business changes</div>
+      </div>
+      <div class="compare-cell">
+        <span class="compare-label" style="color:#00C853;">Treetop Fractional CMO</span>
+        <div class="compare-item yes">Starting from $8K/month — no equity required</div>
+        <div class="compare-item yes">Week-one impact, day-one accountability</div>
+        <div class="compare-item yes">Cancel with 30 days notice — low hiring risk</div>
+        <div class="compare-item yes">No benefits, no payroll taxes, no recruiting fees</div>
+        <div class="compare-item yes">Pattern recognition across 20+ B2B companies and markets</div>
+        <div class="compare-item yes">Scale up or down as your needs change</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#4A6A4A;margin-top:1.5rem;">For most Texas B2B companies between $5M and $50M in revenue, a great fractional CMO produces more value than a mediocre full-time hire at two to three times the cost. The comparison is almost never close.</p>
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="/fractional-cmo" class="btn-g">More on How Fractional CMO Works →</a>
+      <a href="/fractional-cmo-austin-tx" class="btn-g">Austin-Specific Page →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Let's Talk</span>
+    <h2 class="h2">Ready to add senior marketing<br/>leadership to your Texas company?</h2>
+    <p class="sub">Tell us where you're at, what market you're in, and what you're trying to build. We'll respond with an honest assessment of whether fractional is the right fit for your situation.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What's your biggest marketing challenge right now?</label>
+        <textarea class="input-field" id="gain" placeholder="No repeatable demand gen, too founder-dependent, unclear positioning..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <input type="hidden" id="source" value="fractional-cmo-texas" />
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Start the Conversation →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. No hard sell.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">Good to meet you.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, gain: document.getElementById('gain').value, source: document.getElementById('source').value }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Start the Conversation →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

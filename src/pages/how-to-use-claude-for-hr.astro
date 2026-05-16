@@ -1,0 +1,503 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for HR: Hiring, Onboarding & People Ops Workflows | Treetop Growth Strategy</title>
+  <meta name="description" content="8 Claude AI workflows for HR teams — job descriptions, interview banks, onboarding docs, performance frameworks and more. With copy-paste prompts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .why-card { background: #0A1A0A; padding: 2rem; }
+    .why-card-title { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: #F0FFF0; margin-bottom: 0.6rem; }
+    .why-card-desc { font-size: 0.87rem; color: #8FAF8F; line-height: 1.7; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .wf-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; color: #00C853; letter-spacing: 0.06em; margin-top: 1rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .why-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for HR</div>
+    <h1 class="hero-h">How to Use Claude for HR Teams:<br/><em style="color:#00C853;font-style:italic;">Less Paper, More People Work</em></h1>
+    <p class="hero-sub">HR teams spend more time on documentation than most functions — job descriptions, onboarding docs, performance frameworks, policies. Claude handles the writing so your team can focus on the conversations and decisions that actually require human judgment.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in My Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Why Claude</span>
+    <h2 class="h2">Why HR teams get so much leverage<br/>from Claude.</h2>
+    <p class="sub">The best HR work is relational — the conversations, the coaching, the judgment calls. Claude handles the documentation that surrounds all of that, so your team can spend more time on the work that can't be automated.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Consistent hiring documentation</div>
+        <div class="why-card-desc">Job descriptions, interview question banks, and offer letters that are tailored to each role — not copied from the last posting. When your hiring docs are specific and well-written, you attract better candidates and interview more consistently.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Onboarding that actually works</div>
+        <div class="why-card-desc">Most onboarding documentation is generic or outdated. Claude builds role-specific onboarding plans, welcome docs, and 30-60-90 frameworks from a brief conversation — so new hires get context that's actually relevant to their role.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Performance frameworks that managers use</div>
+        <div class="why-card-desc">Performance review templates that are vague get ignored or gamed. Claude builds frameworks with specific, behavioral criteria for each role — the kind managers can actually use to have a real conversation.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Sensitive communication drafted carefully</div>
+        <div class="why-card-desc">Offboarding docs, policy communications, and feedback templates require real care in how they're written. Claude helps HR teams get the tone right — clear and professional, without being cold or legalistic.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">8 HR Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">Each of these prompts is designed to give Claude enough context to produce a genuinely useful first draft — not a generic template. The more specific you are about the role and your company, the better the output.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">Job Description Writing (Role Brief → Full JD)</div>
+      <div class="wf-desc">The best job descriptions are specific enough to attract the right candidates and filter out the wrong ones. Claude turns a 10-minute role brief into a complete JD — with a compelling opening, clear responsibilities, honest requirements, and a culture pitch that reflects your actual company, not generic corporate speak.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a complete job description for this role. I'll give you a brief and you'll build the full JD.
+
+Role: [job title]
+Team: [department and team]
+Reports to: [role or title]
+
+What this person will own:
+- [Primary responsibility 1]
+- [Primary responsibility 2]
+- [Primary responsibility 3]
+- [Other key responsibilities]
+
+What success looks like at 30 days: [specific]
+What success looks like at 6 months: [specific]
+What success looks like at 12 months: [specific]
+
+Must-have experience: [list — be honest about what you actually need vs. want]
+Nice-to-have: [list]
+Won't work here if: [honest description of who struggles in this role]
+
+Compensation: [range, or "competitive — to be discussed"]
+Location / remote policy: [fully remote / hybrid / in-office]
+
+Company: [1-2 sentences — what you do, stage, culture]
+What makes this role worth taking: [be specific — what's the actual opportunity]
+
+Write a job description that attracts people who are excellent at this specific role. Avoid: "rockstar," "self-starter," "wear many hats" (unless literally true), or any phrase that every other JD uses. Be honest about what's hard. Be specific about what's great.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–3 hrs per job description; improves candidate quality</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Interview Question Banks</div>
+      <div class="wf-desc">Interview questions that assess what the role actually requires — not generic "tell me about a time" questions that any rehearsed candidate can navigate. Claude builds a structured question bank for each role, organized by competency, with follow-up probes included.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Build an interview question bank for this role: [job title]
+
+The most important competencies for success in this role:
+1. [Competency — e.g. "Ability to manage ambiguity and make decisions without perfect information"]
+2. [Competency — e.g. "Cross-functional communication and influence without authority"]
+3. [Competency — e.g. "Systems thinking — can see how their work connects to broader outcomes"]
+4. [Add 1–2 more as relevant]
+
+What we've learned from past hires in this role:
+- What great looks like: [describe behaviors of your best people in this role]
+- What bad looks like: [red flags you've seen — be honest]
+
+Interview format: [phone screen / 4-round loop / panel]
+Who's interviewing: [hiring manager / peer / cross-functional stakeholder]
+
+For each competency, write:
+- 2 behavioral questions (specific, past-tense — "Tell me about a time...")
+- 1 situational question (hypothetical — "Imagine you...")
+- 2 follow-up probes to go deeper on each behavioral question
+
+Also include:
+- 3 questions about culture fit and working style
+- 2 questions the candidate is likely to ask us, with suggested responses
+
+No gotcha questions. No brain teasers. Write questions that reveal how someone actually thinks and works.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–3 hrs per role; improves interview consistency</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Offer Letter Templates</div>
+      <div class="wf-desc">Offer letters that are clear, complete, and warm — without being a legal document that a new hire has to decode. Claude writes offer letter templates from your compensation structure and company details that feel like an invitation, not a contract draft.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write an offer letter template for a [full-time / part-time / contract] hire at our company.
+
+Role: [job title]
+Department: [department]
+Reports to: [role]
+Start date: [placeholder]
+Compensation: [salary or rate — or "[$X] annually"]
+Bonus / commission: [structure, if applicable]
+Equity: [options/shares, vesting schedule — if applicable]
+Benefits: [list key benefits — health, PTO, etc.]
+Work location: [remote / hybrid / in-person — with details]
+
+Company: [name and brief description]
+Our culture: [2–3 sentences about how you work and what you value]
+
+Write an offer letter that:
+- Opens warmly — this person just made a big decision
+- States all terms clearly (no buried clauses)
+- Communicates genuine excitement about them joining
+- Explains next steps for accepting
+- Closes with a contact for questions
+
+Include placeholder brackets for all the fields that change per hire. Flag anything I should have your employment attorney review before using.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs per offer; improves candidate experience</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Onboarding Document Creation</div>
+      <div class="wf-desc">A new hire's first two weeks are shaped by what they read and who they talk to. Claude builds role-specific onboarding documents — welcome guides, 30-60-90 frameworks, systems access checklists — that give new hires actual context, not a generic company handbook.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Create an onboarding document package for a new [job title] joining our team. I want:
+
+1. A welcome letter from the hiring manager
+2. A 30-60-90 day plan
+3. A systems and access checklist
+
+For the welcome letter:
+- Tone: warm, personal, practical
+- Include: what their first week looks like, who to go to for what, one thing that will help them succeed here that they wouldn't know from the job description
+
+For the 30-60-90 day plan:
+- Days 1–30 focus: [what should they be learning / doing]
+- Days 31–60 focus: [when do they start owning things]
+- Days 61–90 focus: [what does "fully ramped" look like]
+- Key milestones and check-ins at each stage
+
+For the systems checklist:
+Systems they'll need access to: [list your actual tools — e.g. Slack, HubSpot, Google Workspace, Notion]
+Who sets up each: [IT / manager / themselves]
+
+Company context to include: [brief description of your company, team structure, and anything a new hire needs to know to make good decisions]
+
+Keep the tone consistent — warm, direct, practical. Write for someone who is capable but new. Not condescending. Not a wall of text.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 4–6 hrs per new hire; reduces time-to-productivity</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">Performance Review Frameworks</div>
+      <div class="wf-desc">Most performance review templates are so generic that managers either skip them or fill them in the same way for everyone. Claude builds role-specific frameworks with behavioral criteria, rating guidance, and structured sections — so reviews actually differentiate performance and lead to useful conversations.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Build a performance review framework for: [job title or role level — e.g. "all individual contributors" or "account executives"]
+
+Key competencies this role is evaluated on:
+1. [Competency — e.g. "Execution and delivery: does what they commit to, on time and at quality"]
+2. [Competency — e.g. "Communication: keeps stakeholders informed, raises issues early"]
+3. [Competency — e.g. "Growth mindset: seeks feedback, applies it, improves over time"]
+4. [Add 2–3 more specific to the role]
+
+Review cadence: [annual / semi-annual / quarterly]
+Who completes it: [manager only / self + manager / 360]
+What we want the review to accomplish: [e.g. career development conversation / performance rating / compensation input]
+
+Build a review template with:
+- Self-assessment section with specific prompts (not "describe your performance")
+- Manager assessment section with the same competencies
+- A rating scale with behavioral descriptions for each level (not just "meets / exceeds expectations")
+- A "strengths to build on" section
+- A "development areas" section with space for a specific plan
+- A conversation guide for the manager — 5 questions to structure the review meeting
+
+Make the rating descriptions specific enough that two different managers would score the same employee similarly.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 4–5 hrs on framework design; improves review quality</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Manager Feedback Templates</div>
+      <div class="wf-desc">Most managers default to vague feedback because they weren't taught to give specific, behavioral feedback — and the templates HR provides don't help. Claude writes feedback templates with real examples baked in, so managers can see what "good" looks like and produce feedback that actually helps people grow.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a feedback template for managers to give [positive reinforcement / developmental / corrective] feedback to [direct reports / peers].
+
+Feedback situation: [describe the specific situation — e.g. "an employee who is doing great work but needs to communicate more proactively" or "an employee who missed a deadline and needs to understand the impact"]
+
+What the manager needs to communicate:
+- The specific behavior (what happened): [describe]
+- The impact of that behavior: [what it affected — project, team, clients]
+- What they want to see instead (or more of): [specific]
+- Support they're offering: [what the manager will do to help]
+
+Write:
+1. A feedback script the manager can adapt for a 1:1 conversation (plain language, not HR-speak)
+2. A written summary version they can send as a follow-up
+3. 3 follow-up questions to check for understanding and get the employee's perspective
+
+Coaching note to the manager: include a brief note on what to watch for and how to know the feedback landed.
+
+Tone: direct but caring. Feedback is a gift — write it like one.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs per feedback situation; improves feedback quality</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">Employee Survey Analysis Summaries</div>
+      <div class="wf-desc">You ran an employee engagement or pulse survey. Now you have a spreadsheet of results and open-ended responses that someone needs to synthesize into something leadership can act on. Claude analyzes the themes, flags the signals, and produces an executive summary in minutes.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Analyze this employee survey data and produce an executive summary.
+
+Survey type: [engagement survey / pulse check / onboarding feedback / exit survey]
+Number of respondents: [X] out of [Y] employees
+Response rate: [%]
+
+Quantitative results (I'll paste them):
+[Paste your score summaries by question or category]
+
+Open-ended responses (I'll paste them):
+[Paste the open-ended responses — can be raw, Claude will analyze the themes]
+
+What we most want to understand from this survey: [e.g. "Why did engagement drop in Q3" or "What's affecting retention in the engineering team"]
+
+Produce:
+1. Executive summary (4–5 sentences — headline findings, overall health signal)
+2. Top 3 strengths (what employees feel good about)
+3. Top 3 concerns (what's at risk — with supporting quotes where possible)
+4. Themes in the open-ended responses (cluster them — don't just list quotes)
+5. Recommended actions (2–3 specific things worth doing based on the data)
+6. Questions this data raises that we should follow up on
+
+Be direct. If the data shows a problem, name it. Don't soften findings to protect feelings.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 3–5 hrs on survey analysis; turns data into decisions faster</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 08</span>
+      <div class="wf-title">Offboarding Checklist Documents</div>
+      <div class="wf-desc">Offboarding is one of the most frequently underprepared HR processes — and the gaps show up in missing knowledge transfer, access that doesn't get revoked, and exit experiences that damage your employer brand. Claude builds a complete, role-specific offboarding checklist from your systems and process context.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Create an offboarding checklist and process document for [voluntary departure / involuntary departure / layoff].
+
+Departing role: [job title]
+Notice period: [X weeks / immediate]
+Key responsibilities this person owns: [list — what needs to be transitioned]
+Systems and tools they have access to: [list]
+Clients or external relationships they manage: [if any]
+Direct reports (if manager): [number and what needs to happen]
+
+Create:
+1. HR checklist (everything HR needs to do, with timeline)
+2. Manager checklist (knowledge transfer, transition plan, team communication)
+3. IT / security checklist (access revocation, device return, data)
+4. A knowledge transfer template for the departing employee to complete
+5. An exit interview question guide (for voluntary departures) — 8–10 questions that surface honest insight without being invasive
+6. A team communication template (what to say to the team, and when)
+
+For voluntary departures: include a section on maintaining the relationship — good exits lead to referrals and boomerang hires.
+Flag any step that varies by state or that I should verify with our employment attorney.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 3–4 hrs per offboarding; reduces knowledge loss and access gaps</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Claude Projects Setup</span>
+    <h2 class="h2">Set up Claude Projects<br/>for your HR team.</h2>
+    <p class="sub">An HR Claude Project keeps your company culture, role taxonomy, and document standards in context — so every document Claude produces already reflects how your company hires, develops, and manages people.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create an "HR & People" Project in Claude</div>
+          <div class="setup-desc">Go to claude.ai → Projects → New Project. Keep this Project separate from other team functions — HR documents require specific tone and sensitivity that should be configured deliberately, not inherited from a general-purpose assistant.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Write a Company Culture System Prompt</div>
+          <div class="setup-desc">Include: what your company does and your stage, your culture and values (with specific behavioral examples — not just platitudes), your working style (remote / hybrid, async / sync), what great performance looks like at your company, and your communication tone for employee-facing documents.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Reference Documents</div>
+          <div class="setup-desc">Add: your current employee handbook, your existing job description examples (the best ones), your performance review format, and any policies that Claude should reference when drafting HR documents. Claude won't contradict or ignore these when building new docs.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build a Role-Specific Context Library</div>
+          <div class="setup-desc">For your most common roles (the ones you hire for repeatedly), save a "role brief" document in the Project with the key details Claude needs — competencies, success criteria, culture fit indicators. Then every hiring workflow prompt for that role produces a better output from the start.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+      <a href="/resources" class="internal-link">All Resources →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows running<br/>in your HR function?</h2>
+    <p class="sub">We configure Claude Projects for your company culture, role taxonomy, and team — and train your HR team to use them. Most teams reclaim 5–10 hours a week within the first month.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your HR workflows?</label>
+        <textarea class="input-field" id="gain" placeholder="Better job descriptions, faster onboarding docs, consistent performance reviews..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My HR Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-hr-workflows'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My HR Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

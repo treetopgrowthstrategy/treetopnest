@@ -1,0 +1,481 @@
+---
+export const prerender = true;
+import GlobalFooter from '../../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Build a Claude Project for Your Team (Step-by-Step) | Treetop Growth Strategy</title>
+  <meta name="description" content="A complete guide to building Claude Projects for business teams — system prompts, knowledge files, templates for Sales, Marketing, Customer Service, Operations, and Finance." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/resources/how-to-build-a-claude-project-for-your-team" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    @media(max-width:768px){ .hide-mob{display:none!important} }
+
+    .page-wrap { padding-top: 64px; display: flex; max-width: 1200px; margin: 0 auto; gap: 4rem; padding-left: 2.5rem; padding-right: 2.5rem; padding-bottom: 6rem; }
+    .article-col { flex: 1; max-width: 760px; min-width: 0; }
+    .toc-col { width: 220px; flex-shrink: 0; }
+    @media(max-width:1024px){ .toc-col { display: none; } }
+
+    .toc { position: sticky; top: 5rem; padding-top: 3rem; }
+    .toc-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; display: block; }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0.6rem; }
+    .toc-list a { font-size: 0.8rem; color: #4A6A4A; text-decoration: none; line-height: 1.4; transition: color 0.2s; display: block; }
+    .toc-list a:hover { color: #00C853; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #4A6A4A; padding-top: 2.5rem; padding-bottom: 2rem; }
+    .breadcrumb a { color: #4A6A4A; text-decoration: none; }
+    .breadcrumb a:hover { color: #00C853; }
+
+    .article-header { padding-bottom: 2.5rem; border-bottom: 1px solid #1A3A1A; margin-bottom: 2.5rem; }
+    .article-cat { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    .article-h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: #4A6A4A; }
+
+    .prose p { font-size: 0.97rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1.4rem; }
+    .prose h2 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: #F0FFF0; font-weight: 400; line-height: 1.2; margin-top: 3rem; margin-bottom: 1rem; scroll-margin-top: 5rem; }
+    .prose h3 { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+    .prose ul { list-style: none; margin-bottom: 1.4rem; }
+    .prose ul li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
+    .prose ul li::before { content: '—'; position: absolute; left: 0; color: rgba(0,200,83,0.5); }
+    .prose strong { color: #F0FFF0; font-weight: 500; }
+    .prose a { color: #00C853; text-decoration: none; }
+    .prose a:hover { text-decoration: underline; }
+
+    .callout { background: rgba(0,200,83,0.05); border: 1px solid rgba(0,200,83,0.2); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p { margin-bottom: 0; color: #8FAF8F; font-size: 0.9rem; }
+    .callout strong { color: #00C853; }
+
+    .step-card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.75rem; margin-bottom: 1.25rem; display: flex; gap: 1.5rem; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: rgba(0,200,83,0.35); flex-shrink: 0; line-height: 1; }
+    .step-content h3 { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.5rem; }
+    .step-content p { font-size: 0.88rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 0; }
+
+    .template-card { background: #0A1A0A; border: 1px solid #1A3A1A; border-top: 3px solid #00C853; padding: 2rem; margin-bottom: 1.5rem; }
+    .template-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .template-title { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.75rem; }
+    .template-desc { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; margin-bottom: 1.25rem; }
+
+    .code-block { background: #050D05; border: 1px solid #1A3A1A; padding: 1.5rem; font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.8rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; word-break: break-word; margin-bottom: 0; }
+    .code-block .kw { color: #00C853; }
+    .code-block .comment { color: #4A6A4A; }
+
+    .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: #1A3A1A; margin: 1.5rem 0 2rem; }
+    @media(max-width:640px){ .anatomy-grid { grid-template-columns: 1fr; } }
+    .anatomy-cell { background: #0A1A0A; padding: 1.5rem; }
+    .anatomy-icon { font-size: 1.4rem; margin-bottom: 0.75rem; display: block; }
+    .anatomy-title { font-size: 0.88rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .anatomy-desc { font-size: 0.8rem; color: #8FAF8F; line-height: 1.65; }
+
+    .mistake-row { display: flex; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid #1A3A1A; }
+    .mistake-row:last-child { border-bottom: none; }
+    .mistake-x { color: rgba(200,50,50,0.7); font-weight: 600; flex-shrink: 0; font-size: 1rem; }
+    .mistake-text { font-size: 0.9rem; color: #8FAF8F; line-height: 1.7; }
+    .mistake-text strong { color: #F0FFF0; }
+
+    .article-cta { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-top: 3rem; text-align: center; }
+    .article-cta-h { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; margin-bottom: 0.75rem; font-weight: 400; }
+    .article-cta p { font-size: 0.88rem; color: #8FAF8F; margin-bottom: 1.5rem; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Work with Us</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="article-col">
+    <div class="breadcrumb">
+      <a href="/resources">Resources</a>
+      <span>/</span>
+      <span style="color:#8FAF8F;">How to Build a Claude Project for Your Team</span>
+    </div>
+
+    <div class="article-header">
+      <span class="article-cat">Implementation</span>
+      <h1 class="article-h1">How to Build a Claude Project<br/>for Your Team</h1>
+      <div class="article-meta">
+        <span>May 2026</span>
+        <span>·</span>
+        <span>12 min read</span>
+        <span>·</span>
+        <span>By Bill Colbert</span>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>
+        Most teams that adopt Claude start the same way: individuals use it ad hoc, in their personal accounts, with no shared context. The output varies wildly — sometimes great, often mediocre — because every conversation starts from zero. Claude doesn't know your business, your brand voice, your customers, or your standards. It's like hiring a brilliant consultant and refusing to give them any background on the company.
+      </p>
+      <p>
+        Claude Projects fix this. A Project is a persistent workspace where you define the context Claude always has — your company background, your preferred communication style, your constraints, your knowledge base. Every team member who works inside the Project benefits from that foundation. Output is more consistent, prompts get shorter, and onboarding new hires to your AI workflow takes hours instead of weeks.
+      </p>
+      <p>
+        This guide walks through everything: what Projects are, how to structure them, how to write system prompts that actually work, and five ready-to-use templates for the most common business functions.
+      </p>
+
+      <h2 id="what-are-projects">What Claude Projects are and why they matter</h2>
+      <p>
+        A Claude Project is a dedicated conversation environment with three components: a system prompt (always-on instructions), custom knowledge files (documents Claude can reference), and a shared conversation history that your team can access. Projects sit inside Claude.ai and are available on Team and Business plans.
+      </p>
+      <p>
+        The practical implication: instead of every team member explaining who you are and what you do in every conversation, you explain it once in the Project configuration. From that point forward, Claude operates with that context as a baseline. A marketing Project knows your brand voice. A sales Project knows your pricing, your competitors, and your objection handling. A customer service Project knows your refund policy and product details.
+      </p>
+
+      <div class="callout">
+        <p><strong>The compounding effect:</strong> A well-configured Project improves every interaction that happens inside it. Better system prompts today mean better output tomorrow, next month, and next year. The investment in good configuration pays dividends indefinitely.</p>
+      </div>
+
+      <h2 id="anatomy">The anatomy of a great Claude Project</h2>
+
+      <div class="anatomy-grid">
+        <div class="anatomy-cell">
+          <span class="anatomy-icon">⚙️</span>
+          <div class="anatomy-title">System Prompt</div>
+          <div class="anatomy-desc">Always-on instructions that define who Claude is in this context, how it should behave, and what it should prioritize. This is the most important configuration you'll write.</div>
+        </div>
+        <div class="anatomy-cell">
+          <span class="anatomy-icon">📁</span>
+          <div class="anatomy-title">Knowledge Files</div>
+          <div class="anatomy-desc">Documents Claude can reference — product specs, brand guidelines, competitor analysis, pricing, case studies, FAQs. Upload as PDFs, Word docs, or plain text.</div>
+        </div>
+        <div class="anatomy-cell">
+          <span class="anatomy-icon">💬</span>
+          <div class="anatomy-title">Shared Conversations</div>
+          <div class="anatomy-desc">On Team plans, conversations within a Project can be made visible to the team. Useful for building a library of good examples and maintaining continuity on ongoing projects.</div>
+        </div>
+      </div>
+
+      <h2 id="setup-guide">Step-by-step setup guide</h2>
+      <p>
+        Here's how to go from a blank Project to a functional team AI workspace. This is the sequence that works — don't skip steps, especially the system prompt drafting phase.
+      </p>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Create the Project and name it clearly</h3>
+          <p>In Claude.ai, click "New Project" from the left sidebar. Name it by function, not by team — "Marketing Content" is better than "Marketing Team" because function makes the purpose immediately clear. Include the scope if relevant: "Sales Enablement — SMB" or "Customer Service — Tier 1."</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Draft your system prompt before you do anything else</h3>
+          <p>This is where most teams get it wrong — they skip to uploading files without writing a real system prompt. The system prompt is the foundation. Draft it in a text editor first. Cover: who Claude is in this context, what it's being asked to do, how it should communicate, what it should always do, what it should never do. More on structure below.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Upload your knowledge files</h3>
+          <p>Gather the documents Claude needs as reference material. Start with the highest-value assets: your brand guidelines, your product/service overview, your customer personas, your pricing guide, and any FAQs or objection handling documents. Keep files under 25MB each. Plain text and PDFs work best. Don't dump your entire Google Drive — be selective.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Test with real tasks before sharing with the team</h3>
+          <p>Run 10–15 real tasks through the Project before inviting your team. Use the actual requests your team will make. Note where the output is excellent and where it falls short. Iterate on the system prompt based on what you learn. A Project that's been tested performs dramatically better on day one of team rollout than one that hasn't.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3>Share with the team and set usage norms</h3>
+          <p>On Claude Team plans, invite team members to the Project. Spend 30 minutes with the team walking through what the Project is, what it's good at, what it isn't for, and what to do when output needs revision. Establish a feedback channel — a Slack thread or a shared doc — where team members can flag issues with the Project configuration so you can improve it continuously.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h3>Schedule a monthly review of the Project configuration</h3>
+          <p>Your business changes. Your products evolve, your positioning shifts, you enter new markets, you hire new people. Your Claude Projects need to evolve with you. Put a 30-minute monthly review on the calendar — review the system prompt for accuracy, update knowledge files, and incorporate feedback from the team. Projects that aren't maintained drift out of sync with the business.</p>
+        </div>
+      </div>
+
+      <h2 id="system-prompts">How to write system prompts for business use</h2>
+      <p>
+        The system prompt is the most important thing you'll write for your Claude Project. A weak system prompt produces generic output regardless of how good your knowledge files are. A strong system prompt transforms Claude into something that actually sounds like it belongs to your company.
+      </p>
+      <p>
+        Structure your system prompt with five sections in this order:
+      </p>
+      <ul>
+        <li><strong>Role definition:</strong> Who is Claude in this context? What's its job? What authority does it have?</li>
+        <li><strong>Company and product context:</strong> What does the company do? Who are the customers? What matters most?</li>
+        <li><strong>Communication guidelines:</strong> Tone, voice, format preferences, length norms, what to avoid.</li>
+        <li><strong>Always do / never do:</strong> Hard rules that apply to every interaction in this Project.</li>
+        <li><strong>Output format instructions:</strong> How should responses be structured? Headers? Bullets? Length?</li>
+      </ul>
+
+      <p>Here's an example system prompt for a B2B content marketing Project:</p>
+
+      <div class="code-block"><span class="kw">ROLE</span>
+You are a senior B2B content strategist and writer for [Company Name], a [what the company does] serving [target customer].
+
+<span class="kw">COMPANY CONTEXT</span>
+[Company Name] helps [ICP description] achieve [primary outcome]. Our differentiation is [key differentiator]. Our customers are typically [title/role] at companies with [size/characteristics]. Key pain points we solve: [list 3–5].
+
+<span class="kw">BRAND VOICE</span>
+- Tone: Direct, confident, never hyperbolic. We say what we mean.
+- We use plain language. No jargon unless it's industry-standard for our audience.
+- We write for practitioners, not executives reading a summary. Be specific.
+- We avoid: "game-changing," "revolutionary," "best-in-class," "cutting-edge," "seamlessly," "leverage" (as a verb), "synergy."
+- We use active voice. We do not use passive voice when active voice is possible.
+
+<span class="kw">ALWAYS DO</span>
+- Ground claims in specifics. "42% reduction in churn" beats "significant improvement."
+- Include a clear next step or call to action when writing customer-facing content.
+- Flag when you're uncertain about a fact and ask me to verify before including it.
+- Match the format I request. If I say "bullet points," use bullet points.
+
+<span class="kw">NEVER DO</span>
+- Do not fabricate statistics, customer quotes, or case study details.
+- Do not promise outcomes we cannot guarantee.
+- Do not use our competitors' names in customer-facing content without my explicit instruction.
+- Do not make legal or compliance claims without flagging them for review.
+
+<span class="kw">OUTPUT FORMAT</span>
+Default: Clear paragraphs with headers when content is longer than 300 words. For structured content (emails, social posts, outlines), match the format requested. Always lead with the most important point — no preamble.</div>
+
+      <p style="margin-top:1.5rem;">
+        Notice what this does: it gives Claude a specific role, real context about the business, clear voice guidelines with concrete examples of what to avoid, behavioral rules that prevent common failures, and format defaults that match how the team actually uses output. You can see more examples like this in our <a href="/resources/how-to-build-claude-prompts-for-your-business">guide to Claude prompts for business</a>.
+      </p>
+
+      <h2 id="templates">5 team project templates</h2>
+      <p>
+        Here are five Project templates with sample system prompts you can adapt. Each is built around the most common use cases for that function. You'll need to fill in the bracketed placeholders with your specifics — that customization is what makes the Project genuinely useful rather than generic.
+      </p>
+
+      <div class="template-card">
+        <span class="template-label">Template 01</span>
+        <div class="template-title">Sales Enablement Project</div>
+        <div class="template-desc">For sales teams that need help with proposals, follow-up emails, objection handling, and meeting prep. Knowledge files to include: product/service overview, pricing guide, case studies, competitor battle cards, objection handling guide, and your top 10 customer FAQs.</div>
+        <div class="code-block">You are a senior sales enablement specialist for [Company Name]. Your job is to help the sales team communicate effectively with prospects and close more deals.
+
+You know our products, pricing, and customers well. When reps ask for help, prioritize: (1) relevance to the specific prospect/situation, (2) clear value proposition, (3) a definitive next step.
+
+SALES CONTEXT
+We sell [product/service] to [ICP]. Average deal size: [range]. Sales cycle: [length]. Primary objections we face: [list 3–5]. Our strongest proof points: [list].
+
+ALWAYS DO
+- Personalize output to the prospect information provided. Generic is not acceptable.
+- Include a specific, time-bound call to action in all prospect-facing emails.
+- When asked for objection handling, give the rep a direct response AND the underlying logic so they can adapt it.
+- If a rep provides incomplete prospect information, ask clarifying questions before drafting.
+
+NEVER DO
+- Do not invent prospect details, company information, or meeting context.
+- Do not promise discounts, custom terms, or features without rep flagging for approval.
+- Do not write emails that sound like templates — the prospect should feel like this was written for them.
+
+FORMATS
+Emails: Subject line + body, under 200 words unless a proposal email. Proposals: structured with Executive Summary, Solution Overview, Investment, and Next Steps sections. Meeting prep: bullet format, organized by agenda item.</div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-label">Template 02</span>
+        <div class="template-title">Marketing Content Project</div>
+        <div class="template-desc">For content and marketing teams producing blog posts, emails, social content, and campaign copy. Knowledge files: brand guidelines, editorial style guide, content calendar, customer personas, competitor positioning, and SEO keyword targets.</div>
+        <div class="code-block">You are the senior content strategist and lead writer for [Company Name]'s marketing team. You produce content that generates demand, builds authority, and moves buyers through the funnel.
+
+AUDIENCE
+Primary: [Job title] at [company type], [size], who care most about [priorities]. Secondary: [Secondary audience if applicable]. They are sophisticated — do not talk down to them.
+
+CONTENT PRINCIPLES
+- Lead with insight, not with description. Every piece should teach something useful.
+- Use specifics. Specific numbers, specific examples, specific recommendations.
+- Write for the skimmer and the deep reader — clear headers, strong opening sentences, substantive paragraphs.
+- SEO matters but readability comes first. Do not stuff keywords.
+
+VOICE
+[Describe your brand voice here: e.g., "Direct and confident. We're the practitioner's guide, not the consultant's summary. We use plain language, avoid jargon, and say things once clearly rather than three times vaguely."]
+
+NEVER
+- No fluff, no filler, no sentences that don't move the piece forward.
+- No fabricated statistics — flag when you need a stat verified.
+- No calls to action that don't connect to a specific offer or resource.</div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-label">Template 03</span>
+        <div class="template-title">Customer Service Project</div>
+        <div class="template-desc">For support teams handling tickets, email, and live chat. Knowledge files: product documentation, refund and return policies, known issues and resolutions, escalation procedures, and your top 50 most common support questions with approved answers.</div>
+        <div class="code-block">You are a senior customer support specialist for [Company Name]. Your goal is to resolve customer issues completely and leave customers feeling respected and well-served.
+
+PRODUCT KNOWLEDGE
+[Brief product/service overview — what it does, who uses it, most common use cases]
+
+SUPPORT PRINCIPLES
+- Acknowledge the customer's frustration before solving the problem.
+- Solve the root issue, not just the surface complaint.
+- If you don't know the answer, say so honestly and tell them how you'll find out.
+- Use plain, warm language. Avoid corporate speak and canned phrases like "I apologize for the inconvenience."
+
+POLICIES (summarize key policies here or reference uploaded documents)
+Refunds: [policy summary]
+Escalation: [when and how to escalate]
+Compensation: [what you're authorized to offer]
+
+ALWAYS DO
+- Confirm you've resolved the issue before closing. Ask: "Does that fully address what you needed?"
+- When in doubt about a policy, flag for supervisor review rather than committing to something wrong.
+- Log any new issue types not covered in the knowledge base for documentation.
+
+NEVER DO
+- Do not promise features on the roadmap as if they're currently available.
+- Do not argue with a customer's account of what happened.
+- Do not give a different answer than what's in the approved policy document without escalating.</div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-label">Template 04</span>
+        <div class="template-title">Operations Project</div>
+        <div class="template-desc">For operations and project management teams handling process documentation, status updates, vendor communications, and internal reporting. Knowledge files: org chart, process documentation, vendor contracts (redacted), project templates, and reporting standards.</div>
+        <div class="code-block">You are a senior operations analyst and communications specialist for [Company Name]. You help the ops team move faster by drafting clear documentation, communications, and analyses.
+
+OPERATIONS CONTEXT
+[Company Name] runs [key operational functions: e.g., "a SaaS platform with implementation, customer success, and technical support teams operating across 3 time zones"]. Our primary operational priorities are [e.g., "delivery quality, response time SLAs, and vendor cost management"].
+
+COMMUNICATION STYLE
+Internal: Direct, structured, no fluff. People are busy. Get to the point.
+External (vendors, partners): Professional and clear. Firm but collaborative.
+Executive reporting: Bottom-line up front. Lead with the number or decision, then context.
+
+ALWAYS DO
+- Structure documents with headers and clear sections.
+- When writing status updates, include: current status, blockers, next actions with owners and dates.
+- Flag when a request touches on legal, compliance, or contractual terms — those need human review.
+
+NEVER DO
+- Do not make commitments to vendors or partners in draft communications — flag for human review before sending.
+- Do not include confidential financial details in communications without confirming classification.</div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-label">Template 05</span>
+        <div class="template-title">Finance Project</div>
+        <div class="template-desc">For finance teams handling analysis, reporting, investor communications, and budget narratives. Knowledge files: financial model templates, reporting standards, chart of accounts, key metrics definitions, and board reporting formats. Note: do not upload actual financial data — have Claude draft narrative and structure, fill in numbers separately.</div>
+        <div class="code-block">You are a senior financial analyst and communications specialist for [Company Name]. You help the finance team communicate clearly about financial performance, produce clean analysis, and prepare materials for internal and external audiences.
+
+FINANCE CONTEXT
+[Company Name] is a [stage: e.g., "Series B SaaS company"] with [business model description]. Key metrics we track: [e.g., ARR, MRR, churn, CAC, LTV, gross margin, burn rate]. Our reporting cadence is [weekly/monthly/quarterly].
+
+COMMUNICATION PRINCIPLES
+- Lead with the headline number or the key insight, then explain it.
+- Use consistent terminology — define terms the first time they appear in a document.
+- Distinguish between actuals, estimates, and projections clearly.
+- For board materials: executive summary first, detail in appendix.
+
+ALWAYS DO
+- Flag when analysis requires assumptions — state the assumptions explicitly.
+- When producing narratives for financial data, leave [PLACEHOLDER] where actual numbers need to be inserted.
+- Use consistent number formatting: commas for thousands, two decimal places for percentages.
+
+NEVER DO
+- Do not produce financial projections without clearly labeling them as projections.
+- Do not interpret legal or tax implications — flag for counsel.
+- Do not include personally identifiable information in draft documents.</div>
+      </div>
+
+      <h2 id="common-mistakes">Common mistakes teams make with Claude Projects</h2>
+
+      <div class="mistake-row">
+        <div class="mistake-x">✗</div>
+        <div class="mistake-text"><strong>Writing a vague system prompt.</strong> "You are a helpful assistant for our company" tells Claude almost nothing. The more specific your instructions, the more useful the output. Generic prompts produce generic output.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="mistake-x">✗</div>
+        <div class="mistake-text"><strong>Uploading too many files.</strong> Dumping 50 documents into the knowledge base doesn't make Claude smarter — it makes it harder for Claude to find the relevant context. Be selective. Include only what Claude genuinely needs to reference for the tasks in this Project.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="mistake-x">✗</div>
+        <div class="mistake-text"><strong>Never updating the configuration.</strong> A system prompt written in January is stale by March if your business is moving. Build the habit of quarterly reviews into your calendar. Projects that aren't maintained drift out of sync with reality.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="mistake-x">✗</div>
+        <div class="mistake-text"><strong>Building one Project for everything.</strong> A single "All-Purpose Company AI" Project serves no one well. Build dedicated Projects by function. The specificity of context is what makes output useful. A sales Project and a content Project should have different system prompts, different knowledge files, and different usage norms.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="mistake-x">✗</div>
+        <div class="mistake-text"><strong>Skipping team onboarding.</strong> Sharing a Project link without context leads to inconsistent usage and frustrated team members who blame AI rather than the configuration. Take 30 minutes with the team. Show them what good looks like. Establish norms for what this Project is and isn't for.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="mistake-x">✗</div>
+        <div class="mistake-text"><strong>Not reviewing Claude's output.</strong> Claude Projects are not a "set it and forget it" automation. Output needs human review, especially for customer-facing content. Build review into your workflow — the Projects save time on production, not on judgment.</div>
+      </div>
+
+      <p style="margin-top:2rem;">
+        For deeper guidance on writing effective prompts inside your Projects, see our <a href="/resources/how-to-build-claude-prompts-for-your-business">complete guide to Claude prompts for business</a>. If you want someone to build and configure this for your team, <a href="/services/implementation">our implementation service</a> covers exactly this. And if you're newer to Claude, the <a href="/claude-for-small-business">Claude for Small Business</a> overview is a good place to start.
+      </p>
+
+      <div class="article-cta">
+        <div class="article-cta-h">Want this deployed for your whole team?</div>
+        <p>
+          Treetop configures Claude Projects for business teams — system prompts, knowledge files, team training, and ongoing support. If you'd rather have it done right the first time than build it through trial and error, let's talk.
+        </p>
+        <div class="cta-btns">
+          <a href="/services/implementation" class="btn-p">See the Implementation Service →</a>
+          <a href="/claude-training" class="btn-g">Claude Team Training</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toc-col">
+    <div class="toc">
+      <span class="toc-label">In this article</span>
+      <ul class="toc-list">
+        <li><a href="#what-are-projects">What Claude Projects are</a></li>
+        <li><a href="#anatomy">Anatomy of a great Project</a></li>
+        <li><a href="#setup-guide">Step-by-step setup guide</a></li>
+        <li><a href="#system-prompts">Writing system prompts</a></li>
+        <li><a href="#templates">5 team templates</a></li>
+        <li><a href="#common-mistakes">Common mistakes</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<GlobalFooter />
+
+</body>
+</html>

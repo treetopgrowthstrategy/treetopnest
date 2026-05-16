@@ -1,0 +1,281 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude for Healthcare Businesses | AI Workflows | Treetop</title>
+  <meta name="description" content="Claude cuts administrative burden for healthcare businesses — documentation, patient communication, staff training, and more. Treetop implements AI for healthcare ops." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-cell-alt { background: #0A1A0A; padding: 2rem; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .cell-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .cell-title { font-size: 0.9rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .cell-desc { font-size: 0.82rem; color: #8FAF8F; line-height: 1.65; }
+    .chip { display: inline-flex; align-items: center; background: #0A1A0A; border: 1px solid #1A3A1A; padding: 0.5rem 1rem; font-size: 0.8rem; color: #8FAF8F; }
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .notice { background: rgba(0,200,83,0.06); border: 1px solid rgba(0,200,83,0.2); padding: 1.25rem 1.5rem; margin-bottom: 3rem; font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .notice strong { color: #00C853; font-weight: 600; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Healthcare</div>
+    <h1 class="hero-h">Administrative AI That<br/><em style="color:#00C853;font-style:italic;">Actually Saves Time.</em></h1>
+    <p class="hero-sub">Healthcare businesses spend as much time on paperwork as patient care. Claude handles the documentation, communication, and training content so your team can focus on what matters.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Get Claude Implemented →</a>
+      <a href="/services/implementation" class="btn-g">How It Works</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">An important note</span>
+    <div class="notice" style="max-width:760px;">
+      <strong>Claude in these workflows handles zero PHI.</strong> Everything we build is for administrative operations, marketing, and internal communications — not clinical workflows, patient records, or anything touching protected health information. These are business-side systems designed to reduce admin burden on your team.
+    </div>
+    <span class="lbl">The healthcare admin problem</span>
+    <h2 class="h2">The clinical work is what you trained for.<br/>The admin work is what fills your days.</h2>
+    <div class="grid-4" style="margin-top:2rem;">
+      <div class="grid-cell-alt">
+        <span class="cell-icon">📋</span>
+        <div class="cell-title">Documentation burden</div>
+        <div class="cell-desc">Policies, procedures, intake forms, referral letters — the writing never stops and it's never anyone's full-time focus.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">💬</span>
+        <div class="cell-title">Patient communication templates</div>
+        <div class="cell-desc">Every follow-up sequence, appointment reminder, and care instruction gets written and rewritten from scratch.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">📝</span>
+        <div class="cell-title">Prior auth writing</div>
+        <div class="cell-desc">Insurance prior authorization letters require detailed, structured writing. It takes time your clinical staff doesn't have.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-icon">🎓</span>
+        <div class="cell-title">Staff training materials</div>
+        <div class="cell-desc">Onboarding docs, compliance training content, procedure guides — always behind, always outdated, always a scramble.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">What Claude handles</span>
+    <h2 class="h2">Six admin workflows Claude<br/>takes off your plate.</h2>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Patient Intake Summary Docs</div>
+          <div class="step-desc">Structured intake summary templates that give your clinical team consistent, complete information — without your admin staff spending an hour on every new patient.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Referral Letter Drafting</div>
+          <div class="step-desc">Claude drafts referral letters from structured inputs — your staff reviews and sends. What used to take 20 minutes takes 3.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Policy & Procedure Documentation</div>
+          <div class="step-desc">New policies, updated procedures, compliance documentation — Claude drafts from your inputs so your team edits instead of starts from nothing.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Staff Training Content</div>
+          <div class="step-desc">Onboarding guides, role-specific training materials, compliance refreshers — built by Claude, reviewed by your team, used by your staff.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Billing Dispute Letters</div>
+          <div class="step-desc">Structured, professional billing dispute correspondence drafted by Claude — consistent format, faster turnaround, less back-and-forth.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-title">Appointment Follow-Up Sequences</div>
+          <div class="step-desc">Post-visit follow-up emails, care instruction reminders, and reactivation sequences — built once, running automatically, personalized by appointment type.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">How it works</span>
+    <h2 class="h2">Audit. Build. Optimize.</h2>
+    <p class="sub">Three steps from fragmented admin chaos to Claude running your documentation and communication systems.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">AI Audit — $1,500</div>
+          <div class="step-desc">We map the highest-friction admin workflows in your practice or healthcare business. You leave with a prioritized implementation plan. <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Learn about the Audit →</a></div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Implementation — from $3,500</div>
+          <div class="step-desc">We build the Claude workflows your team will use — connected to your existing tools, tested with your actual content. <a href="/services/implementation" style="color:#00C853;text-decoration:none;">See Implementation details →</a></div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Retainer — $1,200/mo</div>
+          <div class="step-desc">Ongoing support as your practice grows and your workflows evolve. New documents added, existing ones refined. <a href="/services/retainer" style="color:#00C853;text-decoration:none;">Retainer details →</a></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;padding-top:3rem;">
+      <a href="/services/ai-audit" class="btn-g">Start with an AI Audit →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for Small Business →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Common use cases</span>
+    <h2 class="h2">What healthcare businesses use Claude for.</h2>
+    <div class="chip-grid">
+      <span class="chip">Intake Summary Templates</span>
+      <span class="chip">Referral Letters</span>
+      <span class="chip">Policy Documentation</span>
+      <span class="chip">Staff Training Content</span>
+      <span class="chip">Billing Dispute Letters</span>
+      <span class="chip">Follow-Up Sequences</span>
+      <span class="chip">Care Instructions</span>
+      <span class="chip">Onboarding Guides</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#0A1A0A;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Let's build Claude into<br/>your healthcare operations.</h2>
+    <p class="sub">Tell us where the admin burden is heaviest and we'll show you exactly where Claude creates the most relief.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@yourpractice.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Practice / Organization</label>
+        <input class="input-field" type="text" id="company" placeholder="Smith Family Health" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your healthcare business?</label>
+        <textarea class="input-field" id="gain" placeholder="Less time on paperwork, faster referrals, better staff training..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Get Claude Implemented →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. Takes 3 min.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, gain: document.getElementById('gain').value, source: 'claude-for-healthcare' }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Get Claude Implemented →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

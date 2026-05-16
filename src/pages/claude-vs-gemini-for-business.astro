@@ -1,0 +1,345 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude vs Google Gemini for Business: Which AI Should Your Team Use? | Treetop Growth Strategy</title>
+  <meta name="description" content="Claude vs Gemini for business — an honest comparison. Gemini wins on Google Workspace integration and real-time web. Claude wins on writing, reasoning, and instruction-following." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+    .compare-table th { background: #1A3A1A; padding: 0.875rem 1.25rem; text-align: left; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #8FAF8F; }
+    .compare-table td { padding: 0.875rem 1.25rem; border-bottom: 1px solid #1A3A1A; font-size: 0.85rem; color: #8FAF8F; background: #0A1A0A; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 500; color: #F0FFF0; }
+    .winner-claude { color: #00C853; font-weight: 600; font-size: 0.78rem; }
+    .winner-tie { color: #C8A000; font-weight: 600; font-size: 0.78rem; }
+    .winner-other { color: #8FAF8F; font-weight: 500; font-size: 0.78rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; }
+    .card-title { font-family: 'Instrument Serif', serif; font-size: 1.35rem; color: #F0FFF0; margin-bottom: 1rem; }
+    .card-list { list-style: none; }
+    .card-list li { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; padding: 0.4rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 0.75rem; }
+    .card-list li:last-child { border-bottom: none; }
+    .card-list li::before { content: "→"; color: #00C853; flex-shrink: 0; }
+    .verdict-box { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 2rem 2.5rem; margin-bottom: 3rem; }
+    .verdict-box p { font-size: 1.05rem; color: #8FAF8F; line-height: 1.8; }
+    .highlight-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-top: 3rem; }
+    .highlight-box p { font-size: 1rem; color: #8FAF8F; line-height: 1.8; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .compare-table{font-size:0.78rem} .compare-table th,.compare-table td{padding:0.6rem 0.75rem} .two-col{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude vs Gemini</div>
+    <h1 class="hero-h">Claude vs Google Gemini:<br/><em style="color:#00C853;font-style:italic;">Which AI Is Better for Business Work?</em></h1>
+    <p class="hero-sub">Gemini is genuinely impressive — especially inside Google Workspace. But for the business work that actually moves the needle, Claude is in a different league. Here's a real breakdown.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Get Claude Implemented →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for Small Business</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Quick verdict</span>
+    <h2 class="h2">The honest answer.</h2>
+    <div class="verdict-box">
+      <p>Gemini is a strong tool — Google has poured enormous resources into it and the Workspace integration is genuinely useful. But in head-to-head business tasks — writing a proposal, analyzing a strategy doc, following a complex brief — Claude consistently produces better output with less prompting. If you're not locked into Google Workspace, Claude is the clearer choice for core business work.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Where each tool excels</span>
+    <h2 class="h2">What Gemini does well.<br/>What Claude does better.</h2>
+    <p class="sub">This isn't a takedown of Gemini. It's an honest look at where each tool genuinely shines.</p>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:#8FAF8F;">Gemini does well at…</div>
+        <ul class="card-list">
+          <li>Integrating directly into Gmail, Docs, and Sheets</li>
+          <li>Real-time web search with cited sources</li>
+          <li>Multimodal tasks — analyzing images, charts, PDFs</li>
+          <li>Google Meet summaries and action item extraction</li>
+          <li>Tasks where you need current information</li>
+          <li>Convenience for full Google Workspace shops</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:#00C853;">Claude does better at…</div>
+        <ul class="card-list">
+          <li>Writing quality — proposals, reports, client communications</li>
+          <li>Following complex, multi-step instructions without drift</li>
+          <li>Long-context reasoning (200K tokens vs Gemini's 1M but lower quality)</li>
+          <li>Business workflow customization via Projects</li>
+          <li>Consistent output across a team</li>
+          <li>Nuanced analysis that requires actual thinking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Side by side</span>
+    <h2 class="h2">Feature by feature.</h2>
+    <p class="sub">A direct comparison across the dimensions that matter most for business teams.</p>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Google Gemini</th>
+            <th>Claude</th>
+            <th>Winner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Writing quality</td>
+            <td>Good, occasionally robotic</td>
+            <td>Excellent — natural, polished</td>
+            <td><span class="winner-claude">Claude ✓</span></td>
+          </tr>
+          <tr>
+            <td>Reasoning</td>
+            <td>Solid on structured tasks</td>
+            <td>Superior on nuanced analysis</td>
+            <td><span class="winner-claude">Claude ✓</span></td>
+          </tr>
+          <tr>
+            <td>Context window</td>
+            <td>1M tokens (Gemini 1.5)</td>
+            <td>200K tokens</td>
+            <td><span class="winner-tie">Gemini (capacity)</span></td>
+          </tr>
+          <tr>
+            <td>Google Workspace integration</td>
+            <td>Native — built into Docs, Gmail, Sheets</td>
+            <td>Not natively integrated</td>
+            <td><span class="winner-other">Gemini ✓</span></td>
+          </tr>
+          <tr>
+            <td>Real-time web access</td>
+            <td>Yes — with cited sources</td>
+            <td>No (knowledge cutoff)</td>
+            <td><span class="winner-other">Gemini ✓</span></td>
+          </tr>
+          <tr>
+            <td>Pricing</td>
+            <td>$20/mo (Gemini Advanced) or bundled</td>
+            <td>$20/mo (Claude Pro)</td>
+            <td><span class="winner-tie">Tie</span></td>
+          </tr>
+          <tr>
+            <td>Privacy / data handling</td>
+            <td>Google — large ad ecosystem</td>
+            <td>Anthropic — strong privacy defaults</td>
+            <td><span class="winner-claude">Claude ✓</span></td>
+          </tr>
+          <tr>
+            <td>Customization</td>
+            <td>Gems (custom AI assistants)</td>
+            <td>Projects with persistent knowledge</td>
+            <td><span class="winner-claude">Claude ✓</span></td>
+          </tr>
+          <tr>
+            <td>Business use cases</td>
+            <td>Best inside Google Workspace</td>
+            <td>Best for core business reasoning</td>
+            <td><span class="winner-claude">Claude ✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Decision guide</span>
+    <h2 class="h2">Pick Gemini if… Pick Claude if…</h2>
+    <p class="sub">The right answer depends on how your team actually works.</p>
+    <div class="two-col" style="margin-bottom:3rem;">
+      <div class="card">
+        <div class="card-title" style="color:#8FAF8F;">Pick Gemini if…</div>
+        <ul class="card-list">
+          <li>Your team lives in Google Workspace (Docs, Gmail, Sheets)</li>
+          <li>Real-time information is critical to your work</li>
+          <li>You need multimodal input — photos, charts, video</li>
+          <li>You want AI embedded directly in your existing tools</li>
+          <li>You're already paying for Google One or Workspace</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:#00C853;">Pick Claude if…</div>
+        <ul class="card-list">
+          <li>Writing quality is non-negotiable for your brand</li>
+          <li>You need reliable instruction-following on complex tasks</li>
+          <li>Business reasoning and analysis drives your decisions</li>
+          <li>Privacy matters and you're cautious about Google's data practices</li>
+          <li>You want to build repeatable, consistent AI workflows</li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="/claude-for-small-business" class="btn-g">Claude for Small Business →</a>
+      <a href="/services/implementation" class="btn-g">How We Implement Claude →</a>
+      <a href="/claude-training" class="btn-g">Claude Training for Teams →</a>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The implementation angle</span>
+    <h2 class="h2">The tool is 20% of the ROI.</h2>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Most businesses pick a tool and stop there</div>
+          <div class="step-desc">You subscribe to Claude or Gemini, play with it for a week, and then it slowly fades from your workflow. Not because the tool is bad — because there was no implementation. No setup, no workflows, no team training.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">The 80% that actually drives results</div>
+          <div class="step-desc">The businesses getting real ROI from AI have done the work: custom system prompts, Projects configured for their use cases, workflows built around the tool, and team training that makes it sticky. That's the 80%. The tool choice is almost secondary.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Why we recommend Claude for implementation</div>
+          <div class="step-desc">Claude's Projects feature, instruction-following reliability, and writing quality make it significantly easier to build consistent, repeatable workflows. When you're implementing AI at a team level — not just dabbling — Claude holds up better under that load.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">That's what we do</div>
+          <div class="step-desc">We configure Claude for your business, build the workflows, train your team, and make sure the tool is actually being used — not just subscribed to. The comparison page brought you here. Let us show you what implementation looks like.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Claude Implemented</span>
+    <h2 class="h2">Stop reading comparisons.<br/>Start using Claude right.</h2>
+    <p class="sub">We'll build the workflows, configure the Projects, and train your team — so Claude actually delivers the ROI you're expecting.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain if Claude handled the work that's slowing your team down?</label>
+        <textarea class="input-field" id="message" placeholder="Better writing output, faster research, more consistent work across the team..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Get Claude Working →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. Takes 3 min.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ first_name: document.getElementById('first_name').value, last_name: document.getElementById('last_name').value, email: document.getElementById('email').value, company: document.getElementById('company').value, gain: document.getElementById('message').value, source: 'claude-vs-gemini' }) });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) { btn.textContent = 'Get Claude Working →'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

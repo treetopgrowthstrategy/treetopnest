@@ -1,0 +1,444 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for Finance Teams: Reports, Comms & Documentation | Treetop Growth Strategy</title>
+  <meta name="description" content="7 Claude AI workflows for finance teams — financial narratives, board updates, variance explanations, and more. With copy-paste prompts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .notice-bar { background: rgba(0,200,83,0.07); border: 1px solid rgba(0,200,83,0.2); border-left: 3px solid #00C853; padding: 1rem 1.5rem; margin-bottom: 3rem; max-width: 760px; }
+    .notice-bar p { font-size: 0.87rem; color: #8FAF8F; line-height: 1.65; }
+    .notice-bar strong { color: #F0FFF0; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .why-card { background: #0A1A0A; padding: 2rem; }
+    .why-card-title { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: #F0FFF0; margin-bottom: 0.6rem; }
+    .why-card-desc { font-size: 0.87rem; color: #8FAF8F; line-height: 1.7; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .wf-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; color: #00C853; letter-spacing: 0.06em; margin-top: 1rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .why-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Finance</div>
+    <h1 class="hero-h">How to Use Claude for Finance:<br/><em style="color:#00C853;font-style:italic;">7 Workflows That Save Your Team Hours Every Week</em></h1>
+    <p class="hero-sub">Finance teams spend enormous time on the communication around the numbers — narratives, board updates, variance explanations, client summaries. Claude handles that writing work so your team can focus on the analysis that actually requires expertise.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in My Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Important Note</span>
+    <h2 class="h2">What Claude is — and isn't —<br/>for finance work.</h2>
+    <div class="notice-bar">
+      <p><strong>Claude does not do your math.</strong> Do not use Claude to perform financial calculations, verify accounting entries, or produce figures you'll use in official reports. Claude is a language model — it writes, explains, and communicates. The numbers come from your systems. Claude turns those numbers into clear, accurate narratives. That's where it saves your team hours every week.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Financial narratives and reports</div>
+        <div class="why-card-desc">The "story" behind the numbers — variance explanations, commentary sections, management discussion and analysis. Claude writes the prose from your data so your team isn't starting from a blank page on every reporting cycle.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Stakeholder communication</div>
+        <div class="why-card-desc">Board updates, investor letters, and leadership summaries require a different voice than internal reports. Claude calibrates the right level of detail, the right tone, and the right framing for each audience — without you having to rewrite from scratch.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Client-facing documentation</div>
+        <div class="why-card-desc">Explaining financial concepts, summarizing performance, or walking a client through a complex situation — Claude writes drafts that are clear, accurate to the facts you provide, and professionally presented.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Policy and process documentation</div>
+        <div class="why-card-desc">Expense policies, financial procedures, and internal documentation that needs to be clear and complete. Claude builds structured first drafts from your intent — you review for accuracy and compliance, then publish.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">7 Finance Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">All of these workflows start with you providing the numbers — Claude writes the communication around them. Always verify outputs against your actual financial data before sharing externally.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">Financial Report Narrative Writing</div>
+      <div class="wf-desc">The commentary section of a financial report — the MD&A, the monthly narrative, the "here's what happened and why" — takes as long to write as the numbers took to pull. Claude drafts it from your data points and key observations in minutes.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write the narrative section for our [monthly / quarterly] financial report for [period].
+
+Key metrics I'm reporting on (I'm providing these — do not calculate):
+- Revenue: [amount] vs. budget of [amount] ([+/-] variance)
+- Gross margin: [%] vs. prior period [%]
+- Operating expenses: [amount] vs. budget [amount]
+- EBITDA / net income: [amount]
+- Cash position: [amount]
+- [Any other key metric]
+
+Key drivers to explain:
+- [What drove revenue up or down — specific, e.g. "new client wins in Q4, offset by one churned account"]
+- [What drove margin change — specific]
+- [Any one-time item that needs explanation]
+
+Audience: [CFO and CEO only / full leadership team / board]
+Tone: [technical and precise / executive summary style / plain language for non-finance readers]
+
+Write a 3–5 paragraph narrative. Lead with the headline (how we performed vs. expectations), then explain the key drivers, then end with outlook or context. Do not editorialize — stick to the facts I've given you. Flag if any explanation I gave you is vague.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–3 hrs per reporting cycle on narrative writing</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Board & Investor Update Drafting</div>
+      <div class="wf-desc">Board and investor updates require a different voice than internal reports — confident, clear, and focused on what matters to people who aren't in the business every day. Claude drafts the letter or update section from your key points, in a tone that reads like a seasoned operator, not a finance team.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a board / investor update letter for [period]. This will go to [board members / seed investors / series A investors].
+
+Key points I want to cover (I'm providing all facts — do not add or invent):
+- Financial performance: [brief summary of how we did]
+- Top win this period: [specific accomplishment]
+- Top challenge or risk: [honest assessment]
+- What we're doing about the challenge: [specific actions]
+- Key hires or team news: [if applicable]
+- Outlook for next quarter: [what we expect and why]
+- Ask or question for the board: [if any]
+
+Tone: confident and direct. Not defensive. Not over-explaining or over-qualifying. We're in control of the narrative even when sharing a challenge.
+Length: 400–600 words.
+
+Do not use "excited to share," "pleased to report," or "we are proud." Write like a founder who respects their investors' time.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–4 hrs per board update cycle</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Budget Variance Explanation</div>
+      <div class="wf-desc">When actuals don't match budget, someone has to explain why — clearly, without defensiveness, and in a way that leads to better decisions. Claude writes variance explanations from your numbers and context that are professional and specific, not vague corporate hedging.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a budget variance explanation for the following (I'm providing all the numbers):
+
+Line item: [expense category or revenue line]
+Budget: [amount]
+Actual: [amount]
+Variance: [amount and %] — [over / under]
+
+Why the variance occurred (my explanation):
+[Describe the actual reason — be specific. E.g. "We brought forward a software license renewal that was originally budgeted for Q3" or "Sales hiring took longer than planned, reducing headcount-related spend by $40K"]
+
+Is this a one-time variance or ongoing?: [one-time / structural / timing]
+What we're doing about it (if anything): [action or note]
+
+Audience: [CFO / leadership team / board]
+
+Write a 2–3 sentence variance explanation that:
+- States the variance clearly (with numbers)
+- Explains the cause without hedging
+- Notes the forward-looking implication (if any)
+
+Professional and specific. No passive voice. No "due to unforeseen circumstances."</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 30–60 min per variance reporting cycle</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Client-Facing Summary Documents</div>
+      <div class="wf-desc">Summarizing financial performance for a client, presenting a financial plan, or explaining a complex financial situation in plain language — these documents are time-consuming to write and easy to get wrong in tone. Claude drafts them from your content in the right voice for a non-technical client audience.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a client-facing [financial summary / performance recap / plan overview] for [client name or type].
+
+Purpose: [what this document is for — e.g. quarterly review meeting, onboarding summary, year-end recap]
+
+Key information to include (I'm providing all facts):
+[Bullet out the points you want to make, with the actual numbers and context]
+
+What the client already knows: [brief description of their financial literacy level]
+Tone: [conversational and clear / professional but accessible / formal]
+What I want them to feel after reading this: [informed and confident / reassured / clear on next steps]
+What I want them to do after reading this: [schedule a call / approve a plan / ask questions]
+
+Format: [1-page summary / letter format / structured doc with sections]
+
+Write in plain language — avoid jargon unless the client specifically works in finance. Where you use a technical term, explain it in the same sentence. No footnotes. Make it skimmable.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs per client summary document</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">Invoice Dispute Letters</div>
+      <div class="wf-desc">When a vendor invoice is wrong, a client is disputing a charge, or a payment needs to be contested, the letter matters. Too soft and it gets ignored. Too aggressive and it damages the relationship. Claude calibrates the right tone and gets all the specifics right the first time.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a formal dispute letter for the following situation:
+
+We are disputing: [invoice number / charge / payment]
+Vendor or client: [company name]
+The issue: [describe specifically — e.g. "We were charged $4,200 for services in March, but the contract specifies $3,500 and the additional work was not authorized"]
+Supporting documentation we have: [list what you have — contract, emails, prior invoices, etc.]
+What we're requesting: [full credit / partial credit / revised invoice / explanation]
+Our relationship with this party: [important vendor / minor supplier / new client / long-term client]
+Tone: [firm and professional / collaborative but clear / urgent]
+
+Write a formal letter with:
+- Our position stated clearly in the first paragraph
+- The specific discrepancy with reference numbers and amounts
+- Our requested resolution
+- A clear deadline for response
+- Professional close
+
+No threats. No apology for disputing. Factual and direct.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 45–90 min per dispute; improves resolution rate</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Financial Education Content</div>
+      <div class="wf-desc">Finance teams that communicate financial concepts clearly — to employees, clients, or board members — build more trust and make better decisions together. Claude writes explainer content that's accurate to the information you provide and calibrated to the reader's level.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write an explainer on the following financial concept for a non-finance audience:
+
+Topic: [e.g. how we calculate gross margin, what EBITDA means and why we track it, how our cash conversion cycle works]
+Audience: [department heads who see our reports / new employees / board members without finance backgrounds]
+Context for why they need to understand this: [e.g. "They'll be seeing this metric in our monthly report and asking about it" / "We want managers to understand how their decisions affect this number"]
+
+Format:
+- Start with why this matters to them specifically (not a textbook definition)
+- Explain what it is in plain language
+- Give a concrete example using realistic (not our actual) numbers
+- Explain what a good vs. concerning number looks like in our context
+- End with: "What does this mean for your team / decisions?"
+
+Under 400 words. No jargon without explanation. If I've given you any financial concept incorrectly, flag it.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs per education piece; reduces repetitive finance questions</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">Expense Policy Documentation</div>
+      <div class="wf-desc">A clear expense policy prevents a significant amount of back-and-forth, disputes, and awkward conversations. Claude writes a complete, readable expense policy from your rules and intent — not from legal boilerplate that nobody reads.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a company expense policy based on the following rules and intent:
+
+What's reimbursable (I'll list our actual rules):
+- Travel: [your rules — e.g. economy class only, Airbnb allowed up to $X/night]
+- Meals: [your rules — e.g. $75/day per diem when traveling, client meals require manager approval over $150]
+- Software / tools: [your rules]
+- Other categories: [list any]
+
+What's not reimbursable: [list]
+Approval process: [who approves what, and up to what amount]
+Submission process: [how employees submit — tool, timeline, required receipts]
+What happens if something falls outside policy: [pre-approval process]
+
+Company size: [headcount]
+Tone: [clear and direct / friendly but firm]
+
+Write a policy document that:
+- Employees will actually read
+- Leaves no ambiguity about what's allowed
+- Explains the "why" for rules that might seem restrictive
+- Has a clear FAQ section for the most common edge cases
+
+Flag any area where my rules might conflict or create confusion.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 3–4 hrs on policy creation; reduces ongoing expense disputes</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Claude Projects Setup</span>
+    <h2 class="h2">Set up Claude Projects<br/>for your finance team.</h2>
+    <p class="sub">A finance Claude Project keeps your reporting standards, audience context, and formatting preferences loaded — so every document Claude produces already matches how your team communicates.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create a "Finance" Project in Claude</div>
+          <div class="setup-desc">Go to claude.ai → Projects → New Project. Your finance team works from here. Important: keep this Project separate from other functions — financial communication has specific tone and accuracy requirements that need their own configuration.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Write a System Prompt with Guardrails</div>
+          <div class="setup-desc">Include: your company and business model, who your financial audiences are (board, investors, leadership, clients), your reporting tone and style, and a clear instruction that Claude should never perform calculations — only write narratives from numbers you provide. This prevents errors.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Format References</div>
+          <div class="setup-desc">Add anonymized or templated versions of your best past reports as format references. Claude will match the structure, section order, and writing style you already use — not a generic template. This cuts editing time dramatically.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build Recurring Report Prompts</div>
+          <div class="setup-desc">For every report type you produce on a schedule (monthly ops report, quarterly board letter, etc.), create a saved prompt with the structure pre-filled. Your team pastes in the numbers and context, runs the prompt, and edits the output — instead of starting from scratch every cycle.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+      <a href="/resources" class="internal-link">All Resources →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows running<br/>in your finance team?</h2>
+    <p class="sub">We configure Claude Projects for your reporting standards, stakeholder audiences, and team — and train your finance team to use them with the right guardrails in place.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your finance workflows?</label>
+        <textarea class="input-field" id="gain" placeholder="Faster board updates, cleaner client summaries, less time on narrative writing..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My Finance Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-finance-workflows'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My Finance Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

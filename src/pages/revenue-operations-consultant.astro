@@ -1,0 +1,363 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revenue Operations Consultant | RevOps for B2B Companies | Treetop</title>
+  <meta name="description" content="Revenue operations consulting for B2B companies. Bill Colbert builds the CRM architecture, pipeline reporting, handoff processes, and AI-native RevOps infrastructure your GTM needs to scale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; max-width: 860px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: #1A3A1A; }
+    .grid-cell { background: #050D05; padding: 2rem; }
+    .grid-cell-alt { background: #0A1A0A; padding: 2rem; }
+    .step-row { display: flex; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2.5rem; }
+    .step-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.7; }
+    .cell-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.6rem; display: block; }
+    .cell-title { font-size: 0.95rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.5rem; }
+    .cell-desc { font-size: 0.85rem; color: #8FAF8F; line-height: 1.65; }
+    .break-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid #1A3A1A; }
+    .break-item:last-child { border-bottom: none; }
+    .break-dot { width: 6px; height: 6px; border-radius: 50%; background: #00C853; flex-shrink: 0; margin-top: 0.5rem; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .thankyou-p { color: #8FAF8F; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Fix the Infrastructure →</a>
+  </div>
+</nav>
+
+<div class="hero" style="background:#050D05;">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Revenue Operations</div>
+    <h1 class="hero-h">Revenue Operations Consulting:<br/><em style="color:#00C853;font-style:italic;">The Infrastructure Under Your GTM.</em></h1>
+    <p class="hero-sub">RevOps isn't CRM admin. It's the connective tissue between marketing, sales, and customer success — the infrastructure that makes your GTM motion predictable, measurable, and scalable.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Fix the Infrastructure →</a>
+      <a href="/services" class="btn-g">See All Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- What breaks without RevOps -->
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">The Problem</span>
+    <h2 class="h2">What Breaks When<br/>RevOps Doesn't Exist.</h2>
+    <p class="sub">Most $5M–$50M B2B companies have the same set of infrastructure problems. They look like people problems. They're system problems.</p>
+    <div style="margin-top:1rem;">
+      <div class="break-item">
+        <div class="break-dot"></div>
+        <div>
+          <div class="step-title">Marketing and sales can't agree on what a lead is</div>
+          <div class="step-desc" style="margin-top:0.3rem;">No shared definition of MQL, SQL, or ICP means marketing blames sales for not following up and sales blames marketing for bad leads. Both are right. Neither problem gets fixed without shared infrastructure.</div>
+        </div>
+      </div>
+      <div class="break-item">
+        <div class="break-dot"></div>
+        <div>
+          <div class="step-title">Your CRM is a graveyard</div>
+          <div class="step-desc" style="margin-top:0.3rem;">Leads rot in "Contacted" for months. Stage definitions are inconsistent between reps. Reports don't match what your team is actually doing. The CRM is where deals go to die, not close.</div>
+        </div>
+      </div>
+      <div class="break-item">
+        <div class="break-dot"></div>
+        <div>
+          <div class="step-title">Your forecast is a guess</div>
+          <div class="step-desc" style="margin-top:0.3rem;">You know Q4 revenue only a few weeks before Q4 ends. Deal slippage is unpredictable. You can't tell which rep will hit quota and which one needs help until it's too late.</div>
+        </div>
+      </div>
+      <div class="break-item">
+        <div class="break-dot"></div>
+        <div>
+          <div class="step-title">Handoffs between teams lose deals</div>
+          <div class="step-desc" style="margin-top:0.3rem;">Inbound leads sit unclaimed. Closed-won deals don't get onboarded properly. CS doesn't know what was promised in the sale. The customer experience starts breaking at the handoff.</div>
+        </div>
+      </div>
+      <div class="break-item">
+        <div class="break-dot"></div>
+        <div>
+          <div class="step-title">Attribution is a spreadsheet argument</div>
+          <div class="step-desc" style="margin-top:0.3rem;">You can't tell which channels are producing revenue. Marketing spend decisions get made on impressions and gut feel. Every budget conversation becomes a debate about who deserves credit.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Bill builds -->
+<section style="background:#050D05;">
+  <div class="sec-inner">
+    <span class="lbl">What We Build</span>
+    <h2 class="h2">The RevOps Infrastructure<br/>That Actually Works.</h2>
+    <p class="sub">Five systems, built in sequence. Each one solves a specific problem and creates the foundation for the next.</p>
+    <div>
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">CRM Architecture & Data Hygiene</div>
+          <div class="step-desc">Rebuild your pipeline stages around actual buyer behavior, not the default HubSpot/Salesforce setup. Define fields that matter, clean what's in there now, and set standards that reps will actually follow. Takes 2–3 weeks. The foundation everything else sits on.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Pipeline Reporting & Dashboards</div>
+          <div class="step-desc">Build the dashboards your leadership team actually needs: pipeline by stage, conversion rates by rep and source, velocity by deal size, win/loss by competitor. No more spreadsheet exports before every board meeting.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Lead Routing & Handoff Processes</div>
+          <div class="step-desc">Design the rules: what triggers an MQL, who gets routed leads and how fast, what the SLA is for follow-up, how closed-won deals pass to CS with full context. Documented, automated where possible, accountable everywhere.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Attribution Model</div>
+          <div class="step-desc">Build a multi-touch attribution model that lets you see which channels and campaigns are producing closed revenue — not just leads. Make budget decisions on data, not on who argued louder in the last planning meeting.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Forecasting Infrastructure</div>
+          <div class="step-desc">Stage-based pipeline weighting calibrated to your actual historical conversion rates. Rolling 13-week forecast cadence. Leading indicators so you catch problems 6 weeks out, not the week before quarter close.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI-native approach -->
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">AI-Native RevOps</span>
+    <h2 class="h2">Modern RevOps Is<br/>Built on AI Infrastructure.</h2>
+    <p class="sub">The companies winning in 2025 aren't just better at RevOps — they've automated the pieces that used to require dedicated ops headcount. We build RevOps infrastructure with Claude and modern tooling baked in from the start.</p>
+    <div class="grid-2">
+      <div class="grid-cell-alt">
+        <span class="cell-label">Claude-Powered</span>
+        <div class="cell-title">AI-Assisted CRM Enrichment</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">Claude reviews inbound leads, enriches company data, and surfaces fit scores before your reps ever touch them. Less time qualifying, more time closing.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-label">Automated</span>
+        <div class="cell-title">Intelligent Lead Routing</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">Rules-based routing built in your CRM, with AI-assisted triage for edge cases. The right lead gets to the right rep in under 5 minutes — without ops babysitting it.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-label">Real-Time</span>
+        <div class="cell-title">Pipeline Signals & Alerts</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">Deals that haven't moved in 14 days surface automatically. Forecast changes flag before your weekly review. No one's surprised at the end of the quarter.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-label">Compounding</span>
+        <div class="cell-title">Self-Improving Data Quality</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">AI identifies data gaps, flags inconsistent entries, and helps reps maintain CRM hygiene — so the system improves over time instead of decaying.</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;">
+      <a href="/what-is-ai-native-gtm" class="btn-g">What Is AI-Native GTM? →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Who needs this -->
+<section style="background:#050D05;">
+  <div class="sec-inner">
+    <span class="lbl">Who Needs This</span>
+    <h2 class="h2">Revenue Operations Is Right for You If...</h2>
+    <div class="grid-3" style="margin-top:2.5rem;">
+      <div class="grid-cell">
+        <span class="cell-label">Scenario A</span>
+        <div class="cell-title">You're scaling past 10 reps</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">What worked with a 4-person sales team doesn't work with 12. You need infrastructure before you add headcount, not after it breaks.</div>
+      </div>
+      <div class="grid-cell">
+        <span class="cell-label">Scenario B</span>
+        <div class="cell-title">Your ops person left</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">The person who knew how everything worked is gone. No one documented it. You need to rebuild it — better than it was — fast.</div>
+      </div>
+      <div class="grid-cell">
+        <span class="cell-label">Scenario C</span>
+        <div class="cell-title">You're preparing for a raise</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">VCs want clean pipeline data, predictable forecasts, and demonstrable GTM efficiency. RevOps is how you show your business is investable, not just interesting.</div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="/fractional-cmo" class="btn-g">Fractional CMO →</a>
+      <a href="/fractional-cro" class="btn-g">Fractional CRO →</a>
+      <a href="/services" class="btn-g">All Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Engagement options -->
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">How We Work Together</span>
+    <h2 class="h2">Engagement Options.</h2>
+    <div class="grid-2">
+      <div class="grid-cell-alt">
+        <span class="cell-label">Project</span>
+        <div class="cell-title">RevOps Build Engagement</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">60–90 day engagement to diagnose your current infrastructure and build the five core systems. Deliverables include full documentation, team training, and a runbook your ops team can own. Right for companies starting from scratch or rebuilding after a bad setup.</div>
+      </div>
+      <div class="grid-cell-alt">
+        <span class="cell-label">Ongoing</span>
+        <div class="cell-title">Fractional RevOps Director</div>
+        <div class="cell-desc" style="margin-top:0.75rem;">Monthly retainer for ongoing RevOps leadership — weekly pipeline review, system maintenance, new tool evaluation, and reporting. Typically 6–10 hours/week. Right for companies that need senior RevOps thinking without the full-time head.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" style="background:#050D05;">
+  <div class="sec-inner" style="max-width:720px;">
+    <span class="lbl">Get in Touch</span>
+    <h2 class="h2">Tell Us Where<br/>the System Is Breaking.</h2>
+    <p class="sub">We'll identify the highest-leverage RevOps fix and explain what a realistic engagement looks like.</p>
+
+    <div id="revops-form-wrap">
+      <form id="revops-form" style="margin-top:1.5rem;">
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="revops-first">First Name</label>
+            <input class="input-field" type="text" id="revops-first" name="first_name" placeholder="Jane" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="revops-last">Last Name</label>
+            <input class="input-field" type="text" id="revops-last" name="last_name" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="revops-email">Work Email</label>
+          <input class="input-field" type="email" id="revops-email" name="email" placeholder="jane@company.com" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="revops-company">Company</label>
+          <input class="input-field" type="text" id="revops-company" name="company" placeholder="Acme Corp" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="revops-gain">What revenue problem are you trying to solve?</label>
+          <textarea class="input-field" id="revops-gain" name="gain" rows="4" placeholder="Where is your RevOps breaking down? CRM mess, bad forecasting, handoff failures, attribution gaps — be specific and we'll respond with specifics."></textarea>
+        </div>
+        <input type="hidden" name="source" value="revenue-operations-consultant" />
+        <button type="submit" class="btn-p" style="width:100%;justify-content:center;margin-top:0.5rem;">Send →</button>
+      </form>
+    </div>
+    <div class="thankyou" id="revops-thanks">
+      <div class="thankyou-h">We'll be in touch.</div>
+      <p class="thankyou-p">Expect a response within one business day. If you'd like to move faster, book directly at <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" style="color:#00C853;">calendar.app.google</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Cross-links -->
+<div style="border-top:1px solid #1A3A1A;background:#050D05;padding:3rem 2.5rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1.5rem;">More from Treetop</div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="/fractional-cmo" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Fractional CMO</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Marketing Leadership</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">GTM strategy and execution without the overhead.</div>
+      </a>
+      <a href="/fractional-cro" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Fractional CRO</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Own the Number</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Full revenue motion: sales + marketing + CS.</div>
+      </a>
+      <a href="/what-is-ai-native-gtm" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">AI-Native GTM</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">The Modern Approach</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">What it means to build GTM on an AI-first stack.</div>
+      </a>
+      <a href="/services" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">All Services</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Full Service Menu</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Every way Treetop can accelerate your revenue.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<GlobalFooter />
+
+<script>
+  const form = document.getElementById('revops-form');
+  const thanks = document.getElementById('revops-thanks');
+  const wrap = document.getElementById('revops-form-wrap');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      await fetch('/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+    } catch (_) {}
+    if (wrap) wrap.style.display = 'none';
+    if (thanks) thanks.style.display = 'block';
+  });
+</script>
+</body>
+</html>

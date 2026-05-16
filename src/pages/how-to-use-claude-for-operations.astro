@@ -1,0 +1,465 @@
+---
+export const prerender = true;
+import GlobalFooter from '../components/GlobalFooter.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Claude for Business Operations: SOPs, Reporting & More | Treetop Growth Strategy</title>
+  <meta name="description" content="7 Claude AI operations workflows — SOPs, reports, vendor comms, meeting notes and more. With copy-paste prompts and Claude Projects setup guide." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
+    .btn-p:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color 0.2s; }
+    .btn-g:hover { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 7rem 2.5rem 5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; max-width: 900px; margin-bottom: 1.75rem; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: #8FAF8F; max-width: 580px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 3rem; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: #1A3A1A; margin-top: 2rem; }
+    .why-card { background: #0A1A0A; padding: 2rem; }
+    .why-card-title { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: #F0FFF0; margin-bottom: 0.6rem; }
+    .why-card-desc { font-size: 0.87rem; color: #8FAF8F; line-height: 1.7; }
+    .workflow { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1A3A1A; max-width: 860px; }
+    .workflow:last-child { border-bottom: none; }
+    .wf-num { font-family: 'Instrument Serif', serif; font-size: 0.85rem; font-style: italic; color: #00C853; margin-bottom: 0.5rem; display: block; }
+    .wf-title { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .wf-desc { font-size: 0.92rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 1.5rem; }
+    .wf-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; color: #00C853; letter-spacing: 0.06em; margin-top: 1rem; }
+    .prompt-block { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.5rem; margin-top: 1rem; }
+    .prompt-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .prompt-text { font-family: 'DM Sans', monospace; font-size: 0.83rem; color: #8FAF8F; line-height: 1.7; white-space: pre-wrap; }
+    .setup-step { padding: 1.5rem 0; border-bottom: 1px solid #1A3A1A; display: flex; gap: 1.5rem; max-width: 760px; }
+    .setup-step:last-child { border-bottom: none; }
+    .setup-num { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: rgba(0,200,83,0.3); flex-shrink: 0; width: 2rem; }
+    .setup-title { font-size: 0.92rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .setup-desc { font-size: 0.86rem; color: #8FAF8F; line-height: 1.7; }
+    .internal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .internal-link { font-size: 0.82rem; color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
+    .internal-link:hover { border-color: #00C853; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 3rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section,.hero{padding:3.5rem 1.5rem} .hero{padding-top:5rem} .form-grid{grid-template-columns:1fr} .why-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Claude for Operations</div>
+    <h1 class="hero-h">How to Use Claude for Operations:<br/><em style="color:#00C853;font-style:italic;">The Workflows That Run Your Business on Autopilot</em></h1>
+    <p class="hero-sub">SOPs that never get written. Reports that take all day. Job descriptions that all sound the same. Claude handles the documentation and communication work that piles up in every operations function — with prompts you can run today.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-p">Deploy These in My Team →</a>
+      <a href="/claude-for-small-business" class="btn-g">Claude for SMB Overview</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Why Claude</span>
+    <h2 class="h2">Why operations teams get so much<br/>leverage from Claude.</h2>
+    <p class="sub">Operations is mostly documentation and communication — which is exactly what Claude is built for. The bottleneck isn't knowing what needs to happen; it's having the time and energy to write it all down.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Documentation that actually gets written</div>
+        <div class="why-card-desc">SOPs, policies, and process docs sit unfinished because someone has to write them from scratch. Claude turns a 10-minute brain dump into a structured, formatted document in minutes — the bottleneck becomes editing, not writing.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Reporting without the Sunday-afternoon grind</div>
+        <div class="why-card-desc">Weekly and monthly reports are some of the most time-consuming recurring work in operations. Claude takes your notes and data and produces a structured narrative draft — you edit and send, instead of staring at a blank page.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Consistent communication at scale</div>
+        <div class="why-card-desc">Vendor emails, internal memos, policy announcements — Claude writes them in your voice, at your level of formality, with the right framing for the audience. No more rewriting the same type of message from scratch every time.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Turns meetings into action</div>
+        <div class="why-card-desc">Meeting notes rarely become real action items. Claude takes raw notes or transcripts and extracts clear, assigned, time-bound next steps — plus a summary your whole team can align on without reading every word.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">7 Operations Workflows</span>
+    <h2 class="h2">The workflows. With the prompts.</h2>
+    <p class="sub">These are built for operations leads, chiefs of staff, and business owners who are responsible for keeping things running. Use them as-is or load them into a Claude Project configured for your org.</p>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 01</span>
+      <div class="wf-title">SOP Writing and Updating</div>
+      <div class="wf-desc">Standard operating procedures are either nonexistent or out of date in most small businesses. Claude writes them from a conversation, a brain dump, or an existing rough draft — formatted, numbered, and clear enough that someone new could actually follow them.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a standard operating procedure for this process: [process name]
+
+Here's how we currently do it (rough notes or brain dump):
+[Paste your notes — even messy bullet points work]
+
+Who performs this process: [role]
+How often: [daily / weekly / as-needed]
+What systems or tools are involved: [list them]
+What can go wrong, and what should they do: [known failure points]
+What does "done correctly" look like: [the quality check]
+
+Format:
+- Title and purpose statement (2 sentences)
+- Prerequisites / what to have ready before starting
+- Numbered steps (be specific enough that someone new could follow this)
+- Troubleshooting section for common issues
+- Notes or exceptions at the bottom
+
+Plain language. Imperative voice ("Click X," not "The user should click X"). Flag any step where I was vague so I can clarify.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–4 hrs per SOP; eliminates onboarding knowledge gaps</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 02</span>
+      <div class="wf-title">Weekly & Monthly Report Drafting</div>
+      <div class="wf-desc">Recurring reporting is the most time-consuming documentation work in operations. Claude takes your notes, numbers, and key highlights and drafts a structured narrative — the kind of report leadership actually reads, not a wall of bullet points.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Draft a [weekly / monthly] operations report for [date range].
+
+Here are my notes and key data points:
+[Paste your raw notes, metrics, highlights, and lowlights]
+
+Report audience: [leadership team / board / department heads]
+What they care most about: [e.g. efficiency, cost, headcount, velocity]
+Format we use: [executive summary + section breakdowns / bullet-only / narrative]
+
+Structure the report with:
+1. Executive summary (3–4 sentences — what happened and what it means)
+2. Key metrics (format as a simple table or labeled bullets)
+3. Highlights — what went well and why it matters
+4. Issues / blockers — what's at risk and what we're doing about it
+5. Next week's / next month's priorities
+
+Write in [formal / conversational] language. Flag any data point I gave you that seems off or needs verification.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–3 hrs/week on recurring reporting</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 03</span>
+      <div class="wf-title">Vendor Communication Templates</div>
+      <div class="wf-desc">Vendor relationships require consistent, professional communication — and the same types of situations come up over and over. Claude writes templates for negotiation, issue escalation, contract requests, and renewals that you can customize in under five minutes per use.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a vendor email for this situation: [describe the situation]
+
+Examples:
+- Requesting a price reduction or renegotiation
+- Escalating a service delivery issue
+- Requesting an updated contract or statement of work
+- Following up on an unresolved issue after 2+ weeks
+
+Vendor details: [who they are, what service they provide, how long we've worked with them]
+Our position: [what we want / need, and why]
+Tone: [firm but professional / collaborative / direct]
+What we're prepared to do if this isn't resolved: [optional — helps Claude calibrate leverage]
+
+Write the email with:
+- A specific subject line
+- Clear opening that states the purpose
+- Context (brief — they know the background)
+- Our specific ask or concern
+- A proposed next step with a timeline
+- Professional close
+
+Under 200 words. No filler. Don't be apologetic about asking for what we need.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 30–60 min per vendor communication thread</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 04</span>
+      <div class="wf-title">Meeting Agenda + Notes → Action Items</div>
+      <div class="wf-desc">Two Claude workflows in one: before a meeting, build a focused agenda. After a meeting, turn raw notes into structured action items with owners and deadlines. The output is something you can paste directly into Slack, email, or your project management tool.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt — Pre-Meeting Agenda</span>
+        <div class="prompt-text">Build a meeting agenda for a [60-minute / 30-minute] [meeting type — e.g. weekly ops sync / quarterly planning / vendor review].
+
+Attendees: [roles, not names]
+Meeting goal: [what decision or alignment do we need to leave with]
+Topics to cover: [list them, rough is fine]
+Any known tension or difficult topic: [optional but helpful]
+
+Format:
+- Meeting title and time allocation
+- Pre-read or prep (if anything)
+- Agenda items in order, with time allocation for each
+- Decision or output for each item
+- Parking lot section at the bottom
+
+Keep it tight. Every item should have a clear purpose.</div>
+      </div>
+      <div class="prompt-block" style="margin-top:1rem;">
+        <span class="prompt-label">Example Prompt — Post-Meeting Action Items</span>
+        <div class="prompt-text">Here are my raw notes from our [meeting name] meeting today:
+[Paste notes — even messy stream-of-consciousness]
+
+Extract and format:
+1. Decisions made (clear, definitive statements — not "we discussed")
+2. Action items — each one must have: what, who, by when
+3. Open questions that still need resolution
+4. A 3-sentence summary I can share with people who weren't in the room
+
+Format action items as a table: | Action | Owner | Due Date |
+Flag any action item where ownership or deadline wasn't clearly stated.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 1–2 hrs/week across meeting prep and follow-up</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 05</span>
+      <div class="wf-title">Process Documentation</div>
+      <div class="wf-desc">Different from an SOP — this is the higher-level map of how a department or function works. Claude turns an interview with a team lead into a clean process document that captures inputs, outputs, systems, handoffs, and decision points. Essential for scaling or onboarding new managers.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">I need to document our [department / function] process for [purpose — e.g. onboarding a new manager / audit prep / team alignment].
+
+Here's what I know about how it currently works:
+[Describe the process — who does what, in what order, using what tools]
+
+Key inputs (what triggers the process or is required to start): [list]
+Key outputs (what is produced at the end): [list]
+Systems involved: [tools, software, platforms]
+Key handoff points between teams or roles: [describe them]
+Where things commonly break down: [known failure modes]
+
+Create a process document with:
+- Process overview (what it is and why it exists — 2 paragraphs)
+- Process map narrative (step by step, with responsible role at each step)
+- Systems and tools reference
+- Key handoffs and dependencies
+- Common issues and how to handle them
+- Metrics or quality checks (if applicable)
+
+Clear, structured, skimmable. Someone new to the role should be able to read this and understand how the function operates.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 4–6 hrs per process documentation project</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 06</span>
+      <div class="wf-title">Job Description Writing</div>
+      <div class="wf-desc">Most job descriptions are either copied from old postings or written at the last minute when a role is already open. Claude writes a complete, compelling job description from a role brief — including responsibilities, requirements, and a company pitch that actually attracts good candidates.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write a job description for this role: [job title]
+
+Role brief:
+- What this person will own day-to-day: [list main responsibilities]
+- What success looks like in 90 days: [specific outcomes]
+- What success looks like in 12 months: [longer-term impact]
+- Must-have experience or skills: [list]
+- Nice-to-have: [list]
+- Who they'll report to: [role]
+- Who they'll work with: [teams or roles]
+- Compensation range (optional): [range]
+
+Company: [1-2 sentences about what you do and who you are as a company]
+Culture or working style: [e.g. async-first, fast-moving, high trust]
+
+Write a job description that:
+- Has a compelling opening that describes the role's impact (not just duties)
+- Lists responsibilities in plain language (not vague corporate phrases)
+- Is honest about what's hard about the role
+- Describes the type of person who will thrive here (not just qualifications)
+
+No "rockstar," "ninja," or "passionate." Write for people, not ATS systems.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 2–3 hrs per job description; improves candidate quality</div>
+    </div>
+
+    <div class="workflow">
+      <span class="wf-num">Workflow 07</span>
+      <div class="wf-title">Internal Policy Drafting</div>
+      <div class="wf-desc">PTO policies. Expense policies. Remote work guidelines. These documents need to be clear, fair, and complete — but they take forever to write because getting the tone right is genuinely hard. Claude writes a complete first draft from your intent, not from legal boilerplate.</div>
+      <div class="prompt-block">
+        <span class="prompt-label">Example Prompt</span>
+        <div class="prompt-text">Write an internal company policy for: [policy topic — e.g. expense reimbursement, remote work, PTO]
+
+Here's what I want the policy to cover:
+[Describe your intent in plain language — even rough notes work]
+
+Context:
+- Company size: [headcount range]
+- Who this policy applies to: [all employees / specific roles / contractors]
+- Any existing rules or constraints: [e.g. state laws, current informal norms]
+- Tone I want: [formal and official / clear and conversational / brief and direct]
+- Anything I want to avoid or that's been a problem: [optional but helpful]
+
+Write a policy document with:
+- Policy title and effective date placeholder
+- Purpose statement (why this policy exists)
+- Scope (who it applies to)
+- Policy details (the actual rules, clearly written)
+- Process (how to use or apply the policy)
+- Exceptions and approval process
+- Questions / contact section
+
+Plain language. No legal jargon unless required. Flag any area where I should consult an employment attorney before finalizing.</div>
+      </div>
+      <div class="wf-meta">⏱ Saves 3–5 hrs per policy document</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0A1A0A;">
+  <div class="sec-inner">
+    <span class="lbl">Claude Projects Setup</span>
+    <h2 class="h2">Set up Claude Projects<br/>for your operations team.</h2>
+    <p class="sub">An operations Claude Project keeps your org structure, terminology, and formatting standards in context — so every document Claude produces is already aligned to how your company works.</p>
+    <div>
+      <div class="setup-step">
+        <div class="setup-num">01</div>
+        <div>
+          <div class="setup-title">Create an "Operations" Project in Claude</div>
+          <div class="setup-desc">Go to claude.ai → Projects → New Project. This becomes your team's shared operations assistant. Everyone on the ops team works from here — so outputs stay consistent regardless of who's prompting.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">02</div>
+        <div>
+          <div class="setup-title">Write an Org Context System Prompt</div>
+          <div class="setup-desc">Include: what your company does, your org structure (teams and reporting lines), your document formatting standards, your communication tone for internal vs. external audiences, and any recurring templates or structures you always use.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">03</div>
+        <div>
+          <div class="setup-title">Upload Reference Documents</div>
+          <div class="setup-desc">Add: your existing SOPs (so Claude can match the format), your current org chart or team structure doc, your most recent ops report (as a format reference), and any vendor or policy docs that Claude needs to reference accurately.</div>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">04</div>
+        <div>
+          <div class="setup-title">Build a Recurring Prompt Library</div>
+          <div class="setup-desc">For every recurring report or document type, create a saved prompt with your standard structure pre-filled. Your team should be able to run the weekly report prompt in under 5 minutes — paste notes, run prompt, edit output, send.</div>
+        </div>
+      </div>
+    </div>
+    <div class="internal-links">
+      <a href="/claude-for-small-business" class="internal-link">Claude for Small Business →</a>
+      <a href="/services/implementation" class="internal-link">Implementation Services →</a>
+      <a href="/claude-training" class="internal-link">Claude Team Training →</a>
+      <a href="/resources" class="internal-link">All Resources →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-inner" style="max-width:680px;">
+    <span class="lbl">Get Started</span>
+    <h2 class="h2">Want these workflows running<br/>in your operations function?</h2>
+    <p class="sub">We configure Claude Projects for your org structure, document standards, and team — and train your ops team to use them. Most teams see immediate time savings in the first week.</p>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@company.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Acme Inc." />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you gain from getting Claude working in your operations workflows?</label>
+        <textarea class="input-field" id="gain" placeholder="SOPs finally written, faster reporting, less time on documentation..." style="min-height:100px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Deploy Claude in My Operations Team →</button>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">You're in good hands.</div>
+      <p style="color:#8FAF8F;">We'll be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script>
+async function submitForm() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'claude-for-operations'
+      })
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch(e) {
+    btn.textContent = 'Deploy Claude in My Operations Team →';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
