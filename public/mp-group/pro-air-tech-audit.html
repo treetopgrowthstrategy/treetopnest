@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHL Account Audit — Pro Air Tech | Treetop Growth Strategy</title>
+<style>
+  :root {
+    --forest: #1a3a2a;
+    --forest-mid: #2d5a3d;
+    --forest-light: #4a8c5c;
+    --sage: #e8f2ec;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --orange: #ea580c;
+    --orange-bg: #fff7ed;
+    --orange-border: #fed7aa;
+    --yellow: #b45309;
+    --yellow-bg: #fffbeb;
+    --yellow-border: #fde68a;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--forest);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .site-header .brand {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    opacity: .9;
+  }
+  .site-header .meta {
+    color: rgba(255,255,255,.55);
+    font-size: 12px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, var(--forest-light) 100%);
+    padding: 56px 48px 48px;
+    color: #fff;
+  }
+  .hero .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 800px;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+  .hero-stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat .num.red { color: #fca5a5; }
+  .hero-stat .num.yellow { color: #fcd34d; }
+  .hero-stat .num.green { color: #86efac; }
+  .hero-stat .label {
+    font-size: 11px;
+    color: rgba(255,255,255,.6);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+  .section-divider {
+    height: 1px;
+    background: var(--gray-200);
+    margin: 48px 0;
+  }
+
+  /* ── EXECUTIVE SUMMARY ── */
+  .exec-summary {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+  .exec-summary p {
+    font-size: 15px;
+    color: var(--gray-700);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .exec-summary p:last-child { margin-bottom: 0; }
+  .exec-summary strong { color: var(--gray-900); }
+  .exec-callout {
+    background: var(--red-bg);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #7f1d1d;
+    font-weight: 500;
+  }
+
+  /* ── SCORECARD ── */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .score-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .score-card .area {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+    line-height: 1.3;
+  }
+  .score-card .sub {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 2px;
+  }
+  .grade-badge {
+    font-size: 18px;
+    font-weight: 800;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .grade-A { background: var(--green-bg); color: var(--green); }
+  .grade-B { background: #eff6ff; color: #1d4ed8; }
+  .grade-C { background: var(--yellow-bg); color: var(--yellow); }
+  .grade-D { background: var(--orange-bg); color: var(--orange); }
+  .grade-F { background: var(--red-bg); color: var(--red); }
+  .grade-Q { background: var(--gray-100); color: var(--gray-600); }
+
+  /* ── FINDINGS ── */
+  .findings-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .finding-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .finding-card.critical { border-left: 4px solid var(--red); }
+  .finding-card.high { border-left: 4px solid var(--orange); }
+  .finding-card.moderate { border-left: 4px solid #eab308; }
+
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+  }
+  .finding-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    color: var(--gray-400);
+    min-width: 20px;
+    padding-top: 2px;
+  }
+  .finding-body { flex: 1; }
+  .finding-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 6px;
+  }
+  .finding-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+  .severity-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-critical { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .badge-high { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .badge-moderate { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+
+  .finding-impact {
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-100);
+    padding: 12px 24px 12px 60px;
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+  .finding-impact strong { color: var(--gray-900); }
+
+  /* ── WHAT'S WORKING ── */
+  .working-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .working-card {
+    background: #fff;
+    border: 1px solid var(--green-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .working-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .working-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .working-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  /* ── OPPORTUNITIES ── */
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .opp-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .opp-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .opp-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .opp-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+  .opp-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    background: var(--sage);
+    color: var(--forest-mid);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  /* ── ACTION PLAN ── */
+  .action-table {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .action-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .action-table th {
+    background: var(--forest);
+    color: rgba(255,255,255,.8);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    text-align: left;
+  }
+  .action-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+  }
+  .action-table tr:last-child td { border-bottom: none; }
+  .action-table tr:hover td { background: var(--gray-50); }
+  .action-num {
+    font-weight: 700;
+    color: var(--gray-900);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-red { background: var(--red); }
+  .dot-orange { background: var(--orange); }
+  .dot-yellow { background: #eab308; }
+  .owner-chip {
+    display: inline-block;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .timeline-chip {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .t-today { background: var(--red-bg); color: var(--red); }
+  .t-week { background: var(--orange-bg); color: var(--orange); }
+  .t-month { background: var(--yellow-bg); color: var(--yellow); }
+
+  /* ── DEEP DIVE ── */
+  .deepdive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .deepdive-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .deepdive-head {
+    background: var(--forest);
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+  .deepdive-body {
+    padding: 16px 20px;
+  }
+  .deepdive-body p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+  .deepdive-body p:last-child { margin-bottom: 0; }
+  .deepdive-flag {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 12px;
+    color: var(--gray-700);
+    padding: 6px 0;
+    border-top: 1px solid var(--gray-100);
+    margin-top: 8px;
+  }
+  .deepdive-flag:first-of-type { margin-top: 12px; }
+  .flag-icon { flex-shrink: 0; margin-top: 1px; }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--forest);
+    color: rgba(255,255,255,.6);
+    padding: 32px 48px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .report-footer strong { color: #fff; }
+
+  /* ── UTILITIES ── */
+  .tag-section {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--forest-mid);
+    background: var(--sage);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 26px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .container { padding: 32px 16px; }
+    .site-header { padding: 0 20px; }
+    .report-footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    .action-table th:last-child, .action-table td:last-child { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="brand">Treetop Growth Strategy</div>
+  <div class="meta">Confidential · May 15, 2026</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">GHL Account Audit · MP Group Client</div>
+  <h1>Pro Air Tech, LLC</h1>
+  <div class="subtitle">Hiram, GA · GoHighLevel Platform Review</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num red">4</div>
+      <div class="label">Critical Issues</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num" style="color:#fed7aa;">4</div>
+      <div class="label">High Priority</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num yellow">$0</div>
+      <div class="label">Revenue Won (30 days)</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num green">4.88★</div>
+      <div class="label">Google Rating · 34 Reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="exec-summary">
+    <div class="tag-section">Executive Summary</div>
+    <p style="margin-top:16px;">Pro Air Tech has a <strong>well-architected GoHighLevel account</strong> — the pipeline, workflows, calendars, and business profile were built correctly. The problem is that almost none of it is live. The account was set up in October 2025 and largely left untouched, with one Facebook ad campaign added later as the only operational piece.</p>
+    <p>The business is spending money to generate leads (the $79 Spring Tuneup ad has pulled in 19 active contacts) but has <strong>no system to catch and convert them</strong> — no automated follow-up, no booking path, no nurture sequence, and no way to invoice or collect payment. Nine opportunities worth $711 are sitting in the pipeline with a 0% conversion rate.</p>
+    <p>There are two categories of work: <strong>fixing what's broken</strong> (most of which can be done in a single focused week) and <strong>unlocking what's been built but never turned on</strong> — which represents the real revenue opportunity for this client.</p>
+    <div class="exec-callout">
+      ⚡ Most urgent item: The Google account (proairtechllc@gmail.com) is expired and breaking Google Business Profile, Google Analytics, and Google Ads simultaneously. This must be resolved before any other work begins.
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="section-header">
+    <div class="tag-section">Platform Scorecard</div>
+  </div>
+  <div class="scorecard-grid">
+    <div class="score-card">
+      <div><div class="area">Business Profile</div><div class="sub">Wrong industry, no domain</div></div>
+      <div class="grade-badge grade-C">C+</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Reputation</div><div class="sub">4.88★ / 34 reviews</div></div>
+      <div class="grade-badge grade-B">B</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Staff / Users</div><div class="sub">All admins, no calendar sync</div></div>
+      <div class="grade-badge grade-C">C</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Phone System</div><div class="sub">A2P compliant, no voicemail</div></div>
+      <div class="grade-badge grade-D">D+</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Calendars</div><div class="sub">2 HVAC calendars inactive</div></div>
+      <div class="grade-badge grade-D">D+</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Workflows</div><div class="sub">1 of 8 active</div></div>
+      <div class="grade-badge grade-D">D</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Pipeline</div><div class="sub">11 stages, $0 won</div></div>
+      <div class="grade-badge grade-D">D</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Email</div><div class="sub">No campaigns, shared domain</div></div>
+      <div class="grade-badge grade-D">D</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">SMS</div><div class="sub">14.3% opt-out rate</div></div>
+      <div class="grade-badge grade-D">D</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Contacts</div><div class="sub">61 total, many unnamed</div></div>
+      <div class="grade-badge grade-D">D</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Tags</div><div class="sub">4 tags, no strategy</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Custom Values</div><div class="sub">4 defined, all empty</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">GHL Website</div><div class="sub">No domain, wrong name, 0 traffic</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Payments</div><div class="sub">Entirely untouched</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">AI Agents</div><div class="sub">Not configured</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Integrations</div><div class="sub">Google expired</div></div>
+      <div class="grade-badge grade-D">D</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Social Media</div><div class="sub">1 post in 6 months</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+    <div class="score-card">
+      <div><div class="area">Reporting</div><div class="sub">No custom reports</div></div>
+      <div class="grade-badge grade-F">F</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CRITICAL FINDINGS -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">🔴 Critical Issues</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">Require immediate action — each is actively costing revenue today.</p>
+
+  <div class="findings-stack">
+
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <div class="finding-num">01</div>
+        <div class="finding-body">
+          <div class="finding-title">Google Account Expired — 3 Systems Down Simultaneously</div>
+          <div class="finding-desc">The primary Google account (proairtechllc@gmail.com) has expired, triggering a sitewide banner. This single failure is breaking Google Business Profile management, Google Analytics data collection, and Google Ads reporting at the same time. The business is flying blind on its digital presence.</div>
+        </div>
+        <div class="severity-badge badge-critical">Critical</div>
+      </div>
+      <div class="finding-impact"><strong>Fix today:</strong> Shane or Branson must re-authenticate the Google account in Settings → Integrations. All three systems restore automatically once reconnected.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <div class="finding-num">02</div>
+        <div class="finding-body">
+          <div class="finding-title">Zero Automation Running for Core Business Functions</div>
+          <div class="finding-desc">6 of 7 workflows are in Draft status with 0 enrolled contacts. New leads receive no automated text or email. Appointments have no confirmation or reminder sequence. No-shows get no follow-up. Completed jobs generate no review request. The "New Lead Nurture Fast 5" workflow also has two broken triggers that must be repaired before it can be published.</div>
+        </div>
+        <div class="severity-badge badge-critical">Critical</div>
+      </div>
+      <div class="finding-impact"><strong>Revenue impact:</strong> Every new lead received since October 2025 has fallen into a black hole. 19 contacts are currently paused at a manual call step — if no one calls, nothing happens.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <div class="finding-num">03</div>
+        <div class="finding-body">
+          <div class="finding-title">Zero Appointments Booked in 30 Days — Calendars Inactive</div>
+          <div class="finding-desc">The Appointment Report (Apr 15 – May 15, 2026) shows 0 booked, 0 confirmed, 0 showed across all calendars. The two HVAC service calendars — Installation and Maintenance — are both marked Inactive. Customers literally cannot book these services online.</div>
+        </div>
+        <div class="severity-badge badge-critical">Critical</div>
+      </div>
+      <div class="finding-impact"><strong>Fix this week:</strong> Activate both HVAC service calendars and connect them to staff Google Calendars to prevent double-booking.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-header">
+        <div class="finding-num">04</div>
+        <div class="finding-body">
+          <div class="finding-title">0% Pipeline Conversion — $0 Won in 30 Days</div>
+          <div class="finding-desc">9 open opportunities worth $711 are sitting in the "New Lead" stage. Not a single opportunity has moved to Initial Contact, Qualification, or any further stage. The 11-stage pipeline was built correctly but no one is working it — and no automation is helping move leads forward.</div>
+        </div>
+        <div class="severity-badge badge-critical">Critical</div>
+      </div>
+      <div class="finding-impact"><strong>Root cause:</strong> No lead nurture automation + inactive booking calendars = leads arrive and stall. Publishing the Fast 5 workflow and activating calendars directly addresses this.</div>
+    </div>
+
+  </div>
+
+  <!-- HIGH PRIORITY FINDINGS -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">🟠 High Priority</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">Address within 30 days — each limits growth and lead quality.</p>
+
+  <div class="findings-stack">
+
+    <div class="finding-card high">
+      <div class="finding-header">
+        <div class="finding-num">05</div>
+        <div class="finding-body">
+          <div class="finding-title">No Email Campaigns — Shared Sending Domain Flagged by GHL</div>
+          <div class="finding-desc">Not a single email campaign has ever been sent from this account. GHL itself flagged the shared sending domain on load and recommended creating a dedicated domain (proairtechllc.com). Without SPF, DKIM, and DMARC on a branded domain, any future campaigns are likely to land in spam.</div>
+        </div>
+        <div class="severity-badge badge-high">High</div>
+      </div>
+      <div class="finding-impact"><strong>Quick win:</strong> Set up the dedicated sending domain first, then launch a reactivation campaign to the 61 existing contacts.</div>
+    </div>
+
+    <div class="finding-card high">
+      <div class="finding-header">
+        <div class="finding-num">06</div>
+        <div class="finding-body">
+          <div class="finding-title">Google Business Profile Not Integrated in GHL</div>
+          <div class="finding-desc">The GBP Optimization tab shows "Nothing to see here! Integrate GBP." GHL cannot manage or respond to Google reviews, post GBP updates, or optimize local SEO from within the platform. For an HVAC company with 34 Google reviews and a 4.88 rating, this is a major missed opportunity.</div>
+        </div>
+        <div class="severity-badge badge-high">High</div>
+      </div>
+      <div class="finding-impact"><strong>Dependency:</strong> Requires the Google account to be re-authenticated first (Issue #1). Once done, GBP integration takes minutes.</div>
+    </div>
+
+    <div class="finding-card high">
+      <div class="finding-header">
+        <div class="finding-num">07</div>
+        <div class="finding-body">
+          <div class="finding-title">Ad Reporting Disconnected — Flying Blind on Ad Spend</div>
+          <div class="finding-desc">Google Ads shows sample data only — the Ads account is not linked. Facebook Ads shows no records — the Facebook page is connected but no Ad Account ID has been selected. The business cannot see ROI on its ad spend from within GHL.</div>
+        </div>
+        <div class="severity-badge badge-high">High</div>
+      </div>
+      <div class="finding-impact"><strong>Fix:</strong> Shane or Branson connects the Google Ads account ID and selects the Facebook Ad Account ID in Reporting settings. 10-minute task with high visibility payoff.</div>
+    </div>
+
+    <div class="finding-card high">
+      <div class="finding-header">
+        <div class="finding-num">08</div>
+        <div class="finding-body">
+          <div class="finding-title">All 19 Pipeline Contacts Stuck — No Nurture Path Active</div>
+          <div class="finding-desc">Every opportunity in the pipeline came from the $79 Spring Tuneup Facebook ad. All 19 are frozen at "New Lead" because the nurture workflow is in Draft. There is no automated text, email, or "if no answer" branch keeping leads warm.</div>
+        </div>
+        <div class="severity-badge badge-high">High</div>
+      </div>
+      <div class="finding-impact"><strong>Fix:</strong> Repair the two broken triggers in Workflow 1 (invalid form ID + voicemail error), then publish it. These 19 contacts can be re-enrolled immediately.</div>
+    </div>
+
+  </div>
+
+  <!-- MODERATE FINDINGS -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">🟡 Moderate Issues</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">Address within 60 days — each degrades platform effectiveness over time.</p>
+
+  <div class="findings-stack">
+
+    <div class="finding-card moderate">
+      <div class="finding-header">
+        <div class="finding-num">09</div>
+        <div class="finding-body">
+          <div class="finding-title">Business Industry Set to "Retail" — Should Be HVAC/Home Services</div>
+          <div class="finding-desc">The Business Profile has "Retail" as the industry. This affects platform categorization, reporting benchmarks, and how GHL tailors recommendations. A 2-minute fix in Business Profile Settings.</div>
+        </div>
+        <div class="severity-badge badge-moderate">Moderate</div>
+      </div>
+    </div>
+
+    <div class="finding-card moderate">
+      <div class="finding-header">
+        <div class="finding-num">10</div>
+        <div class="finding-body">
+          <div class="finding-title">Custom Values Defined But All Empty — Breaking Workflow Messages</div>
+          <div class="finding-desc">Four custom values exist (Hours of Operation, New Booking URL, Website URL, Promotion Name) but all four have blank values. Any workflow or template that references these variables will send messages with blank fields — a broken experience for every recipient.</div>
+        </div>
+        <div class="severity-badge badge-moderate">Moderate</div>
+      </div>
+      <div class="finding-impact"><strong>Fix immediately before publishing any workflow:</strong> Fill in all four custom values in Settings → Custom Values.</div>
+    </div>
+
+    <div class="finding-card moderate">
+      <div class="finding-header">
+        <div class="finding-num">11</div>
+        <div class="finding-body">
+          <div class="finding-title">No Staff Calendar Connections — Double-Booking Risk</div>
+          <div class="finding-desc">The Calendar Connections tab shows no Google Calendar sync for any staff member. With 10 calendars active (including personal booking calendars for Shane, Annette, Matt, and Branson), the risk of double-booking is high.</div>
+        </div>
+        <div class="severity-badge badge-moderate">Moderate</div>
+      </div>
+    </div>
+
+    <div class="finding-card moderate">
+      <div class="finding-header">
+        <div class="finding-num">12</div>
+        <div class="finding-body">
+          <div class="finding-title">GHL Website Has Wrong Business Name + Zero Traffic</div>
+          <div class="finding-desc">The Thank You page reads "Thank You for Choosing Swift Air!" — a template leftover from another business. No custom domain is connected. No tracking code installed (no GA, no Facebook Pixel). Zero page views in 30 days. The site may be completely inaccessible to the public.</div>
+        </div>
+        <div class="severity-badge badge-moderate">Moderate</div>
+      </div>
+    </div>
+
+    <div class="finding-card moderate">
+      <div class="finding-header">
+        <div class="finding-num">13</div>
+        <div class="finding-body">
+          <div class="finding-title">SMS Opt-Out Rate at 14.29% — Critically High</div>
+          <div class="finding-desc">Only 8 SMS messages were sent in 30 days — and 14.29% of recipients opted out. This is far above the 2–3% industry norm and suggests the initial messages feel unexpected or irrelevant to recipients. High opt-out rates can trigger carrier filtering and jeopardize the A2P compliance status.</div>
+        </div>
+        <div class="severity-badge badge-moderate">Moderate</div>
+      </div>
+      <div class="finding-impact"><strong>Fix:</strong> Review and rewrite the SMS copy in the active Spring Tuneup workflow. Leads who opted in via Facebook ad expect a specific tone — make the first text feel like a personal response, not a blast.</div>
+    </div>
+
+    <div class="finding-card moderate">
+      <div class="finding-header">
+        <div class="finding-num">14</div>
+        <div class="finding-body">
+          <div class="finding-title">Very Low Social Media Activity — 1 Post in 6 Months</div>
+          <div class="finding-desc">Social Planner shows only 1 post published (March 26, 2026) in the past 6 months. For a local home services business, consistent social presence builds trust and supports ad retargeting audiences.</div>
+        </div>
+        <div class="severity-badge badge-moderate">Moderate</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- WHAT'S WORKING -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">✅ What's Working</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">These are genuine strengths to build on — not starting from zero.</p>
+
+  <div class="working-grid">
+    <div class="working-card">
+      <div class="working-icon">⭐</div>
+      <div>
+        <div class="working-title">Strong Online Reputation</div>
+        <div class="working-desc">4.88 average star rating across 34 Google reviews. This is excellent social proof that should anchor every marketing touchpoint.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">✅</div>
+      <div>
+        <div class="working-title">A2P 10DLC Compliant</div>
+        <div class="working-desc">Phone number (+1 678-737-6463) is verified and compliant. SMS can be sent without risk — the channel is ready to use at scale.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">📘</div>
+      <div>
+        <div class="working-title">Facebook Integration Active</div>
+        <div class="working-desc">Connected to "Pro Air Tech, LLC." The $79 Spring Tuneup ad is pulling live leads — 19 currently active in the pipeline. Proof the ad funnel works.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">⚙️</div>
+      <div>
+        <div class="working-title">One Active Workflow Running</div>
+        <div class="working-desc">The Spring Tuneup Ad Workflow is published with 37 total enrolled and 19 active. It's lightweight but it's real — the foundation is proven.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">🏢</div>
+      <div>
+        <div class="working-title">Business Profile Complete</div>
+        <div class="working-desc">Logo, legal name, address, phone, website, EIN, and authorized rep are all correct. Time zone and currency accurate.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">👥</div>
+      <div>
+        <div class="working-title">Team Properly Added</div>
+        <div class="working-desc">5 active users: Shane Merchant (CEO), Annette Weaver, Josh Smith, Matt Carney, and Branson Gowens. The team is in place.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">🏗️</div>
+      <div>
+        <div class="working-title">11-Stage Pipeline Architected</div>
+        <div class="working-desc">The Marketing Pipeline stages reflect a real HVAC sales process. The structure is solid — it just needs people and automation to work it.</div>
+      </div>
+    </div>
+    <div class="working-card">
+      <div class="working-icon">💬</div>
+      <div>
+        <div class="working-title">Conversation Snippets Exist</div>
+        <div class="working-desc">3 FAQ-style HVAC text snippets are ready for staff to use when responding to inbound messages. A small but useful resource.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- UNTAPPED OPPORTUNITIES -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">🚀 Untapped Revenue Opportunities</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">Beyond fixing the errors — these are the highest-leverage growth moves available on the current platform.</p>
+
+  <div class="opp-grid">
+
+    <div class="opp-card">
+      <div class="opp-icon">🤖</div>
+      <div class="opp-title">AI Conversation Agent — 24/7 Lead Qualification</div>
+      <div class="opp-desc">Neither Voice AI nor Conversation AI has been configured. A Conversation AI bot on the website and Facebook could qualify leads, answer pricing/availability questions, and book appointments automatically — around the clock. Given 0 appointments in 30 days, this alone could be transformative.</div>
+      <div class="opp-tag">High Impact</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">💳</div>
+      <div class="opp-title">Payments Module — Estimates, Deposits & Invoices</div>
+      <div class="opp-desc">The entire Payments suite (Invoices, Estimates, Contracts, Orders, Payment Links, Products) is completely untouched. Pro Air Tech could be sending estimates directly from opportunities and collecting deposits before dispatching a tech — all inside GHL.</div>
+      <div class="opp-tag">High Impact</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🛡️</div>
+      <div class="opp-title">Comfort Club Maintenance Membership</div>
+      <div class="opp-desc">The Memberships module is empty. An HVAC business is the textbook candidate for a recurring maintenance plan (bi-annual tune-ups, priority scheduling, repair discounts for $X/month). GHL's Memberships + Payments + Automation can deliver the entire product — creating predictable recurring revenue.</div>
+      <div class="opp-tag">High Impact</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">👤</div>
+      <div class="opp-title">Import Past Customer Database</div>
+      <div class="opp-desc">Only 61 contacts exist, nearly all from the recent Facebook ad. A company with 34 Google reviews has hundreds of past customers not in the CRM. Importing, cleaning, and tagging them unlocks a reactivation campaign, maintenance upsell, and seasonal broadcast capability.</div>
+      <div class="opp-tag">High Impact</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🌐</div>
+      <div class="opp-title">Webchat Widget on proairtechllc.com</div>
+      <div class="opp-desc">The Launchpad confirms the webchat widget is not connected to the website. Visitors can't start a chat that flows into GHL — they have to call or fill out a form. A chat widget captures leads who are browsing but not ready to call, funneling them directly into conversations.</div>
+      <div class="opp-tag">Quick Win</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">📅</div>
+      <div class="opp-title">Seasonal SMS & Email Campaigns</div>
+      <div class="opp-desc">No seasonal campaign structure exists. An HVAC company has natural touchpoints: AC tune-up reminders in March/April, heat pump checks in September/October, filter change reminders quarterly. Even a simple broadcast to past clients would generate repeat service calls.</div>
+      <div class="opp-tag">Quick Win</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">⭐</div>
+      <div class="opp-title">Automate Review Requests Post-Job</div>
+      <div class="opp-desc">Reputation is 3 of 6 complete. Reviews AI is unconfigured, no automated review request is set up, and no additional platforms (Yelp, Angi, BBB) are connected. Every completed job should trigger a review request automatically — this is one workflow away from being live.</div>
+      <div class="opp-tag">Quick Win</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🏷️</div>
+      <div class="opp-title">Build a Tag & Segmentation Strategy</div>
+      <div class="opp-desc">Only 4 tags exist with no lifecycle or source strategy. Without proper tagging (new lead, past customer, maintenance member, seasonal prospect, service type), no targeted campaigns or smart lists are possible. Tags are the foundation that everything else builds on.</div>
+      <div class="opp-tag">Foundation</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🔗</div>
+      <div class="opp-title">Referral Program via Affiliate Manager</div>
+      <div class="opp-desc">The Affiliate Manager in Marketing is completely untouched. Word-of-mouth is the primary driver for home services. A simple referral program ("Give $25, Get $25") with tracking links and automated payouts is a natural fit for an HVAC company with a loyal customer base.</div>
+      <div class="opp-tag">Growth</div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ACTION PLAN -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">📋 Prioritized Action Plan</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">14 actions ordered by urgency and revenue impact. Red = do today. Orange = this week. Yellow = this month.</p>
+
+  <div class="action-table">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:48px;">#</th>
+          <th>Action</th>
+          <th style="width:140px;">Owner</th>
+          <th style="width:120px;">Timeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-red"></div>1</div></td>
+          <td>Re-authenticate Google account (proairtechllc@gmail.com) in Settings → Integrations to restore GBP, Analytics, and Ads</td>
+          <td><span class="owner-chip">Shane / Branson</span></td>
+          <td><span class="timeline-chip t-today">Today</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-red"></div>2</div></td>
+          <td>Fill in all 4 Custom Values (Hours of Operation, Booking URL, Website URL, Promotion Name) before any workflow goes live</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-today">Today</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-red"></div>3</div></td>
+          <td>Repair broken triggers in Workflow 1 (invalid form ID + voicemail error), then publish all 5 draft workflows</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-today">Today</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-red"></div>4</div></td>
+          <td>Activate Installation and Maintenance HVAC service calendars; connect all staff calendars to Google Calendar</td>
+          <td><span class="owner-chip">Annette / Branson</span></td>
+          <td><span class="timeline-chip t-today">Today</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-orange"></div>5</div></td>
+          <td>Set up dedicated email sending domain (proairtechllc.com) with SPF, DKIM, and DMARC configured</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-week">This Week</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-orange"></div>6</div></td>
+          <td>Integrate Google Business Profile inside GHL Reputation → GBP Optimization (after Google account is restored)</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-week">This Week</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-orange"></div>7</div></td>
+          <td>Connect Facebook Ad Account ID in Reporting → Facebook Ads; link Google Ads account</td>
+          <td><span class="owner-chip">Shane / Branson</span></td>
+          <td><span class="timeline-chip t-week">This Week</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-orange"></div>8</div></td>
+          <td>Publish Facebook "Click to Call" workflow (created Nov 2025, never published)</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-week">This Week</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-yellow"></div>9</div></td>
+          <td>Fix Business Industry from "Retail" to "Home Services / HVAC Contractor" in Business Profile Settings</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-month">This Month</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-yellow"></div>10</div></td>
+          <td>Import past customer list, clean unnamed contacts, and build a tag strategy (lifecycle, service type, source channel)</td>
+          <td><span class="owner-chip">Annette / Branson</span></td>
+          <td><span class="timeline-chip t-month">This Month</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-yellow"></div>11</div></td>
+          <td>Create and launch first email campaign to existing 61 contacts (reactivation / seasonal tune-up offer)</td>
+          <td><span class="owner-chip">Annette / Branson</span></td>
+          <td><span class="timeline-chip t-month">This Month</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-yellow"></div>12</div></td>
+          <td>Connect Stripe, create first product (Comfort Club maintenance membership), and build estimate-to-deposit workflow</td>
+          <td><span class="owner-chip">Shane / Branson</span></td>
+          <td><span class="timeline-chip t-month">This Month</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-yellow"></div>13</div></td>
+          <td>Configure Conversation AI for website and Facebook — set up lead qualification and booking bot</td>
+          <td><span class="owner-chip">Branson</span></td>
+          <td><span class="timeline-chip t-month">This Month</span></td>
+        </tr>
+        <tr>
+          <td><div class="action-num"><div class="dot dot-yellow"></div>14</div></td>
+          <td>Build a consistent social media posting schedule (min. 3x/week) and create custom reporting dashboards with weekly scheduled reports</td>
+          <td><span class="owner-chip">Annette</span></td>
+          <td><span class="timeline-chip t-month">This Month</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DEEP DIVE -->
+  <div class="section-header" style="margin-bottom:8px;">
+    <div class="tag-section">🔍 Full Platform Deep Dive</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-600);margin-bottom:24px;">Section-by-section findings from the complete account review.</p>
+
+  <div class="deepdive-grid">
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">⚙️ Automation — Workflows</div>
+      <div class="deepdive-body">
+        <p>8 workflows total. 1 published and active ($79 Spring Tuneup). 1 published but 0 enrolled (Long-Term Nurture — starved because Workflow 1 is in Draft). 6 in Draft with 0 enrolled.</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Workflow 1 (Fast 5 Nurture) has 2 broken components: an invalid form trigger and a voicemail error badge — must be repaired before publishing</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>19 contacts are frozen at a Manual Call step in the active workflow — if staff don't call, they receive nothing</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Facebook Click to Call workflow was created Nov 2025 and never published — any Facebook leads from other ads get no automation</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>Phone System workflow folder exists but could not be reviewed — contents unknown</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">📞 Phone System</div>
+      <div class="deepdive-body">
+        <p>One number: +1 678-737-6463 (A2P Verified, Local). The compliance foundation is solid.</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>No forwarding number — missed calls have no failover to a mobile or backup line</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Incoming Call Timeout set to "No Timeout" — callers wait indefinitely instead of going to voicemail</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>No voicemail audio file — callers hear a generic system greeting with no brand identity</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>14.29% SMS opt-out rate (8 sent, 1 failed, 3 received in 30 days) — critically high, jeopardizes A2P status</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>No call scripts, no custom call dispositions — no way to categorize outcomes (Booked / No Answer / Not Interested)</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>Messaging at Level 1 — capped at 100 messages/day</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">🌐 Sites — Website & Funnel</div>
+      <div class="deepdive-body">
+        <p>One website ("HVAC" — 6 pages): Home, About Us, Services, Contact Us, Thank You, Link in Bio. One funnel (HVAC Offer, 3 steps, last updated Oct 2025).</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Thank You page reads "Thank You for Choosing Swift Air!" — wrong business name from template</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>No custom domain connected — site sits on "/hvac" path, may not be publicly accessible</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Zero page views in 30 days across all pages</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>No tracking code installed — no Google Analytics, no Facebook Pixel, no GTM</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Chat Widget set to "None" — no chat capability on the website</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>3 forms built but never customized after initial setup (Oct 2025)</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">👥 Contacts & Tags</div>
+      <div class="deepdive-body">
+        <p>61 total contacts. Most created April–May 2026 from the Spring Tuneup Facebook ad. No historical customer data imported.</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Large portion of contacts have no name — just a phone number showing as "?" avatar</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Only 4 tags: follow-up, high priority, left message, warm lead — no lifecycle or segmentation strategy</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>No smart lists beyond the default "All" — no targeted audiences possible</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>For a company with 34 Google reviews, there should be hundreds of past customers in the CRM</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">🔧 Settings — Data & Configuration</div>
+      <div class="deepdive-body">
+        <p>Business profile is mostly complete. Several configuration gaps remain that will break automations.</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>All 4 Custom Values are blank — workflows referencing them will send broken messages</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Business Industry set to "Retail" — should be Home Services / HVAC</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Branded Domain field empty — no white-label or custom domain configured</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>Every internal user is Account-Admin — no role discipline for future field techs or CSRs</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>State entered as "Ga" (abbreviation) instead of "Georgia" — inconsistent data formatting</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">⭐ Reputation Module</div>
+      <div class="deepdive-body">
+        <p>Strong foundation: 4.88 average / 34 Google reviews. Setup checklist is 3 of 6 complete.</p>
+        <div class="deepdive-flag"><span class="flag-icon">✅</span><span>Google Business Profile connected, Review Link set up, Review Widget created</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>GBP Optimization tab broken — Google account expired blocks all listing management</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Reviews AI not configured — zero automated review responses</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>No review request workflow — first automated ask has never been sent</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>No additional platforms connected (Yelp, Angi, BBB)</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">🔌 Integrations</div>
+      <div class="deepdive-body">
+        <p>Multiple integrations available — most unused or broken.</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Google: Connected but EXPIRED — GBP, Analytics, and Ads all affected</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">✅</span><span>Facebook: Connected to "Pro Air Tech, LLC" — functional for lead ads</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Google Calendar: Not connected for any staff member</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Payment gateways (Stripe, Square): Not connected</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>LinkedIn, TikTok, WhatsApp: All available, all unconnected</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟡</span><span>QuickBooks, Xero, Wave: Available, unconfigured</span></div>
+      </div>
+    </div>
+
+    <div class="deepdive-card">
+      <div class="deepdive-head">📊 Reporting & Payments</div>
+      <div class="deepdive-body">
+        <p>Both modules are effectively non-functional in their current state.</p>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Google Ads: Sample data only — account not linked</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Facebook Ads: Page connected but no Ad Account ID selected — "No records found"</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>Call Report (last week): 2 incoming, 1 answered, 1 missed — 50% answer rate</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🟠</span><span>No custom reports built, no scheduled reports to team or stakeholders</span></div>
+        <div class="deepdive-flag"><span class="flag-icon">🔴</span><span>Payments: Zero invoices, no gateway, no products, no payment links — entire module untouched</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div>
+    <strong>Treetop Growth Strategy</strong> · GHL Account Audit<br>
+    Pro Air Tech, LLC · Hiram, GA · Audit Date: May 15, 2026
+  </div>
+  <div style="text-align:right;">
+    Prepared by MP Group via Treetop Growth Strategy<br>
+    Platform: GoHighLevel (Cerum) · Account ID: JTJJeFDooOwA46Km8nfi
+  </div>
+</footer>
+
+</body>
+</html>
