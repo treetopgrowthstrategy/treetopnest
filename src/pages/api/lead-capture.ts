@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
 
 export const POST: APIRoute = async ({ request }) => {
   let body: Record<string, string>;
@@ -17,14 +16,11 @@ export const POST: APIRoute = async ({ request }) => {
 
   const name = [first_name, last_name].filter(Boolean).join(' ');
 
-  // Send notification email via Resend
+  // Send notification email via Resend REST API (no package needed)
   try {
-    const resend = new Resend(import.meta.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: 'bill@treetopgrowthstrategy.com',
-      to: 'william.colbert@treetopgrowthstrategy.com',
-      subject: `New lead: ${name} — ${source || 'unknown'}`,
-      html: `
+    const apiKey = import.meta.env.RESEND_API_KEY;
+    if (apiKey) {
+      const html = `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff;padding:24px;">
           <h2 style="color:#050D05;margin-bottom:24px;">New Lead from Treetop Website</h2>
           <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
@@ -45,7 +41,7 @@ export const POST: APIRoute = async ({ request }) => {
               <td style="padding:10px 14px;color:#555;border:1px solid #e5e5e5;">${team_size || '—'}</td>
             </tr>
             <tr style="background:#f9f9f9;">
-              <td style="padding:10px 14px;font-weight:600;color:#333;border:1px solid #e5e5e5;">Interested In</td>
+              <td style="padding:10px 14px;font-weight:600;color:#333;border:1px solid #e5e5e5;">What they'd gain</td>
               <td style="padding:10px 14px;color:#555;border:1px solid #e5e5e5;">${gain || '—'}</td>
             </tr>
             <tr>
@@ -53,21 +49,42 @@ export const POST: APIRoute = async ({ request }) => {
               <td style="padding:10px 14px;color:#555;border:1px solid #e5e5e5;">${source || '—'}</td>
             </tr>
           </table>
-          <a href="mailto:${email}?subject=Re: Your inquiry to Treetop Growth Strategy" style="display:inline-block;background:#00C853;color:#050D05;padding:12px 24px;text-decoration:none;font-weight:600;font-size:14px;">Reply to ${first_name} →</a>
+          <a href="mailto:${email}?subject=Re: Your inquiry to Treetop Growth Strategy"
+             style="display:inline-block;background:#00C853;color:#050D05;padding:12px 24px;text-decoration:none;font-weight:600;font-size:14px;">
+            Reply to ${first_name} →
+          </a>
         </div>
-      `,
-    });
+      `;
+
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Treetop Leads <bill@treetopgrowthstrategy.com>',
+          to: ['william.colbert@treetopgrowthstrategy.com'],
+          subject: `New lead: ${name}${company ? ` — ${company}` : ''} (${source || 'website'})`,
+          html,
+        }),
+      });
+    }
   } catch (err) {
     console.error('Resend error:', err);
-    // Don't block on email failure — fall through
+    // Don't block on email failure
   }
 
-  // Try Airtable (non-blocking)
+  // Log to Airtable (non-blocking)
   try {
     const baseId = import.meta.env.AIRTABLE_BASE_ID;
     const apiKey = import.meta.env.AIRTABLE_API_KEY;
     if (baseId && apiKey) {
-      const notes = [team_size && `Team size: ${team_size}`, gain && `Interest: ${gain}`].filter(Boolean).join('\n');
+      const notes = [
+        team_size && `Team size: ${team_size}`,
+        gain && `What they'd gain: ${gain}`,
+      ].filter(Boolean).join('\n');
+
       await fetch(`https://api.airtable.com/v0/${baseId}/Contacts`, {
         method: 'POST',
         headers: {
@@ -81,14 +98,12 @@ export const POST: APIRoute = async ({ request }) => {
             Company: company || '',
             Notes: notes,
             Source: source || '',
-            Tags: source || '',
           },
         }),
       });
     }
   } catch (err) {
     console.error('Airtable error:', err);
-    // Never block on Airtable failure
   }
 
   return new Response(JSON.stringify({ success: true }), { status: 200 });
