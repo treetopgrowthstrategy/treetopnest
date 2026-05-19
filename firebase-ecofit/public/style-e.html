@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecofit — Style E (Verkada)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'Work Sans', sans-serif; background: #fff; color: #0d1117; -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid #e5e7eb;
+    backdrop-filter: blur(8px);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 32px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-logo-mark {
+    width: 28px; height: 28px;
+    background: #84BC41; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-mark svg { width: 16px; height: 16px; fill: #fff; }
+  .nav-logo-text { font-size: 16px; font-weight: 700; color: #0d1117; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: #374151; text-decoration: none; }
+  .nav-links a:hover { color: #0d1117; }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .btn-ghost { font-size: 13.5px; font-weight: 500; color: #374151; text-decoration: none; padding: 7px 14px; }
+  .btn-primary { font-size: 13.5px; font-weight: 600; background: #84BC41; color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 6px; }
+  .btn-primary:hover { background: #75a838; }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1200px; margin: 0 auto;
+    padding: 80px 32px 64px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #84BC41;
+    background: rgba(132,188,65,0.08); border: 1px solid rgba(132,188,65,0.2);
+    padding: 4px 10px; border-radius: 100px; margin-bottom: 20px;
+  }
+  .hero-tag-dot { width: 6px; height: 6px; background: #84BC41; border-radius: 50%; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.03em; color: #0d1117;
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 17px; font-weight: 400; color: #4b5563;
+    line-height: 1.65; margin-bottom: 32px; max-width: 480px;
+  }
+  .hero-ctas { display: flex; align-items: center; gap: 16px; }
+  .btn-hero-primary {
+    font-size: 14px; font-weight: 600;
+    background: #0d1117; color: #fff;
+    padding: 12px 22px; border-radius: 7px;
+    text-decoration: none;
+  }
+  .btn-hero-primary:hover { background: #1f2937; }
+  .btn-hero-secondary {
+    font-size: 14px; font-weight: 500; color: #374151;
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-hero-secondary:hover { color: #0d1117; }
+  .hero-checklist { margin-top: 36px; display: flex; flex-direction: column; gap: 8px; }
+  .hero-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b7280; }
+  .hero-check-icon { width: 16px; height: 16px; background: rgba(132,188,65,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .hero-check-icon::after { content: '✓'; font-size: 9px; color: #84BC41; font-weight: 700; }
+
+  /* ── DASHBOARD MOCKUP ── */
+  .hero-visual {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(15,32,12,0.12), 0 4px 16px rgba(15,32,12,0.08);
+  }
+  .mock-topbar {
+    background: #fff; border-bottom: 1px solid #e5e7eb;
+    padding: 10px 16px; display: flex; align-items: center; gap: 6px;
+  }
+  .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .mock-topbar-title { margin-left: 10px; font-size: 11px; font-weight: 600; color: #6b7280; }
+  .mock-body { display: flex; }
+  .mock-sidebar {
+    width: 130px; background: #fff; border-right: 1px solid #e5e7eb;
+    padding: 12px 0;
+  }
+  .mock-sidebar-logo {
+    padding: 0 12px 12px;
+    font-size: 11px; font-weight: 800; color: #84BC41; letter-spacing: -0.01em;
+    border-bottom: 1px solid #e5e7eb; margin-bottom: 8px;
+  }
+  .mock-nav-item {
+    padding: 6px 12px; font-size: 10.5px; font-weight: 500; color: #6b7280; cursor: pointer;
+  }
+  .mock-nav-item.active { color: #84BC41; background: rgba(132,188,65,0.06); }
+  .mock-content { flex: 1; padding: 16px; }
+  .mock-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 14px; }
+  .mock-stat {
+    background: #fff; border: 1px solid #e5e7eb;
+    border-radius: 6px; padding: 10px;
+  }
+  .mock-stat-val { font-size: 15px; font-weight: 700; color: #0d1117; line-height: 1; }
+  .mock-stat-val.green { color: #84BC41; }
+  .mock-stat-label { font-size: 9px; color: #9ca3af; margin-top: 2px; }
+  .mock-chart-wrap { background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
+  .mock-chart-label { font-size: 9px; font-weight: 600; color: #6b7280; margin-bottom: 8px; }
+  .mock-bars { display: flex; align-items: flex-end; gap: 4px; height: 48px; }
+  .mock-bar { flex: 1; border-radius: 2px 2px 0 0; }
+  .mock-table { background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; }
+  .mock-table-row { display: flex; align-items: center; padding: 6px 10px; border-bottom: 1px solid #f3f4f6; font-size: 9px; gap: 8px; }
+  .mock-table-row:last-child { border-bottom: none; }
+  .mock-table-name { color: #374151; font-weight: 500; flex: 1; }
+  .mock-table-badge { padding: 2px 6px; border-radius: 3px; font-size: 8px; font-weight: 600; }
+  .badge-green { background: rgba(132,188,65,0.12); color: #84BC41; }
+  .badge-yellow { background: rgba(245,158,11,0.12); color: #d97706; }
+  .badge-red { background: rgba(239,68,68,0.1); color: #dc2626; }
+  .mock-table-util { color: #9ca3af; }
+
+  /* ── LOGOS ── */
+  .logos-strip {
+    border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;
+    padding: 22px 32px;
+    background: #fafafa;
+  }
+  .logos-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .logos-label { font-size: 11px; font-weight: 500; color: #9ca3af; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .logos-list { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+  .logo-item { font-size: 13px; font-weight: 700; color: #d1d5db; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* ── PROBLEM SECTION ── */
+  .section { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+  .section-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #84BC41; margin-bottom: 14px;
+  }
+  .section-h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.2; color: #0d1117;
+    margin-bottom: 14px; max-width: 640px;
+  }
+  .section-sub { font-size: 16px; color: #6b7280; line-height: 1.65; max-width: 560px; margin-bottom: 48px; }
+
+  .pain-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+  .pain-card { background: #fff; padding: 28px 24px; }
+  .pain-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(132,188,65,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .pain-icon svg { width: 18px; height: 18px; stroke: #84BC41; fill: none; stroke-width: 1.8; }
+  .pain-title { font-size: 14px; font-weight: 700; color: #0d1117; margin-bottom: 8px; line-height: 1.3; }
+  .pain-desc { font-size: 13px; color: #6b7280; line-height: 1.6; }
+
+  /* ── FEATURES (alternating) ── */
+  .features-section { padding: 0 32px 80px; }
+  .features-inner { max-width: 1200px; margin: 0 auto; }
+
+  .feature-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    padding: 72px 0; border-top: 1px solid #e5e7eb;
+  }
+  .feature-row.reverse { direction: rtl; }
+  .feature-row.reverse > * { direction: ltr; }
+
+  .feature-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #84BC41; margin-bottom: 14px; }
+  .feature-h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 14px; }
+  .feature-desc { font-size: 15px; color: #6b7280; line-height: 1.7; margin-bottom: 24px; }
+  .feature-link { font-size: 13.5px; font-weight: 600; color: #0d1117; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .feature-link:hover { color: #84BC41; }
+  .feature-link::after { content: '→'; }
+
+  .feature-visual {
+    background: #f8fafc; border: 1px solid #e5e7eb;
+    border-radius: 10px; padding: 24px;
+    box-shadow: 0 4px 24px rgba(15,32,12,0.08);
+  }
+  .fv-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 14px; }
+  .fv-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+  .fv-row:last-child { border-bottom: none; }
+  .fv-name { font-size: 12px; font-weight: 500; color: #374151; }
+  .fv-bar-wrap { flex: 1; margin: 0 12px; height: 6px; background: #f3f4f6; border-radius: 3px; overflow: hidden; }
+  .fv-bar { height: 100%; border-radius: 3px; background: #84BC41; }
+  .fv-val { font-size: 12px; font-weight: 600; color: #0d1117; min-width: 36px; text-align: right; }
+
+  .fv-heatmap { display: grid; grid-template-columns: repeat(8,1fr); gap: 3px; }
+  .fv-cell { height: 28px; border-radius: 3px; }
+
+  .fv-maint-list { display: flex; flex-direction: column; gap: 8px; }
+  .fv-maint-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; }
+  .fv-maint-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .fv-maint-text { font-size: 12px; color: #374151; flex: 1; }
+  .fv-maint-date { font-size: 10px; color: #9ca3af; }
+
+  /* ── STATS ── */
+  .stats-section {
+    background: #0d1117; padding: 80px 32px;
+  }
+  .stats-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+  .stats-h2 { font-size: clamp(1.6rem,2.5vw,2rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .stats-sub { font-size: 15px; color: #6b7280; margin-bottom: 56px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: #1f2937; border: 1px solid #1f2937; border-radius: 10px; overflow: hidden; }
+  .stat-item { background: #111827; padding: 48px 32px; }
+  .stat-num { font-size: 3.6rem; font-weight: 800; color: #84BC41; letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; }
+  .stat-label { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+  /* ── CTA ── */
+  .cta-section { padding: 100px 32px; }
+  .cta-inner {
+    max-width: 1200px; margin: 0 auto;
+    background: #f8fafc; border: 1px solid #e5e7eb;
+    border-radius: 16px; padding: 72px;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px;
+  }
+  .cta-h2 { font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 12px; }
+  .cta-sub { font-size: 15px; color: #6b7280; line-height: 1.65; max-width: 520px; }
+  .cta-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; white-space: nowrap; }
+  .btn-cta-primary { font-size: 14px; font-weight: 600; background: #0d1117; color: #fff; padding: 13px 26px; border-radius: 8px; text-decoration: none; }
+  .btn-cta-secondary { font-size: 13.5px; color: #6b7280; text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid #e5e7eb; padding: 48px 32px; background: #fff; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-size: 14px; font-weight: 700; color: #0d1117; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: #9ca3af; text-decoration: none; }
+  .footer-links a:hover { color: #0d1117; }
+  .footer-copy { font-size: 12px; color: #d1d5db; }
+/* ── SCROLL REVEALS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s cubic-bezier(0.16,1,0.3,1),transform 0.65s cubic-bezier(0.16,1,0.3,1)}
+.reveal.in{opacity:1;transform:none}
+/* ── GRADIENT TEXT ── */
+@keyframes grad-flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.grad-text{background:linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:grad-flow 5s ease infinite}
+/* ── ANIMATED GRADIENT BORDER ── */
+@keyframes border-spin{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.glow-border{padding:1.5px;background:linear-gradient(135deg,rgba(132,188,65,0.85),rgba(132,188,65,0.08),rgba(132,188,65,0.7),rgba(132,188,65,0.08),rgba(132,188,65,0.85));background-size:400% 400%;animation:border-spin 6s ease infinite;border-radius:13px}
+/* ── MAGNETIC BUTTON ── */
+.btn-magnetic{transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)!important}
+.partners-section{padding:32px 0;border-top:1px solid rgba(128,128,128,0.1);border-bottom:1px solid rgba(128,128,128,0.1);overflow:hidden;position:relative;background:#f5f6f7}
+.partners-label{text-align:center;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#84BC41;margin:0 0 24px}
+.partners-track-wrap{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%)}
+.partners-track{display:flex;align-items:center;gap:40px;width:max-content;animation:logo-scroll 30s linear infinite}
+.partners-track:hover{animation-play-state:paused}
+@keyframes logo-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.partner-logo{height:44px;width:auto;object-fit:contain;flex-shrink:0;filter:grayscale(1);opacity:0.55}
+#exit-overlay{display:none;position:fixed;inset:0;background:rgba(5,12,8,0.85);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:24px}
+#exit-card{background:#0d1117;border:1px solid rgba(132,188,65,0.25);border-radius:20px;max-width:520px;width:100%;padding:48px 44px;position:relative;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,0.6)}
+#exit-card .exit-icon{font-size:36px;margin-bottom:20px}
+#exit-card h3{font-size:26px;font-weight:700;color:#f2f3f8;margin:0 0 14px;line-height:1.2}
+#exit-card p{color:#9699A2;font-size:15px;line-height:1.65;margin:0 0 32px}
+#exit-card .exit-cta{display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:15px 32px;border-radius:10px;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s}
+#exit-card .exit-cta:hover{background:#9bd151}
+#exit-card .exit-skip{display:block;margin-top:16px;font-size:13px;color:#6b6f7a;cursor:pointer;background:none;border:none;text-decoration:underline;text-underline-offset:3px}
+#exit-close{position:absolute;top:14px;right:18px;background:none;border:none;color:#9699A2;font-size:24px;cursor:pointer;line-height:1;padding:4px}
+</style>
+<style>h1,h2,h3,h4,h5,h6{font-family:"Raleway",sans-serif !important;letter-spacing:-0.02em}</style><style>
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(88,188,197,0.7)}70%{box-shadow:0 0 0 12px rgba(88,188,197,0)}100%{box-shadow:0 0 0 0 rgba(88,188,197,0)}}
+@keyframes rise{from{transform:scaleY(0);opacity:0.4}to{transform:scaleY(1);opacity:1}}
+@keyframes fade-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes donut-fill{from{stroke-dashoffset:100}to{stroke-dashoffset:24}}
+.feature-visual svg circle[stroke="#84BC41"]{animation:donut-fill 1.8s cubic-bezier(0.22,1,0.36,1) .3s both}
+.feature-visual [style*="background:#84BC41"]{transform-origin:left center;animation:rise 1.4s cubic-bezier(0.22,1,0.36,1) both;animation-delay:.2s}
+</style></head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/assets/ecofit-logo-light.png" alt="Ecofit" style="height:32px;width:auto">
+    </div>
+    <div class="nav-links">
+      <a href="#">Platform</a>
+      <a href="#">Analytics</a>
+      <a href="#">Enterprise</a>
+      <a href="#">Integrations</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://assets.myecofit.com/" class="btn-ghost" target="_blank">Log in</a>
+      <a href="/ecofit-assessment" class="btn-primary">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Equipment Intelligence Platform</div>
+    <h1>The best operators don't react. <span class="grad-text">They already know.</span></h1>
+    <p>Your members expect every machine to work. Your board expects every dollar to be justified. Your team expects to know before something breaks. Ecofit makes all three possible — in real time, across every location.</p>
+    <div class="hero-ctas">
+      <a href="/ecofit-assessment" class="btn-hero-primary">Find Your OpEx Waste →</a>
+      <a href="#" class="btn-hero-secondary">See how it works</a>
+    </div>
+    <div class="hero-checklist">
+      <div class="hero-check"><span class="hero-check-icon"></span>No IT team required — connects in days</div>
+      <div class="hero-check"><span class="hero-check-icon"></span>Works with your existing equipment brands</div>
+      <div class="hero-check"><span class="hero-check-icon"></span>Enterprise-grade across 1 or 500 locations</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;justify-content:flex-end;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#58BCC5"><span style="width:8px;height:8px;border-radius:50%;background:#58BCC5;box-shadow:0 0 0 0 rgba(88,188,197,0.6);animation:livepulse 2s infinite"></span>Live · 247 facilities</div><div class="glow-border"><div class="hero-visual" style="padding:0;overflow:hidden"><div style="display:flex;align-items:center;gap:12px;padding:12px 18px;background:linear-gradient(90deg,rgba(132,188,65,0.08),rgba(132,188,65,0.02));border-bottom:1px solid rgba(132,188,65,0.18)">
+<div style="width:24px;height:24px;border-radius:6px;background:rgba(132,188,65,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+<svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:#6aa130;fill:none;stroke-width:2.2"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.732 0 2.814-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"></path></svg>
+</div>
+<div style="flex:1;display:flex;align-items:baseline;gap:10px;font-size:12px"><span style="font-weight:700;color:#6aa130;letter-spacing:0.04em;text-transform:uppercase;font-size:10px">Live Signal</span><span style="color:#0d1117;font-weight:500">Treadmill #14 · bearing wear detected</span><span style="color:#9ca3af;font-size:11px;margin-left:auto">2 min ago</span></div>
+</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid #e5e7eb;">
+<div style="padding:16px 18px;border-right:1px solid #e5e7eb;"><div style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;">Floor Saturation</div><div data-cycle="0" style="font-size:24px;font-weight:800;color:#0d1117;letter-spacing:-0.03em;">76%</div><div style="font-size:10px;color:#84BC41;font-weight:600;margin-top:2px;">↑ 12% vs last month</div></div>
+<div style="padding:16px 18px;border-right:1px solid #e5e7eb;"><div style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;">Avg Daily Usage</div><div data-cycle="1" style="font-size:24px;font-weight:800;color:#0d1117;letter-spacing:-0.03em;">4.7<span style="font-size:14px;font-weight:600;color:#6b7280;">h</span></div><div style="font-size:10px;color:#84BC41;font-weight:600;margin-top:2px;">↑ 8% trending up</div></div>
+<div style="padding:16px 18px;border-right:1px solid #e5e7eb;"><div style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;">Uptime</div><div data-cycle="2" style="font-size:24px;font-weight:800;color:#84BC41;letter-spacing:-0.03em;">98.2%</div><div style="font-size:10px;color:#6b7280;font-weight:500;margin-top:2px;">across 200+ assets</div></div>
+<div style="padding:16px 18px;"><div style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;">Maintenance Alerts</div><div data-cycle="3" style="font-size:24px;font-weight:800;color:#0d1117;letter-spacing:-0.03em;">3</div><div style="font-size:10px;color:#f59e0b;font-weight:600;margin-top:2px;">⚠ 1 critical pending</div></div>
+</div>
+  <div style="padding:18px;">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;"><div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;">Equipment Saturation by Hour</div><div style="display:flex;gap:10px;"><span style="font-size:9px;color:#9ca3af;display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:#dcfce7;"></span>Low</span><span style="font-size:9px;color:#9ca3af;display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:#84BC41;"></span>Med</span><span style="font-size:9px;color:#9ca3af;display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:#3d6b12;"></span>High</span></div></div>
+<div style="display:grid;grid-template-columns:56px repeat(14,1fr);gap:2px;font-size:8px;">
+<div style="color:#9ca3af;font-weight:600;padding:2px 0;">Treadmill</div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#3d6b12;"></div><div style="height:16px;border-radius:2px;background:#3d6b12;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="color:#9ca3af;font-weight:600;padding:2px 0;">Elliptical</div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#3d6b12;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="color:#9ca3af;font-weight:600;padding:2px 0;">Bike</div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="color:#9ca3af;font-weight:600;padding:2px 0;">Rower</div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="color:#9ca3af;font-weight:600;padding:2px 0;">Stair</div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#3d6b12;"></div><div style="height:16px;border-radius:2px;background:#3d6b12;"></div><div style="height:16px;border-radius:2px;background:#6aa130;"></div><div style="height:16px;border-radius:2px;background:#84BC41;"></div><div style="height:16px;border-radius:2px;background:#86efac;"></div><div style="height:16px;border-radius:2px;background:#bbf7d0;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div><div style="height:16px;border-radius:2px;background:#dcfce7;"></div></div>
+<div style="display:grid;grid-template-columns:56px repeat(14,1fr);gap:2px;margin-top:4px;"><div></div><div style="font-size:7px;color:#9ca3af;text-align:center;">5a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">6a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">7a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">8a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">9a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">10a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">11a</div><div style="font-size:7px;color:#9ca3af;text-align:center;">12p</div><div style="font-size:7px;color:#9ca3af;text-align:center;">1p</div><div style="font-size:7px;color:#9ca3af;text-align:center;">2p</div><div style="font-size:7px;color:#9ca3af;text-align:center;">3p</div><div style="font-size:7px;color:#9ca3af;text-align:center;">4p</div><div style="font-size:7px;color:#9ca3af;text-align:center;">5p</div><div style="font-size:7px;color:#9ca3af;text-align:center;">6p</div></div></div>
+</div></div></div>
+</div>
+
+<!-- PARTNER LOGO MARQUEE -->
+<section class="partners-section">
+  <p class="partners-label">Compatible with the industry's leading equipment</p>
+  <div class="partners-track-wrap">
+    <div class="partners-track">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health & Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_19e4aa18789743fd97d3c3a9a487ffc5~mv2.png" alt="Octane Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_07583b2c33c64f8c89d2cbf880cdbec8~mv2.png" alt="True Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_6e66cec277e24ecaa7d37a770cf0595f~mv2.png" alt="Startrac">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_26995b44909442b1a7de9fdf16e9eaee~mv2.png" alt="StairMaster">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_aed99bff931342b79f297d7416de2e26~mv2.png" alt="Concept2">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_286543a7b2304b9eb65bad32e7d4339f~mv2.png" alt="Legacy Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_cea95da1f1ea4899a590919d023b6471~mv2.png" alt="Heartline Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_5be521852e88478294edd28f1f000d53~mv2.png" alt="Total Fitness">
+      <img class="partner-logo" src="https://static.wixstatic.com/media/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_77a69b3b5bc24930b0c17c5b31120f10~mv2.png" alt="Midwest Commercial">
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span class="logos-label">Trusted by leading operators</span>
+    <div style="display:flex;align-items:center;gap:40px">
+<img src="https://static.wixstatic.com/media/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_198e19fca68f44f2a7b0187510669dfa~mv2.png" alt="Matrix Fitness" style="height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.5">
+<img src="https://static.wixstatic.com/media/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1d87f9a0e37b4947838b39b8453c87f0~mv2.png" alt="Woodway" style="height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.5">
+<img src="https://static.wixstatic.com/media/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_549f25eb0e714cb69e65099f8f3e0c31~mv2.png" alt="Life Fitness" style="height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.5">
+<img src="https://static.wixstatic.com/media/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_d3f0e725e4554723a7dbfac4d7966dbb~mv2.png" alt="Precor" style="height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.5">
+<img src="https://static.wixstatic.com/media/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png/v1/fill/w_279,h_182,al_c,lg_1,q_85,enc_avif,quality_auto/2c3d82_1b94f7f27c7c470ebddf9ae125a18ead~mv2.png" alt="CORE Health" style="height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:0.5">
+</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="section">
+  <div class="section-tag">The Industry Shift</div>
+  <h2 class="section-h2">Most fitness operators are running million-dollar operations in the dark.</h2>
+  <p class="section-sub">Without real-time equipment intelligence, three compounding costs are quietly draining your OpEx — and your credibility.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="pain-title">Reactive by Default</div>
+      <div class="pain-desc">Equipment breaks before your team knows it's coming. Your members notice first. Every unplanned repair costs 3–5x more than a scheduled one, and the damage to member experience is already done by the time you file the ticket.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <div class="pain-title">Decisions Without Data</div>
+      <div class="pain-desc">Purchasing driven by vendor relationships, not usage. Floor layouts built on instinct. Capex cycles defended with stories instead of numbers. When your board asks why you bought 30 treadmills, you should have a better answer than "it felt right."</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="pain-title">A Network You Can't See</div>
+      <div class="pain-desc">Which of your machines are overworked right now? Which locations are quietly underperforming? Which floor zones are creating wait times that drive cancellations? Without visibility, you can't manage what you can't measure.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="pain-title">The Maintenance Premium</div>
+      <div class="pain-desc">Reactive repairs cost 3–5x more than planned maintenance for the same work. Without predictive signals, your team isn't running a schedule — they're running a crisis queue. That premium compounds across every location, every year.</div>
+    </div>
+  </div>
+</div>
+
+<!-- EDITORIAL BREAKOUT -->
+<section style="padding:120px 32px;background:#f8fafc;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle at 50% 50%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none"></div>
+<div style="max-width:1100px;margin:0 auto;text-align:center;position:relative">
+<div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6aa130"><span style="width:8px;height:8px;border-radius:50%;background:#58BCC5;box-shadow:0 0 0 0 rgba(88,188,197,0.7);animation:livepulse 2s infinite"></span>Caught last quarter alone</div>
+<div style="font-family:'Raleway',sans-serif;font-weight:800;font-size:clamp(4rem,12vw,9rem);line-height:0.92;letter-spacing:-0.06em;color:#84BC41;margin-bottom:24px">$4.2M</div>
+<div style="font-family:'Raleway',sans-serif;font-weight:800;font-size:clamp(1.6rem,2.8vw,2.4rem);line-height:1.15;letter-spacing:-0.025em;color:#0d1117;max-width:780px;margin:0 auto 18px">In unplanned repair spend caught before it hit the books.</div>
+<p style="font-size:16px;color:#6b7280;line-height:1.6;max-width:560px;margin:0 auto;font-weight:300">Across operators on Ecofit's predictive program in Q1 2026. The compounding cost of operating reactively, finally visible.</p>
+</div>
+</section>
+<!-- FEATURES -->
+<div class="features-section">
+  <div class="features-inner">
+
+    <div class="feature-row">
+      <div>
+        <div class="feature-eyebrow">See Everything, Live</div>
+        <h3 class="feature-h3">Every asset. Every location. Right now.</h3>
+        <p class="feature-desc">Utilization, uptime, wear patterns, session data — live across every machine in your network from day one. No manual audits. No guessing. The visibility your operation has been missing.</p>
+        <a href="/ecofit-assessment" class="feature-link">See your facility's risk profile</a>
+      </div>
+      <div class="feature-visual" style="padding:0;overflow:hidden">
+  <div style="padding:24px;">
+<div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin-bottom:18px;">Equipment Mix & Saturation</div>
+<div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;align-items:center;gap:12px;"><div style="width:72px;font-size:12px;font-weight:500;color:#374151;">Treadmill</div><div style="flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;"><div style="width:82%;height:100%;background:#84BC41;border-radius:4px;"></div></div><div style="width:36px;font-size:12px;font-weight:700;color:#0d1117;text-align:right;">82%</div></div><div style="display:flex;align-items:center;gap:12px;"><div style="width:72px;font-size:12px;font-weight:500;color:#374151;">Elliptical</div><div style="flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;"><div style="width:68%;height:100%;background:#84BC41;border-radius:4px;"></div></div><div style="width:36px;font-size:12px;font-weight:700;color:#0d1117;text-align:right;">68%</div></div><div style="display:flex;align-items:center;gap:12px;"><div style="width:72px;font-size:12px;font-weight:500;color:#374151;">Bike</div><div style="flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;"><div style="width:71%;height:100%;background:#84BC41;border-radius:4px;"></div></div><div style="width:36px;font-size:12px;font-weight:700;color:#0d1117;text-align:right;">71%</div></div><div style="display:flex;align-items:center;gap:12px;"><div style="width:72px;font-size:12px;font-weight:500;color:#374151;">Rower</div><div style="flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;"><div style="width:45%;height:100%;background:#f59e0b;border-radius:4px;"></div></div><div style="width:36px;font-size:12px;font-weight:700;color:#0d1117;text-align:right;">45%</div></div><div style="display:flex;align-items:center;gap:12px;"><div style="width:72px;font-size:12px;font-weight:500;color:#374151;">StairMaster</div><div style="flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;"><div style="width:91%;height:100%;background:#ef4444;border-radius:4px;"></div></div><div style="width:36px;font-size:12px;font-weight:700;color:#0d1117;text-align:right;">91%</div></div><div style="display:flex;align-items:center;gap:12px;"><div style="width:72px;font-size:12px;font-weight:500;color:#374151;">Cable</div><div style="flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;"><div style="width:58%;height:100%;background:#84BC41;border-radius:4px;"></div></div><div style="width:36px;font-size:12px;font-weight:700;color:#0d1117;text-align:right;">58%</div></div></div></div>
+</div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div>
+        <div class="feature-eyebrow">A Schedule, Not a Crisis Queue</div>
+        <h3 class="feature-h3">Know what's going to break before it does.</h3>
+        <p class="feature-desc">Ecofit surfaces degradation signals before equipment fails. Your maintenance team stops reacting and starts planning. Operators on Ecofit's predictive program consistently see a 30–40% reduction in unplanned service spend within the first year.</p>
+        <a href="/ecofit-assessment" class="feature-link">See your maintenance risk</a>
+      </div>
+      <div class="feature-visual" style="padding:0;overflow:hidden">
+  <div style="padding:24px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center">
+<div><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:8px">Before Ecofit</div><div style="font-size:36px;font-weight:800;color:#9ca3af;text-decoration:line-through;letter-spacing:-0.03em">8 min</div><div style="font-size:12px;color:#6b7280;margin-top:4px">Peak wait time</div></div>
+<div style="font-size:28px;color:#84BC41;font-weight:700">→</div>
+<div><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#84BC41;margin-bottom:8px">After Ecofit</div><div style="font-size:36px;font-weight:800;color:#84BC41;letter-spacing:-0.03em">2 min</div><div style="font-size:12px;color:#6b7280;margin-top:4px">Peak wait time</div></div>
+</div>
+</div>
+    </div>
+
+    <div class="feature-row">
+      <div>
+        <div class="feature-eyebrow">Own Every Room</div>
+        <h3 class="feature-h3">Walk into every board meeting knowing what nobody else does.</h3>
+        <p class="feature-desc">Cross-location benchmarking surfaces exactly where the outliers are — which locations are outperforming the network and why, and which are quietly dragging. Your ops team stops operating on quarterly surveys and starts operating on live intelligence.</p>
+        <a href="/ecofit-assessment" class="feature-link">Find your network's gaps</a>
+      </div>
+      <div class="feature-visual" style="padding:0;overflow:hidden">
+  <div style="padding:24px;background:#fff;border:1px solid #e5e7eb;border-radius:10px">
+<div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin-bottom:14px">Facility Floor Heatmap</div>
+<div style="display:grid;grid-template-columns:repeat(20,1fr);gap:3px"><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#dcfce7"></div><div style="aspect-ratio:1;border-radius:2px;background:#bbf7d0"></div><div style="aspect-ratio:1;border-radius:2px;background:#86efac"></div><div style="aspect-ratio:1;border-radius:2px;background:#84BC41"></div><div style="aspect-ratio:1;border-radius:2px;background:#6aa130"></div><div style="aspect-ratio:1;border-radius:2px;background:#3d6b12"></div></div></div>
+</div>
+    </div>
+
+  </div>
+</div>
+
+<section style="padding:0 32px 80px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="padding:18px;background:#fff;border:1px solid #e5e7eb;border-radius:10px"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px">Floor Saturation</div><div style="font-size:28px;font-weight:800;color:#0d1117;letter-spacing:-0.03em;line-height:1">76%</div><div style="font-size:11px;color:#6b7280;margin-top:4px">Live</div></div>
+      <div style="padding:18px;background:#fff;border:1px solid #e5e7eb;border-radius:10px"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px">Avg Daily Usage</div><div style="font-size:28px;font-weight:800;color:#0d1117;letter-spacing:-0.03em;line-height:1">4.7h</div><div style="font-size:11px;color:#6b7280;margin-top:4px">per piece, per day</div></div>
+      <div style="padding:18px;background:#fff;border:1px solid #e5e7eb;border-radius:10px"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px">Fleet Networked</div><div style="font-size:28px;font-weight:800;color:#84BC41;letter-spacing:-0.03em;line-height:1">200+</div><div style="font-size:11px;color:#6b7280;margin-top:4px">assets per facility</div></div>
+      <div style="padding:18px;background:#fff;border:1px solid #e5e7eb;border-radius:10px"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px">YoY Utilization</div><div style="font-size:28px;font-weight:800;color:#84BC41;letter-spacing:-0.03em;line-height:1">+38%</div><div style="font-size:11px;color:#6b7280;margin-top:4px">vs same period last year</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <h2 class="stats-h2">Results from operators who've made the move</h2>
+    <p class="stats-sub">Across multi-location gym chains and single-site operators who've deployed Ecofit in the last 24 months.</p>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Average reduction in equipment refresh costs within 12 months of deployment</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3.2x</div>
+        <div class="stat-label">Longer equipment lifespan for assets on Ecofit's predictive maintenance schedule</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Assets networked per facility on average across the Ecofit operator network</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-h2">Find out how much OpEx your network is leaving on the table.</h2>
+      <p class="cta-sub">The Ecofit Assessment takes 3 minutes. You'll get a personalized facility report with your estimated annual OpEx at risk — and exactly what to do about it.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/ecofit-assessment" class="btn-cta-primary">Take the Assessment →</a>
+      <a href="#" class="btn-cta-secondary" onclick="openDemo();return false;">Or book a demo</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">ecofit</span>
+    <div class="footer-links">
+      <a href="#">Platform</a>
+      <a href="#">Analytics</a>
+      <a href="#">Enterprise</a>
+      <a href="#">Privacy</a>
+    </div>
+    <span class="footer-copy">© 2026 Ecofit Networks Inc.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var isMobile=window.innerWidth<768;
+
+  // ── SCROLL REVEALS ──
+  if(!reduced){
+    var revEls=document.querySelectorAll('section,.card,.pain-card,.bento-card,.proof-card,.step,.feature-row,.stat-item,.stats-col');
+    var revObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});
+    },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+    revEls.forEach(function(el){el.classList.add('reveal');revObs.observe(el);});
+  }
+
+  // ── STAT COUNTERS ──
+  if(!reduced){
+    var statEls=Array.from(document.querySelectorAll('.stat-num,.stats-num'));
+    document.querySelectorAll('div').forEach(function(el){
+      if((el.style.fontSize==='72px'||el.style.fontSize===''&&el.getAttribute('style')&&el.getAttribute('style').indexOf('font-size:72px')>-1)&&/^\s*[\d.]+[%x+]\s*$/.test(el.textContent)){statEls.push(el);}
+    });
+    // broader net for inline font-size:72px
+    document.querySelectorAll('[style*="font-size:72px"],[style*="font-size: 72px"]').forEach(function(el){
+      if(/^\s*[\d.]+[%x+k]\s*$/.test(el.textContent)&&statEls.indexOf(el)===-1)statEls.push(el);
+    });
+    var statObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting)return;
+        var el=e.target;
+        var raw=el.textContent.trim();
+        var m=raw.match(/^([\$]?)([\d.]+)([%x+kKmM]*)$/);
+        if(!m)return;
+        var pre=m[1],num=parseFloat(m[2]),suf=m[3];
+        var isFloat=raw.indexOf('.')>-1;
+        var dur=1800,t0=performance.now();
+        (function tick(now){
+          var p=Math.min((now-t0)/dur,1);
+          var ease=1-Math.pow(1-p,3);
+          el.textContent=pre+(isFloat?(num*ease).toFixed(1):Math.round(num*ease))+suf;
+          if(p<1)requestAnimationFrame(tick);
+        })(t0);
+        statObs.unobserve(el);
+      });
+    },{threshold:0.5});
+    statEls.forEach(function(el){statObs.observe(el);});
+  }
+
+  // ── MAGNETIC BUTTONS ──
+  if(!reduced&&!isMobile){
+    var btns=document.querySelectorAll('.btn,.btn-primary,.btn-hero-primary,.btn-hero-fill,.btn-cta-fill,.nav-cta,.btn-cta-primary,.btn-hero,.btn-green');
+    btns.forEach(function(btn){
+      btn.classList.add('btn-magnetic');
+      btn.addEventListener('mousemove',function(e){
+        var r=btn.getBoundingClientRect();
+        var x=(e.clientX-r.left-r.width/2)*0.16;
+        var y=(e.clientY-r.top-r.height/2)*0.16;
+        btn.style.transform='translate('+x+'px,'+y+'px)';
+      },{passive:true});
+      btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+    });
+  }
+})();
+</script>
+<script>
+(function(){
+  if(window.innerWidth<768)return;
+  var reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduced)return;
+  var heroEl=document.querySelector('.hero');
+  if(!heroEl)return;
+  var canvas=document.createElement('canvas');
+  canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0';
+  heroEl.style.position='relative';
+  heroEl.style.overflow='hidden';
+  heroEl.insertBefore(canvas,heroEl.firstChild);
+  var ctx=canvas.getContext('2d');
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var w=0,h=0,dots=[],mx=-9999,my=-9999;
+  var SPACING=28,RADIUS=160,PUSH=12,MAX_SCALE=3,EASE=0.13;
+  function resize(){
+    var r=heroEl.getBoundingClientRect();
+    w=r.width;h=r.height;
+    canvas.width=w*dpr;canvas.height=h*dpr;
+    canvas.style.width=w+'px';canvas.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    dots=[];
+    for(var x=SPACING/2;x<w;x+=SPACING)for(var y=SPACING/2;y<h;y+=SPACING)dots.push({ox:x,oy:y,x:x,y:y,r:1,tr:1});
+  }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<dots.length;i++){
+      var d=dots[i];
+      var dx=d.ox-mx,dy=d.oy-my,dist=Math.sqrt(dx*dx+dy*dy);
+      var tx=d.ox,ty=d.oy,tr=1;
+      if(dist<RADIUS){var prox=1-dist/RADIUS,ang=Math.atan2(dy,dx);tx=d.ox+Math.cos(ang)*prox*PUSH;ty=d.oy+Math.sin(ang)*prox*PUSH;tr=1+prox*(MAX_SCALE-1);}
+      d.x+=(tx-d.x)*EASE;d.y+=(ty-d.y)*EASE;d.r+=(tr-d.r)*EASE;
+      var prx=Math.min(1,(d.r-1)/(MAX_SCALE-1));
+      ctx.fillStyle='rgba(13,17,23,'+(0.05+prx*0.18)+')';
+      ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  resize();window.addEventListener('resize',resize,{passive:true});
+  window.addEventListener('mousemove',function(e){var r=heroEl.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;},{passive:true});
+  heroEl.addEventListener('mouseleave',function(){mx=-9999;my=-9999;});
+  tick();
+})();
+</script>
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" style="display:none;align-items:center;justify-content:center;">
+  <div id="exit-card">
+    <button id="exit-close" onclick="closeExit()">×</button>
+    <div class="exit-icon">📊</div>
+    <h3>Before you go — find out what your facility is actually worth.</h3>
+    <p>Most operators don't know how much they're losing to equipment inefficiency. Our free 2-minute assessment gives you a personalized OpEx risk report — delivered to your inbox instantly.</p>
+    <a href="/ecofit-assessment" class="exit-cta">Take the Free Assessment →</a>
+    <button class="exit-skip" onclick="closeExit()">No thanks, I'll pass on the free report</button>
+  </div>
+</div>
+<!-- DEMO REQUEST MODAL -->
+<div id="demo-overlay" style="display:none;position:fixed;inset:0;background:rgba(5,12,8,0.82);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div id="demo-card" style="background:#0d1117;border:1px solid rgba(132,188,65,0.2);border-radius:16px;max-width:480px;width:100%;padding:40px;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
+    <button onclick="closeDemo()" style="position:absolute;top:16px;right:18px;background:none;border:none;color:#9699A2;font-size:22px;cursor:pointer;line-height:1;">×</button>
+    <div id="demo-form-wrap">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#84BC41;margin-bottom:12px;">Book a Demo</div>
+      <h2 style="font-size:24px;font-weight:700;color:#f2f3f8;margin:0 0 8px;line-height:1.2;">See Ecofit in action.</h2>
+      <p style="color:#9699A2;font-size:14px;margin:0 0 28px;line-height:1.6;">Tell us a bit about your operation and we'll set up a personalized walkthrough.</p>
+      <form id="demo-form" onsubmit="submitDemo(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div>
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">First Name *</label>
+            <input id="d-name" type="text" required placeholder="Jordan" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(132,188,65,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Company *</label>
+            <input id="d-company" type="text" required placeholder="Apex Fitness" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(132,188,65,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Work Email *</label>
+          <input id="d-email" type="email" required placeholder="jordan@apexfitness.com" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(132,188,65,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9699A2;display:block;margin-bottom:6px;">Number of Locations</label>
+          <select id="d-locations" style="width:100%;background:#1a2130;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#f2f3f8;font-size:14px;outline:none;box-sizing:border-box;appearance:none;cursor:pointer;">
+            <option value="1">1 location</option>
+            <option value="2-5">2–5 locations</option>
+            <option value="6-15" selected>6–15 locations</option>
+            <option value="16-50">16–50 locations</option>
+            <option value="51-100">51–100 locations</option>
+            <option value="100+">100+ locations</option>
+          </select>
+        </div>
+        <button type="submit" id="demo-submit-btn" style="width:100%;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;letter-spacing:0.02em;transition:background 0.2s,transform 0.15s;">Book My Demo →</button>
+        <p style="font-size:11px;color:#6b6f7a;text-align:center;margin:12px 0 0;">We'll reach out within one business day. No spam, ever.</p>
+      </form>
+    </div>
+    <div id="demo-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:40px;margin-bottom:16px;">✅</div>
+      <h3 style="color:#f2f3f8;font-size:22px;margin:0 0 10px;">You're on the calendar.</h3>
+      <p style="color:#9699A2;font-size:15px;margin:0 0 28px;line-height:1.6;">Check your inbox — we've sent a confirmation. Or grab a time directly:</p>
+      <a id="demo-booking-link" href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" target="_blank" style="display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:14px;padding:13px 28px;border-radius:8px;text-decoration:none;">Pick a Time on the Calendar →</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var overlay=document.getElementById('demo-overlay');
+  function openDemo(){overlay.style.display='flex';}
+  function closeDemo(){overlay.style.display='none';}
+  window.openDemo=openDemo;
+  window.closeDemo=closeDemo;
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeDemo();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDemo();});
+  // Wire all "Book a Demo" / "Talk to a Partner" buttons that link to #
+  document.querySelectorAll('a[href="#"]').forEach(function(el){
+    var txt=(el.textContent||'').toLowerCase();
+    if(txt.includes('demo')||txt.includes('partner')||txt.includes('talk')||txt.includes('book')){
+      el.addEventListener('click',function(e){e.preventDefault();openDemo();});
+    }
+  });
+  // Also wire any button with data-demo or class containing demo
+  document.querySelectorAll('[data-demo],[class*="demo"]').forEach(function(el){
+    el.addEventListener('click',function(e){e.preventDefault();openDemo();});
+  });
+  window.submitDemo=async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('demo-submit-btn');
+    btn.disabled=true;btn.textContent='Sending…';
+    try{
+      var res=await fetch('/api/ecofit-demo-request',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name:document.getElementById('d-name').value.trim(),
+          email:document.getElementById('d-email').value.trim(),
+          company:document.getElementById('d-company').value.trim(),
+          locations:document.getElementById('d-locations').value
+        })
+      });
+      var json=await res.json();
+      if(json.bookingLink)document.getElementById('demo-booking-link').href=json.bookingLink;
+      document.getElementById('demo-form-wrap').style.display='none';
+      document.getElementById('demo-success').style.display='block';
+    }catch(err){
+      btn.disabled=false;btn.textContent='Book My Demo →';
+      alert('Something went wrong. Please try again.');
+    }
+  };
+})();
+</script>
+<script>
+(function(){
+  if(sessionStorage.getItem('ecf_exit'))return;
+  var shown=false;
+  function showExit(){
+    if(shown)return;
+    shown=true;
+    sessionStorage.setItem('ecf_exit','1');
+    var el=document.getElementById('exit-overlay');
+    el.style.display='flex';
+  }
+  function closeExit(){
+    document.getElementById('exit-overlay').style.display='none';
+  }
+  window.closeExit=closeExit;
+  document.addEventListener('mouseleave',function(e){
+    if(e.clientY<10)showExit();
+  });
+  document.getElementById('exit-overlay').addEventListener('click',function(e){
+    if(e.target===this)closeExit();
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit();});
+})();
+</script>
+<script>
+(function(){
+  var cycleDefs = {
+    "0": {seq:["76%","77%","76%","78%","76%"], suffix:""},
+    "1": {seq:["4.7","4.8","4.7","4.9","4.7"], suffix:"h", innerSpan:true},
+    "2": {seq:["98.2%","98.3%","98.1%","98.2%","98.4%"], suffix:""},
+    "3": {seq:["3","3","4","3","2"], suffix:""}
+  };
+  var nodes = document.querySelectorAll('[data-cycle]');
+  if(!nodes.length) return;
+  nodes.forEach(function(el){
+    var key = el.getAttribute('data-cycle');
+    var def = cycleDefs[key];
+    if(!def) return;
+    var i = 0;
+    var interval = 3500 + parseInt(key) * 800;
+    setInterval(function(){
+      i = (i + 1) % def.seq.length;
+      el.style.transition = 'opacity .35s';
+      el.style.opacity = '0.4';
+      setTimeout(function(){
+        if(def.innerSpan){
+          el.firstChild.nodeValue = def.seq[i];
+        } else {
+          el.textContent = def.seq[i] + def.suffix;
+        }
+        el.style.opacity = '1';
+      }, 350);
+    }, interval);
+  });
+})();
+</script>
+</body>
+</html>
