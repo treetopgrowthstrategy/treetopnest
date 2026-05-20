@@ -1,0 +1,116 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Write Investor Updates with Claude (Monthly + Quarterly) | Treetop</title>
+<meta name="description" content="Practical guide to using Claude for investor updates that investors actually read. Monthly cadence, the structure that works, and how to handle bad-news months." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-write-investor-updates-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-write-investor-updates-with-claude" />
+<meta property="og:title" content="How to Write Investor Updates with Claude (Monthly + Quarterly)" /><meta property="og:description" content="Practical guide to using Claude for investor updates that investors actually read. Monthly cadence, the structure that works, and how to handle bad-news months." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Write Investor Updates with Claude (Monthly + Quarterly)" />
+<meta name="twitter:description" content="Practical guide to using Claude for investor updates that investors actually read. Monthly cadence, the structure that works, and how to handle bad-news months." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Write Investor Updates with Claude (Monthly + Quarterly)',"url":"https://treetopgrowthstrategy.com/how-to-write-investor-updates-with-claude"},{"@type":"Article","headline":'How to Write Investor Updates with Claude (Monthly + Quarterly)',"description":'Practical guide to using Claude for investor updates that investors actually read. Monthly cadence, the structure that works, and how to handle bad-news months.',"url":"https://treetopgrowthstrategy.com/how-to-write-investor-updates-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Founder how-to</div>
+<h1 class="hero-h">How to write investor updates <em style="color:#00C853;font-style:italic;">with Claude.</em></h1>
+<p class="hero-sub">Investor updates are one of the highest-leverage things a founder can do — and one of the most consistently skipped. AI removes the "I do not have time" excuse. Here is the structure that investors actually read and the Claude prompt that produces it in 20 minutes.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why investor updates matter and why they get skipped</h2>
+    <p class="body">Investors who get monthly updates make warmer intros, follow on more readily, and feel more bonded to the founder. The math overwhelmingly favors writing them.</p>
+    <p class="body">Most founders skip because the perceived cost is high (2-3 hours per update) and the perceived benefit is unclear. Claude cuts the writing time to 20 minutes, which changes the math.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The 5-section structure</span><h2 class="h2">What investors read</h2>
+    <p class="body"><strong>1. The headline (2-3 sentences).</strong> The one thing that matters this month.</p>
+    <p class="body"><strong>2. Numbers.</strong> Revenue, growth, key metrics. Without commentary.</p>
+    <p class="body"><strong>3. What happened (5-8 bullets).</strong> Wins, losses, key decisions.</p>
+    <p class="body"><strong>4. What I need.</strong> Specific asks — intros, advice, hires.</p>
+    <p class="body"><strong>5. Looking ahead.</strong> Next 30 days focus.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The Claude prompt</span><h2 class="h2">Use this monthly</h2>
+    <p class="body"><pre>Write a monthly investor update for [MONTH].
+
+The one thing that matters most this month: [HEADLINE]
+Key metrics (with prior month comparison): [PASTE]
+Key wins: [LIST]
+Key losses or challenges: [LIST]
+Decisions we made: [LIST]
+What I need from investors this month: [SPECIFIC ASKS — intros to X, advice on Y, hires for Z]
+Next 30 days focus: [PRIORITIES]
+
+Format:
+- Subject line: [Company] update — [Month] — [Quick headline]
+- 5 sections (Headline / Numbers / Happened / Asks / Ahead)
+- Total length under 500 words
+- Voice: direct, factual, no hype, no defensive framing on bad news
+- Honest about what is not working
+
+Goal: investors read it in 3 minutes and know exactly where to help.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Handling bad-news months</span><h2 class="h2">The hardest skill</h2>
+    <p class="body">The instinct in a bad month is to skip the update or hide the bad news in fluffy language. Both destroy trust.</p>
+    <p class="body">The right pattern: lead with the bad news directly, explain what happened, state what you are doing about it, ask for specific help. This builds investor confidence even when the numbers are down.</p>
+    <p class="body">Investors are pattern-matchers. They have seen many founders handle bad months. They are evaluating you, not just your numbers.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-for-board-reports" style="color:#00C853;text-decoration:none;">How to use AI for board reports &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-build-pitch-decks" style="color:#00C853;text-decoration:none;">How to use AI to build pitch decks &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-for-founders" style="color:#00C853;text-decoration:none;">AI for founders &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-financial-narratives-with-claude" style="color:#00C853;text-decoration:none;">How to write financial narratives with Claude &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Founder ready to deploy AI properly?</div><div class="cta-sub">Start with the AI Audit — written roadmap for AI in your business.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

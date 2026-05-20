@@ -1,0 +1,108 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Build an Internal Knowledge Base with Claude (Searchable + Used) | Treetop</title>
+<meta name="description" content="Practical guide to building an internal knowledge base that team members actually use. The structure, the loading workflow, and why most KBs die after 6 months." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-build-an-internal-knowledge-base-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-build-an-internal-knowledge-base-with-claude" />
+<meta property="og:title" content="How to Build an Internal Knowledge Base with Claude (Searchable + Used)" /><meta property="og:description" content="Practical guide to building an internal knowledge base that team members actually use. The structure, the loading workflow, and why most KBs die after 6 months." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Build an Internal Knowledge Base with Claude (Searchable + Used)" />
+<meta name="twitter:description" content="Practical guide to building an internal knowledge base that team members actually use. The structure, the loading workflow, and why most KBs die after 6 months." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Build an Internal Knowledge Base with Claude (Searchable + Used)',"url":"https://treetopgrowthstrategy.com/how-to-build-an-internal-knowledge-base-with-claude"},{"@type":"Article","headline":'How to Build an Internal Knowledge Base with Claude (Searchable + Used)',"description":'Practical guide to building an internal knowledge base that team members actually use. The structure, the loading workflow, and why most KBs die after 6 months.',"url":"https://treetopgrowthstrategy.com/how-to-build-an-internal-knowledge-base-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Operations how-to</div>
+<h1 class="hero-h">How to build an internal knowledge base <em style="color:#00C853;font-style:italic;">with Claude.</em></h1>
+<p class="hero-sub">Most internal knowledge bases die because they are write-only. People dump docs in; nobody reads them. The version that works is built around how people actually search, not how docs are organized. Claude changes the math. Here is the workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why most KBs fail</h2>
+    <p class="body">Internal knowledge bases (Notion, Confluence, Guru, etc.) fail because the user experience is "click through the folder structure until you find what you need." Most people give up and ask in Slack instead.</p>
+    <p class="body">A Claude-powered KB inverts this: people ask natural language questions; Claude finds the answer in the KB documents. The user experience becomes conversational instead of navigational.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The 4-step setup</span><h2 class="h2">How to actually build it</h2>
+    <p class="body"><strong>1. Audit existing docs.</strong> What knowledge already exists? Where is it? What is current vs outdated?</p>
+    <p class="body"><strong>2. Pick the right architecture.</strong> Either: load all KB docs into a Claude Project for natural-language search, OR build a custom internal tool with Claude API + RAG. For 1-50 person companies, the Project approach is sufficient.</p>
+    <p class="body"><strong>3. Load with discipline.</strong> Only load current, accurate, useful documents. Garbage in produces garbage out. Tag everything with last-updated-date.</p>
+    <p class="body"><strong>4. Train the team on how to ask.</strong> The KB only works if people ask it before asking each other. 30-min team training session.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The maintenance discipline</span><h2 class="h2">Where most KBs die</h2>
+    <p class="body">Without quarterly audit, KBs decay. Outdated docs surface in searches and erode trust. Within 9 months, people stop using the KB and revert to Slack questions.</p>
+    <p class="body"><strong>Quarterly maintenance:</strong> review which docs were referenced (Claude can tell you), which were not (candidates for removal), what questions Claude could not answer (gaps to fill).</p>
+    <p class="body">Budget 2 hours per quarter for KB maintenance. Without this, the investment compounds backward.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The natural-language search prompt for users</span><h2 class="h2">How team queries the KB</h2>
+    <p class="body"><pre>Inside the Internal KB Claude Project, team members ask questions like:
+
+- "What is our standard pricing for [service]?"
+- "What is our customer onboarding process for [segment]?"
+- "Who owns [function]?"
+- "What did we learn from the [Project X] retro?"
+- "What is our policy on [situation]?"
+
+Claude finds the answer in the loaded KB documents, cites the source doc, and flags if the info might be outdated (based on last-updated dates).
+
+If Claude cannot find the answer, it says so — and that gap becomes the next thing to add to the KB.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-sops-with-claude" style="color:#00C853;text-decoration:none;">How to write SOPs with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/what-is-claude-projects" style="color:#00C853;text-decoration:none;">What is Claude Projects? &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-onboard-employees" style="color:#00C853;text-decoration:none;">How to use AI to onboard employees &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/resources/how-to-build-a-claude-project-for-your-team" style="color:#00C853;text-decoration:none;">How to build a Claude Project for your team &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want this set up for your team?</div><div class="cta-sub">Implementation includes KB architecture and deployment.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
