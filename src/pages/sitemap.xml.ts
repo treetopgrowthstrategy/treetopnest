@@ -46,6 +46,8 @@ const pages = [
   { url: '/what-is-gtm-strategy', priority: '0.8', changefreq: 'monthly' },
   { url: '/what-is-enterprise-ai', priority: '0.8', changefreq: 'monthly' },
   { url: '/what-is-an-ai-audit', priority: '0.8', changefreq: 'monthly' },
+  { url: '/claude-prompts-for-customer-service', priority: '0.85', changefreq: 'monthly' },
+  { url: '/best-ai-tools-for-b2b-sales', priority: '0.85', changefreq: 'monthly' },
   { url: '/claude-for-small-business', priority: '0.9', changefreq: 'monthly' },
   { url: '/claude-implementation-consultant', priority: '0.85', changefreq: 'monthly' },
   { url: '/anthropic-claude-setup-for-business', priority: '0.8', changefreq: 'monthly' },
