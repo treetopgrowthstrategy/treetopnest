@@ -52,7 +52,8 @@ const LABELS: Record<string, Record<string, string>> = {
   data_confidence: { 'high': 'Very confident — real-time visibility', 'medium': 'Somewhat confident — incomplete data', 'low': 'Not very confident — significant gaps', 'none': 'No equipment ROI data' },
 };
 
-function label(field: string, val: string): string {
+function label(field: string, val: string | undefined): string {
+  if (val === undefined || val === null) return '—';
   return LABELS[field]?.[val] ?? val;
 }
 

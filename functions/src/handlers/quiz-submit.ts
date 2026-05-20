@@ -407,6 +407,18 @@ export async function handle(request: Request): Promise<Response> {
     if (!data.email || !data.name || !data.company) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
+    // Defensive: ensure pillarScores object exists with all four pillars so report rendering doesn't 500
+    if (!data.pillarScores || typeof data.pillarScores !== 'object') {
+      return new Response(JSON.stringify({ error: 'Missing pillarScores' }), { status: 400 });
+    }
+    data.pillarScores = {
+      icp:      data.pillarScores.icp      ?? 0,
+      outbound: data.pillarScores.outbound ?? 0,
+      pipeline: data.pillarScores.pipeline ?? 0,
+      team:     data.pillarScores.team     ?? 0,
+    };
+    data.totalScore = data.totalScore ?? 0;
+    data.tier = data.tier || 'Unspecified';
 
     const tier = getTierDetails(data.totalScore);
     const firstName = data.name.split(' ')[0];

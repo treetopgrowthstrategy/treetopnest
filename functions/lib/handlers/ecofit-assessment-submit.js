@@ -39,6 +39,8 @@ const LABELS = {
     data_confidence: { 'high': 'Very confident — real-time visibility', 'medium': 'Somewhat confident — incomplete data', 'low': 'Not very confident — significant gaps', 'none': 'No equipment ROI data' },
 };
 function label(field, val) {
+    if (val === undefined || val === null)
+        return '—';
     return LABELS[field]?.[val] ?? val;
 }
 // ─── RECOMMENDATIONS ──────────────────────────────────────────────────────────
