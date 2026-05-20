@@ -1,0 +1,137 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Use AI to Write LinkedIn Posts (That Don't Sound Like AI) | Treetop</title>
+<meta name="description" content="A practical guide to using Claude for LinkedIn posts that sound like you, not like AI — the structure, the voice trap to avoid, and the 4 angles that actually drive engagement." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-use-ai-to-write-linkedin-posts" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-use-ai-to-write-linkedin-posts" />
+<meta property="og:title" content="How to Use AI to Write LinkedIn Posts (That Don't Sound Like AI)" /><meta property="og:description" content="A practical guide to using Claude for LinkedIn posts that sound like you, not like AI — the structure, the voice trap to avoid, and the 4 angles that actually drive engagement." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Use AI to Write LinkedIn Posts (That Don't Sound Like AI)" />
+<meta name="twitter:description" content="A practical guide to using Claude for LinkedIn posts that sound like you, not like AI — the structure, the voice trap to avoid, and the 4 angles that actually drive engagement." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"HowTo","name":"How to Use AI to Write LinkedIn Posts (That Don't Sound Like AI)","url":"https://treetopgrowthstrategy.com/how-to-use-ai-to-write-linkedin-posts","step":[{"@type": "HowToStep", "name": 'Build a voice Project', "text": 'Load 10–20 of your past posts into a dedicated Claude Project.'},{"@type": "HowToStep", "name": 'Choose one of four angles', "text": 'Generic "thoughts on X" posts don\'t work. Specific angles do.'},{"@type": "HowToStep", "name": 'Draft with constraints', "text": 'Specific prompt with the constraints baked in.'},{"@type": "HowToStep", "name": 'Edit ruthlessly for AI tells', "text": 'Read aloud. Kill any phrase that sounds like a press release.'},{"@type": "HowToStep", "name": 'Post and track', "text": 'Track what actually engaged so you can refine.'}]},
+  {"@type":"Article","headline":"How to Use AI to Write LinkedIn Posts (That Don't Sound Like AI)","url":"https://treetopgrowthstrategy.com/how-to-use-ai-to-write-linkedin-posts","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},
+  {"@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Can Claude write LinkedIn posts that don't sound like AI?", "acceptedAnswer": {"@type": "Answer", "text": 'Yes — but only with voice training. A blank prompt produces AI-shaped output. A Project loaded with your 10–20 best past posts + a voice guide produces posts that sound like you wrote them. The training is the whole game.'}},{"@type": "Question", "name": 'How long should a LinkedIn post be?', "acceptedAnswer": {"@type": "Answer", "text": 'For thought-leadership posts in B2B: 150–250 words. Long enough to make a point, short enough that scrolling readers actually finish. The exception: a true story-driven post can extend to 350–400 words if the story is compelling.'}},{"@type": "Question", "name": 'Should I disclose AI use in LinkedIn posts?', "acceptedAnswer": {"@type": "Answer", "text": "Personal opinion: not necessary as long as the post is genuinely your perspective and you did the editorial work. If the post is 90% AI-generated with no real voice or insight, the issue isn't disclosure — it's that the post is bad."}},{"@type": "Question", "name": 'How often should I post?', "acceptedAnswer": {"@type": "Answer", "text": '2–4 quality posts per week beats daily mediocre. The compound effect of LinkedIn is voice consistency over time, not volume.'}}]},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+.step{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.25rem}
+.step-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+.step h3{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;font-weight:400;margin-bottom:0.75rem}
+.step p{font-size:0.94rem;color:#C0D8C0;line-height:1.75;margin-bottom:0.75rem}.step p:last-child{margin-bottom:0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap}
+.pitfall{background:rgba(200,50,50,0.05);border-left:3px solid #c83232;padding:1rem 1.25rem;margin:1.25rem 0;max-width:780px}
+.pitfall p{color:#C0D8C0;font-size:0.9rem;line-height:1.7;margin:0}.pitfall strong{color:#F0FFF0}
+.faq{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.25rem 1.5rem;margin-bottom:0.85rem;max-width:780px}
+.faq h3{font-family:'Instrument Serif',serif;font-size:1.1rem;color:#F0FFF0;font-weight:400;margin-bottom:0.4rem}
+.faq p{font-size:0.88rem;color:#C0D8C0;line-height:1.7}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/how-to-use-claude" class="nav-link">How-To Guides</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Task guide</div>
+<h1 class="hero-h">How to use AI to <em style="color:#00C853;font-style:italic;">write LinkedIn posts.</em></h1>
+<p class="hero-sub">Most AI-written LinkedIn posts have a tell. They start with "In today's rapidly evolving landscape." They use phrases like "leverage" and "synergies." They have a 3-bullet middle and a question at the end. People scroll past them. Here's the workflow for posts that read like you actually wrote them.</p>
+</div></div>
+<section><div class="sec-inner"><span class="lbl">The workflow</span><h2 class="h2">Step-by-step process</h2>
+<div class="step"><div class="step-num">— Step 01 —</div><h3>Build a voice Project</h3><p>One-time setup. Find 10–20 of your past LinkedIn posts that performed well — meaning real engagement, not just impressions. Paste them into a Claude Project knowledge base.</p>
+      <p>Write a voice guide: sentence-length patterns you use, words you favor, words you'd never use, the kind of opener that hooks for you (story, contrarian take, specific stat — whichever maps to your style).</p>
+      <p>System prompt: "Match the voice in the example posts in the knowledge base. Avoid the AI tells listed in the voice guide. Vary sentence length. No exclamation points. No bullet-list middles. No \"What do you think?\" closes."</p>
+      </div>
+<div class="step"><div class="step-num">— Step 02 —</div><h3>Choose one of four angles</h3><p>The four LinkedIn angles that consistently drive engagement:</p>
+      <p><strong style="color:#F0FFF0;">1. Specific story.</strong> Something that actually happened with named details. Not "lessons learned" — the actual event, told as a story.<br/><strong style="color:#F0FFF0;">2. Contrarian take.</strong> A widely-held belief in your industry that you think is wrong, with the reason.<br/><strong style="color:#F0FFF0;">3. Specific number.</strong> A stat from your own work or research that surprises people. The number has to be real and you have to be able to defend it.<br/><strong style="color:#F0FFF0;">4. Behind-the-scenes detail.</strong> What you actually do during a specific work activity that people don't usually see.</p>
+      <p>Pick one. Tell Claude which one. Generic "thoughts on AI" posts default to category 5, which is "doesn't work."</p>
+      </div>
+<div class="step"><div class="step-num">— Step 03 —</div><h3>Draft with constraints</h3><p><pre>Write a LinkedIn post using angle: [SPECIFIC]. Topic: [SPECIFIC]. Match the voice in the Project knowledge base.
+
+Constraints:
+- Open with a specific moment, stat, or contrarian sentence — never with "In today's landscape" or "I've been thinking about"
+- 150-250 words total
+- No bullet lists in the middle
+- No "What do you think?" close — use a specific question or a confident statement
+- 0 emojis
+- 1 specific detail that proves authenticity (named project, real number, actual quote)
+
+Draft 2 variants with different openers.</pre></p>
+      </div>
+<div class="step"><div class="step-num">— Step 04 —</div><h3>Edit ruthlessly for AI tells</h3><p>Read the draft out loud. Anywhere it sounds like a corporate communications team wrote it, rewrite.</p>
+      <p>Specific phrases to hunt and kill: "I've been thinking about," "It's time we talk about," "Let's be honest," "Here's the thing," "rapidly evolving," "navigate this complex landscape," "unlock," "leverage," "synergize."</p>
+      <p>Anywhere the post sounds like Claude wrote it, you have to inject voice — usually with a specific detail only you would know, or with a colloquial phrase you actually use.</p>
+      </div>
+<div class="step"><div class="step-num">— Step 05 —</div><h3>Post and track</h3><p>Save the post + engagement numbers back into your Project knowledge base. Tag what worked.</p>
+      <p>After ~10 posts, you'll see patterns. The angles that worked. The openers that landed. The topics that resonated. Feed that signal back into your system prompt.</p>
+      <p>This is the difference between teams that ship LinkedIn content for 6 months and stop because nothing landed, vs. teams that ship for 18 months and build a real following: the second group treats each post as data, not a one-off output.</p>
+      </div>
+
+</div></section>
+<section><div class="sec-inner"><span class="lbl">Pitfalls</span><h2 class="h2">Common mistakes</h2>
+<div class="pitfall"><p><strong>1. Letting Claude open the post.</strong> AI defaults to "In today's rapidly evolving landscape." Write the opener yourself; let Claude help with the middle.</p></div>
+<div class="pitfall"><p><strong>2. Using generic AI-flavored prompts.</strong> "Write me a LinkedIn post about X" produces forgettable content. Specific angle + voice match is what makes it work.</p></div>
+<div class="pitfall"><p><strong>3. No personal specifics.</strong> AI can't invent your real customer story or your actual number from last quarter. Those specifics are what differentiate your post from any other LinkedIn post on the topic.</p></div>
+<div class="pitfall"><p><strong>4. Long bullet lists in the middle.</strong> They're the visual tell of AI-written posts. Use prose, not bullets, for body content.</p></div>
+<div class="pitfall"><p><strong>5. "What do you think?" closes.</strong> Engagement bait that everyone recognizes. Use a specific question or a confident statement instead.</p></div>
+
+</div></section>
+<section><div class="sec-inner"><span class="lbl">FAQ</span><h2 class="h2">Frequently asked</h2>
+<div class="faq"><h3>Can Claude write LinkedIn posts that don't sound like AI?</h3><p>Yes — but only with voice training. A blank prompt produces AI-shaped output. A Project loaded with your 10–20 best past posts + a voice guide produces posts that sound like you wrote them. The training is the whole game.</p></div>
+<div class="faq"><h3>How long should a LinkedIn post be?</h3><p>For thought-leadership posts in B2B: 150–250 words. Long enough to make a point, short enough that scrolling readers actually finish. The exception: a true story-driven post can extend to 350–400 words if the story is compelling.</p></div>
+<div class="faq"><h3>Should I disclose AI use in LinkedIn posts?</h3><p>Personal opinion: not necessary as long as the post is genuinely your perspective and you did the editorial work. If the post is 90% AI-generated with no real voice or insight, the issue isn't disclosure — it's that the post is bad.</p></div>
+<div class="faq"><h3>How often should I post?</h3><p>2–4 quality posts per week beats daily mediocre. The compound effect of LinkedIn is voice consistency over time, not volume.</p></div>
+
+</div></section>
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related guides</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-marketing" style="color:#00C853;text-decoration:none;">Claude prompts for marketing →</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing →</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-write-proposals" style="color:#00C853;text-decoration:none;">How to use AI to write proposals →</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/resources/how-to-build-claude-prompts-for-your-business" style="color:#00C853;text-decoration:none;">How to build Claude prompts →</a></li>
+
+</ul>
+</div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want us to build this for your team?</div>
+<div class="cta-sub">Our Implementation engagement covers task workflows like this — $3,500 fixed price.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation →</a>
+<a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
