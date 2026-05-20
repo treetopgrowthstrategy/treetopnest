@@ -1,8 +1,15 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-02-24.acacia',
-});
+// Lazy init — secrets are only injected when the function runs, not at module load
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+      apiVersion: '2025-02-24.acacia',
+    });
+  }
+  return _stripe;
+}
 
 const PLANS: Record<string, { name: string; amount: number; description: string }> = {
   starter: {
@@ -36,7 +43,7 @@ export async function handle(request: Request): Promise<Response> {
     const selected = PLANS[plan];
     const origin = new URL(request.url).origin;
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'subscription',
       line_items: [

@@ -5,9 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handle = handle;
 const stripe_1 = __importDefault(require("stripe"));
-const stripe = new stripe_1.default(process.env.STRIPE_SECRET_KEY || '', {
-    apiVersion: '2025-02-24.acacia',
-});
+// Lazy init — secrets are only injected when the function runs, not at module load
+let _stripe = null;
+function getStripe() {
+    if (!_stripe) {
+        _stripe = new stripe_1.default(process.env.STRIPE_SECRET_KEY || '', {
+            apiVersion: '2025-02-24.acacia',
+        });
+    }
+    return _stripe;
+}
 const PLANS = {
     starter: {
         name: 'Managed Stack — Starter',
@@ -33,7 +40,7 @@ async function handle(request) {
         }
         const selected = PLANS[plan];
         const origin = new URL(request.url).origin;
-        const session = await stripe.checkout.sessions.create({
+        const session = await getStripe().checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'subscription',
             line_items: [

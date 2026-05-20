@@ -26,13 +26,14 @@ setGlobalOptions({
   maxInstances: 10,
 });
 
-// Secrets used by the handlers (read at runtime via process.env)
+// Secrets used by the handlers (read at runtime via process.env).
+// GITHUB_TOKEN intentionally omitted — was for the old Vercel auto-deploy report flow;
+// on Firebase the handlers skip the GitHub push gracefully when the token is absent.
+// AIRTABLE_BASE_ID is a non-secret config with a default fallback in code, not declared here.
 const SECRETS = [
   'RESEND_API_KEY',
   'AIRTABLE_API_KEY',
-  'AIRTABLE_BASE_ID',
   'STRIPE_SECRET_KEY',
-  'GITHUB_TOKEN',
 ] as const;
 
 /**
