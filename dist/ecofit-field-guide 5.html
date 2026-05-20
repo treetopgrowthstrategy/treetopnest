@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECOFIT CMO Field Guide | Treetop Growth Strategy</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050D05; --bg2: #0A1A0A; --green: #00C853;
+    --text: #F0FFF0; --muted: #8FAF8F; --border: #1A3A1A;
+    --dim: #4A6A4A; --serif: 'Instrument Serif', serif; --sans: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(5,13,5,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .nav-tag { font-size: 0.72rem; color: var(--dim); letter-spacing: 0.06em; }
+
+  /* PROGRESS */
+  .progress-bar-wrap { height: 3px; background: var(--border); }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--green), #2A8C8C); width: 0%; transition: width 0.3s; }
+
+  /* TAB STRIP */
+  .tab-strip { display: flex; overflow-x: auto; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--bg); scrollbar-width: none; position: sticky; top: 56px; z-index: 40; }
+  .tab-strip::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0; padding: 6px 13px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--dim); font-size: 0.75rem; font-family: var(--sans); cursor: pointer; transition: all 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+  .tab.active { border-color: var(--section-accent, var(--green)); background: color-mix(in srgb, var(--section-accent, var(--green)) 12%, transparent); color: var(--section-accent, var(--green)); }
+  .tab-badge { background: var(--section-accent, var(--green)); color: #000; border-radius: 10px; padding: 1px 6px; font-size: 10px; font-weight: 700; display: none; }
+  .tab-badge.show { display: inline; }
+
+  /* CONTENT */
+  .content { padding: 20px 20px 80px; max-width: 620px; margin: 0 auto; }
+  .section-panel { display: none; }
+  .section-panel.active { display: block; }
+
+  /* SECTION HEADER */
+  .section-header { border-left: 3px solid var(--section-accent, var(--green)); padding-left: 12px; margin-bottom: 18px; }
+  .section-title { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .section-intro { font-size: 0.83rem; color: var(--muted); line-height: 1.6; font-style: italic; }
+
+  /* QUESTIONS */
+  .question-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .question-item { display: flex; gap: 12px; padding: 12px 14px; border-radius: 8px; background: #131920; border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; align-items: flex-start; }
+  .question-item:hover { border-color: color-mix(in srgb, var(--section-accent, var(--green)) 40%, transparent); }
+  .question-item.done { background: color-mix(in srgb, var(--section-accent, var(--green)) 8%, transparent); border-color: color-mix(in srgb, var(--section-accent, var(--green)) 25%, transparent); }
+  .checkbox { width: 20px; height: 20px; border-radius: 4px; border: 2px solid #334; background: transparent; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #000; transition: all 0.15s; }
+  .question-item.done .checkbox { background: var(--section-accent, var(--green)); border-color: var(--section-accent, var(--green)); }
+  .question-item.done .checkbox::after { content: '✓'; }
+  .q-text { font-size: 0.87rem; line-height: 1.55; color: #CDD; }
+  .question-item.done .q-text { color: var(--dim); text-decoration: line-through; }
+
+  /* LISTEN BOX */
+  .listen-box { background: color-mix(in srgb, var(--section-accent, var(--green)) 8%, transparent); border: 1px solid color-mix(in srgb, var(--section-accent, var(--green)) 20%, transparent); border-radius: 8px; padding: 12px 14px; margin-bottom: 18px; }
+  .listen-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--section-accent, var(--green)); font-family: monospace; margin-bottom: 6px; }
+  .listen-text { font-size: 0.82rem; color: #AAB; line-height: 1.6; font-style: italic; }
+
+  /* CAPTURE TOOL */
+  .capture-section { margin-top: 18px; }
+  .capture-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #E07B20; margin-bottom: 10px; }
+  .capture-row { margin-bottom: 10px; }
+  .capture-input { width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #334; background: rgba(255,255,255,0.04); color: var(--text); font-size: 0.85rem; font-family: var(--sans); outline: none; transition: border-color 0.15s; }
+  .capture-input:focus { border-color: #E07B20; }
+  .capture-input.url { border-color: #E07B2044; background: rgba(224,123,32,0.06); }
+  .capture-input.url:focus { border-color: #E07B20; }
+  .add-btn { padding: 7px 16px; border-radius: 6px; border: 1px solid #E07B20; background: transparent; color: #E07B20; font-size: 0.8rem; font-family: var(--sans); cursor: pointer; transition: background 0.15s; }
+  .add-btn:hover { background: rgba(224,123,32,0.1); }
+
+  /* WILDCARD CALLOUT */
+  .wildcard-note { border: 1px solid color-mix(in srgb, var(--section-accent, var(--green)) 25%, transparent); background: var(--bg2); border-radius: 8px; padding: 14px 16px; margin-bottom: 18px; font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+  /* PROGRESS FOOTER */
+  .progress-footer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 10px 20px; }
+  .progress-footer-inner { max-width: 620px; margin: 0 auto; }
+  .progress-meta { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--dim); margin-bottom: 6px; }
+  .progress-pct { color: #2A8C8C; }
+  .progress-track { height: 3px; background: var(--border); border-radius: 2px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #2A8C8C, var(--green)); border-radius: 2px; width: 0%; transition: width 0.3s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">Treetop</a>
+  <span class="nav-tag">ECOFIT · CMO Field Guide</span>
+</nav>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="topBar"></div></div>
+
+<div class="tab-strip" id="tabStrip"></div>
+
+<div class="content" id="content"></div>
+
+<div class="progress-footer">
+  <div class="progress-footer-inner">
+    <div class="progress-meta">
+      <span id="progressText">0 of 0 questions covered</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
+
+<script>
+const SECTIONS = [
+  {
+    id: "product", icon: "⚙️", label: "Product", accent: "#2A8C8C",
+    intro: "Let them describe the product. Your job is to pressure-test vague claims and get to specifics.",
+    questions: [
+      "What is Facility 360 in one sentence — for someone who's never heard of it?",
+      "Walk me through every module. What are the distinct things this platform does?",
+      "For each module — what problem does it solve and what would the gym do without it?",
+      "Which module do customers engage with first? Which do they use most once live?",
+      "Are there modules always sold together? Any that are truly standalone?",
+      "What's on the roadmap that's worth factoring into messaging now?"
+    ],
+    listenFor: "The language they use to name features — this becomes your copy. Which modules they're most excited about — those are your hero features."
+  },
+  {
+    id: "personas", icon: "👥", label: "Personas", accent: "#3AAC6A",
+    intro: "Push past 'gyms' and 'OEM partners' — you need the actual human, their job title, and what keeps them up at night.",
+    questions: [
+      "Who writes the check — owner, GM, regional director, CFO? What do they care about most?",
+      "Who is the day-to-day champion inside the gym? What does their job look like before ECOFIT?",
+      "Who can kill the deal? Who needs to sign off but isn't the buyer?",
+      "On the OEM side — is this a business development conversation or a technical one first?",
+      "What does your best customer look like — size, locations, type of facility?",
+      "What does a customer who churns look like? What's the real reason they leave?"
+    ],
+    listenFor: "Specific job titles and the language they use about their customers. The gap between who they think buys and who actually buys."
+  },
+  {
+    id: "sales", icon: "🎯", label: "Sales Path", accent: "#C47B2B",
+    intro: "Map the ideal deal from first touch to close. Where does it accelerate, where does it stall?",
+    questions: [
+      "In your best deals — what was the entry point? What did they buy first?",
+      "What's the single thing that most reliably moves a prospect from interested to signed?",
+      "How long is a typical sales cycle?",
+      "Is there a demo or trial? How often does it convert?",
+      "What almost always kills a deal?",
+      "What does your best salesperson say differently than your average one?"
+    ],
+    listenFor: "The conversion trigger — this becomes a core proof point. The deal killer — this becomes an objection you handle in messaging."
+  },
+  {
+    id: "value", icon: "📈", label: "Value & Expand", accent: "#7B2AC4",
+    intro: "Landing a customer is just the beginning. Map how ECOFIT proves ROI and earns the right to expand.",
+    questions: [
+      "What happens in the first 30 days after signing? Walk me through onboarding.",
+      "How long before a new customer sees their first meaningful win?",
+      "What does that first win look like — a report, a cost saved, equipment that didn't fail?",
+      "What does a fully adopted customer look like vs. one who's underutilizing?",
+      "When a customer expands — more modules, locations — what triggers that conversation?",
+      "What's the ceiling of your best customer relationship?"
+    ],
+    listenFor: "The 'aha moment' — the specific early result that makes a customer certain they made the right call. This is your onboarding north star."
+  },
+  {
+    id: "proof", icon: "🔢", label: "Proof Points", accent: "#2AACC4",
+    intro: "Validate every number before it goes into messaging. Round numbers are red flags.",
+    questions: [
+      "The 40% reduced refresh cost, 25% extended equipment life, $125K savings — where do those numbers come from?",
+      "Are those validated across multiple customers or is that one outlier?",
+      "What outcome surprises customers most — the one they didn't expect?",
+      "Do you have a customer who would go on record as a case study?",
+      "What do customers say in referrals — what exact language do they use?"
+    ],
+    listenFor: "Which numbers they hesitate on — those need a qualifier. Which they cite immediately and confidently — those go front and center."
+  },
+  {
+    id: "packaging", icon: "📦", label: "Packaging", accent: "#C42A2A",
+    intro: "You're listening for natural groupings — which modules belong together and what moves a customer up a tier.",
+    questions: [
+      "'Bare minimum to get value,' 'serious operator,' 'full partnership' — how would you group your modules?",
+      "What would a gym need to see to justify moving from Starter to Pro?",
+      "What triggers the Enterprise conversation — location count, fleet size, something else?",
+      "How should pricing scale — flat fee, per location, per piece of equipment?",
+      "Where is ECOFIT positioned vs. competitors — premium, competitive, or challenger?"
+    ],
+    listenFor: "Which modules they instinctively group. The milestone that makes a customer feel they've outgrown their tier — that's your upsell trigger."
+  },
+  {
+    id: "brand", icon: "🎨", label: "Brand & Web", accent: "#E07B20",
+    intro: "Capture every website they reference and every brand they admire. This feeds directly into mockups.",
+    questions: [
+      "Are there websites — in or out of your space — that tell a brand story really well?",
+      "What do you like specifically — the layout, tone, imagery, simplicity?",
+      "What brands or companies do you want ECOFIT to feel like?",
+      "What brands do you want to feel nothing like?",
+      "How do you want customers to feel when they land on your site — one word?",
+      "What existing brand assets — colors, logo, imagery — should we work with or around?"
+    ],
+    listenFor: "Every URL they mention — write it down immediately. Adjectives they use — those become your design brief.",
+    hasCapture: true
+  },
+  {
+    id: "wildcards", icon: "💡", label: "CMO Wildcards", accent: "#5AAC5A",
+    intro: "Drop one of these when the conversation goes surface-level. They signal you're operating at a different level.",
+    isWildcard: true,
+    questions: [
+      "What do you wish customers understood about ECOFIT that they almost never get on their own?",
+      "What's the version of the product you're embarrassed to show — and the one you can't wait to show?",
+      "If a customer leaves, what do they tell you — and what do you think is actually true?",
+      "Who's a customer you lost that you shouldn't have? What happened?",
+      "If ECOFIT disappeared tomorrow, what would your best customer do instead?",
+      "What's the thing competitors can't copy about you?"
+    ],
+    listenFor: "Any moment of candor or discomfort — that's usually where the real differentiation lives."
+  }
+];
+
+let activeSection = 'product';
+let checked = {};
+let siteCaptures = [{ url: '', notes: '' }];
+
+function totalQuestions() { return SECTIONS.reduce((a,s) => a+s.questions.length, 0); }
+function totalChecked() { return Object.values(checked).filter(Boolean).length; }
+function sectionChecked(id) { const s = SECTIONS.find(x=>x.id===id); return s ? s.questions.filter((_,i)=>checked[id+'-'+i]).length : 0; }
+
+function updateProgress() {
+  const total = totalQuestions(), done = totalChecked();
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  document.getElementById('progressText').textContent = `${done} of ${total} questions covered`;
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('topBar').style.width = pct + '%';
+  // Update tab badges
+  SECTIONS.forEach(s => {
+    const badge = document.getElementById('badge-'+s.id);
+    const cnt = sectionChecked(s.id);
+    if (badge) { badge.textContent = cnt+'/'+s.questions.length; badge.className = 'tab-badge' + (cnt>0?' show':''); }
+  });
+}
+
+function toggleQ(sectionId, qi) {
+  const key = sectionId+'-'+qi;
+  checked[key] = !checked[key];
+  const el = document.getElementById('q-'+sectionId+'-'+qi);
+  if (el) el.classList.toggle('done', checked[key]);
+  updateProgress();
+}
+
+function addCapture() {
+  siteCaptures.push({ url: '', notes: '' });
+  renderCapture();
+}
+
+function renderCapture() {
+  const container = document.getElementById('capture-container');
+  if (!container) return;
+  container.innerHTML = siteCaptures.map((s,i) => `
+    <div class="capture-row">
+      <input class="capture-input url" placeholder="website.com" value="${s.url}"
+        oninput="siteCaptures[${i}].url=this.value" />
+      <input class="capture-input" style="margin-top:4px" placeholder="What they like about it..."
+        value="${s.notes}" oninput="siteCaptures[${i}].notes=this.value" />
+    </div>
+  `).join('');
+}
+
+function switchSection(id) {
+  activeSection = id;
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.style.removeProperty('--section-accent'); });
+  const panel = document.getElementById('panel-'+id);
+  if (panel) panel.classList.add('active');
+  const tab = document.getElementById('tab-'+id);
+  const s = SECTIONS.find(x=>x.id===id);
+  if (tab && s) { tab.classList.add('active'); tab.style.setProperty('--section-accent', s.accent); }
+  if (id === 'brand') renderCapture();
+}
+
+function buildUI() {
+  const strip = document.getElementById('tabStrip');
+  const content = document.getElementById('content');
+  strip.innerHTML = '';
+  content.innerHTML = '';
+
+  SECTIONS.forEach(s => {
+    // Tab
+    const tab = document.createElement('button');
+    tab.className = 'tab' + (s.id===activeSection?' active':'');
+    tab.id = 'tab-'+s.id;
+    if (s.id===activeSection) tab.style.setProperty('--section-accent', s.accent);
+    tab.innerHTML = `<span>${s.icon}</span><span>${s.label}</span><span class="tab-badge" id="badge-${s.id}"></span>`;
+    tab.onclick = () => switchSection(s.id);
+    strip.appendChild(tab);
+
+    // Panel
+    const panel = document.createElement('div');
+    panel.className = 'section-panel' + (s.id===activeSection?' active':'');
+    panel.id = 'panel-'+s.id;
+    panel.style.setProperty('--section-accent', s.accent);
+
+    let html = `
+      <div class="section-header">
+        <div class="section-title">${s.icon} ${s.label}</div>
+        <div class="section-intro">${s.intro}</div>
+      </div>`;
+
+    if (s.isWildcard) {
+      html += `<div class="wildcard-note">Drop one of these when the conversation stalls or goes surface-level. Don't use more than one or two — let them land. The goal is a moment of candor, not an interrogation.</div>`;
+    }
+
+    html += `<div class="question-list">`;
+    s.questions.forEach((q, qi) => {
+      const key = s.id+'-'+qi;
+      const done = checked[key] ? ' done' : '';
+      html += `
+        <div class="question-item${done}" id="q-${s.id}-${qi}" onclick="toggleQ('${s.id}',${qi})">
+          <div class="checkbox"></div>
+          <div class="q-text">${q}</div>
+        </div>`;
+    });
+    html += `</div>`;
+
+    html += `
+      <div class="listen-box">
+        <div class="listen-label">Listen For</div>
+        <div class="listen-text">${s.listenFor}</div>
+      </div>`;
+
+    if (s.hasCapture) {
+      html += `
+        <div class="capture-section">
+          <div class="capture-label">Website Capture</div>
+          <div id="capture-container"></div>
+          <button class="add-btn" onclick="addCapture()">+ Add site</button>
+        </div>`;
+    }
+
+    panel.innerHTML = html;
+    content.appendChild(panel);
+  });
+
+  updateProgress();
+}
+
+buildUI();
+</script>
+</body>
+</html>
