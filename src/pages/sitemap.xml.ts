@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
 
+export const prerender = true;
+
 const pages = [
   { url: '/', priority: '1.0', changefreq: 'weekly' },
   { url: '/services', priority: '0.9', changefreq: 'weekly' },
