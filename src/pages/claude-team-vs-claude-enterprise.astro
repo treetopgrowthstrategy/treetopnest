@@ -1,0 +1,173 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Team vs Claude Enterprise: Which Does Your Business Need? | Treetop</title>
+  <meta name="description" content="Claude Team is $30/seat with shared Projects and standard support. Claude Enterprise adds SSO, audit logs, extended context, and dedicated support — for $60–$100+/seat. Here's how to tell which fits." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-team-vs-claude-enterprise" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-team-vs-claude-enterprise" />
+  <meta property="og:title" content="Claude Team vs Claude Enterprise: Which Does Your Business Need?" />
+  <meta property="og:description" content="Claude Team is $30/seat with shared Projects and standard support. Claude Enterprise adds SSO, audit logs, extended context, and dedicated support — for $60–$100+/seat. Here's how to tell which fits." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Claude Team vs Claude Enterprise: Which Does Your Business Need?" />
+  <meta name="twitter:description" content="Claude Team is $30/seat with shared Projects and standard support. Claude Enterprise adds SSO, audit logs, extended context, and dedicated support — for $60–$100+/seat. Here's how to tell which fits." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": 'Claude Team vs Claude Enterprise: Which Does Your Business Need?', "url": "https://treetopgrowthstrategy.com/claude-team-vs-claude-enterprise", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": 'How much does Claude Enterprise actually cost?', "acceptedAnswer": {"@type": "Answer", "text": "Anthropic doesn't publish Enterprise pricing. Realistic floors based on what we see in actual contracts: $60–$100/seat/month for typical mid-market deals, higher for very small deployments (under 25 seats), lower for very large ones (1000+ seats) with annual commitments."}},{"@type": "Question", "name": 'Can I upgrade from Team to Enterprise mid-contract?', "acceptedAnswer": {"@type": "Answer", "text": "Yes — Anthropic supports migration from Team to Enterprise. Most companies do this 6–12 months after starting on Team, when they've outgrown the Team plan's features."}},{"@type": "Question", "name": 'Do I need Enterprise for HIPAA or compliance work?', "acceptedAnswer": {"@type": "Answer", "text": "For HIPAA specifically, Enterprise is required (Team doesn't support BAAs). For SOC2 alone, Team is usually fine since Anthropic itself is SOC2-compliant. Check with your security team."}},{"@type": "Question", "name": 'What about the extended context window?', "acceptedAnswer": {"@type": "Answer", "text": "Claude's standard context is 200K tokens — roughly 150K words. Enterprise can extend to 500K tokens. This matters if you're routinely working with documents longer than ~150K words (long legal contracts, codebases, multi-document research). For most business workflows, the standard context is sufficient."}},{"@type": "Question", "name": 'Should I get Enterprise just for the dedicated support?', "acceptedAnswer": {"@type": "Answer", "text": "Probably not, unless you're deploying to 100+ users. For smaller deployments, standard support is responsive and most issues get resolved quickly."}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin:1.5rem 0 0.5rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+    .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+    @media(max-width:800px){.vs-grid{grid-template-columns:1fr}section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+    .vs-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem}
+    .vs-card h3{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;font-weight:400;margin-bottom:1rem}
+    .vs-card ul{list-style:none;padding:0}
+    .vs-card ul li{font-size:0.9rem;color:#C0D8C0;padding:0.45rem 0;padding-left:1.5rem;position:relative;line-height:1.55}
+    .vs-card ul li::before{content:"→";position:absolute;left:0;color:#00C853}
+    .compare-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:0.88rem}
+    .compare-table th,.compare-table td{padding:0.85rem 1rem;text-align:left;border-bottom:1px solid #1A3A1A;color:#C0D8C0}
+    .compare-table th{color:#F0FFF0;font-weight:600;font-size:0.74rem;letter-spacing:0.08em;text-transform:uppercase;background:#0A1A0A}
+    .compare-table tr td:first-child{color:#F0FFF0;font-weight:500}
+    .faq{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.25rem 1.5rem;margin-bottom:0.85rem;max-width:780px}
+    .faq h3{font-family:'Instrument Serif',serif;font-size:1.1rem;color:#F0FFF0;font-weight:400;margin-bottom:0.4rem}
+    .faq p{font-size:0.88rem;color:#C0D8C0;line-height:1.7}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Comparison · 2026</div>
+    <h1 class="hero-h">Claude Team vs <em style="color:#00C853;font-style:italic;">Claude Enterprise.</em></h1>
+    <p class="hero-sub">Claude Team works for most companies under 200 employees. Claude Enterprise becomes necessary when SSO, audit logs, or compliance requirements would otherwise block adoption. Here's the decision framework — and why most companies that "feel like" they need Enterprise actually don't.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The framing</span>
+    <h2 class="h2">What each tool is actually built for</h2>
+    <p class="body">Claude Team is $30/seat/month (annual billing, 5-seat minimum). It includes shared Projects, central billing, admin controls, and standard usage limits — enough for most B2B teams under 200 employees.</p>
+    <p class="body">Claude Enterprise is custom-priced (typically $60–$100+/seat/month with annual commits). It adds the things larger orgs require to deploy at scale: SSO/SCIM, audit logs, expanded context windows (up to 500K tokens), dedicated account management, and stronger data residency controls.</p>
+    <p class="body">The wrong reason to choose Enterprise: "we're a real company, we should have the enterprise plan." The right reason: a specific feature that's blocking your adoption.</p>
+    
+    <div class="vs-grid">
+      <div class="vs-card"><h3>Claude</h3><ul><li>Shared Projects across the team</li><li>Central billing and admin controls</li><li>5x higher usage limits than Pro</li><li>Admin role management</li><li>Standard support</li><li>Works for most companies under 200 employees</li></ul></div>
+      <div class="vs-card"><h3>Claude Enterprise</h3><ul><li>SSO + SCIM for user provisioning</li><li>Audit logs for compliance</li><li>Up to 500K token context window</li><li>Stronger data residency controls</li><li>Dedicated account management</li><li>Custom Terms of Service and DPAs</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Side-by-side</span>
+    <h2 class="h2">Feature comparison</h2>
+    <table class="compare-table">
+      <thead><tr><th>Capability</th><th>Claude</th><th>Claude Enterprise</th></tr></thead>
+      <tbody><tr><td>Shared Projects</td><td>★★★★★</td><td>★★★★★</td></tr><tr><td>Central billing</td><td>★★★★★</td><td>★★★★★</td></tr><tr><td>Admin controls</td><td>★★★ (basic roles)</td><td>★★★★★ (granular)</td></tr><tr><td>SSO / SCIM</td><td>—</td><td>★★★★★</td></tr><tr><td>Audit logs</td><td>—</td><td>★★★★★</td></tr><tr><td>Context window</td><td>Standard (200K)</td><td>Extended (up to 500K)</td></tr><tr><td>Data residency controls</td><td>Standard</td><td>Custom</td></tr><tr><td>Support level</td><td>Standard</td><td>Dedicated account team</td></tr><tr><td>Pricing</td><td>$30/seat/mo (annual)</td><td>$60–$100+/seat (custom)</td></tr><tr><td>Minimum commitment</td><td>5 seats</td><td>Negotiated annual</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Use cases</span>
+    <h2 class="h2">Which one for which job</h2>
+    <h3 class="h3">Claude Team is the right answer when:</h3><p class="body">— Your team is under ~200 people<br/>— You don't have hard SSO/SCIM requirements yet<br/>— You're early in your AI deployment and don't know exactly what you'll need<br/>— You want to keep procurement simple and ship fast<br/>— Cost-per-seat matters more than enterprise feature parity</p><h3 class="h3">Claude Enterprise is the right answer when:</h3><p class="body">— Your security team has formally required SSO/SCIM for new SaaS<br/>— You're in a regulated industry (healthcare, finance, legal) and need audit logs<br/>— You're processing documents longer than ~150K words (extended context)<br/>— You have 200+ users to deploy and Team plan's admin features can't handle the scale<br/>— You need a custom DPA or specific data residency</p><h3 class="h3">Stay on Pro (skip Team) when:</h3><p class="body">— You're 1–4 people and don't need shared Projects yet<br/>— You're still in early experimentation phase</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+    <div class="faq"><h3>How much does Claude Enterprise actually cost?</h3><p>Anthropic doesn't publish Enterprise pricing. Realistic floors based on what we see in actual contracts: $60–$100/seat/month for typical mid-market deals, higher for very small deployments (under 25 seats), lower for very large ones (1000+ seats) with annual commitments.</p></div><div class="faq"><h3>Can I upgrade from Team to Enterprise mid-contract?</h3><p>Yes — Anthropic supports migration from Team to Enterprise. Most companies do this 6–12 months after starting on Team, when they've outgrown the Team plan's features.</p></div><div class="faq"><h3>Do I need Enterprise for HIPAA or compliance work?</h3><p>For HIPAA specifically, Enterprise is required (Team doesn't support BAAs). For SOC2 alone, Team is usually fine since Anthropic itself is SOC2-compliant. Check with your security team.</p></div><div class="faq"><h3>What about the extended context window?</h3><p>Claude's standard context is 200K tokens — roughly 150K words. Enterprise can extend to 500K tokens. This matters if you're routinely working with documents longer than ~150K words (long legal contracts, codebases, multi-document research). For most business workflows, the standard context is sufficient.</p></div><div class="faq"><h3>Should I get Enterprise just for the dedicated support?</h3><p>Probably not, unless you're deploying to 100+ users. For smaller deployments, standard support is responsive and most issues get resolved quickly.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related comparisons</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-much-does-claude-cost-for-business" style="color:#00C853;text-decoration:none;">How much does Claude cost for business? →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/anthropic-claude-setup-for-business" style="color:#00C853;text-decoration:none;">How to set up Claude for business →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-business" style="color:#00C853;text-decoration:none;">Claude for business (hub) →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation →</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Need help picking your AI stack?</div>
+        <div class="cta-sub">The $1,500 AI Audit gives you a specific tool recommendation based on your workflows — not based on what's popular.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

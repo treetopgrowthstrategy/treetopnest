@@ -1,0 +1,208 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Why Treetop — How We're Different from Agencies, Consultants & Freelancers | Treetop</title>
+  <meta name="description" content="An honest, specific breakdown of how Treetop differs from agencies, big consultancies, freelancers, and DIY. What we do better, what we don't do, and how to decide whether we're actually right for your business." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/why-treetop" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/why-treetop" />
+  <meta property="og:title" content="Why Treetop" />
+  <meta property="og:description" content="Honest differentiation vs. agencies, consultancies, freelancers, and DIY." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Treetop" />
+  <meta name="twitter:description" content="Honest differentiation. What we do, what we don't, and who we fit." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "Why Treetop", "url": "https://treetopgrowthstrategy.com/why-treetop", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+    .hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,5vw,4rem);font-weight:400;line-height:1.08;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.6rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .h3{font-family:'Instrument Serif',serif;font-size:1.45rem;color:#F0FFF0;font-weight:400;margin:1.75rem 0 0.5rem}
+    .body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .body em{color:#F0FFF0;font-style:italic}
+    .compare-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:0.88rem}
+    .compare-table th,.compare-table td{padding:0.95rem 1rem;text-align:left;border-bottom:1px solid #1A3A1A;color:#C0D8C0;vertical-align:top}
+    .compare-table th{color:#F0FFF0;font-weight:600;font-size:0.74rem;letter-spacing:0.08em;text-transform:uppercase;background:#0A1A0A}
+    .compare-table tr td:first-child{color:#F0FFF0;font-weight:500}
+    .quote{border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:2rem 0;max-width:760px;background:rgba(0,200,83,0.04)}
+    .quote p{font-family:'Instrument Serif',serif;font-size:1.2rem;line-height:1.5;color:#F0FFF0;font-style:italic;margin:0}
+    .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+    @media(max-width:800px){.fit-grid{grid-template-columns:1fr}section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+    .fit-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem}
+    .fit-card h3{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;font-weight:400;margin-bottom:0.75rem}
+    .fit-card ul{list-style:none;padding:0}
+    .fit-card li{font-size:0.9rem;color:#C0D8C0;line-height:1.6;padding:0.4rem 0;padding-left:1.5rem;position:relative}
+    .fit-card li::before{position:absolute;left:0;font-family:'Instrument Serif',serif;font-style:italic}
+    .fit-card.fit li::before{content:"✓";color:#00C853}
+    .fit-card.unfit li::before{content:"✗";color:#c83232}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/how-we-work" class="nav-link">How We Work</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>The honest differentiation</div>
+    <h1 class="hero-h">Why Treetop, <em style="color:#00C853;font-style:italic;">and why not.</em></h1>
+    <p class="hero-sub">
+      Most "why us" pages are unfalsifiable. Bigger logo wall. Vaguer adjectives. We'd rather tell you specifically how we differ from the other four ways you could solve this — agencies, big consultancies, freelancers, and your own team — and let you decide. Some of those alternatives are the right answer for some companies. Here's how to tell which.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The four alternatives</span>
+    <h2 class="h2">Honestly comparing the options</h2>
+    <p class="body">When you're considering Treetop, you're usually also considering one of four other things. Here's how we differ from each — including where they win.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>Option</th><th>Wins on</th><th>Loses on</th><th>Best when</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Marketing agency</td><td>Execution capacity, channel expertise, brand polish</td><td>Strategy depth, AI-native operating model, not-pricing-by-the-deliverable</td><td>You have a defined campaign and need execution arms</td></tr>
+        <tr><td>Big consulting firm</td><td>Brand, board credibility, multi-workstream parallelism</td><td>Cost, partner-vs-associate gap, slide-heavy deliverables</td><td>You're enterprise-scale or pre-IPO and need the brand</td></tr>
+        <tr><td>Solo freelancer</td><td>Lowest cost, sometimes deepest specialist expertise</td><td>Scope limits, no leverage, capacity ceiling</td><td>You have a narrow, well-defined deliverable</td></tr>
+        <tr><td>DIY (your own team)</td><td>Cost, full ownership, pattern stays internal</td><td>Pattern exposure, time to first result, opportunity cost</td><td>You have senior AI-fluent talent already on staff</td></tr>
+        <tr><td><strong style="color:#00C853;">Treetop</strong></td><td><strong style="color:#F0FFF0;">Strategy + implementation + fractional leadership, AI-native operating model, fixed-price productized engagements, no agency overhead</strong></td><td>We're one operator, not a team. We don't do paid media buying. We don't do enterprise transformations.</td><td>You're $5M–$50M B2B and want senior strategic depth without paying agency overhead or hiring a full-time exec</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      <p>"The work isn't to pretend we're better than every alternative. The work is to be obviously the right answer for some specific situations."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">What we do well</span>
+    <h2 class="h2">Five things Treetop is genuinely better at</h2>
+
+    <h3 class="h3">1. The intersection of strategy and AI implementation</h3>
+    <p class="body">Most agencies don't have GTM strategy depth. Most consultants don't build working AI systems. Most AI implementers don't think about the GTM operating model. Treetop sits at the intersection — strategist-operator who actually configures the Claude Projects, writes the system prompts, and trains the team.</p>
+
+    <h3 class="h3">2. Productized engagements with fixed scope and fixed price</h3>
+    <p class="body">$1,500 Audit. $3,500 Implementation. $1,200/month Retainer. Written scopes, written deliverables, no hourly billing. The pricing model alone separates us from most of the consulting category. See the <a href="/pricing" style="color:#00C853;text-decoration:none;">full pricing breakdown</a>.</p>
+
+    <h3 class="h3">3. One operator, not an army</h3>
+    <p class="body">Bill Colbert runs every engagement. There's no partner-vs-associate gap. The person on your kickoff is the person on your readout. This bounds the volume of work we can take — but the people who work with us never lose continuity.</p>
+
+    <h3 class="h3">4. AI-native operating model, not "AI features added to a 2018 playbook"</h3>
+    <p class="body">The <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">AI-Native GTM Framework</a> isn't "GTM strategy plus a Claude tutorial." It's a rebuilt operating model where AI is a primary capability. Most consulting firms layer AI onto the same templated frameworks they've been selling for years. We don't.</p>
+
+    <h3 class="h3">5. Pattern library across 8–20 active companies</h3>
+    <p class="body">A new full-time AI hire has the patterns from their last company. A consultancy at our stage has active engagements at 8–20 companies — meaning we've seen what works and what doesn't across industries, sizes, and stacks. For your first 18 months in AI, that pattern library is worth more than dedicated headcount.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Who we fit</span>
+    <h2 class="h2">Who Treetop is — and isn't — for</h2>
+
+    <div class="fit-grid">
+      <div class="fit-card fit">
+        <h3>You're a fit if…</h3>
+        <ul>
+          <li>You're $5M–$50M B2B with revenue stalling or AI adoption stuck</li>
+          <li>You have a leadership team that wants senior strategic depth at fractional cost</li>
+          <li>You believe AI is a system redesign, not just a faster word processor</li>
+          <li>You prefer fixed-price productized engagements over hourly contracts</li>
+          <li>You're willing to actually implement what we recommend, not just admire the slide deck</li>
+          <li>You want one operator who knows your business, not a rotating team</li>
+        </ul>
+      </div>
+      <div class="fit-card unfit">
+        <h3>You're not a fit if…</h3>
+        <ul>
+          <li>You're under $1M revenue and need someone to do the marketing for you</li>
+          <li>You want a 12-person agency to handle execution end-to-end</li>
+          <li>You want a brand-name consulting firm for board credibility</li>
+          <li>You need enterprise-scale rollouts across thousands of users</li>
+          <li>You're looking for paid media buying or pure performance marketing</li>
+          <li>You want the lowest hourly rate and don't care about depth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Proof</span>
+    <h2 class="h2">If you want to see how we operate before committing</h2>
+    <p class="body">Read the <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">AI-Native GTM Framework</a> to see the operating model we use. Read <a href="/how-we-work" style="color:#00C853;text-decoration:none;">How We Work</a> for the week-by-week engagement breakdown. Take the <a href="/quiz" style="color:#00C853;text-decoration:none;">3-minute Gap Assessment</a> for a personalized read on your specific gaps.</p>
+    <p class="body">Or — the lowest-friction option — start with the $1,500 <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">AI Audit</a>. It's the cheapest way to see whether the way we think matches what you actually need. About 70% of Audit clients continue into Implementation. The other 30% take the roadmap and execute it themselves, which is fine — we wrote it for that.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Decide whether we're a fit</div>
+        <div class="cta-sub">Lowest-friction path: $1,500 Audit. One week. Written roadmap. No commitment to a longer engagement.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment first</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>
