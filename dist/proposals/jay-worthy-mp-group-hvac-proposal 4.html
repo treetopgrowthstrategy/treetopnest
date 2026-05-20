@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal — HVAC Customer Acquisition Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #0c1810;
+    --bg-card:      #111f14;
+    --bg-rule:      #162019;
+    --lime:         #00C853;
+    --lime-soft:    #33d470;
+    --lime-dim:     rgba(0, 200, 83, 0.10);
+    --lime-border:  rgba(0, 200, 83, 0.28);
+    --white:        #edf5ee;
+    --white-dim:    rgba(237, 245, 238, 0.52);
+    --white-faint:  rgba(237, 245, 238, 0.10);
+    --border:       rgba(237, 245, 238, 0.08);
+    --serif:        'Instrument Serif', Georgia, serif;
+    --sans:         'DM Sans', sans-serif;
+    --mono:         'JetBrains Mono', monospace;
+    --radius:       4px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  /* WORDMARK */
+  .wordmark {
+    padding: 28px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .wordmark-text {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--white-dim);
+  }
+
+  .wordmark-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--lime);
+    margin-left: 3px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  /* COVER */
+  .cover {
+    padding: 56px 0 60px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    animation: fadeUp 0.7s ease both;
+    animation-delay: 0.06s;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 18px;
+  }
+
+  .cover-title {
+    font-family: var(--serif);
+    font-size: clamp(30px, 5vw, 50px);
+    font-weight: 400;
+    line-height: 1.13;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .cover-title em { font-style: italic; color: var(--lime-soft); }
+
+  .cover-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--white-dim);
+    max-width: 500px;
+    line-height: 1.72;
+  }
+
+  .cover-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .meta-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 9px 14px;
+    border-radius: var(--radius);
+    text-align: right;
+    min-width: 165px;
+  }
+
+  .meta-chip .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 3px;
+  }
+
+  .meta-chip .val { font-size: 13px; font-weight: 500; color: var(--white); }
+
+  /* SECTION */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--lime-border);
+    opacity: 0.45;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .section-body {
+    font-size: 14.5px;
+    font-weight: 300;
+    color: var(--white-dim);
+    max-width: 640px;
+    line-height: 1.75;
+  }
+
+  /* DELIVERABLE CARDS */
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 36px;
+  }
+
+  .d-card {
+    background: var(--bg-card);
+    padding: 26px 22px;
+    transition: background 0.2s ease;
+  }
+
+  .d-card:hover { background: #162019; }
+
+  .d-card-number {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    color: var(--lime);
+    margin-bottom: 11px;
+  }
+
+  .d-card-title {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .d-card-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.65;
+  }
+
+  /* RETAINER */
+  .retainer-block {
+    margin-top: 36px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .retainer-header {
+    background: var(--lime-dim);
+    border-bottom: 1px solid var(--lime-border);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rh-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  .rh-price {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--white);
+  }
+
+  .retainer-body { padding: 24px; background: var(--bg-card); }
+
+  .retainer-items { display: flex; flex-direction: column; gap: 15px; }
+
+  .r-item { display: flex; gap: 14px; align-items: flex-start; }
+
+  .r-item-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--lime);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .r-item-text { font-size: 14px; font-weight: 300; color: var(--white-dim); line-height: 1.65; }
+  .r-item-text strong { color: var(--white); font-weight: 500; }
+
+  /* INVESTMENT */
+  .investment-table {
+    margin-top: 36px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .inv-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 24px;
+    padding: 20px 24px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .inv-row:last-child { border-bottom: none; }
+
+  .inv-row.header {
+    background: var(--bg-rule);
+    padding: 12px 24px;
+  }
+
+  .inv-row.header span {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+  }
+
+  .inv-row.total {
+    background: var(--lime-dim);
+    border-top: 1px solid var(--lime-border);
+  }
+
+  .inv-name { font-size: 14.5px; font-weight: 500; color: var(--white); }
+  .inv-note { font-size: 12.5px; font-weight: 300; color: var(--white-dim); margin-top: 3px; line-height: 1.55; }
+
+  .inv-type {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 9px;
+    border-radius: 2px;
+    background: var(--white-faint);
+    color: var(--white-dim);
+    white-space: nowrap;
+  }
+
+  .inv-amount {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--white);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .inv-row.total .inv-name  { color: var(--lime-soft); font-weight: 600; }
+  .inv-row.total .inv-amount { color: var(--lime-soft); font-size: 21px; }
+
+  /* TERMS */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .term-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .term-label {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 8px;
+  }
+
+  .term-value { font-size: 14px; font-weight: 400; color: var(--white); line-height: 1.5; }
+
+  .term-value small {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--white-dim);
+    margin-top: 5px;
+    line-height: 1.55;
+  }
+
+  /* SIGNATURE */
+  .sig-block {
+    margin-top: 40px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .sig-header {
+    background: var(--bg-rule);
+    padding: 13px 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+  }
+
+  .sig-body { display: grid; grid-template-columns: 1fr 1fr; }
+
+  .sig-party {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+  }
+
+  .sig-party:last-child { border-right: none; }
+
+  .sig-role {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 6px;
+  }
+
+  .sig-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .sig-line-group { display: flex; flex-direction: column; gap: 20px; }
+
+  .sig-line-bar { height: 1px; background: var(--border); width: 100%; margin-bottom: 6px; }
+
+  .sig-line-label {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--white-dim);
+    font-family: var(--mono);
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 0 0;
+    font-size: 11.5px;
+    font-weight: 300;
+    color: rgba(237, 245, 238, 0.22);
+    font-family: var(--mono);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(3) { animation-delay: 0.10s; }
+  .section:nth-child(4) { animation-delay: 0.17s; }
+  .section:nth-child(5) { animation-delay: 0.24s; }
+  .section:nth-child(6) { animation-delay: 0.31s; }
+  .section:nth-child(7) { animation-delay: 0.38s; }
+  .section:nth-child(8) { animation-delay: 0.45s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 660px) {
+    .page { padding: 0 20px 60px; }
+    .cover { grid-template-columns: 1fr; }
+    .cover-meta-row { align-items: flex-start; }
+    .deliverables-grid { grid-template-columns: 1fr; }
+    .terms-grid { grid-template-columns: 1fr; }
+    .sig-body { grid-template-columns: 1fr; }
+    .sig-party { border-right: none; border-bottom: 1px solid var(--border); }
+    .inv-row { grid-template-columns: 1fr auto; }
+    .inv-type { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- WORDMARK -->
+  <div class="wordmark">
+    <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 2C11 2 4 9 4 16C4 20.4 7 23 11 23C15 23 18 20.4 18 16C18 9 11 2 11 2Z" fill="#00C853" opacity="0.2"/>
+      <path d="M11 6C11 6 6 12 6 16.5C6 19.5 8.2 21.5 11 21.5C13.8 21.5 16 19.5 16 16.5C16 12 11 6 11 6Z" fill="#00C853" opacity="0.45"/>
+      <path d="M11 11C11 11 8.5 14 8.5 17C8.5 18.9 9.6 20 11 20C12.4 20 13.5 18.9 13.5 17C13.5 14 11 11 11 11Z" fill="#00C853"/>
+    </svg>
+    <span class="wordmark-text">Treetop Growth Strategy<span class="wordmark-dot"></span></span>
+  </div>
+
+  <!-- COVER -->
+  <header class="cover">
+    <div>
+      <div class="cover-eyebrow">Scope of Work &amp; Proposal</div>
+      <h1 class="cover-title">HVAC Customer Acquisition<br><em>Strategy &amp; Execution</em></h1>
+      <p class="cover-sub">A structured engagement to audit, build, and manage a performance-ready paid acquisition system for your HVAC client base — starting with North Georgia.</p>
+    </div>
+    <div>
+      <div class="cover-meta-row">
+        <div class="meta-chip">
+          <div class="label">Prepared For</div>
+          <div class="val">Jay Worthy — MP Group</div>
+        </div>
+        <div class="meta-chip">
+          <div class="label">Date Issued</div>
+          <div class="val">April 22, 2026</div>
+        </div>
+        <div class="meta-chip">
+          <div class="label">Initial Market</div>
+          <div class="val">North Georgia</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- OVERVIEW -->
+  <section class="section">
+    <div class="section-label">01 — Overview</div>
+    <h2 class="section-title">What We're Building</h2>
+    <p class="section-body">Before a single dollar of ad spend is deployed, the foundation needs to be right. This engagement begins with a thorough audit of the competitive landscape, the existing funnel, the ad account infrastructure, and the media mix — so that every tactical decision that follows is grounded in real data from your specific market.</p>
+    <p class="section-body" style="margin-top: 14px;">The up-front phase delivers a complete strategic picture. The ongoing retainer converts that picture into consistent, managed execution — with a clear owner accountable to results.</p>
+  </section>
+
+  <!-- PHASE 1 -->
+  <section class="section">
+    <div class="section-label">02 — Phase One</div>
+    <h2 class="section-title">Up-Front Audit &amp; Setup</h2>
+    <p class="section-body">A one-time engagement to map the terrain, evaluate the client's current position, and build the infrastructure required to compete effectively in the North Georgia market.</p>
+
+    <div class="deliverables-grid">
+      <div class="d-card">
+        <div class="d-card-number">01 / 06</div>
+        <div class="d-card-title">Competitor Funnel Analysis</div>
+        <div class="d-card-body">Audit 3 to 5 competing HVAC operators in the region — ads, landing pages, offers, and follow-up sequences. Identify patterns, gaps, and angles the client can exploit.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-number">02 / 06</div>
+        <div class="d-card-title">Existing Ad Spend &amp; Funnel Review</div>
+        <div class="d-card-body">Evaluate the client's current ad account performance — spend, creative, targeting, and landing page — to identify what's working, what's wasted, and what to preserve going forward.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-number">03 / 06</div>
+        <div class="d-card-title">Ad Account Setup &amp; Conversion Tracking</div>
+        <div class="d-card-body">Configure ad accounts properly across platforms, install pixel and tag infrastructure, and verify conversion tracking end-to-end from ad click to destination page event — no blind spots.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-number">04 / 06</div>
+        <div class="d-card-title">Creative Audit</div>
+        <div class="d-card-body">Review all existing creative assets — static, video, and copy — against what's performing in the HVAC vertical today. Deliver a clear assessment of what to retire, refresh, or scale.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-number">05 / 06</div>
+        <div class="d-card-title">Keyword Volume Research</div>
+        <div class="d-card-body">Research monthly search volume for primary HVAC terms specific to North Georgia — service-based, brand-based, and emergency intent — to inform Google campaign structure and budget priority.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-number">06 / 06</div>
+        <div class="d-card-title">Media Spend Allocation</div>
+        <div class="d-card-body">Deliver a recommended budget split across Meta and Google — grounded in keyword demand, audience size, and competitive pressure — so every dollar is allocated before launch, not after.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE 2 -->
+  <section class="section">
+    <div class="section-label">03 — Phase Two</div>
+    <h2 class="section-title">Monthly Retainer</h2>
+    <p class="section-body">Following the audit phase, the monthly retainer maintains active oversight of the full acquisition system — keeping campaigns optimized, creative fresh, and reporting clear.</p>
+
+    <div class="retainer-block">
+      <div class="retainer-header">
+        <div class="rh-label">Monthly Retainer — Ongoing</div>
+        <div class="rh-price">$500 / mo</div>
+      </div>
+      <div class="retainer-body">
+        <div class="retainer-items">
+          <div class="r-item">
+            <div class="r-item-dot"></div>
+            <div class="r-item-text"><strong>Campaign Management</strong> — Ongoing optimization of Meta and Google campaigns including bid strategy, audience refinement, and budget pacing based on live performance data.</div>
+          </div>
+          <div class="r-item">
+            <div class="r-item-dot"></div>
+            <div class="r-item-text"><strong>Creative Monitoring</strong> — Flag fatigued creative, brief refreshes, and advise on new angles based on what the data is showing month over month.</div>
+          </div>
+          <div class="r-item">
+            <div class="r-item-dot"></div>
+            <div class="r-item-text"><strong>Funnel Performance Reporting</strong> — Monthly summary of key metrics: cost per lead, conversion rate, spend by channel, and actionable next steps.</div>
+          </div>
+          <div class="r-item">
+            <div class="r-item-dot"></div>
+            <div class="r-item-text"><strong>Strategic Access</strong> — Direct communication for questions, decisions, and course corrections as the market or client needs evolve.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT -->
+  <section class="section">
+    <div class="section-label">04 — Investment</div>
+    <h2 class="section-title">Fee Structure</h2>
+    <p class="section-body">Three components: a one-time setup fee, a flat monthly retainer, and a profit-based commission on each active client. Media spend is separate and paid directly to the platforms by the client.</p>
+
+    <div class="investment-table">
+      <div class="inv-row header">
+        <span>Service</span>
+        <span>Type</span>
+        <span>Amount</span>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="inv-name">Up-Front Audit &amp; Setup</div>
+          <div class="inv-note">Full 6-deliverable engagement — competitor funnel analysis, ad account infrastructure, creative audit, keyword research, and media plan</div>
+        </div>
+        <div class="inv-type">One-Time</div>
+        <div class="inv-amount">$2,000</div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="inv-name">Monthly Retainer</div>
+          <div class="inv-note">Ongoing campaign management, creative monitoring, funnel reporting, and strategic access — begins following audit delivery</div>
+        </div>
+        <div class="inv-type">Monthly</div>
+        <div class="inv-amount">$500 / mo</div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="inv-name">Profit-Based Commission</div>
+          <div class="inv-note">15% of the monthly profit per active client managed under this engagement. For this client ($2,000/mo contract profit), this equals $300/mo — billed alongside the monthly retainer</div>
+        </div>
+        <div class="inv-type">Monthly</div>
+        <div class="inv-amount">$300 / mo</div>
+      </div>
+      <div class="inv-row total">
+        <div>
+          <div class="inv-name">Year One Total (Est.)</div>
+          <div class="inv-note">$2,000 setup + 12 months at $800/mo ($500 retainer + $300 commission). Media spend is additional and funded directly by the client.</div>
+        </div>
+        <div class="inv-type" style="color: var(--lime); background: rgba(0,200,83,0.12);">Annual</div>
+        <div class="inv-amount">$11,600</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMS -->
+  <section class="section">
+    <div class="section-label">05 — Terms</div>
+    <h2 class="section-title">Engagement Terms</h2>
+    <p class="section-body">Straightforward terms to protect both sides and keep the work moving.</p>
+
+    <div class="terms-grid">
+      <div class="term-item">
+        <div class="term-label">Payment — Phase One</div>
+        <div class="term-value">$2,000 due upon signing
+          <small>Invoice issued at contract execution. Work begins upon receipt.</small>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-label">Payment — Retainer</div>
+        <div class="term-value">$500 due on the 1st of each month
+          <small>Begins the month following audit delivery. Month-to-month after an initial 3-month commitment.</small>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-label">Media Spend</div>
+        <div class="term-value">Paid directly by client
+          <small>Ad spend is not included in this fee. Client funds their own Meta and Google ad accounts.</small>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-label">Deliverable Timeline</div>
+        <div class="term-value">Audit delivered within 10 business days
+          <small>Following receipt of ad account access and any required client materials.</small>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-label">Account Access</div>
+        <div class="term-value">Required at kickoff
+          <small>Meta Business Manager and Google Ads access needed to begin. Client retains ownership of all accounts at all times.</small>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-label">Cancellation</div>
+        <div class="term-value">30-day written notice
+          <small>Either party may terminate the retainer with 30 days notice. The up-front fee is non-refundable.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE -->
+  <section class="section">
+    <div class="section-label">06 — Acceptance</div>
+    <h2 class="section-title">Sign-Off</h2>
+    <p class="section-body">By signing below, both parties agree to the scope, terms, and investment outlined in this document.</p>
+
+    <div class="sig-block">
+      <div class="sig-header">Signatures</div>
+      <div class="sig-body">
+        <div class="sig-party">
+          <div class="sig-role">Service Provider</div>
+          <div class="sig-name">Bill Colbert</div>
+          <div class="sig-line-group">
+            <div>
+              <div class="sig-line-bar"></div>
+              <div class="sig-line-label">Signature</div>
+            </div>
+            <div>
+              <div class="sig-line-bar"></div>
+              <div class="sig-line-label">Date</div>
+            </div>
+          </div>
+        </div>
+        <div class="sig-party">
+          <div class="sig-role">Client</div>
+          <div class="sig-name">Jay Worthy — MP Group</div>
+          <div class="sig-line-group">
+            <div>
+              <div class="sig-line-bar"></div>
+              <div class="sig-line-label">Signature</div>
+            </div>
+            <div>
+              <div class="sig-line-bar"></div>
+              <div class="sig-line-label">Date</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Questions before signing? Reach out directly. &nbsp;·&nbsp; Proposal valid for 30 days from date of issue. &nbsp;·&nbsp; treetopgrowthstrategy.com</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Build an AI-Native Sales Team (From Scratch or From Rebuild) | Treetop</title>
+<meta name="description" content="Building a sales team in 2026 isn't the same as building one in 2022. The role design, tool stack, hiring profile, and compensation model are all different. Here's the playbook for building or rebuilding for AI-native operation." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-build-an-ai-native-sales-team" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-build-an-ai-native-sales-team" />
+<meta property="og:title" content="How to Build an AI-Native Sales Team (From Scratch or From Rebuild)" /><meta property="og:description" content="Building a sales team in 2026 isn't the same as building one in 2022. The role design, tool stack, hiring profile, and compensation model are all different. Here's the playbook for building or rebuilding for AI-native operation." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Build an AI-Native Sales Team (From Scratch or From Rebuild)" />
+<meta name="twitter:description" content="Building a sales team in 2026 isn't the same as building one in 2022. The role design, tool stack, hiring profile, and compensation model are all different. Here's the playbook for building or rebuilding for AI-native operation." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Article","headline":'How to Build an AI-Native Sales Team (From Scratch or From Rebuild)',"description":"Building a sales team in 2026 isn't the same as building one in 2022. The role design, tool stack, hiring profile, and compensation model are all different. Here's the playbook for building or rebuilding for AI-native operation.","url":"https://treetopgrowthstrategy.com/how-to-build-an-ai-native-sales-team","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:55vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:400;line-height:1.05;color:#F0FFF0;margin-bottom:1.5rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.75rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1.25rem}.body em{color:#F0FFF0;font-style:italic}
+.body strong{color:#F0FFF0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/the-ai-native-gtm-framework" class="nav-link">Framework</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Definitive guide · 14 min read</div>
+<h1 class="hero-h">How to build<br/><em style="color:#00C853;font-style:italic;">an AI-native sales team.</em></h1>
+<p class="hero-sub">Most sales teams in B2B today were designed before AI was operationally viable. They're structured around assumptions that no longer hold: SDRs needing 30 minutes per account to research, AEs spending half their week on prep, managers reviewing pipeline by reading notes. The new design is fundamentally different. Here's the playbook for building it.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why "add AI to your existing sales team" usually fails</h2>
+    <p class="body">Most sales orgs that "deploy AI" do so by giving existing reps Claude subscriptions and hoping productivity improves. It rarely does — because the role design, comp model, and management cadence are all built around pre-AI assumptions. AI tools layered on top of pre-AI roles just produce slightly faster execution of the same outdated motion.</p>
+    <p class="body">The real opportunity is rebuilding the team design itself around what AI actually changes. That rebuild produces 2–3x the per-rep output — but it requires changing the org structure, not just buying software.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What AI actually changes in sales</span><h2 class="h2">The five structural shifts</h2>
+    <p class="body"><strong>1. Research is no longer a bottleneck.</strong> Account briefs, persona analysis, signal monitoring — what used to take 90 minutes per account now takes 10. This changes how many accounts a rep can credibly own (significantly more) and what their role looks like (more strategic, less administrative).</p>
+    <p class="body"><strong>2. First-draft personalization is free.</strong> Sequence personalization, outreach drafts, follow-up messages — AI handles the drafting; reps edit. Output per rep goes 3x without quality loss.</p>
+    <p class="body"><strong>3. Pipeline analysis is automated.</strong> Daily pipeline-health reports, stalled-deal flags, coaching brief generation — all run by AI on top of CRM data. Sales managers shift from reviewing-status to coaching-action.</p>
+    <p class="body"><strong>4. The SDR role evolves.</strong> Pure-volume SDR roles compress because the volume work AI does. The remaining SDR work is higher-judgment account selection and relationship building.</p>
+    <p class="body"><strong>5. The AE role expands.</strong> AEs can manage more accounts, run more conversations, and own more of the full revenue cycle (including expansion). Heads-up requirement: this requires senior-er AE talent, not just more reps.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Role design for the AI-native team</span><h2 class="h2">How the team structure should look</h2>
+    <p class="body"><strong>For a $5M-$25M B2B selling at $50K+ ACV:</strong> 1 Head of Sales + 2-4 senior AEs + 1 SDR or BDR. AI handles the work that used to require 3-4 SDRs and a SE.</p>
+    <p class="body"><strong>For a $25M-$75M B2B:</strong> 1 Sales Leader + 1 Sales Manager + 6-10 senior AEs + 2-3 BDRs + 1 RevOps person. AI handles research, pipeline analysis, and forecasting that used to require an entire ops team.</p>
+    <p class="body"><strong>Key insight:</strong> AI-native teams are <em>smaller and more senior</em> than their pre-AI equivalents. The right hire is one experienced AE with strong AI fluency, not three junior reps.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Hiring profile</span><h2 class="h2">The 4 traits that matter most for AI-native sales hires</h2>
+    <p class="body"><strong>1. AI fluency.</strong> Not "has used ChatGPT once." Has built Claude Projects, can articulate prompt patterns, can describe what AI does and doesn't do well. Test this in interviews directly.</p>
+    <p class="body"><strong>2. Strategic depth over execution volume.</strong> The AI-native rep is more like a strategic relationship manager than a high-velocity activity machine. Hire for judgment over hustle.</p>
+    <p class="body"><strong>3. Comfort with ambiguity in their workflow.</strong> AI workflows iterate quickly. Reps who need rigid playbooks struggle. Reps who think in systems and adapt thrive.</p>
+    <p class="body"><strong>4. Writing quality.</strong> AI drafts; humans edit. Reps who can't edit good output to great output are bottlenecked. Test writing in the interview process, not just verbal sales skills.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Comp model implications</span><h2 class="h2">Why traditional sales comp models break</h2>
+    <p class="body">Traditional sales comp is built around per-rep quota and activity expectations. AI breaks both. If one AI-equipped rep can produce 2x the output of a non-AI rep, traditional quota models penalize the high-performing rep or under-pay the AI-equipped one.</p>
+    <p class="body">Three comp adjustments to consider:</p>
+    <p class="body"><strong>(1) Quota should scale with team output, not historical per-rep averages.</strong> If your team's output increases 80% with AI, quotas should reflect that.</p>
+    <p class="body"><strong>(2) Activity-based metrics (calls/emails per week) become irrelevant.</strong> Stop measuring them. Measure pipeline coverage, conversion rates, and revenue per rep instead.</p>
+    <p class="body"><strong>(3) Pay senior AEs more.</strong> They produce dramatically more output now. Adjust comp upward or lose them to AI-native competitors who will pay it.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Tools and stack</span><h2 class="h2">The actual stack for AI-native sales</h2>
+    <p class="body">Claude Team for the workhorse. Perplexity Pro for research. Gong or Fathom for call recording. Your existing CRM + engagement platform (Outreach/Salesloft/Apollo). That's the entire stack.</p>
+    <p class="body">Avoid the noise: "AI SDR" tools that send autonomous outreach (they don't work), single-purpose AI email writers (Claude does this), 17 different point solutions (consolidate). See <a href="/best-ai-tools-for-b2b-sales" style="color:#00C853;text-decoration:none;">best AI tools for B2B sales</a> for the full opinionated breakdown.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The transition plan</span><h2 class="h2">How to actually rebuild an existing team</h2>
+    <p class="body">Most companies don't build from scratch — they rebuild an existing team. The transition plan that works:</p>
+    <p class="body"><strong>Months 1–2:</strong> Deploy AI workflows for the existing team. Document baseline output. Identify which reps are absorbing AI fluently and which aren't.</p>
+    <p class="body"><strong>Months 3–4:</strong> Reshape the org chart. Some pre-AI roles need to consolidate. Make the changes. This is the hard part.</p>
+    <p class="body"><strong>Months 5–6:</strong> New hires going forward fit the AI-native profile. Existing team members either upskill or are managed out.</p>
+    <p class="body"><strong>Month 12:</strong> The team should be 60-70% the headcount of the pre-AI version, producing 80-100% of the output, and significantly more profitable.</p>
+    <p class="body">This is hard. It's also the design every sales org will end up at within 24 months. Companies that get there first have structural cost advantages.</p>
+    </div></section>
+
+<section><div class="sec-inner"><p class="body" style="margin-top:2rem;font-style:italic;color:#8FAF8F;">— Bill Colbert, <a href="/about" style="color:#00C853;text-decoration:none;">Treetop Growth Strategy</a></p></div></section>
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-sales" style="color:#00C853;text-decoration:none;">How to use Claude for sales →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fractional-cro" style="color:#00C853;text-decoration:none;">Fractional CRO service →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-90-day-ai-rollout-playbook" style="color:#00C853;text-decoration:none;">The 90-day AI rollout playbook →</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want this designed for your team?</div><div class="cta-sub">Treetop's Fractional CRO engagement is exactly this work — running the sales-team rebuild as your part-time revenue leader.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/fractional-cro" class="btn-p">See Fractional CRO →</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

@@ -1,0 +1,104 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Claude + Salesforce Integration: A Practical Guide for B2B Teams | Treetop</title>
+<meta name="description" content="Using Claude alongside Salesforce productively doesn't require a custom integration. Here's the practical pattern for getting AI-powered workflows running against your Salesforce data — what works today and what to build vs. buy." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/claude-and-salesforce-integration" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/claude-and-salesforce-integration" />
+<meta property="og:title" content="Claude + Salesforce Integration: A Practical Guide for B2B Teams" /><meta property="og:description" content="Using Claude alongside Salesforce productively doesn't require a custom integration. Here's the practical pattern for getting AI-powered workflows running against your Salesforce data — what works today and what to build vs. buy." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Claude + Salesforce Integration: A Practical Guide for B2B Teams" />
+<meta name="twitter:description" content="Using Claude alongside Salesforce productively doesn't require a custom integration. Here's the practical pattern for getting AI-powered workflows running against your Salesforce data — what works today and what to build vs. buy." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Article","headline":'Claude + Salesforce Integration: A Practical Guide for B2B Teams',"description":"Using Claude alongside Salesforce productively doesn't require a custom integration. Here's the practical pattern for getting AI-powered workflows running against your Salesforce data — what works today and what to build vs. buy.","url":"https://treetopgrowthstrategy.com/claude-and-salesforce-integration","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Integration guide</div>
+<h1 class="hero-h">Claude + <em style="color:#00C853;font-style:italic;">Salesforce integration.</em></h1>
+<p class="hero-sub">Claude doesn't have a native Salesforce integration like Einstein does — but you don't need one. Here's the practical pattern for using Claude productively with Salesforce: what you can do today with zero engineering, what requires light technical setup, and when a custom integration actually makes sense.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The four integration patterns</span><h2 class="h2">How Claude + Salesforce actually works in practice</h2>
+    <p class="body"><strong>1. Manual paste pattern (zero setup).</strong> Reps copy account/contact data from Salesforce into Claude for research, sequence drafting, call prep. Works immediately. Best for small teams just starting. Doesn't scale past ~10 users because the paste step adds friction.</p>
+    <p class="body"><strong>2. Export + Claude Project pattern (1 hour setup).</strong> Weekly Salesforce report exports get loaded into a Claude Project as the knowledge base. Reps query the Project for account intelligence, pipeline analysis, deal coaching. Great for sales managers and RevOps.</p>
+    <p class="body"><strong>3. Zapier/Make middleware pattern (1 day setup).</strong> Salesforce events (new opportunity, stage change, won deal) trigger Claude API calls via Zapier. Claude generates briefs, follow-ups, or post-mortems automatically. Good middle-ground when you want real automation without engineering.</p>
+    <p class="body"><strong>4. Custom MCP or API integration (1–2 weeks engineering).</strong> Direct Claude API calls reading/writing Salesforce data via custom code. The deepest integration but requires real engineering. Worth it for enterprise teams with specific workflows.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What to use Claude for in the Salesforce context</span><h2 class="h2">The high-value workflows</h2>
+    <p class="body"><strong>Account research briefs.</strong> Pull account + opportunity data from Salesforce, generate structured account briefs in Claude. See <a href="/how-to-use-ai-to-research-prospects" style="color:#00C853;text-decoration:none;">how to use AI to research prospects</a>.</p>
+    <p class="body"><strong>Deal-stage advancement coaching.</strong> Claude analyzes deal data + call recordings + email history to identify what needs to happen for the deal to advance. Manager reads the brief before the rep 1:1.</p>
+    <p class="body"><strong>Stalled-deal diagnosis.</strong> When deals sit too long at a stage, Claude analyzes the activity pattern and generates a "what's probably happening" hypothesis with recommended next action. See <a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">the stalled deal diagnosis prompt</a>.</p>
+    <p class="body"><strong>Forecast narrative.</strong> Pull pipeline data, generate the explanatory narrative for the forecast in Claude. CFO/board prep work that used to take hours becomes minutes.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Build vs buy</span><h2 class="h2">When to invest in custom integration</h2>
+    <p class="body"><strong>Stay manual</strong> if: team is &lt;10 reps, you're early in AI deployment, your Salesforce data hygiene is poor (clean the data first).</p>
+    <p class="body"><strong>Build Zapier middleware</strong> if: team is 10-30 reps, you have 2-3 specific high-frequency workflows that warrant automation, you want operational AI without engineering investment.</p>
+    <p class="body"><strong>Build custom integration</strong> if: team is 30+ reps, you have unique workflows worth the engineering investment, you need bidirectional read/write between Claude and Salesforce, or you have compliance requirements (audit logs, data residency) that off-the-shelf options don't meet.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What about Einstein/Agentforce?</span><h2 class="h2">When native Salesforce AI is the right answer</h2>
+    <p class="body">Salesforce's Einstein AI / Agentforce is the native AI layer inside Salesforce. It's expensive ($50–$150/seat add-on) but tightly integrated. Use it when you need AI features that live directly inside the Salesforce UI and tightly with Salesforce data — and when budget allows.</p>
+    <p class="body">For most B2B teams, the practical answer is: <em>both</em>. Use Claude for the deep workflow work (research, content, analysis), use Einstein for the lightweight in-platform AI (email assistant, summarization, basic predictions). They're complements, not substitutes.</p>
+    </div></section>
+
+<section><div class="sec-inner"><p class="body" style="margin-top:2rem;font-style:italic;color:#8FAF8F;">— Bill Colbert, <a href="/about" style="color:#00C853;text-decoration:none;">Treetop Growth Strategy</a></p></div></section>
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-sales" style="color:#00C853;text-decoration:none;">How to use Claude for sales →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">12 Claude prompts for sales →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/best-ai-tools-for-b2b-sales" style="color:#00C853;text-decoration:none;">Best AI tools for B2B sales →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation →</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want this integration built for you?</div><div class="cta-sub">Our Implementation engagement includes Salesforce integration design and Claude Project deployment for sales teams.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation →</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

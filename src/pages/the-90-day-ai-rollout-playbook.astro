@@ -1,0 +1,266 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>The 90-Day AI Rollout Playbook (Week-by-Week) | Treetop</title>
+  <meta name="description" content="The definitive 90-day playbook for rolling out AI across a small or mid-sized B2B company. Week by week. What to do, in what order, what success looks like at each milestone, and the patterns that produce 3x the output vs. typical AI rollouts." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/the-90-day-ai-rollout-playbook" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/the-90-day-ai-rollout-playbook" />
+  <meta property="og:title" content="The 90-Day AI Rollout Playbook" />
+  <meta property="og:description" content="The week-by-week guide for rolling out AI across a B2B company. Definitive." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The 90-Day AI Rollout Playbook" />
+  <meta name="twitter:description" content="Definitive week-by-week guide." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "The 90-Day AI Rollout Playbook", "description": "Definitive week-by-week guide for B2B AI rollouts.", "url": "https://treetopgrowthstrategy.com/the-90-day-ai-rollout-playbook", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+    .hero{min-height:55vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:400;line-height:1.05;color:#F0FFF0;margin-bottom:1.5rem}
+    .hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.75rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+    .h3{font-family:'Instrument Serif',serif;font-size:1.55rem;color:#F0FFF0;font-weight:400;margin:2rem 0 0.5rem}
+    .body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1.25rem}.body em{color:#F0FFF0;font-style:italic}
+    .body strong{color:#F0FFF0}
+    .phase{border-left:2px solid #1A3A1A;padding:0 0 2.5rem 2.5rem;margin-left:0.75rem;position:relative}
+    .phase::before{content:"";position:absolute;left:-8px;top:0;width:14px;height:14px;background:#00C853;border-radius:50%}
+    .phase-week{font-size:0.78rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+    .phase-h{font-family:'Instrument Serif',serif;font-size:1.65rem;color:#F0FFF0;font-weight:400;margin-bottom:1rem}
+    .phase-body{font-size:0.95rem;color:#C0D8C0;line-height:1.75;margin-bottom:0.85rem}
+    .phase-deliv{background:#0A1A0A;border:1px solid #1A3A1A;padding:1rem 1.25rem;font-size:0.85rem;color:#8FAF8F;line-height:1.6;margin-top:0.5rem}
+    .phase-deliv strong{color:#F0FFF0}
+    .quote{border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:2rem 0;max-width:760px;background:rgba(0,200,83,0.04)}
+    .quote p{font-family:'Instrument Serif',serif;font-size:1.2rem;line-height:1.5;color:#F0FFF0;font-style:italic;margin:0}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}.phase{padding:0 0 1.5rem 1.5rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/the-ai-native-gtm-framework" class="nav-link">Framework</a>
+      <a href="/how-we-work" class="nav-link">How We Work</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>The definitive playbook · 18 min read</div>
+    <h1 class="hero-h">The 90-day<br/><em style="color:#00C853;font-style:italic;">AI rollout playbook.</em></h1>
+    <p class="hero-sub">
+      This is the playbook we run across small and mid-sized B2B companies — refined across many engagements, week-by-week, with the deliverables, the patterns that work, and the patterns that fail. If you only read one piece on Treetop, read this. It\'s the operational core of everything we do.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Why most AI rollouts fail</span>
+    <h2 class="h2">The pattern that wastes the AI budget</h2>
+    <p class="body">Walk into ten B2B companies that "rolled out AI" in the last 18 months. In eight of them you\'ll find the same pattern: <em>they bought subscriptions, hosted a kickoff, did a single training session, and then waited for the productivity gains to show up.</em> They didn\'t. The team mostly ignored the tools. The few who used them produced incremental improvements but nothing transformative.</p>
+    <p class="body">The failure pattern isn\'t about the tools. Claude, ChatGPT, Copilot — they all work. The failure pattern is treating AI rollouts as a procurement event rather than as an operating-model change. The companies that capture the real value treat it as the latter.</p>
+    <div class="quote">
+      <p>"Buying AI is a procurement decision. Becoming AI-native is an operating-model decision. The companies confusing the two are the ones whose AI spend produces nothing."</p>
+    </div>
+    <p class="body">What follows is the playbook for the second category — the operating-model rebuild. It runs about 90 days for a typical 10–50 person B2B company. The longer version (with more functions, larger teams, deeper integration) runs 6 months. The arc is the same.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The arc</span>
+    <h2 class="h2">Phase structure</h2>
+    <p class="body">The 90 days split into four phases. The phases aren\'t equal length — discovery is short, build is long, deploy is medium, optimize is the rest. The sequence matters: skipping discovery to "just start building" is the most common way rollouts collapse.</p>
+    <p class="body"><strong>Phase 1 — Discovery (Weeks 1–2):</strong> What to deploy, in what order. Operational ICP. Workflow audit.<br/>
+    <strong>Phase 2 — Build (Weeks 3–6):</strong> Claude Projects, system prompts, knowledge bases. The technical work.<br/>
+    <strong>Phase 3 — Deploy (Weeks 7–9):</strong> Training cohorts, runbooks, governance. Where adoption is won or lost.<br/>
+    <strong>Phase 4 — Optimize (Weeks 10–12):</strong> What\'s working, what isn\'t, what to refine.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Phase 1 · Weeks 1–2</span>
+    <h2 class="h2">Discovery — what to actually deploy</h2>
+
+    <div class="phase">
+      <div class="phase-week">Week 1</div>
+      <div class="phase-h">Listen, audit, decide</div>
+      <div class="phase-body"><strong>2-hour leadership kickoff.</strong> Cover: business priorities for next 90 days, where current execution is bottlenecked, what success looks like for the AI rollout in measurable terms. Get this in writing.</div>
+      <div class="phase-body"><strong>Async workflow interviews.</strong> 3–5 conversations with team members across functions (sales, marketing, ops, finance). 30 minutes each. Question to answer: where does this person spend time on work that AI could do?</div>
+      <div class="phase-body"><strong>Tooling and content audit.</strong> What AI tools does the team have? What\'s being used vs. paid for and ignored? What documents would become AI knowledge bases if loaded properly?</div>
+      <div class="phase-deliv"><strong>End of week 1 deliverables:</strong> Workflow audit memo · Tool inventory · Initial hypothesis list of 8–12 candidate workflows to deploy</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-week">Week 2</div>
+      <div class="phase-h">Operationalize the ICP</div>
+      <div class="phase-body"><strong>Before any AI workflow gets built, the ICP needs to be operational.</strong> Not a slide-deck poster — a structured definition with 15–25 fields covering firmographics, signals of fit, signals of timing, signals of intent. Every downstream AI workflow will read from this.</div>
+      <div class="phase-body">Most companies skip this step. The result: AI workflows produce generic outputs because they\'re operating on guesses about who matters. The 4-hour investment of operationalizing the ICP makes everything else 3x more effective.</div>
+      <div class="phase-body"><strong>Stage the first 2 Claude Projects.</strong> Usually: a Sales Account Research Project and a Marketing Content Project. These are the foundational two — every later workflow extends them.</div>
+      <div class="phase-deliv"><strong>End of week 2 deliverables:</strong> Operational ICP doc · Account-scoring framework · 2 base Claude Projects configured · Prioritized 90-day roadmap</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Phase 2 · Weeks 3–6</span>
+    <h2 class="h2">Build — the technical work</h2>
+
+    <div class="phase">
+      <div class="phase-week">Weeks 3–4</div>
+      <div class="phase-h">Outbound intelligence build</div>
+      <div class="phase-body">Three connected workflows: account research (URL in → structured brief out), sequence personalization (brief + persona → first message + follow-ups), and reply triage (categorize, route, suggest response).</div>
+      <div class="phase-body"><strong>Build with real accounts, not synthetic data.</strong> Your AEs/SDRs use the new workflow on actual prospects during the build phase. By end of week 4, the team has shipped 20+ real sequences using the new workflow. This is the difference between "AI demoed well in training" and "AI is part of how we operate."</div>
+      <div class="phase-deliv"><strong>Deliverables:</strong> 3 Sales Claude Projects · Shared prompt library · Sequence templates · Rep training session #1</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-week">Weeks 5–6</div>
+      <div class="phase-h">Marketing &amp; content workflows</div>
+      <div class="phase-body">Content production workflows: blog drafting, email sequences, ad copy variants, landing page outlines, repurposing flows. The marketing Claude Project becomes the team\'s shared brain — same ICP, same voice, same proof points across every output.</div>
+      <div class="phase-body">During this phase, the team should ship 4–8 real pieces of content using the new workflow. If they don\'t, something is wrong with the workflow design — diagnose immediately.</div>
+      <div class="phase-deliv"><strong>Deliverables:</strong> Marketing Claude Project · Content workflow library · Voice guide loaded · 4–8 shipped content pieces using new workflow</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Phase 3 · Weeks 7–9</span>
+    <h2 class="h2">Deploy — where adoption is won or lost</h2>
+
+    <div class="phase">
+      <div class="phase-week">Week 7</div>
+      <div class="phase-h">Pipeline intelligence build</div>
+      <div class="phase-body">Daily pipeline-health summary, per-rep coaching brief generator, deal-review Claude Project that consumes call recordings + CRM data. The Monday pipeline review transforms from 90 minutes of status to 30 minutes of action.</div>
+      <div class="phase-deliv"><strong>Deliverables:</strong> Pipeline-health automation · Coaching-brief generator · Deal-review Project · Manager training session</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-week">Weeks 8–9</div>
+      <div class="phase-h">Team velocity — training cohorts and governance</div>
+      <div class="phase-body"><strong>This is the phase where most rollouts fail.</strong> Building the workflows is half the work. Getting the team to use them daily, reliably, without falling back to old habits — that\'s the other half. Skip this and the previous 6 weeks of work decays.</div>
+      <div class="phase-body"><strong>Multi-session cohort training.</strong> Not one workshop. 3–4 sessions over 2 weeks, by role. Sales AEs/SDRs, marketing ICs, managers — each cohort gets role-specific workflows trained, not generic AI overview content.</div>
+      <div class="phase-body"><strong>Champion identification.</strong> Identify 1–2 internal champions per function. Resource them. They become the day-to-day reinforcement when the consultancy leaves.</div>
+      <div class="phase-body"><strong>Governance docs.</strong> AI policy. Verification standards. Escalation paths. Without these written down, the team makes inconsistent decisions on day 100.</div>
+      <div class="phase-deliv"><strong>Deliverables:</strong> Role-based training sessions · Champion enablement docs · Written AI policy · Usage dashboards · Operations runbook</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Phase 4 · Weeks 10–12</span>
+    <h2 class="h2">Optimize — what\'s working, what isn\'t</h2>
+
+    <div class="phase">
+      <div class="phase-week">Weeks 10–11</div>
+      <div class="phase-h">Usage audit and refinement</div>
+      <div class="phase-body">Three weeks of real usage data. Which workflows are being used daily? Which never got adopted? Which need rewriting? Refine prompts based on actual usage rather than theoretical design.</div>
+      <div class="phase-body"><strong>Retire what didn\'t land.</strong> Some workflows you built will get used once and abandoned. Don\'t protect them. Kill them. Workflows that survive contact with reality are the ones to invest more in.</div>
+      <div class="phase-deliv"><strong>Deliverables:</strong> Usage audit memo · Prompt refinement pass · List of retired workflows · List of "double down" workflows</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-week">Week 12</div>
+      <div class="phase-h">Transition</div>
+      <div class="phase-body">The final week is about handoff. Either into ongoing retainer for continuous optimization, or clean self-sufficiency. Either is fine — but make the decision explicit.</div>
+      <div class="phase-body">Document what was built, what was learned, what to revisit at the quarterly review. The team that operates the systems should be able to operate them without the consultancy.</div>
+      <div class="phase-deliv"><strong>Final deliverable:</strong> Comprehensive engagement memo · Quarterly review template · Transition plan</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">What success looks like at day 90</span>
+    <h2 class="h2">Measurable outcomes</h2>
+    <p class="body">A successful 90-day AI rollout for a B2B company looks like this at day 90:</p>
+    <p class="body"><strong>Quantitative:</strong> Content output up 2–3x on the same headcount. Sales rep prep time down 60–70%. Pipeline review time down 50%. Time-to-proposal cut from days to hours. Daily AI usage rate >60% across the deployed team.</p>
+    <p class="body"><strong>Qualitative:</strong> The team uses AI as part of normal workflow language. New hires onboard into AI-native processes from day one. Leadership decisions about scaling don\'t default to "let\'s hire" — they start with "can AI do this."</p>
+    <p class="body"><strong>Cultural:</strong> The company starts to feel like it operates at a different speed than competitors who haven\'t made this transition. This is the moment the bet starts paying back.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The variants</span>
+    <h2 class="h2">When to deviate from the playbook</h2>
+    <p class="body">This playbook is the default. Three variants we run depending on company stage:</p>
+    <p class="body"><strong>If you\'re under 10 employees:</strong> compress to 45 days. Skip the multi-cohort training (you\'re too small for cohorts) — do one comprehensive working session with the whole team. Focus on 2 workflows instead of 5.</p>
+    <p class="body"><strong>If you\'re 50–150 employees:</strong> extend to 180 days. The phases are the same but each gets more time. Multiple training cohorts. More champion development. Deeper integration work.</p>
+    <p class="body"><strong>If you have regulated industry constraints (healthcare, legal, finance):</strong> add a 2-week governance phase at the start. Written AI policy, compliance review, vendor selection have to happen before Phase 1 of the standard playbook.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Run it yourself or with us</span>
+    <h2 class="h2">How to actually execute this</h2>
+    <p class="body">You can run this playbook yourself if you have senior internal capability. Most companies don\'t — which is why we exist. Treetop\'s <a href="/services/implementation" style="color:#00C853;text-decoration:none;">Implementation engagement</a> is exactly this playbook, executed by us, at $3,500–$25,000 fixed depending on scope.</p>
+    <p class="body">If you want the structural understanding before committing, read <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework</a> — the operating model this playbook is built on top of. For the week-by-week breakdown of a Treetop engagement specifically (which extends this playbook with our specific tooling), see <a href="/how-we-work" style="color:#00C853;text-decoration:none;">How We Work</a>.</p>
+    <p class="body" style="margin-top:2rem;font-style:italic;color:#8FAF8F;">— Bill Colbert, <a href="/about" style="color:#00C853;text-decoration:none;">Treetop Growth Strategy</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want this playbook executed for you?</div>
+        <div class="cta-sub">Start with the $1,500 AI Audit — one week, written roadmap, no commitment to the full engagement.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/services/implementation" class="btn-g">See Implementation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>
