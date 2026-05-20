@@ -1,0 +1,127 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Do Competitive Positioning with Claude (Sharper Differentiation) | Treetop</title>
+<meta name="description" content="Practical guide to using Claude for competitive positioning work — finding the gap, sharpening the message, building the battlecard. The framework that produces real differentiation." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-do-competitive-positioning-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-do-competitive-positioning-with-claude" />
+<meta property="og:title" content="How to Do Competitive Positioning with Claude (Sharper Differentiation)" /><meta property="og:description" content="Practical guide to using Claude for competitive positioning work — finding the gap, sharpening the message, building the battlecard. The framework that produces real differentiation." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Do Competitive Positioning with Claude (Sharper Differentiation)" />
+<meta name="twitter:description" content="Practical guide to using Claude for competitive positioning work — finding the gap, sharpening the message, building the battlecard. The framework that produces real differentiation." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Do Competitive Positioning with Claude (Sharper Differentiation)',"url":"https://treetopgrowthstrategy.com/how-to-do-competitive-positioning-with-claude"},{"@type":"Article","headline":'How to Do Competitive Positioning with Claude (Sharper Differentiation)',"description":'Practical guide to using Claude for competitive positioning work — finding the gap, sharpening the message, building the battlecard. The framework that produces real differentiation.',"url":"https://treetopgrowthstrategy.com/how-to-do-competitive-positioning-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Marketing how-to</div>
+<h1 class="hero-h">How to do competitive positioning <em style="color:#00C853;font-style:italic;">with Claude.</em></h1>
+<p class="hero-sub">Most B2B companies are positioned indistinguishably from competitors. The fix is structural: find the gap competitors do not address, claim it specifically, defend it consistently. Claude accelerates each step. The strategic conviction stays human. Here is the workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why most positioning is generic</h2>
+    <p class="body">Most positioning fails the "substitution test": if I removed the company name from the website, could it apply to 5 competitors? Usually yes. That is not positioning; that is category description.</p>
+    <p class="body">Real positioning specifies who you are for, who you are NOT for, and what you do that competitors cannot. AI helps you find and sharpen each. The commitment to actually narrow the market stays human.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The competitive analysis prompt</span><h2 class="h2">Phase 1</h2>
+    <p class="body"><pre>I am positioning [OUR COMPANY] against [N] competitors.
+
+Our product/service: [SHORT]
+Our primary ICP: [SHORT]
+Competitor list: [NAMES]
+
+For each competitor:
+1. How they describe themselves (positioning statement from their website)
+2. Who they appear to be for (their ICP signals)
+3. The 2-3 things they emphasize
+4. The 2-3 things they DO NOT emphasize (gaps)
+5. Their pricing model and rough range
+6. Their visible weaknesses (from public reviews, complaints, etc.)
+
+Then synthesize across all competitors:
+- What every competitor emphasizes (table stakes — do not lead with these)
+- What no competitor addresses (potential positioning gap)
+- Where do customers complain about competitors (potential entry point)
+- Where is the market underserved
+
+Return: 3 specific positioning gaps where we could credibly claim differentiation, ranked by attractiveness.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The positioning sharpening prompt</span><h2 class="h2">Phase 2</h2>
+    <p class="body"><pre>We have decided to position around [SPECIFIC GAP/CLAIM].
+
+What we currently say: [PASTE EXISTING WEBSITE HERO]
+What we want to say (rough): [CANDIDATE POSITIONING]
+
+Generate 5 sharper variants. Each must:
+- Pass the substitution test (NO competitor could use the same words)
+- Be specific enough to defend
+- Lead with what customers GET, not what we ARE
+- Avoid: "trusted partner", "industry-leading", "best-in-class", "innovative"
+- Be testable in market (could we measure whether buyers find it compelling)
+
+For each variant, explain:
+- What we are claiming
+- Who self-selects in
+- Who self-selects out (this is the test of real positioning)
+- The 1 piece of proof we need to back it up
+
+Recommend the strongest variant with reasoning.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-a-positioning-statement-with-ai" style="color:#00C853;text-decoration:none;">How to write a positioning statement with AI &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-a-value-proposition-with-claude" style="color:#00C853;text-decoration:none;">How to write a value proposition with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-create-sales-enablement-with-claude" style="color:#00C853;text-decoration:none;">How to create sales enablement with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-do-competitor-research" style="color:#00C853;text-decoration:none;">How to use AI for competitor research &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Need help sharpening your positioning?</div><div class="cta-sub">Positioning is a core component of every Fractional CMO engagement.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/fractional-cmo" class="btn-p">See Fractional CMO &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

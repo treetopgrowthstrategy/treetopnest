@@ -1,0 +1,121 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Do Customer Interviews with AI (Prep + Synthesis Workflow) | Treetop</title>
+<meta name="description" content="Practical guide to using Claude for customer interview work — discussion guide design, real-time note-taking support, post-interview synthesis. Where AI helps and what stays the interviewer's job." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-do-customer-interviews-with-ai" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-do-customer-interviews-with-ai" />
+<meta property="og:title" content="How to Do Customer Interviews with AI (Prep + Synthesis Workflow)" /><meta property="og:description" content="Practical guide to using Claude for customer interview work — discussion guide design, real-time note-taking support, post-interview synthesis. Where AI helps and what stays the interviewer's job." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Do Customer Interviews with AI (Prep + Synthesis Workflow)" />
+<meta name="twitter:description" content="Practical guide to using Claude for customer interview work — discussion guide design, real-time note-taking support, post-interview synthesis. Where AI helps and what stays the interviewer's job." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Do Customer Interviews with AI (Prep + Synthesis Workflow)',"url":"https://treetopgrowthstrategy.com/how-to-do-customer-interviews-with-ai"},{"@type":"Article","headline":'How to Do Customer Interviews with AI (Prep + Synthesis Workflow)',"description":"Practical guide to using Claude for customer interview work — discussion guide design, real-time note-taking support, post-interview synthesis. Where AI helps and what stays the interviewer's job.","url":"https://treetopgrowthstrategy.com/how-to-do-customer-interviews-with-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Product/UX how-to</div>
+<h1 class="hero-h">How to do customer interviews <em style="color:#00C853;font-style:italic;">with AI.</em></h1>
+<p class="hero-sub">Customer interviews are one of the highest-leverage product and marketing activities — and one of the easiest to do badly. Claude accelerates the prep and synthesis phases. The actual conversation stays human. Here is the workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why customer interviews matter</h2>
+    <p class="body">Direct customer interviews produce insights nothing else does. Surveys give you what people say they think. Interviews give you what they actually believe, struggle with, and want.</p>
+    <p class="body">Most teams do too few interviews because the prep and synthesis labor is heavy. AI compresses both phases, which makes weekly customer interviews feasible.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The discussion guide prompt</span><h2 class="h2">Phase 1</h2>
+    <p class="body"><pre>I am preparing a customer interview for our [PRODUCT/PROJECT].
+
+Who I am interviewing: [PERSONA / ROLE]
+What I am trying to learn: [SPECIFIC RESEARCH QUESTION]
+My current hypothesis: [WHAT I THINK]
+What I already know from prior conversations: [PASTE]
+Duration: [30 / 45 / 60 minutes]
+
+Generate a discussion guide:
+1. Opening (5 min): rapport + context
+2. Core questions (~70% of time): 6-8 open-ended questions designed to learn what I do not know
+3. Specific probes: for each core question, 2-3 follow-up probes if needed
+4. Closing (5 min): "what did I forget to ask"
+
+Question design rules:
+- Open-ended (NOT yes/no)
+- Past behavior, not hypothetical (not "would you" but "have you")
+- Specific, not abstract
+- Avoid leading questions
+- The 6-8 questions should test specific assumptions, not gather generic feedback</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The synthesis prompt</span><h2 class="h2">Phase 3 (after the interview)</h2>
+    <p class="body"><pre>Here is the interview transcript: [PASTE]
+
+My hypothesis going in: [PRIOR]
+What I was trying to learn: [RESEARCH QUESTION]
+
+Synthesize:
+1. Top 3-5 things I learned (with direct quotes as evidence)
+2. What confirmed my hypothesis
+3. What CHALLENGED my hypothesis (this is the most valuable section)
+4. Specific things the customer said in their own words that I should preserve verbatim
+5. New questions this raised
+6. The single most important takeaway for the team
+
+Be specific. "They liked the feature" is not useful synthesis. "When asked about [feature], they said [quote] and the context suggests [interpretation]" is useful.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-do-user-research-synthesis-with-claude" style="color:#00C853;text-decoration:none;">How to do user research synthesis with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-do-customer-segmentation-with-ai" style="color:#00C853;text-decoration:none;">How to do customer segmentation with AI &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-product-requirements-with-claude" style="color:#00C853;text-decoration:none;">How to write product requirements with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-do-market-research-with-ai" style="color:#00C853;text-decoration:none;">How to do market research with AI &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want customer research workflows built?</div><div class="cta-sub">Implementation includes research workflow design.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
