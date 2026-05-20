@@ -1,0 +1,263 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude vs Perplexity for Business (2026): When to Use Each | Treetop</title>
+  <meta name="description" content="An honest comparison of Claude vs Perplexity for business use. Where Claude wins (workflows, depth, Projects). Where Perplexity wins (research with citations, real-time data). Plus when to use both — and which to actually buy seats of." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-vs-perplexity-for-business" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-vs-perplexity-for-business" />
+  <meta property="og:title" content="Claude vs Perplexity for Business" />
+  <meta property="og:description" content="When to use Claude, when to use Perplexity, and when you actually need both." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Claude vs Perplexity for Business" />
+  <meta name="twitter:description" content="An honest comparison of the two tools — and when you actually need both." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Claude vs Perplexity for Business",
+      "description": "Honest comparison of Claude and Perplexity for B2B use cases.",
+      "url": "https://treetopgrowthstrategy.com/claude-vs-perplexity-for-business",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-05-20",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Should I use Claude or Perplexity for prospect research?", "acceptedAnswer": {"@type": "Answer", "text": "Use Perplexity for the discovery phase (find recent news, financials, leadership changes — anything that needs cited sources and live web data). Use Claude for the synthesis phase (turn the raw research into a structured account brief, draft outreach, draft proposals). Most sophisticated B2B teams use both for different parts of the same workflow."}},
+        {"@type": "Question", "name": "Which is better for writing business content?", "acceptedAnswer": {"@type": "Answer", "text": "Claude — by a wide margin. Perplexity is built for search, not for long-form writing or sustained workflows. Claude Projects let you persist context, voice, and structure across hundreds of writing tasks. Perplexity doesn't try to do this and shouldn't be evaluated on it."}},
+        {"@type": "Question", "name": "Can Claude search the web?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Claude Pro and Team include web search. It's good for general queries and for grounding answers in cited sources. Perplexity's search is more specialized — it indexes real-time signals (financial data, social posts, news) more aggressively and returns more cited links per answer. For deep research that depends on citing primary sources, Perplexity still wins."}},
+        {"@type": "Question", "name": "What's the pricing comparison?", "acceptedAnswer": {"@type": "Answer", "text": "Claude: $20/mo Pro, $30/seat Team. Perplexity: $20/mo Pro, $40/seat Enterprise. Roughly comparable individual pricing. For team deployments, Claude Team's shared Projects feature gives it a structural advantage that Perplexity doesn't match."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1000px; margin: 0 auto; }
+    .hero { min-height: 45vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
+    .hero-inner { max-width: 1000px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; max-width: 720px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.35rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; margin-top: 1.75rem; }
+    .body { font-size: 0.98rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media(max-width:800px){ .vs-grid { grid-template-columns: 1fr; } section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+    .vs-card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; }
+    .vs-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; }
+    .vs-card .subhead { font-size: 0.78rem; color: #00C853; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .vs-card ul { list-style: none; padding: 0; }
+    .vs-card ul li { font-size: 0.9rem; color: #C0D8C0; padding: 0.45rem 0; padding-left: 1.5rem; position: relative; line-height: 1.55; }
+    .vs-card ul li::before { content: "→"; position: absolute; left: 0; color: #00C853; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.88rem; }
+    .compare-table th, .compare-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #1A3A1A; color: #C0D8C0; }
+    .compare-table th { color: #F0FFF0; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; background: #0A1A0A; }
+    .compare-table tr td:first-child { color: #F0FFF0; font-weight: 500; }
+    .verdict { background: rgba(0,200,83,0.06); border-left: 3px solid #00C853; padding: 1.5rem 1.75rem; margin: 2rem 0; max-width: 780px; }
+    .verdict h3 { font-family: 'Instrument Serif', serif; color: #F0FFF0; font-size: 1.25rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .verdict p { color: #C0D8C0; font-size: 0.92rem; line-height: 1.7; margin: 0; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Comparison · 2026</div>
+    <h1 class="hero-h">Claude vs Perplexity <em style="color:#00C853;font-style:italic;">for business.</em></h1>
+    <p class="hero-sub">
+      The short answer: they're not really competitors. Claude is a workflow-and-writing engine. Perplexity is a research-and-citation engine. The mistake most teams make is forcing one to do the other's job. Here's how to use each — and why sophisticated B2B teams pay for both.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Different tools for different jobs</span>
+    <h2 class="h2">What each tool is actually built for</h2>
+    <p class="body">The framing that gets buyers in trouble is treating Claude and Perplexity as "two AI chatbots." They share that shape, but they're optimizing for different things underneath. Claude is built to produce <em>output</em> — long-form writing, structured analysis, sustained workflows. Perplexity is built to produce <em>cited research</em> — answers grounded in primary sources with the links right there. Either can technically do the other's job, badly.</p>
+
+    <div class="vs-grid">
+      <div class="vs-card">
+        <h3>Claude</h3>
+        <div class="subhead">Built for workflows &amp; writing</div>
+        <ul>
+          <li>Long-form writing and structured analysis</li>
+          <li>Claude Projects — persistent context across sessions</li>
+          <li>Knowledge bases — load your own docs and reference them</li>
+          <li>Shared Team workspaces — entire org operates on same prompts</li>
+          <li>Computer use, MCP, advanced tool use</li>
+          <li>Strong instruction-following, careful output</li>
+        </ul>
+      </div>
+      <div class="vs-card">
+        <h3>Perplexity</h3>
+        <div class="subhead">Built for cited research</div>
+        <ul>
+          <li>Real-time web search built into every answer</li>
+          <li>Cited sources on every claim (links inline)</li>
+          <li>Strong handling of financial data, news, recent events</li>
+          <li>Focus mode (Academic, Reddit, Social) for source filtering</li>
+          <li>Spaces (their version of Projects, less mature)</li>
+          <li>Faster for shallow queries; less suited to sustained work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Side-by-side</span>
+    <h2 class="h2">Feature comparison</h2>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>Capability</th><th>Claude</th><th>Perplexity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Long-form writing</td><td>★★★★★ (best in class)</td><td>★★ (not the use case)</td></tr>
+        <tr><td>Cited research with sources</td><td>★★★ (web search + cites)</td><td>★★★★★ (its core competency)</td></tr>
+        <tr><td>Persistent context (Projects)</td><td>★★★★★ (Projects + KB)</td><td>★★★ (Spaces — improving)</td></tr>
+        <tr><td>Team collaboration / shared workspaces</td><td>★★★★★ (Team plan)</td><td>★★★ (Enterprise)</td></tr>
+        <tr><td>Coding &amp; technical depth</td><td>★★★★★ (Claude is best-in-class)</td><td>★★ (not focused here)</td></tr>
+        <tr><td>Real-time data freshness</td><td>★★★ (web search is good)</td><td>★★★★★ (their advantage)</td></tr>
+        <tr><td>Financial/market data accuracy</td><td>★★★</td><td>★★★★ (better source surfacing)</td></tr>
+        <tr><td>Pricing — individual</td><td>$20/mo</td><td>$20/mo</td></tr>
+        <tr><td>Pricing — team</td><td>$30/seat (Team)</td><td>$40/seat (Enterprise)</td></tr>
+        <tr><td>API for production workflows</td><td>★★★★★ (Anthropic API is mature)</td><td>★★★★ (Sonar API)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Use cases</span>
+    <h2 class="h2">Which one for which job</h2>
+
+    <h3 class="h3">Use Claude when:</h3>
+    <p class="body">— You're writing anything substantial: proposals, content, reports, drafts<br/>
+    — You're building a sustained workflow your team will use daily<br/>
+    — You're loading proprietary knowledge (ICP, voice, frameworks) and want it persisted<br/>
+    — You need a team to share context — Claude Team's shared Projects are the moat<br/>
+    — You're doing analysis on documents you upload (contracts, reports, financials)<br/>
+    — You're writing code or doing technical work</p>
+
+    <h3 class="h3">Use Perplexity when:</h3>
+    <p class="body">— You're doing fact-finding research and you need cited sources<br/>
+    — The query depends on very recent data (last week, last month)<br/>
+    — You're researching financial data, market dynamics, or news patterns<br/>
+    — You want a quick verified answer rather than a generated essay<br/>
+    — You're competitor-tracking or doing market intelligence work</p>
+
+    <h3 class="h3">Use both when:</h3>
+    <p class="body">— You're doing prospect research (Perplexity for the data gathering, Claude for the synthesis into a brief)<br/>
+    — You're building market analysis (Perplexity for source-of-truth data, Claude for the narrative)<br/>
+    — You're writing thought leadership grounded in research (Perplexity for the facts, Claude for the voice)</p>
+
+    <div class="verdict">
+      <h3>Practical recommendation</h3>
+      <p>For most B2B teams under 50 people: <strong>buy Claude Team as the primary deployment.</strong> It's the workhorse — writing, workflows, knowledge, training. Then have the 3–5 people who do significant research (sales operations, market intelligence, strategy) carry a Perplexity Pro subscription on the side. Total cost: comparable to one mid-tier SaaS subscription. Output: significantly higher than either tool alone.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The workflow</span>
+    <h2 class="h2">A concrete example of using both</h2>
+    <p class="body">Take the most common B2B sales use case: prospect research. Here's how a sophisticated rep uses both tools in the same workflow:</p>
+    <p class="body">
+      <strong style="color:#F0FFF0;">Step 1 (Perplexity):</strong> Pull the recent signals. "What's new with [Company] in the last 90 days — funding, hires, product launches, customer announcements?" Get cited sources.<br/>
+      <strong style="color:#F0FFF0;">Step 2 (Claude — Account Research Project):</strong> Paste the Perplexity output plus the company URL into your Claude research Project. Ask Claude to synthesize into the structured brief using your ICP framework, persona docs, and value prop.<br/>
+      <strong style="color:#F0FFF0;">Step 3 (Claude — Outbound Project):</strong> Use the brief to draft the sequence. The Outbound Project has voice, structure, and historical wins loaded.<br/>
+      <strong style="color:#F0FFF0;">Step 4 (Verification):</strong> Two of the claims in the brief get spot-checked. If the Perplexity sources were solid, this takes 60 seconds.
+    </p>
+    <p class="body">Total time: ~10 minutes. Output: a researched, structured, ready-to-review outbound sequence. Compare this to either tool alone — Claude without recent data would invent or omit; Perplexity without your workflow context would produce a generic summary.</p>
+    <p class="body">For the deeper version of this workflow, see <a href="/how-to-use-ai-to-research-prospects" style="color:#00C853;text-decoration:none;">How to use AI to research prospects</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Other comparisons</span>
+    <h2 class="h2">Related tool comparisons</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/chatgpt-vs-claude-for-business" style="color:#00C853;text-decoration:none;">Claude vs ChatGPT for business →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-vs-microsoft-copilot" style="color:#00C853;text-decoration:none;">Claude vs Microsoft Copilot →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-vs-gemini-for-business" style="color:#00C853;text-decoration:none;">Claude vs Gemini for business →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/best-ai-for-business" style="color:#00C853;text-decoration:none;">Best AI tools for business →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want help picking the right stack?</div>
+        <div class="cta-sub">The $1,500 AI Audit recommends the exact tool stack for your business — not based on what's popular, but on what fits your actual workflows.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

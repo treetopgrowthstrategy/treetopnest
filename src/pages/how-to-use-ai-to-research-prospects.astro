@@ -1,0 +1,274 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>How to Use AI to Research Prospects (10-Minute Account Briefs) | Treetop</title>
+  <meta name="description" content="A practical guide to using Claude or AI for prospect research — what to feed it, what to ask, what to ignore. The exact workflow we use to turn 90-minute account research into a 10-minute review." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-use-ai-to-research-prospects" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-use-ai-to-research-prospects" />
+  <meta property="og:title" content="How to Use AI to Research Prospects" />
+  <meta property="og:description" content="Turn 90-minute account research into a 10-minute review with the right Claude Project setup." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Use AI to Research Prospects" />
+  <meta name="twitter:description" content="The exact Claude Project setup for B2B prospect research." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HowTo",
+      "name": "How to Use AI to Research Prospects",
+      "description": "Step-by-step process for using Claude or another AI to do B2B prospect research.",
+      "url": "https://treetopgrowthstrategy.com/how-to-use-ai-to-research-prospects",
+      "totalTime": "PT10M",
+      "step": [
+        {"@type": "HowToStep", "name": "Build the research Claude Project", "text": "Configure a dedicated Project with ICP definition, scoring rubric, and previous research examples."},
+        {"@type": "HowToStep", "name": "Gather the inputs", "text": "Pull the company URL, LinkedIn URL of the buyer, and any recent news. Drop into the Project."},
+        {"@type": "HowToStep", "name": "Run the structured brief prompt", "text": "Use the standard prompt template to generate a 1-page structured account brief."},
+        {"@type": "HowToStep", "name": "Validate and tag", "text": "Read the brief. Verify two key claims. Tag with priority and routing."},
+        {"@type": "HowToStep", "name": "Save back to the system", "text": "Push to CRM or sales engagement tool so the next workflow can use it."}
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "How to Use AI to Research Prospects",
+      "url": "https://treetopgrowthstrategy.com/how-to-use-ai-to-research-prospects",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-05-20",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 880px; margin: 0 auto; }
+    .hero { min-height: 45vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
+    .hero-inner { max-width: 880px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; max-width: 720px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .body { font-size: 0.98rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .step { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.75rem; margin-bottom: 1.25rem; }
+    .step-num { font-family: 'Instrument Serif', serif; font-style: italic; color: #00C853; font-size: 0.95rem; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .step h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.75rem; }
+    .step p { font-size: 0.94rem; color: #C0D8C0; line-height: 1.75; margin-bottom: 0.75rem; }
+    .step p:last-child { margin-bottom: 0; }
+    pre { background: #050D05; border: 1px solid #1A3A1A; padding: 1.25rem; font-family: 'Courier New', monospace; font-size: 0.82rem; color: #C0D8C0; line-height: 1.65; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
+    .callout { background: rgba(0,200,83,0.06); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; max-width: 780px; }
+    .callout p { color: #C0D8C0; font-size: 0.92rem; line-height: 1.7; margin: 0; }
+    .callout strong { color: #F0FFF0; }
+    .pitfall { background: rgba(200, 50, 50, 0.05); border-left: 3px solid #c83232; padding: 1rem 1.25rem; margin: 1.25rem 0; }
+    .pitfall p { color: #C0D8C0; font-size: 0.9rem; line-height: 1.7; margin: 0; }
+    .pitfall strong { color: #F0FFF0; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+    @media(max-width:900px){ section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/how-to-use-claude" class="nav-link">How-To Guides</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Task guide · 7 min read</div>
+    <h1 class="hero-h">How to use AI to research prospects <em style="color:#00C853;font-style:italic;">in 10 minutes.</em></h1>
+    <p class="hero-sub">
+      The standard B2B sales motion has reps spending 90 minutes researching an account before they reach out. Most of that time is opening browser tabs, copying paragraphs, and trying to remember what the ICP looks like. AI compresses it to 10 minutes — but only if you set up the workflow correctly. Here's exactly how.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The premise</span>
+    <h2 class="h2">Why most "AI for prospect research" fails</h2>
+    <p class="body">Most reps treat Claude like a research analyst they're meeting for the first time: "Here's a URL, tell me about this company." The output is a generic Wikipedia-style summary. Useful as a refresher; useless as a sales tool.</p>
+    <p class="body">The shift is to treat Claude like a research analyst <em>who works for your company</em>. Someone who knows your ICP, your value proposition, and what "good fit" looks like. The brief they produce reads completely differently — it's not "what does this company do" but "why does this company match our ICP, what signals of timing exist, and what would resonate in outreach."</p>
+    <p class="body">The difference between those two outputs is one document and twenty minutes of setup. Let's walk through it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The 5-step process</span>
+    <h2 class="h2">The exact workflow</h2>
+
+    <div class="step">
+      <div class="step-num">— Step 01 —</div>
+      <h3>Build the research Claude Project (one-time, 20 minutes)</h3>
+      <p>Create a Project called "Account Research — [Your Company]." Load these into the knowledge base:</p>
+      <p>
+        <strong style="color:#F0FFF0;">1. Operational ICP definition.</strong> Not a tagline — the actual 15–25 structured fields you care about: company size, industry, growth signals, tech stack patterns, etc.<br/>
+        <strong style="color:#F0FFF0;">2. Buyer persona docs.</strong> Who you're typically selling to. Title patterns, pain patterns, what they care about, what they ignore.<br/>
+        <strong style="color:#F0FFF0;">3. Three to five anonymized winning briefs.</strong> Actual research briefs that led to closed deals. The AI learns what "good" looks like from examples.<br/>
+        <strong style="color:#F0FFF0;">4. Your value proposition + differentiated positioning.</strong> Two paragraphs.
+      </p>
+      <p>System prompt:</p>
+      <pre>You are an account research analyst for [Company]. We sell [what we sell] to [who].
+
+When researching an account:
+1. Verify fit against the ICP fields in the knowledge base
+2. Identify signals of timing (recent hires, funding, product launches, churn signals, regulatory changes, leadership changes)
+3. Identify the likely buyer persona and what they care about
+4. Surface what we'd say in outreach — specifics from the research, not generic value-prop language
+5. Flag anything that suggests this is NOT a fit so the rep can disqualify quickly
+
+Output format: 1-page structured brief (sections: Fit · Timing · Buyer · Angle · Risk).
+If a key data point is missing, write [Unknown: source needed] rather than guessing.</pre>
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 02 —</div>
+      <h3>Gather the inputs (1 minute)</h3>
+      <p>For each account, pull together:</p>
+      <p>
+        — The company URL<br/>
+        — LinkedIn URL of the likely buyer (or 2-3 candidates)<br/>
+        — Anything recent from a news search ("[Company] funding", "[Company] hires CRO")<br/>
+        — Their most recent press release or blog post if findable
+      </p>
+      <p>Drop them as URLs into a new chat inside the Project.</p>
+      <div class="callout">
+        <p><strong>Claude with web search:</strong> If you're on Claude Pro or Team, web search is built in. You can just paste the company name + URL and Claude will pull the rest. If you're on Free, paste the page content directly.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 02.5 —</div>
+      <h3>If you want to scale this — wire it up</h3>
+      <p>Once you've used this workflow manually for ~20 accounts and you trust the output, the next step is to wire it directly into your sales engagement tool (Outreach, Salesloft, Apollo). The brief gets generated automatically when an account moves to "prospect" stage, drops into the rep's queue, and they review rather than create. This is what Treetop typically builds during the Outbound Intelligence phase of an <a href="/services/implementation" style="color:#00C853;text-decoration:none;">Implementation engagement</a>.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 03 —</div>
+      <h3>Run the structured brief prompt (2 minutes)</h3>
+      <p>One sentence:</p>
+      <pre>Research [Company Name] using the URL [url] and the LinkedIn profile [url]. Use the standard brief structure. Flag any data points you can't verify.</pre>
+      <p>Claude returns a structured brief. Roughly 1 page, organized exactly the way your team has agreed to read.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 04 —</div>
+      <h3>Validate and tag (3 minutes)</h3>
+      <p>This is the only manual work left. Read the brief. Verify:</p>
+      <p>
+        — Two specific claims about the company. Open one tab, check one fact. If wrong, the rest of the brief is suspect.<br/>
+        — The "Angle" section. Is it specific, or did Claude default to generic value-prop language? If generic, ask Claude to rewrite using only specifics from the research.<br/>
+        — The fit verdict. Trust it cautiously — if Claude says "strong fit" but something in the brief contradicts that, dig in.
+      </p>
+      <p>Then tag with priority (A/B/C) and route to the right rep. Total time so far: ~8 minutes.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 05 —</div>
+      <h3>Save back to the system (2 minutes)</h3>
+      <p>The brief needs to live somewhere the next workflow can read it. Three options, in order of how scalable they are:</p>
+      <p>
+        <strong style="color:#F0FFF0;">Manual paste into CRM activity note</strong> — fine for early days.<br/>
+        <strong style="color:#F0FFF0;">Save to a shared knowledge base or Notion</strong> — better once you have 50+ accounts in motion.<br/>
+        <strong style="color:#F0FFF0;">Wire to CRM via Zapier or native integration</strong> — best, but requires a real workflow build.
+      </p>
+      <p>The point: don't let the brief die in a Claude chat. The whole compound of AI in sales is that <em>this brief becomes input to the next workflow</em> (sequence personalization, call prep, reply triage). Treat it as data, not a one-off output.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Mistakes to avoid</span>
+    <h2 class="h2">Pitfalls that kill the workflow</h2>
+
+    <div class="pitfall">
+      <p><strong>1. No ICP in the Project.</strong> Without it, Claude returns generic summaries. The whole differentiation of this workflow is using YOUR ICP.</p>
+    </div>
+    <div class="pitfall">
+      <p><strong>2. Treating Claude output as truth.</strong> Especially on recent events, financials, and specific people. Verify two claims per brief. Always.</p>
+    </div>
+    <div class="pitfall">
+      <p><strong>3. Skipping the "Angle" section.</strong> The whole reason to do research is to know what to say in outreach. If your brief format doesn't force that synthesis, you're just doing AI-flavored Wikipedia.</p>
+    </div>
+    <div class="pitfall">
+      <p><strong>4. Researching companies that aren't qualified.</strong> AI research is so cheap that reps will start researching everything. Build the disqualification step into the prompt — "if any of these conditions, output DISQUALIFY: [reason]."</p>
+    </div>
+    <div class="pitfall">
+      <p><strong>5. Not closing the loop.</strong> The reps need to feed back: which briefs led to good first calls? Which were misleading? That signal goes back into prompt refinement. Otherwise the workflow stays at its day-one quality forever.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Next steps in the AI-for-sales stack</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-write-proposals" style="color:#00C853;text-decoration:none;">How to use AI to write proposals →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-sales" style="color:#00C853;text-decoration:none;">How to use Claude for sales (full function guide) →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-prompts-for-b2b-sales" style="color:#00C853;text-decoration:none;">AI prompts for B2B sales →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework (where this fits) →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want this wired into your sales motion?</div>
+        <div class="cta-sub">Account research is one of the workflows we build in an Implementation engagement. Fixed $3,500 price.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/implementation" class="btn-p">See Implementation →</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

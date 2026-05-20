@@ -1,0 +1,276 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Pricing — AI Audit, Implementation, Retainer & Fractional Leadership | Treetop</title>
+  <meta name="description" content="Transparent pricing for Treetop's AI implementation services. Fixed-price AI Audit at $1,500, Implementation from $3,500, Monthly Retainer at $1,200/mo, plus fractional CMO/CRO and Claude training engagements." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/pricing" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/pricing" />
+  <meta property="og:title" content="Pricing — Treetop Growth Strategy" />
+  <meta property="og:description" content="Transparent pricing for AI implementation, fractional leadership, and Claude training engagements." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pricing — Treetop Growth Strategy" />
+  <meta name="twitter:description" content="Fixed-price AI Audit at $1,500. Implementation from $3,500. Monthly Retainer at $1,200/mo. Custom fractional engagements." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Treetop AI Audit",
+      "url": "https://treetopgrowthstrategy.com/services/ai-audit",
+      "provider": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "offers": {"@type": "Offer", "price": "1500", "priceCurrency": "USD", "url": "https://treetopgrowthstrategy.com/services/ai-audit"}
+    },
+    {
+      "@type": "Service",
+      "name": "Treetop Claude Implementation",
+      "url": "https://treetopgrowthstrategy.com/services/implementation",
+      "provider": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "offers": {"@type": "Offer", "price": "3500", "priceCurrency": "USD", "url": "https://treetopgrowthstrategy.com/services/implementation"}
+    },
+    {
+      "@type": "Service",
+      "name": "Treetop Monthly Retainer",
+      "url": "https://treetopgrowthstrategy.com/services/retainer",
+      "provider": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "offers": {"@type": "Offer", "price": "1200", "priceCurrency": "USD", "priceSpecification": {"@type": "UnitPriceSpecification", "billingDuration": "P1M", "unitText": "month"}, "url": "https://treetopgrowthstrategy.com/services/retainer"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What's the difference between the AI Audit and Implementation?",
+          "acceptedAnswer": {"@type": "Answer", "text": "The AI Audit ($1,500) tells you what to build and in what order — output is a written report and a 60-minute readout. Implementation ($3,500+) is us actually building it — Claude Projects, system prompts, knowledge bases, team training. Most clients start with an Audit, then move into Implementation."}},
+        {"@type": "Question", "name": "Are the prices fixed?",
+          "acceptedAnswer": {"@type": "Answer", "text": "AI Audit and Implementation have fixed starting prices. Retainer is a flat $1,200/month. Fractional CMO/CRO and Claude Training engagements are custom-quoted based on scope, but we always quote a flat monthly fee — no hourly billing surprises."}},
+        {"@type": "Question", "name": "Do you do work for under $1,500?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Not typically. The AI Audit is the smallest engagement and it covers a full week of work plus deliverables. Below that, the diligence/setup overhead outweighs the value to you."}},
+        {"@type": "Question", "name": "What if I just want a one-time Claude training for my team?",
+          "acceptedAnswer": {"@type": "Answer", "text": "We do team training engagements. Pricing depends on team size and format (half-day workshop, full-day intensive, multi-week cohort). Submit the form at /claude-training and we'll quote within a business day."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .hero { min-height: 50vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 400; line-height: 1.08; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 680px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .body { font-size: 0.95rem; color: #8FAF8F; line-height: 1.75; max-width: 760px; margin-bottom: 1rem; }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    @media(max-width:900px){ .price-grid { grid-template-columns: 1fr; } section { padding: 3.5rem 1.5rem; } .hide-mob{display:none!important} }
+    .card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; display: flex; flex-direction: column; }
+    .card.highlight { border-color: rgba(0,200,83,0.4); }
+    .card-cat { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; }
+    .card-name { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; }
+    .card-price { font-family: 'Instrument Serif', serif; font-size: 2.5rem; color: #F0FFF0; font-weight: 400; margin: 0.5rem 0 1rem; }
+    .card-price em { color: #00C853; font-style: italic; }
+    .card-price small { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: #8FAF8F; font-weight: 400; }
+    .card-desc { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; margin-bottom: 1.5rem; flex: 1; }
+    .card ul { list-style: none; padding: 0; margin-bottom: 1.5rem; }
+    .card ul li { font-size: 0.85rem; color: #8FAF8F; padding: 0.4rem 0; padding-left: 1.5rem; position: relative; line-height: 1.5; }
+    .card ul li::before { content: "→"; position: absolute; left: 0; color: #00C853; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.9rem; }
+    .compare-table th, .compare-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #1A3A1A; color: #8FAF8F; }
+    .compare-table th { color: #F0FFF0; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; background: #0A1A0A; }
+    .compare-table tr:hover td { background: rgba(0,200,83,0.03); }
+    .faq { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.5rem 1.75rem; margin-bottom: 1rem; }
+    .faq h3 { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; }
+    .faq p { font-size: 0.88rem; color: #8FAF8F; line-height: 1.7; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/how-we-work" class="nav-link">How We Work</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Transparent pricing</div>
+    <h1 class="hero-h">Fixed scopes,<br/><em style="color:#00C853;font-style:italic;">visible prices.</em></h1>
+    <p class="hero-sub">
+      Most consultancies treat pricing as a secret to be revealed only after a discovery call. We don't. Every Treetop engagement is quoted with a fixed starting price, a defined scope, and a written deliverable list. No hourly billing surprises. No "let's hop on a call to discuss budget." Here's what every service costs.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Core services</span>
+    <h2 class="h2">Three productized engagements</h2>
+    <p class="body">Most clients enter at the AI Audit, graduate to Implementation, and continue on a monthly Retainer. You can also engage any tier directly.</p>
+
+    <div class="price-grid">
+
+      <div class="card">
+        <div class="card-cat">Diagnose</div>
+        <div class="card-name">AI Audit</div>
+        <div class="card-price">$1,500 <small>fixed</small></div>
+        <div class="card-desc">One week. We identify your highest-leverage AI opportunities and tell you exactly what to build, in what order, with what tools.</div>
+        <ul>
+          <li>Workflow audit across 5–7 functions</li>
+          <li>Tool stack analysis & recommendations</li>
+          <li>Written roadmap (12–20 pages)</li>
+          <li>60-minute readout call</li>
+          <li>30 days of follow-up Q&amp;A</li>
+        </ul>
+        <a href="/services/ai-audit" class="btn-g" style="text-align:center;">See AI Audit details →</a>
+      </div>
+
+      <div class="card highlight">
+        <div class="card-cat">Build</div>
+        <div class="card-name">Implementation</div>
+        <div class="card-price">From <em>$3,500</em></div>
+        <div class="card-desc">Two to six weeks. We actually build the workflows — Claude Projects, system prompts, knowledge bases, and the team training to make it stick.</div>
+        <ul>
+          <li>Up to 5 Claude Projects configured</li>
+          <li>System prompts written &amp; tested</li>
+          <li>Knowledge base architecture</li>
+          <li>Team onboarding + training session</li>
+          <li>30-day post-launch support</li>
+        </ul>
+        <a href="/services/implementation" class="btn-p" style="text-align:center;justify-content:center;">See Implementation →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-cat">Operate</div>
+        <div class="card-name">Monthly Retainer</div>
+        <div class="card-price">$1,200<small>/mo</small></div>
+        <div class="card-desc">Continuous improvement. We refine prompts, add new workflows as needs emerge, and stay in your Slack — without the cost of a full-time AI hire.</div>
+        <ul>
+          <li>~8 hours of work per month</li>
+          <li>New workflow buildouts</li>
+          <li>Prompt refinement &amp; optimization</li>
+          <li>Direct Slack access</li>
+          <li>Monthly check-in call</li>
+        </ul>
+        <a href="/services/retainer" class="btn-g" style="text-align:center;">See Retainer details →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Fractional leadership</span>
+    <h2 class="h2">Custom-quoted engagements</h2>
+    <p class="body">For revenue-leadership work where Treetop sits inside your org as a part-time executive, pricing is custom. We always quote a flat monthly fee — never hourly. Here's the range to budget for:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>Engagement</th><th>Typical monthly range</th><th>Time commitment</th><th>Best for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;">Fractional CMO</a></td><td>$6,500 – $12,000/mo</td><td>20–40 hrs/mo</td><td>$5M–$50M B2B; replacing the CMO role</td></tr>
+        <tr><td><a href="/fractional-cro" style="color:#00C853;text-decoration:none;">Fractional CRO</a></td><td>$8,000 – $15,000/mo</td><td>25–40 hrs/mo</td><td>Revenue org leadership, sales + marketing alignment</td></tr>
+        <tr><td><a href="/revenue-operations-consultant" style="color:#00C853;text-decoration:none;">RevOps Consultant</a></td><td>$4,500 – $9,000/mo</td><td>15–30 hrs/mo</td><td>Systems, process, forecasting infrastructure</td></tr>
+        <tr><td><a href="/ai-strategy-consultant" style="color:#00C853;text-decoration:none;">AI Strategy Consultant</a></td><td>$5,000 – $10,000/mo</td><td>20–30 hrs/mo</td><td>AI roadmap + portfolio governance at exec level</td></tr>
+        <tr><td><a href="/claude-training" style="color:#00C853;text-decoration:none;">Claude Training</a></td><td>$2,500 – $15,000 (project)</td><td>1–5 days</td><td>Team onboarding, executive enablement, cohorts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common pricing questions</h2>
+
+    <div class="faq">
+      <h3>What's the difference between the AI Audit and Implementation?</h3>
+      <p>The AI Audit ($1,500) tells you <em>what to build</em> and in what order — output is a written report and a 60-minute readout. Implementation ($3,500+) is us actually <em>building it</em> — Claude Projects, system prompts, knowledge bases, team training. Most clients start with an Audit, then move into Implementation once they've seen the roadmap.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Are the prices truly fixed?</h3>
+      <p>AI Audit and Implementation have fixed starting prices for the standard scope. If you have an unusually large team or want significantly more Claude Projects, we'll quote a higher fixed price up front. Retainer is a flat $1,200/month, no hourly billing. Fractional CMO/CRO and Training engagements are custom — but always quoted as a flat monthly or project fee.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Do you do work for under $1,500?</h3>
+      <p>Not typically. The AI Audit is our smallest engagement and it represents a full week of senior work plus deliverables. Below that price point, the discovery and setup overhead outweighs the value to you. If your budget is genuinely under $1,500, the right move is to read our <a href="/resources" style="color:#00C853;text-decoration:none;">free guides</a> and build it yourself.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How much should I budget for "AI implementation" in total?</h3>
+      <p>For a small business (5–50 people): an Audit + Implementation + 3 months of Retainer typically lands in the $8,000–$12,000 range. After that, the Retainer pays for itself many times over from the time savings across the team. See our <a href="/how-much-does-ai-implementation-cost" style="color:#00C853;text-decoration:none;">full AI implementation cost breakdown</a> for benchmarks across larger engagements.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What about Claude subscription costs?</h3>
+      <p>That's separate from our fees and paid directly to Anthropic. Most small-business clients land on Claude Team ($30/seat/month) or Claude Pro ($20/month per user). See <a href="/how-much-does-claude-cost-for-business" style="color:#00C853;text-decoration:none;">how much Claude costs for business</a> for a detailed plan breakdown.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Do you accept payment plans?</h3>
+      <p>For engagements over $5,000, we'll split into 2–3 milestone payments. For Retainer, it's monthly billing. For Fractional, it's monthly. We invoice through Stripe; ACH and card both work.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Ready to start?</div>
+        <div class="cta-sub">The AI Audit is the lowest-friction way in. Fixed price, one week, written roadmap.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the Audit →</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment first</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

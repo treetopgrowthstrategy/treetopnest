@@ -1,0 +1,256 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>How Much Does Claude Cost for Business? (2026 Pricing Breakdown) | Treetop</title>
+  <meta name="description" content="A practical breakdown of Claude pricing for businesses: Free, Pro ($20/mo), Team ($30/seat/mo), Enterprise (custom). Plus what to actually budget for total Claude adoption — software, training, and implementation." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/how-much-does-claude-cost-for-business" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/how-much-does-claude-cost-for-business" />
+  <meta property="og:title" content="How Much Does Claude Cost for Business?" />
+  <meta property="og:description" content="2026 pricing breakdown: Free, Pro, Team, Enterprise. Plus realistic total-cost-of-adoption numbers." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How Much Does Claude Cost for Business?" />
+  <meta name="twitter:description" content="Plan-by-plan Claude pricing plus the real total cost of adoption." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How Much Does Claude Cost for Business?",
+      "description": "A practical breakdown of Claude pricing for businesses and the real total cost of adoption.",
+      "url": "https://treetopgrowthstrategy.com/how-much-does-claude-cost-for-business",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-05-20",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "How much does Claude Pro cost?", "acceptedAnswer": {"@type": "Answer", "text": "Claude Pro is $20/month per user (billed monthly) or $200/year per user (billed annually). It includes higher usage limits than the free plan, access to all current models including Opus, and Claude Projects."}},
+        {"@type": "Question", "name": "What is Claude Team pricing?", "acceptedAnswer": {"@type": "Answer", "text": "Claude Team is $30/seat/month (billed annually, minimum 5 seats) or $35/seat/month (billed monthly). It adds shared Projects, central billing, admin controls, and higher usage limits than Pro."}},
+        {"@type": "Question", "name": "How much does Claude Enterprise cost?", "acceptedAnswer": {"@type": "Answer", "text": "Claude Enterprise pricing is custom and quoted directly by Anthropic sales. Typical floors are around $60–$100/seat/month with annual commits; large deals can vary significantly. Enterprise adds SSO, audit logs, expanded context windows, and admin features small teams don't need."}},
+        {"@type": "Question", "name": "Is the free Claude plan good enough for business?", "acceptedAnswer": {"@type": "Answer", "text": "For light use by a single person — yes, sometimes. For any team workflow, no. The free plan caps daily usage and excludes Projects, which is the feature that makes Claude actually useful for business workflows."}},
+        {"@type": "Question", "name": "What's the realistic total cost of using Claude in a business?", "acceptedAnswer": {"@type": "Answer", "text": "For a 10-person team: roughly $3,600/year in Claude Team subscriptions, plus a one-time $3,500–$5,000 implementation investment to set up Projects and train the team, plus optional ongoing support. Total first-year all-in: $8,000–$12,000. Significantly less than one new hire's monthly salary."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1100px; margin: 0 auto; }
+    .hero { min-height: 45vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 700px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.3rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; }
+    .body { font-size: 0.95rem; color: #C0D8C0; line-height: 1.8; max-width: 780px; margin-bottom: 1rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2rem; }
+    @media(max-width:900px){ .price-grid { grid-template-columns: 1fr 1fr; } section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+    @media(max-width:600px){ .price-grid { grid-template-columns: 1fr; } }
+    .card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.75rem; display: flex; flex-direction: column; }
+    .card.featured { border-color: rgba(0,200,83,0.4); }
+    .card-tier { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; }
+    .card-name { font-family: 'Instrument Serif', serif; font-size: 1.3rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; }
+    .card-price { font-family: 'Instrument Serif', serif; font-size: 1.9rem; color: #F0FFF0; font-weight: 400; }
+    .card-price small { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: #8FAF8F; font-weight: 400; }
+    .card-detail { font-size: 0.78rem; color: #8FAF8F; line-height: 1.55; margin-top: 0.5rem; flex: 1; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.88rem; }
+    .compare-table th, .compare-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #1A3A1A; color: #C0D8C0; }
+    .compare-table th { color: #F0FFF0; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; background: #0A1A0A; }
+    .compare-table tr td:first-child { color: #8FAF8F; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+    .callout { background: rgba(0,200,83,0.06); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p { color: #C0D8C0; font-size: 0.92rem; line-height: 1.7; margin: 0; }
+    .callout strong { color: #F0FFF0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Pricing breakdown · Updated May 2026</div>
+    <h1 class="hero-h">How much does Claude cost <em style="color:#00C853;font-style:italic;">for a business?</em></h1>
+    <p class="hero-sub">
+      The short answer: between <strong style="color:#F0FFF0;">$20 and $100 per user per month</strong>, depending on which plan you're on. The longer answer — what you should actually budget when you're seriously deploying Claude across a team — is more useful. Here's the plan-by-plan breakdown plus realistic total-cost-of-adoption numbers.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The four plans</span>
+    <h2 class="h2">Claude pricing tiers, side by side</h2>
+    <p class="body">Anthropic offers four plans: Free, Pro, Team, and Enterprise. They differ in usage limits, collaboration features, and admin controls. For most businesses the right starting point is <em>Team</em>.</p>
+
+    <div class="price-grid">
+
+      <div class="card">
+        <div class="card-tier">Free</div>
+        <div class="card-name">Free</div>
+        <div class="card-price">$0</div>
+        <div class="card-detail">Basic chat, limited daily usage, no Projects, no advanced models. Useful for trying Claude. Not viable for business workflows.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-tier">Individual</div>
+        <div class="card-name">Pro</div>
+        <div class="card-price">$20<small>/mo</small></div>
+        <div class="card-detail">Higher usage limits, all current models including Opus, Claude Projects (the killer feature for business work). $200/yr if billed annually.</div>
+      </div>
+
+      <div class="card featured">
+        <div class="card-tier">Recommended</div>
+        <div class="card-name">Team</div>
+        <div class="card-price">$30<small>/seat/mo</small></div>
+        <div class="card-detail">Pro features plus shared Projects, central billing, admin controls, higher usage caps. Annual billing; 5-seat minimum. $35/seat if billed monthly.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-tier">Enterprise</div>
+        <div class="card-name">Enterprise</div>
+        <div class="card-price">Custom</div>
+        <div class="card-detail">SSO, SCIM, audit logs, extended context windows, dedicated support, custom contracts. Quoted by Anthropic sales; typical floor is $60–$100/seat/mo.</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <p><strong>Practical guidance:</strong> If you have 1–4 people, Pro is fine. The moment you hit 5 people who all want to share knowledge, jump straight to Team — the shared Projects feature alone justifies the $10/seat premium. Don't reach for Enterprise unless you have compliance or SSO requirements that genuinely block adoption.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Plan comparison</span>
+    <h2 class="h2">What you get at each tier</h2>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>Feature</th><th>Free</th><th>Pro</th><th>Team</th><th>Enterprise</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Daily usage limit</td><td>Low</td><td>5× higher</td><td>5× higher</td><td>Highest</td></tr>
+        <tr><td>Access to Opus model</td><td>Limited</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Claude Projects</td><td>—</td><td>Personal</td><td>Shared</td><td>Shared</td></tr>
+        <tr><td>Central billing</td><td>—</td><td>—</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Admin / member roles</td><td>—</td><td>—</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>SSO &amp; SCIM</td><td>—</td><td>—</td><td>—</td><td>Yes</td></tr>
+        <tr><td>Audit logs</td><td>—</td><td>—</td><td>—</td><td>Yes</td></tr>
+        <tr><td>Extended context window</td><td>—</td><td>—</td><td>—</td><td>Yes (up to 1M tokens)</td></tr>
+        <tr><td>Dedicated support</td><td>—</td><td>—</td><td>Standard</td><td>Yes</td></tr>
+        <tr><td>Minimum seats</td><td>—</td><td>1</td><td>5</td><td>Negotiated</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Total cost of adoption</span>
+    <h2 class="h2">What it <em>really</em> costs to deploy Claude across a team</h2>
+    <p class="body">Subscription cost is the visible part. The bigger budget question is: how much do I need to spend to actually <em>use it well</em>? Most businesses that just buy seats and hope for the best get back roughly $5,000 of value per year per user. Those who implement properly get back 10–20× that. The difference is usually a one-time investment of a few thousand dollars in setup.</p>
+
+    <h3 class="h3" style="margin-top:2rem;">Scenario 1: Solo founder / consultant</h3>
+    <p class="body" style="margin-bottom:0.5rem;">
+      Claude Pro at $200/year. No additional setup needed if you're comfortable building your own Projects. <strong style="color:#F0FFF0;">Annual cost: $200.</strong>
+    </p>
+
+    <h3 class="h3" style="margin-top:2rem;">Scenario 2: 5–10 person small business</h3>
+    <p class="body" style="margin-bottom:0.5rem;">
+      Claude Team for 7 seats: $2,520/year. Plus a one-time <a href="/services/implementation" style="color:#00C853;text-decoration:none;">Implementation engagement</a> at $3,500 to set up shared Projects, write system prompts, and train the team. <strong style="color:#F0FFF0;">First-year total: ~$6,000. Year-two onward: $2,520.</strong>
+    </p>
+
+    <h3 class="h3" style="margin-top:2rem;">Scenario 3: 25-person team with multiple functions</h3>
+    <p class="body" style="margin-bottom:0.5rem;">
+      Claude Team for 25 seats: $9,000/year. Implementation engagement: $3,500. Plus a <a href="/services/retainer" style="color:#00C853;text-decoration:none;">monthly Retainer</a> at $1,200/month for ongoing optimization across functions ($14,400/year). <strong style="color:#F0FFF0;">First-year total: ~$27,000. Year-two onward: $23,400.</strong>
+    </p>
+
+    <h3 class="h3" style="margin-top:2rem;">Scenario 4: 50+ person team that needs enterprise features</h3>
+    <p class="body" style="margin-bottom:0.5rem;">
+      Claude Enterprise: roughly $36,000–$60,000/year for 50 seats. Plus a meaningfully larger implementation engagement: $10,000–$25,000 depending on number of workflows, custom integrations, and training cohorts. Plus retainer or fractional support. <strong style="color:#F0FFF0;">First-year total: $50,000–$100,000.</strong>
+    </p>
+
+    <div class="callout">
+      <p><strong>Reference point:</strong> the cheapest mid-level marketing hire in a US metro is approximately $85,000/year fully loaded. A properly-implemented Claude deployment for a 25-person team costs less than 1/3 of one hire and typically produces the output of 2–3 additional hires across the org.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The mistake to avoid</span>
+    <h2 class="h2">Why "just buy seats and hope" wastes 80% of the spend</h2>
+    <p class="body">Walk into ten companies that have Claude. In nine of them, half the seats are unused after 60 days, the active users are doing simple chat instead of building shared Projects, and nobody is using the knowledge-base feature that's the entire reason Claude beats ChatGPT for business work.</p>
+    <p class="body">The fix isn't more software. It's about 8 hours of setup, applied once, by someone who's done it before. That's the gap our <a href="/services/implementation" style="color:#00C853;text-decoration:none;">$3,500 Implementation engagement</a> closes. Pay the subscription, then pay once to make it actually work, then watch the team output increase for the next two years on the same monthly cost.</p>
+    <p class="body">Want the audit-only version first? Our <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">$1,500 AI Audit</a> tells you exactly which workflows to deploy Claude on and in what order — written report, no implementation required.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Not sure where to start with Claude?</div>
+        <div class="cta-sub">Take the 3-minute AI-GTM Gap Assessment. We'll tell you what to deploy first.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment →</a>
+        <a href="/pricing" class="btn-g">See all Treetop pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

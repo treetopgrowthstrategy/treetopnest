@@ -1,0 +1,243 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>The AI-Native GTM Framework — Treetop's 4-Pillar Operating Model | Treetop</title>
+  <meta name="description" content="The AI-Native GTM Framework is the operating model Treetop uses to rebuild B2B go-to-market motions around AI. Four pillars: ICP & Data Foundation, Outbound Intelligence, Pipeline Intelligence, Team Velocity. Here's how it works." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/the-ai-native-gtm-framework" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/the-ai-native-gtm-framework" />
+  <meta property="og:title" content="The AI-Native GTM Framework" />
+  <meta property="og:description" content="Treetop's 4-pillar operating model for rebuilding B2B go-to-market motions around AI." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The AI-Native GTM Framework" />
+  <meta name="twitter:description" content="The 4-pillar operating model behind every Treetop engagement." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The AI-Native GTM Framework",
+      "description": "Treetop's 4-pillar operating model for rebuilding B2B go-to-market motions around AI.",
+      "url": "https://treetopgrowthstrategy.com/the-ai-native-gtm-framework",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-05-20",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 920px; margin: 0 auto; }
+    .hero { min-height: 55vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
+    .hero-inner { max-width: 920px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 400; line-height: 1.05; color: #F0FFF0; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.05rem; color: #C0D8C0; line-height: 1.75; max-width: 720px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.5rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.75rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.25rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .pillar { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; margin-bottom: 1.5rem; }
+    .pillar-num { font-family: 'Instrument Serif', serif; font-style: italic; color: #00C853; font-size: 1.05rem; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .pillar-h { font-family: 'Instrument Serif', serif; font-size: 1.85rem; color: #F0FFF0; font-weight: 400; margin-bottom: 1rem; }
+    .pillar-sub { font-style: italic; color: #00C853; font-family: 'Instrument Serif', serif; }
+    .pillar-detail { font-size: 0.95rem; color: #C0D8C0; line-height: 1.8; margin-bottom: 1rem; }
+    .pillar-list { font-size: 0.9rem; color: #8FAF8F; line-height: 1.7; margin-top: 1rem; }
+    .pillar-list li { padding: 0.35rem 0; padding-left: 1.5rem; position: relative; list-style: none; }
+    .pillar-list li::before { content: "→"; position: absolute; left: 0; color: #00C853; }
+    .quote { border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 2rem 0; max-width: 760px; background: rgba(0,200,83,0.04); }
+    .quote p { font-family: 'Instrument Serif', serif; font-size: 1.2rem; line-height: 1.5; color: #F0FFF0; font-style: italic; margin: 0; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+    @media(max-width:900px){ section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} .pillar { padding: 1.75rem; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/how-we-work" class="nav-link">How We Work</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>The Treetop framework</div>
+    <h1 class="hero-h">The AI-Native<br/><em style="color:#00C853;font-style:italic;">GTM Framework.</em></h1>
+    <p class="hero-sub">
+      Most companies treat AI as a productivity tool — a faster way to do the same go-to-market motion they had before. That's the trap. The companies winning right now treat AI as a <em>systems redesign</em>: rebuilding the GTM motion itself around what AI can actually do. This is the framework we use to make that shift. Four pillars. Roughly 90 days. Built to be operated, not just admired.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The premise</span>
+    <h2 class="h2">Why most "AI for GTM" advice doesn't move the numbers</h2>
+    <p class="body">Walk into a B2B company that "adopted AI" in the last year. You'll find three things: a fragmented tool stack (one tool for outbound, one for content, one for analysis), a team that uses Claude or ChatGPT for one-off writing tasks but not for connected workflows, and a CRM full of fields that nobody trusts. The output: marginally faster email drafts, no actual revenue lift.</p>
+    <p class="body">The reason is structural. AI's leverage comes from <em>connected workflows operating on trustworthy data</em>. If your ICP definition lives in a slide deck nobody opens, your prospect research is a one-off Claude conversation that disappears, and your pipeline review is a vibes-based Monday standup, AI can't compound. It just makes the disconnected things slightly less labor-intensive.</p>
+    <div class="quote">
+      <p>"Growth is a system, not a series of bets."</p>
+    </div>
+    <p class="body">The AI-Native GTM Framework rebuilds the four foundational systems — ICP, outbound, pipeline, team — so that AI can actually compound across them. It is not a list of tools to buy. It's an operating model.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Pillar 01</span>
+
+    <div class="pillar">
+      <div class="pillar-num">— 01 —</div>
+      <div class="pillar-h">ICP &amp; Data Foundation<br/><span class="pillar-sub">Who you sell to, made operational.</span></div>
+      <div class="pillar-detail">
+        Most B2B companies have an ICP that lives as a 4-bullet description in a slide deck. That's not an ICP — that's a poster. An operational ICP is a structured definition that every system in your business can read: company size, industry, signals of fit, signals of timing, signals of intent. It's loaded into your CRM as scoring fields, into Claude as a system-prompt constant, into your prospecting tools as filter criteria.
+      </div>
+      <div class="pillar-detail">
+        Without this, every downstream AI workflow is operating on guesses. With it, every AI tool you deploy has the same understanding of who matters and who doesn't.
+      </div>
+      <ul class="pillar-list">
+        <li>Operational ICP definition (15–25 structured fields, not a paragraph)</li>
+        <li>Account-scoring model loaded into CRM</li>
+        <li>Buyer-persona documents loaded into shared Claude Projects</li>
+        <li>"What we sell" + "Who it's for" + "Why now" system prompts standardized across the team</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Pillar 02</span>
+
+    <div class="pillar">
+      <div class="pillar-num">— 02 —</div>
+      <div class="pillar-h">Outbound Intelligence<br/><span class="pillar-sub">Research and outreach as a connected loop.</span></div>
+      <div class="pillar-detail">
+        Most outbound today is "buy a list, blast a sequence, hope for replies." AI doesn't fix that pattern — it just lets you blast faster. The AI-native pattern looks completely different: each account researched by Claude using the ICP framework, each outreach drafted from the research, each reply triaged and routed by the same intelligence, and each pattern learned and fed back into the system for next time.
+      </div>
+      <div class="pillar-detail">
+        The work isn't manual. The intelligence is. Your reps shift from "doing the research" to <em>reviewing</em> the research, which compresses what used to take 90 minutes of prep into 10.
+      </div>
+      <ul class="pillar-list">
+        <li>Account-research Claude Project (consumes URL, returns structured brief)</li>
+        <li>Sequence-personalization workflow (research → first line → full message)</li>
+        <li>Reply-triage workflow (categorize, suggest response, escalate)</li>
+        <li>Win/loss tagging system feeding back into research prompts</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Pillar 03</span>
+
+    <div class="pillar">
+      <div class="pillar-num">— 03 —</div>
+      <div class="pillar-h">Pipeline Intelligence<br/><span class="pillar-sub">Forecasting and coaching, automated.</span></div>
+      <div class="pillar-detail">
+        The pipeline review is the single most-wasted meeting in B2B. Two hours weekly to surface what should be visible from the data. The AI-native replacement: a Claude Project that reads your pipeline daily, flags coverage gaps, identifies stalled deals using activity patterns, and drafts the coaching note for each rep. The meeting becomes a 30-minute discussion of <em>action</em>, not a 90-minute review of <em>status</em>.
+      </div>
+      <div class="pillar-detail">
+        Forecasting transforms similarly. Instead of asking reps to commit numbers they can't back up, Claude reads the activity data and produces an evidence-grounded forecast that you then adjust for known factors. The conversation shifts from "what do you think?" to "here's what the data says — what do you know that it doesn't?"
+      </div>
+      <ul class="pillar-list">
+        <li>Daily pipeline-health summary (coverage, stalled deals, risk flags)</li>
+        <li>Activity-grounded forecast model</li>
+        <li>Per-rep coaching brief generator</li>
+        <li>Deal-review Claude Project consuming Gong/Chorus + CRM data</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Pillar 04</span>
+
+    <div class="pillar">
+      <div class="pillar-num">— 04 —</div>
+      <div class="pillar-h">Team Velocity<br/><span class="pillar-sub">The human side. Where adoption is won or lost.</span></div>
+      <div class="pillar-detail">
+        The first three pillars are technical. The fourth is the one that breaks most rollouts. Building the system isn't enough — the team has to use it. Reliably. Daily. Without falling back to old habits the moment pressure hits.
+      </div>
+      <div class="pillar-detail">
+        We treat this as a separate workstream, not a footnote. Training that's run as a cohort rather than a one-off. Champions identified and resourced. Usage metrics tracked. Quarterly "What's degrading?" reviews. The systems we build don't degrade because the team using them is set up to maintain them.
+      </div>
+      <ul class="pillar-list">
+        <li>Multi-session training (not one-shot)</li>
+        <li>Per-role enablement: what AE / SDR / RevOps / Marketing each does differently</li>
+        <li>Shared prompt library with versioning</li>
+        <li>Quarterly review: usage rates, prompt drift, workflow health</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The arc</span>
+    <h2 class="h2">How the 90 days actually unfold</h2>
+    <p class="body">The framework isn't deployed as a list — it's deployed as a sequence. ICP first because every downstream pillar reads from it. Outbound second because it's where the time savings are most visible and the team momentum builds. Pipeline third because by then there's enough data and team buy-in to make the dashboard land. Team velocity layered throughout, not sequenced last.</p>
+    <p class="body">For the week-by-week breakdown of what we actually do during a Treetop engagement, see the <a href="/how-we-work" style="color:#00C853;text-decoration:none;">How We Work</a> page.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want to know where your gaps are?</div>
+        <div class="cta-sub">The 3-minute AI-GTM Gap Assessment scores your business across all four pillars and tells you which to fix first.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment →</a>
+        <a href="/how-we-work" class="btn-g">See the 90-day engagement</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>
