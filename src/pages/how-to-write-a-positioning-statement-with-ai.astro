@@ -1,0 +1,116 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Write a Positioning Statement with AI (Practical Framework) | Treetop</title>
+<meta name="description" content="Practical guide to using Claude for positioning work. The classic framework, the prompt that produces real positioning, and what makes the difference between AI-generic and strategically sharp." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-write-a-positioning-statement-with-ai" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-write-a-positioning-statement-with-ai" />
+<meta property="og:title" content="How to Write a Positioning Statement with AI (Practical Framework)" /><meta property="og:description" content="Practical guide to using Claude for positioning work. The classic framework, the prompt that produces real positioning, and what makes the difference between AI-generic and strategically sharp." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Write a Positioning Statement with AI (Practical Framework)" />
+<meta name="twitter:description" content="Practical guide to using Claude for positioning work. The classic framework, the prompt that produces real positioning, and what makes the difference between AI-generic and strategically sharp." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Write a Positioning Statement with AI (Practical Framework)',"url":"https://treetopgrowthstrategy.com/how-to-write-a-positioning-statement-with-ai"},{"@type":"Article","headline":'How to Write a Positioning Statement with AI (Practical Framework)',"description":'Practical guide to using Claude for positioning work. The classic framework, the prompt that produces real positioning, and what makes the difference between AI-generic and strategically sharp.',"url":"https://treetopgrowthstrategy.com/how-to-write-a-positioning-statement-with-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/how-to-use-claude-for-marketing" class="nav-link">Claude for Marketing</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Marketing how-to</div>
+<h1 class="hero-h">How to write a positioning statement <em style="color:#00C853;font-style:italic;">with AI.</em></h1>
+<p class="hero-sub">Positioning is the hardest marketing work to do well. It requires brutal specificity about who you are not for. Claude can accelerate the drafting and testing of positioning options — but the strategic conviction about what you are claiming has to come from you. Here is the workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The classic framework</span><h2 class="h2">April Dunfords version</h2>
+    <p class="body">Positioning has 5 components: <strong>(1) competitive alternatives</strong> (what would customers use if we did not exist), <strong>(2) unique attributes</strong> (what we have that competitors do not), <strong>(3) value</strong> (what those attributes enable), <strong>(4) market category</strong> (the frame buyers use to understand us), <strong>(5) target market</strong> (who specifically gets the most value).</p>
+    <p class="body">Sharp positioning means you have answers for all 5 that hold up under scrutiny. AI cannot manufacture conviction on these — but it can help you stress-test the variants you are considering.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The Claude positioning prompt</span><h2 class="h2">Use this</h2>
+    <p class="body"><pre>We are positioning [COMPANY] in the [BROAD MARKET].
+
+What we sell: [BRIEF PRODUCT DESCRIPTION]
+Our best-fit customers: [3-5 SENTENCES ON ICP]
+Our 3-5 best customer wins (anonymized): [LIST]
+Our 3-5 lost deals or churned customers (what went wrong): [LIST]
+Our differentiated capability (the thing we have that competitors do not): [HONEST ANSWER]
+
+For each of the following, generate 3 specific options and the reasoning:
+
+1. Competitive alternatives (what would they use if we did not exist) — be specific, not "the status quo"
+2. Unique attributes (what we have that competitors truly do not)
+3. The value those attributes enable (in our customer's language, not ours)
+4. The best market category to position into — 3 options and the trade-offs of each
+5. The target market specifically (be willing to exclude most of the market)
+
+Then write a 1-paragraph positioning statement using the best options.
+
+Flag any answers that feel weak — places where we sound like every competitor.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The hardest part</span><h2 class="h2">Choosing what to exclude</h2>
+    <p class="body">The single hardest call in positioning: which segments to explicitly NOT pursue. Most companies refuse to make this call and end up positioned for no one.</p>
+    <p class="body">AI can show you the trade-offs of different segmentation choices. It cannot make the choice for you. The CEO has to commit.</p>
+    <p class="body">When the choice is made, every downstream decision (messaging, sales, product) gets easier. When it is not made, every downstream decision is contested.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Testing the positioning</span><h2 class="h2">The 4 stress tests</h2>
+    <p class="body"><strong>1. Specificity test.</strong> Could a competitor truthfully use the same positioning? If yes, sharpen.</p>
+    <p class="body"><strong>2. Conviction test.</strong> Would you commit headcount and budget for the next 3 years to this position? If not, you are not really positioning yet.</p>
+    <p class="body"><strong>3. Customer recognition test.</strong> Would your best customers nod when they read it, and your bad-fit customers self-select out?</p>
+    <p class="body"><strong>4. Sales test.</strong> Can a salesperson use this positioning to disqualify deals that should not be in the pipeline?</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related marketing how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-a-value-proposition-with-claude" style="color:#00C853;text-decoration:none;">How to write a value proposition with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;">Fractional CMO service &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Need help with positioning work?</div><div class="cta-sub">Positioning is a core component of every Fractional CMO engagement in the first 30 days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/fractional-cmo" class="btn-p">See Fractional CMO &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

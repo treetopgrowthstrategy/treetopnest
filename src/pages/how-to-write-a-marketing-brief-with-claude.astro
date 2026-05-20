@@ -1,0 +1,112 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Write a Marketing Brief with Claude (Templates Included) | Treetop</title>
+<meta name="description" content="A practical guide to writing campaign briefs, content briefs, and creative briefs using Claude. The exact prompt structure and what makes the difference between AI-generic and useful briefs." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-write-a-marketing-brief-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-write-a-marketing-brief-with-claude" />
+<meta property="og:title" content="How to Write a Marketing Brief with Claude (Templates Included)" /><meta property="og:description" content="A practical guide to writing campaign briefs, content briefs, and creative briefs using Claude. The exact prompt structure and what makes the difference between AI-generic and useful briefs." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Write a Marketing Brief with Claude (Templates Included)" />
+<meta name="twitter:description" content="A practical guide to writing campaign briefs, content briefs, and creative briefs using Claude. The exact prompt structure and what makes the difference between AI-generic and useful briefs." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Write a Marketing Brief with Claude (Templates Included)',"url":"https://treetopgrowthstrategy.com/how-to-write-a-marketing-brief-with-claude"},{"@type":"Article","headline":'How to Write a Marketing Brief with Claude (Templates Included)',"description":'A practical guide to writing campaign briefs, content briefs, and creative briefs using Claude. The exact prompt structure and what makes the difference between AI-generic and useful briefs.',"url":"https://treetopgrowthstrategy.com/how-to-write-a-marketing-brief-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/how-to-use-claude-for-marketing" class="nav-link">Claude for Marketing</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Marketing how-to</div>
+<h1 class="hero-h">How to write a marketing brief <em style="color:#00C853;font-style:italic;">with Claude.</em></h1>
+<p class="hero-sub">Marketing briefs done badly waste agency hours and produce mediocre campaigns. Done well, they compress weeks of back-and-forth. Claude can do most of the brief work in 15 minutes — but only with the right setup. Here is the exact workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why most AI-written briefs are garbage</h2>
+    <p class="body">A blank prompt like "write me a campaign brief for X" produces template-shaped content with no specifics. The output looks like a brief but does not actually direct work.</p>
+    <p class="body">The fix: load Claude with three things — your operational ICP, your brand voice, and 3-5 examples of briefs that produced great work. Then it produces briefs that read like a senior strategist wrote them.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The workflow</span><h2 class="h2">Five-step process</h2>
+    <p class="body"><strong>1. Set up the brief Project (one-time, 30 minutes).</strong> Claude Project with ICP, voice guide, 3-5 winning briefs as examples, brand positioning doc.</p>
+    <p class="body"><strong>2. Gather inputs.</strong> Campaign objective, target audience nuance, budget, timeline, success metrics. Write these as bullets — Claude will structure them.</p>
+    <p class="body"><strong>3. Generate the brief.</strong> Prompt: "Draft a campaign brief using our standard structure (in the knowledge base). Objective: [X]. Audience: [Y]. Budget: [Z]. Timeline: [W]. Match the voice and depth of the example briefs. Flag any missing info with [TK: ...]."</p>
+    <p class="body"><strong>4. Edit for sharpness.</strong> Most AI briefs are 80% there. The remaining 20% is voice tightening and adding the specific creative direction or business context only you know.</p>
+    <p class="body"><strong>5. Use it to direct work.</strong> Share with creative team, agency, or freelancers. A good brief saves 5-10 hours of revision later.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The prompt template</span><h2 class="h2">What actually works</h2>
+    <p class="body">Copy-paste this prompt into your brief Claude Project:</p>
+    <p class="body"><pre>Draft a [campaign / content / creative] brief for [PROJECT NAME].
+
+Objective: [specific business outcome]
+Audience: [specific persona from our ICP]
+Key insight: [what we know about the audience that competitors do not]
+Proof points: [what we can credibly claim]
+Deliverables: [specific outputs needed]
+Timeline: [dates]
+Budget: [range]
+Success metrics: [how we will measure]
+
+Use our standard brief structure (in knowledge base). Match the tone of the example briefs. Flag anything missing with [TK: ...]. Maximum 600 words.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Common mistakes</span><h2 class="h2">What to avoid</h2>
+    <p class="body"><strong>1. Skipping the Project setup.</strong> Without ICP and voice loaded, briefs come out generic. Set up once, use forever.</p>
+    <p class="body"><strong>2. Using AI to write the strategic insight.</strong> The "what we know that competitors do not" line is your strategic IP. AI cannot generate it.</p>
+    <p class="body"><strong>3. Letting AI invent proof points.</strong> Claude will sometimes fabricate stats or wins. Always verify claims about your business.</p>
+    <p class="body"><strong>4. Treating it as one-and-done.</strong> The brief Project should be refreshed quarterly with new winning examples. Voice and standards evolve.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related marketing how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-marketing" style="color:#00C853;text-decoration:none;">12 Claude prompts for marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-build-a-content-calendar-with-claude" style="color:#00C853;text-decoration:none;">How to build a content calendar with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want this set up for your team?</div><div class="cta-sub">Implementation: $3,500 fixed. We build the briefing Project with your specific brand and ICP.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
