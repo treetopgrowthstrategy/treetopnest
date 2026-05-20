@@ -1,0 +1,329 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>AI ROI Calculator — Estimate Your Business AI Return | Treetop</title>
+  <meta name="description" content="A free interactive calculator that estimates the annual ROI of deploying AI across your team. Input your team size and replaceable work hours; get back annual savings, payback period, and ROI multiple." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/ai-roi-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/ai-roi-calculator" />
+  <meta property="og:title" content="AI ROI Calculator" />
+  <meta property="og:description" content="Free interactive calculator. Estimates annual AI ROI for your business in 60 seconds." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI ROI Calculator — Treetop" />
+  <meta name="twitter:description" content="60-second AI ROI estimate for your team." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "WebApplication", "name": "AI ROI Calculator", "description": "Interactive calculator that estimates annual AI ROI based on team size, salary, and replaceable work hours.", "url": "https://treetopgrowthstrategy.com/ai-roi-calculator", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 1100px; margin: 0 auto; }
+    .hero { min-height: 45vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem,5vw,3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; max-width: 720px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem,3.5vw,2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .body { font-size: 0.98rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+    @media(max-width:900px){ .calc { grid-template-columns: 1fr; } section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+    .calc-inputs { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; }
+    .calc-outputs { background: rgba(0,200,83,0.04); border: 1px solid rgba(0,200,83,0.25); padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .field { margin-bottom: 1.25rem; }
+    .field label { display: block; font-size: 0.85rem; color: #C0D8C0; margin-bottom: 0.4rem; font-weight: 500; }
+    .field .helper { display: block; font-size: 0.75rem; color: #8FAF8F; margin-bottom: 0.5rem; font-style: italic; }
+    .field input[type="range"] { width: 100%; accent-color: #00C853; }
+    .field input[type="number"] { background: #050D05; border: 1px solid #1A3A1A; color: #F0FFF0; padding: 0.6rem 0.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; width: 100%; }
+    .field input[type="number"]:focus { outline: none; border-color: #00C853; }
+    .slider-row { display: flex; align-items: center; gap: 1rem; }
+    .slider-row input[type="range"] { flex: 1; }
+    .slider-val { font-family: 'Instrument Serif', serif; color: #00C853; font-size: 1.1rem; min-width: 70px; text-align: right; }
+    .output-num { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem,5vw,3.5rem); color: #00C853; font-style: italic; line-height: 1; margin-bottom: 0.4rem; }
+    .output-label { font-size: 0.85rem; color: #8FAF8F; margin-bottom: 1.5rem; }
+    .output-row { padding: 0.85rem 0; border-bottom: 1px solid #1A3A1A; display: flex; justify-content: space-between; align-items: baseline; }
+    .output-row:last-child { border-bottom: none; }
+    .output-row-label { font-size: 0.85rem; color: #8FAF8F; }
+    .output-row-val { font-family: 'Instrument Serif', serif; font-size: 1.3rem; color: #F0FFF0; font-weight: 400; }
+    .callout { background: rgba(0,200,83,0.06); border-left: 3px solid #00C853; padding: 1.25rem 1.5rem; margin: 1.5rem 0; max-width: 780px; }
+    .callout p { color: #C0D8C0; font-size: 0.92rem; line-height: 1.7; margin: 0; }
+    .callout strong { color: #F0FFF0; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Free calculator · 60 seconds</div>
+    <h1 class="hero-h">AI ROI calculator <em style="color:#00C853;font-style:italic;">for your team.</em></h1>
+    <p class="hero-sub">
+      Adjust the inputs to your business. The calculator estimates annual time savings, total dollar value, and the payback period on a typical AI implementation — based on benchmarks from real B2B engagements.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+
+    <div class="calc">
+      <div class="calc-inputs">
+        <span class="lbl">Your inputs</span>
+
+        <div class="field">
+          <label for="team-size">Team size (knowledge workers)</label>
+          <span class="helper">Marketers, salespeople, ops, finance, exec — anyone whose work AI can amplify</span>
+          <div class="slider-row">
+            <input type="range" id="team-size" min="1" max="100" value="10" />
+            <span class="slider-val" id="team-size-val">10</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="avg-salary">Average loaded annual cost per person ($)</label>
+          <span class="helper">Include salary, benefits, equity, overhead — typical knowledge worker $80K–$140K</span>
+          <div class="slider-row">
+            <input type="range" id="avg-salary" min="60000" max="200000" step="5000" value="110000" />
+            <span class="slider-val" id="avg-salary-val">$110K</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="hours-pct">% of work that's AI-replaceable</label>
+          <span class="helper">Typically 25–40% for knowledge work — drafting, research, analysis, docs</span>
+          <div class="slider-row">
+            <input type="range" id="hours-pct" min="10" max="60" value="30" />
+            <span class="slider-val" id="hours-pct-val">30%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="capture-rate">Realistic capture rate</label>
+          <span class="helper">% of AI-replaceable hours actually saved with proper implementation (typical: 50–70%)</span>
+          <div class="slider-row">
+            <input type="range" id="capture-rate" min="20" max="80" value="60" />
+            <span class="slider-val" id="capture-rate-val">60%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ai-cost">Total AI investment first year ($)</label>
+          <span class="helper">Software ($30/seat Claude Team) + implementation ($3,500–$25K) + training. Typical $8K–$30K for 5–25 person team.</span>
+          <div class="slider-row">
+            <input type="range" id="ai-cost" min="2000" max="100000" step="500" value="10000" />
+            <span class="slider-val" id="ai-cost-val">$10K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-outputs">
+        <span class="lbl">Estimated annual ROI</span>
+
+        <div class="output-num" id="annual-savings">$198K</div>
+        <div class="output-label">Annual dollar value of time saved</div>
+
+        <div class="output-row">
+          <span class="output-row-label">Hours saved per year</span>
+          <span class="output-row-val" id="hours-saved">3,744 hrs</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Equivalent FTEs</span>
+          <span class="output-row-val" id="fte-equiv">1.8 FTE</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">First-year net (savings − AI cost)</span>
+          <span class="output-row-val" id="net-year-one">$188K</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Payback period</span>
+          <span class="output-row-val" id="payback">3 weeks</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Year-one ROI multiple</span>
+          <span class="output-row-val" id="roi-mult">19.8×</span>
+        </div>
+
+        <div style="margin-top:1.5rem;font-size:0.8rem;color:#8FAF8F;line-height:1.5;font-style:italic;">
+          Conservative estimates. Real-world results vary based on implementation quality and team adoption.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>About these numbers:</strong> The default values assume a 10-person knowledge-work team with average loaded cost of $110K, 30% AI-replaceable work, and 60% realistic capture rate after proper implementation. Adjust the sliders to model your specific business. The calculator assumes 1,872 working hours per FTE per year (52 weeks × 36 productive hours).</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How the math works</span>
+    <h2 class="h2">What's behind the calculation</h2>
+    <p class="body">The calculator multiplies four things: <em>team size × loaded annual cost × % AI-replaceable work × capture rate</em>. That gives the dollar value of time saved annually. The payback period divides your AI investment by the monthly savings rate.</p>
+    <p class="body">The two variables that swing the output the most are <strong style="color:#F0FFF0;">capture rate</strong> (how much of the theoretical AI-replaceable work you actually capture in practice) and <strong style="color:#F0FFF0;">% AI-replaceable</strong> (varies significantly by role — content production teams hit 50%+, while customer-facing reps closer to 20%).</p>
+    <p class="body">The default capture rate of 60% reflects a properly-implemented deployment with shared Claude Projects, system prompts, and team training. Without those, capture rate drops to 15–25% — which is why most companies that "deploy AI" produce no measurable return. See <a href="/why-most-ai-implementations-fail" style="color:#00C853;text-decoration:none;">why most AI implementations fail</a> for that pattern.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related calculators &amp; resources</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fractional-cmo-roi-calculator" style="color:#00C853;text-decoration:none;">Fractional CMO ROI calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/should-i-use-claude-or-chatgpt" style="color:#00C853;text-decoration:none;">Should I use Claude or ChatGPT? (decision tool) →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/cost-of-not-using-ai" style="color:#00C853;text-decoration:none;">The cost of not using AI →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-much-does-ai-implementation-cost" style="color:#00C853;text-decoration:none;">How much does AI implementation cost? →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/the-90-day-ai-rollout-playbook" style="color:#00C853;text-decoration:none;">The 90-day AI rollout playbook →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want to actually capture this ROI?</div>
+        <div class="cta-sub">The $1,500 AI Audit produces a written roadmap targeting your highest-leverage workflows. Most clients hit 60%+ capture rate within 90 days.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+  (function() {
+    function fmt(n) {
+      if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+      if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+      return '$' + Math.round(n);
+    }
+    function fmtInput(n) {
+      if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+      return '$' + n;
+    }
+
+    var inputs = {
+      teamSize: document.getElementById('team-size'),
+      avgSalary: document.getElementById('avg-salary'),
+      hoursPct: document.getElementById('hours-pct'),
+      captureRate: document.getElementById('capture-rate'),
+      aiCost: document.getElementById('ai-cost'),
+    };
+    var labels = {
+      teamSize: document.getElementById('team-size-val'),
+      avgSalary: document.getElementById('avg-salary-val'),
+      hoursPct: document.getElementById('hours-pct-val'),
+      captureRate: document.getElementById('capture-rate-val'),
+      aiCost: document.getElementById('ai-cost-val'),
+    };
+    var outputs = {
+      annualSavings: document.getElementById('annual-savings'),
+      hoursSaved: document.getElementById('hours-saved'),
+      fteEquiv: document.getElementById('fte-equiv'),
+      netYearOne: document.getElementById('net-year-one'),
+      payback: document.getElementById('payback'),
+      roiMult: document.getElementById('roi-mult'),
+    };
+
+    var HOURS_PER_FTE = 1872; // 52 weeks × 36 productive hrs
+
+    function recalc() {
+      var team = parseInt(inputs.teamSize.value, 10);
+      var salary = parseInt(inputs.avgSalary.value, 10);
+      var pct = parseInt(inputs.hoursPct.value, 10) / 100;
+      var capture = parseInt(inputs.captureRate.value, 10) / 100;
+      var aiCost = parseInt(inputs.aiCost.value, 10);
+
+      labels.teamSize.textContent = team;
+      labels.avgSalary.textContent = fmtInput(salary);
+      labels.hoursPct.textContent = pct * 100 + '%';
+      labels.captureRate.textContent = capture * 100 + '%';
+      labels.aiCost.textContent = fmtInput(aiCost);
+
+      // Dollar value saved = team × salary × pct × capture
+      var annual = team * salary * pct * capture;
+      // Hours saved = team × HOURS_PER_FTE × pct × capture
+      var hours = team * HOURS_PER_FTE * pct * capture;
+      // FTE equivalent
+      var fte = hours / HOURS_PER_FTE;
+      // Net year one
+      var net = annual - aiCost;
+      // Payback (months, then convert)
+      var monthlyRate = annual / 12;
+      var paybackMonths = aiCost / monthlyRate;
+      var paybackText;
+      if (paybackMonths < 1) paybackText = Math.round(paybackMonths * 4.33) + ' weeks';
+      else if (paybackMonths < 12) paybackText = paybackMonths.toFixed(1) + ' months';
+      else paybackText = (paybackMonths / 12).toFixed(1) + ' years';
+      // ROI multiple
+      var roi = annual / aiCost;
+
+      outputs.annualSavings.textContent = fmt(annual);
+      outputs.hoursSaved.textContent = Math.round(hours).toLocaleString() + ' hrs';
+      outputs.fteEquiv.textContent = fte.toFixed(1) + ' FTE';
+      outputs.netYearOne.textContent = fmt(net);
+      outputs.payback.textContent = paybackText;
+      outputs.roiMult.textContent = roi.toFixed(1) + '×';
+    }
+
+    Object.keys(inputs).forEach(function(k) {
+      inputs[k].addEventListener('input', recalc);
+    });
+    recalc();
+  })();
+</script>
+
+</body>
+</html>

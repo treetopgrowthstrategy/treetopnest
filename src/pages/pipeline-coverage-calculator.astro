@@ -1,0 +1,333 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Pipeline Coverage Calculator (Will You Hit Quota?) | Treetop</title>
+  <meta name="description" content="A free interactive calculator that tells you whether your B2B sales pipeline has enough coverage to hit your quota — and where the gaps are. 60 seconds, 5 inputs." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/pipeline-coverage-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/pipeline-coverage-calculator" />
+  <meta property="og:title" content="Pipeline Coverage Calculator" />
+  <meta property="og:description" content="Will your pipeline hit quota? 60-second interactive calculator." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pipeline Coverage Calculator" />
+  <meta name="twitter:description" content="Will your pipeline hit quota? Calculator + diagnosis." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "WebApplication", "name": "Pipeline Coverage Calculator", "url": "https://treetopgrowthstrategy.com/pipeline-coverage-calculator", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+    .hero{min-height:45vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+    .calc{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+    @media(max-width:900px){.calc{grid-template-columns:1fr}section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+    .calc-inputs{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem}
+    .calc-outputs{background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25);padding:2rem;display:flex;flex-direction:column;justify-content:center}
+    .calc-outputs.warning{background:rgba(220,140,40,0.08);border-color:rgba(220,140,40,0.35)}
+    .calc-outputs.danger{background:rgba(220,80,80,0.08);border-color:rgba(220,80,80,0.4)}
+    .field{margin-bottom:1.25rem}
+    .field label{display:block;font-size:0.85rem;color:#C0D8C0;margin-bottom:0.4rem;font-weight:500}
+    .field .helper{display:block;font-size:0.75rem;color:#8FAF8F;margin-bottom:0.5rem;font-style:italic}
+    .field input[type="range"]{width:100%;accent-color:#00C853}
+    .field input[type="number"]{background:#050D05;border:1px solid #1A3A1A;color:#F0FFF0;padding:0.6rem 0.8rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;width:100%}
+    .field input[type="number"]:focus{outline:none;border-color:#00C853}
+    .slider-row{display:flex;align-items:center;gap:1rem}
+    .slider-row input[type="range"]{flex:1}
+    .slider-val{font-family:'Instrument Serif',serif;color:#00C853;font-size:1.1rem;min-width:90px;text-align:right}
+    .output-num{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.5rem);color:#00C853;font-style:italic;line-height:1;margin-bottom:0.4rem}
+    .output-num.warn{color:#e89940}
+    .output-num.bad{color:#dc5050}
+    .output-label{font-size:0.85rem;color:#8FAF8F;margin-bottom:1.5rem}
+    .output-row{padding:0.85rem 0;border-bottom:1px solid #1A3A1A;display:flex;justify-content:space-between;align-items:baseline}
+    .output-row:last-child{border-bottom:none}
+    .output-row-label{font-size:0.85rem;color:#8FAF8F}
+    .output-row-val{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400}
+    .verdict{background:#0A1A0A;border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:780px}
+    .verdict.warn{border-color:#e89940}.verdict.bad{border-color:#dc5050}
+    .verdict h3{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.3rem;font-weight:400;margin-bottom:0.5rem}
+    .verdict p{color:#C0D8C0;font-size:0.92rem;line-height:1.7;margin:0 0 0.5rem}
+    .verdict p:last-child{margin-bottom:0}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/fractional-cro" class="nav-link">Fractional CRO</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Free calculator · 60 seconds</div>
+    <h1 class="hero-h">Pipeline coverage <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
+    <p class="hero-sub">
+      Are you going to hit quota? This calculator tells you in 60 seconds — based on the standard B2B SaaS coverage math (pipeline ÷ quota × win rate). Adjust the inputs to your team; the tool flags coverage gaps and tells you what to do about them.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <div class="calc">
+      <div class="calc-inputs">
+        <span class="lbl">Your inputs</span>
+
+        <div class="field">
+          <label for="quota">Quarterly quota ($)</label>
+          <span class="helper">Team-level or per-rep × team size. Whichever you\'re measuring.</span>
+          <div class="slider-row">
+            <input type="range" id="quota" min="100000" max="10000000" step="50000" value="1000000" />
+            <span class="slider-val" id="quota-val">$1M</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="pipeline">Current pipeline value ($)</label>
+          <span class="helper">Sum of all open opportunities you expect to close this quarter</span>
+          <div class="slider-row">
+            <input type="range" id="pipeline" min="100000" max="20000000" step="50000" value="2500000" />
+            <span class="slider-val" id="pipeline-val">$2.5M</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="win-rate">Win rate (%)</label>
+          <span class="helper">Typical B2B SaaS: 18-28%. Mid-market: 22-35%. Enterprise: 12-22%.</span>
+          <div class="slider-row">
+            <input type="range" id="win-rate" min="5" max="50" value="25" />
+            <span class="slider-val" id="win-rate-val">25%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cycle">Average sales cycle (days)</label>
+          <span class="helper">From qualified opportunity to closed-won. Typical B2B: 60-120 days.</span>
+          <div class="slider-row">
+            <input type="range" id="cycle" min="14" max="365" value="90" />
+            <span class="slider-val" id="cycle-val">90 days</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="days-left">Days left in the quarter</label>
+          <span class="helper">How many days remain to close pipeline this quarter</span>
+          <div class="slider-row">
+            <input type="range" id="days-left" min="7" max="90" value="60" />
+            <span class="slider-val" id="days-left-val">60 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-outputs" id="output-card">
+        <span class="lbl">Coverage diagnosis</span>
+
+        <div class="output-num" id="coverage-ratio">2.5×</div>
+        <div class="output-label">Pipeline-to-quota coverage ratio</div>
+
+        <div class="output-row">
+          <span class="output-row-label">Expected close ($)</span>
+          <span class="output-row-val" id="expected-close">$625K</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Quota gap</span>
+          <span class="output-row-val" id="quota-gap">$375K short</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Recommended coverage</span>
+          <span class="output-row-val" id="rec-coverage">4.0×</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Additional pipeline needed</span>
+          <span class="output-row-val" id="add-pipeline">$1.5M</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Days needed to source</span>
+          <span class="output-row-val" id="days-needed">90 days</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict" id="verdict">
+      <h3 id="verdict-h">Likely to hit quota with current pipeline</h3>
+      <p id="verdict-p"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How the math works</span>
+    <h2 class="h2">What\'s behind the calculation</h2>
+    <p class="body"><strong style="color:#F0FFF0;">Coverage ratio</strong> = pipeline value ÷ quarterly quota. B2B SaaS rule of thumb: <em>you need 3-4× coverage</em> to reliably hit quota when win rate is 25-30%. Lower win rate → higher required coverage.</p>
+    <p class="body"><strong style="color:#F0FFF0;">Expected close</strong> = pipeline × win rate. This is the statistical expectation of how much closes assuming your historical win rate holds.</p>
+    <p class="body"><strong style="color:#F0FFF0;">Recommended coverage</strong> uses the formula: target = 1 ÷ win rate × buffer. Default buffer is 1.0x — meaning if your win rate is 25%, you need 4× coverage to expect to hit quota.</p>
+    <p class="body">Most pipeline coverage problems aren\'t coverage problems at all — they\'re stage-conversion problems or aging-deal problems disguised as coverage. See <a href="/how-to-fix-pipeline-coverage-problems" style="color:#00C853;text-decoration:none;">how to fix pipeline coverage problems</a> for the full diagnostic.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related resources</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-fix-pipeline-coverage-problems" style="color:#00C853;text-decoration:none;">How to fix pipeline coverage problems →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-b2b-sales-cycles-are-getting-longer" style="color:#00C853;text-decoration:none;">Why B2B sales cycles are getting longer →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-sales" style="color:#00C853;text-decoration:none;">How to use Claude for sales →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">12 Claude prompts for sales →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/fractional-cro" style="color:#00C853;text-decoration:none;">Fractional CRO service →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Coverage gap you can\'t close?</div>
+        <div class="cta-sub">A Fractional CRO can fix pipeline structure in 60 days. $8K-$15K/month. 30-day notice.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/fractional-cro" class="btn-p">See Fractional CRO →</a>
+        <a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+  (function() {
+    function fmt(n) {
+      if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+      if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+      return '$' + Math.round(n);
+    }
+
+    var inputs = {
+      quota: document.getElementById('quota'),
+      pipeline: document.getElementById('pipeline'),
+      winRate: document.getElementById('win-rate'),
+      cycle: document.getElementById('cycle'),
+      daysLeft: document.getElementById('days-left'),
+    };
+    var labels = {
+      quota: document.getElementById('quota-val'),
+      pipeline: document.getElementById('pipeline-val'),
+      winRate: document.getElementById('win-rate-val'),
+      cycle: document.getElementById('cycle-val'),
+      daysLeft: document.getElementById('days-left-val'),
+    };
+
+    function recalc() {
+      var quota = parseInt(inputs.quota.value, 10);
+      var pipeline = parseInt(inputs.pipeline.value, 10);
+      var winRate = parseInt(inputs.winRate.value, 10) / 100;
+      var cycle = parseInt(inputs.cycle.value, 10);
+      var daysLeft = parseInt(inputs.daysLeft.value, 10);
+
+      labels.quota.textContent = fmt(quota);
+      labels.pipeline.textContent = fmt(pipeline);
+      labels.winRate.textContent = (winRate * 100) + '%';
+      labels.cycle.textContent = cycle + ' days';
+      labels.daysLeft.textContent = daysLeft + ' days';
+
+      var coverage = pipeline / quota;
+      var expectedClose = pipeline * winRate;
+      var quotaGap = quota - expectedClose;
+      var recCoverage = (1 / winRate) * 1.0; // 1.0x buffer
+      var pipelineNeeded = quota * recCoverage;
+      var addPipeline = Math.max(0, pipelineNeeded - pipeline);
+
+      document.getElementById('coverage-ratio').textContent = coverage.toFixed(1) + '×';
+      document.getElementById('expected-close').textContent = fmt(expectedClose);
+      document.getElementById('quota-gap').textContent = quotaGap > 0 ? fmt(quotaGap) + ' short' : fmt(-quotaGap) + ' over';
+      document.getElementById('rec-coverage').textContent = recCoverage.toFixed(1) + '×';
+      document.getElementById('add-pipeline').textContent = addPipeline > 0 ? fmt(addPipeline) : 'None — covered';
+      document.getElementById('days-needed').textContent = cycle + ' days';
+
+      // Color coding
+      var card = document.getElementById('output-card');
+      var num = document.getElementById('coverage-ratio');
+      var verdict = document.getElementById('verdict');
+      card.classList.remove('warning', 'danger');
+      num.classList.remove('warn', 'bad');
+      verdict.classList.remove('warn', 'bad');
+
+      var verdictH, verdictP;
+      var status;
+      if (coverage >= recCoverage) {
+        status = 'good';
+        verdictH = 'On track to hit quota';
+        verdictP = 'Your pipeline coverage (' + coverage.toFixed(1) + '×) meets or exceeds the recommended ' + recCoverage.toFixed(1) + '× for your win rate. If your historical conversion holds and no major deals slip, you should close approximately ' + fmt(expectedClose) + ' against ' + fmt(quota) + ' quota.';
+        if (quotaGap < 0) verdictP += ' You\'re actually positioned to over-attain.';
+      } else if (coverage >= recCoverage * 0.75) {
+        status = 'warn';
+        card.classList.add('warning');
+        num.classList.add('warn');
+        verdict.classList.add('warn');
+        verdictH = 'At-risk — coverage below recommended';
+        verdictP = 'Coverage of ' + coverage.toFixed(1) + '× is below the recommended ' + recCoverage.toFixed(1) + '× for a ' + (winRate * 100) + '% win rate. You\'re likely to come in ' + fmt(quotaGap) + ' short. With ' + daysLeft + ' days left and a ' + cycle + '-day cycle, sourcing additional pipeline this quarter is difficult — most of your closes will come from existing deals.';
+        verdictP += ' Focus on: (1) advancing the highest-probability deals already in the pipeline, (2) qualifying ruthlessly to ensure you\'re not overcommitting, (3) starting outbound now to seed next quarter.';
+      } else {
+        status = 'bad';
+        card.classList.add('danger');
+        num.classList.add('bad');
+        verdict.classList.add('bad');
+        verdictH = 'Coverage critically low — quota miss likely';
+        verdictP = 'Coverage of ' + coverage.toFixed(1) + '× against a recommended ' + recCoverage.toFixed(1) + '× signals a serious gap. Expected close is ' + fmt(expectedClose) + ' against ' + fmt(quota) + ' quota — a ' + Math.round(quotaGap / quota * 100) + '% miss.';
+        verdictP += ' Possible causes: (1) the pipeline number is overstated by stale deals, (2) qualification has been too loose at top stages, (3) genuine top-of-funnel deficit. Diagnose which one drives your gap before adding outbound capacity — most teams misdiagnose this.';
+      }
+      document.getElementById('verdict-h').textContent = verdictH;
+      document.getElementById('verdict-p').textContent = verdictP;
+    }
+
+    Object.keys(inputs).forEach(function(k) { inputs[k].addEventListener('input', recalc); });
+    recalc();
+  })();
+</script>
+
+</body>
+</html>

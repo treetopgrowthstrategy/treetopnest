@@ -1,0 +1,343 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Fractional CMO ROI Calculator (Fractional vs Full-Time vs DIY) | Treetop</title>
+  <meta name="description" content="A free interactive calculator that compares the year-one cost and ROI of a fractional CMO vs. a full-time CMO vs. founder-led DIY. Tailored to your specific company stage." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/fractional-cmo-roi-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/fractional-cmo-roi-calculator" />
+  <meta property="og:title" content="Fractional CMO ROI Calculator" />
+  <meta property="og:description" content="Compare fractional CMO vs full-time vs DIY economics for your company." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fractional CMO ROI Calculator" />
+  <meta name="twitter:description" content="Side-by-side fractional vs full-time vs DIY economics." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "WebApplication", "name": "Fractional CMO ROI Calculator", "url": "https://treetopgrowthstrategy.com/fractional-cmo-roi-calculator", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+    .hero{min-height:45vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+    .calc-inputs{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;margin-bottom:2rem}
+    .field{margin-bottom:1.25rem}
+    .field label{display:block;font-size:0.85rem;color:#C0D8C0;margin-bottom:0.4rem;font-weight:500}
+    .field .helper{display:block;font-size:0.75rem;color:#8FAF8F;margin-bottom:0.5rem;font-style:italic}
+    .field input[type="range"]{width:100%;accent-color:#00C853}
+    .field select{background:#050D05;border:1px solid #1A3A1A;color:#F0FFF0;padding:0.6rem 0.8rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;width:100%}
+    .field select:focus{outline:none;border-color:#00C853}
+    .slider-row{display:flex;align-items:center;gap:1rem}
+    .slider-row input[type="range"]{flex:1}
+    .slider-val{font-family:'Instrument Serif',serif;color:#00C853;font-size:1.1rem;min-width:90px;text-align:right}
+    .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.5rem}
+    @media(max-width:900px){.compare-grid{grid-template-columns:1fr}section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+    .opt-card{padding:1.75rem;display:flex;flex-direction:column;border:1px solid #1A3A1A;background:#0A1A0A}
+    .opt-card.recommended{border-color:rgba(0,200,83,0.4);background:rgba(0,200,83,0.04);box-shadow:0 0 0 1px rgba(0,200,83,0.2)}
+    .opt-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.6rem;min-height:0.65rem}
+    .opt-name{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;font-weight:400;margin-bottom:1rem}
+    .opt-cost{font-family:'Instrument Serif',serif;font-size:2.2rem;color:#F0FFF0;font-weight:400;font-style:italic;line-height:1;margin-bottom:0.25rem}
+    .opt-cost-label{font-size:0.78rem;color:#8FAF8F;margin-bottom:1.25rem}
+    .opt-row{padding:0.5rem 0;border-bottom:1px solid #1A3A1A;font-size:0.82rem;color:#C0D8C0;display:flex;justify-content:space-between}
+    .opt-row:last-child{border-bottom:none}
+    .opt-row span:last-child{color:#F0FFF0;font-weight:500}
+    .verdict{background:#0A1A0A;border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:780px}
+    .verdict h3{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.3rem;font-weight:400;margin-bottom:0.5rem}
+    .verdict p{color:#C0D8C0;font-size:0.92rem;line-height:1.7;margin:0}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Free calculator · 90 seconds</div>
+    <h1 class="hero-h">Fractional CMO ROI <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
+    <p class="hero-sub">
+      Adjust the inputs to your situation. The calculator compares year-one all-in cost and likely outcome across three options: fractional CMO, full-time CMO hire, and founder-led DIY. Calibrated to 2026 market benchmarks.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <div class="calc-inputs">
+      <span class="lbl">Your inputs</span>
+
+      <div class="field">
+        <label for="company-stage">Company stage / revenue</label>
+        <span class="helper">Affects the realistic comp range and ROI expectations</span>
+        <select id="company-stage">
+          <option value="seed">Pre-PMF / Seed ($0–$2M)</option>
+          <option value="early" selected>Early growth ($2M–$10M)</option>
+          <option value="growth">Growth stage ($10M–$30M)</option>
+          <option value="scale">Scaling ($30M–$75M)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="ceo-hours">CEO hours per week currently on marketing decisions</label>
+        <span class="helper">Marketing strategy, campaign approvals, agency oversight, content review — anything marketing-related</span>
+        <div class="slider-row">
+          <input type="range" id="ceo-hours" min="0" max="30" value="12" />
+          <span class="slider-val" id="ceo-hours-val">12 hrs</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="ceo-cost">CEO loaded hourly cost ($)</label>
+        <span class="helper">Founder salary + dilution + opportunity cost — typical founders: $250–$500/hr</span>
+        <div class="slider-row">
+          <input type="range" id="ceo-cost" min="150" max="800" step="25" value="350" />
+          <span class="slider-val" id="ceo-cost-val">$350/hr</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fractional-hours">Fractional CMO hours per month (preferred)</label>
+        <span class="helper">Typical: 20–40 hours/month. Lower for advisory, higher for embedded operator.</span>
+        <div class="slider-row">
+          <input type="range" id="fractional-hours" min="10" max="40" value="25" />
+          <span class="slider-val" id="fractional-hours-val">25 hrs</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="lbl">Year-one comparison</span>
+    <div class="compare-grid">
+
+      <div class="opt-card" id="card-fractional">
+        <div class="opt-tag" id="fractional-tag">—</div>
+        <div class="opt-name">Fractional CMO</div>
+        <div class="opt-cost" id="frac-cost">$120K</div>
+        <div class="opt-cost-label">Year-one all-in</div>
+        <div class="opt-row"><span>Monthly fee</span><span id="frac-monthly">$10K</span></div>
+        <div class="opt-row"><span>Setup &amp; onboarding</span><span>—</span></div>
+        <div class="opt-row"><span>Equity dilution</span><span>None</span></div>
+        <div class="opt-row"><span>Recruiter fee</span><span>None</span></div>
+        <div class="opt-row"><span>Notice period</span><span>30 days</span></div>
+        <div class="opt-row"><span>Hours/month</span><span id="frac-hrs">25 hrs</span></div>
+      </div>
+
+      <div class="opt-card" id="card-fulltime">
+        <div class="opt-tag" id="ft-tag">—</div>
+        <div class="opt-name">Full-time CMO</div>
+        <div class="opt-cost" id="ft-cost">$520K</div>
+        <div class="opt-cost-label">Year-one all-in</div>
+        <div class="opt-row"><span>Base + variable</span><span id="ft-base">$375K</span></div>
+        <div class="opt-row"><span>Benefits</span><span>$45K</span></div>
+        <div class="opt-row"><span>Equity (1–2% est. value)</span><span id="ft-equity">$50K+</span></div>
+        <div class="opt-row"><span>Recruiter fee</span><span>$75K</span></div>
+        <div class="opt-row"><span>Notice period</span><span>3–9 mo</span></div>
+        <div class="opt-row"><span>Hours/month</span><span>~160 hrs</span></div>
+      </div>
+
+      <div class="opt-card" id="card-diy">
+        <div class="opt-tag" id="diy-tag">—</div>
+        <div class="opt-name">CEO-led (DIY)</div>
+        <div class="opt-cost" id="diy-cost">$218K</div>
+        <div class="opt-cost-label">CEO opportunity cost</div>
+        <div class="opt-row"><span>CEO hours/year on marketing</span><span id="diy-hrs">624 hrs</span></div>
+        <div class="opt-row"><span>CEO hourly cost</span><span id="diy-hourly">$350/hr</span></div>
+        <div class="opt-row"><span>Equity dilution</span><span>None</span></div>
+        <div class="opt-row"><span>Recruiter fee</span><span>None</span></div>
+        <div class="opt-row"><span>Notice period</span><span>n/a</span></div>
+        <div class="opt-row"><span>Strategic expertise</span><span>Limited</span></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h3 id="verdict-h">Recommended for your stage: Fractional CMO</h3>
+      <p id="verdict-p">For early growth companies ($2M–$10M), the fractional model captures the senior strategic value of a CMO without the dilution, recruiter risk, or 9-month onboarding ramp. Switch to full-time when you cross $25M–$30M and the function genuinely requires 40+ hours/week of leadership.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How the math works</span>
+    <h2 class="h2">What's behind the calculation</h2>
+    <p class="body"><strong style="color:#F0FFF0;">Fractional cost</strong> = monthly fee × 12. The default monthly fee scales with the requested hours/month (using $400/hr blended rate as a benchmark).</p>
+    <p class="body"><strong style="color:#F0FFF0;">Full-time cost</strong> includes base + variable + benefits + equity-value + recruiter fee, scaled to your stage. Equity value is estimated at the midpoint of typical CMO grants (1–2% of company value at next round).</p>
+    <p class="body"><strong style="color:#F0FFF0;">DIY (CEO-led) cost</strong> = (CEO hrs/week × 52) × CEO hourly cost. This is the <em>opportunity cost</em> of CEO time spent on marketing rather than on CEO-level work. Most CEOs significantly underestimate this number.</p>
+    <p class="body">For the deeper analysis of when each fits, see <a href="/fractional-cmo-vs-full-time-cmo" style="color:#00C853;text-decoration:none;">fractional CMO vs. full-time CMO</a> and <a href="/signs-you-need-a-fractional-cmo" style="color:#00C853;text-decoration:none;">signs you need a fractional CMO</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related calculators &amp; resources</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-roi-calculator" style="color:#00C853;text-decoration:none;">AI ROI calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-much-does-a-fractional-cmo-cost" style="color:#00C853;text-decoration:none;">How much does a fractional CMO cost? →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-much-does-a-cmo-cost" style="color:#00C853;text-decoration:none;">How much does a (full-time) CMO cost? →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/when-to-hire-your-first-cmo" style="color:#00C853;text-decoration:none;">When to hire your first CMO →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/fractional-cmo", style="color:#00C853;text-decoration:none;">Treetop\'s Fractional CMO service →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Considering a fractional engagement?</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment first — it tells you whether fractional CMO is actually the right fix for your specific gaps.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment →</a>
+        <a href="/fractional-cmo" class="btn-g">See Fractional CMO service</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+  (function() {
+    function fmt(n) {
+      if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+      if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+      return '$' + Math.round(n);
+    }
+
+    var inputs = {
+      stage: document.getElementById('company-stage'),
+      ceoHours: document.getElementById('ceo-hours'),
+      ceoCost: document.getElementById('ceo-cost'),
+      fractionalHours: document.getElementById('fractional-hours'),
+    };
+    var labels = {
+      ceoHours: document.getElementById('ceo-hours-val'),
+      ceoCost: document.getElementById('ceo-cost-val'),
+      fractionalHours: document.getElementById('fractional-hours-val'),
+    };
+
+    function recalc() {
+      var stage = inputs.stage.value;
+      var ceoHrs = parseInt(inputs.ceoHours.value, 10);
+      var ceoCost = parseInt(inputs.ceoCost.value, 10);
+      var fracHrs = parseInt(inputs.fractionalHours.value, 10);
+
+      labels.ceoHours.textContent = ceoHrs + ' hrs';
+      labels.ceoCost.textContent = '$' + ceoCost + '/hr';
+      labels.fractionalHours.textContent = fracHrs + ' hrs';
+
+      // Fractional cost: $400/hr blended × hours × 12 months
+      var fracMonthly = 400 * fracHrs;
+      var fracAnnual = fracMonthly * 12;
+
+      // Full-time stage-based estimates
+      var ftBase = { seed: 250000, early: 320000, growth: 380000, scale: 450000 }[stage];
+      var ftEquityVal = { seed: 30000, early: 50000, growth: 90000, scale: 150000 }[stage];
+      var ftBenefits = 45000;
+      var ftRecruiter = 75000;
+      var ftAnnual = ftBase + ftEquityVal + ftBenefits + ftRecruiter;
+
+      // DIY = CEO opportunity cost
+      var diyHours = ceoHrs * 52;
+      var diyAnnual = diyHours * ceoCost;
+
+      // Update displays
+      document.getElementById('frac-cost').textContent = fmt(fracAnnual);
+      document.getElementById('frac-monthly').textContent = fmt(fracMonthly);
+      document.getElementById('frac-hrs').textContent = fracHrs + ' hrs';
+
+      document.getElementById('ft-cost').textContent = fmt(ftAnnual);
+      document.getElementById('ft-base').textContent = fmt(ftBase);
+      document.getElementById('ft-equity').textContent = fmt(ftEquityVal) + '+';
+
+      document.getElementById('diy-cost').textContent = fmt(diyAnnual);
+      document.getElementById('diy-hrs').textContent = diyHours.toLocaleString() + ' hrs';
+      document.getElementById('diy-hourly').textContent = '$' + ceoCost + '/hr';
+
+      // Determine recommended option
+      var recommended;
+      var verdictText;
+      if (stage === 'seed') {
+        recommended = 'diy';
+        verdictText = 'Pre-PMF and seed stage usually do not justify CMO-level engagement. Founder-led marketing iteration with a marketing coordinator is typically the right answer until you have product-market fit signal. If you need help, engage an advisor (5-10 hrs/month) rather than a full fractional engagement.';
+      } else if (stage === 'scale') {
+        recommended = 'fulltime';
+        verdictText = 'At $30M+ scaling stage, full-time CMO economics start to work and the marketing function typically needs 40+ hours/week of dedicated leadership. Continue with fractional only if you specifically want shorter-term flexibility or want to vet the role before hiring permanently.';
+      } else {
+        recommended = 'fractional';
+        verdictText = stage === 'early'
+          ? 'For early-growth companies ($2M-$10M), the fractional model captures the senior strategic value of a CMO without the dilution, recruiter risk, or 9-month onboarding ramp. Switch to full-time when you cross $25M-$30M and the function genuinely requires 40+ hours/week of leadership.'
+          : 'Growth-stage companies ($10M-$30M) are in the fractional sweet spot. Senior marketing leadership for ~25% of full-time cost. Plan a 12-18 month fractional engagement, then evaluate whether full-time hire is justified.';
+      }
+
+      ['fractional', 'fulltime', 'diy'].forEach(function(opt) {
+        var card = document.getElementById('card-' + opt);
+        var tag = document.getElementById(opt === 'fulltime' ? 'ft-tag' : opt === 'fractional' ? 'fractional-tag' : 'diy-tag');
+        if (opt === recommended) {
+          card.classList.add('recommended');
+          tag.textContent = 'Recommended';
+        } else {
+          card.classList.remove('recommended');
+          tag.textContent = '';
+        }
+      });
+
+      var hMap = { fractional: 'Recommended for your stage: Fractional CMO', fulltime: 'Recommended for your stage: Full-time CMO', diy: 'Recommended for your stage: CEO-led / Advisor' };
+      document.getElementById('verdict-h').textContent = hMap[recommended];
+      document.getElementById('verdict-p').textContent = verdictText;
+    }
+
+    Object.keys(inputs).forEach(function(k) {
+      inputs[k].addEventListener('input', recalc);
+      inputs[k].addEventListener('change', recalc);
+    });
+    recalc();
+  })();
+</script>
+
+</body>
+</html>
