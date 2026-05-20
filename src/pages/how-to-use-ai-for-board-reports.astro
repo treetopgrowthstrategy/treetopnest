@@ -1,0 +1,216 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>How to Use AI for Board Reports (Without the Generic Filler) | Treetop</title>
+  <meta name="description" content="A practical guide to using Claude for board report drafting — variance narrative, KPI commentary, risk framing. The structure, the prompt pattern, and what to never let AI write." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-use-ai-for-board-reports" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-use-ai-for-board-reports" />
+  <meta property="og:title" content="How to Use AI for Board Reports (Without the Generic Filler)" />
+  <meta property="og:description" content="A practical guide to using Claude for board report drafting — variance narrative, KPI commentary, risk framing. The structure, the prompt pattern, and what to never let AI write." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Use AI for Board Reports (Without the Generic Filler)" />
+  <meta name="twitter:description" content="A practical guide to using Claude for board report drafting — variance narrative, KPI commentary, risk framing. The structure, the prompt pattern, and what to never let AI write." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "HowTo", "name": 'How to Use AI for Board Reports (Without the Generic Filler)', "url": "https://treetopgrowthstrategy.com/how-to-use-ai-for-board-reports", "step": [{"@type": "HowToStep", "name": 'Set up the board Project', "text": 'Create a dedicated Claude Project with prior board reports loaded.'},{"@type": "HowToStep", "name": 'Draft the variance narrative', "text": 'Use Claude for the "why the numbers moved" sections.'},{"@type": "HowToStep", "name": 'Draft KPI commentary at scale', "text": 'Generate first drafts for every KPI section, then edit.'},{"@type": "HowToStep", "name": 'Write the strategic sections yourself', "text": 'AI cannot do the strategic narrative. You do this part.'},{"@type": "HowToStep", "name": 'Verify everything before sending', "text": 'Two-pass review with a focus on numbers and named facts.'}]},
+    {"@type": "Article", "headline": 'How to Use AI for Board Reports (Without the Generic Filler)', "url": "https://treetopgrowthstrategy.com/how-to-use-ai-for-board-reports", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": 'How much time does AI actually save on board reports?', "acceptedAnswer": {"@type": "Answer", "text": 'For most CFOs, 5–7 hours per quarter. The variance narrative and KPI commentary sections are where 90% of the savings happen.'}},{"@type": "Question", "name": 'Should I use Claude or ChatGPT for board work?', "acceptedAnswer": {"@type": "Answer", "text": 'Claude. Specifically Claude Team or Enterprise. The Projects feature lets you load prior reports as reference, which dramatically improves consistency quarter-over-quarter.'}},{"@type": "Question", "name": 'What about audit trail and compliance?', "acceptedAnswer": {"@type": "Answer", "text": "Use Claude Team or Enterprise with audit logs enabled. Document your AI policy. Most boards don't object to AI-assisted drafting; they object to unverified AI-generated facts."}},{"@type": "Question", "name": 'Can AI write the CEO letter at the top of the report?', "acceptedAnswer": {"@type": "Answer", "text": 'Generate a first draft, then heavily rewrite. The CEO letter is voice-and-judgment work. The first draft saves you 15 minutes; the heavy edit is the actual work.'}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .step{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.25rem}
+    .step-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .step h3{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;font-weight:400;margin-bottom:0.75rem}
+    .step p{font-size:0.94rem;color:#C0D8C0;line-height:1.75;margin-bottom:0.75rem}
+    .step p:last-child{margin-bottom:0}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap}
+    .pitfall{background:rgba(200,50,50,0.05);border-left:3px solid #c83232;padding:1rem 1.25rem;margin:1.25rem 0;max-width:780px}
+    .pitfall p{color:#C0D8C0;font-size:0.9rem;line-height:1.7;margin:0}.pitfall strong{color:#F0FFF0}
+    .faq{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.25rem 1.5rem;margin-bottom:0.85rem;max-width:780px}
+    .faq h3{font-family:'Instrument Serif',serif;font-size:1.1rem;color:#F0FFF0;font-weight:400;margin-bottom:0.4rem}
+    .faq p{font-size:0.88rem;color:#C0D8C0;line-height:1.7}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/how-to-use-claude" class="nav-link">How-To Guides</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Task guide</div>
+    <h1 class="hero-h">How to use AI for <em style="color:#00C853;font-style:italic;">board reports.</em></h1>
+    <p class="hero-sub">Board reports get written every quarter by the most senior people in the business. They take 6–10 hours of senior time to produce. AI compresses that to 90 minutes — but only if you use it for the right parts and write the parts AI can't handle yourself. Here's the split.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The workflow</span>
+    <h2 class="h2">Step-by-step process</h2>
+
+    <div class="step">
+      <div class="step-num">— Step 01 —</div>
+      <h3>Set up the board Project</h3>
+      <p>One-time setup. Create a Claude Project ("Board Reports — [Company]") and load:</p>
+      <p>— Last 4 quarters of board reports (anonymized if needed)<br/>— Your standard report structure (sections, length, tone)<br/>— Your KPI definitions and historical baselines<br/>— Board member context (what each member typically asks about)</p>
+      <p>System prompt: "You are drafting board materials. Voice: formal but direct. Always cite the numbers. Never invent data. If a data point is missing, write [TK: data needed from X]. Match the length and depth of prior reports in the knowledge base."</p>
+      
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 02 —</div>
+      <h3>Draft the variance narrative</h3>
+      <p>This is where AI is most valuable. Paste in the actual quarter's numbers + commentary from the team about why each line moved. Ask Claude to turn it into board-ready prose.</p>
+      <p><pre>Here are this quarter's revenue numbers vs. plan: [paste]. Here's commentary from the team on each line: [paste]. Draft the "Revenue Performance" section of the board report. Match the structure and depth of last quarter's. Keep it to 350 words.</pre></p>
+      <p>This single section typically takes a CFO 90 minutes. AI cuts it to 15 minutes of editing.</p>
+      
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 03 —</div>
+      <h3>Draft KPI commentary at scale</h3>
+      <p>For each KPI on the board deck — NRR, CAC, pipeline coverage, customer count, headcount — provide Claude the number and a sentence of context, and ask for the commentary. Generates parallel paragraphs in seconds.</p>
+      <p>Then read each one. Maybe 30% need real editing. The rest are 80% ready to ship.</p>
+      
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 04 —</div>
+      <h3>Write the strategic sections yourself</h3>
+      <p>The CEO summary, the strategic framing, the "what we're betting on next quarter" section — these are not AI work. They require judgment, context the AI doesn't have, and a level of accountability the AI can't carry.</p>
+      <p>The right split: AI does 70% of the prep work (numbers commentary, variance narratives, KPI sections), you do 30% (the strategy, the open questions, the asks of the board). The 30% is what the board actually reads.</p>
+      
+    </div>
+
+    <div class="step">
+      <div class="step-num">— Step 05 —</div>
+      <h3>Verify everything before sending</h3>
+      <p>Pass 1 — Numbers. Every cited figure gets verified against your source-of-truth dashboard. AI will occasionally invent or transpose digits.</p>
+      <p>Pass 2 — Named claims. Anywhere the report claims you did something, achieved something, or signed something — verify. AI sometimes invents wins.</p>
+      <p>This adds 20 minutes. It's non-negotiable for any document going to a board.</p>
+      
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Pitfalls</span>
+    <h2 class="h2">Common mistakes to avoid</h2>
+
+    <div class="pitfall"><p><strong>1. Letting AI write the strategic narrative.</strong> AI can write "what happened." It cannot write "what we should do next." Don't let it try.</p></div>
+    <div class="pitfall"><p><strong>2. Trusting numbers without verification.</strong> AI will occasionally transpose digits or invent figures. Always verify against source-of-truth dashboards.</p></div>
+    <div class="pitfall"><p><strong>3. Using ChatGPT in a fresh chat each quarter.</strong> Without prior reports loaded, you get generic board-report-shaped content. Use a Claude Project with knowledge base loaded.</p></div>
+    <div class="pitfall"><p><strong>4. Pasting raw financials into consumer AI.</strong> For sensitive financials, use Claude Enterprise or API with zero retention. Or anonymize.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Frequently asked</h2>
+
+    <div class="faq">
+      <h3>How much time does AI actually save on board reports?</h3>
+      <p>For most CFOs, 5–7 hours per quarter. The variance narrative and KPI commentary sections are where 90% of the savings happen.</p>
+    </div>
+    <div class="faq">
+      <h3>Should I use Claude or ChatGPT for board work?</h3>
+      <p>Claude. Specifically Claude Team or Enterprise. The Projects feature lets you load prior reports as reference, which dramatically improves consistency quarter-over-quarter.</p>
+    </div>
+    <div class="faq">
+      <h3>What about audit trail and compliance?</h3>
+      <p>Use Claude Team or Enterprise with audit logs enabled. Document your AI policy. Most boards don't object to AI-assisted drafting; they object to unverified AI-generated facts.</p>
+    </div>
+    <div class="faq">
+      <h3>Can AI write the CEO letter at the top of the report?</h3>
+      <p>Generate a first draft, then heavily rewrite. The CEO letter is voice-and-judgment work. The first draft saves you 15 minutes; the heavy edit is the actual work.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related task guides</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-finance" style="color:#00C853;text-decoration:none;">How to use Claude for finance (full guide) →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-write-proposals" style="color:#00C853;text-decoration:none;">How to use AI to write proposals →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude" style="color:#00C853;text-decoration:none;">How to use Claude in business (hub) →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation service →</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want us to build this workflow for your team?</div>
+        <div class="cta-sub">Our Implementation engagement covers task workflows like this as part of a $3,500 fixed-price build.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/implementation" class="btn-p">See Implementation →</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

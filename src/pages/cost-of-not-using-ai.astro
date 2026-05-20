@@ -1,0 +1,175 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>The Cost of Not Using AI in Your Business (2026) | Treetop</title>
+  <meta name="description" content="Most articles ask 'how much does AI cost?' The better question is what it costs to keep operating without it. A realistic look at the hidden costs of AI inaction for SMBs in 2026 — and how to size the cost of waiting." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/cost-of-not-using-ai" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/cost-of-not-using-ai" />
+  <meta property="og:title" content="The Cost of Not Using AI" />
+  <meta property="og:description" content="The better question isn't AI's price tag — it's the price of waiting. A 2026 framework for sizing AI inaction cost." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Cost of Not Using AI in Your Business" />
+  <meta name="twitter:description" content="How to size the cost of waiting." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "The Cost of Not Using AI in Your Business", "url": "https://treetopgrowthstrategy.com/cost-of-not-using-ai", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+    .hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,5vw,4rem);font-weight:400;line-height:1.08;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.6rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .h3{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0;font-weight:400;margin:2rem 0 0.5rem}
+    .body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .body em{color:#F0FFF0;font-style:italic}
+    .stat{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin:1.5rem 0;max-width:780px}
+    .stat-num{font-family:'Instrument Serif',serif;font-size:3rem;color:#00C853;font-style:italic;line-height:1;margin-bottom:0.5rem}
+    .stat-label{font-size:0.88rem;color:#C0D8C0;line-height:1.5}
+    .quote{border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:2rem 0;max-width:760px;background:rgba(0,200,83,0.04)}
+    .quote p{font-family:'Instrument Serif',serif;font-size:1.2rem;line-height:1.5;color:#F0FFF0;font-style:italic;margin:0}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/the-ai-native-gtm-framework" class="nav-link">Framework</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>The other side of the cost question</div>
+    <h1 class="hero-h">The cost of <em style="color:#00C853;font-style:italic;">not using AI.</em></h1>
+    <p class="hero-sub">
+      Every other article on the internet answers "how much does AI cost?" The harder question — and the one that actually drives the decision — is what it costs to <em>keep operating without it</em>. Most companies underestimate this number by an order of magnitude. Here's the framework for sizing it honestly.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The premise</span>
+    <h2 class="h2">Why "AI is too expensive right now" is usually wrong math</h2>
+    <p class="body">The objection sounds reasonable: "We're not sure the ROI is there yet. Let's wait until the tools mature." It's not reasonable. It's a math error.</p>
+    <p class="body">The right calculation isn't <em>"what does AI cost?"</em> vs. <em>"$0 if we don't use it."</em> The right calculation is <em>"what does AI cost?"</em> vs. <em>"what is the cost of our existing workflows continuing to consume the time they consume right now?"</em></p>
+    <p class="body">Once you frame it that way, the math changes. Dramatically.</p>
+    <div class="quote">
+      <p>"The most expensive AI mistake isn't picking the wrong tool. It's waiting another quarter to start."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The four hidden costs</span>
+    <h2 class="h2">What AI inaction is actually costing you</h2>
+
+    <h3 class="h3">1. Wasted senior time on first-draft work</h3>
+    <p class="body">Take any senior person in your business — your CMO, your head of sales, your operations lead. Calculate the hourly fully-loaded cost. Multiply by the hours they currently spend on first drafts of proposals, briefs, reports, emails, frameworks, and one-pagers. For a typical $5M B2B company, this number is <strong style="color:#F0FFF0;">$80,000–$180,000 per year</strong> in senior-time wages going to work that AI does in 10% of the time at near-equivalent quality.</p>
+
+    <div class="stat">
+      <div class="stat-num">$80K–$180K</div>
+      <div class="stat-label">Annual cost of senior time spent on first-draft work, in a typical $5M B2B company. AI-native teams capture ~70% of this back.</div>
+    </div>
+
+    <h3 class="h3">2. Lost deals from slow response time</h3>
+    <p class="body">In B2B, response speed correlates strongly with win rate. The team that turns around a proposal in 24 hours wins more often than the team that takes 4 days. AI compresses proposal turnaround from days to hours. The competitors who have figured this out are winning more of the deals you're competing for. Hard to quantify exactly, but for most B2B sales orgs, this is worth <strong style="color:#F0FFF0;">$200K–$800K in annual closed revenue</strong>.</p>
+
+    <h3 class="h3">3. The cost of headcount you'd otherwise need to add</h3>
+    <p class="body">A properly-implemented Claude deployment for a 10-person team typically captures the output of 2–3 additional hires. At fully-loaded $100K/hire, that's <strong style="color:#F0FFF0;">$200K–$300K per year</strong> in avoided headcount. Companies that delay AI adoption end up adding the headcount anyway — and then have to lay them off when they catch up later.</p>
+
+    <h3 class="h3">4. The compounding cost of competitors learning AI before you</h3>
+    <p class="body">This is the largest cost and the one nobody itemizes. Every quarter you don't have AI workflows operating in your business is a quarter your competitors are: <em>(a)</em> figuring out which workflows compound, <em>(b)</em> building institutional knowledge in their team about prompt-engineering and Claude Projects, and <em>(c)</em> raising the floor on quality and speed in your category. By the time you start, they're two years ahead of where you can be.</p>
+    <p class="body">There's no dollar figure on this one. There's a market-share figure. And it's not recoverable.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The real number</span>
+    <h2 class="h2">A worked example for a $5M B2B company</h2>
+    <p class="body">Let's put numbers on it. Fictional company, $5M ARR, 15 employees, B2B services. Here's the realistic annual cost of <em>not</em> deploying AI:</p>
+
+    <div class="stat">
+      <div class="stat-num">$420K+</div>
+      <div class="stat-label">Conservative estimate of annual AI inaction cost: $130K wasted senior time + $200K lost deals (slow response) + $90K avoidable headcount. Excludes compounding competitive cost.</div>
+    </div>
+
+    <p class="body">The cost of <em>using</em> AI for the same business: <strong style="color:#F0FFF0;">~$8,000 first-year, $3,000/year thereafter</strong> (Claude Team subscriptions for 15 seats + a $3,500 implementation). See the <a href="/how-much-does-ai-implementation-cost" style="color:#00C853;text-decoration:none;">full implementation cost breakdown</a> for the math.</p>
+    <p class="body">The ratio: every <strong style="color:#F0FFF0;">$1 spent on proper AI implementation returns roughly $50</strong> in recovered productivity and avoided cost during year one. That's not a sales pitch — that's just what falls out of the math when you put the inaction cost in the equation.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The recommendation</span>
+    <h2 class="h2">What to actually do</h2>
+    <p class="body">Don't take the framework above at face value. <em>Do the math for your business specifically.</em> Take the hours your senior team spends on first-draft work, multiply by their hourly cost. Add the deals you suspect you lost to slower competitors. Add the headcount you've been considering. That number is your baseline.</p>
+    <p class="body">Then compare to the cost of starting. A $1,500 <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">AI Audit</a> tells you exactly what to build first. A $3,500 <a href="/services/implementation" style="color:#00C853;text-decoration:none;">Implementation</a> builds it. Most engagements pay back within 60 days on time savings alone — before you even count the deal acceleration or avoided headcount.</p>
+    <p class="body">If you're not sure where to start, take the <a href="/quiz" style="color:#00C853;text-decoration:none;">3-minute Gap Assessment</a>. It tells you where your specific gaps are across the four pillars of the <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">AI-Native GTM Framework</a>, so you can prioritize.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Stop paying the inaction cost</div>
+        <div class="cta-sub">The Gap Assessment is free and takes 3 minutes. The Audit is $1,500. The waiting is what's expensive.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment →</a>
+        <a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

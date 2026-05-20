@@ -1,0 +1,151 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>What Is an AI-Native Company? (And How to Tell If You're One Yet) | Treetop Growth Strategy</title>
+  <meta name="description" content="A practical definition of an AI-native company — what makes a business AI-native versus "AI-curious." The four operational markers, the cultural signals, and how most companies get this wrong." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/what-is-an-ai-native-company" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/what-is-an-ai-native-company" />
+  <meta property="og:title" content="What Is an AI-Native Company? (And How to Tell If You're One Yet)" />
+  <meta property="og:description" content="A practical definition of an AI-native company — what makes a business AI-native versus "AI-curious." The four operational markers, the cultural signals, and how most companies get this wrong." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What Is an AI-Native Company? (And How to Tell If You're One Yet)" />
+  <meta name="twitter:description" content="A practical definition of an AI-native company — what makes a business AI-native versus "AI-curious." The four operational markers, the cultural signals, and how most companies get this wrong." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "What Is an AI-Native Company? (And How to Tell If You're One Yet)", "description": 'A practical definition of an AI-native company — what makes a business AI-native versus "AI-curious." The four operational markers, the cultural signals, and how most companies get this wrong.', "url": "https://treetopgrowthstrategy.com/what-is-an-ai-native-company", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}
+    .sec-inner{max-width:920px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}
+    .hero-inner{max-width:920px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .body em{color:#F0FFF0;font-style:italic}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Definition · 5 min read</div>
+    <h1 class="hero-h">What is <em style="color:#00C853;font-style:italic;">an AI-native company?</em></h1>
+    <p class="hero-sub">An AI-native company isn't a company that uses AI. Most companies use AI now. An AI-native company is one whose <em>operating model</em> assumes AI as a primary capability — the way a software company assumes engineers, or a sales-led company assumes reps. Here's how to tell the difference.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The premise</span>
+    <h2 class="h2">AI-native vs. AI-curious</h2>
+    <p class="body">In 2026, "uses AI" is table stakes. Every business has people with ChatGPT or Claude open. That's not AI-native; that's AI-curious. The categorical difference is whether AI shows up in <em>how the business operates</em>, not just <em>what tools sit on individual desktops</em>.</p>
+    <p class="body">A genuinely AI-native company looks fundamentally different. Headcount-per-million-revenue is lower. Time-to-first-draft is hours, not days. Knowledge work that used to require senior people now happens at the junior level with senior-quality oversight. The org chart has shapes that didn't exist before because functions like "GTM operations" or "content production" don't need the layers they used to.</p>
+    
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The four markers</span>
+    <h2 class="h2">Four operational markers of AI-native companies</h2>
+    <p class="body"><strong style="color:#F0FFF0;">1. Workflows assume AI.</strong> Standard operating procedures are written with AI as a step, not as an optional tool. New hires onboard into systems where Claude Projects are pre-configured for their role.</p>
+    <p class="body"><strong style="color:#F0FFF0;">2. AI usage shows up in metrics.</strong> Time-to-proposal, content output per FTE, qualified pipeline per rep — the metrics improve in ways that only AI explains. If you can't see AI in the unit economics, it's not native yet.</p>
+    <p class="body"><strong style="color:#F0FFF0;">3. The team thinks in prompts.</strong> Standard team language includes "let me put this in the Project" or "I'll have the research brief in 10 minutes." Not as exceptions — as norms.</p>
+    <p class="body"><strong style="color:#F0FFF0;">4. AI is governed, not free-for-all.</strong> Written policies on what can and can't go into AI tools. Shared prompt libraries. Quarterly reviews. The maturity isn't in usage volume; it's in operational discipline.</p>
+    
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How to get there</span>
+    <h2 class="h2">The path to becoming AI-native</h2>
+    <p class="body">AI-native isn't a switch you flip. It's an outcome of a 6–18 month transition that starts with workflow design (not tool adoption). Most companies that try to short-circuit this by buying more software end up with AI-curious teams using expensive seats poorly.</p>
+    <p class="body">The reliable path: start with the <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">AI-Native GTM Framework</a> (or equivalent operating model), implement the four pillars in sequence, then build the cultural muscle through repeated cohort training. The companies who get this right look like different businesses 12 months later.</p>
+    
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related reading</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;">What is AI-native GTM? →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation service →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/quiz" style="color:#00C853;text-decoration:none;">Take the AI-Native Gap Assessment →</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want to see what this looks like in practice?</div>
+        <div class="cta-sub">The $1,500 AI Audit gives you the operational version of these concepts for your specific business.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>
