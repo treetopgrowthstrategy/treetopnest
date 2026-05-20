@@ -9,6 +9,8 @@ const pages = [
   { url: '/services/implementation', priority: '0.9', changefreq: 'monthly' },
   { url: '/services/retainer', priority: '0.8', changefreq: 'monthly' },
   { url: '/about', priority: '0.8', changefreq: 'monthly' },
+  { url: '/claude-for-business', priority: '0.95', changefreq: 'monthly' },
+  { url: '/how-to-use-claude', priority: '0.95', changefreq: 'monthly' },
   { url: '/claude-for-small-business', priority: '0.9', changefreq: 'monthly' },
   { url: '/claude-implementation-consultant', priority: '0.85', changefreq: 'monthly' },
   { url: '/anthropic-claude-setup-for-business', priority: '0.8', changefreq: 'monthly' },

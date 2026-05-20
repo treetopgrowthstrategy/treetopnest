@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /reports/
+
+Sitemap: https://treetopgrowthstrategy.com/sitemap.xml

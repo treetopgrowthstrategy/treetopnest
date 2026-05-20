@@ -1,50 +1,78 @@
 ---
 // GlobalFooter.astro — shared across all pages
 const currentPath = Astro.url.pathname;
+const lnk = (path: string) => `font-size:0.82rem;text-decoration:none;transition:color 0.2s;color:${currentPath === path ? '#00C853' : '#4A6A4A'};`;
+const hoverIn = "this.style.color='#8FAF8F'";
+const hoverOut = (path: string) => `this.style.color='${currentPath === path ? '#00C853' : '#4A6A4A'}'`;
 ---
 <footer style="border-top:1px solid #1A3A1A;background:#050D05;padding:3.5rem 2.5rem 2rem;">
   <div style="max-width:1200px;margin:0 auto;">
 
     <!-- MAIN FOOTER GRID -->
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:3rem;margin-bottom:3rem;">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem;" class="footer-grid">
 
       <!-- BRAND COLUMN -->
-      <div style="min-width:200px;max-width:260px;">
+      <div>
         <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.2rem;font-style:italic;color:#F0FFF0;text-decoration:none;display:block;margin-bottom:0.75rem;">Treetop</a>
         <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.7;margin-bottom:1.25rem;">AI-native GTM transformation for B2B executives at $5M–$50M companies.</p>
         <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.78rem;color:#00C853;text-decoration:none;">bill@treetopgrowthstrategy.com</a>
       </div>
 
       <!-- SERVICES COLUMN -->
-      <div style="min-width:160px;">
+      <div>
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Services</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="/services" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services' ? '#00C853' : '#4A6A4A'}'`}>All Services</a>
-          <a href="/services/ai-audit" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services/ai-audit' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services/ai-audit' ? '#00C853' : '#4A6A4A'}'`}>AI Audit</a>
-          <a href="/services/implementation" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services/implementation' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services/implementation' ? '#00C853' : '#4A6A4A'}'`}>Implementation</a>
-          <a href="/services/retainer" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/services/retainer' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/services/retainer' ? '#00C853' : '#4A6A4A'}'`}>Monthly Retainer</a>
-          <a href="/claude-training" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/claude-training' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/claude-training' ? '#00C853' : '#4A6A4A'}'`}>Claude Training</a>
-          <a href="/fractional-cmo" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/fractional-cmo' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/fractional-cmo' ? '#00C853' : '#4A6A4A'}'`}>Fractional CMO/CRO</a>
+          <a href="/services" style={lnk('/services')} onmouseover={hoverIn} onmouseout={hoverOut('/services')}>All Services</a>
+          <a href="/services/ai-audit" style={lnk('/services/ai-audit')} onmouseover={hoverIn} onmouseout={hoverOut('/services/ai-audit')}>AI Audit</a>
+          <a href="/services/implementation" style={lnk('/services/implementation')} onmouseover={hoverIn} onmouseout={hoverOut('/services/implementation')}>Implementation</a>
+          <a href="/services/retainer" style={lnk('/services/retainer')} onmouseover={hoverIn} onmouseout={hoverOut('/services/retainer')}>Monthly Retainer</a>
+          <a href="/claude-training" style={lnk('/claude-training')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-training')}>Claude Training</a>
+          <a href="/fractional-cmo" style={lnk('/fractional-cmo')} onmouseover={hoverIn} onmouseout={hoverOut('/fractional-cmo')}>Fractional CMO</a>
+          <a href="/fractional-cro" style={lnk('/fractional-cro')} onmouseover={hoverIn} onmouseout={hoverOut('/fractional-cro')}>Fractional CRO</a>
         </div>
       </div>
 
-      <!-- RESOURCES COLUMN -->
-      <div style="min-width:160px;">
-        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Resources</div>
+      <!-- CLAUDE FOR X COLUMN -->
+      <div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Claude for…</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="/claude-for-small-business" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/claude-for-small-business' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/claude-for-small-business' ? '#00C853' : '#4A6A4A'}'`}>Claude for Small Business</a>
-          <a href="/resources" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/resources' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/resources' ? '#00C853' : '#4A6A4A'}'`}>Articles & Guides</a>
-          <a href="/quiz" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/quiz' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/quiz' ? '#00C853' : '#4A6A4A'}'`}>AI-GTM Gap Assessment</a>
-          <a href="/about" style="font-size:0.82rem;text-decoration:none;transition:color 0.2s;" style={`color:${currentPath === '/about' ? '#00C853' : '#4A6A4A'}`} onmouseover="this.style.color='#8FAF8F'" onmouseout={`this.style.color='${currentPath === '/about' ? '#00C853' : '#4A6A4A'}'`}>About Bill</a>
+          <a href="/claude-for-business" style={lnk('/claude-for-business')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-business')}>All industries →</a>
+          <a href="/claude-for-small-business" style={lnk('/claude-for-small-business')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-small-business')}>Small Business</a>
+          <a href="/claude-for-saas" style={lnk('/claude-for-saas')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-saas')}>SaaS</a>
+          <a href="/claude-for-healthcare" style={lnk('/claude-for-healthcare')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-healthcare')}>Healthcare</a>
+          <a href="/claude-for-legal" style={lnk('/claude-for-legal')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-legal')}>Legal</a>
+          <a href="/claude-for-finance" style={lnk('/claude-for-finance')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-finance')}>Finance</a>
+          <a href="/claude-for-consultants" style={lnk('/claude-for-consultants')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-consultants')}>Consultants</a>
         </div>
       </div>
 
-      <!-- CONNECT COLUMN -->
-      <div style="min-width:160px;">
+      <!-- HOW-TO COLUMN -->
+      <div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">How to use Claude…</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="/how-to-use-claude" style={lnk('/how-to-use-claude')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude')}>All functions →</a>
+          <a href="/how-to-use-claude-for-sales" style={lnk('/how-to-use-claude-for-sales')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-sales')}>For Sales</a>
+          <a href="/how-to-use-claude-for-marketing" style={lnk('/how-to-use-claude-for-marketing')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-marketing')}>For Marketing</a>
+          <a href="/how-to-use-claude-for-customer-service" style={lnk('/how-to-use-claude-for-customer-service')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-customer-service')}>For Customer Service</a>
+          <a href="/how-to-use-claude-for-operations" style={lnk('/how-to-use-claude-for-operations')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-operations')}>For Operations</a>
+          <a href="/how-to-use-claude-for-finance" style={lnk('/how-to-use-claude-for-finance')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-finance')}>For Finance</a>
+          <a href="/how-to-use-claude-for-hr" style={lnk('/how-to-use-claude-for-hr')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-hr')}>For HR</a>
+        </div>
+      </div>
+
+      <!-- COMPANY + CONNECT COLUMN -->
+      <div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem;">
+          <a href="/about" style={lnk('/about')} onmouseover={hoverIn} onmouseout={hoverOut('/about')}>About Bill</a>
+          <a href="/results" style={lnk('/results')} onmouseover={hoverIn} onmouseout={hoverOut('/results')}>Client Results</a>
+          <a href="/resources" style={lnk('/resources')} onmouseover={hoverIn} onmouseout={hoverOut('/resources')}>Articles & Guides</a>
+          <a href="/quiz" style={lnk('/quiz')} onmouseover={hoverIn} onmouseout={hoverOut('/quiz')}>Gap Assessment</a>
+        </div>
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Connect</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
           <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Schedule a Call</a>
-          <a href="https://linkedin.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">LinkedIn</a>
+          <a href="https://linkedin.com/in/williamcolbert" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">LinkedIn</a>
           <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Email Bill</a>
         </div>
       </div>
@@ -67,4 +95,12 @@ const currentPath = Astro.url.pathname;
     </div>
 
   </div>
+  <style>
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </footer>

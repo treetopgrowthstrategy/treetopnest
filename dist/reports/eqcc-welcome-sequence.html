@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Quetzal — Welcome Email Sequence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400;1,700&family=Alegreya+SC:wght@400;700&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest:   #1B3C29;
+      --teal:     #006E6D;
+      --sky:      #D0EBFC;
+      --mist:     #AEE4FF;
+      --crimson:  #A02020;
+      --ember:    #F16332;
+      --rust:     #C8452E;
+      --cream:    #FCE7CD;
+      --blush:    #F9F0E9;
+      --amber:    #F99539;
+      --gold:     #FFC776;
+      --peach:    #FDDACB;
+      --moss:     #D9E47B;
+      --lavender: #DCC9E2;
+      --fern:     #6A802F;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--blush);
+      font-family: 'Noto Sans', sans-serif;
+      color: var(--forest);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .site-header {
+      background-color: var(--forest);
+      padding: 48px 40px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(0,110,109,0.25) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 30%, rgba(106,128,47,0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .header-eyebrow {
+      font-family: 'Alegreya SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .header-title {
+      font-family: 'Alegreya SC', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .header-sub {
+      font-family: 'Alegreya', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .header-meta {
+      display: inline-flex;
+      gap: 32px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 12px 28px;
+    }
+
+    .header-meta span {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(252,231,205,0.7);
+      letter-spacing: 0.08em;
+    }
+
+    .header-meta strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    /* NAV / SEQUENCE STRIP */
+    .seq-strip {
+      background: var(--teal);
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 0;
+    }
+
+    .seq-strip::-webkit-scrollbar { display: none; }
+
+    .seq-dot {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px 16px;
+      text-align: center;
+      cursor: pointer;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .seq-dot:hover { background: rgba(255,255,255,0.1); }
+
+    .seq-dot-num {
+      font-family: 'Alegreya SC', serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .seq-dot-label {
+      font-family: 'Alegreya', serif;
+      font-size: 13px;
+      color: var(--cream);
+    }
+
+    .seq-dot-day {
+      font-size: 10px;
+      font-family: 'Noto Sans', sans-serif;
+      color: rgba(252,231,205,0.5);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* EMAIL CARD */
+    .email-card {
+      background: white;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 56px;
+      box-shadow: 0 2px 24px rgba(27,60,41,0.08);
+    }
+
+    .email-card-header {
+      padding: 28px 36px 24px;
+      border-bottom: 1px solid rgba(27,60,41,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .email-number {
+      font-family: 'Alegreya SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--ember);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .email-subject {
+      font-family: 'Alegreya', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+
+    .email-timing {
+      flex-shrink: 0;
+      background: var(--blush);
+      border: 1px solid rgba(27,60,41,0.1);
+      border-radius: 3px;
+      padding: 8px 14px;
+      text-align: center;
+    }
+
+    .email-timing-label {
+      font-size: 9px;
+      font-family: 'Noto Sans', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .email-timing-val {
+      font-family: 'Alegreya SC', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .email-preview {
+      background: var(--blush);
+      padding: 10px 36px;
+      border-bottom: 1px solid rgba(27,60,41,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .email-preview-label {
+      font-size: 10px;
+      font-family: 'Noto Sans', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .email-preview-text {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(27,60,41,0.55);
+      font-style: italic;
+    }
+
+    .email-body {
+      padding: 40px 36px 36px;
+      font-family: 'Alegreya', serif;
+      font-size: 17px;
+      line-height: 1.85;
+      color: #2a3a30;
+    }
+
+    .email-body p {
+      margin-bottom: 20px;
+    }
+
+    .email-body p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .email-body strong {
+      font-family: 'Alegreya SC', serif;
+      font-size: 14px;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      display: block;
+      margin-top: 24px;
+      margin-bottom: 4px;
+    }
+
+    .story-insert {
+      background: linear-gradient(135deg, #fffbf5, #fff8f0);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 3px 3px 0;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13px;
+      font-style: normal;
+      color: var(--rust);
+      line-height: 1.6;
+    }
+
+    .story-insert::before {
+      content: '✏ STORY INSERT';
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    .email-cta {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--cream);
+      font-family: 'Alegreya SC', serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      padding: 13px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      margin-top: 28px;
+      cursor: default;
+    }
+
+    .email-footer-line {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(27,60,41,0.08);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 11px;
+      color: rgba(27,60,41,0.35);
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
+    /* SEQUENCE MAP */
+    .sequence-map {
+      background: var(--forest);
+      border-radius: 3px;
+      padding: 40px 36px;
+      margin-bottom: 56px;
+      color: var(--cream);
+    }
+
+    .sequence-map h3 {
+      font-family: 'Alegreya SC', serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--amber);
+      margin-bottom: 28px;
+    }
+
+    .seq-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .seq-table th {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(252,231,205,0.5);
+      text-align: left;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .seq-table td {
+      font-family: 'Alegreya', serif;
+      font-size: 15px;
+      color: var(--cream);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+    }
+
+    .seq-table td:first-child {
+      font-family: 'Alegreya SC', serif;
+      color: var(--amber);
+      width: 80px;
+      font-size: 13px;
+    }
+
+    .seq-table td:nth-child(2) {
+      width: 100px;
+      color: rgba(252,231,205,0.5);
+      font-size: 13px;
+    }
+
+    /* NOTES */
+    .notes-block {
+      background: var(--cream);
+      border-radius: 3px;
+      padding: 36px;
+      margin-bottom: 56px;
+      border: 1px solid rgba(241,99,50,0.15);
+    }
+
+    .notes-block h3 {
+      font-family: 'Alegreya SC', serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--ember);
+      margin-bottom: 20px;
+    }
+
+    .notes-block ul {
+      list-style: none;
+      font-family: 'Alegreya', serif;
+      font-size: 16px;
+      color: var(--forest);
+      line-height: 1.7;
+    }
+
+    .notes-block ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(27,60,41,0.08);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .notes-block ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ember);
+    }
+
+    /* DIVIDER */
+    .section-label {
+      font-family: 'Alegreya SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--teal);
+      text-align: center;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(0,110,109,0.2);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: var(--forest);
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    .site-footer p {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(252,231,205,0.4);
+      letter-spacing: 0.06em;
+    }
+
+    .site-footer strong {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    @media (max-width: 600px) {
+      .email-card-header { flex-direction: column; }
+      .email-timing { align-self: flex-start; }
+      .email-body { padding: 28px 20px; }
+      .email-preview { padding: 10px 20px; }
+      .email-card-header { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <p class="header-eyebrow">El Quetzal Coffee Co. — Matagalpa, Nicaragua</p>
+    <h1 class="header-title">Welcome Email Sequence</h1>
+    <p class="header-sub">Five emails. One story. Built for review.</p>
+    <div class="header-meta">
+      <span><strong>5</strong> Emails</span>
+      <span><strong>14</strong> Day Arc</span>
+      <span><strong>Both</strong> Audiences</span>
+      <span><strong>Quiz</strong> CTA</span>
+    </div>
+  </header>
+
+  <nav class="seq-strip">
+    <a class="seq-dot" href="#email-1">
+      <span class="seq-dot-num">01</span>
+      <span class="seq-dot-label">The Welcome</span>
+      <span class="seq-dot-day">Day 0</span>
+    </a>
+    <a class="seq-dot" href="#email-2">
+      <span class="seq-dot-num">02</span>
+      <span class="seq-dot-label">The Mountain</span>
+      <span class="seq-dot-day">Day 2</span>
+    </a>
+    <a class="seq-dot" href="#email-3">
+      <span class="seq-dot-num">03</span>
+      <span class="seq-dot-label">The Lots</span>
+      <span class="seq-dot-day">Day 5</span>
+    </a>
+    <a class="seq-dot" href="#email-4">
+      <span class="seq-dot-num">04</span>
+      <span class="seq-dot-label">The People</span>
+      <span class="seq-dot-day">Day 9</span>
+    </a>
+    <a class="seq-dot" href="#email-5">
+      <span class="seq-dot-num">05</span>
+      <span class="seq-dot-label">The Invitation</span>
+      <span class="seq-dot-day">Day 14</span>
+    </a>
+  </nav>
+
+  <main>
+
+    <!-- SEQUENCE MAP -->
+    <div class="sequence-map">
+      <h3>Sequence Architecture</h3>
+      <table class="seq-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Send Day</th>
+            <th>Title</th>
+            <th>Emotional Job</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Day 0</td>
+            <td>The Welcome</td>
+            <td>Orient. Make them feel they belong here.</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Day 2</td>
+            <td>The Mountain</td>
+            <td>Ground them in place. Make Matagalpa real.</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Day 5</td>
+            <td>The Lots</td>
+            <td>Introduce the portfolio. Differentiate without overwhelming.</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>Day 9</td>
+            <td>The People</td>
+            <td>Humanize the supply chain. Build moral investment.</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>Day 14</td>
+            <td>The Invitation</td>
+            <td>Convert. Make the quiz feel earned, not forced.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- EMAIL 1 -->
+    <div class="section-label">Email 01 of 05</div>
+    <div class="email-card" id="email-1">
+      <div class="email-card-header">
+        <div>
+          <span class="email-number">Email 01 — The Welcome</span>
+          <div class="email-subject">You found us. We're glad.</div>
+        </div>
+        <div class="email-timing">
+          <span class="email-timing-label">Send</span>
+          <span class="email-timing-val">Day 0</span>
+        </div>
+      </div>
+      <div class="email-preview">
+        <span class="email-preview-label">Preview Text</span>
+        <span class="email-preview-text">This is where the coffee begins.</span>
+      </div>
+      <div class="email-body">
+        <p>There is a bird in Nicaragua that most people never see.</p>
+        <p>The quetzal lives high in the cloud forest — above the coffee, above the farms, above the roads that wind up into Matagalpa. It doesn't come down. It doesn't need to.</p>
+        <p>We named this company after it on purpose.</p>
+        <p>Not because coffee is rare, or precious, or above you. But because the best things tend to grow where the air is thin and the conditions are hard. And because when you finally find them, you know.</p>
+        <div class="story-insert">Why Justin started El Quetzal — the moment, the place, the decision. This is the personal origin story that makes the brand feel human rather than constructed. One or two paragraphs in Justin's own voice.</div>
+        <p>You're here now. That means something.</p>
+        <p>Over the next few weeks, we want to show you what we grow, where it comes from, and why we believe that a single mountain in Nicaragua can produce some of the most interesting coffee in the world.</p>
+        <p>Welcome to El Quetzal.</p>
+        <div><span class="email-cta">Explore Our Lots →</span></div>
+        <div class="email-footer-line">El Quetzal Coffee Co. — Matagalpa, Nicaragua</div>
+      </div>
+    </div>
+
+    <!-- EMAIL 2 -->
+    <div class="section-label">Email 02 of 05</div>
+    <div class="email-card" id="email-2">
+      <div class="email-card-header">
+        <div>
+          <span class="email-number">Email 02 — The Mountain</span>
+          <div class="email-subject">1,400 meters. One valley. Everything changes here.</div>
+        </div>
+        <div class="email-timing">
+          <span class="email-timing-label">Send</span>
+          <span class="email-timing-val">Day 2</span>
+        </div>
+      </div>
+      <div class="email-preview">
+        <span class="email-preview-label">Preview Text</span>
+        <span class="email-preview-text">Most coffee tells you the country. We'll tell you the altitude.</span>
+      </div>
+      <div class="email-body">
+        <p>Matagalpa sits at the center of Nicaragua like a secret.</p>
+        <p>The capital doesn't talk about it much. The travel guides mention it briefly. But the farmers who work this land know what visitors rarely do — that the elevation here does something to coffee that you can't replicate anywhere else.</p>
+        <p>At 1,400 meters, the nights turn cold even when the days are warm. That temperature swing forces the coffee cherry to develop slowly. The sugars concentrate. The acids sharpen and then soften into something more complex than the word "bright" can hold.</p>
+        <p>The volcanic soil underneath has been building for centuries. It doesn't need fertilizer so much as respect.</p>
+        <div class="story-insert">Specific detail about the farm land — acreage, how long the family or producers have worked it, what makes this particular terroir distinct from other Nicaraguan growing regions. A sensory detail or two would land well here.</div>
+        <p>This is why we don't source from multiple regions and call it a collection. We source from one place, deeply, and let the varietals tell the rest of the story.</p>
+        <p>Six lots. One mountain. Everything else is just elevation.</p>
+        <div><span class="email-cta">See What We Grow →</span></div>
+        <div class="email-footer-line">El Quetzal Coffee Co. — Matagalpa, Nicaragua</div>
+      </div>
+    </div>
+
+    <!-- EMAIL 3 -->
+    <div class="section-label">Email 03 of 05</div>
+    <div class="email-card" id="email-3">
+      <div class="email-card-header">
+        <div>
+          <span class="email-number">Email 03 — The Lots</span>
+          <div class="email-subject">Six coffees. Each one a different answer.</div>
+        </div>
+        <div class="email-timing">
+          <span class="email-timing-label">Send</span>
+          <span class="email-timing-val">Day 5</span>
+        </div>
+      </div>
+      <div class="email-preview">
+        <span class="email-preview-label">Preview Text</span>
+        <span class="email-preview-text">The Geisha is not the Anaerobic Java. Both are worth knowing.</span>
+      </div>
+      <div class="email-body">
+        <p>People sometimes ask us which coffee is our best.</p>
+        <p>We don't have a good answer to that. It's the wrong question — like asking which season is the most important one.</p>
+        <p>Here is what we grow:</p>
+
+        <strong>Strictly High Grown (SHG) — Washed</strong>
+        <p>Clean. Honest. The one you come back to. Scored 84 points, but points miss the point. This is the coffee that holds a morning together.</p>
+
+        <strong>Java — Washed</strong>
+        <p>86 points. A longer story in the cup. The Java variety arrived in Nicaragua through a winding path, and it remembers the journey. Complex without being difficult.</p>
+
+        <strong>Anaerobic Java</strong>
+        <p>The same variety, a completely different conversation. Anaerobic processing turns the volume up. Fruit-forward, ferment-edged, the kind of coffee that divides a cupping table in the best possible way.</p>
+
+        <strong>Dwarf Honey Java</strong>
+        <p>Processed between washed and natural. The honey method catches the sweetness before it fully separates. A gentler version of the Java story.</p>
+
+        <strong>Yellow Catuai</strong>
+        <p>Catuai is a workhorse variety, but ours doesn't act like one. The yellow cherry brings a softer sweetness than red. Less demanding, deeply satisfying.</p>
+
+        <strong>Geisha</strong>
+        <p>We don't need to oversell this one. You already know the name. What we'll say is this: ours earns it.</p>
+
+        <div class="story-insert">One sentence per lot with any specific harvest detail, process story, or producer note that makes each feel personal. Even small details — a drying elevation, a fermentation time, a particular farmer's name — add weight here.</div>
+
+        <div><span class="email-cta">Find Your Lot →</span></div>
+        <div class="email-footer-line">El Quetzal Coffee Co. — Matagalpa, Nicaragua</div>
+      </div>
+    </div>
+
+    <!-- EMAIL 4 -->
+    <div class="section-label">Email 04 of 05</div>
+    <div class="email-card" id="email-4">
+      <div class="email-card-header">
+        <div>
+          <span class="email-number">Email 04 — The People</span>
+          <div class="email-subject">The farm has a name. So does everyone who works it.</div>
+        </div>
+        <div class="email-timing">
+          <span class="email-timing-label">Send</span>
+          <span class="email-timing-val">Day 9</span>
+        </div>
+      </div>
+      <div class="email-preview">
+        <span class="email-preview-label">Preview Text</span>
+        <span class="email-preview-text">Coffee is grown by people. We think you should know theirs.</span>
+      </div>
+      <div class="email-body">
+        <p>The bag doesn't tell you enough.</p>
+        <p>It tells you the origin, the process, the score. What it can't tell you is what it looked like the morning the cherry was picked — the mist still sitting low in the valley, the pickers moving through rows of red and yellow, the sound of the de-pulper starting up.</p>
+        <div class="story-insert">Introduce the producers or farmers by name. Their story — how long they've farmed, their family connection to the land, one specific detail that makes them human and real. This is the emotional core of the entire sequence. It should feel like an introduction, not a credential.</div>
+        <p>We source directly because we believe the relationship is part of the product.</p>
+        <p>When you buy a bag — or when you buy a lot — some of that money goes directly back to the people who grew it. Not through three intermediaries and a co-op spreadsheet. Directly.</p>
+        <div class="story-insert">Specific direct-trade or pricing detail that demonstrates the commitment — what percentage above commodity price, how the relationship was built over time, or a moment that cemented the partnership.</div>
+        <p>We think coffee tastes better when you know this.</p>
+        <div><span class="email-cta">Learn More About Our Sourcing →</span></div>
+        <div class="email-footer-line">El Quetzal Coffee Co. — Matagalpa, Nicaragua</div>
+      </div>
+    </div>
+
+    <!-- EMAIL 5 -->
+    <div class="section-label">Email 05 of 05</div>
+    <div class="email-card" id="email-5">
+      <div class="email-card-header">
+        <div>
+          <span class="email-number">Email 05 — The Invitation</span>
+          <div class="email-subject">This is where it becomes yours.</div>
+        </div>
+        <div class="email-timing">
+          <span class="email-timing-label">Send</span>
+          <span class="email-timing-val">Day 14</span>
+        </div>
+      </div>
+      <div class="email-preview">
+        <span class="email-preview-label">Preview Text</span>
+        <span class="email-preview-text">You've seen the mountain. Now we want to hear from you.</span>
+      </div>
+      <div class="email-body">
+        <p>You've been with us for a few weeks now.</p>
+        <p>You know the mountain. You know the lots. You know a little about why we do this — the elevation, the soil, the people, the slow work of getting something right.</p>
+        <p>Now we want to know about you.</p>
+        <p>If you're a roaster: what are you building? What hole in your menu are you trying to fill? Is it the workhorse espresso that holds the whole program together, or the seasonal natural that gives your regulars something to talk about? We have opinions. We'd like to share them.</p>
+        <p>If you're a coffee drinker: what does a great morning mean to you? What are you looking for in a cup that you haven't quite found yet? Tell us. We'll point you somewhere specific.</p>
+        <p>Either way — the quiz takes 60 seconds, and at the end of it, we'll tell you exactly which lot we think was grown for you. Not generically. Specifically.</p>
+        <div class="story-insert">Optional — personal closing note from Justin. Even two or three sentences in his own voice makes this feel like a letter, not a campaign. Sign it as him.</div>
+        <p>This is where the relationship starts. We're glad you're here.</p>
+        <div><span class="email-cta">Take the Quiz — Find Your Coffee →</span></div>
+        <p style="margin-top:24px; font-style:italic; font-size:15px; color:#5a7060;">Justin + the El Quetzal team<br>Matagalpa, Nicaragua</p>
+        <div class="email-footer-line">El Quetzal Coffee Co. — Matagalpa, Nicaragua</div>
+      </div>
+    </div>
+
+    <!-- EXECUTION NOTES -->
+    <div class="notes-block">
+      <h3>Execution Notes</h3>
+      <ul>
+        <li>Send Day 0, 2, 5, 9, 14. The sequence should breathe — not feel rushed.</li>
+        <li>Voice throughout: unhurried, literary, grounded in place. No urgency language. No discounts. No "act now."</li>
+        <li>Email 04 (The People) is the emotional peak. It should not send until the story insert is filled in with real names and real details.</li>
+        <li>The quiz CTA is introduced early (Email 01) but earns its primary push in Email 05. That's intentional.</li>
+        <li>All emails work for both roaster and consumer audiences without branching. The language is layered enough to serve both.</li>
+        <li>Story inserts are flagged in amber throughout. These are the only items requiring client input before the sequence goes live.</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Prepared by <strong>Treetop Growth Strategy</strong> for El Quetzal Coffee Co. — May 2026</p>
+  </footer>
+
+</body>
+</html>

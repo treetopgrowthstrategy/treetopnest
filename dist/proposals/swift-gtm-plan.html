@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SWIFT Financial — 2025–2026 Growth Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F2ED;
+      --dark: #111218;
+      --navy: #162640;
+      --gold: #C09A3E;
+      --gold-light: #EDE3CC;
+      --gold-pale: #F8F3E8;
+      --green: #2A6E50;
+      --red: #8B2E2E;
+      --text: #1A1A28;
+      --muted: #6B6878;
+      --border: #D9D4C8;
+      --card: #FFFFFF;
+      --section-alt: #162640;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; }
+    h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -0.015em; }
+    h3 { font-size: 1.25rem; font-weight: 600; }
+    p { color: var(--muted); font-size: 0.975rem; line-height: 1.75; }
+    p + p { margin-top: 1rem; }
+    strong { color: var(--text); font-weight: 600; }
+
+    .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── COVER ── */
+    .cover {
+      background: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(192,154,62,0.12);
+      pointer-events: none;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      border: 1px solid rgba(192,154,62,0.18);
+      pointer-events: none;
+    }
+
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .cover-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+    .cover-logo span { color: var(--gold); }
+
+    .cover-meta-top {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.35);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .cover-body {
+      padding: 4rem 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .cover h1 {
+      color: #fff;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 1.0;
+      margin-bottom: 0.25em;
+    }
+    .cover h1 em { font-style: italic; color: var(--gold); }
+
+    .cover-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.45);
+      margin-top: 1rem;
+    }
+
+    .cover-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cover-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .cover-stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.4rem;
+    }
+
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .cover-prepared {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .cover-prepared strong { color: rgba(255,255,255,0.6); font-weight: 500; }
+    .cover-confidential {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── NAV ── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,242,237,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .sticky-nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .sticky-nav-inner::-webkit-scrollbar { display: none; }
+    .sticky-nav-inner a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 1rem 1.1rem;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .sticky-nav-inner a:hover { color: var(--text); border-color: var(--gold); }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-alt {
+      background: var(--navy);
+      color: #fff;
+      padding: 6rem 0;
+    }
+    .section-alt p { color: rgba(255,255,255,0.6); }
+    .section-alt h2 { color: #fff; }
+    .section-alt .label { color: var(--gold); }
+    .section-alt strong { color: rgba(255,255,255,0.9); }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 { flex: 1; }
+    .section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .section-alt .section-num { color: rgba(255,255,255,0.08); }
+
+    /* ── EXECUTIVE SUMMARY ── */
+    .exec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .stat-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .stat-card-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-card-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .stat-card.gold { background: var(--navy); }
+    .stat-card.gold .stat-card-num { color: var(--gold); }
+    .stat-card.gold .stat-card-label { color: rgba(255,255,255,0.4); }
+
+    /* ── PILLAR OVERVIEW ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pillar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .pillar-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 3.5rem;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .pillar-card p { font-size: 0.875rem; }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      margin-top: 1rem;
+    }
+    .badge-live { background: #D1FAE5; color: #065F46; }
+    .badge-active { background: #DBEAFE; color: #1E40AF; }
+    .badge-priority { background: #FEF3C7; color: #92400E; }
+    .badge-build { background: #EDE9FE; color: #5B21B6; }
+
+    /* ── DEEP DIVE SECTIONS ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .detail-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .detail-card h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .section-alt .detail-card {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .section-alt .detail-card h4 { color: rgba(255,255,255,0.9); }
+
+    .check-list { list-style: none; margin-top: 0.75rem; }
+    .check-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 0.35rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .check-list li:last-child { border: none; }
+    .check-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .section-alt .check-list li { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.08); }
+
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .partner-item {
+      background: var(--gold-pale);
+      border: 1px solid var(--gold-light);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .partner-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-live { background: var(--green); }
+    .dot-target { background: var(--gold); }
+    .partner-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .partner-status {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── TIMELINE/ROADMAP ── */
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .roadmap-phase {
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .roadmap-phase:last-child { border-right: none; }
+    .roadmap-phase:nth-child(1) { background: var(--navy); }
+    .roadmap-phase:nth-child(2) { background: #1E3A5F; }
+    .roadmap-phase:nth-child(3) { background: #22436E; }
+    .roadmap-phase:nth-child(4) { background: #264D7E; }
+
+    .phase-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .phase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .phase-dates {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+    }
+    .phase-item {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .phase-item::before {
+      content: '◆';
+      font-size: 0.4rem;
+      color: var(--gold);
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+    .phase-item:last-child { border: none; }
+
+    /* ── KPIs ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .kpi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+    }
+    .kpi-card h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .kpi-target {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .kpi-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.4rem; }
+
+    /* ── NEXT STEPS ── */
+    .next-steps-list { list-style: none; margin-top: 2rem; }
+    .next-step {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: 1.25rem;
+      align-items: start;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .next-step:last-child { border: none; }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .step-content h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .step-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 100px;
+      background: var(--gold-pale);
+      color: #7A5C1A;
+      white-space: nowrap;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--dark);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── UTILITIES ── */
+    .mt-1 { margin-top: 0.75rem; }
+    .mt-2 { margin-top: 1.5rem; }
+    .mt-3 { margin-top: 2.5rem; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .highlight-box {
+      background: var(--gold-pale);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .highlight-box p { color: var(--text); font-size: 0.9rem; }
+    .section-alt .highlight-box {
+      background: rgba(192,154,62,0.1);
+      border-color: var(--gold);
+    }
+    .section-alt .highlight-box p { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 768px) {
+      .exec-grid, .two-col, .pillars-grid, .three-col, .kpi-grid, .partner-grid { grid-template-columns: 1fr; }
+      .stat-cards { grid-template-columns: 1fr 1fr; }
+      .roadmap { grid-template-columns: 1fr; }
+      .roadmap-phase { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .cover-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .cover { padding: 2rem 1.5rem; }
+      .next-step { grid-template-columns: 2.5rem 1fr; }
+      .step-tag { grid-column: span 2; margin-top: 0.5rem; width: fit-content; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ COVER ═══════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-top">
+    <div class="cover-logo">SWIFT <span>Financial</span></div>
+    <div class="cover-meta-top">
+      Prepared by Treetop Growth Strategy<br>
+      CONFIDENTIAL — MAY 2026
+    </div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">Treetop Growth Strategy · Work Plan</div>
+    <h1>Six Areas<br>of <em>New</em> Work.</h1>
+    <div class="cover-sub">Where We Propose to Focus — Beyond What's Already Running</div>
+
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-num">6</div>
+        <div class="cover-stat-label">Strategic Initiatives</div>
+      </div>
+      <div>
+        <div class="cover-stat-num">12</div>
+        <div class="cover-stat-label">Month Horizon</div>
+      </div>
+      <div>
+        <div class="cover-stat-num">30</div>
+        <div class="cover-stat-label">Day Action Plan Included</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-prepared">
+      Prepared by <strong>Bill Colbert</strong> · Treetop Growth Strategy
+    </div>
+    <div class="cover-confidential">Confidential · Not for Distribution</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════════════════════════════ -->
+<nav class="sticky-nav">
+  <div class="sticky-nav-inner">
+    <a href="#summary">Scope of Work</a>
+    <a href="#pillars">Six Pillars</a>
+    <a href="#billing">Billing Partners</a>
+    <a href="#mindbody">Mindbody</a>
+    <a href="#winback">Win-Back</a>
+    <a href="#website">Website</a>
+    <a href="#crm">CRM</a>
+    <a href="#outbound">Outbound GTM</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#kpis">KPIs</a>
+    <a href="#next">Next Steps</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ EXECUTIVE SUMMARY ═══════════════════════════════════════ -->
+<section class="section" id="summary">
+  <div class="container">
+    <div class="label">Scope of Work</div>
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2>What This Plan Covers</h2>
+    </div>
+
+    <div class="exec-grid">
+      <div>
+        <div class="label" style="margin-bottom:1rem;">What's in this plan</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li><strong>Billing Partner Expansion</strong> — from 3 live to 10+ activated partners</li>
+          <li><strong>Mindbody Onboarding Engine</strong> — systematic pursuit of 60K accounts</li>
+          <li><strong>Former Customer Win-Back</strong> — re-engage lapsed accounts at zero cost</li>
+          <li><strong>New Website</strong> — rebuilt around member reactivation positioning</li>
+          <li><strong>CRM Migration</strong> — off HubSpot, onto owned infrastructure (Sept–Oct)</li>
+          <li><strong>Direct Outbound GTM</strong> — ICP-scored, personalized, multi-channel</li>
+        </ul>
+
+        <div class="label" style="margin-top:2rem; margin-bottom:0.75rem;">How to read this</div>
+        <p style="font-size:0.875rem;">Each section details targets, tactics, timeline, and what done looks like. The 12-month roadmap shows how the pieces sequence. The 30-day action plan identifies what starts now.</p>
+
+        <div class="highlight-box" style="margin-top:1.5rem;">
+          <p><strong>Through-line across all six areas:</strong> Every channel, message, and partner conversation positions SWIFT as a <em>member reactivation partner</em> — not a collections company. That one distinction changes the conversation.</p>
+        </div>
+      </div>
+
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-num">3 Live</div>
+          <div class="stat-card-label">Billing Partners — target is 10+</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-card-num">60K</div>
+          <div class="stat-card-label">Mindbody accounts not yet systematically pursued</div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-card-num" style="font-size:1.5rem;">Former Customers</div>
+          <div class="stat-card-label">Lost to email decay — a warm, zero-cost pipeline waiting to be reopened</div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-card-num" style="font-size:1.5rem;">HubSpot → Custom CRM</div>
+          <div class="stat-card-label">Targeted for Sept–Oct migration to owned infrastructure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLARS OVERVIEW ═══════════════════════════════════════ -->
+<section class="section" style="background: var(--gold-pale);" id="pillars">
+  <div class="container">
+    <div class="label">Strategic Framework</div>
+    <div class="section-header">
+      <div class="section-num" style="color: var(--gold-light);">02</div>
+      <h2>Six Pillars of Growth</h2>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <h3>Billing Company Expansion</h3>
+        <p>3 live (ABC, Mindbody, ClubReady). Target is 10+. The work is getting there — with a concrete activation playbook for each new partner, not just a signed agreement.</p>
+        <span class="badge badge-active">Scaling Now</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <h3>Mindbody Account Onboarding</h3>
+        <p>Integration is live. 60,000 accounts remain unpursued. This pillar builds the segmented outreach engine, co-branded collateral, and co-sell motion to activate them systematically.</p>
+        <span class="badge badge-priority">High Priority</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <h3>Former Customer Win-Back</h3>
+        <p>Former customers already know the model and have agreed to it before. Lost to operational gaps — email decay, contact changes, CRM migrations. Structured re-engagement can recover a meaningful portion at zero acquisition cost.</p>
+        <span class="badge badge-priority">High Priority</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">04</div>
+        <h3>New Website & Positioning</h3>
+        <p>Rebuilt from scratch around member reactivation positioning. 6-page architecture, ROI calculator, billing partner page, and a CTA designed to convert outbound and referral traffic.</p>
+        <span class="badge badge-build">In Planning</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">05</div>
+        <h3>CRM Migration</h3>
+        <p>Off HubSpot and onto owned infrastructure — Airtable back-end, lightweight front-end layer — scoped for a September–October cutover once growth momentum is established.</p>
+        <span class="badge badge-build">In Planning</span>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">06</div>
+        <h3>Direct Outbound GTM Engine</h3>
+        <p>Targeted, personalized outbound to high-value gym operators not yet reached through billing partners. ICP-scored lists, Apollo enrichment, Instantly sequences, and CoWork-powered personalization.</p>
+        <span class="badge badge-active">Active</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLAR 1: BILLING PARTNERS ═══════════════════════════════════════ -->
+<section class="section" id="billing">
+  <div class="container">
+    <div class="label">Pillar One</div>
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2>Billing Company Partnership Expansion</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="label" style="margin-bottom:0.75rem;">Current State</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li><strong>ABC Financial</strong> — Live</li>
+          <li><strong>Mindbody</strong> — Live</li>
+          <li><strong>ClubReady</strong> — Live</li>
+        </ul>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.75rem;">The Problem with Most Agreements</div>
+        <p style="font-size:0.875rem;">A preferred vendor agreement that produces zero referrals isn't a partnership — it's a logo on a slide. The goal is 10+ <em>activated</em> partners, not 10+ signed agreements.</p>
+
+        <div class="highlight-box" style="margin-top:1.25rem;">
+          <p><strong>Rule:</strong> Go deep on 3–4 partners before spreading thin. A full co-marketing calendar with 3 great partners outperforms shallow agreements with 10.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="detail-card">
+          <h4>Partnership Activation Playbook</h4>
+          <ul class="check-list">
+            <li>Execute preferred vendor agreement with SLA on referral terms</li>
+            <li>Co-branded one-pager developed within 30 days</li>
+            <li>Briefing call with billing company's CSM team</li>
+            <li>Email introduction sent by billing company to their customer base</li>
+            <li>SWIFT listed in partner portal, marketplace, or newsletter</li>
+            <li>Launch webinar co-branded within 60 days</li>
+            <li>Quarterly joint pipeline review and co-marketing calendar</li>
+            <li>SPIFFs or referral fees for billing company reps who make warm intros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="partner-grid">
+      <div class="partner-item">
+        <div class="partner-dot dot-live"></div>
+        <div>
+          <div class="partner-name">ABC Financial</div>
+          <div class="partner-status">Live</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-live"></div>
+        <div>
+          <div class="partner-name">Mindbody</div>
+          <div class="partner-status">Live</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-live"></div>
+        <div>
+          <div class="partner-name">ClubReady</div>
+          <div class="partner-status">Live</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Jonas Fitness</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Twin Oaks Software</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Clubessential</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Motionsoft</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Zen Planner</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Wodify</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">PushPress</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">EZFacility</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+      <div class="partner-item">
+        <div class="partner-dot dot-target"></div>
+        <div>
+          <div class="partner-name">Perfect Gym / Virtuagym</div>
+          <div class="partner-status">Target</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-top:2rem;">
+      <div class="detail-card">
+        <h4>Franchise System Angle</h4>
+        <p>Franchisor-level "approved vendor" agreements are the asymmetric bet. One "yes" from an Anytime Fitness or Crunch corporate unlocks access to thousands of franchisee locations. Timeline: 6–9 months but worth pursuing in parallel now.</p>
+      </div>
+      <div class="detail-card">
+        <h4>Prioritization Rule</h4>
+        <p>Go deep on 3–4 partners before spreading thin across all targets. Full co-marketing calendar + quarterly joint reviews with 3 great partners outperforms shallow agreements with 10.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLAR 2: MINDBODY ═══════════════════════════════════════ -->
+<section class="section section-alt" id="mindbody">
+  <div class="container">
+    <div class="label">Pillar Two</div>
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2>Mindbody Account Onboarding Engine</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="label" style="margin-bottom:0.75rem;">Current Status</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li>Integration is live</li>
+          <li>60,000 accounts addressable</li>
+          <li>Systematic pursuit: not yet built</li>
+        </ul>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.75rem;">First Move: Segmentation</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li>By <strong>vertical</strong> — yoga, martial arts, personal training, group fitness</li>
+          <li>By <strong>size</strong> — 300+ active members minimum</li>
+          <li>By <strong>geography</strong> — metro priority list</li>
+          <li><strong>Multi-location operators</strong> first — one deal, multiple sites</li>
+        </ul>
+
+        <div class="highlight-box" style="margin-top:1.25rem;">
+          <p><strong>Year 1 Target: 1,000+ accounts onboarded.</strong> Less than 2% of the available base. A conservative floor.</p>
+        </div>
+      </div>
+      <div>
+        <div class="detail-card">
+          <h4>Mindbody Go-To-Market Motion</h4>
+          <ul class="check-list">
+            <li>Segment 60K accounts by vertical, size, and geography</li>
+            <li>Build co-branded Mindbody-specific landing page</li>
+            <li>Develop 3–5 case studies from existing Mindbody customers with hard dollar numbers</li>
+            <li>Launch outbound sequence targeting Mindbody clients (billing platform as anchor)</li>
+            <li>Co-branded webinar: "How Mindbody Studios Recover Lapsed Member Revenue"</li>
+            <li>Explore Mindbody Marketplace listing or app directory presence</li>
+            <li>Work with Mindbody's account management team on co-sell motion</li>
+            <li>Leverage Mindbody community and education channels</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-top:2.5rem;">
+      <div class="detail-card">
+        <h4>Top Verticals to Prioritize</h4>
+        <ul class="check-list">
+          <li>Martial arts & self-defense studios</li>
+          <li>Multi-location yoga & pilates</li>
+          <li>Group fitness & cycling boutiques</li>
+          <li>Personal training studios (volume)</li>
+          <li>Dance & performing arts schools</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>ICP Criteria for Mindbody Segment</h4>
+        <ul class="check-list">
+          <li>300+ active members minimum</li>
+          <li>Multi-location preferred</li>
+          <li>Monthly membership model (recurring draft)</li>
+          <li>Decision-maker reachable (owner/ops director)</li>
+          <li>Not already on one of SWIFT's billing partners</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Messaging Wedge</h4>
+        <ul class="check-list">
+          <li>"As a Mindbody partner, we're offering their studio base…"</li>
+          <li>Lead with the zero-cost model — nothing to evaluate except the upside</li>
+          <li>Cite a comparable studio's results in the same vertical</li>
+          <li>Avoid "collection" language entirely — use "member reactivation"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLAR 3: WIN-BACK ═══════════════════════════════════════ -->
+<section class="section" id="winback">
+  <div class="container">
+    <div class="label">Pillar Three</div>
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <h2>Former Customer Win-Back</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="label" style="margin-bottom:0.75rem;">Why This Is the Warmest Pipeline</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li>Already agreed to the commission-only model</li>
+          <li>Already experienced the service</li>
+          <li>Zero structural objection to re-engaging</li>
+          <li>Lapsed for <em>operational</em> reasons only — email decay, contact changes, CRM gaps</li>
+        </ul>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.75rem;">Tone</div>
+        <p style="font-size:0.875rem;">Re-introduction, not a pitch. <em>"We've made some updates and want to reconnect"</em> — not "come back." Personal where possible, sequenced where not.</p>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.5rem;">Target Recovery Rate</div>
+        <p style="font-size:0.875rem;"><strong>20–30%</strong> reactivation on reachable contacts. Zero acquisition cost per account.</p>
+      </div>
+      <div>
+        <div class="detail-card">
+          <h4>Win-Back Execution Plan</h4>
+          <ul class="check-list">
+            <li>Audit all historical customer records — identify the lapsed cohort fully</li>
+            <li>Segment by reason for lapse: email bounce, contact change, unknown</li>
+            <li>For email-unreachable: attempt LinkedIn, phone, and billing company channels</li>
+            <li>Personalized re-engagement sequence: 5–6 touches over 3 weeks</li>
+            <li>Dedicated win-back landing page with updated brand positioning</li>
+            <li>Offer: priority onboarding, no waiting period — restart immediately</li>
+            <li>For high-value former accounts: direct outreach from SWIFT leadership</li>
+            <li>Track and measure: % of lapsed accounts re-engaged, reactivated, converted</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-top:2rem;">
+      <div class="detail-card">
+        <h4>Email Recovery Tactics</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>Apollo enrichment to find current owner/GM email</li>
+          <li>Cross-reference LinkedIn for contact changes</li>
+          <li>Check if gym migrated to a billing partner — use as warm path in</li>
+          <li>Physical direct mail as last resort for unreachable contacts</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Re-Engagement Messaging</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>Lead with <strong>what's changed</strong> — new integrations, new partners</li>
+          <li>Include a hard result from a comparable gym</li>
+          <li>Anchor in outcomes, not features</li>
+          <li>Show SWIFT is meaningfully better than when they last engaged</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>High-Value Account Protocol</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>Flag accounts above a revenue threshold for personal outreach</li>
+          <li>Direct contact from SWIFT leadership — not a sequence</li>
+          <li>Priority onboarding offered: no waiting period, restart immediately</li>
+          <li>Track % re-engaged, reactivated, and converted by cohort</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLAR 4: WEBSITE ═══════════════════════════════════════ -->
+<section class="section section-alt" id="website">
+  <div class="container">
+    <div class="label">Pillar Four</div>
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <h2>New Website & Digital Presence</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="label" style="margin-bottom:0.75rem;">One Job</div>
+        <p style="font-size:0.875rem;">Validate the decision a prospect is already leaning toward when they arrive from an outbound email or billing partner referral.</p>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.75rem;">Positioning Requirements</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li>Member reactivation — not collections, not billing software</li>
+          <li>Zero risk framing on every page</li>
+          <li>Performance-only model front and center</li>
+          <li>Case studies with hard dollar amounts by vertical</li>
+        </ul>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.5rem;">Primary CTA</div>
+        <p style="font-size:0.875rem; font-style:italic; font-weight:600; color:var(--gold);">"Get Your Free Recovery Estimate"</p>
+        <p style="font-size:0.82rem; margin-top:0.25rem;">Not "Contact Us." Not "Request a Demo." The estimate <em>is</em> the first step in the sales conversation.</p>
+      </div>
+      <div>
+        <div class="detail-card">
+          <h4>Site Architecture</h4>
+          <ul class="check-list">
+            <li><strong>Home:</strong> Hero with value prop, social proof strip, 3-step how-it-works, case study callouts, CTA</li>
+            <li><strong>How It Works:</strong> Process detail, integration overview, what SWIFT does vs. what gym does</li>
+            <li><strong>For Billing Partners:</strong> Partner-specific page with co-sell value prop and partnership inquiry form</li>
+            <li><strong>Case Studies:</strong> 5–8 stories with real recovery numbers by vertical</li>
+            <li><strong>ROI Calculator:</strong> Input gym size → estimated monthly recovery → commission breakdown</li>
+            <li><strong>Get Started:</strong> Simple application form, no friction — name, gym, email, billing platform</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-top:2.5rem;">
+      <div class="detail-card">
+        <h4>Tech Recommendation</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li><strong>Platform:</strong> Webflow — custom-coded feel, no dev dependency for updates</li>
+          <li><strong>CRM integration:</strong> Native form capture into HubSpot or custom CRM</li>
+          <li><strong>Timeline:</strong> 45–60 days from kickoff to launch</li>
+          <li><strong>Analytics:</strong> GA4 + Hotjar from day one</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>SEO Target Keywords</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>Gym member reactivation service</li>
+          <li>Failed draft recovery for gyms</li>
+          <li>Gym revenue recovery program</li>
+          <li>Commission-based member win-back</li>
+          <li>Fitness studio lapsed member recovery</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Billing Partner Page</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>Dedicated page for billing company co-sell conversations</li>
+          <li>Partner-specific value prop (reduces customer churn for the platform)</li>
+          <li>Current partner logos displayed prominently</li>
+          <li>Partnership inquiry form — separate from gym inquiry</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLAR 5: CRM ═══════════════════════════════════════ -->
+<section class="section" id="crm">
+  <div class="container">
+    <div class="label">Pillar Five</div>
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <h2>CRM Migration: HubSpot → Custom</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="label" style="margin-bottom:0.75rem;">Migration Window: Sept–Oct</div>
+        <p style="font-size:0.875rem;">Deliberate timing — not rushed. Moving mid-growth-push creates risk. Schema design starts now so the Q3 build isn't compressed.</p>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.75rem;">Recommended Stack</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li><strong>Database layer:</strong> Airtable</li>
+          <li><strong>CRM front-end:</strong> Softr or Stacker</li>
+          <li><strong>Email sequences:</strong> Instantly (already live)</li>
+          <li><strong>Enrichment:</strong> Apollo MCP integration</li>
+          <li><strong>Automation:</strong> CoWork workflow triggers</li>
+        </ul>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.5rem;">Why Migrate at All</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li>Owned infrastructure — no licensing dependency</li>
+          <li>Shaped around SWIFT's actual sales motion</li>
+          <li>Partner tracking, win-back cohorts, Mindbody segment — built in from day one</li>
+        </ul>
+      </div>
+      <div>
+        <div class="detail-card">
+          <h4>Required Modules</h4>
+          <ul class="check-list">
+            <li>Contact & account management (gym operators, billing partner contacts)</li>
+            <li>Deal pipeline with stage tracking (prospecting → demo → live)</li>
+            <li>Email sequence management and activity logging</li>
+            <li>Billing partner tracking (partner account, referral volume, co-marketing status)</li>
+            <li>Former customer cohort tagging and win-back workflow</li>
+            <li>Reporting: pipeline velocity, conversion rates, revenue recovered per account</li>
+            <li>Mindbody account segment tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-top:2rem;">
+      <div class="detail-card">
+        <h4>Migration Phases</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li><strong>Q2 (Now–June):</strong> Schema design and field mapping. HubSpot remains live — no disruption to active pipeline.</li>
+          <li><strong>July–Aug:</strong> Airtable structure built. Front-end layer developed. Shadow testing against live HubSpot data.</li>
+          <li><strong>Sept–Oct:</strong> Parallel run — both systems live simultaneously for 4–6 weeks. Validate zero data loss.</li>
+          <li><strong>Oct–Nov:</strong> Full cutover. HubSpot decommissioned. New system becomes primary.</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Data Migration Priorities</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>Active gym accounts and deal stages (no loss)</li>
+          <li>Billing partner contacts and relationship notes</li>
+          <li>Former customer records (tagged for win-back cohort)</li>
+          <li>Email sequence history and activity logs</li>
+          <li>Contact enrichment data from Apollo</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Stack Recommendation</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li><strong>Database:</strong> Airtable (already in Bill's infrastructure)</li>
+          <li><strong>Front-end:</strong> Softr or Stacker for CRM UI layer</li>
+          <li><strong>Email:</strong> Instantly (already live) for sequence delivery</li>
+          <li><strong>Enrichment:</strong> Apollo MCP integration</li>
+          <li><strong>Automation:</strong> CoWork for workflow triggers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PILLAR 6: OUTBOUND ═══════════════════════════════════════ -->
+<section class="section section-alt" id="outbound">
+  <div class="container">
+    <div class="label">Pillar Six</div>
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <h2>Direct Outbound GTM Engine</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="label" style="margin-bottom:0.75rem;">When Direct Outbound Is the Path</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li>Large-format traditional health clubs</li>
+          <li>Franchise groups not yet covered by a billing partner</li>
+          <li>Verticals outside Mindbody's core user base</li>
+          <li>Gyms in markets with no active billing partner presence</li>
+        </ul>
+
+        <div class="label" style="margin-top:1.5rem; margin-bottom:0.75rem;">Stack Already in Place</div>
+        <ul class="check-list" style="margin-top:0;">
+          <li><strong>Instantly</strong> — email deliverability, multi-domain</li>
+          <li><strong>Apollo</strong> — contact enrichment</li>
+          <li><strong>CoWork</strong> — research and personalization per account</li>
+        </ul>
+      </div>
+      <div>
+        <div class="detail-card">
+          <h4>ICP Scoring Criteria</h4>
+          <ul class="check-list">
+            <li>500+ active members (enough failed-draft volume to justify)</li>
+            <li>Monthly EFT/draft billing model (not pay-per-class only)</li>
+            <li>Multi-location preferred — one deal, multiple sites</li>
+            <li>Operator or GM is identifiable and reachable</li>
+            <li>Not yet active on SWIFT (not a current gym)</li>
+            <li>Not on a billing partner platform (to avoid channel conflict) <em>or</em> explicitly included with partner blessing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-top:2rem;">
+      <div class="detail-card">
+        <h4>List Sources</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>IHRSA member directory (serious operators)</li>
+          <li>Franchise location rosters (Anytime Fitness, Crunch, Orangetheory, F45, CycleBar)</li>
+          <li>State business license databases (fitness/health club NAICS codes)</li>
+          <li>Google Maps scrapes by metro, filtered by review count (proxy for size)</li>
+          <li>Billing partner customer lists (with blessing)</li>
+          <li>Ahrefs backlink data from competitor and adjacent sites</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Three Messaging Wedges</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li><strong>Math Wedge:</strong> "Gyms your size typically recover $X/month in lapsed draft. Pure performance — we only earn when you do."</li>
+          <li><strong>Peer Wedge:</strong> "We're running member reactivation for [N] gyms in [their metro]. Here's what a comparable operator recovered last quarter."</li>
+          <li><strong>Partner Wedge:</strong> "As a preferred vendor for [billing company they use], we're reaching their customer base about member win-back…" (highest conversion)</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <h4>Sequence Cadence</h4>
+        <ul class="check-list" style="margin-top:0.5rem;">
+          <li>6–8 touches over 4 weeks</li>
+          <li>Email + LinkedIn + one phone touch (Day 10)</li>
+          <li>Trigger events: new location openings, hiring for retention/membership roles, negative review clusters</li>
+          <li>CoWork handles research and personalization per account</li>
+          <li>Instantly manages deliverability across multiple domains</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:2.5rem;">
+      <p><strong>Vertical expansion targets beyond traditional gyms:</strong> Martial arts academies, swim schools, dance studios, yoga chains, tennis clubs, and cycling boutiques all run recurring draft billing and experience the same lapsed-member problem. The pitch is identical. The verticalization of case studies and messaging is the only incremental work.</p>
+    </div>
+
+    <div class="two-col" style="margin-top:2rem;">
+      <div class="detail-card" style="border-left: 3px solid var(--gold);">
+        <div class="label" style="margin-bottom:0.75rem;">Direct Mail — Worth Testing</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.75rem;">Physical Mail to Gym Operators</h4>
+        <p style="font-size:0.875rem; margin-bottom:0.75rem;">Email inboxes are crowded. A well-designed physical mailer to a gym owner's facility address cuts through in a way digital can't. Commission-only is a model that reads even better in print — no risk, nothing to lose.</p>
+        <ul class="check-list">
+          <li><strong>Format:</strong> Oversized postcard or single-page letter — not a brochure</li>
+          <li><strong>Targeting:</strong> ICP-qualified list (500+ member facilities, specific verticals)</li>
+          <li><strong>Message:</strong> One sharp line, one number, one URL — no clutter</li>
+          <li><strong>URL:</strong> Dedicated landing page with tracking to measure response rate</li>
+          <li><strong>Cost:</strong> ~$1–2 per piece — justified if conversion rate exceeds 1%</li>
+          <li><strong>Use case:</strong> Win-back for unreachable former customers; cold outreach to high-value targets</li>
+        </ul>
+      </div>
+
+      <div class="detail-card" style="border-left: 3px solid var(--gold);">
+        <div class="label" style="margin-bottom:0.75rem;">Live Events — FISA</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.75rem;">Sal Pellegrino / FISA Events — Pre-Booked Sales Meetings</h4>
+        <p style="font-size:0.875rem; margin-bottom:0.75rem;">FISA events bring together fitness industry operators and vendors in a structured format with pre-booked one-on-one meetings. This is one of the highest-quality in-person channels available — you're sitting across from qualified decision-makers, not working a trade show booth.</p>
+        <ul class="check-list">
+          <li><strong>Format:</strong> Pre-scheduled 1:1 meetings with gym operators/owners</li>
+          <li><strong>Audience:</strong> Multi-location operators, chains, and franchise owners — SWIFT's ICP</li>
+          <li><strong>Advantage:</strong> Face-to-face with a captive, pre-qualified audience — no cold approach needed</li>
+          <li><strong>Prep:</strong> Personalized one-pagers per meeting, case study by vertical, leave-behind collateral</li>
+          <li><strong>Follow-up:</strong> Same-day email recap + Instantly sequence triggered post-event</li>
+          <li><strong>Action:</strong> Identify upcoming FISA calendar — secure meeting slots well in advance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ ROADMAP ═══════════════════════════════════════ -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="label">Execution Timeline</div>
+    <div class="section-header">
+      <div class="section-num">09</div>
+      <h2>12-Month Phased Roadmap</h2>
+    </div>
+
+    <p>The plan runs in four overlapping phases. Foundation work (website, CRM, messaging) enables everything downstream. Activation phases bring channels live. Scale is where compounding begins.</p>
+
+    <div class="roadmap" style="margin-top:2.5rem;">
+      <div class="roadmap-phase">
+        <div class="phase-label">Phase 1</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-dates">Months 1–3</div>
+        <div class="phase-item">Lock core messaging framework and category positioning</div>
+        <div class="phase-item">Begin new website design and copy development</div>
+        <div class="phase-item">Initiate HubSpot data export and CRM schema design</div>
+        <div class="phase-item">Build Mindbody account segmentation model</div>
+        <div class="phase-item">Audit lapsed customer list — identify win-back cohort</div>
+        <div class="phase-item">Formalize 2–3 priority billing partner agreements</div>
+        <div class="phase-item">Build 5 case studies with hard recovery numbers</div>
+        <div class="phase-item">Launch win-back email sequence for reachable lapsed accounts</div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-label">Phase 2</div>
+        <div class="phase-title">Activation</div>
+        <div class="phase-dates">Months 3–6</div>
+        <div class="phase-item">New website live</div>
+        <div class="phase-item">CRM schema design begins — HubSpot stays live</div>
+        <div class="phase-item">Mindbody outbound sequences launched</div>
+        <div class="phase-item">FISA event calendar confirmed — meeting slots secured</div>
+        <div class="phase-item">Direct mail pilot launched to high-value ICP targets</div>
+        <div class="phase-item">First billing partner co-marketing webinar</div>
+        <div class="phase-item">Win-back campaign: second pass with Apollo-enriched contacts</div>
+        <div class="phase-item">Direct outbound engine live (first 3 ICP segments)</div>
+        <div class="phase-item">Franchise outreach begun for system-level approvals</div>
+        <div class="phase-item">ROI calculator live on website</div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-label">Phase 3</div>
+        <div class="phase-title">Scale</div>
+        <div class="phase-dates">Months 6–9</div>
+        <div class="phase-item">Airtable CRM build begins — parallel with HubSpot</div>
+        <div class="phase-item">Billing partner count reaches 7+</div>
+        <div class="phase-item">Mindbody: 500+ accounts onboarded</div>
+        <div class="phase-item">Outbound expanded to adjacent verticals (martial arts, swim, dance)</div>
+        <div class="phase-item">Quarterly billing partner co-marketing calendar running</div>
+        <div class="phase-item">Referral program formalized for current gym customers</div>
+        <div class="phase-item">First franchise system-level agreement signed</div>
+        <div class="phase-item">Reporting dashboards live across all channels</div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-label">Phase 4</div>
+        <div class="phase-title">Expansion</div>
+        <div class="phase-dates">Months 9–12</div>
+        <div class="phase-item">HubSpot decommissioned — custom CRM fully live (Sept–Oct)</div>
+        <div class="phase-item">10+ billing partners live and activated</div>
+        <div class="phase-item">Mindbody: 1,000+ accounts onboarded</div>
+        <div class="phase-item">Franchise system agreements driving passive referral flow</div>
+        <div class="phase-item">Geographic expansion: target underpenetrated metros systematically</div>
+        <div class="phase-item">Product evolution: explore upsell or tiered service model</div>
+        <div class="phase-item">Win-back process formalized as evergreen campaign (auto-triggers)</div>
+        <div class="phase-item">Begin evaluation of enterprise/national chain segment</div>
+        <div class="phase-item">Annual strategy review and roadmap refresh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ KPIs ═══════════════════════════════════════ -->
+<section class="section" style="background: var(--gold-pale);" id="kpis">
+  <div class="container">
+    <div class="label">Success Metrics</div>
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>KPIs & Measurement Framework</h2>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <h4>New Gyms Added / Month</h4>
+        <div class="kpi-target">150+</div>
+        <div class="kpi-desc">Across all channels — billing partner referrals, Mindbody pipeline, and direct outbound combined.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Mindbody Accounts Onboarded</h4>
+        <div class="kpi-target">1,000</div>
+        <div class="kpi-desc">Year 1 target from the 60K-account addressable base. Less than 2% — a conservative floor.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Billing Partners Active</h4>
+        <div class="kpi-target">10+</div>
+        <div class="kpi-desc">Preferred vendor agreements signed <em>and</em> activated with co-marketing launch. Agreements without activation don't count.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Former Customer Recovery Rate</h4>
+        <div class="kpi-target">25%</div>
+        <div class="kpi-desc">Of reachable lapsed accounts, target 25% reactivated within 90 days of win-back sequence launch.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Website Conversion Rate</h4>
+        <div class="kpi-target">4%+</div>
+        <div class="kpi-desc">Visitors → "Get Recovery Estimate" form submissions. Measure across organic, paid referral, and direct traffic.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>CRM Migration Complete</h4>
+        <div class="kpi-target">Oct–Nov</div>
+        <div class="kpi-desc">HubSpot fully decommissioned by end of Q4. Schema design in Q2, build in Q3, cutover Sept–Oct with parallel run.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Total Gyms Live (Year End)</h4>
+        <div class="kpi-target">6,000+</div>
+        <div class="kpi-desc">From 4,000 to 6,000+ active gym accounts by end of 12-month plan. Net adds across all channels.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Outbound Reply Rate</h4>
+        <div class="kpi-target">8–12%</div>
+        <div class="kpi-desc">Target reply rate on ICP-targeted email sequences. Partner-wedge sequences should outperform at 15%+.</div>
+      </div>
+      <div class="kpi-card">
+        <h4>Billing Partner Referral Volume</h4>
+        <div class="kpi-target">30+</div>
+        <div class="kpi-desc">Warm referrals per partner per quarter once activated. Tracks whether the activation playbook is working.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ NEXT STEPS ═══════════════════════════════════════ -->
+<section class="section" id="next">
+  <div class="container">
+    <div class="label">Immediate Actions</div>
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>Next 30 Days — What Gets Done First</h2>
+    </div>
+
+    <p>A plan without prioritization is just a document. The following actions are ordered by leverage and dependency — complete these in sequence and the rest of the plan follows naturally.</p>
+
+    <ul class="next-steps-list" style="margin-top:2rem;">
+      <li class="next-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Lock Messaging & Positioning Framework</h4>
+          <p>Define the exact language for "member reactivation vs. collections" across all channels. Write the one-sentence positioning statement, the three headline variations, and the FAQ responses to the most common objections. This is the foundation everything else is built on.</p>
+        </div>
+        <span class="step-tag">Week 1</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Audit the Lapsed Customer List</h4>
+          <p>Pull every former customer from HubSpot. Categorize by reason for lapse (email bounce, contact change, unknown). Identify the reachable cohort. This data shapes the win-back sequence and informs the CRM migration priorities simultaneously.</p>
+        </div>
+        <span class="step-tag">Week 1</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Initiate Website Brief & Designer Search</h4>
+          <p>Write the website creative brief: 6-page architecture, positioning language, CTA structure, and functionality requirements (ROI calculator, partner page, form capture). Begin designer or agency outreach. Webflow is the recommended platform.</p>
+        </div>
+        <span class="step-tag">Week 1–2</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Segment Mindbody Account Base</h4>
+          <p>Work with Mindbody to pull or access a filtered list of accounts by size, vertical, and geography. Identify the top 5,000 accounts by ICP score. Build the initial Instantly sequence specifically for Mindbody operators.</p>
+        </div>
+        <span class="step-tag">Week 2</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h4>Launch Win-Back Sequence</h4>
+          <p>For every lapsed customer with a reachable email: send a personally framed re-engagement sequence. 5–6 touches, warm tone, lead with what's new. Apollo enrichment for any contacts where email has bounced. Don't wait for the new website — send from the team now.</p>
+        </div>
+        <span class="step-tag">Week 2–3</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">06</div>
+        <div class="step-content">
+          <h4>Identify & Prioritize Next 3 Billing Partners</h4>
+          <p>From the target list (Jonas, Twin Oaks, Clubessential, Motionsoft, Zen Planner, Wodify, PushPress, EZFacility), score by customer base size and relationship warmth. Initiate outreach on the top 3 with a clear preferred vendor pitch and activation playbook attached.</p>
+        </div>
+        <span class="step-tag">Week 2–3</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">07</div>
+        <div class="step-content">
+          <h4>Lock FISA Event Calendar & Secure Meeting Slots</h4>
+          <p>Identify the next Sal Pellegrino / FISA events on the calendar. Pre-booked 1:1 meetings are the highest-quality in-person channel available — but slots fill. Get on the calendar early. Prep materials: one-pager by vertical, leave-behind with a hard recovery number, and a post-event follow-up sequence ready to fire same day.</p>
+        </div>
+        <span class="step-tag">Week 3</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">08</div>
+        <div class="step-content">
+          <h4>Build Case Study Pack</h4>
+          <p>Develop 5 customer case studies with real recovery numbers, one per major vertical. Format for website, email, and sales conversation use — including a one-page version for FISA meetings. These are the single most effective sales tool in the arsenal; every other channel benefits from having them.</p>
+        </div>
+        <span class="step-tag">Week 3–4</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">09</div>
+        <div class="step-content">
+          <h4>Direct Mail Pilot — Former Customers & High-Value Targets</h4>
+          <p>Design and send a direct mail pilot to two groups: (1) former customers who are email-unreachable, and (2) 50–100 ICP-qualified cold targets in a high-priority market. One clean message, one number, one URL with tracking. Measure response rate over 3 weeks before scaling.</p>
+        </div>
+        <span class="step-tag">Week 4</span>
+      </li>
+      <li class="next-step">
+        <div class="step-num">10</div>
+        <div class="step-content">
+          <h4>Begin CRM Schema Design — HubSpot Stays Live Until Sept–Oct</h4>
+          <p>No migration yet — HubSpot remains the system of record through summer. What gets done now is schema design: contact objects, deal stages, partner records, sequence tracking, and reporting fields. Doing this early means the Airtable build in Q3 is fast and clean, not rushed.</p>
+        </div>
+        <span class="step-tag">Week 4</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">TREETOP <span>Growth Strategy</span></div>
+    <div class="footer-copy">Prepared for SWIFT Financial · May 2026 · Confidential</div>
+  </div>
+</footer>
+
+</body>
+</html>
