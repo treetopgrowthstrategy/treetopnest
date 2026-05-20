@@ -1,0 +1,114 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Plan a Product Launch with Claude (90-Day Framework) | Treetop</title>
+<meta name="description" content="Practical guide to planning a B2B product launch with Claude. The 90-day timeline, the workstreams, and how AI accelerates each phase without compromising strategic judgment." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-plan-a-product-launch-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-plan-a-product-launch-with-claude" />
+<meta property="og:title" content="How to Plan a Product Launch with Claude (90-Day Framework)" /><meta property="og:description" content="Practical guide to planning a B2B product launch with Claude. The 90-day timeline, the workstreams, and how AI accelerates each phase without compromising strategic judgment." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Plan a Product Launch with Claude (90-Day Framework)" />
+<meta name="twitter:description" content="Practical guide to planning a B2B product launch with Claude. The 90-day timeline, the workstreams, and how AI accelerates each phase without compromising strategic judgment." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Plan a Product Launch with Claude (90-Day Framework)',"url":"https://treetopgrowthstrategy.com/how-to-plan-a-product-launch-with-claude"},{"@type":"Article","headline":'How to Plan a Product Launch with Claude (90-Day Framework)',"description":'Practical guide to planning a B2B product launch with Claude. The 90-day timeline, the workstreams, and how AI accelerates each phase without compromising strategic judgment.',"url":"https://treetopgrowthstrategy.com/how-to-plan-a-product-launch-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/how-to-use-claude-for-marketing" class="nav-link">Claude for Marketing</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Marketing how-to</div>
+<h1 class="hero-h">How to plan a product launch <em style="color:#00C853;font-style:italic;">with Claude.</em></h1>
+<p class="hero-sub">Most B2B product launches underperform because the planning is incomplete or rushed. The proven 90-day framework — internal alignment, market prep, launch week, post-launch nurture — works whether you use AI or not. AI compresses each phase by 30-50%. Here is the full workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why most launches underperform</h2>
+    <p class="body">Most B2B product launches focus on the launch day itself and underinvest in the 8 weeks before and 6 weeks after. The day matters; the surrounding window matters more. AI helps you actually execute the surrounding window without burning out the team.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The 4-phase 90-day framework</span><h2 class="h2">What each phase contains</h2>
+    <p class="body"><strong>Phase 1: Foundation (Days -90 to -45).</strong> Positioning, messaging, ICP refinement. Internal alignment across sales, marketing, product, CS. Sales enablement collateral drafted.</p>
+    <p class="body"><strong>Phase 2: Market prep (Days -45 to -7).</strong> Content production (announcements, blogs, social, video). Customer-facing assets (landing pages, email sequences, sales decks). PR outreach started.</p>
+    <p class="body"><strong>Phase 3: Launch week (Days 0-7).</strong> Coordinated public announcement. Press, social, partner activations, customer comms. Daily standup to handle reactive needs.</p>
+    <p class="body"><strong>Phase 4: Sustain (Days 8-45 after).</strong> Use-case content. Customer story development. Retro on launch metrics. Pipeline conversion tracking.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Where Claude accelerates each phase</span><h2 class="h2">Specific deployments</h2>
+    <p class="body"><strong>Phase 1:</strong> Positioning drafts (see <a href="/how-to-write-a-positioning-statement-with-ai" style="color:#00C853;">positioning guide</a>), sales-enablement narrative, FAQ generation.</p>
+    <p class="body"><strong>Phase 2:</strong> Content production (announcement blog, social variants, email sequences), landing page copy (see <a href="/how-to-write-landing-page-copy-with-claude" style="color:#00C853;">landing page guide</a>), PR pitch drafts.</p>
+    <p class="body"><strong>Phase 3:</strong> Real-time content variants (different audiences, different platforms), reactive social responses, sales objection handling drafts.</p>
+    <p class="body"><strong>Phase 4:</strong> Customer story drafts, retro analysis (paste metrics, get narrative), follow-up content based on what landed.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The launch planning Claude prompt</span><h2 class="h2">Use this in Phase 1</h2>
+    <p class="body"><pre>I am planning a 90-day product launch for [PRODUCT NAME].
+
+Product in one sentence: [SHORT]
+Target audience: [SPECIFIC PERSONA]
+Key differentiator: [TRUTHFUL UNIQUE THING]
+Launch date: [DATE]
+Team capacity: [PEOPLE AVAILABLE]
+Budget for launch: [RANGE]
+
+Build a 90-day launch plan:
+- Week-by-week deliverables across 4 phases (Foundation / Prep / Launch / Sustain)
+- Owner for each deliverable
+- Dependencies between deliverables
+- Risk flags (what could go wrong in each phase)
+- Success metrics by phase
+
+Be specific. "Marketing campaign" is not a deliverable. "Email 1 of welcome sequence with subject A/B test" is. Tell me what to cut if team capacity is tighter than scope.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related marketing how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-a-positioning-statement-with-ai" style="color:#00C853;text-decoration:none;">How to write a positioning statement with AI &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-landing-page-copy-with-claude" style="color:#00C853;text-decoration:none;">How to write landing page copy with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-press-releases-with-claude" style="color:#00C853;text-decoration:none;">How to write press releases with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Have a launch coming up?</div><div class="cta-sub">Fractional CMO engagements often include full launch planning + execution oversight.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/fractional-cmo" class="btn-p">See Fractional CMO &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

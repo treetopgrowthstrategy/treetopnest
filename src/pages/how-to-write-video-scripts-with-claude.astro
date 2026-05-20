@@ -1,0 +1,142 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Write Video Scripts with Claude (B2B Practical Guide) | Treetop</title>
+<meta name="description" content="Practical guide to writing B2B video scripts with Claude — explainer videos, talking-head pieces, social video, ad video. The structure, the prompt, and what kills viewer retention." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-write-video-scripts-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-write-video-scripts-with-claude" />
+<meta property="og:title" content="How to Write Video Scripts with Claude (B2B Practical Guide)" /><meta property="og:description" content="Practical guide to writing B2B video scripts with Claude — explainer videos, talking-head pieces, social video, ad video. The structure, the prompt, and what kills viewer retention." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Write Video Scripts with Claude (B2B Practical Guide)" />
+<meta name="twitter:description" content="Practical guide to writing B2B video scripts with Claude — explainer videos, talking-head pieces, social video, ad video. The structure, the prompt, and what kills viewer retention." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Write Video Scripts with Claude (B2B Practical Guide)',"url":"https://treetopgrowthstrategy.com/how-to-write-video-scripts-with-claude"},{"@type":"Article","headline":'How to Write Video Scripts with Claude (B2B Practical Guide)',"description":'Practical guide to writing B2B video scripts with Claude — explainer videos, talking-head pieces, social video, ad video. The structure, the prompt, and what kills viewer retention.',"url":"https://treetopgrowthstrategy.com/how-to-write-video-scripts-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/how-to-use-claude-for-marketing" class="nav-link">Claude for Marketing</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Marketing how-to</div>
+<h1 class="hero-h">How to write video scripts <em style="color:#00C853;font-style:italic;">with Claude.</em></h1>
+<p class="hero-sub">Video script writing is one of the highest-friction marketing tasks. A bad script tanks retention regardless of production quality. Claude can produce strong first drafts for several common B2B video formats — but only if you brief it on viewer retention principles. Here is the workflow.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why most B2B video underperforms</h2>
+    <p class="body">Most B2B video scripts read like written content recorded aloud. That format kills viewer retention. Video scripts need different sentence patterns, different pacing, and different opens than written content.</p>
+    <p class="body">The retention-friendly script format: hook in 5 seconds, value promise by 15 seconds, one clear takeaway, vary pacing throughout, end with specific action. Each format (explainer, talking-head, social, ad) has variants on this base.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The 4 B2B video formats and what each needs</span><h2 class="h2">Format-specific structure</h2>
+    <p class="body"><strong>1. Explainer video (60-180 seconds).</strong> Hook → problem → solution → proof → CTA. Tight. Visuals do half the work.</p>
+    <p class="body"><strong>2. Talking-head thought leadership (3-7 minutes).</strong> One core idea, 3 supporting points, clear takeaway. Looser pacing OK.</p>
+    <p class="body"><strong>3. Short-form social video (15-60 seconds).</strong> First 3 seconds carry everything. One specific insight per video.</p>
+    <p class="body"><strong>4. Ad video (15-30 seconds for paid).</strong> Hook → outcome promise → CTA. Aggressive cuts.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The Claude prompt for explainer videos</span><h2 class="h2">Format 1</h2>
+    <p class="body"><pre>Write an explainer video script for [PRODUCT/SERVICE].
+
+Target length: [60 / 90 / 120 / 180 seconds]
+Audience: [SPECIFIC PERSONA]
+The single thing they should understand after watching: [SPECIFIC]
+Our unique angle: [WHAT MAKES US DIFFERENT]
+CTA: [SPECIFIC ACTION]
+
+Structure:
+- Hook (0-5 sec): question, surprising stat, or pattern interrupt
+- Problem (5-25 sec): the pain the viewer is feeling, in their words
+- Solution intro (25-45 sec): how we approach it differently
+- Proof (45-90 sec): specific outcomes or differentiator
+- CTA (last 10 sec): the action with a reason
+
+Voice rules:
+- Speak it aloud as you write it. If it sounds awkward, rewrite.
+- Short sentences. Vary length. Avoid em-dashes and parentheticals (hard to deliver verbally).
+- No corporate jargon. No "leverage", "transform", "industry-leading".
+- One idea per sentence. Listeners cannot re-read.
+
+Provide also: suggested visuals for each section.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The Claude prompt for short-form social video</span><h2 class="h2">Format 3</h2>
+    <p class="body"><pre>Write a 30-second LinkedIn video script on [SPECIFIC TOPIC].
+
+Audience: [SPECIFIC PERSONA]
+The single insight to deliver: [SPECIFIC]
+My POV that makes this different from generic advice: [HONEST]
+
+Structure:
+- Hook (0-3 sec): something that stops the scroll
+- Insight (3-22 sec): the specific point with one example
+- Implication (22-28 sec): what this means for the viewer
+- Close (28-30 sec): question or specific action
+
+Constraints:
+- ~75 words total
+- Spoken pace — read it aloud
+- No "Hey everyone" intros
+- No "What do you think?" closes
+- One concrete specific (number, name, situation) in the body</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What kills retention</span><h2 class="h2">Anti-patterns</h2>
+    <p class="body"><strong>1. "Today I want to talk about..."</strong> Universal video tell. Skip directly to the content.</p>
+    <p class="body"><strong>2. Long preambles.</strong> Anything in the first 10 seconds that is not the hook gets you scrolled past.</p>
+    <p class="body"><strong>3. Bullet-list reading.</strong> "Here are 5 things." OK on page; flat in video.</p>
+    <p class="body"><strong>4. Unread teleprompter feel.</strong> Sentences too perfect, no rhythm variation. Read aloud while drafting.</p>
+    <p class="body"><strong>5. Asking for engagement at the end.</strong> "Like and subscribe." Earn it via the content, do not request it.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related marketing how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-do-social-media-planning-with-ai" style="color:#00C853;text-decoration:none;">How to do social media planning with AI &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-write-linkedin-posts" style="color:#00C853;text-decoration:none;">How to use AI to write LinkedIn posts &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-marketing" style="color:#00C853;text-decoration:none;">12 Claude prompts for marketing &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want video workflows built for your team?</div><div class="cta-sub">Implementation includes video content workflow design as part of the standard marketing scope.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

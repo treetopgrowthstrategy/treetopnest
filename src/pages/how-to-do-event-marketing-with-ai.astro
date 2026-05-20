@@ -1,0 +1,136 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Do Event Marketing with AI (Conferences, Trade Shows, Field Events) | Treetop</title>
+<meta name="description" content="Practical guide to using Claude for B2B event marketing — conference selection, pre-event prep, on-site execution, post-event nurture. The phases AI accelerates and what stays manual." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-do-event-marketing-with-ai" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-do-event-marketing-with-ai" />
+<meta property="og:title" content="How to Do Event Marketing with AI (Conferences, Trade Shows, Field Events)" /><meta property="og:description" content="Practical guide to using Claude for B2B event marketing — conference selection, pre-event prep, on-site execution, post-event nurture. The phases AI accelerates and what stays manual." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Do Event Marketing with AI (Conferences, Trade Shows, Field Events)" />
+<meta name="twitter:description" content="Practical guide to using Claude for B2B event marketing — conference selection, pre-event prep, on-site execution, post-event nurture. The phases AI accelerates and what stays manual." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":'How to Do Event Marketing with AI (Conferences, Trade Shows, Field Events)',"url":"https://treetopgrowthstrategy.com/how-to-do-event-marketing-with-ai"},{"@type":"Article","headline":'How to Do Event Marketing with AI (Conferences, Trade Shows, Field Events)',"description":'Practical guide to using Claude for B2B event marketing — conference selection, pre-event prep, on-site execution, post-event nurture. The phases AI accelerates and what stays manual.',"url":"https://treetopgrowthstrategy.com/how-to-do-event-marketing-with-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:1rem 0;white-space:pre-wrap;max-width:760px}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/how-to-use-claude-for-marketing" class="nav-link">Claude for Marketing</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Marketing how-to</div>
+<h1 class="hero-h">How to do event marketing <em style="color:#00C853;font-style:italic;">with AI.</em></h1>
+<p class="hero-sub">Event marketing is one of the most expensive B2B marketing motions per lead. Done well, the ROI justifies it. Done poorly — vague event selection, weak pre-event outreach, no post-event nurture — it produces nothing. AI accelerates the strategic phases without replacing the in-person work. Here is the framework.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">Why most event marketing underperforms</h2>
+    <p class="body">Most companies attend events because they always have, build a booth without a specific outcome target, talk to whoever wanders by, and then have no nurture sequence to convert booth conversations into pipeline.</p>
+    <p class="body">The fix is structural: event selection driven by ICP density, pre-event targeted outreach to specific people, on-site conversations focused on a specific outcome, post-event nurture sequence built before the event starts.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The 4-phase event marketing framework</span><h2 class="h2">What each phase contains</h2>
+    <p class="body"><strong>Phase 1: Selection (3-6 months before).</strong> Which events your ICP attends, which sponsors get value, which are vanity attendance.</p>
+    <p class="body"><strong>Phase 2: Pre-event (4-8 weeks before).</strong> Identify specific attendees from your ICP. Book meetings in advance. Build content tied to event themes.</p>
+    <p class="body"><strong>Phase 3: On-site (event days).</strong> Execute booked meetings. Capture conversation context. Engage strategically with content moments.</p>
+    <p class="body"><strong>Phase 4: Post-event (1-4 weeks after).</strong> Personalized nurture sequences based on conversation context. Pipeline tracking. Retrospective.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The pre-event outreach prompt</span><h2 class="h2">Phase 2</h2>
+    <p class="body"><pre>I am doing pre-event outreach for [EVENT NAME].
+
+The event is: [DATES, LOCATION]
+Our reason for attending: [SPECIFIC GOAL — meetings, awareness, etc]
+Who would be valuable to meet: [SPECIFIC PERSONA / COMPANY TYPE]
+
+Here is the list of confirmed attendees from our target list: [PASTE]
+
+For each attendee, generate:
+1. Personalized pre-event email asking for a meeting (no more than 100 words)
+2. The specific reason this meeting would be valuable for THEM (not just us)
+3. A specific time/place suggestion that minimizes their friction
+4. Backup outreach via LinkedIn (60 word DM)
+5. Whether to escalate to founder/exec outreach if relevant
+
+Voice: respectful, specific, not salesy. We are asking for 20 minutes of their time at a busy conference. Make the value to them obvious in line 1.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The post-event nurture prompt</span><h2 class="h2">Phase 4</h2>
+    <p class="body"><pre>I am building post-event nurture sequences.
+
+The event: [NAME]
+People we talked to fall into 3 categories:
+- Booked formal meetings (named, with context notes)
+- Quality conversations (named, with context notes)
+- Booth scans (had a brief exchange or just gave us info)
+
+For each category, build a different sequence:
+
+A. Booked meetings (3-touch sequence):
+- Day 1: Reference specific conversation point + clear next step
+- Day 5: Send promised resource + soft pitch
+- Day 14: Direct ask if no response
+
+B. Quality conversations (4-touch sequence):
+- Day 1: Personalized reference to what we discussed
+- Day 5: Relevant content based on their interest
+- Day 14: Specific offer (audit, demo, conversation)
+- Day 30: Light touch / pattern recognition
+
+C. Booth scans (2-touch sequence):
+- Day 1: General "great meeting you" + 1 relevant resource
+- Day 7: Specific offer with self-qualifying option
+
+For each email: subject, preview, body (100-150 words), single CTA.</pre></p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related marketing how-tos</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-plan-a-webinar-with-claude" style="color:#00C853;text-decoration:none;">How to plan a webinar with Claude &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-do-account-based-marketing-with-ai" style="color:#00C853;text-decoration:none;">How to do ABM with AI &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-build-a-b2b-email-nurture-sequence-with-ai" style="color:#00C853;text-decoration:none;">How to build a B2B email nurture sequence &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want event marketing workflows built?</div><div class="cta-sub">Implementation includes event marketing workflow design as part of standard scope.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
