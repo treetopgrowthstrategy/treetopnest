@@ -1,0 +1,104 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Fix Pipeline Coverage Problems (B2B 2026 Playbook) | Treetop</title>
+<meta name="description" content="Pipeline coverage problems don't fix themselves. The real fixes are structural, not tactical — and most sales orgs misdiagnose the cause. Here's the actual playbook." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-fix-pipeline-coverage-problems" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-fix-pipeline-coverage-problems" />
+<meta property="og:title" content="How to Fix Pipeline Coverage Problems (B2B 2026 Playbook)" /><meta property="og:description" content="Pipeline coverage problems don't fix themselves. The real fixes are structural, not tactical — and most sales orgs misdiagnose the cause. Here's the actual playbook." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Fix Pipeline Coverage Problems (B2B 2026 Playbook)" />
+<meta name="twitter:description" content="Pipeline coverage problems don't fix themselves. The real fixes are structural, not tactical — and most sales orgs misdiagnose the cause. Here's the actual playbook." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Article","headline":'How to Fix Pipeline Coverage Problems (B2B 2026 Playbook)',"description":"Pipeline coverage problems don't fix themselves. The real fixes are structural, not tactical — and most sales orgs misdiagnose the cause. Here's the actual playbook.","url":"https://treetopgrowthstrategy.com/how-to-fix-pipeline-coverage-problems","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Diagnosis · 7 min read</div>
+<h1 class="hero-h">How to fix <em style="color:#00C853;font-style:italic;">pipeline coverage problems.</em></h1>
+<p class="hero-sub">Most sales orgs hit pipeline coverage problems and respond with the wrong fix — usually some combination of "more outbound" or "let's buy a tool." Neither moves the number. Real coverage problems require diagnosing whether you have a top-of-funnel problem, a conversion problem, or a measurement problem — they're very different fixes.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">Diagnose the actual problem</span><h2 class="h2">Three coverage problems that look identical from the outside</h2>
+    <p class="body"><strong style="color:#F0FFF0;">1. Top-of-funnel deficit.</strong> Not enough qualified leads entering the pipeline. Symptom: pipeline coverage starts low and stays low.</p>
+    <p class="body"><strong style="color:#F0FFF0;">2. Stage conversion deficit.</strong> Enough leads enter, but they don't convert deep enough into the funnel. Symptom: coverage looks fine at top stages, collapses by mid-funnel.</p>
+    <p class="body"><strong style="color:#F0FFF0;">3. Pipeline aging problem.</strong> Enough volume, but old stale deals are inflating the number. Symptom: "good" coverage that doesn't convert to revenue.</p>
+    <p class="body">The fix for each is completely different. Most sales orgs respond to all three with "more outbound," which only helps problem 1.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Fix 1: Top-of-funnel deficit</span><h2 class="h2">When you genuinely need more leads</h2>
+    <p class="body">Add prospecting capacity in this order: <strong style="color:#F0FFF0;">(a)</strong> Verify your existing prospecting motion is actually broken (not just under-resourced) by measuring per-rep activity vs. expectation. <strong style="color:#F0FFF0;">(b)</strong> If activity is fine but output is low, the problem is targeting — fix your ICP and account selection before adding capacity. <strong style="color:#F0FFF0;">(c)</strong> If both activity and targeting are right, then add SDR capacity or a new channel.</p>
+    <p class="body">AI accelerates each step here. Account research that used to take 90 minutes per account compresses to 10. See <a href="/how-to-use-ai-to-research-prospects" style="color:#00C853;text-decoration:none;">how to use AI to research prospects</a>.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Fix 2: Stage conversion deficit</span><h2 class="h2">When leads enter but don't advance</h2>
+    <p class="body">Diagnose where in the funnel deals are stalling. Common patterns:</p>
+    <p class="body"><strong style="color:#F0FFF0;">Stalls at discovery → sequence:</strong> Reps aren't qualifying ruthlessly enough at discovery. Tighten the qualification framework. Coach the muscle of saying "this isn't a fit yet."</p>
+    <p class="body"><strong style="color:#F0FFF0;">Stalls at proposal → close:</strong> Usually a business-case quality problem. The proposal isn't addressing what the buyer actually needs to defend internally. Improve discovery quality so proposals address real objections.</p>
+    <p class="body"><strong style="color:#F0FFF0;">Stalls at close → signed:</strong> Procurement, security review, or CFO sign-off. Multi-thread earlier to these stakeholders rather than letting them surface late.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Fix 3: Pipeline aging problem</span><h2 class="h2">When old deals inflate coverage</h2>
+    <p class="body">The hardest fix because it requires honest deal review. Most sales orgs avoid this because removing old deals makes the dashboard look worse — even though it makes the forecast more accurate.</p>
+    <p class="body">The discipline: weekly review of deals stuck >60 days at the same stage. Either advance them with specific action, or close-lost them. Most should be closed-lost.</p>
+    <p class="body">AI can do the diagnosis: see <a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">the "stalled deal diagnosis" prompt</a> in our sales prompt library.</p>
+    </div></section>
+
+<section><div class="sec-inner"><p class="body" style="margin-top:2rem;font-style:italic;color:#8FAF8F;">— Bill Colbert, <a href="/about" style="color:#00C853;text-decoration:none;">Treetop Growth Strategy</a></p></div></section>
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-b2b-sales-cycles-are-getting-longer" style="color:#00C853;text-decoration:none;">Why B2B sales cycles are getting longer →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-sales" style="color:#00C853;text-decoration:none;">How to use Claude for sales →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fractional-cro" style="color:#00C853;text-decoration:none;">Fractional CRO service →</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Pipeline coverage problem you can't diagnose?</div><div class="cta-sub">Our AI Audit includes a pipeline-health diagnosis as part of the standard scope. $1,500 fixed price.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+<a href="/fractional-cro" class="btn-g">See Fractional CRO</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
