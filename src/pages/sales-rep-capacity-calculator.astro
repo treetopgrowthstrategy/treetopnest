@@ -1,0 +1,249 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Sales Rep Capacity Calculator (AI-Enabled vs Traditional) | Treetop</title>
+  <meta name="description" content="A free calculator that estimates how many accounts each rep can credibly own — in traditional vs AI-enabled mode. 60 seconds, 5 inputs." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/sales-rep-capacity-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/sales-rep-capacity-calculator" />
+  <meta property="og:title" content="Sales Rep Capacity Calculator" />
+  <meta property="og:description" content="How many accounts can each rep credibly own? AI-enabled vs traditional." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sales Rep Capacity Calculator" />
+  <meta name="twitter:description" content="Capacity per rep — AI-enabled vs traditional." />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Sales Rep Capacity Calculator","url":"https://treetopgrowthstrategy.com/sales-rep-capacity-calculator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+    .hero{min-height:45vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+    .calc{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+    @media(max-width:900px){.calc{grid-template-columns:1fr}section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+    .calc-inputs{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem}
+    .calc-outputs{background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25);padding:2rem;display:flex;flex-direction:column;justify-content:center}
+    .field{margin-bottom:1.25rem}
+    .field label{display:block;font-size:0.85rem;color:#C0D8C0;margin-bottom:0.4rem;font-weight:500}
+    .field .helper{display:block;font-size:0.75rem;color:#8FAF8F;margin-bottom:0.5rem;font-style:italic}
+    .field input[type="range"]{width:100%;accent-color:#00C853}
+    .slider-row{display:flex;align-items:center;gap:1rem}
+    .slider-row input[type="range"]{flex:1}
+    .slider-val{font-family:'Instrument Serif',serif;color:#00C853;font-size:1.1rem;min-width:90px;text-align:right}
+    .output-num{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.5rem);color:#00C853;font-style:italic;line-height:1;margin-bottom:0.4rem}
+    .output-label{font-size:0.85rem;color:#8FAF8F;margin-bottom:1.5rem}
+    .output-row{padding:0.85rem 0;border-bottom:1px solid #1A3A1A;display:flex;justify-content:space-between;align-items:baseline}
+    .output-row:last-child{border-bottom:none}
+    .output-row-label{font-size:0.85rem;color:#8FAF8F}
+    .output-row-val{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/fractional-cro" class="nav-link">Fractional CRO</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Free calculator · 60 seconds</div>
+    <h1 class="hero-h">Sales rep capacity <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
+    <p class="hero-sub">
+      Most sales orgs over-stack accounts on reps because the org chart was designed before AI compressed prep time. This calculator tells you how many accounts each rep can credibly own in traditional vs AI-enabled mode — and what that means for headcount.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <div class="calc">
+      <div class="calc-inputs">
+        <span class="lbl">Your inputs</span>
+
+        <div class="field">
+          <label for="reps">Number of quota-carrying reps (AEs/SDRs)</label>
+          <div class="slider-row">
+            <input type="range" id="reps" min="1" max="50" value="6" />
+            <span class="slider-val" id="reps-val">6</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="prep-time">Current prep time per account (minutes)</label>
+          <span class="helper">Research + brief + outreach drafting. Typical: 60-120 min.</span>
+          <div class="slider-row">
+            <input type="range" id="prep-time" min="15" max="180" value="90" />
+            <span class="slider-val" id="prep-time-val">90 min</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ai-prep-time">AI-enabled prep time (minutes)</label>
+          <span class="helper">With proper Claude Project + research workflows. Typical: 10-20 min.</span>
+          <div class="slider-row">
+            <input type="range" id="ai-prep-time" min="5" max="60" value="12" />
+            <span class="slider-val" id="ai-prep-time-val">12 min</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="touches">Touches per account per quarter</label>
+          <span class="helper">Active outreach + research refreshes. Typical: 8-12.</span>
+          <div class="slider-row">
+            <input type="range" id="touches" min="3" max="20" value="10" />
+            <span class="slider-val" id="touches-val">10</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="hours">Active selling hours per rep per quarter</label>
+          <span class="helper">Excluding meetings, training, admin. Typical: 400-500 hrs.</span>
+          <div class="slider-row">
+            <input type="range" id="hours" min="200" max="600" step="25" value="450" />
+            <span class="slider-val" id="hours-val">450 hrs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-outputs">
+        <span class="lbl">Capacity comparison</span>
+
+        <div class="output-num" id="capacity-lift">5.0×</div>
+        <div class="output-label">AI capacity vs traditional (accounts per rep)</div>
+
+        <div class="output-row">
+          <span class="output-row-label">Traditional capacity per rep</span>
+          <span class="output-row-val" id="trad-per">30 acct</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">AI-enabled capacity per rep</span>
+          <span class="output-row-val" id="ai-per">150 acct</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Total addressable accounts (traditional)</span>
+          <span class="output-row-val" id="trad-total">180</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Total addressable accounts (AI)</span>
+          <span class="output-row-val" id="ai-total">900</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Reps needed to match current footprint</span>
+          <span class="output-row-val" id="reps-needed">1.2 reps</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Headcount savings if footprint fixed</span>
+          <span class="output-row-val" id="hc-savings">4.8 reps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How the math works</span>
+    <h2 class="h2">What's behind the calculation</h2>
+    <p class="body"><strong style="color:#F0FFF0;">Capacity per rep</strong> = (active selling hours × 60 min) ÷ (prep time per touch × touches per quarter). The math is intentionally conservative — it excludes the time freed up on follow-ups, proposal drafting, and call prep (all of which also compress with AI).</p>
+    <p class="body"><strong style="color:#F0FFF0;">The interpretation:</strong> AI doesn't typically mean "fire most of your reps." It means each remaining rep can credibly own a much larger book. Most healthy AI-native sales orgs use this capacity to <em>upgrade rep seniority and territory quality</em> rather than just shrink headcount. The headcount-savings number above is a theoretical maximum, not a recommendation.</p>
+    <p class="body">For the full sales-team rebuild playbook, see <a href="/how-to-build-an-ai-native-sales-team" style="color:#00C853;text-decoration:none;">how to build an AI-native sales team</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related calculators &amp; resources</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/pipeline-coverage-calculator" style="color:#00C853;text-decoration:none;">Pipeline coverage calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-roi-calculator" style="color:#00C853;text-decoration:none;">AI ROI calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-build-an-ai-native-sales-team" style="color:#00C853;text-decoration:none;">How to build an AI-native sales team →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-research-prospects" style="color:#00C853;text-decoration:none;">How to use AI to research prospects →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">12 Claude prompts for sales →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want to redesign your sales team capacity?</div>
+        <div class="cta-sub">Fractional CRO engagements drive exactly this rebuild over 6-12 months.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/fractional-cro" class="btn-p">See Fractional CRO →</a>
+        <a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+(function() {
+  var inputs = {reps:document.getElementById('reps'),prep:document.getElementById('prep-time'),aiPrep:document.getElementById('ai-prep-time'),touches:document.getElementById('touches'),hours:document.getElementById('hours')};
+  var labels = {reps:document.getElementById('reps-val'),prep:document.getElementById('prep-time-val'),aiPrep:document.getElementById('ai-prep-time-val'),touches:document.getElementById('touches-val'),hours:document.getElementById('hours-val')};
+  function recalc(){
+    var reps=parseInt(inputs.reps.value,10),prep=parseInt(inputs.prep.value,10),aiPrep=parseInt(inputs.aiPrep.value,10),touches=parseInt(inputs.touches.value,10),hours=parseInt(inputs.hours.value,10);
+    labels.reps.textContent=reps;labels.prep.textContent=prep+' min';labels.aiPrep.textContent=aiPrep+' min';labels.touches.textContent=touches;labels.hours.textContent=hours+' hrs';
+    var tradCap=Math.round((hours*60)/(prep*touches));
+    var aiCap=Math.round((hours*60)/(aiPrep*touches));
+    var lift=(aiCap/tradCap).toFixed(1);
+    var tradTotal=tradCap*reps;
+    var aiTotal=aiCap*reps;
+    var repsNeeded=(tradTotal/aiCap).toFixed(1);
+    var savings=(reps-tradTotal/aiCap).toFixed(1);
+    document.getElementById('capacity-lift').textContent=lift+'×';
+    document.getElementById('trad-per').textContent=tradCap+' acct';
+    document.getElementById('ai-per').textContent=aiCap+' acct';
+    document.getElementById('trad-total').textContent=tradTotal.toLocaleString();
+    document.getElementById('ai-total').textContent=aiTotal.toLocaleString();
+    document.getElementById('reps-needed').textContent=repsNeeded+' reps';
+    document.getElementById('hc-savings').textContent=savings+' reps';
+  }
+  Object.keys(inputs).forEach(function(k){inputs[k].addEventListener('input',recalc);});
+  recalc();
+})();
+</script>
+
+</body>
+</html>

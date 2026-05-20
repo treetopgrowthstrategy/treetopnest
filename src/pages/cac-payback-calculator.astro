@@ -1,0 +1,258 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>CAC Payback Calculator (B2B SaaS) | Treetop</title>
+  <meta name="description" content="A free calculator that estimates your CAC payback period in months and tells you whether your unit economics are healthy, at-risk, or broken." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/cac-payback-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/cac-payback-calculator" />
+  <meta property="og:title" content="CAC Payback Calculator" />
+  <meta property="og:description" content="B2B SaaS unit economics — 60-second CAC payback diagnostic." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CAC Payback Calculator" />
+  <meta name="twitter:description" content="Healthy / at-risk / broken — quick diagnostic." />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"CAC Payback Calculator","url":"https://treetopgrowthstrategy.com/cac-payback-calculator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+    .hero{min-height:45vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+    .calc{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+    @media(max-width:900px){.calc{grid-template-columns:1fr}section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+    .calc-inputs{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem}
+    .calc-outputs{background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25);padding:2rem;display:flex;flex-direction:column;justify-content:center}
+    .calc-outputs.warn{background:rgba(220,140,40,0.08);border-color:rgba(220,140,40,0.35)}
+    .calc-outputs.bad{background:rgba(220,80,80,0.08);border-color:rgba(220,80,80,0.4)}
+    .field{margin-bottom:1.25rem}
+    .field label{display:block;font-size:0.85rem;color:#C0D8C0;margin-bottom:0.4rem;font-weight:500}
+    .field .helper{display:block;font-size:0.75rem;color:#8FAF8F;margin-bottom:0.5rem;font-style:italic}
+    .field input[type="range"]{width:100%;accent-color:#00C853}
+    .slider-row{display:flex;align-items:center;gap:1rem}
+    .slider-row input[type="range"]{flex:1}
+    .slider-val{font-family:'Instrument Serif',serif;color:#00C853;font-size:1.1rem;min-width:90px;text-align:right}
+    .output-num{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.5rem);color:#00C853;font-style:italic;line-height:1;margin-bottom:0.4rem}
+    .output-num.warn{color:#e89940}.output-num.bad{color:#dc5050}
+    .output-label{font-size:0.85rem;color:#8FAF8F;margin-bottom:1.5rem}
+    .output-row{padding:0.85rem 0;border-bottom:1px solid #1A3A1A;display:flex;justify-content:space-between;align-items:baseline}
+    .output-row:last-child{border-bottom:none}
+    .output-row-label{font-size:0.85rem;color:#8FAF8F}
+    .output-row-val{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400}
+    .verdict{background:#0A1A0A;border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:780px}
+    .verdict.warn{border-color:#e89940}.verdict.bad{border-color:#dc5050}
+    .verdict h3{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.3rem;font-weight:400;margin-bottom:0.5rem}
+    .verdict p{color:#C0D8C0;font-size:0.92rem;line-height:1.7;margin:0}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/fractional-cro" class="nav-link">Fractional CRO</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Free calculator · 60 seconds</div>
+    <h1 class="hero-h">CAC payback <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
+    <p class="hero-sub">
+      How long does it take to recover your customer acquisition cost? This calculator gives you the payback in months and tells you whether your unit economics are healthy (under 18 months), at-risk (18-30), or broken (30+). Calibrated for B2B SaaS.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <div class="calc">
+      <div class="calc-inputs">
+        <span class="lbl">Your inputs</span>
+
+        <div class="field">
+          <label for="acv">Annual contract value ($)</label>
+          <span class="helper">Average yearly revenue per customer at signing</span>
+          <div class="slider-row">
+            <input type="range" id="acv" min="500" max="500000" step="500" value="24000" />
+            <span class="slider-val" id="acv-val">$24K</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="margin">Gross margin (%)</label>
+          <span class="helper">After cost of delivery. Typical SaaS: 70-85%. Services: 40-60%.</span>
+          <div class="slider-row">
+            <input type="range" id="margin" min="20" max="95" value="75" />
+            <span class="slider-val" id="margin-val">75%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cac">Blended CAC ($)</label>
+          <span class="helper">Total S&amp;M spend ÷ new customers in same period. Include rep comp + tools + paid + content.</span>
+          <div class="slider-row">
+            <input type="range" id="cac" min="500" max="200000" step="500" value="18000" />
+            <span class="slider-val" id="cac-val">$18K</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="expansion">Net revenue expansion year 1 (%)</label>
+          <span class="helper">Average ACV growth from existing customers in their first year. 0% = no expansion, 30% = strong NRR.</span>
+          <div class="slider-row">
+            <input type="range" id="expansion" min="-20" max="50" value="10" />
+            <span class="slider-val" id="expansion-val">+10%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-outputs" id="output-card">
+        <span class="lbl">Payback diagnosis</span>
+
+        <div class="output-num" id="payback-months">12 mo</div>
+        <div class="output-label">CAC payback period</div>
+
+        <div class="output-row">
+          <span class="output-row-label">Year-1 gross profit per customer</span>
+          <span class="output-row-val" id="gp-y1">$18.0K</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Monthly gross profit</span>
+          <span class="output-row-val" id="gp-month">$1.5K</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">CAC : ACV ratio</span>
+          <span class="output-row-val" id="cac-acv">0.75</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">Health tier</span>
+          <span class="output-row-val" id="tier">Healthy</span>
+        </div>
+        <div class="output-row">
+          <span class="output-row-label">3-year LTV (est.)</span>
+          <span class="output-row-val" id="ltv">$59K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict" id="verdict">
+      <h3 id="verdict-h">Healthy unit economics</h3>
+      <p id="verdict-p"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How the math works</span>
+    <h2 class="h2">What\'s behind the calculation</h2>
+    <p class="body"><strong style="color:#F0FFF0;">CAC payback (months)</strong> = CAC ÷ (ACV × gross margin ÷ 12 × (1 + expansion/2)). Expansion is halved because it ramps over the year rather than landing on day one.</p>
+    <p class="body"><strong style="color:#F0FFF0;">Health tiers</strong>: under 12 months = healthy, 12-18 = good, 18-24 = at-risk, 24+ = broken. These are SaaS benchmarks; services businesses can support longer payback if expansion or retention is strong.</p>
+    <p class="body"><strong style="color:#F0FFF0;">3-year LTV (estimated)</strong> assumes 90% gross retention and continued expansion. This is a rough estimate — your actual LTV depends on logo churn and net retention dynamics specific to your business.</p>
+    <p class="body">If your payback is in the at-risk or broken zone, the fix is rarely about cutting CAC — it\'s about ICP refinement, sales motion efficiency, or pricing. See <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">the AI-Native GTM Framework</a> for the operational view.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related calculators &amp; resources</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/pipeline-coverage-calculator" style="color:#00C853;text-decoration:none;">Pipeline coverage calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-roi-calculator" style="color:#00C853;text-decoration:none;">AI ROI calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fractional-cmo-roi-calculator" style="color:#00C853;text-decoration:none;">Fractional CMO ROI calculator →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/b2b-saas-go-to-market-strategy" style="color:#00C853;text-decoration:none;">B2B SaaS GTM strategy →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">CAC payback in the at-risk zone?</div>
+        <div class="cta-sub">A Fractional CRO engagement typically tightens payback by 30-50% within 6 months through ICP refinement and sales motion redesign.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/fractional-cro" class="btn-p">See Fractional CRO →</a>
+        <a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+(function() {
+  function fmt(n){if(n>=1000000)return'$'+(n/1000000).toFixed(2)+'M';if(n>=1000)return'$'+Math.round(n/1000)+'K';return'$'+Math.round(n);}
+  var i={acv:document.getElementById('acv'),margin:document.getElementById('margin'),cac:document.getElementById('cac'),expansion:document.getElementById('expansion')};
+  var l={acv:document.getElementById('acv-val'),margin:document.getElementById('margin-val'),cac:document.getElementById('cac-val'),expansion:document.getElementById('expansion-val')};
+  function recalc(){
+    var acv=parseInt(i.acv.value,10),margin=parseInt(i.margin.value,10)/100,cac=parseInt(i.cac.value,10),exp=parseInt(i.expansion.value,10)/100;
+    l.acv.textContent=fmt(acv);l.margin.textContent=(margin*100)+'%';l.cac.textContent=fmt(cac);l.expansion.textContent=(exp>=0?'+':'')+(exp*100)+'%';
+    var gpY1=acv*margin*(1+exp*0.5);
+    var gpMonth=gpY1/12;
+    var payback=cac/gpMonth;
+    var cacAcv=(cac/acv).toFixed(2);
+    var ltv=acv*margin*(1+exp)*0.9*3*(1-Math.pow(0.9,3))/0.3; // rough 3yr
+    var ltv3=acv*margin*3*(1+exp);
+    document.getElementById('payback-months').textContent=payback.toFixed(0)+' mo';
+    document.getElementById('gp-y1').textContent=fmt(gpY1);
+    document.getElementById('gp-month').textContent=fmt(gpMonth);
+    document.getElementById('cac-acv').textContent=cacAcv;
+    document.getElementById('ltv').textContent=fmt(ltv3);
+    var card=document.getElementById('output-card'),num=document.getElementById('payback-months'),verdict=document.getElementById('verdict'),tier=document.getElementById('tier');
+    card.classList.remove('warn','bad');num.classList.remove('warn','bad');verdict.classList.remove('warn','bad');
+    var status,tierText,vH,vP;
+    if(payback<=12){status='good';tierText='Healthy';vH='Healthy unit economics';vP='Payback of '+payback.toFixed(0)+' months is in the healthy zone for B2B SaaS. You can sustain this CAC and grow profitably. If you want to grow faster, you can afford to spend more on acquisition.';}
+    else if(payback<=18){status='good-edge';tierText='Good';vH='Good unit economics';vP='Payback of '+payback.toFixed(0)+' months is acceptable for most B2B SaaS. Not as comfortable as <12 months, but supports continued growth investment.';}
+    else if(payback<=24){status='warn';tierText='At-risk';card.classList.add('warn');num.classList.add('warn');verdict.classList.add('warn');vH='At-risk unit economics';vP='Payback of '+payback.toFixed(0)+' months is uncomfortable. You\'re still recovering CAC eventually, but the period creates cash-flow strain and limits growth investment. Most fixes here are upstream — ICP refinement, sales cycle compression, or pricing — not just \"reduce CAC.\"';}
+    else{status='bad';tierText='Broken';card.classList.add('bad');num.classList.add('bad');verdict.classList.add('bad');vH='Broken unit economics';vP='Payback of '+payback.toFixed(0)+' months is unsustainable. You\'re burning capital to grow without recovering it in a reasonable timeframe. The structural fix is almost certainly in ICP, pricing, or sales motion — not in cutting marketing spend (which usually makes things worse).';}
+    tier.textContent=tierText;
+    document.getElementById('verdict-h').textContent=vH;
+    document.getElementById('verdict-p').textContent=vP;
+  }
+  Object.keys(i).forEach(function(k){i[k].addEventListener('input',recalc);});
+  recalc();
+})();
+</script>
+
+</body>
+</html>

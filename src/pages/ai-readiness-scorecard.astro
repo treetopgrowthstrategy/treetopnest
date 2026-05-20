@@ -1,0 +1,349 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>AI Readiness Scorecard — 10-Question Assessment for B2B Teams | Treetop</title>
+  <meta name="description" content="A free 10-question interactive assessment that scores your organization on AI readiness across 5 dimensions. Get a tier (Laggard/Transitional/Competitive/Leader) and what to do next." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/ai-readiness-scorecard" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/ai-readiness-scorecard" />
+  <meta property="og:title" content="AI Readiness Scorecard" />
+  <meta property="og:description" content="10 questions. 5 dimensions. Tier + specific next steps." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Readiness Scorecard" />
+  <meta name="twitter:description" content="Where does your org rank on AI readiness?" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AI Readiness Scorecard","url":"https://treetopgrowthstrategy.com/ai-readiness-scorecard","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A;cursor:pointer;font-family:'DM Sans',sans-serif}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+    .quiz{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;margin-top:2rem}
+    .progress{display:flex;gap:5px;margin-bottom:2rem;flex-wrap:wrap}
+    .dot{width:8px;height:8px;border-radius:50%;background:#1A3A1A}
+    .dot.active{background:#00C853}.dot.done{background:rgba(0,200,83,0.6)}
+    .q{display:none}.q.active{display:block}
+    .q-dim{font-size:0.7rem;color:#00C853;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;font-weight:600}
+    .q h3{font-family:'Instrument Serif',serif;font-size:1.45rem;color:#F0FFF0;font-weight:400;margin-bottom:1.5rem;line-height:1.3}
+    .opts{display:flex;flex-direction:column;gap:0.65rem}
+    .opt{background:#050D05;border:1px solid #1A3A1A;padding:1rem 1.25rem;cursor:pointer;color:#C0D8C0;font-size:0.92rem;text-align:left;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.5;transition:all 0.15s}
+    .opt:hover{border-color:rgba(0,200,83,0.4);background:rgba(0,200,83,0.04)}
+    .nav-row{display:flex;justify-content:space-between;margin-top:2rem}
+    .result{display:none}.result.active{display:block}
+    .tier{font-family:'Instrument Serif',serif;font-size:2.5rem;color:#00C853;font-style:italic;font-weight:400;margin-bottom:0.5rem}
+    .tier-score{font-size:0.9rem;color:#8FAF8F;margin-bottom:1.5rem}
+    .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:0.75rem;margin:1.5rem 0}
+    @media(max-width:700px){.pillars{grid-template-columns:repeat(2,1fr)}}
+    .pillar{background:#050D05;border:1px solid #1A3A1A;padding:1rem;text-align:center}
+    .pillar-name{font-size:0.7rem;color:#8FAF8F;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem}
+    .pillar-bar{height:6px;background:#1A3A1A;border-radius:3px;overflow:hidden;margin-bottom:0.5rem}
+    .pillar-fill{height:100%;background:#00C853;transition:width 0.4s}
+    .pillar-score{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.1rem;font-weight:400}
+    .next-steps{background:rgba(0,200,83,0.04);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin-top:1.5rem}
+    .next-steps h4{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.1rem;font-weight:400;margin-bottom:0.5rem}
+    .next-steps p{color:#C0D8C0;font-size:0.9rem;line-height:1.7;margin-bottom:0.5rem}
+    .next-steps ul{margin:0.5rem 0 0 1.5rem;color:#C0D8C0;font-size:0.88rem;line-height:1.7}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}.quiz{padding:1.75rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/the-ai-native-gtm-framework" class="nav-link">Framework</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/services/ai-audit" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Book the AI Audit →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Interactive · 3 minutes · 10 questions</div>
+    <h1 class="hero-h">AI readiness <em style="color:#00C853;font-style:italic;">scorecard.</em></h1>
+    <p class="hero-sub">
+      A 10-question assessment that scores your organization on AI readiness across 5 dimensions: leadership, governance, tooling, workflows, and team capability. Get a tier (Laggard, Transitional, Competitive, or Leader) plus specific next steps based on your weakest pillar.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <div class="quiz">
+      <div class="progress" id="progress"></div>
+
+      <div class="q active" data-q="0" data-dim="Leadership">
+        <div class="q-dim">Dimension 1 · Leadership</div>
+        <h3>How would you describe your CEO's personal AI use?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Uses AI daily on real work, builds Custom GPTs/Claude Projects, has strong intuition for what AI can/can't do</button>
+          <button class="opt" data-score="3">Uses AI regularly, has personal workflows, comfortable evaluating AI strategy</button>
+          <button class="opt" data-score="2">Has tried AI, uses it occasionally, but not part of daily workflow</button>
+          <button class="opt" data-score="1">Knows AI matters but hasn't personally used it meaningfully</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="1" data-dim="Leadership">
+        <div class="q-dim">Dimension 1 · Leadership</div>
+        <h3>Is there a named executive accountable for AI strategy?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Yes — named exec with explicit mandate and budget authority</button>
+          <button class="opt" data-score="3">Yes informally — a senior person leads it, but accountability is shared</button>
+          <button class="opt" data-score="2">No formal owner, but the CEO or COO informally drives it</button>
+          <button class="opt" data-score="1">No one owns it — diffuse "everyone uses AI"</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="2" data-dim="Governance">
+        <div class="q-dim">Dimension 2 · Governance</div>
+        <h3>Do you have a written AI usage policy?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Yes — written, current, includes approved tools / prohibited uses / verification standards / review cadence</button>
+          <button class="opt" data-score="3">Yes — but it's basic or older than 6 months</button>
+          <button class="opt" data-score="2">We have informal norms but nothing written</button>
+          <button class="opt" data-score="1">No policy — anyone uses whatever AI they want</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="3" data-dim="Governance">
+        <div class="q-dim">Dimension 2 · Governance</div>
+        <h3>What's your stance on client confidential data + AI?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Written policy with clear permitted/prohibited categories; team has been trained on it</button>
+          <button class="opt" data-score="3">Verbal guidance from leadership; mostly followed but not formalized</button>
+          <button class="opt" data-score="2">We've talked about it but no clear stance yet</button>
+          <button class="opt" data-score="1">Haven't addressed this — assume people are figuring it out individually</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="4" data-dim="Tooling">
+        <div class="q-dim">Dimension 3 · Tooling</div>
+        <h3>Which AI tools is the team using for serious work?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Team-deployed Claude Team or ChatGPT Team/Enterprise + specialized tools (Perplexity, Gong, etc.)</button>
+          <button class="opt" data-score="3">Most people have Claude Pro or ChatGPT Plus individually; no team deployment yet</button>
+          <button class="opt" data-score="2">A few power users have AI subscriptions; most don't</button>
+          <button class="opt" data-score="1">No formal AI tools deployed; people might be using free tier ChatGPT</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="5" data-dim="Tooling">
+        <div class="q-dim">Dimension 3 · Tooling</div>
+        <h3>Are you using shared Claude Projects (or ChatGPT GPTs) with team-level system prompts?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Yes — multiple shared Projects with ICP, voice, and reference docs loaded</button>
+          <button class="opt" data-score="3">A few shared Projects exist but inconsistent adoption</button>
+          <button class="opt" data-score="2">Each person has their own personal Projects; nothing shared</button>
+          <button class="opt" data-score="1">We don't use Projects/GPTs at all yet</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="6" data-dim="Workflows">
+        <div class="q-dim">Dimension 4 · Workflows</div>
+        <h3>Where does AI currently show up in daily team workflows?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Integrated across 4+ functions (sales, marketing, ops, finance/HR) with measurable output changes</button>
+          <button class="opt" data-score="3">Strong adoption in 2-3 functions; spreading to others</button>
+          <button class="opt" data-score="2">Used informally for one-off tasks; no integrated workflows</button>
+          <button class="opt" data-score="1">Limited to occasional drafting assists by individuals</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="7" data-dim="Workflows">
+        <div class="q-dim">Dimension 4 · Workflows</div>
+        <h3>Can you point to specific measurable outcomes AI has produced in the last 90 days?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Yes — specific metrics: content output up X%, prep time down Y%, customer response time cut by Z hours</button>
+          <button class="opt" data-score="3">Anecdotally yes, but we don't have hard numbers</button>
+          <button class="opt" data-score="2">Hard to tell — the team likes the tools but output hasn't visibly changed</button>
+          <button class="opt" data-score="1">No measurable outcomes yet</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="8" data-dim="Team capability">
+        <div class="q-dim">Dimension 5 · Team capability</div>
+        <h3>Has your team gone through structured AI training (not just a single workshop)?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Yes — multi-session cohort training with role-specific content and ongoing reinforcement</button>
+          <button class="opt" data-score="3">Yes — at least one substantial workshop or session, plus internal docs</button>
+          <button class="opt" data-score="2">A one-time intro session or Loom video; mostly self-taught from there</button>
+          <button class="opt" data-score="1">No formal training — people figured it out themselves</button>
+        </div>
+      </div>
+
+      <div class="q" data-q="9" data-dim="Team capability">
+        <div class="q-dim">Dimension 5 · Team capability</div>
+        <h3>Is AI fluency a hiring criterion now?</h3>
+        <div class="opts">
+          <button class="opt" data-score="4">Yes — explicit in JDs, tested in interviews, weighted in decisions</button>
+          <button class="opt" data-score="3">Mentioned in JDs but not deeply evaluated in interviews</button>
+          <button class="opt" data-score="2">A nice-to-have we sometimes consider</button>
+          <button class="opt" data-score="1">Not part of our hiring process</button>
+        </div>
+      </div>
+
+      <div class="result" id="result">
+        <div class="tier" id="tier-name">Competitive</div>
+        <div class="tier-score" id="tier-score">Score: 30/40</div>
+        <p class="body" id="tier-desc"></p>
+
+        <div class="pillars" id="pillars"></div>
+
+        <div class="next-steps">
+          <h4 id="ns-h">What to do next</h4>
+          <p id="ns-intro"></p>
+          <ul id="ns-list"></ul>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <button class="btn-g" onclick="window.location.reload()">Retake</button>
+          <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        </div>
+      </div>
+
+      <div class="nav-row" id="navrow">
+        <button class="btn-g" id="back" style="visibility:hidden">← Back</button>
+        <span id="qcount" style="color:#8FAF8F;font-size:0.85rem;align-self:center;">Question 1 of 10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related resources</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/quiz" style="color:#00C853;text-decoration:none;">AI-GTM Gap Assessment (different — focused on GTM pillars) →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-Native GTM Framework →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-90-day-ai-rollout-playbook" style="color:#00C853;text-decoration:none;">The 90-day AI rollout playbook →</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-most-ai-implementations-fail" style="color:#00C853;text-decoration:none;">Why most AI implementations fail →</a></li>
+      <li style="padding:0.5rem 0;"><a href="/ai-policy-template-for-small-business" style="color:#00C853;text-decoration:none;">AI policy template →</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want a deeper written assessment?</div>
+        <div class="cta-sub">The $1,500 AI Audit produces a 12-25 page written diagnostic with specific roadmap. Most companies that take this quiz then book the Audit within 60 days.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/ai-audit" class="btn-p">Book the AI Audit →</a>
+        <a href="/quiz" class="btn-g">Take the GTM Gap Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+(function(){
+  var answers={};var current=0;var total=10;
+  var dimensions=['Leadership','Leadership','Governance','Governance','Tooling','Tooling','Workflows','Workflows','Team capability','Team capability'];
+
+  var prog=document.getElementById('progress');
+  for(var k=0;k<total;k++){var d=document.createElement('div');d.className='dot'+(k===0?' active':'');prog.appendChild(d);}
+
+  function showQ(idx){
+    document.querySelectorAll('.q').forEach(function(q){q.classList.remove('active');});
+    var q=document.querySelector('[data-q="'+idx+'"]');if(q)q.classList.add('active');
+    current=idx;
+    var dots=document.querySelectorAll('.dot');
+    dots.forEach(function(d,i){d.classList.remove('active','done');if(i<current)d.classList.add('done');if(i===current)d.classList.add('active');});
+    document.getElementById('qcount').textContent='Question '+(current+1)+' of '+total;
+    document.getElementById('back').style.visibility=current>0?'visible':'hidden';
+  }
+
+  document.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){
+    var qIdx=parseInt(b.closest('.q').dataset.q,10);
+    answers[qIdx]=parseInt(b.dataset.score,10);
+    if(qIdx<total-1)setTimeout(function(){showQ(qIdx+1);},150);else setTimeout(showResult,200);
+  });});
+
+  document.getElementById('back').addEventListener('click',function(){if(current>0)showQ(current-1);});
+
+  function showResult(){
+    document.querySelectorAll('.q').forEach(function(q){q.classList.remove('active');});
+    document.getElementById('navrow').style.display='none';
+    document.querySelectorAll('.dot').forEach(function(d){d.classList.add('done');d.classList.remove('active');});
+
+    var total=0;var pillarScores={Leadership:0,Governance:0,Tooling:0,Workflows:0,'Team capability':0};
+    for(var i=0;i<10;i++){total+=answers[i];pillarScores[dimensions[i]]+=answers[i];}
+
+    var pct=total/40;var tierName,tierDesc;
+    if(pct<0.4){tierName='Laggard';tierDesc='Your organization is in the bottom quartile of AI readiness. The good news: every move from here produces meaningful gains. The hard news: every quarter you wait, competitors who are further along pull further ahead. The right move is to start now, not to plan for next year.';}
+    else if(pct<0.65){tierName='Transitional';tierDesc='Your organization is mid-pack — beyond curiosity but not yet operating AI-natively. You have some tools and some workflows but lack the governance, training, and measurement to capture full value. The path forward is structural: fix what you have before adding more.';}
+    else if(pct<0.85){tierName='Competitive';tierDesc='Your organization is in the top third of AI readiness. You have working AI workflows, some measurement, and likely an internal owner. To pull ahead, focus on the lowest-scoring pillar below — that\'s where the next 20% of value lives.';}
+    else{tierName='Leader';tierDesc='Your organization is genuinely AI-native. You have leadership commitment, governance, tooling, workflows, and team capability operating in concert. The risk now isn\'t falling behind — it\'s complacency. Quarterly review of what\'s degrading is essential.';}
+
+    document.getElementById('tier-name').textContent=tierName;
+    document.getElementById('tier-score').textContent='Score: '+total+'/40';
+    document.getElementById('tier-desc').textContent=tierDesc;
+
+    // Pillars
+    var pHtml='';
+    Object.keys(pillarScores).forEach(function(p){
+      var s=pillarScores[p];var maxP=8;var fillPct=(s/maxP)*100;
+      pHtml+='<div class="pillar"><div class="pillar-name">'+p+'</div><div class="pillar-bar"><div class="pillar-fill" style="width:'+fillPct+'%"></div></div><div class="pillar-score">'+s+'/'+maxP+'</div></div>';
+    });
+    document.getElementById('pillars').innerHTML=pHtml;
+
+    // Next steps based on weakest pillar
+    var weakest=Object.keys(pillarScores).reduce(function(a,b){return pillarScores[a]<pillarScores[b]?a:b;});
+    var stepsMap={
+      'Leadership':['Have the CEO personally commit to 30 min/day of real AI use for 6 weeks','Name an executive accountable for AI strategy with budget authority','Add AI as a permanent agenda item in leadership and board meetings'],
+      'Governance':['Write a 1-page AI usage policy this week (start with our <a href="/ai-policy-template-for-small-business" style="color:#00C853;">template</a>)','Define what client data can and cannot be put through AI tools','Set a quarterly review cadence for the policy'],
+      'Tooling':['Standardize on a primary AI tool for the team (Claude Team or ChatGPT Team)','Build at least one shared Project loaded with your ICP, voice, and reference content','Add Perplexity Pro for the 3-5 people who do significant research'],
+      'Workflows':['Pick 1-2 high-frequency workflows in one function to deploy first','Build them as repeatable Claude Projects, not one-off chats','Define measurable outcomes (time saved, output increase) and measure them weekly'],
+      'Team capability':['Schedule a multi-session cohort training (not single workshop)','Identify 1-2 internal AI champions and resource them','Add AI fluency to your hiring rubric and interview process']
+    };
+
+    document.getElementById('ns-h').textContent='What to do next — focus on '+weakest;
+    document.getElementById('ns-intro').textContent='Your weakest pillar is '+weakest+' ('+pillarScores[weakest]+'/8). Three highest-leverage actions:';
+    var ul=document.getElementById('ns-list');ul.innerHTML='';
+    stepsMap[weakest].forEach(function(s){var li=document.createElement('li');li.innerHTML=s;ul.appendChild(li);});
+
+    document.getElementById('result').classList.add('active');
+  }
+})();
+</script>
+
+</body>
+</html>
