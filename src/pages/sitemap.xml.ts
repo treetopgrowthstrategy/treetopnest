@@ -342,6 +342,16 @@ const pages = [
   { url: '/b2b-content-marketing-playbook-2026', priority: '0.85', changefreq: 'monthly' },
   { url: '/b2b-sales-development-playbook-2026', priority: '0.85', changefreq: 'monthly' },
   { url: '/customer-success-ai-playbook', priority: '0.85', changefreq: 'monthly' },
+
+  // More tactical guides &amp; CEO-facing pages
+  { url: '/ai-implementation-mistakes-to-avoid', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-pitch-ai-to-your-board', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-much-should-i-budget-for-ai-in-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-rollout-checklist-for-ceos', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-run-an-ai-pilot', priority: '0.85', changefreq: 'monthly' },
+
+  // Content library hub
+  { url: '/content-library', priority: '0.92', changefreq: 'weekly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

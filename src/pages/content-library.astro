@@ -1,0 +1,171 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+
+const sections = [
+  {
+    label: 'Frameworks & templates',
+    desc: 'Free, opinionated frameworks for AI rollout, policy, and decision-making. Use directly or as a starting point.',
+    items: [
+      { href: '/ai-implementation-roadmap-template', title: 'AI implementation roadmap template', desc: '90-day plan with week-by-week milestones, owners, deliverables.' },
+      { href: '/ai-policy-template', title: 'AI policy template', desc: 'One-page AI usage policy framework for B2B companies.' },
+      { href: '/claude-project-template-library', title: 'Claude Project template library', desc: '12 starter Project templates: proposals, briefs, QBRs, follow-ups.' },
+      { href: '/ai-vendor-evaluation-framework', title: 'AI vendor evaluation framework', desc: '10-criteria scorecard for picking AI vendors.' },
+      { href: '/ai-rollout-90-day-plan', title: 'AI rollout 90-day plan', desc: 'Operational checklist for the operator running rollout.' },
+      { href: '/ai-build-vs-buy-framework', title: 'AI build vs buy framework', desc: 'Decision tree for build, buy, or hybrid AI approaches.' },
+      { href: '/ai-readiness-checklist', title: 'AI readiness checklist', desc: '25 organizational questions to answer before rollout.' },
+      { href: '/ai-use-case-prioritization-framework', title: 'AI use case prioritization framework', desc: '5-dim scoring to pick the right first 3 workflows.' },
+      { href: '/ai-rollout-checklist-for-ceos', title: 'AI rollout checklist for CEOs', desc: '15 boxes to check before greenlighting rollout.' },
+    ],
+  },
+  {
+    label: 'Long-form guides',
+    desc: 'Practical, opinionated guides for B2B operators rolling out AI or hiring fractional leaders.',
+    items: [
+      { href: '/how-to-roll-out-ai-to-a-50-person-company', title: 'How to roll out AI to a 50-person company', desc: 'The operator’s guide for $5M-$30M companies.' },
+      { href: '/how-to-choose-an-ai-strategy-consultant', title: 'How to choose an AI strategy consultant', desc: 'Buyer’s guide: filters, questions, red flags.' },
+      { href: '/how-to-measure-ai-roi', title: 'How to measure AI ROI', desc: 'Honest methodology with worked example.' },
+      { href: '/how-to-hire-a-fractional-cmo', title: 'How to hire a fractional CMO', desc: 'Step-by-step buyer’s guide with interview questions.' },
+      { href: '/how-to-write-a-claude-system-prompt', title: 'How to write a Claude system prompt', desc: 'Patterns that work in production B2B settings.' },
+      { href: '/how-to-train-your-team-on-claude', title: 'How to train your team on Claude', desc: 'Onboarding playbook that actually produces adoption.' },
+      { href: '/how-to-pitch-ai-to-your-board', title: 'How to pitch AI to your board', desc: '7-slide deck structure, common questions, what to cut.' },
+      { href: '/how-to-run-an-ai-pilot', title: 'How to run an AI pilot that doesn’t stall', desc: '4-week pilot structure with pre-committed decision rules.' },
+      { href: '/ai-implementation-mistakes-to-avoid', title: '12 AI implementation mistakes to avoid', desc: 'From real engagements: what to do instead.' },
+      { href: '/how-much-should-i-budget-for-ai-in-2026', title: 'How much should I budget for AI in 2026?', desc: 'Realistic budget guidance by company size.' },
+    ],
+  },
+  {
+    label: 'Playbooks',
+    desc: 'Function-specific and segment-specific playbooks for B2B teams in 2026.',
+    items: [
+      { href: '/b2b-saas-marketing-playbook-2026', title: 'B2B SaaS marketing playbook 2026', desc: 'Channel mix, team shape, AI integration, budget allocation.' },
+      { href: '/professional-services-ai-playbook', title: 'Professional services AI playbook', desc: 'Agencies, consultancies, firms: pricing, talent, margin.' },
+      { href: '/b2b-content-marketing-playbook-2026', title: 'B2B content marketing playbook 2026', desc: 'Post-AI-Overview strategy: POV, operator-led, LLM-O.' },
+      { href: '/b2b-sales-development-playbook-2026', title: 'B2B sales development playbook 2026', desc: 'Beyond cold spray: signal-driven warm motion.' },
+      { href: '/customer-success-ai-playbook', title: 'Customer success AI playbook', desc: 'Where to deploy AI in CS without losing the human touch.' },
+    ],
+  },
+  {
+    label: 'State of / trend reads',
+    desc: 'May 2026 point-in-time assessments of where AI in B2B is, what works, what doesn’t.',
+    items: [
+      { href: '/state-of-ai-in-b2b-sales-2026', title: 'State of AI in B2B sales 2026', desc: 'What’s working, what’s overhyped, what’s next.' },
+      { href: '/state-of-ai-in-b2b-marketing-2026', title: 'State of AI in B2B marketing 2026', desc: 'How marketing teams are actually getting leverage.' },
+      { href: '/state-of-fractional-executive-talent-2026', title: 'State of fractional executive talent 2026', desc: 'Supply, demand, pricing, quality variance.' },
+      { href: '/ai-trends-for-mid-market-companies-2026', title: 'AI trends for mid-market companies 2026', desc: '8 practical trends shaping $5M-$50M B2B.' },
+      { href: '/claude-vs-chatgpt-2026', title: 'Claude vs ChatGPT 2026', desc: 'Honest side-by-side current-version comparison.' },
+      { href: '/is-now-a-good-time-to-hire-a-fractional-cmo', title: 'Is now a good time to hire a fractional CMO?', desc: 'May 2026 market read.' },
+    ],
+  },
+  {
+    label: 'Buyer’s questions',
+    desc: 'Direct answers to the questions B2B buyers are actually asking right now.',
+    items: [
+      { href: '/is-claude-safe-for-business-data', title: 'Is Claude safe for business data?', desc: 'Yes, with the right tier and settings. Here’s what to verify.' },
+      { href: '/is-it-worth-hiring-an-ai-consultant', title: 'Is it worth hiring an AI consultant?', desc: 'Usually yes for tightly-scoped first engagements.' },
+      { href: '/do-i-need-an-ai-strategy', title: 'Do I need an AI strategy?', desc: 'You need a roadmap, not a strategy.' },
+      { href: '/is-ai-going-to-replace-my-marketing-team', title: 'Is AI going to replace my marketing team?', desc: 'No — but it changes what they do.' },
+      { href: '/how-long-does-it-take-to-implement-ai', title: 'How long does it take to implement AI?', desc: '2-12 weeks for the first workflow.' },
+      { href: '/what-are-the-risks-of-using-ai-in-business', title: 'What are the risks of using AI in business?', desc: 'Five risks worth taking seriously, with mitigations.' },
+      { href: '/when-should-i-hire-a-fractional-cmo', title: 'When should I hire a fractional CMO?', desc: 'Between $3M-$30M ARR with a team to lead.' },
+    ],
+  },
+  {
+    label: 'Case studies',
+    desc: 'Composite case studies showing real patterns from real B2B engagements.',
+    items: [
+      { href: '/case-studies', title: 'All composite case studies', desc: 'Browse 11 case studies across 11 industries by metric and outcome.' },
+    ],
+  },
+];
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Content Library | Treetop Growth Strategy</title>
+<meta name="description" content="The Treetop content library: frameworks, playbooks, long-form guides, state-of reads, buyer's questions, and composite case studies for B2B teams rolling out AI." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/content-library" />
+<meta property="og:type" content="website" /><meta property="og:url" content="https://treetopgrowthstrategy.com/content-library" />
+<meta property="og:title" content="Content Library | Treetop Growth Strategy" />
+<meta property="og:description" content="The Treetop content library: frameworks, playbooks, long-form guides, state-of reads, buyer's questions, and composite case studies for B2B teams rolling out AI." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Content Library | Treetop Growth Strategy" />
+<meta name="twitter:description" content="The Treetop content library: frameworks, playbooks, guides, and case studies for B2B teams rolling out AI." />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem;display:block}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1200px;margin:0 auto}
+.hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 3rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,4.6vw,3.6rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.sec-h{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.2rem);font-weight:400;color:#F0FFF0;margin-bottom:0.5rem}
+.sec-desc{color:#8FAF8F;font-size:0.95rem;line-height:1.65;margin-bottom:2rem;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem 1.75rem;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s, transform 0.15s}
+.card:hover{border-color:rgba(0,200,83,0.4);transform:translateY(-1px)}
+.card-h{font-family:'Instrument Serif',serif;font-size:1.1rem;color:#F0FFF0;line-height:1.3;margin-bottom:0.4rem}
+.card-d{font-size:0.86rem;color:#8FAF8F;line-height:1.55}
+.toc{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem 1.75rem;margin-top:2rem;max-width:760px}
+.toc-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem}
+.toc-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem}
+.toc-list a{color:#C0D8C0;text-decoration:none;font-size:0.92rem;display:flex;justify-content:space-between}
+.toc-list a:hover{color:#00C853}
+.toc-count{color:#4A6A4A;font-size:0.78rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/content-library" class="nav-link">Library</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Free for B2B operators</div>
+<h1 class="hero-h">The Treetop <em style="color:#00C853;font-style:italic;">content library.</em></h1>
+<p class="hero-sub">Frameworks, playbooks, long-form guides, state-of reads, buyer's questions, and composite case studies — all free, all opinionated, all aimed at B2B teams between $5M and $50M trying to actually deploy AI (not just talk about it).</p>
+<div class="toc">
+<div class="toc-l">In this library</div>
+<ul class="toc-list">
+{sections.map(s => (
+  <li><a href={`#${s.label.toLowerCase().replace(/[^a-z]/g, '-')}`}>{s.label}<span class="toc-count">{s.items.length}</span></a></li>
+))}
+</ul>
+</div>
+</div></div>
+
+{sections.map(s => (
+<section id={s.label.toLowerCase().replace(/[^a-z]/g, '-')}><div class="sec-inner">
+<span class="lbl">{s.label}</span>
+<h2 class="sec-h">{s.label}</h2>
+<p class="sec-desc">{s.desc}</p>
+<div class="grid">
+{s.items.map(item => (
+  <a class="card" href={item.href}>
+    <div class="card-h">{item.title}</div>
+    <div class="card-d">{item.desc}</div>
+  </a>
+))}
+</div>
+</div></section>
+))}
+
+<GlobalFooter />
+</body></html>
