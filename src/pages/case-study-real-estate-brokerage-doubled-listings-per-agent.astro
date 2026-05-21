@@ -1,0 +1,112 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How a 22-Agent Brokerage Doubled Listings per Agent with Claude | Treetop Case Study</title>
+<meta name="description" content="Composite case study: a residential brokerage rebuilt its agent workflow around Claude — listing copy, market reports, client communications. Agent capacity expanded 90%+ without quality loss." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/case-study-real-estate-brokerage-doubled-listings-per-agent" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/case-study-real-estate-brokerage-doubled-listings-per-agent" />
+<meta property="og:title" content="How a 22-Agent Brokerage Doubled Listings per Agent with Claude" /><meta property="og:description" content="Composite case study: a residential brokerage rebuilt its agent workflow around Claude — listing copy, market reports, client communications. Agent capacity expanded 90%+ without quality loss." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How a 22-Agent Brokerage Doubled Listings per Agent with Claude" />
+<meta name="twitter:description" content="Composite case study: a residential brokerage rebuilt its agent workflow around Claude — listing copy, market reports, client communications. Agent capacity expanded 90%+ without quality loss." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How a 22-Agent Brokerage Doubled Listings per Agent with Claude',"description":'Composite case study: a residential brokerage rebuilt its agent workflow around Claude — listing copy, market reports, client communications. Agent capacity expanded 90%+ without quality loss.',"url":"https://treetopgrowthstrategy.com/case-study-real-estate-brokerage-doubled-listings-per-agent","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:55vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.headline-metric{background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25);padding:2rem;margin-top:2rem;display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap}
+.metric-num{font-family:'Instrument Serif',serif;font-size:clamp(3rem,6vw,5rem);color:#00C853;font-style:italic;line-height:1}
+.metric-label{font-size:1rem;color:#C0D8C0;max-width:400px;line-height:1.5}
+.disclosure{background:#0A1A0A;border-left:3px solid #4A6A4A;padding:1rem 1.25rem;margin-top:1.5rem;max-width:760px}
+.disclosure p{color:#8FAF8F;font-size:0.85rem;line-height:1.65;margin:0;font-style:italic}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Composite case study</div>
+<h1 class="hero-h">How a 22-agent brokerage <em style="color:#00C853;font-style:italic;">doubled active listings per agent.</em></h1>
+<p class="hero-sub">A 22-agent residential brokerage in a competitive metro market. Top producers were maxed out at 8-12 active listings; mid-tier agents stuck at 3-5. The bottleneck was always the same — listing copy, market reports, and client follow-through. After a Treetop Implementation engagement, those constraints dissolved. Here is what happened.</p>
+<div class="headline-metric">
+<div class="metric-num">2.1x</div>
+<div class="metric-label">active listings per agent, sustained across two quarters</div>
+</div>
+<div class="disclosure"><p>Composite case study: a synthesis of patterns we have seen repeatedly across similar engagements. Specific names, numbers, and details are illustrative; the patterns and outcomes reflect real client results.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The starting situation</span><h2 class="h2">Before</h2>
+    <p class="body"><strong>Brokerage:</strong> 22 agents, ~\$1.8B annual transaction volume, residential focus.</p>
+    <p class="body"><strong>Volume:</strong> ~340 listings/year aggregate; average price point \$650K.</p>
+    <p class="body"><strong>Pain:</strong> Agents spent 60-90 minutes per listing on copy + photo arrangement + MLS entry. Market reports for past clients shipped maybe twice a year instead of monthly. Buyer communications fell off after first showing.</p>
+    <p class="body"><strong>Existing AI usage:</strong> Two top producers used ChatGPT informally for listing descriptions. No structured workflow; no shared knowledge; uneven quality across the brokerage.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The intervention</span><h2 class="h2">What Treetop built</h2>
+    <p class="body"><strong>Week 1:</strong> Audit of last 90 days of listings, mapped agent activities, identified the 5 workflows where AI would compound.</p>
+    <p class="body"><strong>Week 2:</strong> Built a Listing Description Project loaded with: the brokerage's strongest past listings, the market's voice (high-end vs starter, different neighborhoods), and a forbidden-cliché list. Plus a Market Report Project loaded with the firm's house format and example reports.</p>
+    <p class="body"><strong>Week 3:</strong> Built a Buyer Communications Project for personalized follow-through after showings. Trained 8 agents in week 3, the remaining 14 in week 4.</p>
+    <p class="body"><strong>Week 4:</strong> Shipped 12 real listings through the new workflow. Refined Projects based on what worked and what produced agent or broker pushback.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What changed</span><h2 class="h2">The new workflow</h2>
+    <p class="body"><strong>Old workflow:</strong> Agent gets new listing &rarr; writes copy from scratch (60-90 min) &rarr; arranges photos &rarr; enters MLS &rarr; drafts neighborhood mailer &rarr; ships. 4-6 hours per listing.</p>
+    <p class="body"><strong>New workflow:</strong> Agent fills a quick brief (10 min) &rarr; Listing Project produces 3 description variants &rarr; agent picks and edits (15 min) &rarr; MLS entry &rarr; Market Project produces mailer (10 min) &rarr; ships. 1.5-2 hours per listing.</p>
+    <p class="body"><strong>Quality:</strong> Days-on-market metric held flat; agent and broker reviews show listing copy quality unchanged or improved. The cliché-banning constraint actually raised the floor.</p>
+    <p class="body"><strong>Buyer communications:</strong> Post-showing personalized follow-up emails went from 'sometimes' to 'every showing.' Buyer engagement up; second-showing conversion rose 15%.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The lasting changes</span><h2 class="h2">6 months later</h2>
+    <p class="body"><strong>Listings per agent:</strong> Active listings per agent went from 3-5 (mid-tier) and 8-12 (top) to 6-10 (mid-tier) and 18-22 (top). Roughly 2.1x across the brokerage.</p>
+    <p class="body"><strong>Past-client engagement:</strong> Quarterly market reports went from twice yearly to monthly. Repeat &amp; referral business up 22% YoY.</p>
+    <p class="body"><strong>Brokerage revenue:</strong> Total transaction volume up 35% YoY without adding agents. Per-agent productivity up 90%.</p>
+    <p class="body"><strong>Investment:</strong> \$6,500 Implementation + \$300/month Claude Team for 22 seats. Total first-year cost: ~\$10,500. Estimated incremental revenue: \$8M+ in transaction volume; ~\$240K in incremental brokerage commission.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related case studies &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/real-estate-ai-playbook-2026" style="color:#00C853;text-decoration:none;">Real estate AI playbook 2026 &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-real-estate-brokerages" style="color:#00C853;text-decoration:none;">Claude for real estate brokerages &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/case-study-dtc-brand-cut-cac-28-percent" style="color:#00C853;text-decoration:none;">Case study: DTC brand cut CAC 28% &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want similar outcomes for your business?</div><div class="cta-sub">Start with the $1,500 AI Audit. Written roadmap, no commitment to longer engagement.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
