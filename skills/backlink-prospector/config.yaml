@@ -1,0 +1,168 @@
+# Treetop Growth Strategy — backlink prospector config
+# Loaded by SKILL.md at the start of every run. Update this file as positioning evolves.
+
+company:
+  name: Treetop Growth Strategy
+  url: https://treetopgrowthstrategy.com
+  founded: 2023
+  location: Austin, TX
+  one_liner: "AI-native go-to-market consultancy for B2B mid-market ($5M-$50M)."
+  positioning: |
+    Treetop helps B2B mid-market companies between $5M and $50M ARR roll out Claude
+    and AI productivity tools, hire fractional CMOs and CROs, and rebuild their GTM
+    motion for the AI era. Opinionated, builder-profile, execution-focused — not a
+    deck-and-leave consultancy.
+  services:
+    - AI Audit ($1,500 fixed fee, 5-day written roadmap)
+    - AI Implementation (fixed-fee, 4-8 weeks, 1-3 production workflows)
+    - Monthly Retainer (ongoing partnership after implementation)
+    - Fractional CMO ($8K-$25K/month, B2B mid-market)
+    - Fractional CRO (cross-functional revenue leadership)
+    - Claude Training (workflow-specific team training)
+
+founder:
+  name: Bill Colbert
+  title: Founder, Treetop Growth Strategy
+  email: bill@treetopgrowthstrategy.com
+  linkedin: https://linkedin.com/in/williamcolbert
+  calendar: https://calendar.app.google/GS5H5y8U3PrN8u4A8
+  bio_short: |
+    Bill Colbert founded Treetop in 2023 after 15+ years building and scaling B2B
+    revenue functions. He works with mid-market CEOs on AI rollout, fractional
+    marketing and revenue leadership, and the GTM systems that compound.
+  expertise:
+    - AI implementation at B2B mid-market scale
+    - Fractional CMO / CRO work
+    - Claude Projects and prompt engineering in production
+    - B2B SaaS marketing motions
+    - Revenue operations for $5M-$50M companies
+    - AI rollout governance and policy
+    - AI vendor evaluation
+  topics_to_pitch:
+    - "How to roll out AI at a 30-person company without committee paralysis"
+    - "What's actually working in B2B sales AI in 2026 (and what isn't)"
+    - "Why most AI implementations stall in the first 30 days"
+    - "The hidden cost of fractional CMO turnover"
+    - "AI policy for mid-market: the one-page version"
+    - "Claude vs ChatGPT for business in 2026"
+    - "How to measure AI ROI honestly"
+
+target_audience:
+  primary: B2B CEOs and founders at $5M-$50M ARR
+  secondary: COOs, CMOs, fractional executive talent
+  industries:
+    - B2B SaaS
+    - Professional services (agencies, consultancies, law, accounting)
+    - Healthcare (private practices, ambulatory)
+    - Financial services (advisory, wealth, brokerage)
+    - Manufacturing (mid-market industrials)
+    - Real estate (brokerages, property management)
+
+tone:
+  voice: |
+    Direct. Evidence-forward. Not consultant-speak. Specific over generic.
+    Opinionated where opinion is earned; humble where it isn't. Confident without
+    bravado. Acknowledges difficulty and tradeoffs rather than hiding them.
+  forbidden_phrases:
+    - "thrilled to"
+    - "pleased to announce"
+    - "industry-leading"
+    - "cutting-edge"
+    - "revolutionize"
+    - "game-changing"
+    - "best-in-class"
+    - "world-class"
+    - "synergies"
+    - "thought leader"
+    - "low-hanging fruit"
+  prefers:
+    - active voice
+    - short declarative sentences
+    - specific numbers over vague claims
+    - "I" and "we" over passive third-person
+    - calling out when something doesn't apply or won't work
+
+linkable_assets:
+  # High-value content the skill should preferentially pitch as links in outreach.
+  # Rotate weekly which 3-5 the skill prioritizes for broken-link reclamation and resource-page outreach.
+  flagship:
+    - url: https://treetopgrowthstrategy.com/ai-implementation-roadmap-template
+      anchor: "AI implementation roadmap template"
+      type: framework
+    - url: https://treetopgrowthstrategy.com/ai-policy-template
+      anchor: "AI policy template"
+      type: template
+    - url: https://treetopgrowthstrategy.com/claude-project-template-library
+      anchor: "Claude Project template library"
+      type: resource
+    - url: https://treetopgrowthstrategy.com/ai-vendor-evaluation-framework
+      anchor: "AI vendor evaluation framework"
+      type: framework
+    - url: https://treetopgrowthstrategy.com/ai-readiness-checklist
+      anchor: "AI readiness checklist"
+      type: assessment
+    - url: https://treetopgrowthstrategy.com/state-of-ai-in-b2b-sales-2026
+      anchor: "State of AI in B2B sales 2026"
+      type: trend-report
+    - url: https://treetopgrowthstrategy.com/state-of-ai-in-b2b-marketing-2026
+      anchor: "State of AI in B2B marketing 2026"
+      type: trend-report
+    - url: https://treetopgrowthstrategy.com/claude-vs-chatgpt-2026
+      anchor: "Claude vs ChatGPT 2026 comparison"
+      type: comparison
+    - url: https://treetopgrowthstrategy.com/case-studies
+      anchor: "Treetop composite case studies"
+      type: case-study-hub
+    - url: https://treetopgrowthstrategy.com/content-library
+      anchor: "Treetop content library"
+      type: hub
+  per_vertical:
+    healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
+    legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
+    manufacturing: https://treetopgrowthstrategy.com/manufacturing-ai-playbook-2026
+    finserv: https://treetopgrowthstrategy.com/financial-services-ai-playbook-2026
+    ecommerce: https://treetopgrowthstrategy.com/ecommerce-ai-playbook-2026
+    nonprofit: https://treetopgrowthstrategy.com/nonprofit-ai-playbook-2026
+    realestate: https://treetopgrowthstrategy.com/real-estate-ai-playbook-2026
+    saas: https://treetopgrowthstrategy.com/b2b-saas-marketing-playbook-2026
+
+competitors:
+  # Used for backlink-gap analysis. Don't outreach to them; reverse-engineer where they get links.
+  - name: SureSwift Capital
+    url: https://sureswiftcapital.com
+    angle: "AI implementation for SaaS portfolio companies"
+  - name: First Principles Advisory
+    url: https://firstprinciples.io
+    angle: "Fractional executive marketplace"
+  - name: Pavilion CMO School
+    url: https://joinpavilion.com
+    angle: "Fractional CMO talent community"
+  - name: Marketing Architects
+    url: https://www.marketingarchitects.com
+    angle: "Fractional/embedded marketing services"
+
+outreach_rules:
+  always:
+    - Reference a specific detail from the target page or query (proves you actually read it)
+    - Lead with what's useful to them, not what's useful to us
+    - Include one specific Treetop URL that's directly relevant
+    - Keep under 200 words for cold outreach; under 80 for comments
+    - End with a low-friction next step (no "schedule a call" in first contact)
+    - Sign with Bill's name and one-line bio
+  never:
+    - Use templated openers like "I came across your blog"
+    - Pitch services unprompted in first message
+    - Claim partnerships or client wins we don't have
+    - Promise specific outcomes ("guaranteed 30% increase")
+    - Send to abuse@ or general info@ when a named editor is findable
+    - Send the same outreach twice (the skill's job is to track this)
+
+constraints:
+  monthly_outreach_budget: 30
+  # Soft cap on volume per month. Quality > quantity. If we hit 30 sent outreaches in a month,
+  # the next digest should focus on optimizing what's already in flight, not more cold outreach.
+  domains_to_skip:
+    - "*.medium.com"
+    - "*.substack.com"
+    - "linkedin.com/pulse/*"
+    # These platforms don't pass link equity meaningfully; only worth engaging for brand reasons.
