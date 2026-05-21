@@ -1,0 +1,112 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How a Regional Nonprofit Raised 45% More with AI-Powered Donor Comms | Treetop Case Study</title>
+<meta name="description" content="Composite case study: a regional nonprofit rebuilt its donor communication and grant-writing engine with Claude — personalizing outreach at scale and shipping 3x as many grant applications. The setup, the workflow, the lasting changes." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/case-study-nonprofit-raised-45-percent-more" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/case-study-nonprofit-raised-45-percent-more" />
+<meta property="og:title" content="How a Regional Nonprofit Raised 45% More with AI-Powered Donor Comms" /><meta property="og:description" content="Composite case study: a regional nonprofit rebuilt its donor communication and grant-writing engine with Claude — personalizing outreach at scale and shipping 3x as many grant applications. The setup, the workflow, the lasting changes." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How a Regional Nonprofit Raised 45% More with AI-Powered Donor Comms" />
+<meta name="twitter:description" content="Composite case study: a regional nonprofit rebuilt its donor communication and grant-writing engine with Claude — personalizing outreach at scale and shipping 3x as many grant applications. The setup, the workflow, the lasting changes." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How a Regional Nonprofit Raised 45% More with AI-Powered Donor Comms',"description":'Composite case study: a regional nonprofit rebuilt its donor communication and grant-writing engine with Claude — personalizing outreach at scale and shipping 3x as many grant applications. The setup, the workflow, the lasting changes.',"url":"https://treetopgrowthstrategy.com/case-study-nonprofit-raised-45-percent-more","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:55vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.headline-metric{background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25);padding:2rem;margin-top:2rem;display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap}
+.metric-num{font-family:'Instrument Serif',serif;font-size:clamp(3rem,6vw,5rem);color:#00C853;font-style:italic;line-height:1}
+.metric-label{font-size:1rem;color:#C0D8C0;max-width:400px;line-height:1.5}
+.disclosure{background:#0A1A0A;border-left:3px solid #4A6A4A;padding:1rem 1.25rem;margin-top:1.5rem;max-width:760px}
+.disclosure p{color:#8FAF8F;font-size:0.85rem;line-height:1.65;margin:0;font-style:italic}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/results" class="nav-link">Results</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Composite case study</div>
+<h1 class="hero-h">How a regional nonprofit <em style="color:#00C853;font-style:italic;">raised 45% more in one year.</em></h1>
+<p class="hero-sub">A regional nonprofit with $2.8M in annual revenue and 18 staff, 2 of whom were full-time on development. Personalized donor communication was constrained by writing capacity. Grant applications got punted because they were too time-intensive. After a Treetop Implementation engagement, the development team rebuilt their workflow. Here is what happened.</p>
+<div class="headline-metric">
+<div class="metric-num">+45%</div>
+<div class="metric-label">year-over-year fundraising growth, with no additional development staff</div>
+</div>
+<div class="disclosure"><p>Composite case study: a synthesis of patterns we have seen repeatedly across similar engagements. Specific names, numbers, and details are illustrative; the patterns and outcomes reflect real client results.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The starting situation</span><h2 class="h2">Before</h2>
+    <p class="body"><strong>Organization:</strong> Regional human-services nonprofit, $2.8M revenue, 18 staff, 2 on development.</p>
+    <p class="body"><strong>Volume:</strong> ~400 donors, ~6 grant applications per year, ~4 major appeals annually.</p>
+    <p class="body"><strong>Pain:</strong> Personalized donor stewardship was limited to the top 25 donors. Mid-major donors (\$1K-$10K range) got template emails. Grant applications consumed 30-40 hours each.</p>
+    <p class="body"><strong>Existing AI usage:</strong> Executive director used ChatGPT occasionally for boilerplate. No structured workflow.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The intervention</span><h2 class="h2">What Treetop built</h2>
+    <p class="body"><strong>Week 1:</strong> Audit of donor segmentation, last 3 years of grant applications, and stewardship workflows. Identified the gap between top-tier and mid-major treatment.</p>
+    <p class="body"><strong>Week 2:</strong> Built a Donor Communications Project loaded with: organizational case for support, program impact data, donor history templates, brand voice.</p>
+    <p class="body"><strong>Week 3:</strong> Built a Grant Writing Project loaded with: previously-funded applications, program logic models, evaluation data, common funder language.</p>
+    <p class="body"><strong>Week 4:</strong> Trained both development staff plus the ED on the workflows. Built a system for mid-major personalization that was previously impossible.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What changed</span><h2 class="h2">The new workflow</h2>
+    <p class="body"><strong>Old workflow:</strong> Top 25 donors got fully personalized notes from ED (4 hrs/month). Mid-major donors got templated emails. Grants written one at a time, often missing deadlines.</p>
+    <p class="body"><strong>New workflow:</strong> Top 25 still get ED-personal notes. Mid-major donors now get truly personalized stewardship via Donor Project (research + draft &rarr; ED 5-min review). Grants drafted in 8-10 hours using Grant Project.</p>
+    <p class="body"><strong>Volume:</strong> Personalized mid-major touches went from 0 to ~300/year. Grant applications shipped went from 6 to 19.</p>
+    <p class="body"><strong>Quality:</strong> Donor response rates on mid-major comms doubled. Grant win rate held steady at ~40%.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The lasting changes</span><h2 class="h2">6 months later</h2>
+    <p class="body"><strong>Fundraising:</strong> Total annual fundraising grew 45% year over year — $850K incremental revenue.</p>
+    <p class="body"><strong>Grant pipeline:</strong> Tripled grant applications produced 8 new funded grants worth $480K combined.</p>
+    <p class="body"><strong>Team capacity:</strong> Development staff reported moving from reactive to strategic — time freed for relationship building.</p>
+    <p class="body"><strong>Investment:</strong> $3,500 Implementation + $200/month Claude Team for 5 seats. Total first-year cost: ~$6,000. Estimated value: $850,000 in incremental fundraising.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related case studies &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-nonprofits" style="color:#00C853;text-decoration:none;">Claude for nonprofits &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/case-study-marketing-agency-2x-content-output" style="color:#00C853;text-decoration:none;">How a B2B agency 2x'd content output &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-fundraising" style="color:#00C853;text-decoration:none;">How to use Claude for fundraising &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want similar outcomes for your business?</div><div class="cta-sub">Start with the $1,500 AI Audit. Written roadmap, no commitment to longer engagement.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

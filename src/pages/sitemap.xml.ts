@@ -293,6 +293,12 @@ const pages = [
   { url: '/case-study-consulting-firm-rebuilt-sales-motion', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-study-fractional-cmo-took-startup-from-4m-to-9m', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-study-finance-firm-deployed-claude-across-four-functions', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-medical-practice-recovered-12-hours-weekly', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-dtc-brand-cut-cac-28-percent', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-law-firm-doubled-contract-throughput', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-manufacturer-closed-40-percent-faster', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-nonprofit-raised-45-percent-more', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-architecture-firm-cut-proposal-time-60-percent', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

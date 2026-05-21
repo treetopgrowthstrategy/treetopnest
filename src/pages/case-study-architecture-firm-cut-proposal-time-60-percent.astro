@@ -1,0 +1,112 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How a 30-Person Architecture Firm Cut Proposal Time 60% with Claude | Treetop Case Study</title>
+<meta name="description" content="Composite case study: a mid-sized architecture firm rebuilt its RFP response workflow with Claude — turning 3-week proposal sprints into 5-day responses without sacrificing quality. The setup, the workflow, the lasting changes." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/case-study-architecture-firm-cut-proposal-time-60-percent" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/case-study-architecture-firm-cut-proposal-time-60-percent" />
+<meta property="og:title" content="How a 30-Person Architecture Firm Cut Proposal Time 60% with Claude" /><meta property="og:description" content="Composite case study: a mid-sized architecture firm rebuilt its RFP response workflow with Claude — turning 3-week proposal sprints into 5-day responses without sacrificing quality. The setup, the workflow, the lasting changes." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How a 30-Person Architecture Firm Cut Proposal Time 60% with Claude" />
+<meta name="twitter:description" content="Composite case study: a mid-sized architecture firm rebuilt its RFP response workflow with Claude — turning 3-week proposal sprints into 5-day responses without sacrificing quality. The setup, the workflow, the lasting changes." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How a 30-Person Architecture Firm Cut Proposal Time 60% with Claude',"description":'Composite case study: a mid-sized architecture firm rebuilt its RFP response workflow with Claude — turning 3-week proposal sprints into 5-day responses without sacrificing quality. The setup, the workflow, the lasting changes.',"url":"https://treetopgrowthstrategy.com/case-study-architecture-firm-cut-proposal-time-60-percent","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:55vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.headline-metric{background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25);padding:2rem;margin-top:2rem;display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap}
+.metric-num{font-family:'Instrument Serif',serif;font-size:clamp(3rem,6vw,5rem);color:#00C853;font-style:italic;line-height:1}
+.metric-label{font-size:1rem;color:#C0D8C0;max-width:400px;line-height:1.5}
+.disclosure{background:#0A1A0A;border-left:3px solid #4A6A4A;padding:1rem 1.25rem;margin-top:1.5rem;max-width:760px}
+.disclosure p{color:#8FAF8F;font-size:0.85rem;line-height:1.65;margin:0;font-style:italic}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/results" class="nav-link">Results</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Composite case study</div>
+<h1 class="hero-h">How a 30-person architecture firm <em style="color:#00C853;font-style:italic;">cut proposal time 60%.</em></h1>
+<p class="hero-sub">A 30-person architecture firm with strong reputation in healthcare and education projects. Proposals were taking 80-120 hours of senior staff time per submission. The firm was selective about which RFPs to pursue purely because of capacity. After a Treetop Implementation engagement, that constraint dissolved. Here is what happened.</p>
+<div class="headline-metric">
+<div class="metric-num">60%</div>
+<div class="metric-label">reduction in average proposal turnaround time, with win rate held steady</div>
+</div>
+<div class="disclosure"><p>Composite case study: a synthesis of patterns we have seen repeatedly across similar engagements. Specific names, numbers, and details are illustrative; the patterns and outcomes reflect real client results.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The starting situation</span><h2 class="h2">Before</h2>
+    <p class="body"><strong>Firm:</strong> 30-person architecture firm, $9M revenue, mixed healthcare and education projects.</p>
+    <p class="body"><strong>Volume:</strong> Responded to ~12 RFPs per year. Project sizes $500K-$8M in fees.</p>
+    <p class="body"><strong>Pain:</strong> Each RFP response took 80-120 hours of senior architect time over 2-3 weeks. The firm passed on at least 8 promising RFPs annually due to capacity.</p>
+    <p class="body"><strong>Existing AI usage:</strong> Marketing coordinator used ChatGPT for first-draft narrative. No structured workflow, no firm-wide adoption.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The intervention</span><h2 class="h2">What Treetop built</h2>
+    <p class="body"><strong>Week 1:</strong> Audit of last 2 years of RFP responses — wins, losses, and themes. Cataloged the standard content blocks that recurred across submissions.</p>
+    <p class="body"><strong>Week 2:</strong> Built an RFP Response Project loaded with: firm history and qualifications, all past project descriptions with photos and metrics, signature design philosophy, principal bios, references.</p>
+    <p class="body"><strong>Week 3:</strong> Built a Project Description Project to generate consistent, well-written project sheets in firm voice from raw project data.</p>
+    <p class="body"><strong>Week 4:</strong> Trained the principal, marketing coordinator, and 2 senior architects on the workflow. Built a checklist for the parts that still required senior thinking — design narrative, fee strategy, team selection.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What changed</span><h2 class="h2">The new workflow</h2>
+    <p class="body"><strong>Old workflow:</strong> Marketing coordinator pulls past content &rarr; senior architects write design narrative &rarr; principal reviews everything &rarr; multiple revision rounds. 80-120 hrs over 2-3 weeks.</p>
+    <p class="body"><strong>New workflow:</strong> Marketing coordinator runs RFP through RFP Project for first full draft (3 hrs) &rarr; senior architects focus only on the design narrative and team-fit sections (15 hrs) &rarr; principal reviews (5 hrs) &rarr; one revision round. 30-40 hrs over 5 days.</p>
+    <p class="body"><strong>Quality:</strong> Win rate on competitive RFPs held steady at 32%. The team has not noticed a quality drop in submissions; clients have not commented.</p>
+    <p class="body"><strong>Submission volume:</strong> Firm went from responding to 12 RFPs/year to 22 in the first year post-engagement.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The lasting changes</span><h2 class="h2">6 months later</h2>
+    <p class="body"><strong>Pipeline:</strong> Doubled submission volume produced 4 incremental wins worth $3.2M in fees over 18 months.</p>
+    <p class="body"><strong>Principal time:</strong> Principal recovered ~30 hours per month previously spent on proposal editing.</p>
+    <p class="body"><strong>Senior architect satisfaction:</strong> Senior architects reported relief — they now spent proposal time on the parts that required their judgment, not on assembling boilerplate.</p>
+    <p class="body"><strong>Investment:</strong> $6,500 Implementation + $400/month Claude Team for 10 seats. Total first-year cost: ~$11,500. Estimated value: $3.2M in incremental fees.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related case studies &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-architecture" style="color:#00C853;text-decoration:none;">Claude for architecture &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/case-study-consulting-firm-rebuilt-sales-motion" style="color:#00C853;text-decoration:none;">How a consulting firm rebuilt sales &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-write-proposals" style="color:#00C853;text-decoration:none;">How to use AI to write proposals &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want similar outcomes for your business?</div><div class="cta-sub">Start with the $1,500 AI Audit. Written roadmap, no commitment to longer engagement.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
