@@ -1,0 +1,98 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI for VPs of Engineering — Tactical 2026 Playbook | Treetop</title>
+<meta name="description" content="Practical playbook for VPs of Engineering — where to deploy AI in the engineering workflow, governance considerations, what to measure." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-for-vp-engineering" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-for-vp-engineering" />
+<meta property="og:title" content="AI for VPs of Engineering — Tactical 2026 Playbook" /><meta property="og:description" content="Practical playbook for VPs of Engineering — where to deploy AI in the engineering workflow, governance considerations, what to measure." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="AI for VPs of Engineering — Tactical 2026 Playbook" />
+<meta name="twitter:description" content="Practical playbook for VPs of Engineering — where to deploy AI in the engineering workflow, governance considerations, what to measure." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'AI for VPs of Engineering — Tactical 2026 Playbook',"description":'Practical playbook for VPs of Engineering — where to deploy AI in the engineering workflow, governance considerations, what to measure.',"url":"https://treetopgrowthstrategy.com/ai-for-vp-engineering","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>For executives</div>
+<h1 class="hero-h">AI for VPs of Engineering: <em style="color:#00C853;font-style:italic;">the tactical playbook.</em></h1>
+<p class="hero-sub">Engineering is the function with the highest AI adoption rate and the most governance complexity. As VP Engineering, you are managing both the productivity gains and the new risk categories. Here is the tactical playbook.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The 5 deployments</span><h2 class="h2">Where AI lands in engineering practice</h2>
+    <p class="body"><strong>1. Code generation and editing.</strong> Cursor, Claude Code, Copilot are now baseline tooling. Standardize across the team.</p>
+    <p class="body"><strong>2. Code review.</strong> AI as first reviewer surfaces obvious issues; senior engineer focuses on architecture and judgment.</p>
+    <p class="body"><strong>3. Documentation.</strong> READMEs, ADRs, API docs, runbooks generated from code + intent.</p>
+    <p class="body"><strong>4. Test generation.</strong> Unit and integration tests drafted from spec + code. Engineer refines.</p>
+    <p class="body"><strong>5. Incident response.</strong> Faster triage via log summarization + post-mortem narrative generation.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Engineering AI governance</span><h2 class="h2">What to own</h2>
+    <p class="body"><strong>1. Tool approval and standardization.</strong> Pick 1-2 AI coding tools; do not let 7 different ones proliferate.</p>
+    <p class="body"><strong>2. Code/data policy.</strong> What customer data, proprietary code, secrets can or cannot enter AI tools.</p>
+    <p class="body"><strong>3. Code review standards for AI-authored code.</strong> Same rigor as human-authored? Higher? Document it.</p>
+    <p class="body"><strong>4. Open source license tracking.</strong> AI-generated code mixed with OSS dependencies has licensing implications.</p>
+    <p class="body"><strong>5. Security review process.</strong> AI code can introduce vulnerabilities. Security review process must keep pace.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Metrics that matter</span><h2 class="h2">Productivity vs quality</h2>
+    <p class="body"><strong>Productivity:</strong> PRs per engineer per week, cycle time, throughput.</p>
+    <p class="body"><strong>Quality:</strong> Bug rate per release, security issues found post-release, code review iterations per PR.</p>
+    <p class="body"><strong>The trap:</strong> productivity going up while quality goes down is net-negative. Watch both.</p>
+    </div></section>
+
+<section><div class="sec-inner"><p class="body" style="margin-top:2rem;font-style:italic;color:#8FAF8F;">&mdash; Bill Colbert, <a href="/about" style="color:#00C853;text-decoration:none;">Treetop Growth Strategy</a></p></div></section>
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-for-ctos" style="color:#00C853;text-decoration:none;">AI for CTOs &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/what-is-mcp-model-context-protocol" style="color:#00C853;text-decoration:none;">What is MCP? &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/should-i-build-my-own-ai-or-buy" style="color:#00C853;text-decoration:none;">Should I build my own AI or buy? &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-policy-template-for-small-business" style="color:#00C853;text-decoration:none;">AI policy template &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a role-level AI roadmap?</div><div class="cta-sub">$1,500 AI Audit produces a written assessment tailored to your function.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
