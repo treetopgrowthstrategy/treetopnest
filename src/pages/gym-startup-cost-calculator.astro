@@ -1,0 +1,311 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Gym Startup Cost Calculator (2026) — Interactive Estimator | Treetop</title>
+<meta name="description" content="Interactive calculator: estimate the total cost to start your gym in 2026. Pick format, size, location tier, equipment level. Real-time total. Free; no email required." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/gym-startup-cost-calculator" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://treetopgrowthstrategy.com/gym-startup-cost-calculator" />
+<meta property="og:title" content="Gym Startup Cost Calculator (2026)" />
+<meta property="og:description" content="Interactive calculator estimating total cost to start a gym in 2026 by format, size, and location." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Gym Startup Cost Calculator","description":"Interactive estimator for the total cost to start a gym in 2026 by format, size, location tier, and equipment level.","url":"https://treetopgrowthstrategy.com/gym-startup-cost-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"}},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Content Library","item":"https://treetopgrowthstrategy.com/content-library"},{"@type":"ListItem","position":3,"name":"Gym Startup Cost Calculator"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+.hero{min-height:30vh;display:flex;align-items:center;padding:7rem 2.5rem 2rem}.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.2vw,3.2rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1rem}
+.hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.7;max-width:780px}
+
+/* Calculator layout */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+@media(max-width:900px){.calc-grid{grid-template-columns:1fr}}
+.calc-inputs{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem}
+.calc-result{background:#0A1A0A;border:1px solid rgba(0,200,83,0.4);padding:2rem;position:sticky;top:90px;align-self:flex-start}
+.input-group{margin-bottom:1.75rem}
+.input-label{display:block;font-size:0.85rem;font-weight:500;color:#C0D8C0;margin-bottom:0.6rem}
+.input-help{font-size:0.78rem;color:#8FAF8F;margin-bottom:0.6rem}
+.input-select{width:100%;background:#050D05;border:1px solid #1A3A1A;color:#F0FFF0;padding:0.75rem 1rem;font-family:inherit;font-size:0.95rem;border-radius:0;cursor:pointer}
+.input-select:focus{outline:none;border-color:#00C853}
+.input-slider-wrap{display:flex;align-items:center;gap:1rem}
+.input-slider{flex:1;-webkit-appearance:none;appearance:none;background:#1A3A1A;height:4px;outline:none;border-radius:2px}
+.input-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;background:#00C853;width:18px;height:18px;border-radius:50%;cursor:pointer}
+.input-slider::-moz-range-thumb{background:#00C853;width:18px;height:18px;border-radius:50%;cursor:pointer;border:none}
+.input-value{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#00C853;min-width:80px;text-align:right}
+
+.result-label{font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem;display:block}
+.result-total{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,4rem);color:#F0FFF0;line-height:1;margin-bottom:0.5rem}
+.result-range{font-size:0.95rem;color:#8FAF8F;margin-bottom:2rem}
+.result-breakdown{border-top:1px solid #1A3A1A;padding-top:1.5rem}
+.result-row{display:flex;justify-content:space-between;padding:0.65rem 0;border-bottom:1px solid #1A3A1A;font-size:0.92rem}
+.result-row:last-of-type{border-bottom:none}
+.result-row-label{color:#C0D8C0}
+.result-row-value{color:#F0FFF0;font-weight:500}
+.result-note{font-size:0.82rem;color:#8FAF8F;margin-top:1.5rem;line-height:1.6;font-style:italic}
+
+.cta-section{background:#0A1A0A;border:1px solid rgba(0,200,83,0.4);padding:2rem;margin-top:2rem}
+.cta-section h3{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;margin-bottom:0.75rem;font-weight:400}
+.cta-section p{font-size:0.92rem;color:#8FAF8F;line-height:1.65;margin-bottom:1.25rem;max-width:680px}
+.cta-buttons{display:flex;gap:0.75rem;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.5rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+
+.body{font-size:0.95rem;color:#C0D8C0;line-height:1.8;max-width:780px;margin-bottom:1rem}
+.body strong{color:#F0FFF0}.body a{color:#00C853;text-decoration:none}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,2.8vw,2rem);font-weight:400;color:#F0FFF0;margin-bottom:1rem}
+.ul{color:#C0D8C0;font-size:0.95rem;line-height:1.7;padding-left:1.25rem;margin:1rem 0;max-width:780px}
+.ul li{margin-bottom:0.4rem}.ul li::marker{color:#00C853}
+.ul a{color:#00C853;text-decoration:none}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}.calc-result{position:static}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/cost-to-start-a-gym" class="nav-link">Cost guide</a>
+<a href="/from-coach-to-studio-owner-ai-native-playbook" class="nav-link">Coach playbook</a>
+<a href="/content-library" class="nav-link">Library</a>
+</div>
+<a href="/cost-to-start-a-gym" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Read the full guide &rarr;</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Interactive · Free · No email required</div>
+<h1 class="hero-h">Gym startup cost calculator.</h1>
+<p class="hero-sub">Estimate the total cost to start your gym in 2026. Pick your format, location tier, size, and operational model — get a personalized total + line-item breakdown. Built from operator observation and current 2026 market data.</p>
+</div></div>
+
+<div style="background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;padding:1.25rem 2.5rem;">
+<div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.78rem;color:#8FAF8F;">
+<div>By <a href="/about" style="color:#F0FFF0;text-decoration:none;font-weight:500;">Bill Colbert</a> · <span style="color:#4A6A4A;">Founder, Treetop Growth Strategy</span></div>
+<div style="color:#4A6A4A;">Updated May 2026 · <a href="/cost-to-start-a-gym" style="color:#8FAF8F;text-decoration:none;">Read the full cost guide</a></div>
+</div>
+</div>
+
+<section>
+<div class="sec-inner">
+<div class="calc-grid">
+
+<!-- INPUTS -->
+<div class="calc-inputs">
+
+<div class="input-group">
+<label class="input-label" for="format">Gym format</label>
+<div class="input-help">Different formats have very different cost structures</div>
+<select id="format" class="input-select">
+<option value="pt">Personal training studio (1,000-2,500 sq ft)</option>
+<option value="boutique" selected>Boutique fitness studio (1,500-3,500 sq ft)</option>
+<option value="midgroup">Mid-size group fitness (3,500-6,000 sq ft)</option>
+<option value="crossfit">CrossFit affiliate (3,000-5,000 sq ft)</option>
+<option value="fullservice">Full-service gym (8,000-15,000 sq ft)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label class="input-label" for="locationTier">Location tier</label>
+<div class="input-help">Geographic market — biggest single cost variable</div>
+<select id="locationTier" class="input-select">
+<option value="t1">Tier 1 — Top metro (NYC, SF, LA, Boston, Seattle)</option>
+<option value="t2" selected>Tier 2 — Large metro (Austin, Denver, Chicago, Atlanta, DC)</option>
+<option value="t3">Tier 3 — Mid-size metro (most US cities 250K-1M)</option>
+<option value="t4">Tier 4 — Smaller market (smaller cities, suburbs)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label class="input-label" for="size">Square footage: <span id="sizeVal" class="input-value">2,500</span></label>
+<div class="input-slider-wrap">
+<input type="range" id="size" class="input-slider" min="800" max="15000" step="100" value="2500" />
+</div>
+</div>
+
+<div class="input-group">
+<label class="input-label" for="buildout">Buildout level</label>
+<div class="input-help">Light = existing fitness space; Heavy = raw shell</div>
+<select id="buildout" class="input-select">
+<option value="light" selected>Light buildout (\$15-\$40/sq ft)</option>
+<option value="medium">Medium buildout (\$60-\$120/sq ft)</option>
+<option value="heavy">Heavy buildout (\$120-\$250/sq ft)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label class="input-label" for="equipment">Equipment tier</label>
+<div class="input-help">Match to your member-experience positioning</div>
+<select id="equipment" class="input-select">
+<option value="essential">Essential (functional, no frills)</option>
+<option value="standard" selected>Standard (typical for format)</option>
+<option value="premium">Premium (high-end finishes, signature equipment)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label class="input-label" for="staff">Operational model</label>
+<div class="input-help">AI-native lean operations vs traditional staffing</div>
+<select id="staff" class="input-select">
+<option value="lean" selected>AI-native lean (owner + 0-1 part-time admin + AI agents)</option>
+<option value="hybrid">Hybrid (1-2 staff + AI agents)</option>
+<option value="traditional">Traditional (full staffing model)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label class="input-label" for="workingCapital">Working capital reserve (months)</label>
+<div class="input-help">Cash to fund operations until breakeven</div>
+<select id="workingCapital" class="input-select">
+<option value="3">3 months (lean / aggressive)</option>
+<option value="6" selected>6 months (recommended minimum)</option>
+<option value="9">9 months (safe)</option>
+<option value="12">12 months (very safe)</option>
+</select>
+</div>
+
+</div>
+
+<!-- RESULTS -->
+<div class="calc-result">
+<span class="result-label">Estimated total startup cost</span>
+<div class="result-total" id="totalResult">$185,000</div>
+<div class="result-range" id="rangeResult">Range: $130,000 - $290,000</div>
+
+<div class="result-breakdown">
+<div class="result-row"><span class="result-row-label">Facility (lease + buildout)</span><span class="result-row-value" id="rowFacility">$65,000</span></div>
+<div class="result-row"><span class="result-row-label">Equipment</span><span class="result-row-value" id="rowEquipment">$45,000</span></div>
+<div class="result-row"><span class="result-row-label">Licensing &amp; insurance</span><span class="result-row-value" id="rowLicensing">$15,000</span></div>
+<div class="result-row"><span class="result-row-label">Software (year 1)</span><span class="result-row-value" id="rowSoftware">$8,000</span></div>
+<div class="result-row"><span class="result-row-label">Marketing &amp; launch</span><span class="result-row-value" id="rowMarketing">$22,000</span></div>
+<div class="result-row"><span class="result-row-label">Working capital reserve</span><span class="result-row-value" id="rowWorkingCapital">$30,000</span></div>
+</div>
+
+<p class="result-note">Numbers are illustrative estimates for planning. Actual costs vary substantially by specific lease terms, equipment selection, and local market dynamics. Use the <a href="/gym-startup-budget-template" style="color:#00C853;">budget template</a> for detailed line items.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="sec-inner">
+<div class="cta-section">
+<h3>The AI-native operational model is the biggest cost lever</h3>
+<p>Notice how the lean staffing model dramatically changes the total. AI agent platforms purpose-built for fitness (like <a href="https://fitagentic.ai" style="color:#00C853;">fitagentic.ai</a>) handle the lead-nurture, member-comms, and onboarding workflows that traditionally required 1-2 front-desk / membership consultant hires. For first-time gym owners, this often means launching with $40K-$80K less in year-one staff cost — frequently the difference between viable and not viable.</p>
+<div class="cta-buttons">
+<a href="/from-coach-to-studio-owner-ai-native-playbook" class="btn-p">Read the coach-to-owner playbook &rarr;</a>
+<a href="https://fitagentic.ai" class="btn-g">Visit fitagentic.ai</a>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="sec-inner">
+<h2 class="h2">Companion resources</h2>
+<ul class="ul">
+<li><a href="/cost-to-start-a-gym">The definitive 2026 cost-to-start-a-gym guide</a> — comprehensive line-item breakdown for every format</li>
+<li><a href="/gym-startup-budget-template">Gym startup budget template</a> — 140-line categorized budget you can copy into your own spreadsheet</li>
+<li><a href="/from-coach-to-studio-owner-ai-native-playbook">From Coach to Studio Owner: The AI-Native Playbook</a> — for trainers/coaches building their first studio</li>
+<li><a href="/cost-to-open-a-personal-training-studio">Cost to open a personal training studio</a></li>
+<li><a href="/cost-to-open-a-boutique-fitness-studio">Cost to open a boutique fitness studio</a></li>
+<li><a href="/cost-to-open-a-crossfit-gym">Cost to open a CrossFit gym</a></li>
+<li><a href="/cost-to-start-a-gym-vs-buying-existing-gym">Cost to start a gym vs buying an existing gym</a></li>
+</ul>
+</div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+// === Calculator logic ===
+const formatBase = {
+  pt: { facBase: 25000, eqBase: 25000, marBase: 10000, opBase: 4000 },
+  boutique: { facBase: 65000, eqBase: 50000, marBase: 22000, opBase: 7000 },
+  midgroup: { facBase: 140000, eqBase: 110000, marBase: 35000, opBase: 12000 },
+  crossfit: { facBase: 45000, eqBase: 50000, marBase: 12000, opBase: 5000 },
+  fullservice: { facBase: 280000, eqBase: 280000, marBase: 60000, opBase: 25000 }
+};
+
+const tierMult = { t1: 2.0, t2: 1.2, t3: 0.85, t4: 0.65 };
+const buildoutPerSqFt = { light: 28, medium: 90, heavy: 180 };
+const equipmentMult = { essential: 0.7, standard: 1.0, premium: 1.6 };
+const staffMonthlyOpCost = { lean: 6500, hybrid: 11500, traditional: 19000 };
+
+function fmt(n) {
+  return '$' + Math.round(n / 1000) * 1000 .toLocaleString ?
+    '$' + Math.round(n / 1000).toLocaleString() + ',000' :
+    '$' + Math.round(n).toLocaleString();
+}
+function fmtRound(n) {
+  return '$' + (Math.round(n / 500) * 500).toLocaleString();
+}
+
+function recalc() {
+  const format = document.getElementById('format').value;
+  const tier = document.getElementById('locationTier').value;
+  const size = parseInt(document.getElementById('size').value, 10);
+  const buildout = document.getElementById('buildout').value;
+  const equipment = document.getElementById('equipment').value;
+  const staff = document.getElementById('staff').value;
+  const months = parseInt(document.getElementById('workingCapital').value, 10);
+
+  const base = formatBase[format];
+  const tm = tierMult[tier];
+
+  // Facility: base lease/deposits scaled by tier + buildout cost per sq ft
+  const lease = base.facBase * tm;
+  const buildoutCost = size * buildoutPerSqFt[buildout] * (tm * 0.7 + 0.3);
+  const facility = lease + buildoutCost;
+
+  // Equipment: base scaled by equipment tier
+  const equipmentCost = base.eqBase * equipmentMult[equipment];
+
+  // Licensing & insurance: relatively fixed
+  const licensing = 15000 * (0.8 + tm * 0.2);
+
+  // Software year 1
+  const software = staff === 'lean' ? 6500 : (staff === 'hybrid' ? 10000 : 14000);
+
+  // Marketing
+  const marketing = base.marBase * tm;
+
+  // Working capital based on monthly op cost
+  const monthlyOp = staffMonthlyOpCost[staff] + (size * 0.85) + (lease * 0.025);
+  const workingCapital = monthlyOp * months;
+
+  const total = facility + equipmentCost + licensing + software + marketing + workingCapital;
+  const low = total * 0.7;
+  const high = total * 1.45;
+
+  document.getElementById('sizeVal').textContent = size.toLocaleString() + ' sq ft';
+  document.getElementById('totalResult').textContent = fmtRound(total);
+  document.getElementById('rangeResult').textContent = 'Range: ' + fmtRound(low) + ' - ' + fmtRound(high);
+  document.getElementById('rowFacility').textContent = fmtRound(facility);
+  document.getElementById('rowEquipment').textContent = fmtRound(equipmentCost);
+  document.getElementById('rowLicensing').textContent = fmtRound(licensing);
+  document.getElementById('rowSoftware').textContent = fmtRound(software);
+  document.getElementById('rowMarketing').textContent = fmtRound(marketing);
+  document.getElementById('rowWorkingCapital').textContent = fmtRound(workingCapital);
+}
+
+['format','locationTier','size','buildout','equipment','staff','workingCapital'].forEach(id => {
+  document.getElementById(id).addEventListener('input', recalc);
+  document.getElementById(id).addEventListener('change', recalc);
+});
+recalc();
+</script>
+</body></html>

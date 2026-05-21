@@ -482,6 +482,16 @@ const pages = [
   { url: '/ai-for-mid-tier-gym-franchisees', priority: '0.85', changefreq: 'monthly' },
   { url: '/ai-for-boutique-hiit-franchisees', priority: '0.85', changefreq: 'monthly' },
   { url: '/press', priority: '0.85', changefreq: 'monthly' },
+
+  // Cost-to-start-a-gym SEO anchor + companions
+  { url: '/cost-to-start-a-gym', priority: '0.96', changefreq: 'monthly' },
+  { url: '/gym-startup-cost-calculator', priority: '0.93', changefreq: 'monthly' },
+  { url: '/gym-startup-budget-template', priority: '0.92', changefreq: 'monthly' },
+  { url: '/from-coach-to-studio-owner-ai-native-playbook', priority: '0.93', changefreq: 'monthly' },
+  { url: '/cost-to-open-a-boutique-fitness-studio', priority: '0.90', changefreq: 'monthly' },
+  { url: '/cost-to-open-a-crossfit-gym', priority: '0.90', changefreq: 'monthly' },
+  { url: '/cost-to-open-a-personal-training-studio', priority: '0.90', changefreq: 'monthly' },
+  { url: '/cost-to-start-a-gym-vs-buying-existing-gym', priority: '0.88', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

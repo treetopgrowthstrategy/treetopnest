@@ -176,6 +176,23 @@ linkable_assets:
       anchor: "2026 Fitness AI ROI Reference Data"
       type: roi-reference-vertical
       vertical: fitness
+    - url: https://treetopgrowthstrategy.com/cost-to-start-a-gym
+      anchor: "Cost to Start a Gym (the definitive 2026 guide)"
+      type: cost-guide-anchor
+      vertical: fitness
+      seo_target: "cost to start a gym"
+    - url: https://treetopgrowthstrategy.com/gym-startup-cost-calculator
+      anchor: "Gym Startup Cost Calculator"
+      type: calculator-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/gym-startup-budget-template
+      anchor: "Gym Startup Budget Template (140-line)"
+      type: template-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/from-coach-to-studio-owner-ai-native-playbook
+      anchor: "From Coach to Studio Owner: The AI-Native Playbook"
+      type: audience-specific-vertical
+      vertical: fitness
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
@@ -225,6 +242,14 @@ sister_brands:
       - /ai-for-pure-barre-franchisees
       - /ai-for-mid-tier-gym-franchisees
       - /ai-for-boutique-hiit-franchisees
+      - /cost-to-start-a-gym
+      - /gym-startup-cost-calculator
+      - /gym-startup-budget-template
+      - /from-coach-to-studio-owner-ai-native-playbook
+      - /cost-to-open-a-boutique-fitness-studio
+      - /cost-to-open-a-crossfit-gym
+      - /cost-to-open-a-personal-training-studio
+      - /cost-to-start-a-gym-vs-buying-existing-gym
     outreach_guidance: |
       When prospecting backlinks for fitness-vertical Treetop content, prioritize
       fitness-industry outlets (Athletic Business, Club Industry, IHRSA, Boutique
