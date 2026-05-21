@@ -1,0 +1,95 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Why AI Pilots Stall (And How to Get Them Unstuck) | Treetop</title>
+<meta name="description" content="Most enterprise AI pilots stall at the "looks promising but not yet operational" phase. Here is why this happens and the specific moves that get them unstuck." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/why-ai-pilots-stall" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/why-ai-pilots-stall" />
+<meta property="og:title" content="Why AI Pilots Stall (And How to Get Them Unstuck)" /><meta property="og:description" content="Most enterprise AI pilots stall at the "looks promising but not yet operational" phase. Here is why this happens and the specific moves that get them unstuck." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Why AI Pilots Stall (And How to Get Them Unstuck)" />
+<meta name="twitter:description" content="Most enterprise AI pilots stall at the "looks promising but not yet operational" phase. Here is why this happens and the specific moves that get them unstuck." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'Why AI Pilots Stall (And How to Get Them Unstuck)',"description":'Most enterprise AI pilots stall at the "looks promising but not yet operational" phase. Here is why this happens and the specific moves that get them unstuck.',"url":"https://treetopgrowthstrategy.com/why-ai-pilots-stall","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Contrarian</div>
+<h1 class="hero-h">Why AI pilots <em style="color:#00C853;font-style:italic;">stall.</em></h1>
+<p class="hero-sub">AI pilots have a remarkably consistent failure pattern: initial enthusiasm, 60 days of building, demo to leadership, then nothing. The pilot did not "fail" — it just never became operational. Here is why this happens and what to do.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The pattern</span><h2 class="h2">How pilots stall</h2>
+    <p class="body">Month 1-2: A small team builds something promising. Demo to leadership. Excitement.</p>
+    <p class="body">Month 3: "Let us pilot it more broadly." Vague next steps. The team that built it moves to other work.</p>
+    <p class="body">Month 4-6: Nothing happens. No production rollout. No measurement. No decision to kill or scale.</p>
+    <p class="body">Month 7+: The pilot is referenced occasionally but never operational. Eventually forgotten.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The 3 underlying causes</span><h2 class="h2">Why this happens</h2>
+    <p class="body"><strong>1. No production owner.</strong> The team that built the pilot was not accountable for production deployment. Once they returned to their day jobs, no one owned the next phase.</p>
+    <p class="body"><strong>2. No measurement framework.</strong> The pilot showed it COULD do the work. Nobody defined what success looked like for production. Without that, no one can decide to scale.</p>
+    <p class="body"><strong>3. No integration with operational workflows.</strong> The pilot lived in a separate tool, separate from how the team actually worked. Integration was treated as "phase 2" and never funded.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The unsticking moves</span><h2 class="h2">How to recover stalled pilots</h2>
+    <p class="body"><strong>1. Assign one named production owner.</strong> Single accountable person, with budget authority. Without this, no movement.</p>
+    <p class="body"><strong>2. Define operational success in measurable terms.</strong> Not "improves productivity." Specific: "Tier 1 ticket deflection rate of 35% within 90 days, measured weekly."</p>
+    <p class="body"><strong>3. Force the integration question first.</strong> "What workflow does this become part of?" Before building more pilots, integrate the existing one.</p>
+    <p class="body"><strong>4. Kill pilots that cannot be integrated.</strong> A pilot that cannot become production is not a "we are still evaluating" — it is a no. Free the team to work on things that will deploy.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-most-ai-implementations-fail" style="color:#00C853;text-decoration:none;">Why most AI implementations fail &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-rollouts-dont-fail-for-the-reason-you-think" style="color:#00C853;text-decoration:none;">AI rollouts dont fail for the reason you think &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-90-day-ai-rollout-playbook" style="color:#00C853;text-decoration:none;">The 90-day AI rollout playbook &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-strategy-myth" style="color:#00C853;text-decoration:none;">The AI strategy myth &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Pilot stuck and need to get it operational?</div><div class="cta-sub">AI Audit specifically addresses pilot-to-production transitions.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

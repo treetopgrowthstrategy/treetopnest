@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>The AI Talent Shortage Myth (And the Real Hiring Problem) | Treetop</title>
+<meta name="description" content="The "AI talent shortage" is what most companies tell themselves. The real hiring problem is different. Here is what is actually broken about AI hiring in 2026." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/the-ai-talent-shortage-myth" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/the-ai-talent-shortage-myth" />
+<meta property="og:title" content="The AI Talent Shortage Myth (And the Real Hiring Problem)" /><meta property="og:description" content="The "AI talent shortage" is what most companies tell themselves. The real hiring problem is different. Here is what is actually broken about AI hiring in 2026." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="The AI Talent Shortage Myth (And the Real Hiring Problem)" />
+<meta name="twitter:description" content="The "AI talent shortage" is what most companies tell themselves. The real hiring problem is different. Here is what is actually broken about AI hiring in 2026." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'The AI Talent Shortage Myth (And the Real Hiring Problem)',"description":'The "AI talent shortage" is what most companies tell themselves. The real hiring problem is different. Here is what is actually broken about AI hiring in 2026.',"url":"https://treetopgrowthstrategy.com/the-ai-talent-shortage-myth","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Contrarian</div>
+<h1 class="hero-h">The AI talent <em style="color:#00C853;font-style:italic;">shortage myth.</em></h1>
+<p class="hero-sub">Every company claims they cannot find AI talent. The talent exists. What companies actually cannot find is people with their specific narrow AI requirements + their compensation cap + their willingness to work on legacy systems. The "talent shortage" is mostly a misalignment, not an actual shortage. Here is the honest take.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The myth</span><h2 class="h2">What companies usually mean</h2>
+    <p class="body">Companies say "we cannot find AI talent." Usually means one of three things:</p>
+    <p class="body"><strong>1. We cannot find AI talent at our budget.</strong> AI-fluent senior engineers expect $200K-$400K total comp. Companies offering $130K cannot hire them.</p>
+    <p class="body"><strong>2. We cannot find AI talent willing to work on our boring legacy system.</strong> Top AI engineers want to work on greenfield AI products. Bolting AI onto a 15-year-old monolith does not attract them.</p>
+    <p class="body"><strong>3. We cannot find AI talent who matches our exact 12-bullet job description.</strong> Most JDs require 5+ years of specific experience that did not exist 3 years ago. Impossible.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">The real hiring problem</span><h2 class="h2">What is actually broken</h2>
+    <p class="body"><strong>1. Job descriptions are calibrated for skills that did not exist.</strong> "5+ years of LLM application experience" — LLMs only became practical 3 years ago. Real talent gets filtered out.</p>
+    <p class="body"><strong>2. Hiring processes are too long.</strong> Top AI engineers have multiple offers in 1-2 weeks. Companies with 6-week processes lose them.</p>
+    <p class="body"><strong>3. Companies want AI talent without AI-native culture.</strong> AI engineers want to use AI tools daily. Companies that ban or restrict AI tools internally lose recruiting.</p>
+    <p class="body"><strong>4. "AI engineer" is too specific.</strong> The best hires are strong engineers with AI fluency, not AI specialists. The pool is broader than the JD assumes.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">What actually works</span><h2 class="h2">Hiring discipline</h2>
+    <p class="body"><strong>1. Rewrite JDs around outcomes, not years of AI experience.</strong></p>
+    <p class="body"><strong>2. Compress hiring loops to 2-3 weeks.</strong> 5-stage interview processes lose candidates.</p>
+    <p class="body"><strong>3. Commit to AI-native culture.</strong> Top engineers ask in interviews: "do you use AI tools internally?" The wrong answer disqualifies you.</p>
+    <p class="body"><strong>4. Hire AI-fluent generalists, not AI specialists.</strong> Strong engineers learn AI; AI specialists do not always have strong engineering fundamentals.</p>
+    <p class="body"><strong>5. Use a fractional or consultancy for the parts you cannot hire.</strong> Sometimes the right answer is "do not hire" — engage an outside operator for 6-12 months.</p>
+    </div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-recruiting" style="color:#00C853;text-decoration:none;">How to use Claude for recruiting &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-for-chros" style="color:#00C853;text-decoration:none;">AI for CHROs &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-to-write-job-descriptions" style="color:#00C853;text-decoration:none;">How to use AI to write job descriptions &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/will-ai-take-my-marketing-job" style="color:#00C853;text-decoration:none;">Will AI take my marketing job? &rarr;</a></li>
+      
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Cannot find the AI talent you need?</div><div class="cta-sub">AI Audit + fractional engagement can sometimes replace the hire entirely.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/fractional-cmo" class="btn-g">See Fractional services</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
