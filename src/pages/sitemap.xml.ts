@@ -368,6 +368,16 @@ const pages = [
   { url: '/ecommerce-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
   { url: '/nonprofit-ai-playbook-2026', priority: '0.85', changefreq: 'monthly' },
   { url: '/real-estate-ai-playbook-2026', priority: '0.85', changefreq: 'monthly' },
+
+  // Glossary expansion
+  { url: '/what-is-an-llm', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-a-system-prompt', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-a-foundation-model', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-an-ai-hallucination', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-claude-code', priority: '0.85', changefreq: 'monthly' },
+  { url: '/what-is-ai-orchestration', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-an-mcp-server', priority: '0.82', changefreq: 'monthly' },
+  { url: '/what-is-tool-use-in-ai', priority: '0.78', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
