@@ -1,0 +1,98 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Write a Marketing Plan with Claude (Workflow That Produces Something Usable) | Treetop</title>
+<meta name="description" content="A practical workflow for writing a marketing plan with Claude that doesn't read like a generic template. Inputs, prompts, structure." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-write-a-marketing-plan-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-write-a-marketing-plan-with-claude" />
+<meta property="og:title" content="How to Write a Marketing Plan with Claude (Workflow That Produces Something Usable)" /><meta property="og:description" content="A practical workflow for writing a marketing plan with Claude that doesn't read like a generic template. Inputs, prompts, structure." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Write a Marketing Plan with Claude (Workflow That Produces Something Usable)" />
+<meta name="twitter:description" content="A practical workflow for writing a marketing plan with Claude that doesn't read like a generic template. Inputs, prompts, structure." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Write a Marketing Plan with Claude (Workflow That Produces Something Usable)',"description":'A practical workflow for writing a marketing plan with Claude that doesn't read like a generic template. Inputs, prompts, structure.',"url":"https://treetopgrowthstrategy.com/how-to-write-a-marketing-plan-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long does this workflow take?", "acceptedAnswer": {"@type": "Answer", "text": "Setup of the Project: 2-3 hours. First plan draft: 30 minutes. Editing: 4-8 hours. Total: ~1 day vs the 1-2 weeks for ground-up writing."}}, {"@type": "Question", "name": "Will the plan be good enough for a board?", "acceptedAnswer": {"@type": "Answer", "text": "First draft, no. After editing and adding your judgment, yes."}}, {"@type": "Question", "name": "Should I use AI for the marketing budget allocation?", "acceptedAnswer": {"@type": "Answer", "text": "AI can recommend; you decide. The model does not know your CFO's politics or your true unit economics."}}, {"@type": "Question", "name": "Can Claude help with quarterly check-ins?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 load the original plan; ask for variance analysis against goals each quarter."}}, {"@type": "Question", "name": "Should this replace the fractional CMO?", "acceptedAnswer": {"@type": "Answer", "text": "No. A fractional CMO synthesizes information AI cannot have \u2014 board dynamics, competitive intelligence, hiring market \u2014 and brings executional accountability. AI is a tool for the fractional, not a replacement."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Write a Marketing Plan with Claude <em style="color:#00C853;font-style:italic;">Past the generic template trap.</em></h1>
+<p class="hero-sub">"Help me write a marketing plan" is one of the most common Claude prompts and one of the most disappointing. The output is generic because the input is generic. Here's the workflow that produces something you can actually use.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Don't ask Claude to write a marketing plan. Build a Marketing Plan Project loaded with your ICP, last 12 months of results, and 1-2 good marketing plans from comparable companies. Paste in your specific situation (revenue, team, channels working, channels not). Ask for a plan tailored to that situation. Edit heavily — the plan is yours, not Claude's.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Why generic plans suck</h2><p class="body">If you ask Claude "write me a B2B marketing plan," you'll get advice that sounds vaguely right and applies to nobody. Generic content production + generic SEO + generic ABM = a plan you've seen 100 times.</p><p class="body">The fix: give Claude enough specific context that the output has to be specific too.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">The setup</h2><ol class="ol"><li><strong>Build a Project</strong> loaded with: your ICP definition, your top 3 customer segment descriptions, last 12 months of marketing results (which channels worked, which didn't), your competitive set, 1-2 good plans from comparable companies (anonymized OK).</li><li><strong>Dump in your specific situation:</strong> ARR, growth target, team size, current marketing spend allocation, hires planned, primary product line, distinctive POV.</li><li><strong>Ask for a plan with explicit structure</strong> (below).</li><li><strong>Edit heavily.</strong> The plan should be 70% AI-generated structure with 30% rewrites and additions from you — not the other way around.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sample prompt</h2><p class="body">"Produce a 2026 marketing plan for [Company] given the situation I have described. Use the structure of the example plans in your knowledge. Sections: 1) Strategic narrative (where are we going and why), 2) Target outcomes (specific numbers, not vague aspirations), 3) Channel mix with budget allocation, 4) Quarterly priority workflows, 5) Hiring plan, 6) Measurement framework, 7) Risks and contingencies. Be specific about why each recommendation fits the situation I described. If you would normally make a generic recommendation, instead explain why a generic recommendation does not apply."</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to include in your situation dump</h2><ul class="ul"><li>Revenue today, target in 12 months, target in 24 months.</li><li>Marketing budget today (total, % of revenue).</li><li>Team size, key roles, gaps.</li><li>Channel performance last 12 months (pipeline by source, which channels work, which don't).</li><li>Top 3 wins of last 12 months. Top 3 losses or stalled initiatives.</li><li>Distinctive POV or strategic angle you want to amplify.</li><li>Constraints (compliance, brand limits, competitive considerations).</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to keep human</h2><ul class="ul"><li><strong>The narrative</strong> — your strategic story for the year. Write it yourself.</li><li><strong>The hiring decisions</strong> — AI does not know your team's dynamics.</li><li><strong>The big bets</strong> — anything that requires CEO judgment.</li><li><strong>The voice</strong> — the plan should sound like you, not like a McKinsey template.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">How long does this workflow take?</h3><p class="faq-qa">Setup of the Project: 2-3 hours. First plan draft: 30 minutes. Editing: 4-8 hours. Total: ~1 day vs the 1-2 weeks for ground-up writing.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will the plan be good enough for a board?</h3><p class="faq-qa">First draft, no. After editing and adding your judgment, yes.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I use AI for the marketing budget allocation?</h3><p class="faq-qa">AI can recommend; you decide. The model does not know your CFO's politics or your true unit economics.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can Claude help with quarterly check-ins?</h3><p class="faq-qa">Yes — load the original plan; ask for variance analysis against goals each quarter.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should this replace the fractional CMO?</h3><p class="faq-qa">No. A fractional CMO synthesizes information AI cannot have — board dynamics, competitive intelligence, hiring market — and brings executional accountability. AI is a tool for the fractional, not a replacement.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/b2b-saas-marketing-playbook-2026" style="color:#00C853;text-decoration:none;">B2B SaaS marketing playbook 2026 &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/b2b-content-marketing-playbook-2026" style="color:#00C853;text-decoration:none;">B2B content marketing playbook 2026 &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-marketing" style="color:#00C853;text-decoration:none;">How to use Claude for marketing &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;">Treetop fractional CMO &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

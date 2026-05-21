@@ -388,6 +388,13 @@ const pages = [
   { url: '/how-to-write-a-press-release-with-claude', priority: '0.82', changefreq: 'monthly' },
   { url: '/how-to-summarize-customer-calls-with-claude', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-audit-your-current-ai-usage', priority: '0.85', changefreq: 'monthly' },
+
+  // Stack/budget/HR + marketing plan
+  { url: '/the-ai-tool-stack-for-a-30-person-company', priority: '0.85', changefreq: 'monthly' },
+  { url: '/when-to-stop-paying-for-an-ai-tool', priority: '0.82', changefreq: 'monthly' },
+  { url: '/how-to-onboard-a-new-hire-with-ai', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-ai-in-performance-reviews', priority: '0.82', changefreq: 'monthly' },
+  { url: '/how-to-write-a-marketing-plan-with-claude', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
