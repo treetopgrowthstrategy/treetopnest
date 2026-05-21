@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Summarize Customer Calls with Claude (Sales &amp; CS Workflow) | Treetop</title>
+<meta name="description" content="A practical workflow for summarizing customer calls with Claude. Discovery calls, QBRs, support calls, and ongoing account context." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-summarize-customer-calls-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-summarize-customer-calls-with-claude" />
+<meta property="og:title" content="How to Summarize Customer Calls with Claude (Sales &amp; CS Workflow)" /><meta property="og:description" content="A practical workflow for summarizing customer calls with Claude. Discovery calls, QBRs, support calls, and ongoing account context." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Summarize Customer Calls with Claude (Sales &amp; CS Workflow)" />
+<meta name="twitter:description" content="A practical workflow for summarizing customer calls with Claude. Discovery calls, QBRs, support calls, and ongoing account context." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Summarize Customer Calls with Claude (Sales &amp; CS Workflow)',"description":'A practical workflow for summarizing customer calls with Claude. Discovery calls, QBRs, support calls, and ongoing account context.',"url":"https://treetopgrowthstrategy.com/how-to-summarize-customer-calls-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I paste a Gong/Chorus transcript directly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Long transcripts (45+ min calls) sometimes hit context limits \u2014 split into halves if so."}}, {"@type": "Question", "name": "Will the summary be accurate to what was said?", "acceptedAnswer": {"@type": "Answer", "text": "Mostly yes for content. Models sometimes misattribute who said what. Always read once before relying."}}, {"@type": "Question", "name": "Should I summarize every call?", "acceptedAnswer": {"@type": "Answer", "text": "Yes for sales discovery and renewal conversations. Optional for low-stakes calls."}}, {"@type": "Question", "name": "Can Claude listen to live calls?", "acceptedAnswer": {"@type": "Answer", "text": "Not directly. Use Gong/Chorus/Fathom for recording; paste into Claude for synthesis."}}, {"@type": "Question", "name": "Should I share summaries with customers?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always yes for QBRs and complex deal cycles. Aligns expectations."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Summarize Customer Calls with Claude <em style="color:#00C853;font-style:italic;">Stop losing context between calls.</em></h1>
+<p class="hero-sub">The single highest-leverage workflow we ship to sales and CS teams. Customer calls produce mountains of context that historically gets lost in scattered notes. A structured Claude workflow captures it consistently and surfaces what matters.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Set up a Call Summary Project with examples of well-structured summaries from your team. Paste raw notes or transcript; get a structured summary covering pain, goal, timing, budget, decision process, risk, and recommended next action. 5 minutes per call vs. 30 minutes of trying to write a clean summary from scratch.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">The workflow</h2><ol class="ol"><li><strong>Record or take notes.</strong> Use whatever tool you already have (Gong, Chorus, Otter, or just typed notes).</li><li><strong>Paste into a Call Summary Project</strong> with the structured prompt.</li><li><strong>Get the summary.</strong> Review for accuracy; the model occasionally misattributes who said what — quick fix.</li><li><strong>Paste into your CRM / docs.</strong> Now the next person who picks up this account has full context.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sample prompt</h2><p class="body">"You are a B2B sales analyst. Convert the raw call notes I provide into a structured summary with these sections: 1) Attendees, 2) Pain (their words), 3) Goal (their words), 4) Timing, 5) Budget signals, 6) Decision process, 7) Risk or objection raised, 8) Recommended next action, 9) Direct quotes worth keeping (3 max). Be specific. Use their language; do not editorialize."</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Different call types, different summaries</h2><h3 class="h3">Discovery call summary</h3><p class="body">Sections: Pain, Goal, Timing, Budget, Decision Process, Risk, Recommended Next.</p><h3 class="h3">QBR summary</h3><p class="body">Sections: Health, Adoption wins, Risks, Actions agreed, Customer asks of us.</p><h3 class="h3">Support call summary</h3><p class="body">Sections: Issue, Resolution, Root cause, Customer sentiment, Follow-up needed.</p><h3 class="h3">Renewal conversation summary</h3><p class="body">Sections: Renewal status, Renewal terms in discussion, Risks, Asks, Next step.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common mistakes</h2><ul class="ul"><li><strong>No examples loaded.</strong> Generic summaries result. Load 3-5 examples of your team's best summaries.</li><li><strong>Trusting the summary without skim.</strong> Models sometimes invent details or attribute quotes incorrectly. 60-second skim catches it.</li><li><strong>Skipping the structure.</strong> Free-form summaries are hard to scan; structured ones get used.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Can I paste a Gong/Chorus transcript directly?</h3><p class="faq-qa">Yes. Long transcripts (45+ min calls) sometimes hit context limits — split into halves if so.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will the summary be accurate to what was said?</h3><p class="faq-qa">Mostly yes for content. Models sometimes misattribute who said what. Always read once before relying.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I summarize every call?</h3><p class="faq-qa">Yes for sales discovery and renewal conversations. Optional for low-stakes calls.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can Claude listen to live calls?</h3><p class="faq-qa">Not directly. Use Gong/Chorus/Fathom for recording; paste into Claude for synthesis.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I share summaries with customers?</h3><p class="faq-qa">Almost always yes for QBRs and complex deal cycles. Aligns expectations.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-sales" style="color:#00C853;text-decoration:none;">How to use Claude for sales &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-customer-service" style="color:#00C853;text-decoration:none;">How to use Claude for customer service &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-project-template-library" style="color:#00C853;text-decoration:none;">Claude Project template library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

@@ -378,6 +378,16 @@ const pages = [
   { url: '/what-is-ai-orchestration', priority: '0.78', changefreq: 'monthly' },
   { url: '/what-is-an-mcp-server', priority: '0.82', changefreq: 'monthly' },
   { url: '/what-is-tool-use-in-ai', priority: '0.78', changefreq: 'monthly' },
+
+  // Tactical workflow how-tos
+  { url: '/how-to-clean-your-crm-with-ai', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-build-an-internal-prompt-library', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-do-competitive-research-with-claude', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-prep-for-a-board-meeting-with-claude', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-evaluate-a-saas-vendor-with-claude', priority: '0.82', changefreq: 'monthly' },
+  { url: '/how-to-write-a-press-release-with-claude', priority: '0.82', changefreq: 'monthly' },
+  { url: '/how-to-summarize-customer-calls-with-claude', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-audit-your-current-ai-usage', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

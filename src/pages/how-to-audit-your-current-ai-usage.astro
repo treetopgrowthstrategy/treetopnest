@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Audit Your Current AI Usage (Before You Roll Out More) | Treetop</title>
+<meta name="description" content="A practical 4-step workflow for auditing current AI tool usage in a B2B company before adding more tools or policies. Shadow IT, data exposure, adoption patterns." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-audit-your-current-ai-usage" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-audit-your-current-ai-usage" />
+<meta property="og:title" content="How to Audit Your Current AI Usage (Before You Roll Out More)" /><meta property="og:description" content="A practical 4-step workflow for auditing current AI tool usage in a B2B company before adding more tools or policies. Shadow IT, data exposure, adoption patterns." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Audit Your Current AI Usage (Before You Roll Out More)" />
+<meta name="twitter:description" content="A practical 4-step workflow for auditing current AI tool usage in a B2B company before adding more tools or policies. Shadow IT, data exposure, adoption patterns." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Audit Your Current AI Usage (Before You Roll Out More)',"description":'A practical 4-step workflow for auditing current AI tool usage in a B2B company before adding more tools or policies. Shadow IT, data exposure, adoption patterns.',"url":"https://treetopgrowthstrategy.com/how-to-audit-your-current-ai-usage","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Will the team be defensive about a usage audit?", "acceptedAnswer": {"@type": "Answer", "text": "Frame it as no-blame and as preparation for properly provisioning the team. Most people are happy to share when they don't fear punishment."}}, {"@type": "Question", "name": "How long does the audit take?", "acceptedAnswer": {"@type": "Answer", "text": "About a week. Survey results in 3-5 days; expense scan in a day; interviews in 2-3 days."}}, {"@type": "Question", "name": "Who should run the audit?", "acceptedAnswer": {"@type": "Answer", "text": "The AI lead, ideally with IT or HR support depending on company structure. Not a one-person job."}}, {"@type": "Question", "name": "What if we find policy violations during the audit?", "acceptedAnswer": {"@type": "Answer", "text": "Treat the first audit as amnesty. Establish policy going forward. Punishing past behavior kills future transparency."}}, {"@type": "Question", "name": "Do we need to do this before starting any AI rollout?", "acceptedAnswer": {"@type": "Answer", "text": "Strongly recommended. Without the audit, you're building on assumptions."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Audit Your Current AI Usage <em style="color:#00C853;font-style:italic;">Find out what's actually happening before adding more.</em></h1>
+<p class="hero-sub">Before any company adds AI tools, they should audit what's already in use. The shadow IT problem is real — half your team is probably using Claude or ChatGPT through personal accounts, and you have no idea what data has been pasted into them. Here's the audit workflow.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">A 4-step audit: (1) survey the team about what they use, (2) check expense reports for unrecognized AI subscriptions, (3) review browser activity if your IT has the data, (4) interview 5-10 power users to learn what's actually working. Produces a clear picture in a week.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Why this matters</h2><p class="body">The single most predictable surprise in any AI rollout: a substantial fraction of your team is already using AI tools. Personal Pro subscriptions. Free tools. Browser extensions. Often with customer data pasted in.</p><p class="body">Without an audit, you build policy and rollout on a fiction ("we don't use AI yet"). With an audit, you build on what's actually happening.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">The 4-step audit</h2><h3 class="h3">Step 1: Team survey</h3><p class="body">Send a no-blame survey. "We want to know what AI tools are already being used here. There is no penalty for answering honestly; this helps us provision the right tools for the team." Ask: which tools, which workflows, what's working, what's not.</p><h3 class="h3">Step 2: Expense report scan</h3><p class="body">Pull last 6 months of expense reports. Search for: Claude, ChatGPT, OpenAI, Anthropic, Copilot, Jasper, Notion AI, Perplexity, Otter, Fathom, Granola. Personal reimbursed subscriptions are a strong signal.</p><h3 class="h3">Step 3: Browser / network activity (if available)</h3><p class="body">If your IT has device management with browsing data, look at AI tool usage patterns. Not surveillance — pattern visibility. How much usage, what tools, by whom.</p><h3 class="h3">Step 4: Power user interviews</h3><p class="body">Identify 5-10 of the heaviest AI users from steps 1-3. Sit with them for 30 minutes each. Learn what's actually working in their workflow. This is the most valuable input to your rollout strategy.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">What the audit produces</h2><ul class="ul"><li><strong>Tool inventory:</strong> which tools, how many users, paid vs free, business-tier vs personal.</li><li><strong>Data risk map:</strong> which workflows have been touching customer/financial/PHI data through free tools — high priority to migrate to enterprise tiers.</li><li><strong>Adoption hotspots:</strong> functions or people who are way ahead. These are your future workflow owners.</li><li><strong>Adoption gaps:</strong> functions where AI could help but isn't being used. Targets for the rollout.</li><li><strong>Working patterns:</strong> what your team has discovered works. Cheaper than reinventing.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common findings</h2><ul class="ul"><li>Personal Pro subscriptions outnumber enterprise seats 3:1.</li><li>Sales reps using ChatGPT for follow-up emails with customer context pasted in.</li><li>Marketing using Claude for content drafting through personal accounts.</li><li>Engineering using GitHub Copilot through personal accounts.</li><li>Operations using meeting transcription tools without clear data handling.</li></ul><p class="body">None of this is malicious. All of it is fixable. The audit just makes it visible.</p></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Will the team be defensive about a usage audit?</h3><p class="faq-qa">Frame it as no-blame and as preparation for properly provisioning the team. Most people are happy to share when they don't fear punishment.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How long does the audit take?</h3><p class="faq-qa">About a week. Survey results in 3-5 days; expense scan in a day; interviews in 2-3 days.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Who should run the audit?</h3><p class="faq-qa">The AI lead, ideally with IT or HR support depending on company structure. Not a one-person job.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What if we find policy violations during the audit?</h3><p class="faq-qa">Treat the first audit as amnesty. Establish policy going forward. Punishing past behavior kills future transparency.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Do we need to do this before starting any AI rollout?</h3><p class="faq-qa">Strongly recommended. Without the audit, you're building on assumptions.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-readiness-checklist" style="color:#00C853;text-decoration:none;">AI readiness checklist &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-policy-template" style="color:#00C853;text-decoration:none;">AI policy template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-roadmap-template" style="color:#00C853;text-decoration:none;">AI implementation roadmap template &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

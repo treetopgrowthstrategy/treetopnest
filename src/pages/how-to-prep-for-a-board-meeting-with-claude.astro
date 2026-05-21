@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Prep for a Board Meeting with Claude (CEO Workflow) | Treetop</title>
+<meta name="description" content="A practical Claude workflow for B2B CEOs preparing board meetings. Deck synthesis, narrative drafting, Q&A prep, and what to keep entirely human." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-prep-for-a-board-meeting-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-prep-for-a-board-meeting-with-claude" />
+<meta property="og:title" content="How to Prep for a Board Meeting with Claude (CEO Workflow)" /><meta property="og:description" content="A practical Claude workflow for B2B CEOs preparing board meetings. Deck synthesis, narrative drafting, Q&A prep, and what to keep entirely human." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Prep for a Board Meeting with Claude (CEO Workflow)" />
+<meta name="twitter:description" content="A practical Claude workflow for B2B CEOs preparing board meetings. Deck synthesis, narrative drafting, Q&A prep, and what to keep entirely human." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Prep for a Board Meeting with Claude (CEO Workflow)',"description":'A practical Claude workflow for B2B CEOs preparing board meetings. Deck synthesis, narrative drafting, Q&A prep, and what to keep entirely human.',"url":"https://treetopgrowthstrategy.com/how-to-prep-for-a-board-meeting-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Will Claude know my board's concerns?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you tell it. Maintain a Project knowledge file: per board member, what they care about, what frustrates them, what they always ask."}}, {"@type": "Question", "name": "Should I use Claude for the board pre-read?", "acceptedAnswer": {"@type": "Answer", "text": "Yes for the first draft. Heavily edit. The pre-read is often more important than the meeting; do not ship a first draft."}}, {"@type": "Question", "name": "How do I keep board materials confidential?", "acceptedAnswer": {"@type": "Answer", "text": "Use Claude Enterprise (or Team) with confirmed no-training settings. Never use personal Claude.ai or free ChatGPT for board materials."}}, {"@type": "Question", "name": "Can Claude help me prep for Q&A?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 strong use case. Ask Claude to play your most challenging board member and probe weak spots."}}, {"@type": "Question", "name": "How long should board prep take with this workflow?", "acceptedAnswer": {"@type": "Answer", "text": "First draft: 1 hour. Editing and judgment: 3-5 hours depending on stakes. Total ~half what unaided prep takes."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Prep for a Board Meeting with Claude <em style="color:#00C853;font-style:italic;">Get the deck right in half the time.</em></h1>
+<p class="hero-sub">Board prep is high-stakes, high-time-cost work for CEOs. A well-built Claude workflow takes the synthesis off your plate so you can focus on the parts that actually need your judgment. Here's the workflow.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Build a Board Prep Project loaded with past board decks, your KPI dashboard structure, and your board's specific concerns. Paste in this quarter's raw data + commentary; get a structured deck draft + narrative + likely Q&A list in 45 minutes. Always heavily edit before sending — board materials carry fiduciary weight.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">The 4-step workflow</h2><ol class="ol"><li><strong>Set up the Project:</strong> Load 3-5 past board decks (good ones), your standing KPI structure, the strategic priorities from the last board meeting, and notes on each board member's specific concerns.</li><li><strong>Dump in this quarter's raw inputs:</strong> KPI numbers, ops updates, financial summary, customer wins/losses, hiring updates, strategic decisions needed.</li><li><strong>Use the prompt</strong> (below) to get a draft deck + speaker notes + Q&amp;A list.</li><li><strong>Heavily edit.</strong> Board materials must be in your voice, accurate to the dollar, and tuned to your specific board dynamic. Treat Claude's output as a first draft, never the final.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sample prompt</h2><p class="body"><strong>System prompt:</strong> "You are the Chief of Staff to the CEO of [Company]. Produce board-meeting materials in the structure of the example decks in your knowledge. Be ruthlessly concise. Flag anything you do not have data for. Output sections: 1) Executive summary (3 bullets), 2) KPI scorecard, 3) Key wins, 4) Key concerns, 5) Strategic decisions needed, 6) Likely board questions and suggested answers."</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to include in the dump</h2><ul class="ul"><li>Q's KPIs vs plan vs prior year (revenue, gross margin, ARR, CAC, retention, headcount, runway).</li><li>3-5 narrative bullets per function (sales, marketing, product, ops).</li><li>Significant customer events (large wins, churns, strategic accounts).</li><li>Hiring &amp; departures of note.</li><li>Strategic decisions you need board input or approval on.</li><li>Anything new that's happened since last board meeting they should know about.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to keep entirely human</h2><ul class="ul"><li><strong>The narrative on missed targets.</strong> Your judgment about why and what's next is the highest-stakes content in the deck. Write it yourself.</li><li><strong>Sensitive personnel discussions.</strong> Co-founder departures, exec changes, comp committee items. Never draft these with AI.</li><li><strong>Financial numbers.</strong> Pull from your accounting system, not from AI synthesis. AI can describe the numbers; it must not produce them.</li><li><strong>Strategic recommendations.</strong> The board hires the CEO for judgment, not for AI-mediated summaries. Own the recommendations.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Will Claude know my board's concerns?</h3><p class="faq-qa">Only if you tell it. Maintain a Project knowledge file: per board member, what they care about, what frustrates them, what they always ask.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I use Claude for the board pre-read?</h3><p class="faq-qa">Yes for the first draft. Heavily edit. The pre-read is often more important than the meeting; do not ship a first draft.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How do I keep board materials confidential?</h3><p class="faq-qa">Use Claude Enterprise (or Team) with confirmed no-training settings. Never use personal Claude.ai or free ChatGPT for board materials.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can Claude help me prep for Q&A?</h3><p class="faq-qa">Yes — strong use case. Ask Claude to play your most challenging board member and probe weak spots.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How long should board prep take with this workflow?</h3><p class="faq-qa">First draft: 1 hour. Editing and judgment: 3-5 hours depending on stakes. Total ~half what unaided prep takes.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-pitch-ai-to-your-board" style="color:#00C853;text-decoration:none;">How to pitch AI to your board &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-project-template-library" style="color:#00C853;text-decoration:none;">Claude Project template library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-executive-work" style="color:#00C853;text-decoration:none;">How to use Claude for executive work &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-training" style="color:#00C853;text-decoration:none;">Treetop Claude training &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
