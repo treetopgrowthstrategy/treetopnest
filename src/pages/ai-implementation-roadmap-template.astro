@@ -1,0 +1,92 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI Implementation Roadmap Template (90-Day Plan for B2B Teams) | Treetop</title>
+<meta name="description" content="A free 90-day AI implementation roadmap template for B2B teams. Week-by-week milestones, owners, and deliverables — built from real Treetop engagements." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-implementation-roadmap-template" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-implementation-roadmap-template" />
+<meta property="og:title" content="AI Implementation Roadmap Template (90-Day Plan for B2B Teams)" /><meta property="og:description" content="A free 90-day AI implementation roadmap template for B2B teams. Week-by-week milestones, owners, and deliverables — built from real Treetop engagements." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="AI Implementation Roadmap Template (90-Day Plan for B2B Teams)" />
+<meta name="twitter:description" content="A free 90-day AI implementation roadmap template for B2B teams. Week-by-week milestones, owners, and deliverables — built from real Treetop engagements." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'AI Implementation Roadmap Template (90-Day Plan for B2B Teams)',"description":'A free 90-day AI implementation roadmap template for B2B teams. Week-by-week milestones, owners, and deliverables — built from real Treetop engagements.',"url":"https://treetopgrowthstrategy.com/ai-implementation-roadmap-template","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.55rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.checklist{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:760px}
+.check-item{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid #1A3A1A;color:#C0D8C0;font-size:0.95rem;line-height:1.6}
+.check-box{flex-shrink:0;width:18px;height:18px;border:1.5px solid #00C853;margin-top:3px;border-radius:2px}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.95rem;line-height:1.75;margin:0;font-style:italic}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;max-width:880px}
+.t{width:100%;border-collapse:collapse;font-size:0.92rem}
+.t th{text-align:left;padding:0.85rem 1rem;background:#0A1A0A;color:#00C853;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.1em;border-bottom:1px solid #1A3A1A}
+.t td{padding:0.85rem 1rem;color:#C0D8C0;border-bottom:1px solid #1A3A1A;vertical-align:top;line-height:1.6}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Framework &middot; free to use</div>
+<h1 class="hero-h">A 90-day AI implementation roadmap <em style="color:#00C853;font-style:italic;">that actually ships.</em></h1>
+<p class="hero-sub">Most AI implementation roadmaps are vague. They list "adopt AI" as a milestone. This is a concrete 90-day template — week by week, owner by owner, deliverable by deliverable — built from the rollouts we have run at B2B companies between $5M and $50M.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">How to use this</span><h2 class="h2">Read this once, then customize</h2><p class="body">This template is opinionated. It assumes a B2B team of 10–50 people, a CEO or COO sponsor, and at least one operations person who can own the work. If you are bigger or more regulated, the timeline stretches; if you are smaller and faster, it compresses.</p><p class="body">Three rules before you start. (1) Pick one revenue function and one operations function — do not try to roll AI out everywhere. (2) Name a single human owner per workflow you change — no committees. (3) Define what "shipped" looks like for each phase before you start that phase.</p><div class="callout"><p>A 90-day roadmap fails the same way every time: leaders treat it as a slide deck instead of a calendar. Put every milestone in a real calendar with a named owner and a checkpoint date. Half of execution is just making the schedule visible.</p></div></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 1: Days 1-30</span><h2 class="h2">Foundations, audit, and one quick win</h2><h3 class="h3">Week 1 — Alignment</h3><ul class="ul"><li><strong>CEO statement of intent</strong> — one paragraph: what is the goal, who owns it, what is the budget envelope.</li><li><strong>Name the AI lead</strong> — one human, 8-12 hrs/week minimum. Not a committee.</li><li><strong>Inventory current AI usage</strong> — who is already using what (ChatGPT, Copilot, Claude, etc.), paid or shadow.</li></ul><h3 class="h3">Week 2 — Audit</h3><ul class="ul"><li><strong>Map the 10 most time-consuming repeatable workflows</strong> across sales, marketing, ops, and admin.</li><li><strong>Rank them by leverage</strong>: time saved × frequency × confidence in AI fit.</li><li><strong>Pick the top 3</strong>. The rest go on the backlog.</li></ul><h3 class="h3">Week 3 — Tool selection &amp; access</h3><ul class="ul"><li><strong>Decide on the LLM platform.</strong> For most teams: Claude Team for general business use; ChatGPT Team if your stack is already Microsoft-heavy.</li><li><strong>Provision seats</strong> for everyone in the affected workflows, not just the AI lead.</li><li><strong>Confirm data handling</strong>: which models train on your data (avoid them for client work), which do not.</li></ul><h3 class="h3">Week 4 — One quick win shipped</h3><ul class="ul"><li><strong>Pick the smallest of your top 3 workflows.</strong> Build the Project, write the system prompt, train the one or two people who will use it daily.</li><li><strong>Ship it for real.</strong> Not a demo — actual production use.</li><li><strong>Phase 1 deliverable:</strong> one workflow visibly working, with measurable time saved.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 2: Days 31-60</span><h2 class="h2">Ship the remaining two priority workflows</h2><h3 class="h3">Week 5-6 — Workflow #2</h3><ul class="ul"><li>Same loop: define workflow, build Project, write system prompt, train users, ship.</li><li>Add a <strong>weekly review</strong>: 30 minutes with the AI lead and the workflow owner to look at real outputs and refine.</li></ul><h3 class="h3">Week 7-8 — Workflow #3</h3><ul class="ul"><li>By now the team has a pattern. Workflow #3 should ship faster than #1 did.</li><li>Document what you have learned about your team — what works, what fails, what people resist.</li></ul><div class="callout"><p>If you have not shipped any of your top 3 workflows by end of week 8, stop adding workflows. Diagnose why the first one stalled. Usually the answer is no named owner or no time carved out — both fixable, neither solved by adding scope.</p></div></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 3: Days 61-90</span><h2 class="h2">Scale, train, govern</h2><h3 class="h3">Week 9-10 — Adjacent workflows</h3><ul class="ul"><li>Each shipped workflow has neighbors. The proposal workflow has a follow-up email workflow. The content workflow has a distribution workflow. Pick 2-3 neighbors and ship them.</li></ul><h3 class="h3">Week 11 — Training the rest of the team</h3><ul class="ul"><li>Hold a 90-minute internal training where the workflow owners demo what they built.</li><li>Publish a one-page AI Usage Policy: what is OK to put into AI tools, what is not, who to ask.</li></ul><h3 class="h3">Week 12 — Review &amp; next quarter</h3><ul class="ul"><li>Review measured impact: hours saved, cycle time changes, output volume changes.</li><li>Set Q2 priorities: which 3 new workflows ship next, with which owners.</li><li><strong>Phase 3 deliverable:</strong> 5-7 workflows in production, a published policy, a named owner per workflow, and a Q2 backlog.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">The owner checklist</span><h2 class="h2">Print this and tape it to the AI lead's wall</h2><ul class="checklist"><li class="check-item"><span class="check-box"></span><span>Every workflow has a named human owner — not a committee, not a function.</span></li><li class="check-item"><span class="check-box"></span><span>Every workflow has a measurable outcome defined before work starts.</span></li><li class="check-item"><span class="check-box"></span><span>Every workflow has a weekly checkpoint with the AI lead in the first month.</span></li><li class="check-item"><span class="check-box"></span><span>No workflow is launched without the people who will use it being trained on it.</span></li><li class="check-item"><span class="check-box"></span><span>No workflow is left running without someone reviewing outputs monthly.</span></li><li class="check-item"><span class="check-box"></span><span>Every workflow has documented prompts, projects, and templates stored in a shared location.</span></li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">What this template does not cover</span><h2 class="h2">Where you will need help</h2><p class="body">Workflows that touch regulated data (HIPAA, SOC 2, financial advice) require an additional 30-45 days of compliance work. Add that to the front of the timeline if you are in those industries.</p><p class="body">Enterprise rollouts (200+ people) need a different model — federated by function with a small central enablement team. This template is for teams under 100.</p><p class="body">If you have never deployed software internally before, the change-management work is bigger than the AI work. Plan for that explicitly.</p></div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related frameworks &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-readiness-checklist" style="color:#00C853;text-decoration:none;">AI readiness checklist &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-rollout-90-day-plan" style="color:#00C853;text-decoration:none;">AI rollout 90-day plan (operational version) &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation service &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/case-studies" style="color:#00C853;text-decoration:none;">Composite case studies &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

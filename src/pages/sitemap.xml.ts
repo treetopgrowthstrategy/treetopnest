@@ -300,6 +300,16 @@ const pages = [
   { url: '/case-study-nonprofit-raised-45-percent-more', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-study-architecture-firm-cut-proposal-time-60-percent', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-studies', priority: '0.9', changefreq: 'weekly' },
+
+  // Frameworks &amp; templates
+  { url: '/ai-implementation-roadmap-template', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-policy-template', priority: '0.85', changefreq: 'monthly' },
+  { url: '/claude-project-template-library', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-vendor-evaluation-framework', priority: '0.82', changefreq: 'monthly' },
+  { url: '/ai-rollout-90-day-plan', priority: '0.82', changefreq: 'monthly' },
+  { url: '/ai-build-vs-buy-framework', priority: '0.82', changefreq: 'monthly' },
+  { url: '/ai-readiness-checklist', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-use-case-prioritization-framework', priority: '0.82', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

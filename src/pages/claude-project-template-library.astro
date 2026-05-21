@@ -1,0 +1,92 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Claude Project Template Library (12 Starter Templates for B2B Teams) | Treetop</title>
+<meta name="description" content="Twelve ready-to-customize Claude Project templates for B2B teams: proposals, content briefs, sales follow-up, exec summaries, customer success, and more." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/claude-project-template-library" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/claude-project-template-library" />
+<meta property="og:title" content="Claude Project Template Library (12 Starter Templates for B2B Teams)" /><meta property="og:description" content="Twelve ready-to-customize Claude Project templates for B2B teams: proposals, content briefs, sales follow-up, exec summaries, customer success, and more." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Claude Project Template Library (12 Starter Templates for B2B Teams)" />
+<meta name="twitter:description" content="Twelve ready-to-customize Claude Project templates for B2B teams: proposals, content briefs, sales follow-up, exec summaries, customer success, and more." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'Claude Project Template Library (12 Starter Templates for B2B Teams)',"description":'Twelve ready-to-customize Claude Project templates for B2B teams: proposals, content briefs, sales follow-up, exec summaries, customer success, and more.',"url":"https://treetopgrowthstrategy.com/claude-project-template-library","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.55rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.checklist{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:760px}
+.check-item{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid #1A3A1A;color:#C0D8C0;font-size:0.95rem;line-height:1.6}
+.check-box{flex-shrink:0;width:18px;height:18px;border:1.5px solid #00C853;margin-top:3px;border-radius:2px}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.95rem;line-height:1.75;margin:0;font-style:italic}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;max-width:880px}
+.t{width:100%;border-collapse:collapse;font-size:0.92rem}
+.t th{text-align:left;padding:0.85rem 1rem;background:#0A1A0A;color:#00C853;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.1em;border-bottom:1px solid #1A3A1A}
+.t td{padding:0.85rem 1rem;color:#C0D8C0;border-bottom:1px solid #1A3A1A;vertical-align:top;line-height:1.6}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Framework &middot; free to use</div>
+<h1 class="hero-h">Twelve Claude Project templates <em style="color:#00C853;font-style:italic;">for B2B teams.</em></h1>
+<p class="hero-sub">Claude Projects are the foundation of any team rollout. These twelve starter templates cover the most common B2B workflows we set up across sales, marketing, customer success, operations, and executive support. Each template includes the system prompt structure, the knowledge to load, and the inputs that work.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">How to use a Claude Project template</span><h2 class="h2">Customize, don't copy</h2><p class="body">Each template has three parts: a <strong>system prompt</strong> (the instructions Claude follows on every turn), <strong>knowledge to load</strong> (PDFs, docs, examples), and <strong>inputs</strong> (what the user pastes in each session).</p><p class="body">Customize the system prompt to your voice and your industry. Load <em>your</em> examples — not generic ones. Then test with 3-5 real cases before sharing with the team.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Sales templates</span><h2 class="h2">4 templates</h2><h3 class="h3">1. Proposal Drafter</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a proposal writer at [Company]. Draft proposals in our voice. Match the structure and tone of the example proposals in your knowledge base. Output in markdown with sections: Executive Summary, Problem, Approach, Timeline, Investment, Next Steps."</li><li><strong>Knowledge:</strong> 5-10 past winning proposals (anonymized), pricing reference, brand voice guide.</li><li><strong>Inputs:</strong> discovery notes, customer name, deal context.</li></ul><h3 class="h3">2. Discovery Call Synthesizer</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a B2B sales analyst. Convert raw call notes into a structured summary: Pain, Goal, Timing, Budget, Decision Process, Risk, Recommended Next Action. Be specific. Quote directly when useful."</li><li><strong>Knowledge:</strong> 3-5 examples of well-structured call summaries from your team.</li><li><strong>Inputs:</strong> raw call notes (typed or transcribed).</li></ul><h3 class="h3">3. Follow-Up Email Composer</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a sales rep at [Company]. Write follow-up emails based on the discovery summary provided. Match the tone of the example emails in your knowledge — direct, brief, value-forward."</li><li><strong>Knowledge:</strong> 10-15 follow-up emails that produced replies.</li><li><strong>Inputs:</strong> discovery summary, days since last touch, what's next in the sale.</li></ul><h3 class="h3">4. Account Research Brief</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a B2B account researcher. Produce a one-page brief on the target account: business model, recent news, likely pain points relevant to [Company]'s offering, and 3 specific conversation openers."</li><li><strong>Knowledge:</strong> ICP definition, your value proposition, 3-5 example briefs.</li><li><strong>Inputs:</strong> company name, contact name and title.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Marketing templates</span><h2 class="h2">3 templates</h2><h3 class="h3">5. Content Brief Builder</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a content strategist. From the topic provided, produce a brief: audience, angle, key takeaways, suggested headline options, outline, supporting evidence to find, internal links to include."</li><li><strong>Knowledge:</strong> 5 strong past briefs, brand voice guide, list of internal pages.</li><li><strong>Inputs:</strong> topic, target keyword, target audience.</li></ul><h3 class="h3">6. Ad Copy Generator</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a B2B ad copywriter. Produce 6 variants per angle for the brief provided. Match the voice and structure of the example winning ads. Include headline, primary text, and CTA."</li><li><strong>Knowledge:</strong> 20 past winning ads with performance notes, brand voice.</li><li><strong>Inputs:</strong> angle, offer, target audience, campaign objective.</li></ul><h3 class="h3">7. Customer Story Drafter</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a case study writer. From the interview transcript, draft a 600-800 word customer story with sections: Situation, Why They Chose Us, What We Built, Outcomes. Use specific quotes from the transcript."</li><li><strong>Knowledge:</strong> 3-5 published case studies in your house style.</li><li><strong>Inputs:</strong> interview transcript, basic company facts.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Customer success templates</span><h2 class="h2">2 templates</h2><h3 class="h3">8. QBR Pack Builder</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a customer success manager. Build a QBR pack from the usage data and account notes provided. Output: Health Summary, Adoption Wins, Risks, Recommended Actions, Asks of Customer."</li><li><strong>Knowledge:</strong> 5 strong QBR examples, your standard health framework.</li><li><strong>Inputs:</strong> usage data summary, account notes from last quarter.</li></ul><h3 class="h3">9. Support Reply Drafter</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a support specialist. Draft a reply to the customer message. Match the tone of the example replies — warm, specific, action-oriented. If you do not know the answer, say so and recommend escalation."</li><li><strong>Knowledge:</strong> help center articles, 20 examples of well-handled tickets.</li><li><strong>Inputs:</strong> customer message, account context.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Operations templates</span><h2 class="h2">2 templates</h2><h3 class="h3">10. Meeting Notes Synthesizer</h3><ul class="ul"><li><strong>System prompt:</strong> "From the raw notes, produce: Decisions Made, Action Items (with owner and date), Open Questions, and a 3-bullet TLDR. Keep total length under 400 words."</li><li><strong>Knowledge:</strong> 3-5 examples of well-structured meeting recaps.</li><li><strong>Inputs:</strong> raw notes or transcript.</li></ul><h3 class="h3">11. Process Documentation Drafter</h3><ul class="ul"><li><strong>System prompt:</strong> "Turn the description and screenshots provided into a process doc: Purpose, Owner, Prerequisites, Step-by-Step, Common Issues, Last Updated."</li><li><strong>Knowledge:</strong> your house style for process docs.</li><li><strong>Inputs:</strong> description of the process, screenshots or video transcript.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Executive templates</span><h2 class="h2">1 template</h2><h3 class="h3">12. Exec Brief Composer</h3><ul class="ul"><li><strong>System prompt:</strong> "You are a chief of staff. From the documents provided, produce a one-page exec brief: TLDR (3 bullets), Context, Key Numbers, Decisions Required, Risks, Recommended Action. Be ruthlessly concise."</li><li><strong>Knowledge:</strong> 3-5 examples of effective exec briefs from your org.</li><li><strong>Inputs:</strong> source documents (board deck, financials, plan).</li></ul></div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related frameworks &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-build-a-claude-project" style="color:#00C853;text-decoration:none;">How to build a Claude Project &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/resources/claude-system-prompts-library" style="color:#00C853;text-decoration:none;">Claude system prompts library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-roadmap-template" style="color:#00C853;text-decoration:none;">AI implementation roadmap template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

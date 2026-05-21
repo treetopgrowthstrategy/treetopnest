@@ -1,0 +1,93 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI Readiness Checklist (25 Questions to Answer Before Rolling Out AI) | Treetop</title>
+<meta name="description" content="A 25-question AI readiness checklist for B2B teams. Organizational, operational, and governance questions to answer before rolling out AI tools." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-readiness-checklist" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-readiness-checklist" />
+<meta property="og:title" content="AI Readiness Checklist (25 Questions to Answer Before Rolling Out AI)" /><meta property="og:description" content="A 25-question AI readiness checklist for B2B teams. Organizational, operational, and governance questions to answer before rolling out AI tools." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="AI Readiness Checklist (25 Questions to Answer Before Rolling Out AI)" />
+<meta name="twitter:description" content="A 25-question AI readiness checklist for B2B teams. Organizational, operational, and governance questions to answer before rolling out AI tools." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'AI Readiness Checklist (25 Questions to Answer Before Rolling Out AI)',"description":'A 25-question AI readiness checklist for B2B teams. Organizational, operational, and governance questions to answer before rolling out AI tools.',"url":"https://treetopgrowthstrategy.com/ai-readiness-checklist","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.55rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.checklist{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:760px}
+.check-item{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid #1A3A1A;color:#C0D8C0;font-size:0.95rem;line-height:1.6}
+.check-box{flex-shrink:0;width:18px;height:18px;border:1.5px solid #00C853;margin-top:3px;border-radius:2px}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.95rem;line-height:1.75;margin:0;font-style:italic}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;max-width:880px}
+.t{width:100%;border-collapse:collapse;font-size:0.92rem}
+.t th{text-align:left;padding:0.85rem 1rem;background:#0A1A0A;color:#00C853;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.1em;border-bottom:1px solid #1A3A1A}
+.t td{padding:0.85rem 1rem;color:#C0D8C0;border-bottom:1px solid #1A3A1A;vertical-align:top;line-height:1.6}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Framework &middot; free to use</div>
+<h1 class="hero-h">Are you ready <em style="color:#00C853;font-style:italic;">to roll out AI?</em></h1>
+<p class="hero-sub">Before you sign vendor contracts or write a roadmap, run through this 25-question readiness checklist. Each "no" is either a fix-it-first item or a reason to scope smaller. None of these are technology questions — they are organization questions, which is where AI rollouts actually live or die.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">Use this before you build the roadmap</span><h2 class="h2">Answer honestly</h2><p class="body">Score yourself 0 or 1 on each. Anything 0 needs attention before — or alongside — rollout. Total score of 18+: you are ready. 12-17: ready with caveats. Below 12: fix the foundations before scaling AI usage.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Strategy &amp; leadership (5 questions)</span><h2 class="h2">Does the executive layer back this?</h2><ul class="checklist"><li class="check-item"><span class="check-box"></span><span>The CEO has stated, in writing, what AI is meant to accomplish at this company.</span></li><li class="check-item"><span class="check-box"></span><span>There is a named human (not a committee) responsible for the AI rollout.</span></li><li class="check-item"><span class="check-box"></span><span>That person has at least 8 hours per week of calendar dedicated to it.</span></li><li class="check-item"><span class="check-box"></span><span>The exec team agrees on the top 3 outcomes that matter — and they are NOT "adopt AI."</span></li><li class="check-item"><span class="check-box"></span><span>There is a budget envelope set (even if rough) for tools, training, and external help.</span></li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Operations (6 questions)</span><h2 class="h2">Can the company absorb new tools?</h2><ul class="checklist"><li class="check-item"><span class="check-box"></span><span>There is at least one repeatable workflow documented per major function (sales, marketing, ops).</span></li><li class="check-item"><span class="check-box"></span><span>We can name the 5 highest-leverage workflows where AI might help.</span></li><li class="check-item"><span class="check-box"></span><span>We have a way to measure outcomes (cycle time, output volume, hours saved) — even crude.</span></li><li class="check-item"><span class="check-box"></span><span>We have shipped at least one internal tool/process change in the last 12 months that the team adopted.</span></li><li class="check-item"><span class="check-box"></span><span>Our team understands what "in production" means — i.e., the difference between a demo and a daily-use tool.</span></li><li class="check-item"><span class="check-box"></span><span>We have at least one person who can write a clear prompt and refine it iteratively.</span></li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Data &amp; security (5 questions)</span><h2 class="h2">Can your data go into AI tools?</h2><ul class="checklist"><li class="check-item"><span class="check-box"></span><span>We know what data classes exist in our company (public, internal, confidential, regulated).</span></li><li class="check-item"><span class="check-box"></span><span>We have written rules — even simple ones — for what data can go into external tools.</span></li><li class="check-item"><span class="check-box"></span><span>Our IT/security person knows what an enterprise AI platform's data handling looks like.</span></li><li class="check-item"><span class="check-box"></span><span>We are not currently in active remediation for a security incident.</span></li><li class="check-item"><span class="check-box"></span><span>If regulated (HIPAA, SOC 2, PCI, etc.), we know which AI platforms have the appropriate attestations or agreements.</span></li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Tools &amp; access (4 questions)</span><h2 class="h2">Can people actually use the tools?</h2><ul class="checklist"><li class="check-item"><span class="check-box"></span><span>Everyone in the affected workflows can be given an enterprise AI seat without procurement gymnastics.</span></li><li class="check-item"><span class="check-box"></span><span>Our IT setup will not block paste, file upload, or browser extensions the tools require.</span></li><li class="check-item"><span class="check-box"></span><span>Our SSO supports adding new SaaS tools without a 6-week IT project.</span></li><li class="check-item"><span class="check-box"></span><span>We are willing to pay for enterprise AI tier, not just free tiers.</span></li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Culture &amp; change (5 questions)</span><h2 class="h2">Will the team adopt this?</h2><ul class="checklist"><li class="check-item"><span class="check-box"></span><span>The team has been told (truthfully) that AI is meant to remove drudgery, not headcount.</span></li><li class="check-item"><span class="check-box"></span><span>Workflow owners are willing to change how they work — not just add a tool on the side.</span></li><li class="check-item"><span class="check-box"></span><span>We have a forum (Slack, regular standup, office hours) where prompts and tactics get shared.</span></li><li class="check-item"><span class="check-box"></span><span>We are willing to publish a one-page AI policy and ask people to follow it.</span></li><li class="check-item"><span class="check-box"></span><span>Senior leaders are willing to use the tools themselves — visibly — not just sponsor the work.</span></li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">What to do with your score</span><h2 class="h2">Three readiness levels</h2><h3 class="h3">18-25 — Ready to scale</h3><p class="body">You have the foundations. Go straight to a 90-day rollout plan with three workflows running in parallel.</p><h3 class="h3">12-17 — Ready with caveats</h3><p class="body">Pick one workflow, ship it well, and use the experience to build the foundations you are missing. Do not roll out everywhere yet.</p><h3 class="h3">Below 12 — Fix foundations first</h3><p class="body">Spend 30-60 days on the missing foundations before adding AI scope. Almost always: assign a named owner, write the data rules, and ship one small thing.</p></div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related frameworks &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-roadmap-template" style="color:#00C853;text-decoration:none;">AI implementation roadmap template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-rollout-90-day-plan" style="color:#00C853;text-decoration:none;">AI rollout 90-day plan &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-policy-template" style="color:#00C853;text-decoration:none;">AI policy template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">AI audit service &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
