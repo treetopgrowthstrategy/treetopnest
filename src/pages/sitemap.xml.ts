@@ -432,6 +432,11 @@ const pages = [
   { url: '/how-to-use-claude-for-engineering-teams', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-handle-an-ai-data-incident', priority: '0.85', changefreq: 'monthly' },
   { url: '/ai-implementation-partner-vs-internal-team', priority: '0.85', changefreq: 'monthly' },
+
+  // Final batch
+  { url: '/how-to-write-investor-updates-with-claude', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-as-an-engineering-manager', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-document-your-ai-workflows', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

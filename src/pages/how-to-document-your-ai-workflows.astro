@@ -1,0 +1,98 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Document Your AI Workflows (So Knowledge Doesn't Live in One Head) | Treetop</title>
+<meta name="description" content="A practical structure for documenting AI workflows so they outlast the original builder. Template, what to include, governance." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-document-your-ai-workflows" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-document-your-ai-workflows" />
+<meta property="og:title" content="How to Document Your AI Workflows (So Knowledge Doesn't Live in One Head)" /><meta property="og:description" content="A practical structure for documenting AI workflows so they outlast the original builder. Template, what to include, governance." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Document Your AI Workflows (So Knowledge Doesn't Live in One Head)" />
+<meta name="twitter:description" content="A practical structure for documenting AI workflows so they outlast the original builder. Template, what to include, governance." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Document Your AI Workflows (So Knowledge Doesn't Live in One Head)',"description":'A practical structure for documenting AI workflows so they outlast the original builder. Template, what to include, governance.',"url":"https://treetopgrowthstrategy.com/how-to-document-your-ai-workflows","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How often should I update workflow docs?", "acceptedAnswer": {"@type": "Answer", "text": "Update when the workflow changes (new prompt, new knowledge). Review quarterly for staleness."}}, {"@type": "Question", "name": "Who owns updating workflow docs?", "acceptedAnswer": {"@type": "Answer", "text": "The workflow owner. Not the AI lead \u2014 that creates a bottleneck."}}, {"@type": "Question", "name": "Should the documentation include the actual prompts?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Prompts are the workflow."}}, {"@type": "Question", "name": "What if our team has 30 workflows? That's 30 docs.", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Each is one page. Pays back many times over."}}, {"@type": "Question", "name": "Should we share these docs externally?", "acceptedAnswer": {"@type": "Answer", "text": "Generally no \u2014 they encode your competitive workflow knowledge. Share excerpts on request (auditors, customers)."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Document Your AI Workflows <em style="color:#00C853;font-style:italic;">Make AI rollout durable beyond the AI lead.</em></h1>
+<p class="hero-sub">The most common single point of failure in AI rollouts: all the working knowledge lives in one person's head. They leave, the rollout collapses. Documenting your AI workflows takes 1-2 hours per workflow and pays back enormously. Here's the structure that works.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Each AI workflow should have a 1-page doc covering: purpose, owner, the Project setup (prompt + knowledge + inputs), the human review checkpoint, the success metric, and the last-reviewed date. Store in your shared knowledge base. Update when the workflow changes.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Why documentation matters more for AI workflows than other workflows</h2><ul class="ul"><li>Prompts are subtle. Without documentation, the next person can't understand why the prompt is structured that way.</li><li>Project knowledge is consequential. Without documentation, no one knows what's loaded or why.</li><li>AI workflows evolve. Without docs, the team loses the why behind each iteration.</li><li>Departures wipe out tribal knowledge fast. AI lead leaves; rollout dies.</li><li>Auditors and customers increasingly ask. "How do you use AI?" needs a credible answer.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">The one-page workflow doc structure</h2><ol class="ol"><li><strong>Workflow name and one-sentence purpose.</strong></li><li><strong>Owner.</strong> Named human, with backup named.</li><li><strong>When to use it.</strong> Specific trigger.</li><li><strong>The Project setup.</strong> Where it lives, what knowledge is loaded, the system prompt.</li><li><strong>The inputs.</strong> What the user pastes in.</li><li><strong>The output.</strong> What good output looks like (with a sample).</li><li><strong>The human review checkpoint.</strong> Who reviews, what they check, before output ships.</li><li><strong>The success metric.</strong> How we know this is working.</li><li><strong>Last reviewed:</strong> date.</li><li><strong>Change log.</strong> What's changed since version 1, briefly.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Where to store it</h2><ul class="ul"><li><strong>Notion / Coda / Confluence:</strong> good for most teams. Searchable, structured.</li><li><strong>A shared folder of markdown files in your repo:</strong> good for engineering-heavy teams.</li><li><strong>Avoid:</strong> personal docs, Slack threads, individual Drives. The point is shared access.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Governance</h2><ol class="ol"><li>Every new workflow gets a doc before it ships to the team. No exceptions.</li><li>Quarterly review: AI lead reads all workflow docs, updates Last Reviewed date or marks for revision.</li><li>Workflows without owners or recent reviews get sunset.</li><li>New AI hires read the workflow docs as part of onboarding.</li><li>Workflow docs are shareable with auditors, customers, or new exec hires when they ask how you use AI.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Anti-patterns</h2><ul class="ul"><li><strong>30-page workflow specs.</strong> Nobody reads them. Stick to one page.</li><li><strong>Documentation that lives in the AI lead's personal Notion.</strong> Move to the shared space.</li><li><strong>'Living docs' that nobody updates.</strong> Set a quarterly review cadence.</li><li><strong>Including the Project's loaded knowledge in the doc.</strong> Link to it; don't duplicate.</li><li><strong>Documentation as the goal.</strong> The goal is the workflow shipping value; docs are insurance for continuity.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">How often should I update workflow docs?</h3><p class="faq-qa">Update when the workflow changes (new prompt, new knowledge). Review quarterly for staleness.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Who owns updating workflow docs?</h3><p class="faq-qa">The workflow owner. Not the AI lead — that creates a bottleneck.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should the documentation include the actual prompts?</h3><p class="faq-qa">Yes. Prompts are the workflow.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What if our team has 30 workflows? That's 30 docs.</h3><p class="faq-qa">Yes. Each is one page. Pays back many times over.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should we share these docs externally?</h3><p class="faq-qa">Generally no — they encode your competitive workflow knowledge. Share excerpts on request (auditors, customers).</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-build-an-internal-prompt-library" style="color:#00C853;text-decoration:none;">How to build an internal prompt library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-policy-template" style="color:#00C853;text-decoration:none;">AI policy template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-project-template-library" style="color:#00C853;text-decoration:none;">Claude Project template library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
