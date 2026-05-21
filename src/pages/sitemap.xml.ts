@@ -459,6 +459,17 @@ const pages = [
   { url: '/how-to-evaluate-fitness-ai-platforms', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-study-multi-unit-gym-recovered-30-percent-of-no-shows', priority: '0.88', changefreq: 'monthly' },
   { url: '/case-study-franchise-operator-doubled-tour-conversion', priority: '0.88', changefreq: 'monthly' },
+
+  // Fitness wave 2 — prospect-to-member lifecycle content
+  { url: '/fitness-operator-prospect-to-member-ai-playbook', priority: '0.95', changefreq: 'monthly' },
+  { url: '/why-group-fitness-drives-retention', priority: '0.93', changefreq: 'monthly' },
+  { url: '/fitness-prospect-data-reference-2026', priority: '0.92', changefreq: 'monthly' },
+  { url: '/how-to-use-ai-for-gym-sms-marketing', priority: '0.88', changefreq: 'monthly' },
+  { url: '/how-to-onboard-a-new-gym-member-with-ai', priority: '0.90', changefreq: 'monthly' },
+  { url: '/how-to-personalize-fitness-programs-with-ai', priority: '0.88', changefreq: 'monthly' },
+  { url: '/how-to-make-ai-sound-human-in-gym-conversations', priority: '0.85', changefreq: 'monthly' },
+  { url: '/why-sms-beats-email-for-gym-lead-nurture-in-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-gather-prospect-data-without-friction', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

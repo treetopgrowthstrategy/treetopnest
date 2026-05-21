@@ -1,0 +1,105 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Onboard a New Gym Member with AI (The 30-Day Playbook) | Treetop</title>
+<meta name="description" content="The 30-day AI-driven onboarding playbook for new gym members. Class routing, check-ins, personalization, retention drivers, measurement." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-onboard-a-new-gym-member-with-ai" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-onboard-a-new-gym-member-with-ai" />
+<meta property="og:title" content="How to Onboard a New Gym Member with AI (The 30-Day Playbook)" /><meta property="og:description" content="The 30-day AI-driven onboarding playbook for new gym members. Class routing, check-ins, personalization, retention drivers, measurement." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Onboard a New Gym Member with AI (The 30-Day Playbook)" />
+<meta name="twitter:description" content="The 30-day AI-driven onboarding playbook for new gym members. Class routing, check-ins, personalization, retention drivers, measurement." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Onboard a New Gym Member with AI (The 30-Day Playbook)',"description":'The 30-day AI-driven onboarding playbook for new gym members. Class routing, check-ins, personalization, retention drivers, measurement.',"url":"https://treetopgrowthstrategy.com/how-to-onboard-a-new-gym-member-with-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should new member onboarding be opt-in or opt-out?", "acceptedAnswer": {"@type": "Answer", "text": "Opt-out for the first class booking and recommendations. Opt-in for additional services. Friction-free for the retention-critical moments."}}, {"@type": "Question", "name": "Will members feel pestered by AI-driven onboarding texts?", "acceptedAnswer": {"@type": "Answer", "text": "If well-designed, no. The first month of a new gym membership is when members WANT help; they just don't know how to ask. Tone matters; cadence matters."}}, {"@type": "Question", "name": "How does this work with gyms that don't offer group fitness?", "acceptedAnswer": {"@type": "Answer", "text": "The same principles apply with supervised PT sessions, supervised gym-floor sessions, or scheduled coach check-ins. The mechanism is supervised activity in week 1, not group fitness specifically \u2014 but group fitness is the most economically scalable version."}}, {"@type": "Question", "name": "What's the cost of NOT doing this?", "acceptedAnswer": {"@type": "Answer", "text": "Operators without an active onboarding workflow typically see 25-40% of new members go inactive by day 30. At typical LTV math, that's the largest hidden cost in the business."}}, {"@type": "Question", "name": "Can my gym CRM do this?", "acceptedAnswer": {"@type": "Answer", "text": "Most gym CRMs have transactional triggers (welcome email, billing). Few deliver the conversational agent-driven onboarding at scale that purpose-built platforms (<a href=\"https://fitagentic.ai\" style=\"color:#00C853;\">fitagentic.ai</a>) provide."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Content Library","item":"https://treetopgrowthstrategy.com/content-library"},{"@type":"ListItem","position":3,"name":"How to onboard a new gym member with AI"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Onboard a New Gym Member with AI <em style="color:#00C853;font-style:italic;">The 30 days that determine retention.</em></h1>
+<p class="hero-sub">The first 30 days of a new gym member's experience are the single biggest determinant of their long-term retention. Most operators don't have a 30-day onboarding plan — the member signs up, gets a welcome packet, and is on their own. AI agents close that gap at scale. Here is the operator playbook.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Deploy an AI agent (like fitagentic.ai) to actively onboard each new member: book their first 2 group classes within 48 hours of signup, send personalized reminders, check in after each class, and route to a human coach if they don't show up in week 1. Target: 60%+ of new members attending 2+ group classes in week 1 — the single highest-impact retention metric.</p></div>
+</div></div>
+
+<div style="background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;padding:1.25rem 2.5rem;">
+<div style="max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.78rem;color:#8FAF8F;">
+<div>By <a href="/about" style="color:#F0FFF0;text-decoration:none;font-weight:500;">Bill Colbert</a> · <span style="color:#4A6A4A;">Founder, Treetop Growth Strategy</span></div>
+<div style="color:#4A6A4A;">Published May 2026 · <a href="/content-library" style="color:#8FAF8F;text-decoration:none;">More from the library</a></div>
+</div>
+</div>
+
+<section><div class="sec-inner"><h2 class="h2">Why the first 30 days dominate retention math</h2><p class="body">Members who attend 2+ group classes in their first week have 12-month retention rates 30-40 percentage points higher than members who never attend group fitness. The math is brutal: most operators are leaving the biggest retention lever in the business unpulled.</p><p class="body">See our deeper piece: <a href="/why-group-fitness-drives-retention" style="color:#00C853;">Why group fitness drives retention</a>.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">The 30-day AI onboarding workflow</h2><h3 class="h3">Day 0 (signup) — within 1 hour</h3><ul class="ul"><li>Welcome text from the agent, referencing what the prospect mentioned during the lead nurture conversation</li><li>Recommendation of 2-3 specific classes for week 1 based on stated goal</li><li>Offer to hold a spot in the first class</li></ul><h3 class="h3">Day 1-2 — Book first class</h3><ul class="ul"><li>Confirm first class booking</li><li>Send what-to-expect info (instructor name, class style, what to wear, parking)</li><li>Day-of reminder 2 hours before</li></ul><h3 class="h3">Day 3-5 — Post-first-class check-in</h3><ul class="ul"><li>Same-day text after first class: "How was [class]? Want to book your second one this week?"</li><li>If positive response, book second class</li><li>If negative response, route to a different class type</li></ul><h3 class="h3">Day 6-10 — Second class + first milestone</h3><ul class="ul"><li>Confirmation + reminder for second class</li><li>Post-class congrats text: "You just did your second class! Most members who hit 2 in week 1 stick around long-term."</li><li>Invite to a third class based on first two experiences</li></ul><h3 class="h3">Day 11-30 — Pattern building + light retention triggers</h3><ul class="ul"><li>Weekly suggested classes based on attendance patterns</li><li>Coach introduction if attended same instructor 2+ times</li><li>Progress milestone celebrations (5 classes, 10 classes, first month)</li><li>If no class attendance for 7+ days, agent triggers re-engagement</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to do when a new member doesn't engage</h2><p class="body">Most new-member attrition happens silently in week 1-2. AI agents catch it earlier:</p><ul class="ul"><li><strong>No first-class booking within 72 hours of signup</strong> → personalized text + offer to chat about what would work better</li><li><strong>Booked but no-show first class</strong> → same-day low-pressure rebook outreach</li><li><strong>Attended one class but no second-class booking</strong> → text recommending a different class type (maybe the first one wasn't right)</li><li><strong>No engagement at all by end of week 2</strong> → escalate to human GM or head coach for a personal call</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common operator onboarding mistakes</h2><ul class="ul"><li><strong>Welcome packet as the onboarding plan.</strong> Members don't read packets.</li><li><strong>Asking members to book their own first class.</strong> Decision friction = drop-off.</li><li><strong>No follow-up after first class.</strong> The single highest-impact retention moment is the conversation after the first class.</li><li><strong>Treating onboarding as a marketing function.</strong> It's an operations function — needs to feel like service, not marketing.</li><li><strong>Using the same onboarding for every member.</strong> Goal-based routing improves engagement substantially.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should new member onboarding be opt-in or opt-out?</h3><p class="faq-qa">Opt-out for the first class booking and recommendations. Opt-in for additional services. Friction-free for the retention-critical moments.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will members feel pestered by AI-driven onboarding texts?</h3><p class="faq-qa">If well-designed, no. The first month of a new gym membership is when members WANT help; they just don't know how to ask. Tone matters; cadence matters.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How does this work with gyms that don't offer group fitness?</h3><p class="faq-qa">The same principles apply with supervised PT sessions, supervised gym-floor sessions, or scheduled coach check-ins. The mechanism is supervised activity in week 1, not group fitness specifically — but group fitness is the most economically scalable version.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What's the cost of NOT doing this?</h3><p class="faq-qa">Operators without an active onboarding workflow typically see 25-40% of new members go inactive by day 30. At typical LTV math, that's the largest hidden cost in the business.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can my gym CRM do this?</h3><p class="faq-qa">Most gym CRMs have transactional triggers (welcome email, billing). Few deliver the conversational agent-driven onboarding at scale that purpose-built platforms (<a href="https://fitagentic.ai" style="color:#00C853;">fitagentic.ai</a>) provide.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-group-fitness-drives-retention" style="color:#00C853;text-decoration:none;">Why group fitness drives retention &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/fitness-operator-prospect-to-member-ai-playbook" style="color:#00C853;text-decoration:none;">The fitness operator's prospect-to-member AI playbook &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-personalize-fitness-programs-with-ai" style="color:#00C853;text-decoration:none;">How to personalize fitness programs at scale &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-for-gym-member-retention" style="color:#00C853;text-decoration:none;">How to use AI for gym member retention &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

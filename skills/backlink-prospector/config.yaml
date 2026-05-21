@@ -152,6 +152,18 @@ linkable_assets:
       anchor: "2026 Fitness AI Tool Reference"
       type: tool-reference-vertical
       vertical: fitness
+    - url: https://treetopgrowthstrategy.com/fitness-operator-prospect-to-member-ai-playbook
+      anchor: "The fitness operator's prospect-to-member AI playbook"
+      type: flagship-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/why-group-fitness-drives-retention
+      anchor: "Why group fitness drives retention (and how AI should route members there)"
+      type: insight-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/fitness-prospect-data-reference-2026
+      anchor: "2026 Fitness Prospect Data Reference"
+      type: data-reference-vertical
+      vertical: fitness
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
@@ -176,11 +188,20 @@ sister_brands:
       - /state-of-ai-in-the-fitness-industry-2026
       - /ai-for-multi-unit-fitness-operators-playbook
       - /fitness-ai-tool-reference-2026
+      - /fitness-operator-prospect-to-member-ai-playbook
+      - /why-group-fitness-drives-retention
+      - /fitness-prospect-data-reference-2026
       - /how-to-use-ai-for-gym-lead-nurture
       - /how-to-use-ai-for-no-show-recovery
       - /how-to-use-ai-for-gym-member-retention
       - /how-to-roll-out-ai-at-a-multi-unit-gym
       - /how-to-evaluate-fitness-ai-platforms
+      - /how-to-use-ai-for-gym-sms-marketing
+      - /how-to-onboard-a-new-gym-member-with-ai
+      - /how-to-personalize-fitness-programs-with-ai
+      - /how-to-make-ai-sound-human-in-gym-conversations
+      - /why-sms-beats-email-for-gym-lead-nurture-in-2026
+      - /how-to-gather-prospect-data-without-friction
       - /case-study-multi-unit-gym-recovered-30-percent-of-no-shows
       - /case-study-franchise-operator-doubled-tour-conversion
     outreach_guidance: |
