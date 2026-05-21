@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Preview — Dave Johnson · EcoFit x Woodway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #F3F2EF;
+    font-family: -apple-system, 'Source Sans 3', BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+    color: rgba(0,0,0,0.9);
+  }
+
+  /* ── TREETOP NAV ── */
+  .treetop-nav {
+    background: #14191f;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tn-logo {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: #84BC41;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .tn-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .tn-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b6f7a;
+  }
+  .tn-back {
+    font-size: 11px;
+    font-weight: 500;
+    color: #9699A2;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .tn-back:hover { color: #84BC41; }
+
+  /* ── LI HEADER ── */
+  .li-header {
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 0 16px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .li-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .li-logo svg { width: 34px; height: 34px; }
+  .li-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #EEF3F8;
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 280px;
+  }
+  .li-search input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: rgba(0,0,0,0.6);
+    width: 100%;
+    font-family: inherit;
+  }
+  .li-nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .li-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: rgba(0,0,0,0.55);
+    font-size: 10px;
+    transition: color 0.1s;
+    min-width: 52px;
+  }
+  .li-nav-item:hover { color: rgba(0,0,0,0.9); }
+  .li-nav-item.active { color: rgba(0,0,0,0.9); border-bottom: 2px solid rgba(0,0,0,0.9); }
+  .li-nav-item svg { width: 24px; height: 24px; }
+  .li-me-avatar {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #0A66C2;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: #fff;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page-layout {
+    max-width: 1128px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 225px 1fr 300px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ── LEFT: PROFILE CARD ── */
+  .profile-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+  }
+  .profile-banner {
+    height: 56px;
+    background: linear-gradient(135deg, #1B4B82 0%, #0A66C2 50%, #2196F3 100%);
+  }
+  .profile-card-body {
+    padding: 0 12px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profile-avatar-wrap {
+    margin-top: -24px;
+    margin-bottom: 8px;
+  }
+  .profile-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #0A66C2;
+    border: 2px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+  }
+  .profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.9);
+    line-height: 1.3;
+  }
+  .profile-headline {
+    font-size: 11px;
+    color: rgba(0,0,0,0.55);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .profile-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 12px 0;
+  }
+  .profile-stat {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 12px;
+  }
+  .profile-stat-label { color: rgba(0,0,0,0.55); }
+  .profile-stat-value { color: #0A66C2; font-weight: 600; }
+  .profile-cta {
+    margin-top: 12px;
+    width: 100%;
+    padding: 6px 16px;
+    border: 1px solid #0A66C2;
+    border-radius: 16px;
+    background: transparent;
+    color: #0A66C2;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .profile-cta:hover { background: rgba(10,102,194,0.05); }
+
+  /* ── FEED ── */
+  .feed { display: flex; flex-direction: column; gap: 8px; }
+
+  /* CREATE POST */
+  .create-post {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .create-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .create-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #0A66C2;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .create-input {
+    flex: 1;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    background: transparent;
+    font-family: inherit;
+  }
+  .create-actions {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .create-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.55);
+  }
+  .create-action:hover { background: rgba(0,0,0,0.04); }
+
+  /* ── THE POST ── */
+  .post-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+    position: relative;
+  }
+  .post-card::before {
+    content: 'POST PREVIEW';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #84BC41;
+    background: rgba(132,188,65,0.1);
+    border: 1px solid rgba(132,188,65,0.25);
+    border-radius: 4px;
+    padding: 2px 7px;
+    z-index: 2;
+  }
+  .post-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px 0;
+  }
+  .post-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #0A66C2;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .post-avatar:hover { opacity: 0.9; }
+  .post-author-info { flex: 1; }
+  .post-author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .post-author-name:hover { color: #0A66C2; text-decoration: underline; }
+  .li-badge {
+    display: inline-flex;
+    background: #0A66C2;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .post-author-title {
+    font-size: 12px;
+    color: rgba(0,0,0,0.55);
+    margin-top: 1px;
+    line-height: 1.3;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: rgba(0,0,0,0.45);
+    margin-top: 2px;
+  }
+  .post-meta .dot { font-size: 4px; line-height: 1; }
+  .post-more {
+    color: rgba(0,0,0,0.45);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    margin-left: auto;
+    align-self: flex-start;
+  }
+  .post-more:hover { background: rgba(0,0,0,0.06); }
+
+  /* POST BODY */
+  .post-body {
+    padding: 10px 16px 0;
+    font-size: 14px;
+    color: rgba(0,0,0,0.9);
+    line-height: 1.6;
+  }
+  .post-body p { margin-bottom: 10px; }
+  .post-body .arrow-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 3px 0;
+    color: rgba(0,0,0,0.75);
+  }
+  .post-body .arrow { color: #0A66C2; font-weight: 600; flex-shrink: 0; }
+  .post-body .see-more {
+    color: rgba(0,0,0,0.55);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .post-body .see-more:hover { color: rgba(0,0,0,0.9); text-decoration: underline; }
+  .post-hashtags { color: #0A66C2; }
+
+  /* POST IMAGE / ARTICLE CARD */
+  .post-article-card {
+    margin: 12px 0 0;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .post-article-card:hover { background: rgba(0,0,0,0.02); }
+  .article-card-banner {
+    height: 130px;
+    background: linear-gradient(135deg, #14191f 0%, #1a2130 40%, #0d1117 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .article-card-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(132,188,65,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.05) 1px,transparent 1px);
+    background-size: 24px 24px;
+  }
+  .article-card-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(132,188,65,0.1), transparent 70%);
+  }
+  .article-card-logo {
+    font-family: -apple-system, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #84BC41;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+  }
+  .article-card-logo span { color: #F2F3F8; }
+  .article-card-info {
+    padding: 10px 12px;
+    background: #EEF3F8;
+  }
+  .article-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.9);
+    line-height: 1.35;
+  }
+  .article-card-source {
+    font-size: 11px;
+    color: rgba(0,0,0,0.5);
+    margin-top: 3px;
+  }
+
+  /* REACTIONS */
+  .post-reactions {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(0,0,0,0.55);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .reaction-icons { display: flex; align-items: center; gap: 2px; }
+  .reaction-icon {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    border: 1px solid #fff;
+    margin-right: -4px;
+  }
+  .r-like { background: #0A66C2; }
+  .r-celebrate { background: #44712E; }
+  .r-insightful { background: #B24020; }
+  .reactions-count { margin-left: 8px; cursor: pointer; }
+  .reactions-count:hover { color: #0A66C2; text-decoration: underline; }
+
+  /* ACTION BUTTONS */
+  .post-actions {
+    display: flex;
+    padding: 4px 8px;
+  }
+  .action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.55);
+    transition: background 0.1s, color 0.1s;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+  }
+  .action-btn:hover { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.9); }
+  .action-btn svg { width: 20px; height: 20px; }
+  .action-btn.liked { color: #0A66C2; }
+
+  /* COMMENT SECTION */
+  .comment-section { padding: 8px 16px 16px; }
+  .comment-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .comment-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #0A66C2;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .comment-input {
+    flex: 1;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: rgba(0,0,0,0.6);
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .comment-input:focus { outline: none; border-color: rgba(0,0,0,0.5); }
+
+  /* EXISTING COMMENT */
+  .comment {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .comment-body {
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
+    padding: 10px 12px;
+    flex: 1;
+  }
+  .comment-name { font-size: 13px; font-weight: 600; color: rgba(0,0,0,0.9); }
+  .comment-title { font-size: 11px; color: rgba(0,0,0,0.45); margin-bottom: 4px; }
+  .comment-text { font-size: 13px; color: rgba(0,0,0,0.75); line-height: 1.5; }
+  .comment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.55);
+  }
+  .comment-action { cursor: pointer; font-weight: 600; }
+  .comment-action:hover { color: rgba(0,0,0,0.9); text-decoration: underline; }
+
+  /* RIGHT SIDEBAR */
+  .right-col { display: flex; flex-direction: column; gap: 8px; }
+  .sidebar-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .sidebar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.9);
+    margin-bottom: 10px;
+  }
+  .news-item {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    cursor: pointer;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(0,0,0,0.5); margin-top: 6px; flex-shrink: 0; }
+  .news-text { font-size: 12px; font-weight: 600; color: rgba(0,0,0,0.8); line-height: 1.4; }
+  .news-text:hover { color: rgba(0,0,0,0.9); text-decoration: underline; }
+  .news-time { font-size: 11px; color: rgba(0,0,0,0.45); margin-top: 2px; }
+
+  .suggested-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .suggested-item:last-child { border-bottom: none; }
+  .sug-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #44712E;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .sug-name { font-size: 13px; font-weight: 600; color: rgba(0,0,0,0.9); }
+  .sug-title { font-size: 11px; color: rgba(0,0,0,0.55); }
+  .sug-connect { font-size: 12px; font-weight: 600; color: rgba(0,0,0,0.55); border: 1px solid rgba(0,0,0,0.4); border-radius: 16px; padding: 4px 12px; cursor: pointer; margin-top: 4px; display: inline-block; }
+  .sug-connect:hover { background: rgba(0,0,0,0.04); }
+
+  /* TRUNCATE / EXPAND */
+  .truncated { display: block; }
+  .expanded { display: none; }
+  .see-more-btn { color: rgba(0,0,0,0.55); cursor: pointer; font-weight: 600; }
+  .see-more-btn:hover { color: rgba(0,0,0,0.9); }
+
+  @media (max-width: 900px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .profile-card, .right-col { display: none; }
+    .li-search { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TREETOP NAV -->
+<div class="treetop-nav">
+  <a href="https://ecofit-website.web.app" class="tn-logo">ecofit</a>
+  <div class="tn-right">
+    <span class="tn-label">LinkedIn Post Preview — Dave Johnson</span>
+    <a href="/proposals/ecofit-content-calendar.html" class="tn-back">← Back to Calendar</a>
+  </div>
+</div>
+
+<!-- LINKEDIN HEADER -->
+<div class="li-header">
+  <div class="li-logo">
+    <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="34" height="34" rx="4" fill="#0A66C2"/>
+      <path d="M7 13h4.5v14H7V13zm2.25-6.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM14.5 13H19v1.9c.7-1.3 2.4-2.3 4.5-2.3 4.8 0 5.5 3.1 5.5 7.2V27H24.5v-6.3c0-1.5 0-3.4-2.1-3.4-2.2 0-2.5 1.7-2.5 3.3V27H14.5V13z" fill="white"/>
+    </svg>
+  </div>
+  <div class="li-search">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="rgba(0,0,0,0.55)" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="rgba(0,0,0,0.55)" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <input type="text" placeholder="Search" readonly>
+  </div>
+  <div class="li-nav-icons">
+    <div class="li-nav-item active">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 9v2h-2V7c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h1v3l3-3h7v-2H7.4L6 20.2V19H3V7h16v2h4zM13 14H7v-2h6v2zm4-4H7V8h10v2z"/></svg>
+      <span>Messaging</span>
+    </div>
+    <div class="li-nav-item">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 19h-8.3c-.4 1.2-1.5 2-2.7 2s-2.3-.8-2.7-2H2v-2h2V9c0-3.9 3-7.1 6.8-7.5.2 0 .3-.2.3-.4V.8c0-.4.4-.8.9-.8s.9.4.9.8V1c0 .2.1.3.3.4C16.9 1.9 20 5.1 20 9v8h2v2zM11 21c.6 0 1-.4 1-1h-2c0 .6.4 1 1 1z"/></svg>
+      <span>Notifications</span>
+    </div>
+    <div class="li-nav-item">
+      <div class="li-me-avatar">DJ</div>
+      <span>Me ▾</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE LAYOUT -->
+<div class="page-layout">
+
+  <!-- LEFT: PROFILE CARD -->
+  <div class="profile-card">
+    <div class="profile-banner"></div>
+    <div class="profile-card-body">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar">DJ</div>
+      </div>
+      <div class="profile-name">Dave Johnson</div>
+      <div class="profile-headline">EVP at EcoFit Networks · Fitness Intelligence Platform</div>
+      <div class="profile-divider"></div>
+      <div class="profile-stat">
+        <span class="profile-stat-label">Profile viewers</span>
+        <span class="profile-stat-value">47</span>
+      </div>
+      <div class="profile-stat">
+        <span class="profile-stat-label">Post impressions</span>
+        <span class="profile-stat-value">1,204</span>
+      </div>
+      <button class="profile-cta">View full profile</button>
+    </div>
+  </div>
+
+  <!-- FEED -->
+  <div class="feed">
+
+    <!-- CREATE POST -->
+    <div class="create-post">
+      <div class="create-row">
+        <div class="create-avatar">DJ</div>
+        <input class="create-input" type="text" placeholder="Start a post, try a video..." readonly>
+      </div>
+      <div class="create-actions">
+        <div class="create-action" style="color:#378FE9;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 3a4 4 0 110 8 4 4 0 010-8zM5 19v-.5C5 16 8.1 14 12 14s7 2 7 4.5V19H5z"/></svg>
+          Photo
+        </div>
+        <div class="create-action" style="color:#5F9B41;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l8 4-8 4z"/></svg>
+          Video
+        </div>
+        <div class="create-action" style="color:#C37D16;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 00-2 2v14l4-4h12a2 2 0 002-2V5a2 2 0 00-2-2zm-7 12H7v-2h5v2zm5-4H7V9h10v2z"/></svg>
+          Write article
+        </div>
+      </div>
+    </div>
+
+    <!-- THE POST -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">DJ</div>
+        <div class="post-author-info">
+          <div class="post-author-name">
+            Dave Johnson
+            <span class="li-badge">1st</span>
+          </div>
+          <div class="post-author-title">EVP at EcoFit Networks · Fitness Equipment Intelligence Platform</div>
+          <div class="post-meta">
+            <span>May 25, 2026</span>
+            <span class="dot">●</span>
+            <span>🌐</span>
+          </div>
+        </div>
+        <div class="post-more">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.45)"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+        </div>
+      </div>
+
+      <div class="post-body">
+        <p>Woodway treadmills are the most-used piece of cardio equipment on floors where multiple brands compete.</p>
+        <p>We know this because EcoFit has been tracking it for years across thousands of facilities.</p>
+        <p>The data doesn't lie. When you put a Woodway next to a competitor on the same floor, members vote with their feet. Woodway wins. Every time.</p>
+        <p>So when Woodway came to us about integrating EcoFit directly into their ProSmart connected consoles, the answer was obvious.</p>
+
+        <div class="truncated" id="post-truncated">
+          <span class="see-more-btn" onclick="expandPost()">…see more</span>
+        </div>
+
+        <div class="expanded" id="post-expanded">
+          <p>Starting now, EcoFit is embedded natively in Woodway ProSmart treadmills. No external sensors. No installation overhead. The moment a ProSmart console powers on, it's feeding real-time data directly into EcoFit — usage patterns, session data, and live error codes that trigger proactive maintenance before a machine goes down.</p>
+          <p>For operators, this means three things:</p>
+          <div class="arrow-line"><span class="arrow">→</span><span>You know exactly how your Woodway treadmills are being used, by whom, and when — down to the session.</span></div>
+          <div class="arrow-line"><span class="arrow">→</span><span>Your service team gets notified before equipment fails, not after a member reports it.</span></div>
+          <div class="arrow-line" style="margin-bottom:10px;"><span class="arrow">→</span><span>You have the data to prove what your members already know: Woodway outperforms everything else on the floor.</span></div>
+          <p>This is what equipment intelligence looks like when the best hardware and the best analytics platform build something together.</p>
+          <p>If you want to see what your Woodway treadmills are telling you — and what you've been missing — we'd love to show you.</p>
+          <p><span class="post-hashtags">#FitnessIntelligence #EquipmentAnalytics #GymOperations #Woodway #EcoFit #ConnectedFitness</span></p>
+        </div>
+
+        <!-- ARTICLE CARD LINK -->
+        <a href="/proposals/ecofit-woodway-article.html" target="_blank" style="text-decoration:none;">
+          <div class="post-article-card">
+            <div class="article-card-banner">
+              <div class="article-card-logo">eco<span>fit</span></div>
+            </div>
+            <div class="article-card-info">
+              <div class="article-card-title">The Best Treadmill in the World Now Runs on EcoFit Data</div>
+              <div class="article-card-source">treetopgrowthstrategy.com · 5 min read</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- REACTIONS -->
+      <div class="post-reactions">
+        <div style="display:flex;align-items:center;">
+          <div class="reaction-icons">
+            <div class="reaction-icon r-like">👍</div>
+            <div class="reaction-icon r-celebrate">🎉</div>
+            <div class="reaction-icon r-insightful">💡</div>
+          </div>
+          <span class="reactions-count">247</span>
+        </div>
+        <div style="display:flex;gap:12px;color:rgba(0,0,0,0.45);font-size:12px;cursor:pointer;">
+          <span style="cursor:pointer;">38 comments</span>
+          <span>·</span>
+          <span style="cursor:pointer;">14 reposts</span>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="post-actions">
+        <button class="action-btn liked" onclick="this.classList.toggle('liked')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.46 11l-3.91-3.91A3 3 0 0014.49 6H7a1 1 0 00-1 1v10a1 1 0 001 1h8a3 3 0 002.12-.88l2.34-2.34A3 3 0 0020 13.28V13a2 2 0 00-.54-1.39zM5 7H3v10h2V7z"/></svg>
+          Like
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a7 7 0 01-7 7H8l-5 3v-3H2a2 2 0 01-2-2V7a7 7 0 017-7h8a7 7 0 017 7v4z"/></svg>
+          Comment
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7l-7-5v4H7a7 7 0 000 14h3v-2H7A5 5 0 017 8h9v4l7-5z"/></svg>
+          Repost
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3L0 10l7.66 4.26L16 8l-6.26 8.34L14 24l7-21z"/></svg>
+          Send
+        </button>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="comment-section">
+        <div class="comment-input-row">
+          <div class="comment-avatar">DJ</div>
+          <input class="comment-input" type="text" placeholder="Add a comment…" readonly>
+        </div>
+
+        <div class="comment">
+          <div class="comment-avatar" style="background:#44712E;font-size:11px;">MK</div>
+          <div class="comment-body">
+            <div class="comment-name">Maggie Kelly</div>
+            <div class="comment-title">Digital Marketing & Content Strategy at Woodway USA</div>
+            <div class="comment-text">Thrilled to see this live, Dave! The ProSmart x EcoFit integration has been a long time coming and the data story is one we're really proud of. Excited to see what operators do with this. 🎉</div>
+            <div class="comment-actions">
+              <span class="comment-action">Like</span>
+              <span class="comment-action">Reply</span>
+              <span style="color:rgba(0,0,0,0.4);">2h</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment" style="margin-top:10px;">
+          <div class="comment-avatar" style="background:#B24020;font-size:11px;">EW</div>
+          <div class="comment-body">
+            <div class="comment-name">Eric Weber</div>
+            <div class="comment-title">Director of Sales & Marketing at Woodway USA</div>
+            <div class="comment-text">Big news for the industry. The uptime improvements our shared clients are seeing through proactive error code reporting alone have been significant. More to come on that front.</div>
+            <div class="comment-actions">
+              <span class="comment-action">Like</span>
+              <span class="comment-action">Reply</span>
+              <span style="color:rgba(0,0,0,0.4);">1h</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post-card -->
+
+  </div><!-- /feed -->
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="right-col">
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">LinkedIn News</div>
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div><div class="news-text">Connected fitness tech gains momentum</div><div class="news-time">2h ago · 4,821 readers</div></div>
+      </div>
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div><div class="news-text">Gym operators increase equipment data budgets</div><div class="news-time">5h ago · 2,104 readers</div></div>
+      </div>
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div><div class="news-text">Proactive maintenance cuts facility costs</div><div class="news-time">1d ago · 8,330 readers</div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">People you may know</div>
+      <div class="suggested-item">
+        <div class="sug-avatar">PR</div>
+        <div>
+          <div class="sug-name">Phil Rankine</div>
+          <div class="sug-title">Co-Founder at EcoFit Networks</div>
+          <div class="sug-connect">+ Connect</div>
+        </div>
+      </div>
+      <div class="suggested-item">
+        <div class="sug-avatar" style="background:#1B4B82;">TP</div>
+        <div>
+          <div class="sug-name">Tim Porth</div>
+          <div class="sug-title">Board Advisor · EcoFit Networks</div>
+          <div class="sug-connect">+ Connect</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /page-layout -->
+
+<script>
+  function expandPost() {
+    document.getElementById('post-truncated').style.display = 'none';
+    document.getElementById('post-expanded').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
