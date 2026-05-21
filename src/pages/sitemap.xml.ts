@@ -425,6 +425,13 @@ const pages = [
   { url: '/fractional-cmo-new-york', priority: '0.82', changefreq: 'monthly' },
   { url: '/ai-consultant-austin', priority: '0.85', changefreq: 'monthly' },
   { url: '/ai-consultant-san-francisco', priority: '0.82', changefreq: 'monthly' },
+
+  // Gap-filling tactical pages
+  { url: '/how-to-build-an-ai-strategy-on-one-page', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-evaluate-ai-fluency-when-hiring', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-for-engineering-teams', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-handle-an-ai-data-incident', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-implementation-partner-vs-internal-team', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

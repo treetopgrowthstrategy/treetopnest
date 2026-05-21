@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Build an AI Strategy on One Page (Template + Example) | Treetop</title>
+<meta name="description" content="A one-page AI strategy template for B2B mid-market companies. 6 sections, worked example, what to leave out." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-build-an-ai-strategy-on-one-page" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-build-an-ai-strategy-on-one-page" />
+<meta property="og:title" content="How to Build an AI Strategy on One Page (Template + Example)" /><meta property="og:description" content="A one-page AI strategy template for B2B mid-market companies. 6 sections, worked example, what to leave out." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Build an AI Strategy on One Page (Template + Example)" />
+<meta name="twitter:description" content="A one-page AI strategy template for B2B mid-market companies. 6 sections, worked example, what to leave out." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Build an AI Strategy on One Page (Template + Example)',"description":'A one-page AI strategy template for B2B mid-market companies. 6 sections, worked example, what to leave out.',"url":"https://treetopgrowthstrategy.com/how-to-build-an-ai-strategy-on-one-page","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Isn't a one-page strategy too simple?", "acceptedAnswer": {"@type": "Answer", "text": "Simple is correct. Complexity in strategy documents usually masks unclear thinking, not nuanced thinking."}}, {"@type": "Question", "name": "Should the AI lead or the CEO write this?", "acceptedAnswer": {"@type": "Answer", "text": "Joint exercise. CEO writes the goal and principles. AI lead writes the workflows, owner, budget, metrics."}}, {"@type": "Question", "name": "How often should we update it?", "acceptedAnswer": {"@type": "Answer", "text": "Quarterly. After each review, refine the priority workflows and metrics for the next quarter."}}, {"@type": "Question", "name": "What if my consultancy gave us a 30-page strategy?", "acceptedAnswer": {"@type": "Answer", "text": "Distill it to one page yourself. Use their depth as input; produce your own one-page output."}}, {"@type": "Question", "name": "Should this be different at different company sizes?", "acceptedAnswer": {"@type": "Answer", "text": "Same template, different content. Bigger companies have more workflows and more nuanced metrics; the structure holds."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Build an AI Strategy on One Page <em style="color:#00C853;font-style:italic;">If it doesn't fit on one page, it isn't a strategy.</em></h1>
+<p class="hero-sub">The best AI strategies fit on one page. Strategy that requires 30 pages is usually procrastination disguised as planning. Here's the one-page template, the 6 sections it should contain, and a worked example.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">A one-page AI strategy has 6 sections: (1) the goal in one sentence, (2) the principles, (3) the priority workflows, (4) the named owner, (5) the budget envelope, (6) the success metrics. If yours is longer, cut. The point is to drive action, not produce a document.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">The 6 sections</h2><h3 class="h3">1. The goal — one sentence</h3><p class="body">Example: "In 12 months, we will recover 8+ hours per week per knowledge worker through AI productivity tools, without reducing headcount."</p><h3 class="h3">2. The principles — 3-5 bullets</h3><p class="body">What we will and won't do. Example: "We will buy horizontal AI platforms over building. We will require human review of any external AI output. We will not use free-tier tools with customer data."</p><h3 class="h3">3. The priority workflows — top 3</h3><p class="body">Specific, named, with workflow owners. Example: "Q1 priorities: proposal drafting (Sales), content production (Marketing), meeting synthesis (Ops)."</p><h3 class="h3">4. The named owner</h3><p class="body">One human. Title. Time commitment. Example: "[Name], COO, 10 hours/week protected for AI rollout, reports weekly to CEO."</p><h3 class="h3">5. The budget envelope</h3><p class="body">Range, not precise number. Example: "\$25K-\$50K Year 1 all-in: platform seats, implementation help, training, internal time."</p><h3 class="h3">6. The success metrics</h3><p class="body">What we will measure and at what cadence. Example: "Quarterly review: hours saved (target 8+/person/wk), workflows in production (target 5+ by month 6), team adoption (target 80% weekly active)."</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Worked example</h2><p class="body">That's the whole strategy. ~150 words. Drives the same outcomes that a 30-page deck would; gets used.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to cut</h2><ul class="ul"><li>Vendor landscape analysis. Not strategy; tactical.</li><li>Multi-year vision statements. Aspirational, not actionable.</li><li>Capability maturity models. Generic, derivative.</li><li>Vague "transformation" language. Triggers organizational antibodies.</li><li>Anything that doesn't answer 'what will be different in 12 months.'</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">How to use this with your board</h2><p class="body">Present the one-pager directly. Boards prefer specificity to comprehensiveness. If they want detail, the 90-day implementation roadmap is the supporting artifact (see the roadmap template).</p><p class="body">If your board insists on a longer document, that's a signal — the conversation is about reassurance, not action. Push back gently.</p></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Isn't a one-page strategy too simple?</h3><p class="faq-qa">Simple is correct. Complexity in strategy documents usually masks unclear thinking, not nuanced thinking.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should the AI lead or the CEO write this?</h3><p class="faq-qa">Joint exercise. CEO writes the goal and principles. AI lead writes the workflows, owner, budget, metrics.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How often should we update it?</h3><p class="faq-qa">Quarterly. After each review, refine the priority workflows and metrics for the next quarter.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What if my consultancy gave us a 30-page strategy?</h3><p class="faq-qa">Distill it to one page yourself. Use their depth as input; produce your own one-page output.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should this be different at different company sizes?</h3><p class="faq-qa">Same template, different content. Bigger companies have more workflows and more nuanced metrics; the structure holds.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/do-i-need-an-ai-strategy" style="color:#00C853;text-decoration:none;">Do I need an AI strategy? &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-roadmap-template" style="color:#00C853;text-decoration:none;">AI implementation roadmap template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-rollout-checklist-for-ceos" style="color:#00C853;text-decoration:none;">AI rollout checklist for CEOs &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

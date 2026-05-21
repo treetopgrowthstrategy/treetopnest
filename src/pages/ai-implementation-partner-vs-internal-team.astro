@@ -1,0 +1,99 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI Implementation: Partner vs Internal Team (How to Decide) | Treetop</title>
+<meta name="description" content="When to use an external AI implementation partner vs. building internally. Decision framework, cost comparison, hybrid approaches." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-implementation-partner-vs-internal-team" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-implementation-partner-vs-internal-team" />
+<meta property="og:title" content="AI Implementation: Partner vs Internal Team (How to Decide)" /><meta property="og:description" content="When to use an external AI implementation partner vs. building internally. Decision framework, cost comparison, hybrid approaches." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="AI Implementation: Partner vs Internal Team (How to Decide)" />
+<meta name="twitter:description" content="When to use an external AI implementation partner vs. building internally. Decision framework, cost comparison, hybrid approaches." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'AI Implementation: Partner vs Internal Team (How to Decide)',"description":'When to use an external AI implementation partner vs. building internally. Decision framework, cost comparison, hybrid approaches.',"url":"https://treetopgrowthstrategy.com/ai-implementation-partner-vs-internal-team","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I evaluate AI implementation partners?", "acceptedAnswer": {"@type": "Answer", "text": "Reference checks with similar clients; demand to see real deliverables from past engagements; ask about their handoff process."}}, {"@type": "Question", "name": "Can we hire a dedicated internal AI engineer instead?", "acceptedAnswer": {"@type": "Answer", "text": "At <50 people, usually no \u2014 not enough work to justify. At 100+, sometimes."}}, {"@type": "Question", "name": "Should we hire the partner's lead consultant as a full-time employee?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes works. Have the conversation openly; partners with high turnover view this as normal."}}, {"@type": "Question", "name": "What's the right partner profile for our size?", "acceptedAnswer": {"@type": "Answer", "text": "B2B at \\$5M-\\$30M: small specialized firm (under 10 people). Larger orgs: mid-sized practice. Avoid Big-4 unless you specifically need the brand."}}, {"@type": "Question", "name": "Can the partner help with hiring our internal AI lead?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 good partners help spec and source the eventual full-time hire as part of the handoff plan."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">AI Implementation: Partner vs Internal Team <em style="color:#00C853;font-style:italic;">Most teams should do both — sequentially.</em></h1>
+<p class="hero-sub">Should you bring in an outside AI implementation partner or build the capability internally? At $5M-$50M B2B, the right answer is usually 'both, sequentially' — partner first to compress time-to-value, internal capability built during and after. Here's the decision framework.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Partner first for the first 1-3 workflows; build internal capability during the engagement; transition to internal ownership at 90-180 days. Trying to start internally usually wastes 60-120 days on trial-and-error that a partner would compress. Trying to outsource everything indefinitely usually wastes money and creates dependency.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">When to start with a partner</h2><ul class="ul"><li>You haven't successfully shipped an AI workflow in production yet.</li><li>Your internal team doesn't have someone who has done this before.</li><li>You need rollout faster than internal trial-and-error allows (typical: 90 days with partner vs 6 months without).</li><li>You want to compress the political work — outside voice can move what internal politics blocks.</li><li>Budget allows \$5K-\$50K for fixed-fee implementation engagement.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">When to start internally (no partner)</h2><ul class="ul"><li>Someone on your team has shipped AI workflows at a previous company.</li><li>You have 4-6 months of patience for trial-and-error.</li><li>Budget is too tight for any outside help.</li><li>You're at <20 people and the founder can do this themselves.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">The hybrid approach (most common right answer)</h2><ol class="ol"><li><strong>Months 0-3:</strong> Partner-led implementation. Partner ships 1-3 workflows; trains the named internal owner alongside.</li><li><strong>Months 3-6:</strong> Joint operation. Partner advises; internal owner runs day-to-day. Partner present for major decisions.</li><li><strong>Months 6-12:</strong> Internal ownership. Partner on call for new initiatives. Quarterly check-ins.</li><li><strong>Months 12+:</strong> Fully internal unless major new initiative.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Cost comparison</h2><p class="body">The math usually favors the hybrid: partner compresses time-to-value, internal capability ensures sustainability.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common mistakes</h2><ul class="ul"><li><strong>Hiring the partner without naming the internal owner.</strong> When the partner leaves, knowledge leaves with them.</li><li><strong>Letting the partner do everything.</strong> Internal capability must be built during the engagement, not after.</li><li><strong>Cutting partner short before transition is complete.</strong> Saves a month of fees; loses 6 months of compounding outcomes.</li><li><strong>Extending the partner indefinitely.</strong> If you're still using the partner at 18 months, ownership has not transferred.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">How to structure the partnership for handoff</h2><ul class="ul"><li>Name the internal owner at engagement kickoff.</li><li>Internal owner attends every partner working session.</li><li>All Projects, prompts, and documentation lives in your systems (not the partner's).</li><li>Define handoff milestones in the engagement letter ("by week 8, internal owner runs workflow #1 solo").</li><li>Plan a clean exit date with quarterly check-in retainer after.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">How do I evaluate AI implementation partners?</h3><p class="faq-qa">Reference checks with similar clients; demand to see real deliverables from past engagements; ask about their handoff process.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can we hire a dedicated internal AI engineer instead?</h3><p class="faq-qa">At <50 people, usually no — not enough work to justify. At 100+, sometimes.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should we hire the partner's lead consultant as a full-time employee?</h3><p class="faq-qa">Sometimes works. Have the conversation openly; partners with high turnover view this as normal.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What's the right partner profile for our size?</h3><p class="faq-qa">B2B at \$5M-\$30M: small specialized firm (under 10 people). Larger orgs: mid-sized practice. Avoid Big-4 unless you specifically need the brand.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can the partner help with hiring our internal AI lead?</h3><p class="faq-qa">Yes — good partners help spec and source the eventual full-time hire as part of the handoff plan.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-choose-an-ai-strategy-consultant" style="color:#00C853;text-decoration:none;">How to choose an AI strategy consultant &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/is-it-worth-hiring-an-ai-consultant" style="color:#00C853;text-decoration:none;">Is it worth hiring an AI consultant? &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-roadmap-template" style="color:#00C853;text-decoration:none;">AI implementation roadmap template &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

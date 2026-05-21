@@ -1,0 +1,100 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Handle an AI Data Incident (Incident Response Guide) | Treetop</title>
+<meta name="description" content="A practical incident response guide for AI data incidents in B2B companies. Containment, notification, remediation, and post-incident lessons." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-handle-an-ai-data-incident" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-handle-an-ai-data-incident" />
+<meta property="og:title" content="How to Handle an AI Data Incident (Incident Response Guide)" /><meta property="og:description" content="A practical incident response guide for AI data incidents in B2B companies. Containment, notification, remediation, and post-incident lessons." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Handle an AI Data Incident (Incident Response Guide)" />
+<meta name="twitter:description" content="A practical incident response guide for AI data incidents in B2B companies. Containment, notification, remediation, and post-incident lessons." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Handle an AI Data Incident (Incident Response Guide)',"description":'A practical incident response guide for AI data incidents in B2B companies. Containment, notification, remediation, and post-incident lessons.',"url":"https://treetopgrowthstrategy.com/how-to-handle-an-ai-data-incident","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should we always notify customers of AI incidents?", "acceptedAnswer": {"@type": "Answer", "text": "Per your contracts and applicable law. When in doubt, err toward notification \u2014 late notification is worse than over-notification."}}, {"@type": "Question", "name": "Who should be the incident commander?", "acceptedAnswer": {"@type": "Answer", "text": "Whoever owns security or operations. Title doesn't matter; clarity of ownership does."}}, {"@type": "Question", "name": "Do AI incidents fall under typical cyber insurance?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes. Review your policy. Specialized AI-error coverage exists but is not yet mainstream."}}, {"@type": "Question", "name": "Should we punish users who cause incidents?", "acceptedAnswer": {"@type": "Answer", "text": "Honest mistakes \u2014 no, retrain. Willful policy violations \u2014 yes, follow your standard process."}}, {"@type": "Question", "name": "How do we prevent AI incidents in the first place?", "acceptedAnswer": {"@type": "Answer", "text": "One-page policy, enterprise-tier tools provisioned widely, clear data classes, regular training, and (most important) clear escalation path for 'is this OK to put in AI?' questions."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Handle an AI Data Incident <em style="color:#00C853;font-style:italic;">It will happen. Have a plan.</em></h1>
+<p class="hero-sub">If you roll out AI broadly, you will eventually have a data incident — confidential information pasted into the wrong tool, an output sent to the wrong customer, a vendor data exposure. Here's the incident response playbook that contains the damage and rebuilds trust.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">5-step response: (1) contain immediately — revoke access if needed, (2) assess scope — what data, what tool, who knew, (3) notify affected parties per policy and law, (4) remediate — close the gap that allowed it, (5) document and revisit policy. Speed and transparency beat coverup every time.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Before anything happens: prep</h2><ul class="ul"><li>Have a named incident commander for AI/data incidents (often Head of Security or COO).</li><li>Have a written incident response plan, even if one page.</li><li>Have a list of vendors with their incident contact paths and your contractual notification requirements.</li><li>Have an internal Slack/email channel ready for incident comms.</li><li>Have legal counsel on speed dial for notification questions.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 1: Contain</h2><p class="body">First hour matters most. Stop the bleeding:</p><ul class="ul"><li>Revoke access to the AI tool for the affected user(s) if needed.</li><li>Delete the offending conversation/document from the AI platform.</li><li>Pull any recipients of the bad output back if possible (recall email, pull post, etc.).</li><li>Get the user(s) involved on the phone — don't ask for written confession yet.</li><li>Document what you did to contain, with timestamps.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 2: Assess scope</h2><p class="body">Calmly determine the scope:</p><ul class="ul"><li>What specific data was exposed (PII, financial, PHI, contract terms, customer lists)?</li><li>Which AI tool — enterprise-tier with no-training, or consumer-tier with potential model retention?</li><li>Who saw the output — internal only, specific customer, public?</li><li>How long was it exposed?</li><li>Are there other instances (was this a pattern or one-off)?</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 3: Notify per policy and law</h2><p class="body">Different incidents trigger different notification obligations:</p><ul class="ul"><li><strong>Customer contract notifications:</strong> review your DPAs. Most B2B contracts require notification of data incidents within 24-72 hours.</li><li><strong>Regulatory notifications:</strong> GDPR (72-hour rule), HIPAA, state breach laws — varies by jurisdiction and data type. Get legal involved.</li><li><strong>Internal notifications:</strong> exec team and affected functions immediately; broader company per your culture (often same day).</li><li><strong>Vendor notifications:</strong> if a vendor was involved, notify them — both for transparency and for their incident process.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 4: Remediate</h2><p class="body">Close the specific gap:</p><ul class="ul"><li><strong>Technical:</strong> if a tool needed configuration changes, make them. If the user lacked clear guidance, update guidance.</li><li><strong>Policy:</strong> update the AI usage policy if needed. Make sure team sees the update.</li><li><strong>Process:</strong> add a review step if the workflow lacked one. Add audit logging if it lacked it.</li><li><strong>People:</strong> retraining for the involved user(s). Termination only in cases of willful misconduct, not honest mistakes.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 5: Post-incident</h2><ul class="ul"><li>Written post-incident review — what happened, what we changed, what we'll watch for. 1-2 pages.</li><li>Share appropriate version with the team. Suppressing learning creates the conditions for repeat.</li><li>Revisit AI usage policy in the next quarterly review based on what you learned.</li><li>Build muscle: tabletop exercises 1-2x per year so the next response is faster.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common AI incident types to be ready for</h2><ul class="ul"><li>Customer data pasted into free Claude or ChatGPT (most common).</li><li>AI-generated content with hallucinated facts sent to a customer or regulator.</li><li>Internal document accidentally shared into a public-tier AI Project.</li><li>Vendor breach affecting AI tool you use.</li><li>Prompt injection or jailbreak affecting an AI agent you've built.</li><li>Performance disclosure regulator finds AI involvement and asks questions.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should we always notify customers of AI incidents?</h3><p class="faq-qa">Per your contracts and applicable law. When in doubt, err toward notification — late notification is worse than over-notification.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Who should be the incident commander?</h3><p class="faq-qa">Whoever owns security or operations. Title doesn't matter; clarity of ownership does.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Do AI incidents fall under typical cyber insurance?</h3><p class="faq-qa">Sometimes. Review your policy. Specialized AI-error coverage exists but is not yet mainstream.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should we punish users who cause incidents?</h3><p class="faq-qa">Honest mistakes — no, retrain. Willful policy violations — yes, follow your standard process.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How do we prevent AI incidents in the first place?</h3><p class="faq-qa">One-page policy, enterprise-tier tools provisioned widely, clear data classes, regular training, and (most important) clear escalation path for 'is this OK to put in AI?' questions.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-policy-template" style="color:#00C853;text-decoration:none;">AI policy template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/what-are-the-risks-of-using-ai-in-business" style="color:#00C853;text-decoration:none;">What are the risks of using AI in business? &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/is-claude-safe-for-business-data" style="color:#00C853;text-decoration:none;">Is Claude safe for business data? &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
