@@ -139,9 +139,9 @@ section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:11
 <label class="input-label" for="buildout">Buildout level</label>
 <div class="input-help">Light = existing fitness space; Heavy = raw shell</div>
 <select id="buildout" class="input-select">
-<option value="light" selected>Light buildout (\$15-\$40/sq ft)</option>
-<option value="medium">Medium buildout (\$60-\$120/sq ft)</option>
-<option value="heavy">Heavy buildout (\$120-\$250/sq ft)</option>
+<option value="light" selected>Light buildout ($15-$40/sq ft)</option>
+<option value="medium">Medium buildout ($60-$120/sq ft)</option>
+<option value="heavy">Heavy buildout ($120-$250/sq ft)</option>
 </select>
 </div>
 
@@ -228,6 +228,14 @@ section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:11
 </div>
 </section>
 
+<!-- INTERLINK-V1 -->
+<section><div class="sec-inner"><div style="background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.75rem 2rem;max-width:880px;margin:0 auto;">
+<div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.6rem;">What you will deploy on day one</div>
+<div style="font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;line-height:1.3;margin-bottom:0.6rem;">The operational layer the AI-native model is built on.</div>
+<p style="font-size:0.95rem;color:#C0D8C0;line-height:1.7;margin-bottom:0.85rem;">The cost math above assumes AI agents handle lead nurture, no-show recovery, member retention monitoring, and member-facing coaching. Here is what that looks like in practice — the workflows fitagentic.ai is purpose-built for.</p>
+<div style="font-size:0.92rem;color:#8FAF8F;"><a href="/fitness-operator-prospect-to-member-ai-playbook" style="color:#00C853;text-decoration:none;font-weight:500;">The prospect-to-member AI playbook</a> · <a href="/why-group-fitness-drives-retention" style="color:#00C853;text-decoration:none;font-weight:500;">Why group fitness drives retention</a> · <a href="/how-to-use-ai-for-gym-lead-nurture" style="color:#00C853;text-decoration:none;font-weight:500;">AI for gym lead nurture</a> · <a href="/fitness-ai-tool-reference-2026" style="color:#00C853;text-decoration:none;font-weight:500;">Fitness AI tool reference</a></div>
+</div></div></section>
+
 <GlobalFooter />
 
 <script is:inline>
@@ -245,11 +253,6 @@ const buildoutPerSqFt = { light: 28, medium: 90, heavy: 180 };
 const equipmentMult = { essential: 0.7, standard: 1.0, premium: 1.6 };
 const staffMonthlyOpCost = { lean: 6500, hybrid: 11500, traditional: 19000 };
 
-function fmt(n) {
-  return '$' + Math.round(n / 1000) * 1000 .toLocaleString ?
-    '$' + Math.round(n / 1000).toLocaleString() + ',000' :
-    '$' + Math.round(n).toLocaleString();
-}
 function fmtRound(n) {
   return '$' + (Math.round(n / 500) * 500).toLocaleString();
 }
