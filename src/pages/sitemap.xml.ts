@@ -403,6 +403,12 @@ const pages = [
   { url: '/how-to-use-claude-as-a-founder', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-use-claude-as-an-account-manager', priority: '0.82', changefreq: 'monthly' },
   { url: '/how-to-use-claude-as-a-product-manager', priority: '0.82', changefreq: 'monthly' },
+
+  // Rollout-failure / adoption-resistance pages
+  { url: '/why-most-ai-rollouts-fail-in-the-first-30-days', priority: '0.85', changefreq: 'monthly' },
+  { url: '/what-to-do-when-your-team-resists-ai', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-rollout-mistakes-by-company-size', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-explain-ai-to-your-team', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

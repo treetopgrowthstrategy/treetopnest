@@ -1,0 +1,100 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>What to Do When Your Team Resists AI (Honest Playbook) | Treetop</title>
+<meta name="description" content="A practical playbook for B2B leaders facing team resistance to AI rollout. Diagnostic, interventions, and what to do when resistance is legitimate." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/what-to-do-when-your-team-resists-ai" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/what-to-do-when-your-team-resists-ai" />
+<meta property="og:title" content="What to Do When Your Team Resists AI (Honest Playbook)" /><meta property="og:description" content="A practical playbook for B2B leaders facing team resistance to AI rollout. Diagnostic, interventions, and what to do when resistance is legitimate." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="What to Do When Your Team Resists AI (Honest Playbook)" />
+<meta name="twitter:description" content="A practical playbook for B2B leaders facing team resistance to AI rollout. Diagnostic, interventions, and what to do when resistance is legitimate." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'What to Do When Your Team Resists AI (Honest Playbook)',"description":'A practical playbook for B2B leaders facing team resistance to AI rollout. Diagnostic, interventions, and what to do when resistance is legitimate.',"url":"https://treetopgrowthstrategy.com/what-to-do-when-your-team-resists-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I mandate AI usage?", "acceptedAnswer": {"@type": "Answer", "text": "Rarely productive. Mandates produce surface compliance, not adoption. Invest in modeling and removing friction."}}, {"@type": "Question", "name": "What if a senior person refuses to engage?", "acceptedAnswer": {"@type": "Answer", "text": "Have the direct conversation. \"Using AI fluently is now a baseline skill for your role. What support do you need?\" Make it a development conversation, not a discipline conversation."}}, {"@type": "Question", "name": "Will the resistance go away on its own?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not. Resistance hardens with neglect. Address it specifically."}}, {"@type": "Question", "name": "Should I bring in outside help to push past resistance?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes \u2014 an outside facilitator can move conversations that internal politics blocks."}}, {"@type": "Question", "name": "How long does resistance take to overcome?", "acceptedAnswer": {"@type": "Answer", "text": "If diagnosed correctly and addressed specifically, 30-60 days. If misdiagnosed or ignored, never."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">What to Do When Your Team Resists AI <em style="color:#00C853;font-style:italic;">Resistance is information, not insubordination.</em></h1>
+<p class="hero-sub">If your team is pushing back on AI rollout, you have two options: dismiss it as resistance to change, or treat it as feedback worth understanding. The first approach kills rollouts. The second often reveals legitimate concerns that, addressed, accelerate adoption.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Resistance usually means one of: (1) people fear job loss, (2) the tools aren't actually useful for their work yet, (3) leadership is pushing without modeling, (4) people don't have time to learn, or (5) past tech rollouts at your company have failed. Diagnose first; intervene specific.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">The diagnostic</h2><p class="body">Before responding to resistance, find out what it actually is. Five common patterns, each with different fixes:</p><ol class="ol"><li><strong>Fear of job loss</strong> — they think this is preparation for layoffs.</li><li><strong>Tool genuinely doesn't help</strong> — they've tried; their workflow doesn't fit well.</li><li><strong>Leadership hypocrisy</strong> — being told to use AI by people who don't use AI.</li><li><strong>No time</strong> — calendar is too full to learn a new way of working.</li><li><strong>Tech-rollout PTSD</strong> — past initiatives at your company fizzled; people don't bother engaging early.</li></ol><p class="body">Talk to 5 resistors privately. Ask: "what's making this hard?" Listen for which of the above patterns shows up.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Fix 1: Fear of job loss</h2><p class="body"><strong>What works:</strong> Be explicit, in writing, about what AI is and is not meant to do. "We're rolling out AI to make our existing team more productive, not to reduce headcount in the next 12 months. We expect to grow output per person without growing headcount as fast as we otherwise would have."</p><p class="body"><strong>What doesn't work:</strong> Vague reassurances. Promises you can't keep. Silence.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Fix 2: Tool genuinely doesn't help</h2><p class="body"><strong>What works:</strong> Take this seriously. Some workflows really aren't AI-ready yet. Park them. Pick a different workflow that does benefit. Don't force AI into workflows where it adds friction.</p><p class="body"><strong>What doesn't work:</strong> Insisting they keep trying. People know when a tool is fighting them.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Fix 3: Leadership hypocrisy</h2><p class="body"><strong>What works:</strong> Leadership personally uses the tools, visibly, in front of the team. CEO posts about a Claude workflow they ran this week. CEO uses AI in a meeting in front of others.</p><p class="body"><strong>What doesn't work:</strong> Sponsoring the initiative without personally adopting the tool. Team always reads the signal.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Fix 4: No time</h2><p class="body"><strong>What works:</strong> Protect calendar time explicitly. "For the next 2 weeks, every Tuesday/Thursday 9-10 AM is reserved for AI training and practice. No meetings." Sometimes this is the entire blocker.</p><p class="body"><strong>What doesn't work:</strong> "Find time around your existing work." People don't have any.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Fix 5: Tech-rollout PTSD</h2><p class="body"><strong>What works:</strong> Address it explicitly. "I know we've started initiatives that fizzled before. Here's why this is different: [specific commitments]." Then ship something visible quickly so the pattern breaks.</p><p class="body"><strong>What doesn't work:</strong> Pretending the past doesn't exist. People remember; their disengagement is rational based on past evidence.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">When resistance is legitimate</h2><p class="body">Sometimes the resistance is right. Workflows where AI genuinely adds friction; cultures where the tool isn't ready; teams where the timing is wrong.</p><p class="body">If three or more of your respected operators (not the chronic complainers) push back on a specific workflow, take it seriously. Pause it. Find a better first workflow. Their judgment is usually correct.</p></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should I mandate AI usage?</h3><p class="faq-qa">Rarely productive. Mandates produce surface compliance, not adoption. Invest in modeling and removing friction.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What if a senior person refuses to engage?</h3><p class="faq-qa">Have the direct conversation. "Using AI fluently is now a baseline skill for your role. What support do you need?" Make it a development conversation, not a discipline conversation.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will the resistance go away on its own?</h3><p class="faq-qa">Usually not. Resistance hardens with neglect. Address it specifically.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I bring in outside help to push past resistance?</h3><p class="faq-qa">Sometimes — an outside facilitator can move conversations that internal politics blocks.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How long does resistance take to overcome?</h3><p class="faq-qa">If diagnosed correctly and addressed specifically, 30-60 days. If misdiagnosed or ignored, never.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-most-ai-implementations-fail" style="color:#00C853;text-decoration:none;">Why most AI implementations fail &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/signs-your-ai-rollout-is-failing" style="color:#00C853;text-decoration:none;">7 signs your AI rollout is failing &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-train-your-team-on-claude" style="color:#00C853;text-decoration:none;">How to train your team on Claude &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

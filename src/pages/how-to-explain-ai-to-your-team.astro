@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Explain AI to Your Team (For Non-Technical Leaders) | Treetop</title>
+<meta name="description" content="A practical framing for explaining AI to your B2B team. The metaphors that work, the ones that don't, and the talking points that drive adoption." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-explain-ai-to-your-team" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-explain-ai-to-your-team" />
+<meta property="og:title" content="How to Explain AI to Your Team (For Non-Technical Leaders)" /><meta property="og:description" content="A practical framing for explaining AI to your B2B team. The metaphors that work, the ones that don't, and the talking points that drive adoption." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Explain AI to Your Team (For Non-Technical Leaders)" />
+<meta name="twitter:description" content="A practical framing for explaining AI to your B2B team. The metaphors that work, the ones that don't, and the talking points that drive adoption." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Explain AI to Your Team (For Non-Technical Leaders)',"description":'A practical framing for explaining AI to your B2B team. The metaphors that work, the ones that don't, and the talking points that drive adoption.',"url":"https://treetopgrowthstrategy.com/how-to-explain-ai-to-your-team","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I have HR present the AI rollout?", "acceptedAnswer": {"@type": "Answer", "text": "No. The function leader or COO. HR is for policy questions; rollout is about work."}}, {"@type": "Question", "name": "Should I write a long FAQ for the team?", "acceptedAnswer": {"@type": "Answer", "text": "No. One page max. Long FAQs feel defensive."}}, {"@type": "Question", "name": "Should I record the explanation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 for people who joined later. Keep it under 10 minutes."}}, {"@type": "Question", "name": "Should I bring in an outside trainer?", "acceptedAnswer": {"@type": "Answer", "text": "For ongoing skill development, yes. For the initial framing, no \u2014 they don't know your team."}}, {"@type": "Question", "name": "What if I'm not personally fluent in AI?", "acceptedAnswer": {"@type": "Answer", "text": "Get fluent before rolling out. Use it daily for 30 days. You cannot lead what you don't use."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Explain AI to Your Team <em style="color:#00C853;font-style:italic;">The explanation that produces adoption.</em></h1>
+<p class="hero-sub">Most internal AI explanations confuse people. Either too technical ("It's a transformer-based language model trained on...") or too vague ("AI is going to change everything"). Here's the framing that actually produces understanding and adoption.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Frame AI as "a junior teammate who has read everything but knows nothing specific about your company." Their first job is to teach the AI about your work; in return, the AI absorbs the boring parts of their job. Practical, accurate, non-threatening, accurate enough to be useful.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">The framing that works</h2><p class="body">"Think of Claude (or ChatGPT) as a brand-new junior teammate. Very smart. Has read most of the internet. Cannot type or speak — only writes. Knows nothing specific about us, our customers, our voice, our work. Our job is to teach it; in exchange, it absorbs the boring parts of our work — drafts, summaries, research, formatting."</p><p class="body">Why this works:</p><ul class="ul"><li><strong>Accurate.</strong> Reflects actual capabilities and limits.</li><li><strong>Non-threatening.</strong> The teammate framing makes adoption feel like onboarding someone new, not being replaced.</li><li><strong>Action-oriented.</strong> "Our job is to teach it" gives the team something specific to do.</li><li><strong>Sets the right expectation.</strong> The team won't expect magic or fear total automation.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Frames that don't work</h2><ul class="ul"><li><strong>"AI is going to transform our business."</strong> Vague. Means nothing to a marketing coordinator on Monday morning.</li><li><strong>"It's like ChatGPT."</strong> Many people have only seen the personal Pro version; the business use is different.</li><li><strong>"It's a large language model that..."</strong> Technical accuracy that produces glazed eyes.</li><li><strong>"It will replace tedious work."</strong> Code for "it will replace you." People hear it.</li><li><strong>"It's an agent."</strong> Misleading at most current implementation maturity. Sets the wrong expectation about autonomy.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">The 5-minute explanation script</h2><p class="body"><em>"OK team, quick overview of why we're rolling out [Claude/ChatGPT]."</em></p><p class="body"><em>"Think of it as a brand-new junior teammate who has read everything but knows nothing specific about us. They can write well, summarize well, research well. They can't take meetings, can't make decisions for us, and won't know our customers or our voice unless we teach them."</em></p><p class="body"><em>"Here's what we're doing: we're building Projects loaded with our examples, our voice, our processes. Then any of us can use those Projects to draft proposals, draft emails, synthesize meetings, do research. Faster than we do it ourselves; quality holds because we teach it our standards."</em></p><p class="body"><em>"What we're NOT doing: replacing anyone. The work this absorbs is the drudgery part — drafting, formatting, summarizing. The judgment and relationship work stays with us, and frankly we'll have more time for it."</em></p><p class="body"><em>"The ask: use it. Try it on 2-3 things per week to start. Tell [AI lead] what worked and what didn't. We'll get good at this together."</em></p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common questions and how to answer</h2><h3 class="h3">"Will this replace my job?"</h3><p class="body">Answer honestly. "Not in the foreseeable future. It changes what your job is — less drafting, more judgment. Most people I know who use it well report being more valuable, not less."</p><h3 class="h3">"Is my data safe?"</h3><p class="body">"We're using [enterprise tier] which doesn't train on our inputs. We have a policy about what kind of data goes where; I'll send it."</p><h3 class="h3">"What if the AI is wrong?"</h3><p class="body">"It will be sometimes. Our job is to review its output before anything ships. Like reviewing a junior teammate's draft."</p><h3 class="h3">"I do not have time to learn this."</h3><p class="body">"We're protecting 2 hours per week for the next month. Calendar it now. The time it saves you compounds."</p></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should I have HR present the AI rollout?</h3><p class="faq-qa">No. The function leader or COO. HR is for policy questions; rollout is about work.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I write a long FAQ for the team?</h3><p class="faq-qa">No. One page max. Long FAQs feel defensive.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I record the explanation?</h3><p class="faq-qa">Yes — for people who joined later. Keep it under 10 minutes.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I bring in an outside trainer?</h3><p class="faq-qa">For ongoing skill development, yes. For the initial framing, no — they don't know your team.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What if I'm not personally fluent in AI?</h3><p class="faq-qa">Get fluent before rolling out. Use it daily for 30 days. You cannot lead what you don't use.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-train-your-team-on-claude" style="color:#00C853;text-decoration:none;">How to train your team on Claude &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/what-to-do-when-your-team-resists-ai" style="color:#00C853;text-decoration:none;">What to do when your team resists AI &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-policy-template" style="color:#00C853;text-decoration:none;">AI policy template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-training" style="color:#00C853;text-decoration:none;">Treetop Claude training &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
