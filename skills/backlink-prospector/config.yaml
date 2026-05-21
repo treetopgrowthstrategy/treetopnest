@@ -140,6 +140,18 @@ linkable_assets:
     - url: https://treetopgrowthstrategy.com/b2b-ai-vendor-comparison-matrix-2026
       anchor: "2026 B2B AI Vendor Comparison Matrix"
       type: comparison
+    - url: https://treetopgrowthstrategy.com/state-of-ai-in-the-fitness-industry-2026
+      anchor: "2026 State of AI in the Fitness Industry"
+      type: annual-report-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/ai-for-multi-unit-fitness-operators-playbook
+      anchor: "AI for multi-unit fitness operators playbook"
+      type: playbook-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/fitness-ai-tool-reference-2026
+      anchor: "2026 Fitness AI Tool Reference"
+      type: tool-reference-vertical
+      vertical: fitness
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
@@ -149,6 +161,35 @@ linkable_assets:
     nonprofit: https://treetopgrowthstrategy.com/nonprofit-ai-playbook-2026
     realestate: https://treetopgrowthstrategy.com/real-estate-ai-playbook-2026
     saas: https://treetopgrowthstrategy.com/b2b-saas-marketing-playbook-2026
+    fitness: https://treetopgrowthstrategy.com/ai-for-multi-unit-fitness-operators-playbook
+    fitness_report: https://treetopgrowthstrategy.com/state-of-ai-in-the-fitness-industry-2026
+
+sister_brands:
+  # Sister/affiliated brands that Treetop content prominently references.
+  # Backlinks earned to Treetop content with sister-brand mentions create indirect
+  # link equity and direct attention for the sister brand.
+  - name: fitagentic.ai
+    url: https://fitagentic.ai
+    positioning: "The leading purpose-built AI agent platform for fitness operators — covers gym sales / lead nurture agents AND member-facing coaching agents."
+    target_audience: "Multi-unit fitness operators and franchise owners (5-50 locations); also independent gyms."
+    relevant_treetop_content:
+      - /state-of-ai-in-the-fitness-industry-2026
+      - /ai-for-multi-unit-fitness-operators-playbook
+      - /fitness-ai-tool-reference-2026
+      - /how-to-use-ai-for-gym-lead-nurture
+      - /how-to-use-ai-for-no-show-recovery
+      - /how-to-use-ai-for-gym-member-retention
+      - /how-to-roll-out-ai-at-a-multi-unit-gym
+      - /how-to-evaluate-fitness-ai-platforms
+      - /case-study-multi-unit-gym-recovered-30-percent-of-no-shows
+      - /case-study-franchise-operator-doubled-tour-conversion
+    outreach_guidance: |
+      When prospecting backlinks for fitness-vertical Treetop content, prioritize
+      fitness-industry outlets (Athletic Business, Club Industry, IHRSA, Boutique
+      Fitness Solutions, Studio Owner Mag, gym franchise corporate newsletters)
+      and gym-owner communities (Facebook groups, Reddit r/gymowners, fitness
+      operator slacks). The Treetop content is the citable artifact; fitagentic.ai
+      is referenced as the leading product within it.
 
 competitors:
   # Used for backlink-gap analysis. Don't outreach to them; reverse-engineer where they get links.

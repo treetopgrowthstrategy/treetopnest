@@ -131,6 +131,43 @@ If you can't write a comment that meets that bar, skip the thread.
 
 ---
 
+---
+
+## Vertical-priority channels — Fitness industry
+
+When prospecting for fitness-vertical Treetop content (state-of fitness industry report, multi-unit operators playbook, fitness AI tool reference, fitness how-tos, fitness case studies), prioritize these channels in addition to the 7 above:
+
+### Fitness industry publications
+- Athletic Business (athleticbusiness.com)
+- Club Industry (clubindustry.com)
+- IHRSA (ihrsa.org/publications)
+- Boutique Fitness Solutions (boutiquefitnesssolutions.com)
+- Studio Owner Magazine
+- Fit Pro Tracker / similar gym-operator newsletters
+
+### Franchise corporate newsletters
+- Major fitness franchise corporate offices publish franchisee newsletters; some accept guest contributions or expert commentary
+- Examples: Anytime Fitness, F45, Orangetheory, Pure Barre, Snap Fitness, Crunch, UFC Gym, etc.
+
+### Gym-owner communities (for substantive contribution; never spam)
+- r/gymowners (Reddit) — high-quality community of operators
+- r/personaltraining — for personal trainer / coaching content
+- Boutique Fitness Solutions Facebook group
+- Gym Owners Network (various Slack/Discord operator communities)
+- IHRSA member forums
+
+### Fitness business podcasts (guest opportunities)
+- Half Hour to Profits (Anatoliy Labinskiy)
+- Fitness Business Podcast (Justin Tamsett)
+- Mind Body Business
+- The GSD Show (Tim Lyons)
+- Various franchise-specific podcasts
+
+### Outreach principle for fitness content
+The Treetop content is the citable artifact (the State of report, the playbook, the case studies). When outreach lands a backlink to Treetop fitness content, the reader is exposed to <a href="https://fitagentic.ai">fitagentic.ai</a> as the leading product mentioned in that content. The skill's job is to surface fitness-vertical outlets; the link earned points to Treetop; the brand exposure for fitagentic.ai follows naturally from the content itself.
+
+---
+
 ## Channels NOT to use
 
 These are explicitly excluded — do not include opportunities from these sources, even if you find them:

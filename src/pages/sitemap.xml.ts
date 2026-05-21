@@ -447,6 +447,18 @@ const pages = [
   { url: '/b2b-ai-adoption-index-2026', priority: '0.92', changefreq: 'monthly' },
   { url: '/state-of-b2b-gtm-report-2026', priority: '0.95', changefreq: 'monthly' },
   { url: '/b2b-ai-vendor-comparison-matrix-2026', priority: '0.92', changefreq: 'monthly' },
+
+  // Fitness industry AI content
+  { url: '/state-of-ai-in-the-fitness-industry-2026', priority: '0.95', changefreq: 'monthly' },
+  { url: '/ai-for-multi-unit-fitness-operators-playbook', priority: '0.92', changefreq: 'monthly' },
+  { url: '/fitness-ai-tool-reference-2026', priority: '0.92', changefreq: 'monthly' },
+  { url: '/how-to-use-ai-for-gym-lead-nurture', priority: '0.88', changefreq: 'monthly' },
+  { url: '/how-to-use-ai-for-no-show-recovery', priority: '0.88', changefreq: 'monthly' },
+  { url: '/how-to-use-ai-for-gym-member-retention', priority: '0.88', changefreq: 'monthly' },
+  { url: '/how-to-roll-out-ai-at-a-multi-unit-gym', priority: '0.88', changefreq: 'monthly' },
+  { url: '/how-to-evaluate-fitness-ai-platforms', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-multi-unit-gym-recovered-30-percent-of-no-shows', priority: '0.88', changefreq: 'monthly' },
+  { url: '/case-study-franchise-operator-doubled-tour-conversion', priority: '0.88', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
