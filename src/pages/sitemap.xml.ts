@@ -492,6 +492,19 @@ const pages = [
   { url: '/cost-to-open-a-crossfit-gym', priority: '0.90', changefreq: 'monthly' },
   { url: '/cost-to-open-a-personal-training-studio', priority: '0.90', changefreq: 'monthly' },
   { url: '/cost-to-start-a-gym-vs-buying-existing-gym', priority: '0.88', changefreq: 'monthly' },
+
+  // Gym marketing + business plan cluster (Ahrefs-vetted)
+  { url: '/gym-business-plan', priority: '0.95', changefreq: 'monthly' },
+  { url: '/fitness-marketing-2026', priority: '0.95', changefreq: 'monthly' },
+  { url: '/how-to-market-a-gym', priority: '0.93', changefreq: 'monthly' },
+  { url: '/gym-member-retention-strategies', priority: '0.92', changefreq: 'monthly' },
+  { url: '/gym-lead-generation', priority: '0.92', changefreq: 'monthly' },
+  { url: '/gym-membership-sales-and-pricing', priority: '0.90', changefreq: 'monthly' },
+  { url: '/gym-referral-program', priority: '0.90', changefreq: 'monthly' },
+  { url: '/gym-membership-marketing-ideas', priority: '0.90', changefreq: 'monthly' },
+  { url: '/boutique-fitness-marketing', priority: '0.88', changefreq: 'monthly' },
+  { url: '/personal-trainer-marketing', priority: '0.88', changefreq: 'monthly' },
+  { url: '/personal-trainer-business-plan', priority: '0.88', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

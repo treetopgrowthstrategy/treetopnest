@@ -193,6 +193,30 @@ linkable_assets:
       anchor: "From Coach to Studio Owner: The AI-Native Playbook"
       type: audience-specific-vertical
       vertical: fitness
+    # Gym marketing cluster (Ahrefs-vetted: target keywords above with real volume)
+    - url: https://treetopgrowthstrategy.com/gym-business-plan
+      anchor: "Gym Business Plan (2026 template)"
+      type: flagship-vertical
+      vertical: fitness
+      seo_target: "gym business plan"
+    - url: https://treetopgrowthstrategy.com/fitness-marketing-2026
+      anchor: "Fitness Marketing 2026"
+      type: flagship-vertical
+      vertical: fitness
+      seo_target: "fitness marketing"
+    - url: https://treetopgrowthstrategy.com/how-to-market-a-gym
+      anchor: "How to market a gym"
+      type: flagship-vertical
+      vertical: fitness
+      seo_target: "how to market a gym"
+    - url: https://treetopgrowthstrategy.com/gym-member-retention-strategies
+      anchor: "Gym Member Retention Strategies"
+      type: anchor-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/gym-lead-generation
+      anchor: "Gym Lead Generation"
+      type: anchor-vertical
+      vertical: fitness
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
@@ -250,6 +274,17 @@ sister_brands:
       - /cost-to-open-a-crossfit-gym
       - /cost-to-open-a-personal-training-studio
       - /cost-to-start-a-gym-vs-buying-existing-gym
+      - /gym-business-plan
+      - /fitness-marketing-2026
+      - /how-to-market-a-gym
+      - /gym-member-retention-strategies
+      - /gym-lead-generation
+      - /gym-membership-sales-and-pricing
+      - /gym-referral-program
+      - /gym-membership-marketing-ideas
+      - /boutique-fitness-marketing
+      - /personal-trainer-marketing
+      - /personal-trainer-business-plan
     outreach_guidance: |
       When prospecting backlinks for fitness-vertical Treetop content, prioritize
       fitness-industry outlets (Athletic Business, Club Industry, IHRSA, Boutique
