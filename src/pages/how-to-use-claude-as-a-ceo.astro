@@ -1,0 +1,97 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Use Claude as a CEO (Daily Workflows That Compound) | Treetop</title>
+<meta name="description" content="A practical guide to using Claude as a B2B CEO. Daily workflows for board prep, exec communications, decision synthesis, hiring, and strategic thinking." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-use-claude-as-a-ceo" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-use-claude-as-a-ceo" />
+<meta property="og:title" content="How to Use Claude as a CEO (Daily Workflows That Compound)" /><meta property="og:description" content="A practical guide to using Claude as a B2B CEO. Daily workflows for board prep, exec communications, decision synthesis, hiring, and strategic thinking." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Use Claude as a CEO (Daily Workflows That Compound)" />
+<meta name="twitter:description" content="A practical guide to using Claude as a B2B CEO. Daily workflows for board prep, exec communications, decision synthesis, hiring, and strategic thinking." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Use Claude as a CEO (Daily Workflows That Compound)',"description":'A practical guide to using Claude as a B2B CEO. Daily workflows for board prep, exec communications, decision synthesis, hiring, and strategic thinking.',"url":"https://treetopgrowthstrategy.com/how-to-use-claude-as-a-ceo","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much CEO time does this save?", "acceptedAnswer": {"@type": "Answer", "text": "6-10 hours/week typical for CEOs who use AI daily. Compounds with team adoption."}}, {"@type": "Question", "name": "Should I use Claude or ChatGPT as CEO?", "acceptedAnswer": {"@type": "Answer", "text": "Either. Claude tends to be stronger for editorial work and calibration; ChatGPT for breadth and tool ecosystem. Pick one; train deeply."}}, {"@type": "Question", "name": "Should I let my EA use my Claude account?", "acceptedAnswer": {"@type": "Answer", "text": "No. Get them their own seat. Boundaries on what each person uses Claude for matter."}}, {"@type": "Question", "name": "Will my board be impressed or concerned that I use AI?", "acceptedAnswer": {"@type": "Answer", "text": "In 2026, expected. Most boards now ask whether the company uses AI internally. \"Yes, here is how\" is the right answer."}}, {"@type": "Question", "name": "Should I use Claude on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Mobile Claude is useful for quick capture and quick lookups. Save heavy work for desktop."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Use Claude as a CEO <em style="color:#00C853;font-style:italic;">The CEO workflows that actually compound.</em></h1>
+<p class="hero-sub">CEOs of $5M-$50M B2B companies have unique time constraints and unique leverage points. Claude can compress some of the most expensive of those — board prep, exec memo writing, decision synthesis — if used systematically. Here's the daily workflow.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Top CEO Claude workflows: morning briefing synthesis, exec memo drafting, board prep, decision frameworks, hiring loop debriefs, and strategic POV development. Set up 4-5 focused Projects; use them daily. Saves 6-10 hours/week of context-switching and writing time.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">The 5 CEO Projects to set up</h2><h3 class="h3">1. Morning briefing Project</h3><p class="body">Knowledge: company KPI structure, key priorities, board concerns. Daily use: paste in overnight emails, Slack DMs to review, calendar for the day. Get a 5-bullet brief of what matters.</p><h3 class="h3">2. Board prep Project</h3><p class="body">Knowledge: past board decks, KPI structure, each board member's interests. Quarterly use: dump in quarter's results; get structured deck draft + likely Q&amp;A.</p><h3 class="h3">3. Exec memo Project</h3><p class="body">Knowledge: 5-10 past strong exec memos in your voice. Use: draft any memo to the team. Edit heavily; output should sound like you.</p><h3 class="h3">4. Hiring loop Project</h3><p class="body">Knowledge: role scorecards, interview questions, your hiring philosophy. Use: synthesize interviewer feedback into a recommendation; draft offers; draft reject letters.</p><h3 class="h3">5. Strategic POV Project</h3><p class="body">Knowledge: company strategy, competitive landscape, your past writing. Use: develop POV on emerging issues; draft op-eds and LinkedIn posts; prepare for press interviews.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Daily workflow</h2><ol class="ol"><li><strong>Morning (15 min):</strong> Brief Project pulls together overnight context. Plan day with priority Q&amp;A.</li><li><strong>Between meetings (5-10 min each):</strong> Quick syntheses of conversations, drafted follow-ups.</li><li><strong>End of day (20 min):</strong> Synthesize day's decisions, draft any communications, prep for tomorrow.</li><li><strong>Weekly (60-90 min):</strong> Strategic thinking session — use Claude as a sparring partner on hard decisions, paste in relevant context, get challenged.</li></ol></div></section>
+<section><div class="sec-inner"><h2 class="h2">Where to be cautious</h2><ul class="ul"><li><strong>Don't let AI write your team-facing communications without heavy edit.</strong> Voice matters; team detects fakery.</li><li><strong>Don't use AI for sensitive personnel decisions (firing, comp).</strong> Both judgment and confidentiality stakes are too high.</li><li><strong>Don't paste confidential M&amp;A or board materials into anything but enterprise-tier with explicit no-training.</strong></li><li><strong>Don't outsource the hardest thinking.</strong> AI accelerates the easy parts of CEO work; the hardest parts remain yours.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Specific high-leverage prompts</h2><h3 class="h3">Decision framework prompt</h3><p class="body"><em>"Help me think through [decision]. Steelman the case for option A. Steelman the case for option B. What information am I missing? What would change my mind? What is the reversible/irreversible analysis?"</em></p><h3 class="h3">Steelman objection prompt</h3><p class="body"><em>"I am about to ship [communication/decision]. Pretend you are [our toughest board member / our most skeptical exec / our most savvy competitor]. What would you push back on?"</em></p><h3 class="h3">POV development prompt</h3><p class="body"><em>"I have been thinking about [emerging topic]. Here are my raw thoughts: [dump]. Help me develop this into a distinctive POV that I could articulate publicly. Where is my thinking soft? What do I need to clarify?"</em></p></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">How much CEO time does this save?</h3><p class="faq-qa">6-10 hours/week typical for CEOs who use AI daily. Compounds with team adoption.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I use Claude or ChatGPT as CEO?</h3><p class="faq-qa">Either. Claude tends to be stronger for editorial work and calibration; ChatGPT for breadth and tool ecosystem. Pick one; train deeply.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I let my EA use my Claude account?</h3><p class="faq-qa">No. Get them their own seat. Boundaries on what each person uses Claude for matter.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will my board be impressed or concerned that I use AI?</h3><p class="faq-qa">In 2026, expected. Most boards now ask whether the company uses AI internally. "Yes, here is how" is the right answer.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I use Claude on my phone?</h3><p class="faq-qa">Mobile Claude is useful for quick capture and quick lookups. Save heavy work for desktop.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-prep-for-a-board-meeting-with-claude" style="color:#00C853;text-decoration:none;">How to prep for a board meeting with Claude &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-pitch-ai-to-your-board" style="color:#00C853;text-decoration:none;">How to pitch AI to your board &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-rollout-checklist-for-ceos" style="color:#00C853;text-decoration:none;">AI rollout checklist for CEOs &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-training" style="color:#00C853;text-decoration:none;">Treetop Claude training &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

@@ -1,0 +1,96 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Use Claude as a Founder (Pre-Series-B Workflows) | Treetop</title>
+<meta name="description" content="A practical guide to using Claude as a B2B founder. Workflows for selling, recruiting, content production, investor updates, and synthesis." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-use-claude-as-a-founder" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-use-claude-as-a-founder" />
+<meta property="og:title" content="How to Use Claude as a Founder (Pre-Series-B Workflows)" /><meta property="og:description" content="A practical guide to using Claude as a B2B founder. Workflows for selling, recruiting, content production, investor updates, and synthesis." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Use Claude as a Founder (Pre-Series-B Workflows)" />
+<meta name="twitter:description" content="A practical guide to using Claude as a B2B founder. Workflows for selling, recruiting, content production, investor updates, and synthesis." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Use Claude as a Founder (Pre-Series-B Workflows)',"description":'A practical guide to using Claude as a B2B founder. Workflows for selling, recruiting, content production, investor updates, and synthesis.',"url":"https://treetopgrowthstrategy.com/how-to-use-claude-as-a-founder","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I use Claude or hire help?", "acceptedAnswer": {"@type": "Answer", "text": "Both, sequentially. Use Claude first to compress what one person can do. Then hire when there are still bottlenecks AI cannot solve (selling, building, recruiting)."}}, {"@type": "Question", "name": "Will AI replace my marketing hire?", "acceptedAnswer": {"@type": "Answer", "text": "Probably not \u2014 but it changes who you hire. Look for fluent operators, not specialists in production tasks AI now does."}}, {"@type": "Question", "name": "Should investors know I use AI?", "acceptedAnswer": {"@type": "Answer", "text": "If asked, yes. Most investors in 2026 expect founders to be AI-fluent. Inability to articulate AI workflows is a yellow flag in diligence."}}, {"@type": "Question", "name": "How much time per day on AI?", "acceptedAnswer": {"@type": "Answer", "text": "30-60 minutes of focused use produces compound results. Less than that and it stays a novelty."}}, {"@type": "Question", "name": "Should I use Claude for my pitch deck?", "acceptedAnswer": {"@type": "Answer", "text": "Outline and first draft, yes. Final voice and final story, you. Pitch decks that read AI-written do not raise money."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Use Claude as a Founder <em style="color:#00C853;font-style:italic;">Founder leverage compounds when AI is involved.</em></h1>
+<p class="hero-sub">If you're a founder of a sub-$10M B2B company, you wear too many hats. Claude can absorb the writing and synthesis hats while you focus on the parts only the founder can do — selling, recruiting, and building product. Here's the practical workflow.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Top founder workflows: investor update drafting, sales motion (research + drafting + follow-up), recruiting (job specs + interview prep + close), content production (founder POV), and decision synthesis. 5-7 hours/week reclaimed; quality of output often improves.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Daily workflows for founders</h2><h3 class="h3">1. Investor update drafting</h3><p class="body">Build a Project loaded with past investor updates, key metrics, and your tone. Monthly: paste in this month's metrics + commentary; get a draft update; edit until it's in your voice.</p><h3 class="h3">2. Sales motion</h3><p class="body">Account research before meetings. Discovery synthesis after. Follow-up drafting. Proposal drafting. Pick the workflow eating most of your time; ship it first.</p><h3 class="h3">3. Recruiting</h3><p class="body">Draft job specs and scorecards. Synthesize interviewer feedback. Draft offer rationale. Draft thoughtful reject notes (yes, do them — they affect your brand in the talent market).</p><h3 class="h3">4. Founder content production</h3><p class="body">Founder POV content is the highest-ROI marketing channel for early-stage B2B. Use Claude to capture raw thinking (you talk; it transcribes and structures) and turn into LinkedIn, blog, podcast prep.</p><h3 class="h3">5. Decision synthesis</h3><p class="body">Use Claude as a sparring partner on hard calls. Paste in the decision context; ask for steelman of each option; get challenged on your assumptions.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">What founders should NOT use Claude for</h2><ul class="ul"><li><strong>Replacing actual customer conversations.</strong> Customer development is your edge; AI cannot substitute.</li><li><strong>Replacing actual recruiting conversations.</strong> Closing people is a human-to-human game.</li><li><strong>Replacing actual fundraising conversations.</strong> AI can help prep; the call is still you.</li><li><strong>Pretending AI-generated content is your personal POV.</strong> Founder content works because it's the founder's voice. AI assists; the voice is yours.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">Setup priority for founders</h2><ol class="ol"><li><strong>First Project (week 1):</strong> Investor update or sales follow-up — whichever eats more of your time.</li><li><strong>Second Project (week 3):</strong> The other one.</li><li><strong>Third Project (week 6):</strong> Founder content workflow.</li><li><strong>Fourth Project (week 10):</strong> Recruiting / interview synthesis.</li><li><strong>Then expand based on what's still eating time.</strong></li></ol></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should I use Claude or hire help?</h3><p class="faq-qa">Both, sequentially. Use Claude first to compress what one person can do. Then hire when there are still bottlenecks AI cannot solve (selling, building, recruiting).</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will AI replace my marketing hire?</h3><p class="faq-qa">Probably not — but it changes who you hire. Look for fluent operators, not specialists in production tasks AI now does.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should investors know I use AI?</h3><p class="faq-qa">If asked, yes. Most investors in 2026 expect founders to be AI-fluent. Inability to articulate AI workflows is a yellow flag in diligence.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How much time per day on AI?</h3><p class="faq-qa">30-60 minutes of focused use produces compound results. Less than that and it stays a novelty.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should I use Claude for my pitch deck?</h3><p class="faq-qa">Outline and first draft, yes. Final voice and final story, you. Pitch decks that read AI-written do not raise money.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-as-a-ceo" style="color:#00C853;text-decoration:none;">How to use Claude as a CEO &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-roll-out-ai-to-a-50-person-company" style="color:#00C853;text-decoration:none;">How to roll out AI to a 50-person company &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/b2b-saas-marketing-playbook-2026" style="color:#00C853;text-decoration:none;">B2B SaaS marketing playbook 2026 &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

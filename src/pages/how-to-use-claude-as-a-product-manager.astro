@@ -1,0 +1,96 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Use Claude as a Product Manager (Daily PM Workflows) | Treetop</title>
+<meta name="description" content="A practical guide to using Claude as a product manager. Daily workflows for PRDs, specs, customer interview synthesis, release notes, stakeholder communications." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-use-claude-as-a-product-manager" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-use-claude-as-a-product-manager" />
+<meta property="og:title" content="How to Use Claude as a Product Manager (Daily PM Workflows)" /><meta property="og:description" content="A practical guide to using Claude as a product manager. Daily workflows for PRDs, specs, customer interview synthesis, release notes, stakeholder communications." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Use Claude as a Product Manager (Daily PM Workflows)" />
+<meta name="twitter:description" content="A practical guide to using Claude as a product manager. Daily workflows for PRDs, specs, customer interview synthesis, release notes, stakeholder communications." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Use Claude as a Product Manager (Daily PM Workflows)',"description":'A practical guide to using Claude as a product manager. Daily workflows for PRDs, specs, customer interview synthesis, release notes, stakeholder communications.',"url":"https://treetopgrowthstrategy.com/how-to-use-claude-as-a-product-manager","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I use Claude or a PM-specific AI tool?", "acceptedAnswer": {"@type": "Answer", "text": "Claude usually. PM-specific AI tools tend to be thin wrappers; Claude with your own Projects is more flexible."}}, {"@type": "Question", "name": "Will Claude write good PRDs?", "acceptedAnswer": {"@type": "Answer", "text": "First drafts, yes \u2014 if you load examples and provide context. Final PRDs require your judgment about scope, edge cases, and tradeoffs."}}, {"@type": "Question", "name": "Can AI replace customer discovery?", "acceptedAnswer": {"@type": "Answer", "text": "No. AI helps synthesize what you learn. The learning comes from real customer time."}}, {"@type": "Question", "name": "Should engineers see AI-drafted PRDs marked as such?", "acceptedAnswer": {"@type": "Answer", "text": "Probably yes for transparency. Engineering is increasingly AI-fluent; nothing to hide."}}, {"@type": "Question", "name": "How does PM hiring change with AI?", "acceptedAnswer": {"@type": "Answer", "text": "Lower demand for junior PMs who just write specs; higher demand for PMs with strong customer instincts and judgment."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">How to Use Claude as a Product Manager <em style="color:#00C853;font-style:italic;">Less PRD writing. More thinking.</em></h1>
+<p class="hero-sub">PM work is dominated by writing — PRDs, specs, release notes, stakeholder updates, customer interview synthesis. Claude can absorb most of that, letting you focus on the parts of PM that AI cannot do: customer discovery, judgment calls, prioritization.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Top PM Claude workflows: customer interview synthesis, PRD/spec drafting, release notes generation, stakeholder update drafting, competitive analysis, and prioritization frameworks. Setup 5-6 Projects; cuts PM writing time 50-60%; lets PM focus on judgment and customer work.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Daily PM workflows</h2><h3 class="h3">1. Customer interview synthesis</h3><p class="body">After each customer interview, paste raw notes or transcript into a Synthesis Project. Get structured outputs: jobs to be done, pain points, current workarounds, language they used, quotes. Build the truth source as you go.</p><h3 class="h3">2. PRD/spec drafting</h3><p class="body">Build a PRD Project with your house template and 5-8 examples of well-shipped specs. Dump in: problem, user, proposed solution, edge cases. Get a structured PRD draft. Heavy edit.</p><h3 class="h3">3. Release notes generation</h3><p class="body">Convert engineering changelogs + product context into customer-facing release notes in 10 minutes vs 90.</p><h3 class="h3">4. Stakeholder update drafting</h3><p class="body">Weekly/monthly product updates to engineering, sales, CS, exec team. Drafted in 15 minutes from a few bullet points.</p><h3 class="h3">5. Competitive analysis</h3><p class="body">Synthesize competitor product launches, pricing changes, marketing positioning into a structured competitive brief.</p><h3 class="h3">6. Prioritization frameworks</h3><p class="body">Pull together effort/impact/confidence scores across the backlog; produce a sequenced roadmap with rationale.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">What to keep human</h2><ul class="ul"><li><strong>Customer interviews.</strong> The conversation is the product. Don't outsource.</li><li><strong>Hard prioritization calls.</strong> AI organizes the inputs; you decide.</li><li><strong>Designer and engineer relationships.</strong> AI does not replace working through hard problems with your team.</li><li><strong>The strategic narrative.</strong> Why this product, why now — your judgment.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">PM-specific traps</h2><ul class="ul"><li><strong>Auto-generated PRDs that engineering ignores.</strong> If engineering doesn't trust the PRD, you wrote it wrong (or didn't edit enough).</li><li><strong>Customer interview synthesis that loses nuance.</strong> Review the AI output against your raw notes; correct misattributions.</li><li><strong>Competitive analysis based only on competitor marketing.</strong> Talk to customers about competitors; do not trust competitor self-positioning.</li><li><strong>Release notes that sound corporate.</strong> Your customers know your voice. Match it.</li></ul></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should I use Claude or a PM-specific AI tool?</h3><p class="faq-qa">Claude usually. PM-specific AI tools tend to be thin wrappers; Claude with your own Projects is more flexible.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Will Claude write good PRDs?</h3><p class="faq-qa">First drafts, yes — if you load examples and provide context. Final PRDs require your judgment about scope, edge cases, and tradeoffs.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Can AI replace customer discovery?</h3><p class="faq-qa">No. AI helps synthesize what you learn. The learning comes from real customer time.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should engineers see AI-drafted PRDs marked as such?</h3><p class="faq-qa">Probably yes for transparency. Engineering is increasingly AI-fluent; nothing to hide.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How does PM hiring change with AI?</h3><p class="faq-qa">Lower demand for junior PMs who just write specs; higher demand for PMs with strong customer instincts and judgment.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-for-product" style="color:#00C853;text-decoration:none;">How to use Claude for product &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-claude-as-a-chief-of-staff" style="color:#00C853;text-decoration:none;">How to use Claude as a Chief of Staff &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-project-template-library" style="color:#00C853;text-decoration:none;">Claude Project template library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-training" style="color:#00C853;text-decoration:none;">Treetop Claude training &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

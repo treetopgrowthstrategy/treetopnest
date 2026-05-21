@@ -395,6 +395,14 @@ const pages = [
   { url: '/how-to-onboard-a-new-hire-with-ai', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-use-ai-in-performance-reviews', priority: '0.82', changefreq: 'monthly' },
   { url: '/how-to-write-a-marketing-plan-with-claude', priority: '0.85', changefreq: 'monthly' },
+
+  // How to use Claude as a [role] pages
+  { url: '/how-to-use-claude-as-a-ceo', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-as-a-coo', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-as-a-chief-of-staff', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-as-a-founder', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-as-an-account-manager', priority: '0.82', changefreq: 'monthly' },
+  { url: '/how-to-use-claude-as-a-product-manager', priority: '0.82', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
