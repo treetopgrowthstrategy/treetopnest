@@ -410,6 +410,21 @@ const pages = [
   { url: '/what-to-do-when-your-team-resists-ai', priority: '0.85', changefreq: 'monthly' },
   { url: '/ai-rollout-mistakes-by-company-size', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-explain-ai-to-your-team', priority: '0.85', changefreq: 'monthly' },
+
+  // More glossary terms
+  { url: '/what-is-claude-sonnet', priority: '0.82', changefreq: 'monthly' },
+  { url: '/what-is-claude-opus', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-claude-team', priority: '0.82', changefreq: 'monthly' },
+  { url: '/what-is-claude-enterprise', priority: '0.82', changefreq: 'monthly' },
+  { url: '/what-is-an-ai-copilot', priority: '0.78', changefreq: 'monthly' },
+  { url: '/what-is-context-window', priority: '0.78', changefreq: 'monthly' },
+
+  // Geographic location pages
+  { url: '/fractional-cmo-austin', priority: '0.85', changefreq: 'monthly' },
+  { url: '/fractional-cmo-san-francisco', priority: '0.82', changefreq: 'monthly' },
+  { url: '/fractional-cmo-new-york', priority: '0.82', changefreq: 'monthly' },
+  { url: '/ai-consultant-austin', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-consultant-san-francisco', priority: '0.82', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
