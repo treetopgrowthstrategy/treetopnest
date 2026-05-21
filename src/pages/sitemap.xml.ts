@@ -335,6 +335,13 @@ const pages = [
   { url: '/how-long-does-it-take-to-implement-ai', priority: '0.85', changefreq: 'monthly' },
   { url: '/what-are-the-risks-of-using-ai-in-business', priority: '0.82', changefreq: 'monthly' },
   { url: '/when-should-i-hire-a-fractional-cmo', priority: '0.85', changefreq: 'monthly' },
+
+  // Long-form playbooks
+  { url: '/b2b-saas-marketing-playbook-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/professional-services-ai-playbook', priority: '0.85', changefreq: 'monthly' },
+  { url: '/b2b-content-marketing-playbook-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/b2b-sales-development-playbook-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/customer-success-ai-playbook', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
