@@ -1,0 +1,96 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Is It Worth Hiring an AI Consultant? | Treetop</title>
+<meta name="description" content="Is it worth hiring an AI consultant? Usually yes for a tightly-scoped first engagement; usually no for an open-ended advisory. Here's how to decide." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/is-it-worth-hiring-an-ai-consultant" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/is-it-worth-hiring-an-ai-consultant" />
+<meta property="og:title" content="Is It Worth Hiring an AI Consultant?" /><meta property="og:description" content="Is it worth hiring an AI consultant? Usually yes for a tightly-scoped first engagement; usually no for an open-ended advisory. Here's how to decide." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Is It Worth Hiring an AI Consultant?" />
+<meta name="twitter:description" content="Is it worth hiring an AI consultant? Usually yes for a tightly-scoped first engagement; usually no for an open-ended advisory. Here's how to decide." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'Is It Worth Hiring an AI Consultant?',"description":'Is it worth hiring an AI consultant? Usually yes for a tightly-scoped first engagement; usually no for an open-ended advisory. Here's how to decide.',"url":"https://treetopgrowthstrategy.com/is-it-worth-hiring-an-ai-consultant","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does an AI consultant cost?", "acceptedAnswer": {"@type": "Answer", "text": "Range is wide. Diagnostic / audit engagements: \\$1.5K-\\$15K fixed fee. Implementation engagements: \\$5K-\\$50K fixed fee. Monthly retainers: \\$3K-\\$20K/month. Hourly rates: \\$200-\\$600/hr (we recommend fixed fee over hourly for AI work)."}}, {"@type": "Question", "name": "What ROI should I expect?", "acceptedAnswer": {"@type": "Answer", "text": "For a well-scoped first engagement, common ROI is 5x-15x in year 1 (cost savings plus throughput gains). The math is more favorable than most consulting engagements because the tools you build keep producing value after the consultant leaves."}}, {"@type": "Question", "name": "How long does an AI consultant engagement take?", "acceptedAnswer": {"@type": "Answer", "text": "An audit: 1-3 weeks. An implementation of 1-3 workflows: 4-8 weeks. Ongoing retainer: indefinite, but should produce visible new value every 30-60 days or it is not earning its keep."}}, {"@type": "Question", "name": "What should I ask in the sales call?", "acceptedAnswer": {"@type": "Answer", "text": "Walk me through 3 recent engagements. Who actually does the work? What is your first deliverable and when? When does the engagement end? What kind of client should NOT hire you?"}}, {"@type": "Question", "name": "Is a fractional CMO/CRO the same as an AI consultant?", "acceptedAnswer": {"@type": "Answer", "text": "Different. A fractional CMO/CRO owns a function long-term. An AI consultant scopes and ships AI workflows then exits. Many strong fractional executives now include AI fluency by default; very few AI consultants can run a whole function."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">Is It Worth Hiring an AI Consultant? <em style="color:#00C853;font-style:italic;">Usually yes if you pick the right one and the right scope.</em></h1>
+<p class="hero-sub">A common question we hear from B2B CEOs in 2026, often after a failed first attempt at internal AI rollout. The honest answer depends entirely on what you hire them to do — and how you scope it.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Usually yes for a tightly-scoped first engagement (\$1.5K-\$15K) that produces a written roadmap or ships your first 1-3 workflows. Usually no for open-ended monthly retainers without specific deliverables. ROI depends on scope discipline more than consultant quality.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">When it's worth it</h2><ul class="ul"><li>You have tried rolling out AI internally and stalled.</li><li>You do not have a senior person with both AI fluency and operational depth on staff.</li><li>You want to compress 6 months of trial-and-error into a 4-6 week structured rollout.</li><li>You need an outside voice to overcome internal politics about what gets prioritized.</li><li>The cost of the consultant is a small fraction of the value at stake (e.g., $5K consultant on a $200K/year capacity problem).</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">When it's not worth it</h2><ul class="ul"><li>You already have a senior operator running successful AI implementation. Pay them more; do not duplicate.</li><li>You want a deck. Decks are cheap and rarely change behavior.</li><li>You want to outsource the whole rollout. The consultant cannot adopt the tools for your team — you have to.</li><li>Your scope is open-ended ("help us with AI"). Without specific deliverables, retainer fees compound without compounding value.</li><li>You are below \$2M in revenue. At that scale, founder-led AI exploration usually beats consultant-led.</li></ul></div></section>
+<section><div class="sec-inner"><h2 class="h2">How to scope the first engagement</h2><p class="body"><strong>Best first engagement:</strong> a fixed-fee audit / diagnostic. \$1,500-\$15K depending on company size. Produces a written, prioritized roadmap in 1-3 weeks. Limits risk while letting you evaluate the consultant.</p><p class="body"><strong>Best second engagement:</strong> fixed-fee implementation of the top 1-3 workflows from the roadmap. \$5K-\$50K. Produces working software your team actually uses.</p><p class="body"><strong>Best third engagement:</strong> light ongoing retainer with named deliverables — quarterly reviews, ad-hoc questions, training. \$2K-\$8K/month.</p></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">How much does an AI consultant cost?</h3><p class="faq-qa">Range is wide. Diagnostic / audit engagements: \$1.5K-\$15K fixed fee. Implementation engagements: \$5K-\$50K fixed fee. Monthly retainers: \$3K-\$20K/month. Hourly rates: \$200-\$600/hr (we recommend fixed fee over hourly for AI work).</p></div>
+<div class="faq-q"><h3 class="faq-qh">What ROI should I expect?</h3><p class="faq-qa">For a well-scoped first engagement, common ROI is 5x-15x in year 1 (cost savings plus throughput gains). The math is more favorable than most consulting engagements because the tools you build keep producing value after the consultant leaves.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How long does an AI consultant engagement take?</h3><p class="faq-qa">An audit: 1-3 weeks. An implementation of 1-3 workflows: 4-8 weeks. Ongoing retainer: indefinite, but should produce visible new value every 30-60 days or it is not earning its keep.</p></div>
+<div class="faq-q"><h3 class="faq-qh">What should I ask in the sales call?</h3><p class="faq-qa">Walk me through 3 recent engagements. Who actually does the work? What is your first deliverable and when? When does the engagement end? What kind of client should NOT hire you?</p></div>
+<div class="faq-q"><h3 class="faq-qh">Is a fractional CMO/CRO the same as an AI consultant?</h3><p class="faq-qa">Different. A fractional CMO/CRO owns a function long-term. An AI consultant scopes and ships AI workflows then exits. Many strong fractional executives now include AI fluency by default; very few AI consultants can run a whole function.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-consultant-cost" style="color:#00C853;text-decoration:none;">How much does an AI consultant cost? &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-choose-an-ai-strategy-consultant" style="color:#00C853;text-decoration:none;">How to choose an AI strategy consultant &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

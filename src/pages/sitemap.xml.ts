@@ -326,6 +326,15 @@ const pages = [
   { url: '/ai-trends-for-mid-market-companies-2026', priority: '0.85', changefreq: 'monthly' },
   { url: '/claude-vs-chatgpt-2026', priority: '0.85', changefreq: 'monthly' },
   { url: '/is-now-a-good-time-to-hire-a-fractional-cmo', priority: '0.82', changefreq: 'monthly' },
+
+  // PAA / Q&amp;A pages (high commercial intent)
+  { url: '/is-claude-safe-for-business-data', priority: '0.85', changefreq: 'monthly' },
+  { url: '/is-it-worth-hiring-an-ai-consultant', priority: '0.82', changefreq: 'monthly' },
+  { url: '/do-i-need-an-ai-strategy', priority: '0.82', changefreq: 'monthly' },
+  { url: '/is-ai-going-to-replace-my-marketing-team', priority: '0.82', changefreq: 'monthly' },
+  { url: '/how-long-does-it-take-to-implement-ai', priority: '0.85', changefreq: 'monthly' },
+  { url: '/what-are-the-risks-of-using-ai-in-business', priority: '0.82', changefreq: 'monthly' },
+  { url: '/when-should-i-hire-a-fractional-cmo', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
