@@ -441,6 +441,10 @@ const pages = [
   // Linkable assets (benchmark / observational research)
   { url: '/mid-market-ai-maturity-benchmark-2026', priority: '0.9', changefreq: 'monthly' },
   { url: '/fractional-cmo-cro-pricing-benchmark-2026', priority: '0.9', changefreq: 'monthly' },
+  { url: '/ai-tool-cost-reference-2026', priority: '0.92', changefreq: 'monthly' },
+  { url: '/ai-roi-reference-data-2026', priority: '0.92', changefreq: 'monthly' },
+  { url: '/mid-market-ai-failure-atlas', priority: '0.92', changefreq: 'monthly' },
+  { url: '/b2b-ai-adoption-index-2026', priority: '0.92', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

@@ -122,6 +122,18 @@ linkable_assets:
     - url: https://treetopgrowthstrategy.com/fractional-cmo-cro-pricing-benchmark-2026
       anchor: "2026 fractional CMO &amp; CRO pricing benchmark"
       type: benchmark
+    - url: https://treetopgrowthstrategy.com/ai-tool-cost-reference-2026
+      anchor: "2026 AI tool cost reference"
+      type: pricing-reference
+    - url: https://treetopgrowthstrategy.com/ai-roi-reference-data-2026
+      anchor: "2026 AI ROI reference data"
+      type: benchmark
+    - url: https://treetopgrowthstrategy.com/mid-market-ai-failure-atlas
+      anchor: "Mid-market AI failure atlas (25 documented failure modes)"
+      type: taxonomy
+    - url: https://treetopgrowthstrategy.com/b2b-ai-adoption-index-2026
+      anchor: "2026 B2B AI Adoption Index"
+      type: index
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
