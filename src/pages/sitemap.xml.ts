@@ -359,6 +359,15 @@ const pages = [
   { url: '/signs-your-ai-rollout-is-failing', priority: '0.85', changefreq: 'monthly' },
   { url: '/when-to-fire-your-fractional-cmo', priority: '0.82', changefreq: 'monthly' },
   { url: '/should-i-train-my-team-on-claude-or-chatgpt', priority: '0.82', changefreq: 'monthly' },
+
+  // Industry-specific AI playbooks 2026
+  { url: '/healthcare-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
+  { url: '/legal-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
+  { url: '/manufacturing-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
+  { url: '/financial-services-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
+  { url: '/ecommerce-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
+  { url: '/nonprofit-ai-playbook-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/real-estate-ai-playbook-2026', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
