@@ -505,6 +505,9 @@ const pages = [
   { url: '/boutique-fitness-marketing', priority: '0.88', changefreq: 'monthly' },
   { url: '/personal-trainer-marketing', priority: '0.88', changefreq: 'monthly' },
   { url: '/personal-trainer-business-plan', priority: '0.88', changefreq: 'monthly' },
+
+  // Hub pages
+  { url: '/glossary', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

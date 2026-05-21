@@ -2,20 +2,23 @@
 // GlobalFooter.astro — shared across all pages
 const currentPath = Astro.url.pathname;
 const lnk = (path: string) => `font-size:0.82rem;text-decoration:none;transition:color 0.2s;color:${currentPath === path ? '#00C853' : '#4A6A4A'};`;
+const lnkExt = "font-size:0.82rem;text-decoration:none;transition:color 0.2s;color:#4A6A4A;";
 const hoverIn = "this.style.color='#8FAF8F'";
 const hoverOut = (path: string) => `this.style.color='${currentPath === path ? '#00C853' : '#4A6A4A'}'`;
+const hoverOutExt = "this.style.color='#4A6A4A'";
 ---
 <footer style="border-top:1px solid #1A3A1A;background:#050D05;padding:3.5rem 2.5rem 2rem;">
-  <div style="max-width:1200px;margin:0 auto;">
+  <div style="max-width:1280px;margin:0 auto;">
 
-    <!-- MAIN FOOTER GRID -->
-    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem;" class="footer-grid">
+    <!-- MAIN FOOTER GRID — 6 columns -->
+    <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr 1fr;gap:2rem;margin-bottom:3rem;" class="footer-grid">
 
       <!-- BRAND COLUMN -->
       <div>
         <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.2rem;font-style:italic;color:#F0FFF0;text-decoration:none;display:block;margin-bottom:0.75rem;">Treetop</a>
-        <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.7;margin-bottom:1.25rem;">AI-native GTM transformation for B2B executives at $5M–$50M companies.</p>
-        <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.78rem;color:#00C853;text-decoration:none;">bill@treetopgrowthstrategy.com</a>
+        <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.7;margin-bottom:1rem;">AI-native GTM transformation for B2B mid-market ($5M–$50M) and the leading thought-leadership source for AI in the fitness industry.</p>
+        <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.78rem;color:#00C853;text-decoration:none;display:block;margin-bottom:0.4rem;">bill@treetopgrowthstrategy.com</a>
+        <a href="/press" style="font-size:0.78rem;color:#8FAF8F;text-decoration:none;">Press &amp; media kit →</a>
       </div>
 
       <!-- SERVICES COLUMN -->
@@ -23,7 +26,7 @@ const hoverOut = (path: string) => `this.style.color='${currentPath === path ? '
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Services</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
           <a href="/services" style={lnk('/services')} onmouseover={hoverIn} onmouseout={hoverOut('/services')}>All Services</a>
-          <a href="/services/ai-audit" style={lnk('/services/ai-audit')} onmouseover={hoverIn} onmouseout={hoverOut('/services/ai-audit')}>AI Audit</a>
+          <a href="/services/ai-audit" style={lnk('/services/ai-audit')} onmouseover={hoverIn} onmouseout={hoverOut('/services/ai-audit')}>AI Audit ($1,500)</a>
           <a href="/services/implementation" style={lnk('/services/implementation')} onmouseover={hoverIn} onmouseout={hoverOut('/services/implementation')}>Implementation</a>
           <a href="/services/retainer" style={lnk('/services/retainer')} onmouseover={hoverIn} onmouseout={hoverOut('/services/retainer')}>Monthly Retainer</a>
           <a href="/claude-training" style={lnk('/claude-training')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-training')}>Claude Training</a>
@@ -32,51 +35,69 @@ const hoverOut = (path: string) => `this.style.color='${currentPath === path ? '
         </div>
       </div>
 
-      <!-- CLAUDE FOR X COLUMN -->
+      <!-- INDUSTRIES COLUMN -->
       <div>
-        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Claude for…</div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Industries</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
           <a href="/claude-for-business" style={lnk('/claude-for-business')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-business')}>All industries →</a>
-          <a href="/claude-for-small-business" style={lnk('/claude-for-small-business')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-small-business')}>Small Business</a>
-          <a href="/claude-for-saas" style={lnk('/claude-for-saas')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-saas')}>SaaS</a>
+          <a href="/claude-for-saas" style={lnk('/claude-for-saas')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-saas')}>B2B SaaS</a>
           <a href="/claude-for-healthcare" style={lnk('/claude-for-healthcare')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-healthcare')}>Healthcare</a>
           <a href="/claude-for-legal" style={lnk('/claude-for-legal')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-legal')}>Legal</a>
-          <a href="/claude-for-finance" style={lnk('/claude-for-finance')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-finance')}>Finance</a>
-          <a href="/claude-for-consultants" style={lnk('/claude-for-consultants')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-consultants')}>Consultants</a>
+          <a href="/claude-for-finance" style={lnk('/claude-for-finance')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-finance')}>Financial Services</a>
+          <a href="/claude-for-manufacturing" style={lnk('/claude-for-manufacturing')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-manufacturing')}>Manufacturing</a>
+          <a href="/claude-for-e-commerce" style={lnk('/claude-for-e-commerce')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-e-commerce')}>E-commerce</a>
+          <a href="/claude-for-real-estate-brokerages" style={lnk('/claude-for-real-estate-brokerages')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-real-estate-brokerages')}>Real Estate</a>
+          <a href="/claude-for-nonprofits" style={lnk('/claude-for-nonprofits')} onmouseover={hoverIn} onmouseout={hoverOut('/claude-for-nonprofits')}>Nonprofit</a>
         </div>
       </div>
 
-      <!-- HOW-TO COLUMN -->
+      <!-- FITNESS VERTICAL COLUMN -->
       <div>
-        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">How to use Claude…</div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Fitness Industry</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="/how-to-use-claude" style={lnk('/how-to-use-claude')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude')}>All functions →</a>
-          <a href="/how-to-use-claude-for-sales" style={lnk('/how-to-use-claude-for-sales')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-sales')}>For Sales</a>
-          <a href="/how-to-use-claude-for-marketing" style={lnk('/how-to-use-claude-for-marketing')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-marketing')}>For Marketing</a>
-          <a href="/how-to-use-claude-for-customer-service" style={lnk('/how-to-use-claude-for-customer-service')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-customer-service')}>For Customer Service</a>
-          <a href="/how-to-use-claude-for-operations" style={lnk('/how-to-use-claude-for-operations')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-operations')}>For Operations</a>
-          <a href="/how-to-use-claude-for-finance" style={lnk('/how-to-use-claude-for-finance')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-finance')}>For Finance</a>
-          <a href="/how-to-use-claude-for-hr" style={lnk('/how-to-use-claude-for-hr')} onmouseover={hoverIn} onmouseout={hoverOut('/how-to-use-claude-for-hr')}>For HR</a>
+          <a href="/state-of-ai-in-the-fitness-industry-2026" style={lnk('/state-of-ai-in-the-fitness-industry-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/state-of-ai-in-the-fitness-industry-2026')}>2026 State of Fitness AI</a>
+          <a href="/cost-to-start-a-gym" style={lnk('/cost-to-start-a-gym')} onmouseover={hoverIn} onmouseout={hoverOut('/cost-to-start-a-gym')}>Cost to start a gym</a>
+          <a href="/gym-startup-cost-calculator" style={lnk('/gym-startup-cost-calculator')} onmouseover={hoverIn} onmouseout={hoverOut('/gym-startup-cost-calculator')}>Gym cost calculator</a>
+          <a href="/gym-business-plan" style={lnk('/gym-business-plan')} onmouseover={hoverIn} onmouseout={hoverOut('/gym-business-plan')}>Gym business plan</a>
+          <a href="/fitness-marketing-2026" style={lnk('/fitness-marketing-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/fitness-marketing-2026')}>Fitness marketing 2026</a>
+          <a href="/ai-for-multi-unit-fitness-operators-playbook" style={lnk('/ai-for-multi-unit-fitness-operators-playbook')} onmouseover={hoverIn} onmouseout={hoverOut('/ai-for-multi-unit-fitness-operators-playbook')}>Multi-unit AI playbook</a>
+          <a href="/from-coach-to-studio-owner-ai-native-playbook" style={lnk('/from-coach-to-studio-owner-ai-native-playbook')} onmouseover={hoverIn} onmouseout={hoverOut('/from-coach-to-studio-owner-ai-native-playbook')}>Coach-to-owner playbook</a>
+          <a href="https://fitagentic.ai" style={lnkExt} onmouseover={hoverIn} onmouseout={hoverOutExt} rel="noopener">fitagentic.ai ↗</a>
+        </div>
+      </div>
+
+      <!-- RESEARCH & REPORTS COLUMN -->
+      <div>
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Research</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="/state-of-b2b-gtm-report-2026" style={lnk('/state-of-b2b-gtm-report-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/state-of-b2b-gtm-report-2026')}>State of B2B GTM 2026</a>
+          <a href="/mid-market-ai-maturity-benchmark-2026" style={lnk('/mid-market-ai-maturity-benchmark-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/mid-market-ai-maturity-benchmark-2026')}>AI Maturity Benchmark</a>
+          <a href="/b2b-ai-adoption-index-2026" style={lnk('/b2b-ai-adoption-index-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/b2b-ai-adoption-index-2026')}>B2B AI Adoption Index</a>
+          <a href="/ai-tool-cost-reference-2026" style={lnk('/ai-tool-cost-reference-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/ai-tool-cost-reference-2026')}>AI Tool Cost Reference</a>
+          <a href="/fractional-cmo-cro-pricing-benchmark-2026" style={lnk('/fractional-cmo-cro-pricing-benchmark-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/fractional-cmo-cro-pricing-benchmark-2026')}>Fractional Pricing</a>
+          <a href="/mid-market-ai-failure-atlas" style={lnk('/mid-market-ai-failure-atlas')} onmouseover={hoverIn} onmouseout={hoverOut('/mid-market-ai-failure-atlas')}>AI Failure Atlas</a>
+          <a href="/fitness-member-retention-atlas" style={lnk('/fitness-member-retention-atlas')} onmouseover={hoverIn} onmouseout={hoverOut('/fitness-member-retention-atlas')}>Fitness Retention Atlas</a>
+          <a href="/group-fitness-operator-index-2026" style={lnk('/group-fitness-operator-index-2026')} onmouseover={hoverIn} onmouseout={hoverOut('/group-fitness-operator-index-2026')}>Group Fitness Index</a>
         </div>
       </div>
 
       <!-- COMPANY + CONNECT COLUMN -->
       <div>
-        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Company</div>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem;">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Library &amp; Co.</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <a href="/content-library" style={lnk('/content-library')} onmouseover={hoverIn} onmouseout={hoverOut('/content-library')}>Content Library</a>
+          <a href="/resources" style={lnk('/resources')} onmouseover={hoverIn} onmouseout={hoverOut('/resources')}>Resources Library</a>
+          <a href="/glossary" style={lnk('/glossary')} onmouseover={hoverIn} onmouseout={hoverOut('/glossary')}>AI Glossary (35+)</a>
+          <a href="/case-studies" style={lnk('/case-studies')} onmouseover={hoverIn} onmouseout={hoverOut('/case-studies')}>Case Studies (12)</a>
+          <a href="/blog" style={lnk('/blog')} onmouseover={hoverIn} onmouseout={hoverOut('/blog')}>Blog</a>
           <a href="/about" style={lnk('/about')} onmouseover={hoverIn} onmouseout={hoverOut('/about')}>About Bill</a>
           <a href="/results" style={lnk('/results')} onmouseover={hoverIn} onmouseout={hoverOut('/results')}>Client Results</a>
-          <a href="/case-studies" style={lnk('/case-studies')} onmouseover={hoverIn} onmouseout={hoverOut('/case-studies')}>Case Studies (12)</a>
-          <a href="/resources" style={lnk('/resources')} onmouseover={hoverIn} onmouseout={hoverOut('/resources')}>Resources Library</a>
-          <a href="/content-library" style={lnk('/content-library')} onmouseover={hoverIn} onmouseout={hoverOut('/content-library')}>Content Library</a>
-          <a href="/blog" style={lnk('/blog')} onmouseover={hoverIn} onmouseout={hoverOut('/blog')}>Blog (50+ how-tos)</a>
           <a href="/quiz" style={lnk('/quiz')} onmouseover={hoverIn} onmouseout={hoverOut('/quiz')}>Gap Assessment</a>
         </div>
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1rem;">Connect</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Schedule a Call</a>
-          <a href="https://linkedin.com/in/williamcolbert" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">LinkedIn</a>
-          <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'">Email Bill</a>
+          <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'" rel="noopener">Schedule a Call</a>
+          <a href="https://linkedin.com/in/williamcolbert" style="font-size:0.82rem;color:#4A6A4A;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#4A6A4A'" rel="noopener">LinkedIn</a>
         </div>
       </div>
 
@@ -94,15 +115,25 @@ const hoverOut = (path: string) => `this.style.color='${currentPath === path ? '
     <!-- BOTTOM BAR -->
     <div style="border-top:1px solid #1A3A1A;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;">
       <span style="font-size:0.72rem;color:#2A3A2A;">© {new Date().getFullYear()} Treetop Growth Strategy · Austin, TX</span>
-      <span style="font-size:0.72rem;color:#2A3A2A;font-style:italic;">Growth is a system, not a series of bets.</span>
+      <div style="display:flex;gap:1.25rem;font-size:0.72rem;color:#2A3A2A;">
+        <a href="/llms.txt" style="color:#2A3A2A;text-decoration:none;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#2A3A2A'">llms.txt</a>
+        <a href="/feed.xml" style="color:#2A3A2A;text-decoration:none;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#2A3A2A'">Atom feed</a>
+        <a href="/sitemap.xml" style="color:#2A3A2A;text-decoration:none;" onmouseover="this.style.color='#8FAF8F'" onmouseout="this.style.color='#2A3A2A'">Sitemap</a>
+        <span style="font-style:italic;">Growth is a system, not a series of bets.</span>
+      </div>
     </div>
 
   </div>
   <style>
-    @media (max-width: 900px) {
-      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    @media (max-width: 1100px) {
+      .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr !important; }
+      .footer-grid > div:nth-child(5), .footer-grid > div:nth-child(6) { grid-column: span 2; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 760px) {
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+      .footer-grid > div:nth-child(5), .footer-grid > div:nth-child(6) { grid-column: auto; }
+    }
+    @media (max-width: 480px) {
       .footer-grid { grid-template-columns: 1fr !important; }
     }
   </style>
