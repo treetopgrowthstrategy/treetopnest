@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Best Treadmill in the World Now Runs on EcoFit Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #14191f;
+    --bg-dark:   #0d1117;
+    --surface:   #1a2130;
+    --surface2:  #2F3535;
+    --border:    rgba(255,255,255,0.08);
+    --green:     #84BC41;
+    --green-dk:  #6aa130;
+    --green-glow:rgba(132,188,65,0.08);
+    --teal:      #58BCC5;
+    --text:      #F2F3F8;
+    --text-sub:  #9699A2;
+    --text-muted:#6b6f7a;
+    --text-dim:  #c8cad1;
+    --r:         12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;}
+
+  /* DOT BG */
+  .dot-bg{position:relative;overflow:hidden;}
+  .dot-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  .dot-bg>*{position:relative;z-index:1;}
+
+  /* NAV */
+  nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:10;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo img{height:26px;width:auto;}
+  .nav-logo .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-back{font-size:12px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.15s;}
+  .nav-back:hover{color:var(--green);}
+
+  /* HERO */
+  .hero{padding:72px 40px 64px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none;}
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:20px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;}
+  .hero h1 em{color:var(--green);font-style:italic;}
+  .hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid var(--border);}
+  .hero-author{display:flex;align-items:center;gap:10px;}
+  .author-avatar{width:36px;height:36px;border-radius:50%;background:var(--green-glow);border:1px solid rgba(132,188,65,0.3);display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;color:var(--green);}
+  .author-info{}
+  .author-name{font-size:13px;font-weight:600;color:var(--text-dim);}
+  .author-title{font-size:11px;color:var(--text-muted);}
+  .meta-divider{width:1px;height:28px;background:var(--border);}
+  .meta-item{font-size:12px;color:var(--text-muted);}
+  .meta-item span{color:var(--text-sub);}
+
+  /* ARTICLE */
+  .article-wrap{max-width:760px;margin:0 auto;padding:60px 40px 80px;}
+
+  .article-body p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:22px;font-weight:300;}
+  .article-body p strong{color:var(--text);font-weight:600;}
+  .article-body h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin:44px 0 16px;}
+  .article-body h3{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--text-dim);margin:28px 0 10px;letter-spacing:-0.01em;}
+
+  /* PULL QUOTE */
+  .pull-quote{border-left:3px solid var(--green);padding:20px 24px;margin:36px 0;background:rgba(132,188,65,0.05);border-radius:0 8px 8px 0;}
+  .pull-quote p{font-family:'Raleway',sans-serif;font-size:19px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.01em;margin:0;}
+
+  /* DATA POINTS */
+  .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+  .data-point{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;}
+  .data-number{font-family:'Raleway',sans-serif;font-weight:800;font-size:28px;color:var(--green);letter-spacing:-0.02em;line-height:1;}
+  .data-label{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.4;}
+
+  /* CTA BLOCK */
+  .cta-block{background:var(--surface);border:1px solid rgba(132,188,65,0.25);border-radius:14px;padding:36px 40px;margin-top:52px;position:relative;overflow:hidden;}
+  .cta-block::before{content:'';position:absolute;top:0;right:0;width:240px;height:240px;background:radial-gradient(circle at top right,rgba(132,188,65,0.08),transparent 65%);pointer-events:none;}
+  .cta-tag{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+  .cta-block h3{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:var(--text-sub);font-weight:300;margin-bottom:24px;line-height:1.65;}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#0d1117;font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;transition:all 0.2s cubic-bezier(.16,1,.3,1);}
+  .cta-btn:hover{background:#a8d96b;transform:translateY(-1px);box-shadow:0 8px 24px rgba(132,188,65,0.3);}
+
+  /* PARTNER LOGOS */
+  .partner-strip{display:flex;align-items:center;gap:24px;padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:44px 0;flex-wrap:wrap;}
+  .partner-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-right:8px;white-space:nowrap;}
+  .partner-name{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;color:var(--text-sub);}
+
+  footer{border-top:1px solid var(--border);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-dark);}
+  footer p{font-size:11px;color:var(--text-muted);}
+  footer a{color:var(--green-dk);text-decoration:none;}
+  footer a:hover{color:var(--green);}
+
+  @media(max-width:640px){
+    nav,.hero,.article-wrap,footer{padding-left:20px;padding-right:20px;}
+    .hero{padding-top:48px;padding-bottom:40px;}
+    .data-row{grid-template-columns:1fr;}
+    .cta-block{padding:24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">
+    <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
+    <span class="nav-div">Insights</span>
+  </a>
+  <a href="/proposals/ecofit-content-calendar.html" class="nav-back">← Back to Calendar</a>
+</nav>
+
+<div class="hero dot-bg">
+  <div class="hero-inner">
+    <div class="section-tag"><span class="section-tag-dot"></span>Partnership · June 2026</div>
+    <h1>The Best Treadmill in the World<br>Now Runs on <em>EcoFit Data</em></h1>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="author-avatar">DJ</div>
+        <div class="author-info">
+          <div class="author-name">Dave Johnson</div>
+          <div class="author-title">EVP, EcoFit Networks</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">June 2026</div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span>Partner:</span> Woodway USA</div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">5 min read</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+<div class="article-body">
+
+<p>There's a question fitness operators have been asking for years, usually informally, usually after a member complains: <strong>which equipment is actually getting used?</strong></p>
+
+<p>Not which equipment looks good in the sales deck. Not which brand has the best warranty pitch. Which machines are members actually gravitating toward when they have a choice?</p>
+
+<p>At EcoFit, we've been answering that question with data for over a decade. Across thousands of fitness facilities, we track equipment usage at the session level — who's on what machine, for how long, at what time of day, and how that behavior shifts over weeks and months.</p>
+
+<p>And one pattern shows up so consistently that it's stopped being a surprise.</p>
+
+<div class="pull-quote">
+  <p>"When Woodway treadmills share a floor with competitor brands, members choose Woodway at a disproportionate rate. The margin isn't close."</p>
+</div>
+
+<div class="data-row">
+  <div class="data-point"><div class="data-number">#1</div><div class="data-label">Most-used treadmill brand on mixed-brand floors in EcoFit's dataset</div></div>
+  <div class="data-point"><div class="data-number">Real-Time</div><div class="data-label">Error code reporting direct from ProSmart console to EcoFit dashboard</div></div>
+  <div class="data-point"><div class="data-number">Zero</div><div class="data-label">External sensors or hardware required for the integration</div></div>
+</div>
+
+<h2>Why This Partnership Exists</h2>
+
+<p>EcoFit and Woodway have worked together for years. That relationship deepened significantly when Woodway developed their ProSmart connected treadmill line — a console-level system designed to bring real-time intelligence to the most demanding cardio equipment in the industry.</p>
+
+<p>The question we asked together was straightforward: <strong>what if operators didn't need to install anything to get that intelligence?</strong> What if the data just flowed — the moment the machine powered on?</p>
+
+<p>That's what the EcoFit x Woodway ProSmart integration delivers.</p>
+
+<p>EcoFit software is now embedded natively in Woodway ProSmart connected consoles. There's no external hardware to install, no sensors to calibrate, no IT project to manage. The integration activates globally across any connected ProSmart product. From day one, operators get a live feed of usage data and equipment diagnostics flowing directly into EcoFit.</p>
+
+<div class="partner-strip">
+  <span class="partner-label">Partnership</span>
+  <span class="partner-name">EcoFit Networks</span>
+  <span style="color:var(--text-muted);font-size:16px;">×</span>
+  <span class="partner-name">Woodway USA</span>
+</div>
+
+<h2>What Operators Get</h2>
+
+<p>The integration delivers three distinct layers of intelligence:</p>
+
+<h3>Usage Analytics</h3>
+<p>Every session on a ProSmart treadmill is captured and surfaced in EcoFit's operator dashboard. Peak usage windows, average session length, machine-level utilization rates, and comparative performance across your full equipment floor. The kind of data that used to require a manual audit now updates in real time.</p>
+
+<h3>Proactive Maintenance</h3>
+<p>ProSmart consoles transmit live error codes directly to EcoFit. When something is wrong — or about to be wrong — your service team knows before a member reports it. Turnaround time on service calls drops. Equipment uptime improves. The member experience stays intact.</p>
+
+<h3>Competitive Floor Intelligence</h3>
+<p>For operators running mixed-brand floors, the integration makes the comparison explicit. You'll see how Woodway utilization stacks up against every other piece of cardio equipment you own. In our experience across thousands of facilities, that data tends to tell a consistent story.</p>
+
+<h2>The Bigger Picture</h2>
+
+<p>The fitness industry has spent years talking about connected equipment. Most of that conversation has centered on the member-facing experience — screens, streaming classes, digital coaching.</p>
+
+<p>What's been underbuilt is the operator side. The data that helps a facility director make better decisions about their floor, their maintenance budget, their equipment purchases, and their member retention strategy.</p>
+
+<p>That's the gap EcoFit was built to close. And it's the reason this partnership with Woodway matters — not just as a technical integration, but as a statement about what equipment intelligence should look like when it's done right.</p>
+
+<p>The best treadmill in the world is now generating the best data. The only question is whether you're using it.</p>
+
+</div><!-- /article-body -->
+
+<div class="cta-block">
+  <div class="cta-tag">Get Started</div>
+  <h3>See what your Woodway treadmills are telling you.</h3>
+  <p>Book a 30-minute demo and we'll show you what EcoFit sees across your ProSmart fleet — usage patterns, maintenance flags, and floor-level intelligence you don't currently have.</p>
+  <a href="#" class="cta-btn">Book a Connected Equipment Demo →</a>
+</div>
+
+</div><!-- /article-wrap -->
+
+<footer>
+  <p>EcoFit Networks · <a href="https://ecofitnetworks.com">ecofitnetworks.com</a></p>
+  <p>© 2026 EcoFit Networks. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
