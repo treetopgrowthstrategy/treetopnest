@@ -445,6 +445,8 @@ const pages = [
   { url: '/ai-roi-reference-data-2026', priority: '0.92', changefreq: 'monthly' },
   { url: '/mid-market-ai-failure-atlas', priority: '0.92', changefreq: 'monthly' },
   { url: '/b2b-ai-adoption-index-2026', priority: '0.92', changefreq: 'monthly' },
+  { url: '/state-of-b2b-gtm-report-2026', priority: '0.95', changefreq: 'monthly' },
+  { url: '/b2b-ai-vendor-comparison-matrix-2026', priority: '0.92', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
