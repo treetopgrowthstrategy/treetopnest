@@ -1,0 +1,100 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>7 Signs Your AI Rollout Is Failing (And How to Recover) | Treetop</title>
+<meta name="description" content="Seven early warning signs that an AI rollout is failing in a B2B company — and the specific actions that fix each one before it becomes terminal." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/signs-your-ai-rollout-is-failing" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/signs-your-ai-rollout-is-failing" />
+<meta property="og:title" content="7 Signs Your AI Rollout Is Failing (And How to Recover)" /><meta property="og:description" content="Seven early warning signs that an AI rollout is failing in a B2B company — and the specific actions that fix each one before it becomes terminal." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="7 Signs Your AI Rollout Is Failing (And How to Recover)" />
+<meta name="twitter:description" content="Seven early warning signs that an AI rollout is failing in a B2B company — and the specific actions that fix each one before it becomes terminal." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'7 Signs Your AI Rollout Is Failing (And How to Recover)',"description":'Seven early warning signs that an AI rollout is failing in a B2B company — and the specific actions that fix each one before it becomes terminal.',"url":"https://treetopgrowthstrategy.com/signs-your-ai-rollout-is-failing","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should we kill an AI rollout that's failing?", "acceptedAnswer": {"@type": "Answer", "text": "Rarely. Recover instead. Killing reinforces the narrative that AI does not work here, which makes the next attempt harder."}}, {"@type": "Question", "name": "Should we change platforms if adoption is low?", "acceptedAnswer": {"@type": "Answer", "text": "Almost never. Adoption is rarely about the platform; it is about workflows and ownership."}}, {"@type": "Question", "name": "How long should we give a recovery?", "acceptedAnswer": {"@type": "Answer", "text": "60 days from the recovery start date. If still flat, change ownership or get outside help."}}, {"@type": "Question", "name": "Who should run the recovery?", "acceptedAnswer": {"@type": "Answer", "text": "Same AI lead if they have capacity and CEO confidence. New owner if not. Outside partner if internal owners are stretched."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:840px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:840px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.tldr{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25);padding:1.5rem 1.75rem;margin-top:2rem;max-width:720px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.65;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,1.9vw,1.45rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:720px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:720px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.faq-q{padding:1.25rem 0;border-bottom:1px solid #1A3A1A}.faq-q:last-child{border-bottom:none}
+.faq-qh{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+.faq-qa{color:#C0D8C0;font-size:0.98rem;line-height:1.75;margin:0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Buyer's question</div>
+<h1 class="hero-h">7 Signs Your AI Rollout Is Failing <em style="color:#00C853;font-style:italic;">Seven signs to watch for.</em></h1>
+<p class="hero-sub">AI rollouts rarely fail with a bang. They fail quietly — usage drifts, workflows half-adopted, the AI lead burns out. By the time the CEO notices, 6 months have been spent. Here are 7 early warning signs that the rollout is in trouble, and what to do about each.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">Watch for: (1) only the AI lead is using the tools, (2) workflows are still in planning past week 6, (3) the CEO does not personally use AI, (4) no measurable baselines were taken, (5) seat utilization is below 40%, (6) team members complain in side channels, (7) no shipped output you can point to. Two or more = recovery needed.</p></div>
+</div></div>
+
+<section><div class="sec-inner"><h2 class="h2">Sign 1: Only the AI lead is using the tools</h2><p class="body">If usage analytics show one or two heavy users and many zero-users, the rollout has not transferred ownership.</p><p class="body"><strong>Fix:</strong> require workflow owners to spend one full day shadowing the AI lead, then commit to 3 hours of independent use per week with a check-in.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sign 2: Workflows are still in planning past week 6</h2><p class="body">If the rollout calendar shows endless workshops and no shipped workflow by week 6, you have a process problem, not a tools problem.</p><p class="body"><strong>Fix:</strong> pick one workflow today, ship a 70%-good version this week, iterate next week.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sign 3: The CEO does not personally use AI</h2><p class="body">If the CEO is sponsoring an AI initiative they do not personally use, adoption ceiling is low. Team members read this cue.</p><p class="body"><strong>Fix:</strong> CEO commits to 30 minutes of Claude/ChatGPT use per workday for the next 30 days. Publicly.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sign 4: No measurable baselines were taken</h2><p class="body">If you cannot say what "before" looked like for the workflows being rolled out, you cannot prove impact. Without proof, support evaporates.</p><p class="body"><strong>Fix:</strong> instrument quickly. Even crude baseline measurements ("average proposal takes 6 hours") are better than none.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sign 5: Seat utilization is below 40%</h2><p class="body">Most enterprise AI tools have admin dashboards showing per-user activity. Below 40% weekly active means the seats are not being used.</p><p class="body"><strong>Fix:</strong> reach out individually to non-users. Diagnose: are they unsure, blocked, or quietly resistant? Each needs a different intervention.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sign 6: Team members complain in side channels</h2><p class="body">If you hear "this AI thing isn't really helping" in 1:1s or hallway conversations, the rollout has lost grassroots support.</p><p class="body"><strong>Fix:</strong> structured surveys. Find out specifically what's failing. Often a small fix unblocks several people.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Sign 7: No shipped output you can point to</h2><p class="body">Six weeks in, if you cannot point to a specific deliverable (proposal, brief, summary, ticket reply) that was produced with AI assistance and shipped to a customer/internal audience, the rollout has not transitioned from talking to doing.</p><p class="body"><strong>Fix:</strong> ship something this week. Not perfect — shipped. The pattern of shipping is what unlocks future adoption.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">The recovery playbook</h2><ol class="ol"><li>Acknowledge the rollout is off track. Quietly is fine; honestly is required.</li><li>Diagnose the top 2 signs above. Pick the one most actionable this week.</li><li>Pick ONE workflow. Ship it. Measure it.</li><li>Restart the cadence: weekly office hours, weekly review of real outputs, weekly check-in with each workflow owner.</li><li>Set a 60-day recovery window. If at day 60 things are still flat, restart with different owner or external help.</li></ol></div></section>
+
+<section><div class="sec-inner"><h2 class="h2">FAQ</h2>
+<div class="faq-q"><h3 class="faq-qh">Should we kill an AI rollout that's failing?</h3><p class="faq-qa">Rarely. Recover instead. Killing reinforces the narrative that AI does not work here, which makes the next attempt harder.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Should we change platforms if adoption is low?</h3><p class="faq-qa">Almost never. Adoption is rarely about the platform; it is about workflows and ownership.</p></div>
+<div class="faq-q"><h3 class="faq-qh">How long should we give a recovery?</h3><p class="faq-qa">60 days from the recovery start date. If still flat, change ownership or get outside help.</p></div>
+<div class="faq-q"><h3 class="faq-qh">Who should run the recovery?</h3><p class="faq-qa">Same AI lead if they have capacity and CEO confidence. New owner if not. Outside partner if internal owners are stretched.</p></div>
+</div></section>
+
+<section><div class="sec-inner"><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-ai-pilots-stall" style="color:#00C853;text-decoration:none;">Why AI pilots stall &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-mistakes-to-avoid" style="color:#00C853;text-decoration:none;">12 AI implementation mistakes to avoid &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/why-most-ai-implementations-fail" style="color:#00C853;text-decoration:none;">Why most AI implementations fail &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

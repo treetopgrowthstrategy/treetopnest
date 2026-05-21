@@ -352,6 +352,13 @@ const pages = [
 
   // Content library hub
   { url: '/content-library', priority: '0.92', changefreq: 'weekly' },
+
+  // More buyer questions &amp; comparisons
+  { url: '/fractional-cro-vs-vp-sales', priority: '0.82', changefreq: 'monthly' },
+  { url: '/ai-audit-vs-ai-strategy', priority: '0.82', changefreq: 'monthly' },
+  { url: '/signs-your-ai-rollout-is-failing', priority: '0.85', changefreq: 'monthly' },
+  { url: '/when-to-fire-your-fractional-cmo', priority: '0.82', changefreq: 'monthly' },
+  { url: '/should-i-train-my-team-on-claude-or-chatgpt', priority: '0.82', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
