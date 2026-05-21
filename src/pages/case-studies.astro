@@ -1,0 +1,192 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+
+const studies = [
+  {
+    slug: 'case-study-saas-team-cut-proposal-time-70-percent',
+    vertical: 'SaaS',
+    title: '12-person SaaS team cut proposal time 70%',
+    metric: '70%',
+    metricLabel: 'less proposal time',
+    summary: 'B2B SaaS, ~$3M ARR. Proposals dropped from 6-hour drafts to 90-minute reviews; sales cycle compressed 11 days.',
+  },
+  {
+    slug: 'case-study-marketing-agency-2x-content-output',
+    vertical: 'Agency',
+    title: 'B2B marketing agency 2x’d content output',
+    metric: '2.1x',
+    metricLabel: 'content per writer',
+    summary: 'Mid-sized B2B agency rebuilt its content production workflow with Claude. Same headcount, double the throughput.',
+  },
+  {
+    slug: 'case-study-consulting-firm-rebuilt-sales-motion',
+    vertical: 'Consulting',
+    title: '25-person consulting firm rebuilt sales',
+    metric: '3.4x',
+    metricLabel: 'qualified opps per partner',
+    summary: 'Boutique strategy firm gave every partner an AI-powered sales motion. Pipeline more than tripled in 6 months.',
+  },
+  {
+    slug: 'case-study-fractional-cmo-took-startup-from-4m-to-9m',
+    vertical: 'Fractional CMO',
+    title: 'Fractional CMO took startup from $4M to $9M',
+    metric: '2.25x',
+    metricLabel: 'ARR in 18 months',
+    summary: 'A B2B SaaS startup hired Treetop as fractional CMO and rebuilt the GTM motion around AI-assisted execution.',
+  },
+  {
+    slug: 'case-study-finance-firm-deployed-claude-across-four-functions',
+    vertical: 'Financial Services',
+    title: 'Finance firm deployed Claude across 4 functions',
+    metric: '35%',
+    metricLabel: 'admin time recovered',
+    summary: 'A regional financial advisory firm rolled out Claude across client comms, research, ops, and compliance.',
+  },
+  {
+    slug: 'case-study-medical-practice-recovered-12-hours-weekly',
+    vertical: 'Healthcare',
+    title: '3-doctor medical practice recovered 12 hrs/week',
+    metric: '12 hrs',
+    metricLabel: 'physician time/week',
+    summary: 'Private practice rebuilt its documentation, referral letters, and inbox triage around Claude with proper HIPAA guardrails.',
+  },
+  {
+    slug: 'case-study-dtc-brand-cut-cac-28-percent',
+    vertical: 'E-commerce',
+    title: 'DTC brand cut CAC 28% in one quarter',
+    metric: '28%',
+    metricLabel: 'CAC reduction',
+    summary: 'Wellness brand rebuilt its creative testing engine. 4x more concepts tested per week surfaced more winners.',
+  },
+  {
+    slug: 'case-study-law-firm-doubled-contract-throughput',
+    vertical: 'Legal',
+    title: '15-lawyer firm doubled contract throughput',
+    metric: '2.1x',
+    metricLabel: 'contracts per attorney',
+    summary: 'Commercial firm rebuilt its drafting and review workflow. Realization rate climbed 11% without quality drop.',
+  },
+  {
+    slug: 'case-study-manufacturer-closed-40-percent-faster',
+    vertical: 'Manufacturing',
+    title: 'Mid-market manufacturer closed 40% faster',
+    metric: '40%',
+    metricLabel: 'shorter sales cycle',
+    summary: '$35M industrial component maker rebuilt its sales-engineering interface. Quote cycle dropped from 8 days to 2.',
+  },
+  {
+    slug: 'case-study-nonprofit-raised-45-percent-more',
+    vertical: 'Nonprofit',
+    title: 'Regional nonprofit raised 45% more YoY',
+    metric: '+45%',
+    metricLabel: 'YoY fundraising',
+    summary: 'Human services nonprofit personalized mid-major donor comms and tripled grant submissions.',
+  },
+  {
+    slug: 'case-study-architecture-firm-cut-proposal-time-60-percent',
+    vertical: 'Architecture',
+    title: '30-person architecture firm cut proposal time 60%',
+    metric: '60%',
+    metricLabel: 'less proposal time',
+    summary: 'Mid-sized firm rebuilt its RFP response workflow. Doubled submission volume produced $3.2M in incremental fees.',
+  },
+];
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Case Studies | Composite Client Results | Treetop Growth Strategy</title>
+<meta name="description" content="11 composite case studies showing how B2B teams of 10-50 people deployed Claude and AI to compress sales cycles, recover admin time, and grow revenue. Real patterns from real engagements." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/case-studies" />
+<meta property="og:type" content="website" /><meta property="og:url" content="https://treetopgrowthstrategy.com/case-studies" />
+<meta property="og:title" content="Case Studies | Composite Client Results | Treetop Growth Strategy" />
+<meta property="og:description" content="11 composite case studies showing how B2B teams of 10-50 people deployed Claude and AI to compress sales cycles, recover admin time, and grow revenue." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Case Studies | Composite Client Results | Treetop Growth Strategy" />
+<meta name="twitter:description" content="11 composite case studies of B2B teams deploying Claude across sales, marketing, ops, and admin." />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1200px;margin:0 auto}
+.hero{min-height:55vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.75rem;transition:border-color 0.2s}
+.card:hover{border-color:rgba(0,200,83,0.4)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.vertical{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;padding:0.3rem 0.6rem;background:rgba(143,175,143,0.08);border:1px solid rgba(143,175,143,0.2);align-self:flex-start}
+.metric{font-family:'Instrument Serif',serif;font-size:2rem;color:#00C853;line-height:1;font-style:italic}
+.metric-l{font-size:0.7rem;color:#8FAF8F;text-transform:uppercase;letter-spacing:0.1em;margin-top:0.25rem}
+.card-h{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;line-height:1.25;margin-top:0.5rem}
+.card-sum{font-size:0.9rem;color:#8FAF8F;line-height:1.65}
+.card-cta{font-size:0.78rem;color:#00C853;text-transform:uppercase;letter-spacing:0.1em;margin-top:auto;padding-top:0.5rem;font-weight:600}
+.disclosure-banner{background:#0A1A0A;border-left:3px solid #4A6A4A;padding:1.25rem 1.5rem;margin-top:2rem}
+.disclosure-banner p{color:#8FAF8F;font-size:0.88rem;line-height:1.7;margin:0;font-style:italic}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Composite case studies</div>
+<h1 class="hero-h">What happens when B2B teams <em style="color:#00C853;font-style:italic;">actually deploy Claude.</em></h1>
+<p class="hero-sub">Eleven composite case studies across SaaS, agencies, consulting, healthcare, legal, manufacturing, e-commerce, nonprofit, architecture, and financial services. Each one synthesizes patterns we have seen repeatedly across similar engagements — so the patterns and outcomes are real even when the names and exact numbers are illustrative.</p>
+<div class="disclosure-banner"><p>What is a composite case study? A synthesis of patterns we have seen repeatedly across similar engagements. Specific names, numbers, and details are illustrative; the patterns and outcomes reflect real client results. We use composites so we can be specific about what worked without compromising client confidentiality.</p></div>
+</div></div>
+
+<section><div class="sec-inner">
+<span class="lbl">All case studies</span>
+<h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:2rem;">Browse by industry &amp; outcome</h2>
+<div class="grid">
+{studies.map(s => (
+  <a class="card" href={`/${s.slug}`}>
+    <div class="card-top">
+      <span class="vertical">{s.vertical}</span>
+      <div style="text-align:right;">
+        <div class="metric">{s.metric}</div>
+        <div class="metric-l">{s.metricLabel}</div>
+      </div>
+    </div>
+    <div class="card-h">{s.title}</div>
+    <div class="card-sum">{s.summary}</div>
+    <div class="card-cta">Read the case study &rarr;</div>
+  </a>
+))}
+</div>
+</div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want similar outcomes for your business?</div><div class="cta-sub">Start with the $1,500 AI Audit. Written roadmap, no commitment to longer engagement.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+
+<GlobalFooter />
+</body></html>

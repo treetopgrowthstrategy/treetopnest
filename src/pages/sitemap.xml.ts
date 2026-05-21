@@ -299,6 +299,7 @@ const pages = [
   { url: '/case-study-manufacturer-closed-40-percent-faster', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-study-nonprofit-raised-45-percent-more', priority: '0.85', changefreq: 'monthly' },
   { url: '/case-study-architecture-firm-cut-proposal-time-60-percent', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-studies', priority: '0.9', changefreq: 'weekly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
