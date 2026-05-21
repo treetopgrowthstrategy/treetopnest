@@ -318,6 +318,14 @@ const pages = [
   { url: '/how-to-hire-a-fractional-cmo', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-write-a-claude-system-prompt', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-train-your-team-on-claude', priority: '0.85', changefreq: 'monthly' },
+
+  // State of / trend pages (May 2026)
+  { url: '/state-of-ai-in-b2b-sales-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/state-of-ai-in-b2b-marketing-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/state-of-fractional-executive-talent-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-trends-for-mid-market-companies-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/claude-vs-chatgpt-2026', priority: '0.85', changefreq: 'monthly' },
+  { url: '/is-now-a-good-time-to-hire-a-fractional-cmo', priority: '0.82', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
