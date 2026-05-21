@@ -286,6 +286,13 @@ const pages = [
   { url: '/fractional-cmo', priority: '0.8', changefreq: 'monthly' },
   { url: '/claude-training', priority: '0.8', changefreq: 'monthly' },
   { url: '/quiz', priority: '0.7', changefreq: 'monthly' },
+
+  // Composite case studies
+  { url: '/case-study-saas-team-cut-proposal-time-70-percent', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-marketing-agency-2x-content-output', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-consulting-firm-rebuilt-sales-motion', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-fractional-cmo-took-startup-from-4m-to-9m', priority: '0.85', changefreq: 'monthly' },
+  { url: '/case-study-finance-firm-deployed-claude-across-four-functions', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
