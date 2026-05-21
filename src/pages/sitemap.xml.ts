@@ -310,6 +310,14 @@ const pages = [
   { url: '/ai-build-vs-buy-framework', priority: '0.82', changefreq: 'monthly' },
   { url: '/ai-readiness-checklist', priority: '0.85', changefreq: 'monthly' },
   { url: '/ai-use-case-prioritization-framework', priority: '0.82', changefreq: 'monthly' },
+
+  // Long-form how-to guides
+  { url: '/how-to-roll-out-ai-to-a-50-person-company', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-choose-an-ai-strategy-consultant', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-measure-ai-roi', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-hire-a-fractional-cmo', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-write-a-claude-system-prompt', priority: '0.85', changefreq: 'monthly' },
+  { url: '/how-to-train-your-team-on-claude', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

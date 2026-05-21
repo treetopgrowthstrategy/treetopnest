@@ -1,0 +1,91 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Measure AI ROI (Practical Methodology for B2B Teams) | Treetop</title>
+<meta name="description" content="A practical methodology for measuring AI ROI in a B2B context. Real cost categories, real benefit categories, and how to avoid double-counting." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-measure-ai-roi" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-measure-ai-roi" />
+<meta property="og:title" content="How to Measure AI ROI (Practical Methodology for B2B Teams)" /><meta property="og:description" content="A practical methodology for measuring AI ROI in a B2B context. Real cost categories, real benefit categories, and how to avoid double-counting." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Measure AI ROI (Practical Methodology for B2B Teams)" />
+<meta name="twitter:description" content="A practical methodology for measuring AI ROI in a B2B context. Real cost categories, real benefit categories, and how to avoid double-counting." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Measure AI ROI (Practical Methodology for B2B Teams)',"description":'A practical methodology for measuring AI ROI in a B2B context. Real cost categories, real benefit categories, and how to avoid double-counting.',"url":"https://treetopgrowthstrategy.com/how-to-measure-ai-roi","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.55rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.checklist{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:760px}
+.check-item{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid #1A3A1A;color:#C0D8C0;font-size:0.95rem;line-height:1.6}
+.check-box{flex-shrink:0;width:18px;height:18px;border:1.5px solid #00C853;margin-top:3px;border-radius:2px}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.95rem;line-height:1.75;margin:0;font-style:italic}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;max-width:880px}
+.t{width:100%;border-collapse:collapse;font-size:0.92rem}
+.t th{text-align:left;padding:0.85rem 1rem;background:#0A1A0A;color:#00C853;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.1em;border-bottom:1px solid #1A3A1A}
+.t td{padding:0.85rem 1rem;color:#C0D8C0;border-bottom:1px solid #1A3A1A;vertical-align:top;line-height:1.6}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Framework &middot; free to use</div>
+<h1 class="hero-h">How to measure <em style="color:#00C853;font-style:italic;">AI ROI honestly.</em></h1>
+<p class="hero-sub">Most AI ROI calculations are theater. They count hours saved per task without netting against the costs (license, training, internal time, output review) — and then compound speculative annual savings into a number that looks great on a slide and means nothing. This is a more honest methodology.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The framework</span><h2 class="h2">Net benefit, not gross savings</h2><p class="body">ROI = (Net benefit / Total cost) over a defined period. "Net benefit" means realized value after accounting for the cost of using the tool — not the gross time "saved."</p><p class="body">Period matters. For AI tooling, the right frame is usually 12-month rolling, with a separate first-90-days view that often shows negative ROI (which is fine — you are buying the foundation).</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Cost categories</span><h2 class="h2">What to include — all of it</h2><div class="table-wrap"><table class="t"><thead><tr><th>Category</th><th>Often missed?</th><th>Example</th></tr></thead><tbody><tr><td>Direct license / platform</td><td>No</td><td>Claude Team \$30/seat/month</td></tr><tr><td>Implementation</td><td>Sometimes</td><td>Treetop engagement, internal build hours, vendor onboarding</td></tr><tr><td>Training</td><td>Often</td><td>Onboarding sessions, training material, time spent learning</td></tr><tr><td>Internal admin</td><td>Almost always</td><td>AI lead time, weekly office hours, prompt library maintenance</td></tr><tr><td>Review &amp; QA</td><td>Almost always</td><td>Human-review time for AI outputs, error-correction time</td></tr><tr><td>Tool sprawl</td><td>Often</td><td>When AI tool # 4 duplicates something tool # 2 already did</td></tr><tr><td>Opportunity cost</td><td>Sometimes</td><td>What the AI lead could have been doing instead</td></tr></tbody></table></div><div class="callout"><p>The two most-missed cost categories are internal admin time and human review time. Both are real costs that should be in the denominator. Excluding them produces fake ROI numbers that fall apart on second review.</p></div></div></section>
+<section><div class="sec-inner"><span class="lbl">Benefit categories</span><h2 class="h2">What counts as realized value</h2><h3 class="h3">1. Time recovered, validated</h3><p class="body">Hours saved per task &times; tasks per period &times; load-cost-per-hour. Only count hours that visibly translate into either more output or actual time off. Saving the CEO 2 hrs/week that just gets absorbed back into more email does not count as ROI.</p><h3 class="h3">2. Cycle time compression that closes more deals</h3><p class="body">If shorter quote turnaround = higher win rate, the additional deals are real ROI. Track it as: incremental deals attributable to faster cycle &times; average deal contribution margin.</p><h3 class="h3">3. Throughput gains</h3><p class="body">More content shipped, more proposals sent, more tickets resolved per FTE. Count the additional output only if it produced incremental revenue or eliminated a hiring need.</p><h3 class="h3">4. Avoided hires</h3><p class="body">If the AI rollout means you do not hire the next coordinator/analyst/SDR, that is real value. Use loaded cost of the avoided hire, time-weighted to when the hire would have happened.</p><h3 class="h3">5. Quality improvements that reduce rework</h3><p class="body">Real, but rare in measurable form at <$50M scale. Skip unless you have hard data.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Common ROI mistakes</span><h2 class="h2">Where the math goes wrong</h2><ul class="ul"><li><strong>Counting hours of senior people at the firm's billable rate</strong>, when those hours would not have been billed. Use cost, not price.</li><li><strong>Annualizing first-30-day savings.</strong> The first 30 days are atypical (everyone is excited and using the tools intensively). Use months 3-6 as your baseline.</li><li><strong>Double-counting with other initiatives.</strong> If you also rolled out a new CRM at the same time, do not claim all cycle-time improvements for AI.</li><li><strong>Ignoring tools that got abandoned.</strong> Cost continues; benefit goes to zero.</li><li><strong>No baseline.</strong> If you cannot say what "before" looked like, you cannot honestly say "after" was better.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">A worked example</span><h2 class="h2">Realistic numbers from a real-shaped engagement</h2><h3 class="h3">Setup</h3><p class="body">20-person B2B services firm. 6-month period. Three workflows rolled out: proposal drafting, content production, and meeting summarization.</p><h3 class="h3">Costs (6 months)</h3><ul class="ul"><li>Claude Team, 20 seats: \$3,600</li><li>Treetop Implementation: \$8,000</li><li>Internal AI lead time (8 hrs/week, 26 weeks, fully loaded \$120/hr): \$25,000</li><li>Training time (40 hrs across team, \$80/hr loaded): \$3,200</li><li>Human review of AI outputs (estimated 2 hrs/week per heavy user, 8 users): \$10,000</li><li><strong>Total costs: \$49,800</strong></li></ul><h3 class="h3">Benefits (6 months)</h3><ul class="ul"><li>Proposal time saved: 6 hrs &times; 40 proposals = 240 hrs at \$120 = \$28,800. Validated as either deals shipped faster or capacity used elsewhere.</li><li>Content production: 4 incremental pieces/month &times; \$1,500 production cost avoided &times; 6 months = \$36,000.</li><li>Meeting summarization: 1 hr/week &times; 12 people &times; 26 weeks at \$80 = \$24,960.</li><li>Avoided hire: marketing coordinator postponed 6 months. Loaded cost saved = \$45,000.</li><li><strong>Total benefits: \$134,760</strong></li></ul><h3 class="h3">Net ROI</h3><p class="body">Net benefit: \$84,960 / Costs: \$49,800 = <strong>~170% return over 6 months.</strong> Annualized (cautiously, since the first 90 days are atypical) closer to <strong>250-300%.</strong></p></div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related frameworks &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-roi-calculator" style="color:#00C853;text-decoration:none;">AI ROI calculator &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/cost-of-not-using-ai" style="color:#00C853;text-decoration:none;">Cost of not using AI &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-build-vs-buy-framework" style="color:#00C853;text-decoration:none;">AI build vs buy framework &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">AI audit service &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

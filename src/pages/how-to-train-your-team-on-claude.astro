@@ -1,0 +1,92 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Train Your Team on Claude (Onboarding Playbook for B2B Teams) | Treetop</title>
+<meta name="description" content="A practical playbook for training your B2B team to use Claude. Onboarding sequence, role-specific exercises, common failure modes, and reinforcement." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-train-your-team-on-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-train-your-team-on-claude" />
+<meta property="og:title" content="How to Train Your Team on Claude (Onboarding Playbook for B2B Teams)" /><meta property="og:description" content="A practical playbook for training your B2B team to use Claude. Onboarding sequence, role-specific exercises, common failure modes, and reinforcement." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Train Your Team on Claude (Onboarding Playbook for B2B Teams)" />
+<meta name="twitter:description" content="A practical playbook for training your B2B team to use Claude. Onboarding sequence, role-specific exercises, common failure modes, and reinforcement." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Train Your Team on Claude (Onboarding Playbook for B2B Teams)',"description":'A practical playbook for training your B2B team to use Claude. Onboarding sequence, role-specific exercises, common failure modes, and reinforcement.',"url":"https://treetopgrowthstrategy.com/how-to-train-your-team-on-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.55rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.checklist{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:760px}
+.check-item{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid #1A3A1A;color:#C0D8C0;font-size:0.95rem;line-height:1.6}
+.check-box{flex-shrink:0;width:18px;height:18px;border:1.5px solid #00C853;margin-top:3px;border-radius:2px}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.95rem;line-height:1.75;margin:0;font-style:italic}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;max-width:880px}
+.t{width:100%;border-collapse:collapse;font-size:0.92rem}
+.t th{text-align:left;padding:0.85rem 1rem;background:#0A1A0A;color:#00C853;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.1em;border-bottom:1px solid #1A3A1A}
+.t td{padding:0.85rem 1rem;color:#C0D8C0;border-bottom:1px solid #1A3A1A;vertical-align:top;line-height:1.6}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Framework &middot; free to use</div>
+<h1 class="hero-h">How to train <em style="color:#00C853;font-style:italic;">your team on Claude.</em></h1>
+<p class="hero-sub">Buying Claude seats does not change how your team works. Training does — if it's the right training. Most internal AI training fails the same way: a 60-minute generic demo, polite nodding, then no behavior change. This is the playbook for training that actually sticks.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The principle</span><h2 class="h2">Train on workflows, not features</h2><p class="body">Generic AI training ("here's what an LLM is, here's how prompting works") produces awareness, not adoption. Workflow-specific training ("here is exactly how you, the sales rep, will draft a follow-up email using this Project") produces adoption.</p><p class="body">Rule: every training session should leave the participant with one specific workflow they can do that afternoon, faster than they did yesterday.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Week 1</span><h2 class="h2">Foundations (90 minutes total)</h2><h3 class="h3">Session 1: What Claude is and how we use it (30 min)</h3><ul class="ul"><li>What Claude is, in one slide.</li><li>What we use it for here (specific workflows we've already built).</li><li>What we do NOT use it for (data classifications, policy summary).</li><li>How to access (login, Projects you have access to).</li></ul><h3 class="h3">Session 2: Prompting basics (30 min)</h3><ul class="ul"><li>How to write a clear prompt (with 3 examples in the team's actual workflow context).</li><li>How to refine when the output is off ("more concise," "add an objection-handling section," "shorter").</li><li>How to use Claude Projects vs the standalone chat.</li></ul><h3 class="h3">Session 3: First real workflow, hands-on (30 min)</h3><ul class="ul"><li>Pick the most relevant Project for their role.</li><li>Walk through one full real-work use, step by step.</li><li>Have each person do their own example with a real input from their own work.</li><li>Office hour scheduled for 1 week later.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Week 2-4</span><h2 class="h2">Reinforcement &amp; refinement</h2><ul class="ul"><li>Weekly office hours with the AI lead. Anyone can come; bring real work that is not flowing.</li><li>Slack channel for prompt sharing. "This prompt worked great" or "Why is Claude refusing X?"</li><li>Workflow owners check in 1:1 with each team member to see what's actually being used.</li><li>Update the Project knowledge based on patterns from real use.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Role-specific exercises</span><h2 class="h2">What to have each function do</h2><div class="table-wrap"><table class="t"><thead><tr><th>Role</th><th>First workflow</th><th>Time to fluency</th></tr></thead><tbody><tr><td>Sales rep</td><td>Draft a follow-up email from real call notes</td><td>1-2 sessions</td></tr><tr><td>Marketer</td><td>Draft a content brief from a topic + target keyword</td><td>2-3 sessions</td></tr><tr><td>CSM</td><td>Build a QBR pack from usage data + account notes</td><td>2-3 sessions</td></tr><tr><td>Executive</td><td>Get a one-page brief from a board doc</td><td>1-2 sessions</td></tr><tr><td>Ops</td><td>Summarize meeting notes into action items + decisions</td><td>1 session</td></tr><tr><td>Support</td><td>Draft a reply to a real ticket</td><td>1-2 sessions</td></tr></tbody></table></div></div></section>
+<section><div class="sec-inner"><span class="lbl">Common failure modes</span><h2 class="h2">Where adoption stalls</h2><ul class="ul"><li><strong>People use Claude once, get a meh output, give up.</strong> Fix: show them how to iterate. "More concise, shorter, add X" turns a meh draft into a good one in 30 seconds.</li><li><strong>People use it for the wrong workflows.</strong> Fix: be explicit about the workflows where it shines vs the workflows where it does not yet.</li><li><strong>People do not have time.</strong> Fix: assign protected calendar time for the first two weeks. "Use Claude for 30 min/day, every day, for the next 10 work days."</li><li><strong>People do not trust the output.</strong> Fix: review some of their outputs together. Build trust calibration. Show what Claude is reliably good at and what needs human verification.</li><li><strong>The Project is not loaded with the right knowledge.</strong> Fix: iterate. Most Projects need 3-4 rounds of knowledge updates before they hum.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Measuring adoption</span><h2 class="h2">How to know it's working</h2><ul class="ul"><li><strong>Usage frequency:</strong> are people using Claude weekly, daily, or never? Daily users adopt; weekly users sometimes; never-users will never absent intervention.</li><li><strong>Workflow output:</strong> are proposals/content/replies actually shipping faster, with the AI tool?</li><li><strong>Voluntary sharing:</strong> are people posting prompts and patterns in the Slack channel without being asked? That's the strongest signal of organic adoption.</li><li><strong>1:1 check-ins:</strong> ask each person, "what's the workflow you use Claude for most often?" If they can name one, they're adopted. If they can't, they're not.</li></ul></div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related frameworks &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-training" style="color:#00C853;text-decoration:none;">Treetop Claude training &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-write-a-claude-system-prompt" style="color:#00C853;text-decoration:none;">How to write a Claude system prompt &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-project-template-library" style="color:#00C853;text-decoration:none;">Claude Project template library &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>

@@ -1,0 +1,93 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>How to Roll Out AI to a 50-Person Company (The Operator's Guide) | Treetop</title>
+<meta name="description" content="A complete operator's guide to rolling out AI at a 50-person B2B company. Sequencing, governance, training, and the specific traps to avoid." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-roll-out-ai-to-a-50-person-company" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-roll-out-ai-to-a-50-person-company" />
+<meta property="og:title" content="How to Roll Out AI to a 50-Person Company (The Operator's Guide)" /><meta property="og:description" content="A complete operator's guide to rolling out AI at a 50-person B2B company. Sequencing, governance, training, and the specific traps to avoid." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="How to Roll Out AI to a 50-Person Company (The Operator's Guide)" />
+<meta name="twitter:description" content="A complete operator's guide to rolling out AI at a 50-person B2B company. Sequencing, governance, training, and the specific traps to avoid." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":'How to Roll Out AI to a 50-Person Company (The Operator's Guide)',"description":'A complete operator's guide to rolling out AI at a 50-person B2B company. Sequencing, governance, training, and the specific traps to avoid.',"url":"https://treetopgrowthstrategy.com/how-to-roll-out-ai-to-a-50-person-company","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{min-height:50vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:880px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.5rem}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.55rem);font-weight:400;color:#F0FFF0;margin:1.5rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.checklist{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:760px}
+.check-item{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid #1A3A1A;color:#C0D8C0;font-size:0.95rem;line-height:1.6}
+.check-box{flex-shrink:0;width:18px;height:18px;border:1.5px solid #00C853;margin-top:3px;border-radius:2px}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.25rem 1.5rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.95rem;line-height:1.75;margin:0;font-style:italic}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;max-width:880px}
+.t{width:100%;border-collapse:collapse;font-size:0.92rem}
+.t th{text-align:left;padding:0.85rem 1rem;background:#0A1A0A;color:#00C853;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.1em;border-bottom:1px solid #1A3A1A}
+.t td{padding:0.85rem 1rem;color:#C0D8C0;border-bottom:1px solid #1A3A1A;vertical-align:top;line-height:1.6}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3rem 1.5rem}.hide-mob{display:none!important}}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/blog" class="nav-link">Blog</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Framework &middot; free to use</div>
+<h1 class="hero-h">How to roll out AI <em style="color:#00C853;font-style:italic;">to a 50-person company.</em></h1>
+<p class="hero-sub">Most rollout advice is written for either 5-person startups or 5,000-person enterprises. Neither applies if you are 50 people. This guide is the actual playbook we use for B2B companies in the $5M–$30M, 30–80 employee range — where the rollout is too big for ad-hoc and too small for committees.</p>
+</div></div>
+
+<section><div class="sec-inner"><span class="lbl">The shape of the problem</span><h2 class="h2">Why 50-person rollouts are unique</h2><p class="body">At 50 people, you have just enough complexity for AI to matter — multiple functions, real workflows, paying customers — but not enough headcount for a dedicated AI team. You usually have one ops person, one IT person (often the same person), and a CEO who is paying attention but cannot run the rollout day to day.</p><p class="body">Your rollout has three constraints that 500-person rollouts do not face: (1) no AI center of excellence (and you should not build one), (2) limited engineering capacity, and (3) no slack — the people you need to involve are already maxed.</p><div class="callout"><p>The single most common failure mode at this size: trying to roll out AI "to the whole company at once." It never works. The right shape is sequential — one function, then the next, then the next — with one shared platform underneath.</p></div></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 1</span><h2 class="h2">Pick the function</h2><p class="body">You will roll out to one revenue-side function first. Almost always: sales, marketing, or customer success — whichever one is most visibly bottlenecked AND has a willing senior leader. "Willing" is more important than "most bottlenecked."</p><h3 class="h3">Choosing criteria</h3><ul class="ul"><li>The function leader is a daily user of AI tools personally, or wants to be.</li><li>The function has 3-5 obvious repeatable workflows.</li><li>The function has someone besides the leader who can own implementation day to day.</li><li>Outcomes are measurable (deals closed, content shipped, tickets resolved).</li></ul><h3 class="h3">What to ignore</h3><p class="body">Do not start with a function whose leader is skeptical, even if leverage looks high. You will spend all your time on internal politics. Start where the wind is at your back.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 2</span><h2 class="h2">Build the function-specific stack</h2><p class="body">For your chosen function, set up: (1) the LLM platform (Claude Team is our default at this size), (2) 3-5 Projects that capture the most-leveraged workflows, (3) a shared prompt library, (4) a weekly office hour with the AI lead.</p><p class="body">Keep it boring. No agentic frameworks. No custom code. No vector databases. Just Projects with good knowledge loaded and well-written system prompts.</p><h3 class="h3">What the function stack looks like (sales example)</h3><ul class="ul"><li>Claude Team seats for entire sales team (reps + leader + sales-adjacent ops person).</li><li>Proposal Drafter Project — loaded with past winning proposals.</li><li>Discovery Synthesizer Project — converts call notes to structured summaries.</li><li>Account Research Project — produces one-page briefs from company name.</li><li>Follow-Up Email Project — drafts replies based on call summaries.</li><li>A weekly 30-min sales+AI lead office hour.</li></ul></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 3</span><h2 class="h2">Expand to the next function</h2><p class="body">Once the first function is in steady-state production (typically 6-10 weeks in), pick the next function. Same platform underneath — Claude Team seats expand, but you do not switch tools. Same shape: 3-5 Projects, shared prompt library, office hour.</p><p class="body">Resist the temptation to do all functions at once. Sequencing is your friend. People in function #2 will see what function #1 did and want it — that pull is much more valuable than push.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">Phase 4</span><h2 class="h2">Build the connective tissue</h2><p class="body">Around month 4-6, with two or three functions humming, you build the company-wide layer: a one-page AI policy, a quarterly cross-function review ("what's working in your function that the rest of us should steal?"), and a single point of contact for new questions.</p><p class="body">This is also when you start saying no to scope creep. "Should we build a custom AI agent that does X?" Almost always: no, not yet, here is the buy-or-defer alternative. The discipline of saying no is what keeps a 50-person rollout from collapsing into a 500-person committee.</p></div></section>
+<section><div class="sec-inner"><span class="lbl">The team</span><h2 class="h2">Who actually does the work</h2><div class="table-wrap"><table class="t"><thead><tr><th>Role</th><th>Time commitment</th><th>What they do</th></tr></thead><tbody><tr><td>CEO (or COO if delegated)</td><td>2 hrs/week</td><td>Names the AI lead, approves budget, attends one in-person training, signs the policy.</td></tr><tr><td>AI lead</td><td>8-12 hrs/week minimum</td><td>Owns the rollout end-to-end. Runs office hours. Picks workflows with function owners. Maintains prompt library.</td></tr><tr><td>Function owners</td><td>3-5 hrs/week initially</td><td>Own the workflows in their function. Use the tools daily. Refine prompts. Train their team.</td></tr><tr><td>Users (everyone in the affected function)</td><td>First 2 weeks: 2 hrs of training. Ongoing: it is just their job, with new tools.</td><td>Use the tools as part of normal work. Surface friction.</td></tr></tbody></table></div></div></section>
+<section><div class="sec-inner"><span class="lbl">Budget</span><h2 class="h2">Realistic numbers for a 50-person rollout</h2><ul class="ul"><li><strong>Software:</strong> $300-$700/month for AI platform seats (10-50 seats at the appropriate tier).</li><li><strong>External help (optional but recommended):</strong> $5K-$15K for a structured implementation engagement for the first function. Reduces time to value by 6-10 weeks.</li><li><strong>Internal time:</strong> ~250 hours of AI lead time across 90 days. Real cost depends on whether this is incremental or reallocated.</li><li><strong>Training:</strong> $0-$5K depending on whether you bring in outside training or run internally.</li><li><strong>Total Year 1: typically $15K-$40K all-in</strong> for a 50-person company.</li></ul></div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related frameworks &amp; reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-implementation-roadmap-template" style="color:#00C853;text-decoration:none;">AI implementation roadmap template &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-rollout-90-day-plan" style="color:#00C853;text-decoration:none;">AI rollout 90-day plan &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Treetop Implementation &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/case-studies" style="color:#00C853;text-decoration:none;">Composite case studies &rarr;</a></li>
+</ul></div></section>
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a roadmap built for your business?</div><div class="cta-sub">The $1,500 AI Audit produces a written, prioritized roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">Book the AI Audit &rarr;</a>
+<a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+</div></div></div></section>
+<GlobalFooter />
+</body></html>
