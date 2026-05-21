@@ -470,6 +470,18 @@ const pages = [
   { url: '/how-to-make-ai-sound-human-in-gym-conversations', priority: '0.85', changefreq: 'monthly' },
   { url: '/why-sms-beats-email-for-gym-lead-nurture-in-2026', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-gather-prospect-data-without-friction', priority: '0.85', changefreq: 'monthly' },
+
+  // Fitness wave 3 — flagships + franchise playbooks + press
+  { url: '/fitness-member-retention-atlas', priority: '0.93', changefreq: 'monthly' },
+  { url: '/group-fitness-operator-index-2026', priority: '0.93', changefreq: 'monthly' },
+  { url: '/fitness-ai-roi-reference-data-2026', priority: '0.93', changefreq: 'monthly' },
+  { url: '/ai-for-orangetheory-franchisees', priority: '0.88', changefreq: 'monthly' },
+  { url: '/ai-for-f45-franchisees', priority: '0.88', changefreq: 'monthly' },
+  { url: '/ai-for-anytime-fitness-franchisees', priority: '0.88', changefreq: 'monthly' },
+  { url: '/ai-for-pure-barre-franchisees', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-for-mid-tier-gym-franchisees', priority: '0.85', changefreq: 'monthly' },
+  { url: '/ai-for-boutique-hiit-franchisees', priority: '0.85', changefreq: 'monthly' },
+  { url: '/press', priority: '0.85', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';

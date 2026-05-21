@@ -164,6 +164,18 @@ linkable_assets:
       anchor: "2026 Fitness Prospect Data Reference"
       type: data-reference-vertical
       vertical: fitness
+    - url: https://treetopgrowthstrategy.com/fitness-member-retention-atlas
+      anchor: "Fitness Member Retention Atlas (25 churn patterns)"
+      type: taxonomy-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/group-fitness-operator-index-2026
+      anchor: "2026 Group Fitness Operator Index"
+      type: index-vertical
+      vertical: fitness
+    - url: https://treetopgrowthstrategy.com/fitness-ai-roi-reference-data-2026
+      anchor: "2026 Fitness AI ROI Reference Data"
+      type: roi-reference-vertical
+      vertical: fitness
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026
@@ -204,6 +216,15 @@ sister_brands:
       - /how-to-gather-prospect-data-without-friction
       - /case-study-multi-unit-gym-recovered-30-percent-of-no-shows
       - /case-study-franchise-operator-doubled-tour-conversion
+      - /fitness-member-retention-atlas
+      - /group-fitness-operator-index-2026
+      - /fitness-ai-roi-reference-data-2026
+      - /ai-for-orangetheory-franchisees
+      - /ai-for-f45-franchisees
+      - /ai-for-anytime-fitness-franchisees
+      - /ai-for-pure-barre-franchisees
+      - /ai-for-mid-tier-gym-franchisees
+      - /ai-for-boutique-hiit-franchisees
     outreach_guidance: |
       When prospecting backlinks for fitness-vertical Treetop content, prioritize
       fitness-industry outlets (Athletic Business, Club Industry, IHRSA, Boutique
