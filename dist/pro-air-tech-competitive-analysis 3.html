@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Air Tech — Competitive Analysis | Treetop Growth Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #0e1f38;
+    --navy-light: #152842;
+    --green: #2dce89;
+    --green-dim: #1a7a52;
+    --green-faint: rgba(45,206,137,0.08);
+    --amber: #f7a440;
+    --red: #e84040;
+    --red-faint: rgba(232,64,64,0.1);
+    --slate: #8fa3be;
+    --slate-dim: #4a617c;
+    --white: #f4f7fb;
+    --white-dim: rgba(244,247,251,0.7);
+    --white-faint: rgba(244,247,251,0.08);
+    --border: rgba(143,163,190,0.15);
+    --border-bright: rgba(143,163,190,0.3);
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* ── TOPBAR ── */
+  .topbar {
+    background: rgba(10,22,40,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar-logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--green);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .topbar-logo-mark svg { width: 16px; height: 16px; }
+  .topbar-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .topbar-badge {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--green);
+    background: var(--green-faint);
+    border: 1px solid rgba(45,206,137,0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+    letter-spacing: 0.04em;
+  }
+  .topbar-nav {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .topbar-nav a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--slate);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .topbar-nav a:hover { color: var(--white); }
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 48px 64px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(45,206,137,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .hero-tag {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero-divider {
+    width: 1px;
+    height: 14px;
+    background: var(--border-bright);
+  }
+  .hero-date {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--slate);
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--white);
+    max-width: 700px;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--white-dim);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat-val {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-val span { color: var(--green); }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--slate);
+    letter-spacing: 0.03em;
+  }
+  /* ── CONTENT WRAPPER ── */
+  .content { max-width: 1160px; margin: 0 auto; padding: 0 48px 100px; }
+  /* ── SECTION ── */
+  .section { padding-top: 72px; }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--green);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .section-note {
+    font-size: 12px;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    text-align: right;
+    max-width: 260px;
+  }
+  /* ── ALERT BOX ── */
+  .alert {
+    background: rgba(247,164,64,0.08);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #f0d08a;
+    line-height: 1.55;
+  }
+  .alert strong { color: var(--amber); font-weight: 600; }
+  .alert-red {
+    background: rgba(232,64,64,0.08);
+    border-left-color: var(--red);
+    color: #f0a0a0;
+  }
+  .alert-red strong { color: var(--red); }
+  /* ── KPI ROW ── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .kpi {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--slate);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.red { color: var(--red); }
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--slate);
+  }
+  /* ── COMPANY CARDS ── */
+  .co-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .co-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .co-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-2px);
+  }
+  .co-card.client {
+    border-color: rgba(45,206,137,0.35);
+    background: linear-gradient(135deg, var(--navy-mid) 0%, rgba(45,206,137,0.04) 100%);
+  }
+  .co-head {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .co-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .co-location {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 2px;
+  }
+  .co-pill {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .pill-client { background: rgba(45,206,137,0.15); color: var(--green); }
+  .pill-comp { background: var(--white-faint); color: var(--slate); }
+  .co-body { padding: 12px 18px 16px; }
+  .co-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+  .co-row:last-child { border-bottom: none; }
+  .co-row-key { color: var(--slate); flex-shrink: 0; }
+  .co-row-val { color: var(--white); text-align: right; font-weight: 500; }
+  .co-row-val.red { color: var(--red); }
+  .co-row-val.green { color: var(--green); }
+  .co-row-val.amber { color: var(--amber); }
+  /* ── THREAT BARS ── */
+  .threat-section { margin-bottom: 48px; }
+  .threat-item { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .threat-name { font-size: 13px; color: var(--white-dim); width: 140px; flex-shrink: 0; font-weight: 500; }
+  .threat-track {
+    flex: 1;
+    height: 8px;
+    background: var(--navy-light);
+    border-radius: 99px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .threat-fill { height: 100%; border-radius: 99px; transition: width 1s ease; }
+  .threat-fill.critical { background: var(--red); }
+  .threat-fill.high { background: var(--amber); }
+  .threat-fill.mid { background: #6bc26b; }
+  .threat-score {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    width: 36px;
+    text-align: right;
+  }
+  .threat-note { font-size: 11px; color: var(--slate); margin-top: -6px; margin-bottom: 20px; font-style: italic; }
+  /* ── CHART CONTAINER ── */
+  .chart-wrap {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 48px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .chart-sub {
+    font-size: 11px;
+    color: var(--slate);
+    margin-bottom: 24px;
+    font-family: var(--font-mono);
+  }
+  .chart-canvas-wrap { position: relative; width: 100%; height: 260px; }
+  /* ── TWO-COL GRID ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 48px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  /* ── INFO CARD ── */
+  .info-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .info-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(143,163,190,0.08);
+    gap: 8px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { color: var(--slate); }
+  .info-val { color: var(--white); font-weight: 500; text-align: right; }
+  .info-val.green { color: var(--green); }
+  .info-val.red { color: var(--red); }
+  .info-val.amber { color: var(--amber); }
+  /* ── GEO TABLE ── */
+  .geo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 48px; }
+  @media (max-width: 700px) { .geo-grid { grid-template-columns: 1fr; } }
+  .geo-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .geo-city {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .geo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .geo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .dot-red { background: var(--red); }
+  .dot-amber { background: var(--amber); }
+  .dot-slate { background: var(--slate-dim); }
+  .dot-green { background: var(--green); }
+  .geo-item-text { color: var(--white-dim); }
+  .geo-item-co { color: var(--slate); font-size: 11px; }
+  /* ── KEYWORD TABLE ── */
+  .kw-table-wrap {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .kw-table-head {
+    padding: 18px 24px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .kw-table-head-title { font-size: 14px; font-weight: 600; color: var(--white); }
+  .kw-table-head-sub { font-size: 11px; color: var(--slate); font-family: var(--font-mono); margin-top: 2px; }
+  table.kw {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.kw thead th {
+    padding: 12px 24px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,22,40,0.4);
+  }
+  table.kw tbody tr { border-bottom: 1px solid rgba(143,163,190,0.07); }
+  table.kw tbody tr:last-child { border-bottom: none; }
+  table.kw tbody tr:hover { background: var(--white-faint); }
+  table.kw tbody td { padding: 12px 24px; color: var(--white-dim); vertical-align: middle; }
+  table.kw tbody td:first-child {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .intent-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .intent-emergency { background: rgba(232,64,64,0.15); color: #f08080; border: 1px solid rgba(232,64,64,0.25); }
+  .intent-commercial { background: rgba(247,164,64,0.12); color: #f0c880; border: 1px solid rgba(247,164,64,0.2); }
+  .intent-maintenance { background: rgba(45,206,137,0.1); color: #70dba8; border: 1px solid rgba(45,206,137,0.2); }
+  .comp-pips { display: flex; gap: 4px; }
+  .pip {
+    width: 10px; height: 10px;
+    border-radius: 3px;
+  }
+  .pip.filled { background: var(--red); }
+  .pip.empty { background: var(--navy-light); border: 1px solid var(--border-bright); }
+  /* ── BUDGET BARS ── */
+  .budget-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .budget-co { font-size: 13px; color: var(--white-dim); width: 130px; flex-shrink: 0; font-weight: 500; }
+  .budget-track {
+    flex: 1;
+    height: 10px;
+    background: var(--navy-light);
+    border-radius: 99px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .budget-fill { height: 100%; border-radius: 99px; }
+  .budget-fill.casteel { background: var(--red); }
+  .budget-fill.ragsdale { background: var(--amber); }
+  .budget-fill.precision { background: #f0c840; }
+  .budget-fill.dennis { background: #6bc26b; }
+  .budget-fill.client { background: var(--slate-dim); }
+  .budget-val {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--white);
+    width: 130px;
+    text-align: right;
+    font-weight: 500;
+  }
+  /* ── GAP CARDS ── */
+  .gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
+  .gap-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .gap-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gap-card-title::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .gap-card-text { font-size: 12px; color: var(--slate); line-height: 1.55; }
+  /* ── RECOMMENDATIONS ── */
+  .rec-list { list-style: none; }
+  .rec-item {
+    display: flex;
+    gap: 18px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--green);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .rec-content { flex: 1; }
+  .rec-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .rec-text {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .rec-text strong { color: var(--white-dim); font-weight: 600; }
+  .rec-priority {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 10px;
+    letter-spacing: 0.04em;
+  }
+  .priority-immediate { background: rgba(232,64,64,0.15); color: #f08080; border: 1px solid rgba(232,64,64,0.2); }
+  .priority-high { background: rgba(247,164,64,0.12); color: #f0c880; border: 1px solid rgba(247,164,64,0.2); }
+  .priority-medium { background: rgba(45,206,137,0.1); color: #70dba8; border: 1px solid rgba(45,206,137,0.2); }
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--slate-dim);
+  }
+  .footer-brand { font-weight: 600; color: var(--slate); }
+  .footer-note { font-family: var(--font-mono); font-size: 11px; }
+  /* ── AD FORMAT CARDS ── */
+  .ad-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 48px; }
+  .ad-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .ad-card-head {
+    background: var(--navy-light);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ad-card-name { font-size: 13px; font-weight: 600; color: var(--white); }
+  .spend-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+  .spend-high { background: rgba(232,64,64,0.15); color: #f08080; border: 1px solid rgba(232,64,64,0.2); }
+  .spend-med { background: rgba(247,164,64,0.12); color: #f0c880; border: 1px solid rgba(247,164,64,0.2); }
+  .spend-low { background: rgba(45,206,137,0.1); color: #70dba8; border: 1px solid rgba(45,206,137,0.2); }
+  .spend-none { background: var(--white-faint); color: var(--slate); border: 1px solid var(--border); }
+  .ad-card-body { padding: 14px 18px; }
+  .ad-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(143,163,190,0.06);
+    gap: 8px;
+  }
+  .ad-row:last-child { border-bottom: none; }
+  .ad-row-key { color: var(--slate); }
+  .ad-row-val { color: var(--white-dim); font-weight: 500; text-align: right; }
+  /* ── PRINT ── */
+  @media print {
+    .topbar { position: relative; }
+    body { background: #fff; color: #111; }
+  }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1 { animation: fadeInUp 0.7s ease both; }
+  .hero-sub { animation: fadeInUp 0.7s 0.1s ease both; }
+  .hero-stats { animation: fadeInUp 0.7s 0.2s ease both; }
+</style>
+</head>
+<body>
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo-mark">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 2L14 13H2L8 2Z" fill="#0a1628"/>
+      </svg>
+    </div>
+    <span class="topbar-name">Treetop Growth Strategy</span>
+  </div>
+  <nav>
+    <ul class="topbar-nav">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#competitors">Competitors</a></li>
+      <li><a href="#paid-search">Paid Search</a></li>
+      <li><a href="#gaps">Gaps</a></li>
+      <li><a href="#action-plan">Action Plan</a></li>
+    </ul>
+  </nav>
+  <span class="topbar-badge">Confidential Report</span>
+</header>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-meta">
+    <span class="hero-tag">Competitive Analysis</span>
+    <div class="hero-divider"></div>
+    <span class="hero-date">May 2026</span>
+    <div class="hero-divider"></div>
+    <span class="hero-date">Metro Atlanta HVAC Market</span>
+  </div>
+  <h1>Pro Air Tech — <em>Market Position</em> &amp; Competitive Intelligence</h1>
+  <p class="hero-sub">A comprehensive benchmarking analysis of the Hiram / Dallas, GA HVAC competitive landscape: traffic strategy, paid search activity, and growth opportunities for Pro Air Tech LLC.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-val"><span>4</span></div>
+      <div class="hero-stat-label">Competitors analyzed</div>
+    </div>
+    <div>
+      <div class="hero-stat-val"><span>3</span> of 4</div>
+      <div class="hero-stat-label">Have geo pages in Pro Air Tech's market</div>
+    </div>
+    <div>
+      <div class="hero-stat-val"><span>$0</span></div>
+      <div class="hero-stat-label">Estimated current Pro Air Tech ad spend</div>
+    </div>
+    <div>
+      <div class="hero-stat-val"><span>6</span></div>
+      <div class="hero-stat-label">Priority action items identified</div>
+    </div>
+  </div>
+</section>
+<div class="content">
+<!-- SECTION 1: MARKET OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-header">
+    <div>
+      <div class="section-num">01 — Market Overview</div>
+      <div class="section-title">The Competitive Landscape</div>
+    </div>
+    <div class="section-note">Paulding County + surrounding NW Metro Atlanta</div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Market leader</div>
+      <div class="kpi-value">Casteel</div>
+      <div class="kpi-sub">30,000+ five-star reviews claimed</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Closest geo rival</div>
+      <div class="kpi-value">Precision</div>
+      <div class="kpi-sub">Based in Dallas, GA — same market</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Service breadth gap</div>
+      <div class="kpi-value red">3 of 4</div>
+      <div class="kpi-sub">Rivals bundle plumbing + electrical</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Review gap</div>
+      <div class="kpi-value red">608–30K+</div>
+      <div class="kpi-sub">Competitor review counts vs. Pro Air Tech</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Opportunity window</div>
+      <div class="kpi-value green">E Dennis</div>
+      <div class="kpi-sub">Dec '25 merger causing customer confusion</div>
+    </div>
+  </div>
+  <div class="alert">
+    <strong>Strategic context:</strong> All four competitors have built geo-targeted landing pages and estimated monthly ad budgets ranging from $1,500 to $35,000. Pro Air Tech currently has no equivalent infrastructure and no active Google Ads presence — representing both the biggest risk and the clearest immediate opportunity.
+  </div>
+  <div class="section-header" style="margin-top:40px;">
+    <div>
+      <div class="section-num">Competitive Threat Score</div>
+      <div class="section-title" style="font-size:20px;">Ranked by risk to Pro Air Tech</div>
+    </div>
+  </div>
+  <div class="threat-section">
+    <div class="threat-item">
+      <span class="threat-name">Casteel</span>
+      <div class="threat-track"><div class="threat-fill critical" style="width:95%"></div></div>
+      <span class="threat-score">95</span>
+    </div>
+    <div class="threat-item">
+      <span class="threat-name">Precision H&amp;A</span>
+      <div class="threat-track"><div class="threat-fill high" style="width:80%"></div></div>
+      <span class="threat-score">80</span>
+    </div>
+    <div class="threat-item">
+      <span class="threat-name">Ragsdale</span>
+      <div class="threat-track"><div class="threat-fill high" style="width:72%"></div></div>
+      <span class="threat-score">72</span>
+    </div>
+    <div class="threat-item">
+      <span class="threat-name">E Dennis</span>
+      <div class="threat-track"><div class="threat-fill mid" style="width:45%"></div></div>
+      <span class="threat-score">45</span>
+    </div>
+    <p class="threat-note">Scored on: review volume, geo overlap, estimated ad spend, service breadth, and brand tenure.</p>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">Service category breadth comparison</div>
+    <div class="chart-sub">Number of distinct service verticals offered</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="serviceChart" role="img" aria-label="Bar chart comparing service category counts. Pro Air Tech 2, Ragsdale 5, Precision 4, E Dennis 4, Casteel 5.">Service breadth: Pro Air Tech 2, Ragsdale 5, Precision 4, E Dennis 4, Casteel 5.</canvas>
+    </div>
+  </div>
+</section>
+<!-- SECTION 2: COMPETITOR PROFILES -->
+<section class="section" id="competitors">
+  <div class="section-header">
+    <div>
+      <div class="section-num">02 — Competitor Profiles</div>
+      <div class="section-title">Company-by-Company Breakdown</div>
+    </div>
+    <div class="section-note">Includes Pro Air Tech for baseline comparison</div>
+  </div>
+  <div class="co-grid">
+    <div class="co-card client">
+      <div class="co-head">
+        <div>
+          <div class="co-name">Pro Air Tech LLC</div>
+          <div class="co-location">Hiram, GA (client)</div>
+        </div>
+        <span class="co-pill pill-client">Client</span>
+      </div>
+      <div class="co-body">
+        <div class="co-row"><span class="co-row-key">Services</span><span class="co-row-val amber">HVAC only</span></div>
+        <div class="co-row"><span class="co-row-key">Locations</span><span class="co-row-val">1</span></div>
+        <div class="co-row"><span class="co-row-key">Membership plan</span><span class="co-row-val red">None visible</span></div>
+        <div class="co-row"><span class="co-row-key">Blog / content</span><span class="co-row-val red">None visible</span></div>
+        <div class="co-row"><span class="co-row-key">Social media</span><span class="co-row-val red">Not linked</span></div>
+        <div class="co-row"><span class="co-row-key">Geo landing pages</span><span class="co-row-val red">None</span></div>
+        <div class="co-row"><span class="co-row-key">Google Ads (est.)</span><span class="co-row-val red">$0–$500/mo</span></div>
+      </div>
+    </div>
+    <div class="co-card">
+      <div class="co-head">
+        <div>
+          <div class="co-name">Ragsdale</div>
+          <div class="co-location">Dallas, GA · est. 1996</div>
+        </div>
+        <span class="co-pill pill-comp">Competitor</span>
+      </div>
+      <div class="co-body">
+        <div class="co-row"><span class="co-row-key">Services</span><span class="co-row-val">HVAC + Plumb + Elec + Insul</span></div>
+        <div class="co-row"><span class="co-row-key">Locations</span><span class="co-row-val">Multiple (Dallas HQ)</span></div>
+        <div class="co-row"><span class="co-row-key">Membership</span><span class="co-row-val green">$16.99/mo Priority Plan</span></div>
+        <div class="co-row"><span class="co-row-key">Warranty</span><span class="co-row-val green">15-yr parts &amp; labor</span></div>
+        <div class="co-row"><span class="co-row-key">Google rating</span><span class="co-row-val">4.8★ / 608+ reviews</span></div>
+        <div class="co-row"><span class="co-row-key">Carrier certified</span><span class="co-row-val green">President's Award</span></div>
+        <div class="co-row"><span class="co-row-key">Google Ads (est.)</span><span class="co-row-val amber">$4K–$9K/mo</span></div>
+      </div>
+    </div>
+    <div class="co-card">
+      <div class="co-head">
+        <div>
+          <div class="co-name">Precision Heating &amp; Air</div>
+          <div class="co-location">Dallas, GA · est. 1985</div>
+        </div>
+        <span class="co-pill pill-comp">Competitor</span>
+      </div>
+      <div class="co-body">
+        <div class="co-row"><span class="co-row-key">Services</span><span class="co-row-val">HVAC + Generators + Water Htrs</span></div>
+        <div class="co-row"><span class="co-row-key">Locations</span><span class="co-row-val">1 (Dallas)</span></div>
+        <div class="co-row"><span class="co-row-key">Membership</span><span class="co-row-val green">MVP Club + 10% disc.</span></div>
+        <div class="co-row"><span class="co-row-key">Google reviews</span><span class="co-row-val">4.7★ / 1,582+</span></div>
+        <div class="co-row"><span class="co-row-key">Social media</span><span class="co-row-val green">FB / IG / LinkedIn active</span></div>
+        <div class="co-row"><span class="co-row-key">Trane certified</span><span class="co-row-val green">Comfort Specialist</span></div>
+        <div class="co-row"><span class="co-row-key">Google Ads (est.)</span><span class="co-row-val amber">$2K–$5K/mo</span></div>
+      </div>
+    </div>
+    <div class="co-card">
+      <div class="co-head">
+        <div>
+          <div class="co-name">E Dennis</div>
+          <div class="co-location">Marietta, GA · est. 1993</div>
+        </div>
+        <span class="co-pill pill-comp">Competitor</span>
+      </div>
+      <div class="co-body">
+        <div class="co-row"><span class="co-row-key">Services</span><span class="co-row-val">HVAC + Plumb + Elec + IAQ</span></div>
+        <div class="co-row"><span class="co-row-key">Locations</span><span class="co-row-val">4 (Marietta, Newnan+)</span></div>
+        <div class="co-row"><span class="co-row-key">Certifications</span><span class="co-row-val">NATE certified, A+ BBB</span></div>
+        <div class="co-row"><span class="co-row-key">Dec '25 merger</span><span class="co-row-val amber">Partner merger (risk signal)</span></div>
+        <div class="co-row"><span class="co-row-key">BBB complaints</span><span class="co-row-val red">Multiple filed post-merger</span></div>
+        <div class="co-row"><span class="co-row-key">Google Ads (est.)</span><span class="co-row-val">$1.5K–$4K/mo</span></div>
+      </div>
+    </div>
+    <div class="co-card">
+      <div class="co-head">
+        <div>
+          <div class="co-name">Casteel</div>
+          <div class="co-location">Marietta, GA · est. 1987</div>
+        </div>
+        <span class="co-pill pill-comp">Competitor</span>
+      </div>
+      <div class="co-body">
+        <div class="co-row"><span class="co-row-key">Services</span><span class="co-row-val">HVAC + Plumb + Elec + Smart Home</span></div>
+        <div class="co-row"><span class="co-row-key">Locations</span><span class="co-row-val">2+ (Marietta, Lawrenceville)</span></div>
+        <div class="co-row"><span class="co-row-key">Membership</span><span class="co-row-val green">Comfort360 program</span></div>
+        <div class="co-row"><span class="co-row-key">Reviews</span><span class="co-row-val">30,000+ five-star (claimed)</span></div>
+        <div class="co-row"><span class="co-row-key">Mergers</span><span class="co-row-val">AccuTemp, North Point, Knight</span></div>
+        <div class="co-row"><span class="co-row-key">Equipment brand</span><span class="co-row-val">Lennox preferred</span></div>
+        <div class="co-row"><span class="co-row-key">Google Ads (est.)</span><span class="co-row-val red">$15K–$35K/mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SECTION 3: PAID SEARCH -->
+<section class="section" id="paid-search">
+  <div class="section-header">
+    <div>
+      <div class="section-num">03 — Paid Search Intelligence</div>
+      <div class="section-title">Google Ads &amp; LSA Landscape</div>
+    </div>
+    <div class="section-note">Based on landing page analysis, CPC benchmarks &amp; competitive signals</div>
+  </div>
+  <div class="alert alert-red">
+    <strong>Critical finding:</strong> Ragsdale, Precision, and Casteel all have live geo-targeted landing pages for Hiram and Dallas, GA — Pro Air Tech's exact service area. These pages are the Quality Score backbone of their Google Ads campaigns. Pro Air Tech currently has <strong>zero equivalent pages</strong>, meaning any ad spend today would cost 30–50% more per click due to poor Quality Score.
+  </div>
+  <div class="section-header" style="margin-top: 8px;">
+    <div>
+      <div class="section-num">Geo Presence</div>
+      <div class="section-title" style="font-size:20px;">Who owns the local search real estate</div>
+    </div>
+  </div>
+  <div class="geo-grid">
+    <div class="geo-card">
+      <div class="geo-city">Hiram, GA</div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Ragsdale — dedicated /hiram page</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Precision — /ac-repair-hiram-ga/ &amp; /furnace-repair-hiram-ga/</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Casteel — /locations/georgia/hiram/</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-slate"></div>
+        <div><div class="geo-item-text" style="color:var(--slate);">Pro Air Tech — no dedicated geo page</div></div>
+      </div>
+    </div>
+    <div class="geo-card">
+      <div class="geo-city">Dallas, GA</div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Ragsdale — HQ here, /dallas-ga page</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Precision — HQ here, /hvac-dallas-ga/ &amp; /furnace-repair-dallas-ga/</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Casteel — /locations/georgia/dallas/</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-slate"></div>
+        <div><div class="geo-item-text" style="color:var(--slate);">Pro Air Tech — no dedicated geo page</div></div>
+      </div>
+    </div>
+    <div class="geo-card">
+      <div class="geo-city">Paulding County</div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Ragsdale — explicitly targets all of Paulding County</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-red"></div>
+        <div><div class="geo-item-text">Precision — Paulding is primary service area</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-amber"></div>
+        <div><div class="geo-item-text">Casteel — city-level pages only</div></div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-dot dot-slate"></div>
+        <div><div class="geo-item-text" style="color:var(--slate);">Pro Air Tech — not explicitly claimed in content</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section-header">
+    <div>
+      <div class="section-num">Estimated Monthly Ad Spend</div>
+      <div class="section-title" style="font-size:20px;">Budget by competitor</div>
+    </div>
+    <div class="section-note">Estimated from landing page depth, review volume, geo footprint &amp; 2026 Atlanta HVAC CPC benchmarks</div>
+  </div>
+  <div class="chart-wrap">
+    <div class="budget-row">
+      <span class="budget-co">Casteel</span>
+      <div class="budget-track"><div class="budget-fill casteel" style="width:95%"></div></div>
+      <span class="budget-val">$15,000–$35,000/mo</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-co">Ragsdale</span>
+      <div class="budget-track"><div class="budget-fill ragsdale" style="width:50%"></div></div>
+      <span class="budget-val">$4,000–$9,000/mo</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-co">Precision H&amp;A</span>
+      <div class="budget-track"><div class="budget-fill precision" style="width:35%"></div></div>
+      <span class="budget-val">$2,000–$5,000/mo</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-co">E Dennis</span>
+      <div class="budget-track"><div class="budget-fill dennis" style="width:25%"></div></div>
+      <span class="budget-val">$1,500–$4,000/mo</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-co">Pro Air Tech</span>
+      <div class="budget-track"><div class="budget-fill client" style="width:3%"></div></div>
+      <span class="budget-val" style="color:var(--slate);">$0–$500/mo est.</span>
+    </div>
+    <p style="font-size:11px;color:var(--slate-dim);margin-top:12px;font-style:italic;">Not based on direct platform data. Estimates derived from competitive signals and industry benchmarks (LocaliQ, Searchlight Digital, ACHR News 2026).</p>
+  </div>
+  <div class="section-header">
+    <div>
+      <div class="section-num">High-Value Keywords</div>
+      <div class="section-title" style="font-size:20px;">Keyword battlefield in Pro Air Tech's market</div>
+    </div>
+  </div>
+  <div class="kw-table-wrap">
+    <div class="kw-table-head">
+      <div class="kw-table-head-title">Target keywords — Hiram / Dallas / Paulding County, GA</div>
+      <div class="kw-table-head-sub">CPC estimates based on 2026 Atlanta HVAC market benchmarks. Pips indicate number of competitors actively bidding.</div>
+    </div>
+    <table class="kw">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Est. CPC</th>
+          <th>Intent</th>
+          <th>Competitor pressure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ac repair hiram ga</td>
+          <td>$18–$32</td>
+          <td><span class="intent-badge intent-emergency">Emergency</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>furnace repair hiram ga</td>
+          <td>$15–$28</td>
+          <td><span class="intent-badge intent-emergency">Emergency</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>emergency ac repair dallas ga</td>
+          <td>$30–$55</td>
+          <td><span class="intent-badge intent-emergency">Emergency</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span></div></td>
+        </tr>
+        <tr>
+          <td>hvac repair dallas ga</td>
+          <td>$20–$38</td>
+          <td><span class="intent-badge intent-emergency">Emergency</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>ac repair near me (Hiram/Dallas geo)</td>
+          <td>$25–$50</td>
+          <td><span class="intent-badge intent-emergency">Emergency</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span></div></td>
+        </tr>
+        <tr>
+          <td>hvac company paulding county</td>
+          <td>$12–$22</td>
+          <td><span class="intent-badge intent-commercial">Commercial</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>new hvac system hiram ga</td>
+          <td>$20–$40</td>
+          <td><span class="intent-badge intent-commercial">Commercial</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>ductless ac installation dallas ga</td>
+          <td>$15–$30</td>
+          <td><span class="intent-badge intent-commercial">Commercial</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>ac tune up hiram ga</td>
+          <td>$8–$15</td>
+          <td><span class="intent-badge intent-maintenance">Maintenance</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip filled"></span><span class="pip empty"></span><span class="pip empty"></span></div></td>
+        </tr>
+        <tr>
+          <td>hvac maintenance plan hiram</td>
+          <td>$6–$12</td>
+          <td><span class="intent-badge intent-maintenance">Maintenance</span></td>
+          <td><div class="comp-pips"><span class="pip filled"></span><span class="pip empty"></span><span class="pip empty"></span><span class="pip empty"></span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-header">
+    <div>
+      <div class="section-num">Ad Format Stack</div>
+      <div class="section-title" style="font-size:20px;">What each competitor is running</div>
+    </div>
+  </div>
+  <div class="ad-card-grid">
+    <div class="ad-card">
+      <div class="ad-card-head">
+        <span class="ad-card-name">Casteel</span>
+        <span class="spend-badge spend-high">Full stack</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-row"><span class="ad-row-key">Google LSA</span><span class="ad-row-val" style="color:var(--green);">Almost certain — 30K reviews</span></div>
+        <div class="ad-row"><span class="ad-row-key">Google Search PPC</span><span class="ad-row-val" style="color:var(--green);">High volume, all service types</span></div>
+        <div class="ad-row"><span class="ad-row-key">Display / Remarketing</span><span class="ad-row-val" style="color:var(--green);">Likely active</span></div>
+        <div class="ad-row"><span class="ad-row-key">Landing page model</span><span class="ad-row-val">City-level location hubs</span></div>
+        <div class="ad-row"><span class="ad-row-key">Ad extensions</span><span class="ad-row-val">Call, sitelink, callout, review</span></div>
+        <div class="ad-row"><span class="ad-row-key">Social ads</span><span class="ad-row-val" style="color:var(--green);">LinkedIn + flash sales active</span></div>
+      </div>
+    </div>
+    <div class="ad-card">
+      <div class="ad-card-head">
+        <span class="ad-card-name">Ragsdale</span>
+        <span class="spend-badge spend-high">Full stack</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-row"><span class="ad-row-key">Google LSA</span><span class="ad-row-val" style="color:var(--green);">Very likely — 4.8★, 608+ reviews</span></div>
+        <div class="ad-row"><span class="ad-row-key">Google Search PPC</span><span class="ad-row-val" style="color:var(--green);">Carrier co-op funds likely used</span></div>
+        <div class="ad-row"><span class="ad-row-key">Landing page model</span><span class="ad-row-val">Hiram + Dallas city pages</span></div>
+        <div class="ad-row"><span class="ad-row-key">Ad extensions</span><span class="ad-row-val">Call, location, coupon promo</span></div>
+        <div class="ad-row"><span class="ad-row-key">Carrier co-op</span><span class="ad-row-val" style="color:var(--green);">President's Award = subsidized $</span></div>
+        <div class="ad-row"><span class="ad-row-key">Referral loop</span><span class="ad-row-val">Referral club tracks attribution</span></div>
+      </div>
+    </div>
+    <div class="ad-card">
+      <div class="ad-card-head">
+        <span class="ad-card-name">Precision H&amp;A</span>
+        <span class="spend-badge spend-med">PPC-heavy</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-row"><span class="ad-row-key">Google LSA</span><span class="ad-row-val" style="color:var(--green);">Likely — 1,582+ reviews, 4.7★</span></div>
+        <div class="ad-row"><span class="ad-row-key">Google Search PPC</span><span class="ad-row-val" style="color:var(--green);">Service + city LP model</span></div>
+        <div class="ad-row"><span class="ad-row-key">Landing page model</span><span class="ad-row-val">1 page per service per city</span></div>
+        <div class="ad-row"><span class="ad-row-key">Social ads</span><span class="ad-row-val">FB + Instagram active</span></div>
+        <div class="ad-row"><span class="ad-row-key">Trane co-op</span><span class="ad-row-val" style="color:var(--green);">Comfort Specialist eligible</span></div>
+        <div class="ad-row"><span class="ad-row-key">Conversion hook</span><span class="ad-row-val">10% MVP discount in ad copy</span></div>
+      </div>
+    </div>
+    <div class="ad-card">
+      <div class="ad-card-head">
+        <span class="ad-card-name">Pro Air Tech</span>
+        <span class="spend-badge spend-none">Not active</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-row"><span class="ad-row-key">Google LSA</span><span class="ad-row-val" style="color:var(--red);">Not verified / not running</span></div>
+        <div class="ad-row"><span class="ad-row-key">Google Search PPC</span><span class="ad-row-val" style="color:var(--red);">No estimated spend</span></div>
+        <div class="ad-row"><span class="ad-row-key">Landing page model</span><span class="ad-row-val" style="color:var(--red);">Homepage only</span></div>
+        <div class="ad-row"><span class="ad-row-key">Social ads</span><span class="ad-row-val" style="color:var(--red);">None linked on site</span></div>
+        <div class="ad-row"><span class="ad-row-key">Manufacturer cert</span><span class="ad-row-val" style="color:var(--slate);">Unknown / not promoted</span></div>
+        <div class="ad-row"><span class="ad-row-key">Conversion hook</span><span class="ad-row-val" style="color:var(--red);">No promotions page</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="section-header">
+    <div>
+      <div class="section-num">Landing Page Strategy</div>
+      <div class="section-title" style="font-size:20px;">What drives Quality Score and lower CPC</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card-title">Precision — most sophisticated model</div>
+      <div class="info-row"><span class="info-key">Structure</span><span class="info-val">1 page per service per city</span></div>
+      <div class="info-row"><span class="info-key">Keyword match</span><span class="info-val green">Exact URL match to keyword</span></div>
+      <div class="info-row"><span class="info-key">Trust signals</span><span class="info-val">NATE cert, Trane badge, reviews</span></div>
+      <div class="info-row"><span class="info-key">CTA placement</span><span class="info-val">Phone + form above the fold</span></div>
+      <div class="info-row"><span class="info-key">Quality Score impact</span><span class="info-val green">High — lowers CPC vs. rivals</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Ragsdale — combined city page model</div>
+      <div class="info-row"><span class="info-key">Structure</span><span class="info-val">1 page per city, all services</span></div>
+      <div class="info-row"><span class="info-key">Differentiator</span><span class="info-val">15-yr warranty as price anchor</span></div>
+      <div class="info-row"><span class="info-key">Trust signals</span><span class="info-val">Carrier logo, founder story</span></div>
+      <div class="info-row"><span class="info-key">Higher ticket</span><span class="info-val">HVAC + plumbing = bigger jobs</span></div>
+      <div class="info-row"><span class="info-key">Avg ticket advantage</span><span class="info-val green">Multi-service bundling</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Casteel — location hub strategy</div>
+      <div class="info-row"><span class="info-key">Structure</span><span class="info-val">/locations/georgia/[city]/</span></div>
+      <div class="info-row"><span class="info-key">Dominant trust signal</span><span class="info-val">30,000 five-star reviews</span></div>
+      <div class="info-row"><span class="info-key">Key differentiators</span><span class="info-val">Next-day install, no emerg. fees</span></div>
+      <div class="info-row"><span class="info-key">Risk reversal</span><span class="info-val">Amazing Care Guarantee</span></div>
+      <div class="info-row"><span class="info-key">Awareness</span><span class="info-val amber">Metro-wide, not hyper-local</span></div>
+    </div>
+    <div class="info-card" style="border-color:rgba(232,64,64,0.25);">
+      <div class="info-card-title" style="color:var(--red);">Pro Air Tech — current state</div>
+      <div class="info-row"><span class="info-key">Landing pages</span><span class="info-val red">Homepage only</span></div>
+      <div class="info-row"><span class="info-key">Geo-specific content</span><span class="info-val red">None</span></div>
+      <div class="info-row"><span class="info-key">Dedicated service pages</span><span class="info-val red">None for AC repair / furnace</span></div>
+      <div class="info-row"><span class="info-key">Quality Score (if ads run)</span><span class="info-val red">Poor — pays 30–50% more per click</span></div>
+      <div class="info-row"><span class="info-key">Promotions page</span><span class="info-val red">None</span></div>
+    </div>
+  </div>
+</section>
+<!-- SECTION 4: GAPS -->
+<section class="section" id="gaps">
+  <div class="section-header">
+    <div>
+      <div class="section-num">04 — Competitive Gaps</div>
+      <div class="section-title">Where Pro Air Tech Is Exposed</div>
+    </div>
+  </div>
+  <div class="gap-grid">
+    <div class="gap-card">
+      <div class="gap-card-title">No maintenance membership</div>
+      <div class="gap-card-text">All four rivals use monthly plans ($16.99–higher) to lock in recurring revenue and reduce churn. Ragsdale at $16.99/mo, Precision's MVP club at 10% discount hook. Pro Air Tech has no visible program — leaving ARR and LTV on the table.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">HVAC-only service scope</div>
+      <div class="gap-card-text">Three of four rivals bundle plumbing and/or electrical. This increases average ticket size and eliminates the need for a customer to call a second company — reducing churn and increasing lifetime value per household.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">Thin review volume</div>
+      <div class="gap-card-text">Competitors have 608–30,000+ Google reviews. Low review count directly suppresses Google LSA ranking (which weighs star rating and review volume heavily) and reduces consumer trust at the zero moment of truth.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">No promotions / coupons page</div>
+      <div class="gap-card-text">Ragsdale and Precision run active specials pages with seasonal coupons and financing offers. These pages give paid traffic a reason to convert and generate repeat organic visits from price-conscious homeowners.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">No geo-specific landing pages</div>
+      <div class="gap-card-text">Zero Hiram, Dallas, or Paulding County pages exist. Competitors have built and indexed these pages — they rank organically and serve as high-Quality Score landing pages for paid campaigns simultaneously.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">Social media absent</div>
+      <div class="gap-card-text">Precision actively uses Facebook, Instagram, and LinkedIn. Casteel runs flash sales and community posts. Pro Air Tech has no linked social profiles on its website — missing brand awareness and remarketing audience building.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">No manufacturer certification</div>
+      <div class="gap-card-text">Ragsdale holds Carrier's President's Award (highest dealer honor) and Precision is a Trane Comfort Specialist. Both unlock co-op advertising funds from manufacturers — effectively subsidizing competitor ad budgets that Pro Air Tech must match at full cost.</div>
+    </div>
+    <div class="gap-card">
+      <div class="gap-card-title">No blog or content marketing</div>
+      <div class="gap-card-text">No visible blog, seasonal tips, or educational content. Competitors produce HVAC maintenance guides and seasonal articles that capture long-tail organic search traffic — visitors who then convert through remarketing.</div>
+    </div>
+  </div>
+</section>
+<!-- SECTION 5: ACTION PLAN -->
+<section class="section" id="action-plan">
+  <div class="section-header">
+    <div>
+      <div class="section-num">05 — Prioritized Action Plan</div>
+      <div class="section-title">What Pro Air Tech Should Do First</div>
+    </div>
+    <div class="section-note">Sequenced by ROI speed and strategic dependency</div>
+  </div>
+  <ul class="rec-list">
+    <li class="rec-item">
+      <span class="rec-num">1</span>
+      <div class="rec-content">
+        <div class="rec-title">Activate Google Local Services Ads (LSA) <span class="rec-priority priority-immediate">Immediate</span></div>
+        <div class="rec-text">LSAs appear <strong>above all PPC ads</strong> in local search results. The model is pay-per-lead (not pay-per-click), so budget risk is controlled. Ranking factors are star rating, review count, and answer speed — all areas where a responsive local operator can outperform a large chain. Get Google Guaranteed, hit 50+ reviews, and commit to sub-5-minute lead response. This is the single highest-ROI move available right now.</div>
+      </div>
+    </li>
+    <li class="rec-item">
+      <span class="rec-num">2</span>
+      <div class="rec-content">
+        <div class="rec-title">Build four geo-specific landing pages before running any PPC <span class="rec-priority priority-immediate">Immediate</span></div>
+        <div class="rec-text">Mirror Precision's service-plus-city model. Build: <strong>/ac-repair-hiram-ga, /furnace-repair-hiram-ga, /ac-repair-dallas-ga, /furnace-repair-dallas-ga</strong>. Each needs city-specific copy, a phone number, and a clear CTA above the fold. Without these pages, every Google Ads dollar costs 30–50% more per click due to poor Quality Score. These pages also rank organically over time — giving you compounding returns.</div>
+      </div>
+    </li>
+    <li class="rec-item">
+      <span class="rec-num">3</span>
+      <div class="rec-content">
+        <div class="rec-title">Aggressively collect Google reviews — target 200+ in 90 days <span class="rec-priority priority-immediate">Immediate</span></div>
+        <div class="rec-text">A post-job SMS with a direct Google Business Profile review link costs nothing. Review volume is a direct LSA ranking input and a trust signal that affects click-through rate across all organic, local pack, and paid placements. With 10+ years of loyal customers, Pro Air Tech has an untapped review base. A one-time review campaign to past customers can move the needle quickly.</div>
+      </div>
+    </li>
+    <li class="rec-item">
+      <span class="rec-num">4</span>
+      <div class="rec-content">
+        <div class="rec-title">Launch a maintenance membership plan <span class="rec-priority priority-high">High Priority</span></div>
+        <div class="rec-text">A simple $19.99/month bi-annual tune-up plan builds ARR, improves cash flow predictability, and mirrors what Ragsdale and Precision are doing to maximize customer LTV. A member who pays $240/year is also statistically more likely to choose Pro Air Tech for repairs and replacements. This program also gives you a conversion hook for both ads and existing customer outreach.</div>
+      </div>
+    </li>
+    <li class="rec-item">
+      <span class="rec-num">5</span>
+      <div class="rec-content">
+        <div class="rec-title">Target E Dennis's customer base — they're vulnerable right now <span class="rec-priority priority-high">High Priority</span></div>
+        <div class="rec-text">E Dennis went through an undisclosed partner merger in December 2025. Customers are filing BBB complaints about the change, and there's visible market confusion about the company's identity. A targeted local campaign in <strong>Cobb, Paulding, Douglas, and Cherokee counties</strong> with trust-forward messaging ("locally owned, same team, no surprises") could capture defecting E Dennis customers during this window.</div>
+      </div>
+    </li>
+    <li class="rec-item">
+      <span class="rec-num">6</span>
+      <div class="rec-content">
+        <div class="rec-title">Pursue manufacturer co-op certification (Carrier or Trane) <span class="rec-priority priority-medium">Medium Term</span></div>
+        <div class="rec-text">Ragsdale (Carrier President's Award) and Precision (Trane Comfort Specialist) are having a significant portion of their advertising subsidized through manufacturer co-op programs. Pro Air Tech competing at full cost against subsidized competitors is a structural disadvantage. Carrier and Trane certification also becomes a trust badge that can be used in ad copy, landing pages, and LSA profiles.</div>
+      </div>
+    </li>
+  </ul>
+</section>
+</div><!-- end .content -->
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <span class="footer-brand">Treetop Growth Strategy</span> &nbsp;·&nbsp; <a href="https://treetopgrowthstrategy.com" style="color:var(--slate-dim);text-decoration:none;">treetopgrowthstrategy.com</a>
+  </div>
+  <div class="footer-note">Prepared for Pro Air Tech LLC · May 2026 · Confidential</div>
+  <div class="footer-note">Research methods: site crawl, web search, landing page analysis, industry CPC benchmarks</div>
+</footer>
+<script>
+  // Service breadth chart
+  const ctx = document.getElementById('serviceChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Pro Air Tech', 'Ragsdale', 'Precision H&A', 'E Dennis', 'Casteel'],
+      datasets: [{
+        label: 'Service categories',
+        data: [2, 5, 4, 4, 5],
+        backgroundColor: ['rgba(45,206,137,0.25)', 'rgba(143,163,190,0.2)', 'rgba(143,163,190,0.2)', 'rgba(143,163,190,0.2)', 'rgba(143,163,190,0.2)'],
+        borderColor: ['#2dce89', '#4a617c', '#4a617c', '#4a617c', '#4a617c'],
+        borderWidth: 1.5,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0e1f38',
+          borderColor: 'rgba(143,163,190,0.3)',
+          borderWidth: 1,
+          titleColor: '#f4f7fb',
+          bodyColor: '#8fa3be',
+          padding: 12,
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y} service categories`
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 7,
+          ticks: {
+            stepSize: 1,
+            color: '#4a617c',
+            font: { size: 11, family: "'JetBrains Mono', monospace" }
+          },
+          grid: { color: 'rgba(143,163,190,0.08)' },
+          border: { color: 'transparent' }
+        },
+        x: {
+          ticks: {
+            color: '#8fa3be',
+            font: { size: 12, family: "'DM Sans', sans-serif" }
+          },
+          grid: { display: false },
+          border: { color: 'rgba(143,163,190,0.15)' }
+        }
+      }
+    }
+  });
+  // Intersection Observer for animated threat bars
+  const fills = document.querySelectorAll('.threat-fill');
+  fills.forEach(el => {
+    const target = el.style.width;
+    el.style.width = '0%';
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setTimeout(() => { el.style.width = target; }, 100);
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
