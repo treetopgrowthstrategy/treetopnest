@@ -116,6 +116,12 @@ linkable_assets:
     - url: https://treetopgrowthstrategy.com/content-library
       anchor: "Treetop content library"
       type: hub
+    - url: https://treetopgrowthstrategy.com/mid-market-ai-maturity-benchmark-2026
+      anchor: "2026 mid-market AI maturity benchmark"
+      type: benchmark
+    - url: https://treetopgrowthstrategy.com/fractional-cmo-cro-pricing-benchmark-2026
+      anchor: "2026 fractional CMO &amp; CRO pricing benchmark"
+      type: benchmark
   per_vertical:
     healthcare: https://treetopgrowthstrategy.com/healthcare-ai-playbook-2026
     legal: https://treetopgrowthstrategy.com/legal-ai-playbook-2026

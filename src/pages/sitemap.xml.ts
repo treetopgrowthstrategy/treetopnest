@@ -437,6 +437,10 @@ const pages = [
   { url: '/how-to-write-investor-updates-with-claude', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-use-claude-as-an-engineering-manager', priority: '0.85', changefreq: 'monthly' },
   { url: '/how-to-document-your-ai-workflows', priority: '0.85', changefreq: 'monthly' },
+
+  // Linkable assets (benchmark / observational research)
+  { url: '/mid-market-ai-maturity-benchmark-2026', priority: '0.9', changefreq: 'monthly' },
+  { url: '/fractional-cmo-cro-pricing-benchmark-2026', priority: '0.9', changefreq: 'monthly' },
 ];
 
 const BASE = 'https://treetopgrowthstrategy.com';
