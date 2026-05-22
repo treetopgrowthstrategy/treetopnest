@@ -9,6 +9,10 @@
     ],
     "cleanUrls": true,
     "trailingSlash": false,
+    "redirects": [
+      { "source": "/insights/what-is-a-fractional-cmo", "destination": "/resources/what-is-a-fractional-cmo", "type": 301 },
+      { "source": "/insights/:slug*", "destination": "/resources/:slug*", "type": 301 }
+    ],
     "rewrites": [
       { "source": "/api/lead-capture",            "function": "leadCapture" },
       { "source": "/api/training-inquiry",        "function": "trainingInquiry" },
