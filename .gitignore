@@ -1,1 +1,21 @@
 .vercel
+.DS_Store
+
+# Mac OS / Finder duplicate ghosts ("foo 2.astro", "_astro 2/")
+# These break Astro builds + Firebase deploys; never commit them.
+* 2.astro
+* 2.html
+* 2.css
+* 2.js
+* 2.mjs
+* 2.ts
+* 2.tsx
+* 2.json
+* 2.png
+* 2.jpg
+* 2.jpeg
+* 2.svg
+* 2.webp
+* 2.mp4
+* 2.pdf
+*[0-9] [0-9].*
