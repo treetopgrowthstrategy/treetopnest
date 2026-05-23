@@ -9,7 +9,7 @@
  * Routes are exposed under /api/* via Firebase Hosting rewrites in firebase.json.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stackCheckout = exports.ecofitDemoRequest = exports.ecofitAssessmentSubmit = exports.quizSubmit = exports.trainingInquiry = exports.leadCapture = void 0;
+exports.verifyPurchase = exports.productCheckout = exports.stackCheckout = exports.ecofitDemoRequest = exports.ecofitAssessmentSubmit = exports.quizSubmit = exports.trainingInquiry = exports.leadCapture = void 0;
 const https_1 = require("firebase-functions/v2/https");
 const v2_1 = require("firebase-functions/v2");
 const lead_capture_1 = require("./handlers/lead-capture");
@@ -18,6 +18,8 @@ const quiz_submit_1 = require("./handlers/quiz-submit");
 const ecofit_assessment_submit_1 = require("./handlers/ecofit-assessment-submit");
 const ecofit_demo_request_1 = require("./handlers/ecofit-demo-request");
 const stack_checkout_1 = require("./handlers/stack-checkout");
+const product_checkout_1 = require("./handlers/product-checkout");
+const verify_purchase_1 = require("./handlers/verify-purchase");
 // Region: us-central1 (default). Set memory low — these are tiny handlers.
 (0, v2_1.setGlobalOptions)({
     region: 'us-central1',
@@ -86,4 +88,6 @@ exports.quizSubmit = makeFn(quiz_submit_1.handle);
 exports.ecofitAssessmentSubmit = makeFn(ecofit_assessment_submit_1.handle);
 exports.ecofitDemoRequest = makeFn(ecofit_demo_request_1.handle);
 exports.stackCheckout = makeFn(stack_checkout_1.handle);
+exports.productCheckout = makeFn(product_checkout_1.handle);
+exports.verifyPurchase = makeFn(verify_purchase_1.handle);
 //# sourceMappingURL=index.js.map

@@ -1,0 +1,105 @@
+---
+import GlobalFooter from '../../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Thank you — Gym Startup Budget Workbook PRO | Treetop</title>
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/gym-startup-budget-workbook-pro" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:1rem 2rem;font-size:0.92rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit}.btn-p:hover{opacity:0.88}
+section{padding:7rem 2.5rem 4rem}.sec-inner{max-width:720px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.h1{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.h2{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;margin:1.75rem 0 0.75rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.8;margin-bottom:1rem}.body strong{color:#F0FFF0}
+.dl-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;margin:2rem 0;text-align:center}
+.dl-headline{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0;margin-bottom:0.75rem}
+.dl-sub{font-size:0.9rem;color:#8FAF8F;margin-bottom:1.75rem}
+.dl-loading{font-size:0.92rem;color:#8FAF8F;font-style:italic}
+.dl-error{color:#FF8A80;font-size:0.92rem;line-height:1.7}
+.ul{color:#C0D8C0;font-size:0.98rem;line-height:1.75;padding-left:1.25rem;margin:0.75rem 0 1.5rem}.ul li{margin-bottom:0.4rem}.ul li::marker{color:#00C853}
+</style></head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<a href="/case-studies" style="font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none;">Case Studies</a>
+</div></nav>
+
+<section><div class="sec-inner">
+<div class="badge"><span class="badge-dot"></span>PURCHASE COMPLETE</div>
+<h1 class="h1">Your workbook is ready.</h1>
+<p class="body">Thanks for purchasing the Gym Startup Budget Workbook — PRO Edition. Your download link is below, and Stripe is also emailing you a receipt with a permanent link in case you need to re-access the file later.</p>
+
+<div class="dl-card" id="dl-card">
+<div class="dl-loading" id="dl-loading">Verifying purchase…</div>
+<div id="dl-ready" style="display:none;">
+<div class="dl-headline">Gym Startup Budget Workbook — PRO v1</div>
+<div class="dl-sub">XLSX · 12 sheets · 78 formulas · single-user license</div>
+<a href="#" id="dl-link" class="btn-p" download>Download the workbook &darr;</a>
+</div>
+<div class="dl-error" id="dl-error" style="display:none;"></div>
+</div>
+
+<h2 class="h2">A quick note before you open it</h2>
+<p class="body">Start in the <strong>Format & Scenario</strong> sheet. Pick your gym format, location tier, and planning scenario. Every other sheet adapts to those inputs. Every cell in blue bold is a user input — change them to match your actual numbers. Black text is computed via formulas and updates automatically.</p>
+<p class="body">If you want to walk through your specific build with someone who's done this work across multiple gym formats — <a href="/contact" style="color:#00C853;">book a 30-min intro</a>. The PRO Edition is the do-it-yourself version; the Treetop fractional engagement is the do-it-with-you version.</p>
+
+<h2 class="h2">If you have any trouble</h2>
+<ul class="ul">
+<li><strong>Download link not appearing?</strong> Refresh this page once. If it still doesn't load, email <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a> with the order receipt — we'll send the file manually within a few hours.</li>
+<li><strong>File won't open?</strong> The XLSX works in Excel, Google Sheets, and Apple Numbers. If you're seeing issues, email and we'll troubleshoot.</li>
+<li><strong>Need a refund?</strong> 14 days, no questions asked. Just email.</li>
+</ul>
+
+</div></section>
+
+<script>
+(async function(){
+  var params = new URLSearchParams(window.location.search);
+  var sid = params.get('session_id');
+  var loading = document.getElementById('dl-loading');
+  var ready = document.getElementById('dl-ready');
+  var error = document.getElementById('dl-error');
+  var link = document.getElementById('dl-link');
+
+  if (!sid) {
+    loading.style.display = 'none';
+    error.style.display = 'block';
+    error.innerHTML = 'No purchase session found. If you completed checkout but landed here, email <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a> with your Stripe receipt and we will send the file manually.';
+    return;
+  }
+
+  try {
+    var res = await fetch('/api/verify-purchase?session_id=' + encodeURIComponent(sid));
+    if (!res.ok) {
+      var errData = await res.json().catch(function(){return {};});
+      throw new Error(errData.error || ('Verification failed: ' + res.status));
+    }
+    var data = await res.json();
+    if (data.ok && data.download_url) {
+      link.href = data.download_url;
+      loading.style.display = 'none';
+      ready.style.display = 'block';
+    } else {
+      throw new Error(data.error || 'No download URL returned');
+    }
+  } catch (e) {
+    loading.style.display = 'none';
+    error.style.display = 'block';
+    error.innerHTML = 'We could not verify your purchase automatically: ' + (e.message || 'unknown error') + '. Please email <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a> with your Stripe receipt and we will send the file manually within a few hours.';
+  }
+})();
+</script>
+
+<GlobalFooter />
+</body></html>

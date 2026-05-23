@@ -20,7 +20,9 @@
       { "source": "/api/quiz-submit",             "function": "quizSubmit" },
       { "source": "/api/ecofit-assessment-submit","function": "ecofitAssessmentSubmit" },
       { "source": "/api/ecofit-demo-request",     "function": "ecofitDemoRequest" },
-      { "source": "/api/stack-checkout",          "function": "stackCheckout" }
+      { "source": "/api/stack-checkout",          "function": "stackCheckout" },
+      { "source": "/api/product-checkout",        "function": "productCheckout" },
+      { "source": "/api/verify-purchase",         "function": "verifyPurchase" }
     ]
   },
   "functions": [

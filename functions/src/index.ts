@@ -18,6 +18,8 @@ import { handle as quizSubmitHandle } from './handlers/quiz-submit';
 import { handle as ecofitAssessmentSubmitHandle } from './handlers/ecofit-assessment-submit';
 import { handle as ecofitDemoRequestHandle } from './handlers/ecofit-demo-request';
 import { handle as stackCheckoutHandle } from './handlers/stack-checkout';
+import { handle as productCheckoutHandle } from './handlers/product-checkout';
+import { handle as verifyPurchaseHandle } from './handlers/verify-purchase';
 
 // Region: us-central1 (default). Set memory low — these are tiny handlers.
 setGlobalOptions({
@@ -88,3 +90,5 @@ export const quizSubmit            = makeFn(quizSubmitHandle);
 export const ecofitAssessmentSubmit = makeFn(ecofitAssessmentSubmitHandle);
 export const ecofitDemoRequest     = makeFn(ecofitDemoRequestHandle);
 export const stackCheckout         = makeFn(stackCheckoutHandle);
+export const productCheckout       = makeFn(productCheckoutHandle);
+export const verifyPurchase        = makeFn(verifyPurchaseHandle);
