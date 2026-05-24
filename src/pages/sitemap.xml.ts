@@ -1,519 +1,130 @@
 import type { APIRoute } from 'astro';
+import { readdirSync, statSync, readFileSync } from 'node:fs';
+import { join, relative, sep, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export const prerender = true;
 
-const pages = [
-  { url: '/', priority: '1.0', changefreq: 'weekly' },
-  { url: '/services', priority: '0.9', changefreq: 'weekly' },
-  { url: '/services/ai-audit', priority: '0.9', changefreq: 'monthly' },
-  { url: '/services/implementation', priority: '0.9', changefreq: 'monthly' },
-  { url: '/services/retainer', priority: '0.8', changefreq: 'monthly' },
-  { url: '/about', priority: '0.8', changefreq: 'monthly' },
-  { url: '/pricing', priority: '0.95', changefreq: 'monthly' },
-  { url: '/how-we-work', priority: '0.9', changefreq: 'monthly' },
-  { url: '/the-ai-native-gtm-framework', priority: '0.9', changefreq: 'monthly' },
-  { url: '/claude-for-business', priority: '0.95', changefreq: 'monthly' },
-  { url: '/how-to-use-claude', priority: '0.95', changefreq: 'monthly' },
-  { url: '/how-much-does-claude-cost-for-business', priority: '0.9', changefreq: 'monthly' },
-  { url: '/how-much-does-ai-implementation-cost', priority: '0.9', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-write-proposals', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-research-prospects', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-vs-perplexity-for-business', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-much-does-a-fractional-cro-cost', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-consultant-cost', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-much-does-ai-training-cost-for-teams', priority: '0.8', changefreq: 'monthly' },
-  { url: '/cost-of-not-using-ai', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-ai-implementation', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-ai-consulting', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-an-ai-native-company', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-a-fractional-executive', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-revops', priority: '0.8', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-summarize-meetings', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-board-reports', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-write-job-descriptions', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-do-competitor-research', priority: '0.82', changefreq: 'monthly' },
-  { url: '/claude-prompts-for-sales', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-prompts-for-marketing', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-treetop', priority: '0.9', changefreq: 'monthly' },
-  { url: '/claude-vs-notion-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-team-vs-claude-enterprise', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-write-linkedin-posts', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-onboard-employees', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-to-build-pitch-decks', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-policy-template-for-small-business', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-is-claude-projects', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-prompt-engineering', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-gtm-strategy', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-enterprise-ai', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-an-ai-audit', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-prompts-for-customer-service', priority: '0.85', changefreq: 'monthly' },
-  { url: '/best-ai-tools-for-b2b-sales', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-prompts-for-operations', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-prompts-for-hr', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-much-does-a-cmo-cost', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-much-does-an-ai-chatbot-cost', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-is-my-marketing-team-so-slow', priority: '0.85', changefreq: 'monthly' },
-  { url: '/signs-you-need-a-fractional-cmo', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-scale-marketing-without-hiring', priority: '0.85', changefreq: 'monthly' },
-  { url: '/when-to-hire-your-first-cmo', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-b2b-sales-cycles-are-getting-longer', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-fix-pipeline-coverage-problems', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-your-content-team-isnt-shipping', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-for-ceos', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-cmos', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-cfos', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-founders', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-boards', priority: '0.82', changefreq: 'monthly' },
-  { url: '/the-90-day-ai-rollout-playbook', priority: '0.92', changefreq: 'monthly' },
-  { url: '/how-to-evaluate-an-ai-consultant', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-build-an-ai-native-sales-team', priority: '0.9', changefreq: 'monthly' },
-  { url: '/claude-and-salesforce-integration', priority: '0.88', changefreq: 'monthly' },
-  { url: '/claude-and-hubspot-integration', priority: '0.88', changefreq: 'monthly' },
-  { url: '/claude-and-slack-workflows', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-and-notion-integration', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-and-google-workspace', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-most-ai-implementations-fail', priority: '0.88', changefreq: 'monthly' },
-  { url: '/the-fractional-cmo-myth', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-ai-sales-tools-arent-moving-your-numbers', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-rollouts-dont-fail-for-the-reason-you-think', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-roi-calculator', priority: '0.92', changefreq: 'monthly' },
-  { url: '/fractional-cmo-roi-calculator', priority: '0.92', changefreq: 'monthly' },
-  { url: '/should-i-use-claude-or-chatgpt', priority: '0.9', changefreq: 'monthly' },
-  { url: '/pipeline-coverage-calculator', priority: '0.9', changefreq: 'monthly' },
-  { url: '/marketing-team-capacity-calculator', priority: '0.9', changefreq: 'monthly' },
-  { url: '/sales-rep-capacity-calculator', priority: '0.9', changefreq: 'monthly' },
-  { url: '/content-output-calculator', priority: '0.9', changefreq: 'monthly' },
-  { url: '/cac-payback-calculator', priority: '0.9', changefreq: 'monthly' },
-  { url: '/ai-readiness-scorecard', priority: '0.92', changefreq: 'monthly' },
-  { url: '/7-mistakes-to-avoid-when-deploying-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/5-mistakes-founders-make-hiring-fractional-cmos', priority: '0.85', changefreq: 'monthly' },
-  { url: '/10-signs-your-content-team-needs-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/8-questions-to-ask-before-buying-any-ai-tool', priority: '0.85', changefreq: 'monthly' },
-  { url: '/6-claude-features-most-people-miss', priority: '0.85', changefreq: 'monthly' },
-  { url: '/can-ai-replace-my-marketing-assistant', priority: '0.88', changefreq: 'monthly' },
-  { url: '/will-ai-take-my-marketing-job', priority: '0.88', changefreq: 'monthly' },
-  { url: '/is-claude-worth-it-for-small-business', priority: '0.88', changefreq: 'monthly' },
-  { url: '/can-claude-write-my-sales-emails', priority: '0.85', changefreq: 'monthly' },
-  { url: '/should-i-build-my-own-ai-or-buy', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-law-firms-practical-guide', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-accounting-firms-practical-guide', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-marketing-agencies-practical-guide', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-consulting-firms-practical-guide', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-a-marketing-brief-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-do-keyword-research-with-ai', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-build-a-content-calendar-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-seo-blog-posts-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-a-value-proposition-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-a-positioning-statement-with-ai', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-build-a-b2b-email-nurture-sequence-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-account-based-marketing-with-ai', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-press-releases-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-social-media-planning-with-ai', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-landing-page-copy-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-do-conversion-optimization-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-create-a-brand-voice-guide-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-manage-paid-media-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-customer-segmentation-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-market-research-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-plan-a-product-launch-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-do-lifecycle-marketing-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-ab-testing-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-build-a-brand-strategy-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-create-sales-enablement-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-plan-a-webinar-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-build-a-podcast-strategy-with-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-do-partnership-marketing-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-video-scripts-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-event-marketing-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-cold-emails-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-prep-for-sales-calls-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-sales-follow-up-emails-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-discovery-call-summaries-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-deal-reviews-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-customer-onboarding-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-run-quarterly-business-reviews-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-identify-churn-risk-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-sops-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-vendor-evaluation-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-product-requirements-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-user-research-synthesis-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-financial-narratives-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-investor-updates-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-do-budget-planning-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-performance-reviews-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-employee-handbooks-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-compensation-benchmarking-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-strategic-memos-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-run-all-hands-meetings-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-okr-planning-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-thought-leadership', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-edit-ai-content-without-it-sounding-like-ai', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-build-an-internal-knowledge-base-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-recruiting', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-case-studies-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-customer-interviews-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-rfp-responses-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-talent-development-planning-with-claude', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-do-quarterly-planning-with-claude', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-do-competitive-positioning-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-customer-research-reports-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-pricing-page-design-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-customer-success-handoffs-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-board-prep', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-write-customer-retention-emails-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/blog', priority: '0.95', changefreq: 'weekly' },
-  { url: '/what-is-an-ai-agent', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-is-rag-retrieval-augmented-generation', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-is-fine-tuning', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-mcp-model-context-protocol', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-is-agentic-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-is-a-vector-database', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-context-engineering', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-multimodal-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-computer-use-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-product-led-growth', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-conversion-rate-optimization', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-customer-lifetime-value', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-an-ai-rollup', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-for-manufacturing', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-construction', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-restaurants', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-fitness', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-nonprofits', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-insurance', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-architecture', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-education', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-wealth-management', priority: '0.82', changefreq: 'monthly' },
-  { url: '/claude-for-real-estate-brokerages', priority: '0.8', changefreq: 'monthly' },
-  { url: '/ai-for-cros', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-coos', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-ctos', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-chros', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-vp-sales', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-for-vp-marketing', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-for-vp-customer-success', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-for-vp-engineering', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-customer-support-automation', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-data-analysis', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-security-review-with-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-prep-for-soc2-with-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-technical-documentation', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-code-review', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-write-test-cases-with-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-do-incident-post-mortems-with-claude', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-do-change-management-communications-with-ai', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-gdpr-compliance-documentation', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-vendor-security-questionnaires', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-procurement', priority: '0.82', changefreq: 'monthly' },
-  { url: '/claude-vs-cursor-for-coding', priority: '0.85', changefreq: 'monthly' },
-  { url: '/chatgpt-plus-vs-chatgpt-team', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-api-vs-openai-api', priority: '0.85', changefreq: 'monthly' },
-  { url: '/best-ai-for-content-marketing', priority: '0.85', changefreq: 'monthly' },
-  { url: '/best-ai-for-customer-support', priority: '0.85', changefreq: 'monthly' },
-  { url: '/the-ai-strategy-myth', priority: '0.88', changefreq: 'monthly' },
-  { url: '/why-ai-pilots-stall', priority: '0.88', changefreq: 'monthly' },
-  { url: '/why-ai-centers-of-excellence-dont-work', priority: '0.88', changefreq: 'monthly' },
-  { url: '/the-hidden-cost-of-fractional-cmo-turnover', priority: '0.85', changefreq: 'monthly' },
-  { url: '/the-ai-talent-shortage-myth', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-for-small-business', priority: '0.9', changefreq: 'monthly' },
-  { url: '/claude-implementation-consultant', priority: '0.85', changefreq: 'monthly' },
-  { url: '/anthropic-claude-setup-for-business', priority: '0.8', changefreq: 'monthly' },
-  { url: '/ai-workflow-automation-small-business', priority: '0.8', changefreq: 'monthly' },
-  { url: '/chatgpt-vs-claude-for-business', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-ai-vs-chatgpt-small-business', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-for-consultants', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-agencies', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-professional-services', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-e-commerce', priority: '0.8', changefreq: 'monthly' },
-  { url: '/ai-for-small-business', priority: '0.8', changefreq: 'monthly' },
-  { url: '/save-time-with-ai-small-business', priority: '0.75', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-in-your-business', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources', priority: '0.8', changefreq: 'weekly' },
-  { url: '/resources/how-to-set-up-claude-projects', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/claude-vs-chatgpt-small-business', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/five-claude-workflows-small-business', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/what-is-a-fractional-cmo', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/how-to-build-claude-prompts-for-your-business', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/ai-gtm-playbook', priority: '0.8', changefreq: 'monthly' },
-  { url: '/results', priority: '0.85', changefreq: 'monthly' },
-  { url: '/fractional-cmo-vs-full-time-cmo', priority: '0.85', changefreq: 'monthly' },
-  { url: '/fractional-cmo-vs-agency', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-consultant-vs-doing-it-yourself', priority: '0.8', changefreq: 'monthly' },
-  { url: '/fractional-cmo-austin-tx', priority: '0.8', changefreq: 'monthly' },
-  { url: '/ai-consultant-austin', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-does-a-fractional-cmo-do', priority: '0.8', changefreq: 'monthly' },
-  { url: '/how-much-does-a-fractional-cmo-cost', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-claude-ai', priority: '0.8', changefreq: 'monthly' },
-  { url: '/ai-tools-for-small-business', priority: '0.75', changefreq: 'monthly' },
-  { url: '/how-to-build-a-gtm-strategy', priority: '0.8', changefreq: 'monthly' },
-  { url: '/b2b-saas-go-to-market-strategy', priority: '0.8', changefreq: 'monthly' },
-  { url: '/what-is-ai-native-gtm', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-sales', priority: '0.8', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-marketing', priority: '0.8', changefreq: 'monthly' },
-  { url: '/ai-prompts-for-b2b-sales', priority: '0.75', changefreq: 'monthly' },
-  // Claude for X verticals
-  { url: '/claude-for-saas', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-healthcare', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-legal', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-real-estate', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-finance', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-for-hr', priority: '0.8', changefreq: 'monthly' },
-  // How to use Claude for X
-  { url: '/how-to-use-claude-for-customer-service', priority: '0.78', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-operations', priority: '0.78', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-finance', priority: '0.78', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-hr', priority: '0.78', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-project-management', priority: '0.78', changefreq: 'monthly' },
-  // Comparisons & roundups
-  { url: '/claude-vs-microsoft-copilot', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-vs-gemini-for-business', priority: '0.85', changefreq: 'monthly' },
-  { url: '/best-ai-for-business', priority: '0.85', changefreq: 'monthly' },
-  // Service & role pages
-  { url: '/fractional-cro', priority: '0.85', changefreq: 'monthly' },
-  { url: '/revenue-operations-consultant', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-strategy-consultant', priority: '0.85', changefreq: 'monthly' },
-  { url: '/sales-enablement-consultant', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-implementation-consultant', priority: '0.85', changefreq: 'monthly' },
-  // Location pages
-  { url: '/fractional-cmo-texas', priority: '0.78', changefreq: 'monthly' },
-  { url: '/fractional-cmo-remote', priority: '0.75', changefreq: 'monthly' },
-  // Resource articles
-  { url: '/resources/how-to-build-a-claude-project-for-your-team', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/ai-revenue-operations-playbook', priority: '0.78', changefreq: 'monthly' },
-  { url: '/resources/fractional-cmo-vs-consulting-firm', priority: '0.75', changefreq: 'monthly' },
-  { url: '/resources/claude-system-prompts-library', priority: '0.8', changefreq: 'monthly' },
-  // Existing
-  { url: '/fractional-cmo', priority: '0.8', changefreq: 'monthly' },
-  { url: '/claude-training', priority: '0.8', changefreq: 'monthly' },
-  { url: '/quiz', priority: '0.7', changefreq: 'monthly' },
+const BASE = 'https://treetopgrowthstrategy.com';
+// Resolve to the actual src/pages directory at build time
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// Try multiple candidate locations
+const CANDIDATES = [
+  __dirname,                                          // when running from src/pages directly
+  resolve(__dirname, '../../../src/pages'),           // when bundled into dist
+  resolve(process.cwd(), 'src/pages'),                // fallback to cwd
+];
+function findPagesDir(): string {
+  for (const c of CANDIDATES) {
+    try {
+      const files = readdirSync(c);
+      if (files.some(f => f === 'index.astro' || f === 'about.astro')) return c;
+    } catch {}
+  }
+  return CANDIDATES[CANDIDATES.length - 1];
+}
+const PAGES_DIR = findPagesDir();
 
-  // Composite case studies
-  { url: '/case-study-saas-team-cut-proposal-time-70-percent', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-marketing-agency-2x-content-output', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-consulting-firm-rebuilt-sales-motion', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-fractional-cmo-took-startup-from-4m-to-9m', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-finance-firm-deployed-claude-across-four-functions', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-medical-practice-recovered-12-hours-weekly', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-dtc-brand-cut-cac-28-percent', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-law-firm-doubled-contract-throughput', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-manufacturer-closed-40-percent-faster', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-nonprofit-raised-45-percent-more', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-architecture-firm-cut-proposal-time-60-percent', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-real-estate-brokerage-doubled-listings-per-agent', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-studies', priority: '0.9', changefreq: 'weekly' },
-
-  // Frameworks &amp; templates
-  { url: '/ai-implementation-roadmap-template', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-policy-template', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-project-template-library', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-vendor-evaluation-framework', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-rollout-90-day-plan', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-build-vs-buy-framework', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-readiness-checklist', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-use-case-prioritization-framework', priority: '0.82', changefreq: 'monthly' },
-
-  // Long-form how-to guides
-  { url: '/how-to-roll-out-ai-to-a-50-person-company', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-choose-an-ai-strategy-consultant', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-measure-ai-roi', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-hire-a-fractional-cmo', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-write-a-claude-system-prompt', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-train-your-team-on-claude', priority: '0.85', changefreq: 'monthly' },
-
-  // State of / trend pages (May 2026)
-  { url: '/state-of-ai-in-b2b-sales-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/state-of-ai-in-b2b-marketing-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/state-of-fractional-executive-talent-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-trends-for-mid-market-companies-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/claude-vs-chatgpt-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/is-now-a-good-time-to-hire-a-fractional-cmo', priority: '0.82', changefreq: 'monthly' },
-
-  // PAA / Q&amp;A pages (high commercial intent)
-  { url: '/is-claude-safe-for-business-data', priority: '0.85', changefreq: 'monthly' },
-  { url: '/is-it-worth-hiring-an-ai-consultant', priority: '0.82', changefreq: 'monthly' },
-  { url: '/do-i-need-an-ai-strategy', priority: '0.82', changefreq: 'monthly' },
-  { url: '/is-ai-going-to-replace-my-marketing-team', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-long-does-it-take-to-implement-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-are-the-risks-of-using-ai-in-business', priority: '0.82', changefreq: 'monthly' },
-  { url: '/when-should-i-hire-a-fractional-cmo', priority: '0.85', changefreq: 'monthly' },
-
-  // Long-form playbooks
-  { url: '/b2b-saas-marketing-playbook-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/professional-services-ai-playbook', priority: '0.85', changefreq: 'monthly' },
-  { url: '/b2b-content-marketing-playbook-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/b2b-sales-development-playbook-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/customer-success-ai-playbook', priority: '0.85', changefreq: 'monthly' },
-
-  // More tactical guides &amp; CEO-facing pages
-  { url: '/ai-implementation-mistakes-to-avoid', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-pitch-ai-to-your-board', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-much-should-i-budget-for-ai-in-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-rollout-checklist-for-ceos', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-run-an-ai-pilot', priority: '0.85', changefreq: 'monthly' },
-
-  // Content library hub
-  { url: '/content-library', priority: '0.92', changefreq: 'weekly' },
-
-  // More buyer questions &amp; comparisons
-  { url: '/fractional-cro-vs-vp-sales', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-audit-vs-ai-strategy', priority: '0.82', changefreq: 'monthly' },
-  { url: '/signs-your-ai-rollout-is-failing', priority: '0.85', changefreq: 'monthly' },
-  { url: '/when-to-fire-your-fractional-cmo', priority: '0.82', changefreq: 'monthly' },
-  { url: '/should-i-train-my-team-on-claude-or-chatgpt', priority: '0.82', changefreq: 'monthly' },
-
-  // Industry-specific AI playbooks 2026
-  { url: '/healthcare-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
-  { url: '/legal-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
-  { url: '/manufacturing-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
-  { url: '/financial-services-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ecommerce-ai-playbook-2026', priority: '0.88', changefreq: 'monthly' },
-  { url: '/nonprofit-ai-playbook-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/real-estate-ai-playbook-2026', priority: '0.85', changefreq: 'monthly' },
-
-  // Glossary expansion
-  { url: '/what-is-an-llm', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-a-system-prompt', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-a-foundation-model', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-an-ai-hallucination', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-claude-code', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-is-ai-orchestration', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-an-mcp-server', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-tool-use-in-ai', priority: '0.78', changefreq: 'monthly' },
-
-  // Tactical workflow how-tos
-  { url: '/how-to-clean-your-crm-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-build-an-internal-prompt-library', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-do-competitive-research-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-prep-for-a-board-meeting-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-evaluate-a-saas-vendor-with-claude', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-write-a-press-release-with-claude', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-summarize-customer-calls-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-audit-your-current-ai-usage', priority: '0.85', changefreq: 'monthly' },
-
-  // Stack/budget/HR + marketing plan
-  { url: '/the-ai-tool-stack-for-a-30-person-company', priority: '0.85', changefreq: 'monthly' },
-  { url: '/when-to-stop-paying-for-an-ai-tool', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-onboard-a-new-hire-with-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-in-performance-reviews', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-write-a-marketing-plan-with-claude', priority: '0.85', changefreq: 'monthly' },
-
-  // How to use Claude as a [role] pages
-  { url: '/how-to-use-claude-as-a-ceo', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-as-a-coo', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-as-a-chief-of-staff', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-as-a-founder', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-as-an-account-manager', priority: '0.82', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-as-a-product-manager', priority: '0.82', changefreq: 'monthly' },
-
-  // Rollout-failure / adoption-resistance pages
-  { url: '/why-most-ai-rollouts-fail-in-the-first-30-days', priority: '0.85', changefreq: 'monthly' },
-  { url: '/what-to-do-when-your-team-resists-ai', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-rollout-mistakes-by-company-size', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-explain-ai-to-your-team', priority: '0.85', changefreq: 'monthly' },
-
-  // More glossary terms
-  { url: '/what-is-claude-sonnet', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-claude-opus', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-claude-team', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-claude-enterprise', priority: '0.82', changefreq: 'monthly' },
-  { url: '/what-is-an-ai-copilot', priority: '0.78', changefreq: 'monthly' },
-  { url: '/what-is-context-window', priority: '0.78', changefreq: 'monthly' },
-
-  // Geographic location pages
-  { url: '/fractional-cmo-austin', priority: '0.85', changefreq: 'monthly' },
-  { url: '/fractional-cmo-san-francisco', priority: '0.82', changefreq: 'monthly' },
-  { url: '/fractional-cmo-new-york', priority: '0.82', changefreq: 'monthly' },
-  { url: '/ai-consultant-austin', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-consultant-san-francisco', priority: '0.82', changefreq: 'monthly' },
-
-  // Gap-filling tactical pages
-  { url: '/how-to-build-an-ai-strategy-on-one-page', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-evaluate-ai-fluency-when-hiring', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-for-engineering-teams', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-handle-an-ai-data-incident', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-implementation-partner-vs-internal-team', priority: '0.85', changefreq: 'monthly' },
-
-  // Final batch
-  { url: '/how-to-write-investor-updates-with-claude', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-use-claude-as-an-engineering-manager', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-document-your-ai-workflows', priority: '0.85', changefreq: 'monthly' },
-
-  // Linkable assets (benchmark / observational research)
-  { url: '/mid-market-ai-maturity-benchmark-2026', priority: '0.9', changefreq: 'monthly' },
-  { url: '/fractional-cmo-cro-pricing-benchmark-2026', priority: '0.9', changefreq: 'monthly' },
-  { url: '/ai-tool-cost-reference-2026', priority: '0.92', changefreq: 'monthly' },
-  { url: '/ai-roi-reference-data-2026', priority: '0.92', changefreq: 'monthly' },
-  { url: '/mid-market-ai-failure-atlas', priority: '0.92', changefreq: 'monthly' },
-  { url: '/b2b-ai-adoption-index-2026', priority: '0.92', changefreq: 'monthly' },
-  { url: '/state-of-b2b-gtm-report-2026', priority: '0.95', changefreq: 'monthly' },
-  { url: '/b2b-ai-vendor-comparison-matrix-2026', priority: '0.92', changefreq: 'monthly' },
-
-  // Fitness industry AI content
-  { url: '/state-of-ai-in-the-fitness-industry-2026', priority: '0.95', changefreq: 'monthly' },
-  { url: '/ai-for-multi-unit-fitness-operators-playbook', priority: '0.92', changefreq: 'monthly' },
-  { url: '/fitness-ai-tool-reference-2026', priority: '0.92', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-gym-lead-nurture', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-no-show-recovery', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-gym-member-retention', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-roll-out-ai-at-a-multi-unit-gym', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-evaluate-fitness-ai-platforms', priority: '0.85', changefreq: 'monthly' },
-  { url: '/case-study-multi-unit-gym-recovered-30-percent-of-no-shows', priority: '0.88', changefreq: 'monthly' },
-  { url: '/case-study-franchise-operator-doubled-tour-conversion', priority: '0.88', changefreq: 'monthly' },
-
-  // Fitness wave 2 — prospect-to-member lifecycle content
-  { url: '/fitness-operator-prospect-to-member-ai-playbook', priority: '0.95', changefreq: 'monthly' },
-  { url: '/why-group-fitness-drives-retention', priority: '0.93', changefreq: 'monthly' },
-  { url: '/fitness-prospect-data-reference-2026', priority: '0.92', changefreq: 'monthly' },
-  { url: '/how-to-use-ai-for-gym-sms-marketing', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-onboard-a-new-gym-member-with-ai', priority: '0.90', changefreq: 'monthly' },
-  { url: '/how-to-personalize-fitness-programs-with-ai', priority: '0.88', changefreq: 'monthly' },
-  { url: '/how-to-make-ai-sound-human-in-gym-conversations', priority: '0.85', changefreq: 'monthly' },
-  { url: '/why-sms-beats-email-for-gym-lead-nurture-in-2026', priority: '0.85', changefreq: 'monthly' },
-  { url: '/how-to-gather-prospect-data-without-friction', priority: '0.85', changefreq: 'monthly' },
-
-  // Fitness wave 3 — flagships + franchise playbooks + press
-  { url: '/fitness-member-retention-atlas', priority: '0.93', changefreq: 'monthly' },
-  { url: '/group-fitness-operator-index-2026', priority: '0.93', changefreq: 'monthly' },
-  { url: '/fitness-ai-roi-reference-data-2026', priority: '0.93', changefreq: 'monthly' },
-  { url: '/ai-for-orangetheory-franchisees', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-f45-franchisees', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-anytime-fitness-franchisees', priority: '0.88', changefreq: 'monthly' },
-  { url: '/ai-for-pure-barre-franchisees', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-mid-tier-gym-franchisees', priority: '0.85', changefreq: 'monthly' },
-  { url: '/ai-for-boutique-hiit-franchisees', priority: '0.85', changefreq: 'monthly' },
-  { url: '/press', priority: '0.85', changefreq: 'monthly' },
-
-  // Cost-to-start-a-gym SEO anchor + companions
-  { url: '/cost-to-start-a-gym', priority: '0.96', changefreq: 'monthly' },
-  { url: '/gym-startup-cost-calculator', priority: '0.93', changefreq: 'monthly' },
-  { url: '/gym-startup-budget-template', priority: '0.92', changefreq: 'monthly' },
-  { url: '/from-coach-to-studio-owner-ai-native-playbook', priority: '0.93', changefreq: 'monthly' },
-  { url: '/cost-to-open-a-boutique-fitness-studio', priority: '0.90', changefreq: 'monthly' },
-  { url: '/cost-to-open-a-crossfit-gym', priority: '0.90', changefreq: 'monthly' },
-  { url: '/cost-to-open-a-personal-training-studio', priority: '0.90', changefreq: 'monthly' },
-  { url: '/cost-to-start-a-gym-vs-buying-existing-gym', priority: '0.88', changefreq: 'monthly' },
-
-  // Gym marketing + business plan cluster (Ahrefs-vetted)
-  { url: '/gym-business-plan', priority: '0.95', changefreq: 'monthly' },
-  { url: '/fitness-marketing-2026', priority: '0.95', changefreq: 'monthly' },
-  { url: '/how-to-market-a-gym', priority: '0.93', changefreq: 'monthly' },
-  { url: '/gym-member-retention-strategies', priority: '0.92', changefreq: 'monthly' },
-  { url: '/gym-lead-generation', priority: '0.92', changefreq: 'monthly' },
-  { url: '/gym-membership-sales-and-pricing', priority: '0.90', changefreq: 'monthly' },
-  { url: '/gym-referral-program', priority: '0.90', changefreq: 'monthly' },
-  { url: '/gym-membership-marketing-ideas', priority: '0.90', changefreq: 'monthly' },
-  { url: '/boutique-fitness-marketing', priority: '0.88', changefreq: 'monthly' },
-  { url: '/personal-trainer-marketing', priority: '0.88', changefreq: 'monthly' },
-  { url: '/personal-trainer-business-plan', priority: '0.88', changefreq: 'monthly' },
-
-  // Hub pages
-  { url: '/glossary', priority: '0.85', changefreq: 'monthly' },
+// Patterns we never include in the public sitemap
+const EXCLUDE_PATTERNS = [
+  /^api\//,                            // function rewrites
+  /^proposals\//,                       // client proposals
+  /^ecofit($|\/)/,                      // client microsite
+  /^mp-group($|\/)/,                    // client docs
+  /^reports($|\/)/,                     // private reports
+  /^EQCC/i,                             // client doc
+  /^pro-air-tech/i,                     // client doc
+  /thank-you$/,                         // purchase confirmation pages (noindex)
+  /\/index$/,                           // index suffix (handled separately)
 ];
 
-const BASE = 'https://treetopgrowthstrategy.com';
-const today = new Date().toISOString().split('T')[0];
+const EXCLUDE_EXACT = new Set([
+  'sitemap.xml',
+  '404',
+]);
+
+function walk(dir: string, acc: string[] = []) {
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    const st = statSync(full);
+    if (st.isDirectory()) {
+      walk(full, acc);
+    } else if (entry.endsWith('.astro') || entry.endsWith('.html') || entry.endsWith('.md')) {
+      acc.push(full);
+    }
+  }
+  return acc;
+}
+
+function fileToUrl(filepath: string): string {
+  const rel = relative(PAGES_DIR, filepath).replaceAll(sep, '/');
+  // strip extension
+  let url = rel.replace(/\.(astro|html|md)$/, '');
+  // index.astro at root → '/'
+  if (url === 'index') return '/';
+  // foo/index → foo
+  if (url.endsWith('/index')) url = url.slice(0, -6);
+  return '/' + url;
+}
+
+// Priority heuristic by URL pattern (default 0.7)
+function priorityFor(url: string): string {
+  if (url === '/') return '1.0';
+  if (url === '/about' || url === '/services' || url === '/fractional-cmo' || url === '/case-studies' || url === '/content-library' || url === '/resources' || url === '/glossary') return '0.9';
+  if (url.startsWith('/case-study-')) return '0.85';
+  if (url.startsWith('/fractional-cmo-')) return '0.85';
+  if (url.startsWith('/cost-to-') || url.startsWith('/how-to-open-a-gym') || url.startsWith('/how-to-finance-a-gym') || url.startsWith('/gym-')) return '0.85';
+  if (url.startsWith('/ai-for-') || url.startsWith('/claude-for-') || url.startsWith('/how-to-use-claude') || url.startsWith('/how-to-use-ai')) return '0.8';
+  if (url.startsWith('/what-is-')) return '0.78';
+  if (url.startsWith('/best-')) return '0.8';
+  return '0.75';
+}
+
+function changefreqFor(url: string): string {
+  if (url === '/' || url === '/blog' || url === '/content-library' || url === '/case-studies') return 'weekly';
+  return 'monthly';
+}
+
+function shouldExclude(url: string): boolean {
+  const slug = url.replace(/^\//, '');
+  if (EXCLUDE_EXACT.has(slug)) return true;
+  for (const pat of EXCLUDE_PATTERNS) {
+    if (pat.test(slug)) return true;
+  }
+  // Skip noindex pages by checking source content
+  return false;
+}
+
+// Read .astro source and check for <meta name="robots" content="noindex">
+function isNoindex(filepath: string): boolean {
+  try {
+    const src = readFileSync(filepath, 'utf-8');
+    return /name=["']robots["']\s+content=["'][^"']*noindex/.test(src);
+  } catch {
+    return false;
+  }
+}
 
 export const GET: APIRoute = () => {
+  const files = walk(PAGES_DIR);
+  const pages: { url: string; priority: string; changefreq: string }[] = [];
+  const seen = new Set<string>();
+
+  for (const f of files) {
+    // Skip the sitemap source itself
+    if (f.endsWith('sitemap.xml.ts')) continue;
+    const url = fileToUrl(f);
+    if (shouldExclude(url)) continue;
+    if (isNoindex(f)) continue;
+    if (seen.has(url)) continue;
+    seen.add(url);
+    pages.push({ url, priority: priorityFor(url), changefreq: changefreqFor(url) });
+  }
+
+  pages.sort((a, b) => a.url.localeCompare(b.url));
+
+  const today = new Date().toISOString().split('T')[0];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(p => `  <url>
