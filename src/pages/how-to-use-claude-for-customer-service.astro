@@ -425,7 +425,7 @@ Each email: under 120 words, real subject line, one CTA. Don't start with "We no
 
 <GlobalFooter />
 
-<script>
+<script is:inline>
 async function submitForm() {
   const btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending...'; btn.disabled = true;

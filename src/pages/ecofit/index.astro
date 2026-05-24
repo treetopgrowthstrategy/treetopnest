@@ -676,7 +676,7 @@ export const prerender = true;
   </div>
 </div>
 
-<script>
+<script is:inline>
 (function(){
   // Scroll reveals
   var els = document.querySelectorAll('.reveal');
@@ -793,7 +793,7 @@ export const prerender = true;
   document.querySelectorAll('.metric-card').forEach(function(c){ counterObs.observe(c); });
 })();
 </script>
-<script>
+<script is:inline>
 (function(){
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.innerWidth < 768) return;
