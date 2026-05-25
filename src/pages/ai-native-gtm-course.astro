@@ -1,0 +1,374 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI-Native GTM in 4 Weeks — Live Cohort Course | Treetop</title>
+<meta name="description" content="A 4-week live cohort for B2B mid-market leaders who want to rebuild their GTM motion around AI. 8 live sessions, working templates, peer cohort. $2,500." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-native-gtm-course" />
+<meta property="og:type" content="product" />
+<meta property="og:url" content="https://treetopgrowthstrategy.com/ai-native-gtm-course" />
+<meta property="og:title" content="AI-Native GTM in 4 Weeks — Live Cohort Course | Treetop" />
+<meta property="og:description" content="A 4-week live cohort for B2B mid-market leaders who want to rebuild their GTM motion around AI. 8 live sessions, working templates, peer cohort. $2,500." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-native-gtm-course.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-native-gtm-course.png" />
+<meta name="twitter:title" content="AI-Native GTM in 4 Weeks — Live Cohort Course | Treetop" />
+<meta name="twitter:description" content="4-week live cohort. 8 sessions. Working templates. Peer cohort of B2B mid-market GTM leaders. $2,500." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Course","name":"AI-Native GTM in 4 Weeks","description":"A 4-week live cohort course for B2B mid-market CMOs, CROs, and VPs of marketing/sales who want to rebuild their GTM motion around AI. 8 live sessions, working templates, peer cohort of 20–25 operators.","provider":{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT16H","instructor":{"@type":"Person","name":"Bill Colbert"}},"offers":{"@type":"Offer","price":"2500","priceCurrency":"USD","url":"https://treetopgrowthstrategy.com/ai-native-gtm-course","availability":"https://schema.org/PreOrder"}},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Who is this for?","acceptedAnswer":{"@type":"Answer","text":"B2B mid-market GTM leaders (CMO, CRO, VP Marketing, VP Sales) at companies between $5M and $50M in revenue who are responsible for hitting a growth number and want to use AI to do it with a leaner team."}},
+    {"@type":"Question","name":"How is this different from a Coursera or LinkedIn Learning course?","acceptedAnswer":{"@type":"Answer","text":"This is live, cohort-based, and limited to 20–25 operators. You work on YOUR GTM motion in real-time across 4 weeks. You leave with a written AI-native GTM plan, not a certificate."}},
+    {"@type":"Question","name":"What's the time commitment?","acceptedAnswer":{"@type":"Answer","text":"Two 2-hour live sessions per week for 4 weeks (16 hours of live instruction) plus ~2 hours of homework per week. Total: ~24 hours over 4 weeks."}},
+    {"@type":"Question","name":"When does the next cohort start?","acceptedAnswer":{"@type":"Answer","text":"Cohort 1 opens July 2026. Join the waitlist to get first access and early-bird pricing ($1,997 vs $2,500)."}},
+    {"@type":"Question","name":"What if I can't make a session live?","acceptedAnswer":{"@type":"Answer","text":"Every session is recorded and posted within 24 hours. Office hours are held 2x per week for async catch-up."}},
+    {"@type":"Question","name":"Refund policy?","acceptedAnswer":{"@type":"Answer","text":"Full refund within 7 days of cohort start, no questions asked. After that, prorated through week 2."}}
+  ]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#00C853;color:#050D05;padding:1rem 2rem;font-size:0.92rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:opacity 0.2s,transform 0.15s}.btn-p:hover{opacity:0.88;transform:translateY(-1px)}.btn-p:disabled{opacity:0.5;cursor:not-allowed}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A;cursor:pointer;font-family:inherit;transition:border-color 0.2s}.btn-g:hover{border-color:rgba(0,200,83,0.4)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:880px;margin:0 auto}
+.hero{display:block;padding:7rem 2.5rem 4rem;border-top:none}.hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:400;line-height:1.05;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.7;margin-bottom:1.5rem}
+.purchase-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;position:sticky;top:80px}
+.price-row{display:flex;align-items:baseline;gap:0.75rem;margin-bottom:0.4rem}
+.price{font-family:'Instrument Serif',serif;font-size:3rem;color:#00C853;font-style:italic;line-height:1}
+.price-strike{font-size:1rem;color:#8FAF8F;text-decoration:line-through}
+.price-sub{font-size:0.85rem;color:#8FAF8F;margin-bottom:1rem}
+.early-bird{display:inline-block;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:rgba(0,200,83,0.12);color:#00C853;padding:0.3rem 0.7rem;border:1px solid rgba(0,200,83,0.3);margin-bottom:1rem}
+.includes-title{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8FAF8F;margin:1.5rem 0 0.75rem}
+.includes-list{list-style:none;padding:0;color:#C0D8C0;font-size:0.9rem;line-height:1.7}
+.includes-list li{padding:0.35rem 0;display:flex;gap:0.5rem;align-items:flex-start}
+.includes-list li::before{content:'✓';color:#00C853;font-weight:700;flex-shrink:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.005em}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.2rem,2vw,1.5rem);font-weight:400;color:#F0FFF0;margin:1.75rem 0 0.6rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.8;max-width:760px;margin-bottom:1rem}.body strong{color:#F0FFF0}
+.ul{color:#C0D8C0;font-size:0.98rem;line-height:1.75;padding-left:1.25rem;margin:0.75rem 0 1.5rem;max-width:760px}.ul li{margin-bottom:0.4rem}.ul li::marker{color:#00C853}
+.week-grid{display:grid;gap:1rem;margin:1.5rem 0;max-width:880px}
+.week-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;display:grid;grid-template-columns:80px 1fr;gap:1.5rem}
+.week-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:2rem;line-height:1;padding-top:0.2rem}
+.week-name{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.3rem;margin-bottom:0.5rem}
+.week-sessions{font-size:0.74rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8FAF8F;margin-bottom:0.6rem}
+.week-desc{font-size:0.92rem;color:#C0D8C0;line-height:1.65;margin-bottom:0.75rem}
+.week-outcomes{font-size:0.85rem;color:#8FAF8F;line-height:1.6}.week-outcomes strong{color:#F0FFF0;font-weight:600}
+.callout{background:rgba(0,200,83,0.05);border-left:3px solid #00C853;padding:1.1rem 1.4rem;margin:1.25rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.94rem;line-height:1.75;margin:0;font-style:italic}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0;max-width:880px}
+.fit-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem}
+.fit-card h4{font-family:'Instrument Serif',serif;font-size:1.15rem;margin-bottom:0.75rem}
+.fit-card.yes h4{color:#00C853}
+.fit-card.no h4{color:#ff6b6b}
+.fit-card ul{list-style:none;padding:0;color:#C0D8C0;font-size:0.88rem;line-height:1.7}
+.fit-card ul li{padding:0.25rem 0;display:flex;gap:0.5rem;align-items:flex-start}
+.fit-card.yes ul li::before{content:'✓';color:#00C853;flex-shrink:0}
+.fit-card.no ul li::before{content:'×';color:#ff6b6b;flex-shrink:0;font-weight:700}
+.bio-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;display:grid;grid-template-columns:120px 1fr;gap:1.5rem;max-width:880px;margin:1.5rem 0}
+.bio-img{width:120px;height:120px;border-radius:50%;background:#1A3A1A;overflow:hidden}
+.bio-img img{width:100%;height:100%;object-fit:cover}
+.bio-name{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0;margin-bottom:0.25rem}
+.bio-title{font-size:0.85rem;color:#00C853;margin-bottom:0.75rem;letter-spacing:0.04em}
+.bio-text{font-size:0.92rem;color:#C0D8C0;line-height:1.7}
+.faq{margin:1.5rem 0;max-width:760px}
+.faq details{border-bottom:1px solid #1A3A1A;padding:1.1rem 0}
+.faq summary{cursor:pointer;font-family:'Instrument Serif',serif;font-size:1.1rem;color:#F0FFF0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq summary::after{content:'+';color:#00C853;font-size:1.4rem;font-weight:300}
+.faq details[open] summary::after{content:'−'}
+.faq details[open] summary{color:#00C853}
+.faq p{margin-top:0.75rem;color:#C0D8C0;font-size:0.94rem;line-height:1.7}
+.input-row{display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem}
+.input-row input{background:rgba(240,255,240,0.04);border:1px solid #1A3A1A;color:#F0FFF0;padding:0.875rem 1rem;font-family:inherit;font-size:0.9rem;font-weight:300;outline:none;transition:border-color 0.2s;width:100%}
+.input-row input:focus{border-color:rgba(0,200,83,0.5)}
+.input-row input::placeholder{color:#4A6A4A}
+.form-note{font-size:0.72rem;color:#8FAF8F;margin-top:0.6rem;line-height:1.5}
+#wl-success{display:none;color:#00C853;font-size:0.88rem;margin-top:0.75rem}
+#wl-error{display:none;color:#ff6b6b;font-size:0.85rem;margin-top:0.75rem}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.purchase-card{position:static}.fit-grid{grid-template-columns:1fr}.bio-card{grid-template-columns:1fr;text-align:center}.bio-img{margin:0 auto}.week-card{grid-template-columns:1fr;gap:0.5rem}}
+@media(max-width:768px){section{padding:3.5rem 1.5rem}.hero{padding:6rem 1.5rem 3rem}}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<a href="/" class="nav-logo">Treetop</a>
+<div style="display:flex;gap:2rem;align-items:center" class="nav-links">
+  <a href="/services" class="nav-link">Services</a>
+  <a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+  <a href="/case-studies" class="nav-link">Case Studies</a>
+  <a href="/resources" class="nav-link">Resources</a>
+  <a href="#waitlist" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Join Waitlist</a>
+</div>
+</div></nav>
+
+<section class="hero">
+<div class="hero-inner">
+<div>
+<div class="badge"><span class="badge-dot"></span>COHORT 1 · OPENING JULY 2026</div>
+<h1 class="hero-h">Rebuild your GTM motion around AI in <em>4 weeks</em> — with a cohort of 20 other operators doing the same.</h1>
+<p class="hero-sub">For B2B mid-market CMOs, CROs, and VPs who are tired of reading think-pieces about AI-native GTM and want to actually build one. 8 live sessions. Working templates. Peer accountability. You leave with a written plan and the early implementations running.</p>
+<div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem">
+<a href="#waitlist" class="btn-p">Join the waitlist →</a>
+<a href="#curriculum" class="btn-g">See curriculum</a>
+</div>
+</div>
+
+<aside class="purchase-card" id="waitlist">
+<div class="early-bird">Waitlist early-bird</div>
+<div class="price-row">
+<span class="price">$1,997</span>
+<span class="price-strike">$2,500</span>
+</div>
+<p class="price-sub">Waitlist members get $503 off Cohort 1 pricing.</p>
+
+<form id="waitlist-form" onsubmit="return submitWaitlist(event)">
+<div class="input-row">
+<input type="text" id="wl-name" name="name" placeholder="First name" required />
+<input type="email" id="wl-email" name="email" placeholder="Work email" required />
+<input type="text" id="wl-company" name="company" placeholder="Company" required />
+<input type="text" id="wl-role" name="role" placeholder="Your role (CMO, CRO, VP, etc.)" />
+<button type="submit" class="btn-p" style="width:100%;margin-top:0.5rem">Lock in $1,997 →</button>
+</div>
+<p class="form-note">No card required. We'll email you when Cohort 1 opens (target: July 2026). You can unsubscribe anytime.</p>
+<div id="wl-success">✓ You're on the list. Check your inbox for confirmation.</div>
+<div id="wl-error">Something went wrong. Email bill@treetopgrowthstrategy.com and we'll add you manually.</div>
+</form>
+
+<div class="includes-title">Cohort 1 includes</div>
+<ul class="includes-list">
+<li>8 live 2-hour sessions over 4 weeks</li>
+<li>Working templates &amp; scoring rubrics (yours to keep)</li>
+<li>Slack community of 20–25 cohort peers</li>
+<li>2× weekly office hours for 1:1 questions</li>
+<li>Lifetime access to session recordings</li>
+<li>30-min 1:1 with Bill at end of cohort</li>
+</ul>
+</aside>
+</div>
+</section>
+
+<section><div class="sec-inner">
+<span class="lbl">Why this exists</span>
+<h2 class="h2">Most "AI strategy" content is theater. This is the work.</h2>
+<p class="body">There are 10,000 think-pieces about AI-native GTM. There are zero programs where someone walks you, step by step, through rebuilding your specific company's GTM motion around AI — with peers in the room running the same exercise.</p>
+<p class="body">This cohort exists because the gap between "I read about AI-native GTM" and "I have an AI-native GTM motion running in my company" is enormous. The think-piece doesn't get you across it. A 4-week sprint with structure, templates, and 20 peer operators does.</p>
+<div class="callout"><p>By the end of week 4, you'll have rewritten your ICP, restructured your outbound motion, picked your pipeline-intelligence stack, and shipped at least one AI-native workflow into production. That's the bar.</p></div>
+</div></section>
+
+<section id="curriculum"><div class="sec-inner">
+<span class="lbl">What you'll build, week by week</span>
+<h2 class="h2">4 weeks. 8 sessions. 1 complete GTM transformation.</h2>
+
+<div class="week-grid">
+<div class="week-card">
+<div class="week-num">01</div>
+<div>
+<div class="week-sessions">Sessions 1–2 · ICP &amp; Data Foundation</div>
+<div class="week-name">Rebuild your ICP from live signal</div>
+<p class="week-desc">Most ICPs are written once and rarely referenced. AI-native GTM starts with an ICP that updates dynamically from conversion data, win/loss signal, and behavioral patterns. We rebuild yours in week 1 — using the same framework Bill uses with fractional CMO clients.</p>
+<p class="week-outcomes"><strong>You leave week 1 with:</strong> a written AI-native ICP, a working scoring model, and the data pipeline blueprint to keep it current.</p>
+</div>
+</div>
+
+<div class="week-card">
+<div class="week-num">02</div>
+<div>
+<div class="week-sessions">Sessions 3–4 · Outbound &amp; Prospecting</div>
+<div class="week-name">Replace manual SDR motion with AI-native prospecting</div>
+<p class="week-desc">Traditional outbound: 100 manually-researched accounts/week per SDR, 2% response rate. AI-native outbound: 2,000 signal-triggered accounts/week with personalized openers, 6%+ response rate. We design your version of this in sessions 3–4 — including which tools, what data sources, and how to integrate with your CRM.</p>
+<p class="week-outcomes"><strong>You leave week 2 with:</strong> a documented outbound architecture, an intent-signal data stack, and a tested sample of AI-generated outreach.</p>
+</div>
+</div>
+
+<div class="week-card">
+<div class="week-num">03</div>
+<div>
+<div class="week-sessions">Sessions 5–6 · Pipeline Intelligence</div>
+<div class="week-name">Make pipeline visible in real time, not at QBR</div>
+<p class="week-desc">Most pipeline reviews surface problems after they're un-fixable. Week 3 is about building the real-time intelligence layer: at-risk deal flags, forecast variance alerts, win/loss patterns, and revenue attribution. We'll show you the architectural patterns and let you adapt them to your stack.</p>
+<p class="week-outcomes"><strong>You leave week 3 with:</strong> a pipeline-intelligence architecture diagram, an attribution model that ties every GTM dollar to closed revenue, and at least one real-time alert running in your environment.</p>
+</div>
+</div>
+
+<div class="week-card">
+<div class="week-num">04</div>
+<div>
+<div class="week-sessions">Sessions 7–8 · Team &amp; Operating Model</div>
+<div class="week-name">Restructure the team for AI-native scale</div>
+<p class="week-desc">AI-native GTM teams look different. Fewer SDRs, more revenue ops. Fewer marketing generalists, more workflow architects. Week 4 is about the org chart, the new role definitions, the comp structures, and the change-management plan for the next 90 days. Plus: how you measure ROI on the transformation so the CEO doesn't ask "where's the impact?" in month 3.</p>
+<p class="week-outcomes"><strong>You leave week 4 with:</strong> a 90-day transformation roadmap, role redesigns, a board-ready ROI tracking framework, and your written AI-native GTM plan.</p>
+</div>
+</div>
+</div>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">Who this is for</span>
+<h2 class="h2">Be honest with yourself.</h2>
+<div class="fit-grid">
+<div class="fit-card yes">
+<h4>This is for you if</h4>
+<ul>
+<li>You're a CMO, CRO, VP Marketing, or VP Sales at a B2B company between $5M–$50M in revenue</li>
+<li>You own a revenue number or marketing-sourced pipeline number</li>
+<li>You've experimented with AI tools but don't have an AI-native motion</li>
+<li>You're willing to do 4–6 hours/week for 4 weeks and actually ship work between sessions</li>
+<li>You want to leave with a written plan and early implementations, not a certificate</li>
+</ul>
+</div>
+<div class="fit-card no">
+<h4>This is NOT for you if</h4>
+<ul>
+<li>You're looking for AI 101 — this is a builder cohort, not an intro course</li>
+<li>You don't have any authority to ship changes to your GTM motion</li>
+<li>You want a passive video library (we have free content for that)</li>
+<li>Your company is pre-revenue or early seed — the frameworks assume some scale</li>
+<li>You can't commit to 2 live sessions per week for 4 weeks</li>
+</ul>
+</div>
+</div>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">Who's teaching this</span>
+<h2 class="h2">Your instructor</h2>
+<div class="bio-card">
+<div class="bio-img"><img src="/img/bill-colbert.jpg" alt="Bill Colbert" loading="lazy" width="120" height="120" /></div>
+<div>
+<div class="bio-name">Bill Colbert</div>
+<div class="bio-title">Founder, Treetop Growth Strategy</div>
+<p class="bio-text">Bill has spent 15+ years building B2B GTM motions — first inside companies as VP/CMO, now as a fractional CMO embedded with mid-market operators. He's been rebuilding GTM motions around AI since 2023, well before the category had a name. Treetop's case study library shows what these transformations look like in practice: 30% no-show recovery, 28% CAC reduction, 70% faster proposal cycles. The cohort distills the playbook into something you can build yourself.</p>
+<p class="bio-text" style="margin-top:0.75rem;"><a href="/about" style="color:#00C853;">Read Bill's full background →</a></p>
+</div>
+</div>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">The mechanics</span>
+<h2 class="h2">Format &amp; logistics</h2>
+<ul class="ul">
+<li><strong>Length:</strong> 4 weeks, 8 sessions (2 per week), 16 hours total live instruction</li>
+<li><strong>Format:</strong> 100% remote via Zoom. Recordings posted within 24 hours.</li>
+<li><strong>Cohort size:</strong> Capped at 25 to keep the discussion working</li>
+<li><strong>Community:</strong> Private Slack for the 4 weeks + 90 days post-cohort</li>
+<li><strong>Office hours:</strong> 2× per week (60 min each) for async 1:1 questions</li>
+<li><strong>Templates:</strong> ICP framework, outbound architecture diagram, pipeline-intelligence rubric, attribution model, 90-day rollout plan — all yours to keep</li>
+<li><strong>Bonus:</strong> 30-minute private 1:1 with Bill at the end of the cohort to pressure-test your plan</li>
+</ul>
+
+<div class="callout"><p>Cohort 1 starts July 2026. Waitlist members get $1,997 pricing (vs $2,500 list) and first-access to seat selection. We'll open public registration only if seats remain after waitlist sign-ups.</p></div>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">Common questions</span>
+<h2 class="h2">FAQ</h2>
+<div class="faq">
+
+<details>
+<summary>How is this different from just hiring you as my fractional CMO?</summary>
+<p>Fractional CMO engagements are 8–20 hours per week of Bill's time embedded with your team for 3–12 months. The cohort is 4 weeks of structured instruction with peers. The cohort is right if you want the framework and templates and have a team to execute. Fractional CMO is right if you want Bill in the chair with you running the transformation.</p>
+</details>
+
+<details>
+<summary>Why a cohort and not 1:1 coaching?</summary>
+<p>Two reasons. First, the peer dynamic. You learn faster watching 20 other operators apply the same framework to their different companies than you do being coached alone. Second, accountability — the cohort sees your homework. That's a stronger forcing function than a coach you can no-show.</p>
+</details>
+
+<details>
+<summary>What's the time commitment?</summary>
+<p>Two 2-hour live sessions per week for 4 weeks (16 hours live) plus ~2 hours of homework per week. Plan on 6 hours per week, total ~24 hours over 4 weeks.</p>
+</details>
+
+<details>
+<summary>When does the next cohort start?</summary>
+<p>Cohort 1 opens July 2026. Join the waitlist above for first access and $1,997 pricing. Cohort 2 is planned for October 2026 at $2,500 list.</p>
+</details>
+
+<details>
+<summary>What if I can't make a session live?</summary>
+<p>Every session is recorded and posted within 24 hours. Office hours run 2x/week for async catch-up. We've designed the format so you can miss 1–2 sessions and still finish cleanly. Missing more than that and you'll struggle.</p>
+</details>
+
+<details>
+<summary>Refund policy?</summary>
+<p>Full refund within 7 days of cohort start, no questions asked. After day 7, prorated through week 2. After week 2, the work is the work — we don't refund people who haven't done the homework.</p>
+</details>
+
+<details>
+<summary>Will you do a self-paced version?</summary>
+<p>Eventually. Not in 2026. The cohort dynamic is half the value in this version.</p>
+</details>
+
+<details>
+<summary>Can my company pay for this?</summary>
+<p>Yes. We send a real invoice (Treetop Growth Strategy LLC) suitable for accounts-payable. Most students expense it as professional development.</p>
+</details>
+
+</div>
+</div></section>
+
+<section><div class="sec-inner" style="text-align:center;max-width:680px">
+<h2 class="h2">Lock in $1,997 and start building.</h2>
+<p class="body" style="margin:0 auto 1.5rem">Cohort 1 opens July 2026. Waitlist members get $503 off and first access to seats.</p>
+<a href="#waitlist" class="btn-p" style="padding:1.1rem 2.5rem;font-size:1rem">Join the waitlist →</a>
+</div></section>
+
+<GlobalFooter />
+
+<script is:inline>
+async function submitWaitlist(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const success = document.getElementById('wl-success');
+  const errorEl = document.getElementById('wl-error');
+  success.style.display='none'; errorEl.style.display='none';
+  btn.disabled=true; btn.textContent='Adding you...';
+  const payload = {
+    name: document.getElementById('wl-name').value.trim(),
+    email: document.getElementById('wl-email').value.trim(),
+    company: document.getElementById('wl-company').value.trim(),
+    role: document.getElementById('wl-role').value.trim(),
+    source: 'ai-native-gtm-course-waitlist',
+  };
+  try {
+    const res = await fetch('/api/lead-capture', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload),
+    });
+    if(!res.ok) throw new Error('server');
+    success.style.display='block';
+    btn.textContent='✓ You\'re on the list';
+    e.target.querySelectorAll('input').forEach(i => i.disabled=true);
+  } catch(err){
+    errorEl.style.display='block';
+    btn.disabled=false; btn.textContent='Lock in $1,997 →';
+  }
+  return false;
+}
+</script>
+
+</body>
+</html>

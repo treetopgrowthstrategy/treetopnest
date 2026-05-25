@@ -1,0 +1,369 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI Tool Stack Auditor — Find Redundancies, Gaps & Savings | Treetop</title>
+<meta name="description" content="Free interactive auditor. Check the AI tools you use → instantly see redundancies, missing categories, and consolidation opportunities. ~3 minutes." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-tool-stack-auditor" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://treetopgrowthstrategy.com/ai-tool-stack-auditor" />
+<meta property="og:title" content="AI Tool Stack Auditor — Find Redundancies, Gaps & Savings | Treetop" />
+<meta property="og:description" content="Free interactive auditor. Check the AI tools you use → instantly see redundancies, missing categories, and consolidation opportunities." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-tool-stack-auditor.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-tool-stack-auditor.png" />
+<meta name="twitter:title" content="AI Tool Stack Auditor — Free | Treetop" />
+<meta name="twitter:description" content="Find redundancies, gaps, and consolidation opportunities in your AI tool stack. 3 minutes." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"WebApplication","name":"AI Tool Stack Auditor","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://treetopgrowthstrategy.com/ai-tool-stack-auditor","provider":{"@id":"https://treetopgrowthstrategy.com/#organization"}},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#00C853;color:#050D05;padding:1rem 2rem;font-size:0.92rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:opacity 0.2s}.btn-p:hover{opacity:0.88}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+.hero{padding:7rem 2.5rem 3rem;border-top:none}.hero-inner{max-width:880px;margin:0 auto;text-align:center}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:400;line-height:1.05;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.7;margin:0 auto 1.5rem;max-width:640px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:0.75rem;letter-spacing:-0.005em}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:760px;margin-bottom:1rem}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin:2rem 0}
+.cat-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem}
+.cat-title{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.3rem}
+.cat-desc{font-size:0.78rem;color:#8FAF8F;margin-bottom:1rem;line-height:1.5}
+.tool-list{display:flex;flex-direction:column;gap:0.5rem}
+.tool-item{display:flex;align-items:center;gap:0.7rem;padding:0.55rem 0.7rem;background:rgba(240,255,240,0.02);border:1px solid #1A3A1A;cursor:pointer;transition:border-color 0.15s,background 0.15s;font-size:0.88rem;color:#C0D8C0}
+.tool-item:hover{border-color:rgba(0,200,83,0.4);background:rgba(0,200,83,0.04)}
+.tool-item.checked{border-color:#00C853;background:rgba(0,200,83,0.08);color:#F0FFF0}
+.tool-item input{accent-color:#00C853;width:16px;height:16px;cursor:pointer;flex-shrink:0}
+.tool-cost{margin-left:auto;font-size:0.74rem;color:#8FAF8F;font-variant-numeric:tabular-nums}
+.tool-item.checked .tool-cost{color:#00C853}
+.sticky-bar{position:sticky;bottom:0;background:rgba(5,13,5,0.96);backdrop-filter:blur(12px);border-top:1px solid #1A3A1A;padding:1rem 2rem;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.summary-row{display:flex;gap:2rem;flex-wrap:wrap}
+.summary-stat{display:flex;flex-direction:column}
+.summary-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:1.5rem;line-height:1}
+.summary-label{font-size:0.68rem;color:#8FAF8F;letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem}
+.results{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;margin-top:2rem;display:none}
+.results.show{display:block}
+.results-h{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.8rem;color:#00C853;margin-bottom:0.5rem}
+.finding{padding:1rem 0;border-bottom:1px solid #1A3A1A}.finding:last-of-type{border-bottom:none}
+.finding-tag{display:inline-block;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.6rem;margin-bottom:0.5rem}
+.tag-redundancy{background:rgba(251,191,36,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.3)}
+.tag-gap{background:rgba(255,107,107,0.12);color:#ff6b6b;border:1px solid rgba(255,107,107,0.3)}
+.tag-savings{background:rgba(0,200,83,0.12);color:#00C853;border:1px solid rgba(0,200,83,0.3)}
+.tag-strength{background:rgba(96,165,250,0.12);color:#60a5fa;border:1px solid rgba(96,165,250,0.3)}
+.finding-title{font-family:'Instrument Serif',serif;font-size:1.15rem;color:#F0FFF0;margin-bottom:0.35rem}
+.finding-body{font-size:0.9rem;color:#C0D8C0;line-height:1.65}
+.email-gate{margin-top:2rem;padding:1.5rem;background:rgba(0,200,83,0.04);border:1px solid rgba(0,200,83,0.25)}
+.email-gate-h{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;margin-bottom:0.4rem}
+.email-gate-sub{font-size:0.9rem;color:#C0D8C0;margin-bottom:1rem;line-height:1.6}
+.input-row{display:flex;gap:0.6rem;flex-wrap:wrap}
+.input-row input{flex:1;min-width:240px;background:rgba(240,255,240,0.04);border:1px solid #1A3A1A;color:#F0FFF0;padding:0.875rem 1rem;font-family:inherit;font-size:0.9rem;outline:none}
+.input-row input:focus{border-color:rgba(0,200,83,0.5)}
+.input-row input::placeholder{color:#4A6A4A}
+#gate-success{display:none;color:#00C853;font-size:0.9rem;margin-top:0.75rem}
+#gate-error{display:none;color:#ff6b6b;font-size:0.85rem;margin-top:0.75rem}
+@media(max-width:768px){section{padding:3rem 1.5rem}.hero{padding:6rem 1.5rem 2rem}.sticky-bar{padding:0.75rem 1rem}.summary-row{gap:1rem}}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<a href="/" class="nav-logo">Treetop</a>
+<div style="display:flex;gap:2rem;align-items:center">
+  <a href="/services" class="nav-link">Services</a>
+  <a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+  <a href="/resources" class="nav-link">Resources</a>
+  <a href="/ai-native-gtm-course" class="nav-link">Cohort Course</a>
+</div>
+</div></nav>
+
+<section class="hero">
+<div class="hero-inner">
+<span class="lbl">Free · ~3 minutes · No signup to start</span>
+<h1 class="hero-h">What's <em>actually</em> in your AI tool stack — and where's it costing you?</h1>
+<p class="hero-sub">Check the AI tools you currently use. Get an instant audit of overlaps, gaps, and consolidation opportunities. Most companies are paying for 3–5 tools that do the same job. Some are missing entire critical categories. This auditor surfaces both in 3 minutes.</p>
+</div>
+</section>
+
+<section style="padding-top:2rem">
+<div class="sec-inner">
+<span class="lbl">Step 1 · Check what you use</span>
+<h2 class="h2">Your current AI stack</h2>
+<p class="body">Check every tool your company actively pays for or uses in production. Don't include experiments or trials — only tools you're committed to.</p>
+
+<div class="cat-grid" id="cat-grid"></div>
+</div>
+</section>
+
+<div class="sticky-bar">
+<div class="summary-row">
+<div class="summary-stat"><span class="summary-num" id="ct-tools">0</span><span class="summary-label">Tools selected</span></div>
+<div class="summary-stat"><span class="summary-num" id="ct-cost">$0</span><span class="summary-label">Est. monthly spend</span></div>
+<div class="summary-stat"><span class="summary-num" id="ct-cats">0/9</span><span class="summary-label">Categories covered</span></div>
+</div>
+<button class="btn-p" onclick="runAudit()" id="audit-btn">Run my audit →</button>
+</div>
+
+<section id="results-section" style="display:none">
+<div class="sec-inner">
+<div class="results show" id="results">
+<div class="lbl">Your audit</div>
+<div class="results-h" id="results-headline">Analyzing your stack...</div>
+<div id="findings"></div>
+
+<div class="email-gate">
+<div class="email-gate-h">Want the full PDF report?</div>
+<p class="email-gate-sub">We'll email you a 6-page PDF with the full breakdown, recommended consolidations, suggested vendors per category, and a 30-day plan to clean up your stack. Free.</p>
+<form id="gate-form" onsubmit="return submitGate(event)">
+<div class="input-row">
+<input type="text" id="g-name" name="name" placeholder="First name" required />
+<input type="email" id="g-email" name="email" placeholder="Work email" required />
+<input type="text" id="g-company" name="company" placeholder="Company" required />
+<button type="submit" class="btn-p">Email me the PDF →</button>
+</div>
+<div id="gate-success">✓ On its way. Check your inbox in 2–3 minutes.</div>
+<div id="gate-error">Something went wrong. Email bill@treetopgrowthstrategy.com</div>
+</form>
+</div>
+
+</div>
+</div>
+</section>
+
+<section style="padding-top:3rem">
+<div class="sec-inner">
+<span class="lbl">Why this matters</span>
+<h2 class="h2">Most mid-market AI stacks are 30–45% redundant</h2>
+<p class="body">In the past year of fractional CMO and AI implementation work, the same pattern keeps showing up: companies pay $8K–$25K/month on AI tools without anyone owning the stack. Three different writing assistants. Two meeting recorders. A vendor that overlaps 80% with Claude or ChatGPT. Categories left wide open (intent data, agent infrastructure) because no one mapped what was needed.</p>
+<p class="body">This auditor isn't a sales pitch — it's the same diagnostic Bill runs at the start of every AI implementation engagement. The output should be useful even if you never talk to us.</p>
+</div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+const CATEGORIES = [
+  {id:'llm', name:'Foundation LLMs', desc:'General-purpose AI assistants used across the company.', critical:true,
+    tools:[{n:'Claude (Pro/Team/Enterprise)',c:60},{n:'ChatGPT (Plus/Team/Enterprise)',c:60},{n:'Gemini (Advanced/Workspace)',c:30},{n:'Microsoft Copilot',c:30},{n:'Perplexity Pro',c:20}]},
+  {id:'writing', name:'AI Writing Tools', desc:'Marketing copy, content, long-form writing.',
+    tools:[{n:'Jasper',c:80},{n:'Copy.ai',c:50},{n:'Writer.com',c:200},{n:'Notion AI',c:10},{n:'Grammarly Premium',c:30}]},
+  {id:'sales', name:'Sales Intelligence & Outreach', desc:'Prospecting, enrichment, sequencing.', critical:true,
+    tools:[{n:'Apollo.io',c:100},{n:'Clay',c:350},{n:'Outreach',c:200},{n:'Salesloft',c:140},{n:'Lavender',c:50},{n:'ZoomInfo',c:600}]},
+  {id:'meetings', name:'Meeting AI', desc:'Recording, transcription, call analysis.',
+    tools:[{n:'Gong',c:160},{n:'Fathom',c:30},{n:'Otter.ai',c:20},{n:'Fireflies',c:20},{n:'Read.ai',c:25},{n:'Chorus',c:130}]},
+  {id:'marketing', name:'Marketing Automation + AI', desc:'Campaign tools, ABM, personalization.',
+    tools:[{n:'HubSpot AI (paid tier)',c:500},{n:'Marketo Engage',c:1000},{n:'6sense',c:1500},{n:'Mutiny',c:1200},{n:'Drift',c:600},{n:'Qualified',c:500}]},
+  {id:'research', name:'AI Research / Knowledge', desc:'Document Q&A, internal search, knowledge bases.',
+    tools:[{n:'Glean',c:600},{n:'Mem.ai',c:15},{n:'AlphaSense',c:1500},{n:'You.com',c:20},{n:'Hebbia',c:1000}]},
+  {id:'agents', name:'Agents / Automation', desc:'Workflow orchestration, autonomous agents.', critical:true,
+    tools:[{n:'Zapier (with AI actions)',c:50},{n:'Make.com',c:30},{n:'n8n',c:30},{n:'Lindy',c:100},{n:'Relevance AI',c:60},{n:'Custom-built agents',c:200}]},
+  {id:'code', name:'Code / Dev AI', desc:'For your engineering team or in-house apps.',
+    tools:[{n:'GitHub Copilot',c:20},{n:'Cursor',c:20},{n:'Claude Code',c:100},{n:'Replit AI',c:20},{n:'Codeium',c:15}]},
+  {id:'design', name:'Design / Image / Video AI', desc:'Visual content generation.',
+    tools:[{n:'Midjourney',c:30},{n:'DALL-E (via ChatGPT)',c:0},{n:'Figma AI',c:15},{n:'Adobe Firefly',c:25},{n:'Runway',c:35},{n:'ElevenLabs',c:20}]},
+];
+
+const CRITICAL_CATS = CATEGORIES.filter(c => c.critical).map(c => c.id);
+
+const grid = document.getElementById('cat-grid');
+CATEGORIES.forEach(cat => {
+  const card = document.createElement('div');
+  card.className = 'cat-card';
+  card.innerHTML = `
+    <div class="cat-title">${cat.name}</div>
+    <div class="cat-desc">${cat.desc}</div>
+    <div class="tool-list">
+      ${cat.tools.map((t,i) => `
+        <label class="tool-item" data-cat="${cat.id}" data-cost="${t.c}">
+          <input type="checkbox" />
+          <span>${t.n}</span>
+          <span class="tool-cost">$${t.c}/mo</span>
+        </label>
+      `).join('')}
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+// Live counters
+function updateCounts() {
+  const items = document.querySelectorAll('.tool-item');
+  let count = 0, cost = 0;
+  const cats = new Set();
+  items.forEach(item => {
+    const cb = item.querySelector('input');
+    if (cb.checked) {
+      item.classList.add('checked');
+      count++;
+      cost += parseInt(item.dataset.cost) || 0;
+      cats.add(item.dataset.cat);
+    } else {
+      item.classList.remove('checked');
+    }
+  });
+  document.getElementById('ct-tools').textContent = count;
+  document.getElementById('ct-cost').textContent = '$' + cost.toLocaleString();
+  document.getElementById('ct-cats').textContent = cats.size + '/' + CATEGORIES.length;
+}
+
+document.querySelectorAll('.tool-item').forEach(item => {
+  item.addEventListener('click', e => {
+    if (e.target.tagName !== 'INPUT') {
+      const cb = item.querySelector('input');
+      cb.checked = !cb.checked;
+    }
+    updateCounts();
+  });
+});
+
+let auditState = null;
+
+function runAudit() {
+  const checked = [...document.querySelectorAll('.tool-item.checked')];
+  if (checked.length === 0) {
+    alert('Check at least one tool first.');
+    return;
+  }
+
+  const byCategory = {};
+  let totalCost = 0;
+  checked.forEach(item => {
+    const cat = item.dataset.cat;
+    byCategory[cat] = (byCategory[cat] || []);
+    byCategory[cat].push({
+      name: item.querySelector('span:not(.tool-cost)').textContent,
+      cost: parseInt(item.dataset.cost) || 0,
+    });
+    totalCost += parseInt(item.dataset.cost) || 0;
+  });
+
+  const findings = [];
+  let projectedSavings = 0;
+
+  // Redundancies
+  Object.entries(byCategory).forEach(([catId, tools]) => {
+    if (tools.length > 1) {
+      const cat = CATEGORIES.find(c => c.id === catId);
+      const sorted = [...tools].sort((a, b) => a.cost - b.cost);
+      const savings = sorted.slice(0, -1).reduce((s, t) => s + t.cost, 0);
+      projectedSavings += savings;
+      findings.push({
+        tag: 'tag-redundancy',
+        tagLabel: 'Redundancy',
+        title: `${tools.length} tools in "${cat.name}"`,
+        body: `You're paying for ${tools.map(t => t.name).join(', ')}. In most stacks, one tool in this category is enough. Consolidating to your strongest could save ~$${savings.toLocaleString()}/mo (~$${(savings*12).toLocaleString()}/yr).`,
+      });
+    }
+  });
+
+  // Gaps — critical categories not covered
+  CRITICAL_CATS.forEach(catId => {
+    if (!byCategory[catId]) {
+      const cat = CATEGORIES.find(c => c.id === catId);
+      findings.push({
+        tag: 'tag-gap',
+        tagLabel: 'Critical gap',
+        title: `No coverage in "${cat.name}"`,
+        body: `Companies running AI-native GTM consistently invest here. Without coverage, you're likely either doing this work manually or missing the lift entirely. ${catId === 'llm' ? 'Foundation model access is table-stakes — start here.' : catId === 'sales' ? 'Sales intelligence is the single biggest driver of pipeline efficiency.' : 'Agent/automation infrastructure is what turns AI tools into AI-native workflows.'}`,
+      });
+    }
+  });
+
+  // Stack maturity
+  const coveredCats = Object.keys(byCategory).length;
+  if (coveredCats >= 6 && findings.filter(f => f.tag === 'tag-redundancy').length === 0) {
+    findings.push({
+      tag: 'tag-strength',
+      tagLabel: 'Strength',
+      title: 'Stack is broad without obvious redundancy',
+      body: 'You\'ve covered most categories without doubling up. That suggests deliberate buying. The next questions are about utilization (which tools are actually being used in production?) and architecture (how do they connect?).',
+    });
+  }
+
+  // Projected savings summary
+  if (projectedSavings > 0) {
+    findings.unshift({
+      tag: 'tag-savings',
+      tagLabel: 'Headline finding',
+      title: `Up to $${projectedSavings.toLocaleString()}/mo of consolidation upside`,
+      body: `Across your stack we identified ~$${projectedSavings.toLocaleString()}/mo (~$${(projectedSavings*12).toLocaleString()}/yr) of redundant spend. The full PDF report below maps exact consolidations and migration risk.`,
+    });
+  }
+
+  auditState = { findings, totalCost, projectedSavings, byCategory, totalTools: checked.length };
+  renderResults();
+}
+
+function renderResults() {
+  document.getElementById('results-section').style.display = 'block';
+  const headline = auditState.projectedSavings > 0
+    ? `${auditState.totalTools} tools · $${auditState.totalCost.toLocaleString()}/mo · ~$${auditState.projectedSavings.toLocaleString()}/mo of upside`
+    : `${auditState.totalTools} tools · $${auditState.totalCost.toLocaleString()}/mo · stack looks clean`;
+  document.getElementById('results-headline').textContent = headline;
+
+  const findingsEl = document.getElementById('findings');
+  findingsEl.innerHTML = auditState.findings.map(f => `
+    <div class="finding">
+      <span class="finding-tag ${f.tag}">${f.tagLabel}</span>
+      <div class="finding-title">${f.title}</div>
+      <div class="finding-body">${f.body}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function submitGate(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const success = document.getElementById('gate-success');
+  const errorEl = document.getElementById('gate-error');
+  success.style.display = 'none'; errorEl.style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Sending...';
+
+  const payload = {
+    name: document.getElementById('g-name').value.trim(),
+    email: document.getElementById('g-email').value.trim(),
+    company: document.getElementById('g-company').value.trim(),
+    source: 'ai-tool-stack-auditor',
+    stackData: auditState,
+  };
+
+  try {
+    const res = await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('server');
+    success.style.display = 'block';
+    btn.textContent = '✓ Sent';
+    e.target.querySelectorAll('input').forEach(i => i.disabled = true);
+  } catch (err) {
+    errorEl.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Email me the PDF →';
+  }
+  return false;
+}
+</script>
+
+</body>
+</html>
