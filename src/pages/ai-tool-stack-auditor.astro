@@ -340,7 +340,7 @@ async function submitGate(e) {
   btn.disabled = true; btn.textContent = 'Sending...';
 
   const payload = {
-    name: document.getElementById('g-name').value.trim(),
+    first_name: document.getElementById('g-name').value.trim(),
     email: document.getElementById('g-email').value.trim(),
     company: document.getElementById('g-company').value.trim(),
     source: 'ai-tool-stack-auditor',

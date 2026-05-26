@@ -190,7 +190,7 @@ async function submitPreorder(e){
   success.style.display='none'; errorEl.style.display='none';
   btn.disabled=true; btn.textContent='Reserving...';
   const payload = {
-    name: document.getElementById('po-name').value.trim(),
+    first_name: document.getElementById('po-name').value.trim(),
     email: document.getElementById('po-email').value.trim(),
     company: document.getElementById('po-company').value.trim(),
     source: 'ai-playbook-law-firms-preorder',

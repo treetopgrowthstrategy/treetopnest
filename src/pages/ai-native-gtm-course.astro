@@ -346,7 +346,7 @@ async function submitWaitlist(e){
   success.style.display='none'; errorEl.style.display='none';
   btn.disabled=true; btn.textContent='Adding you...';
   const payload = {
-    name: document.getElementById('wl-name').value.trim(),
+    first_name: document.getElementById('wl-name').value.trim(),
     email: document.getElementById('wl-email').value.trim(),
     company: document.getElementById('wl-company').value.trim(),
     role: document.getElementById('wl-role').value.trim(),
