@@ -1,0 +1,116 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI CMO vs Human CMO: When to Use Which (Decision Framework) | Treetop</title>
+<meta name="description" content="A decision framework for choosing between AI CMO products, fractional CMO, full-time CMO, or pairing them. Based on company stage, strategy maturity, and team structure." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-cmo-vs-human-cmo-when-to-use-which" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-cmo-vs-human-cmo-when-to-use-which" />
+<meta property="og:title" content="AI CMO vs Human CMO: When to Use Which (Decision Framework)" /><meta property="og:description" content="A decision framework for choosing between AI CMO products, fractional CMO, full-time CMO, or pairing them. Based on company stage, strategy maturity, and team structure." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-cmo-vs-human-cmo-when-to-use-which.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-cmo-vs-human-cmo-when-to-use-which.png" />
+<meta name="twitter:title" content="AI CMO vs Human CMO: When to Use Which (Decision Framework)" />
+<meta name="twitter:description" content="A decision framework for choosing between AI CMO products, fractional CMO, full-time CMO, or pairing them. Based on company stage, strategy maturity, and team structure." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"AI CMO vs Human CMO: When to Use Which (Decision Framework)","description":"A decision framework for choosing between AI CMO products, fractional CMO, full-time CMO, or pairing them. Based on company stage, strategy maturity, and team structure.","url":"https://treetopgrowthstrategy.com/ai-cmo-vs-human-cmo-when-to-use-which","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-25","dateModified":"2026-05-25","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"AI CMO","item":"https://treetopgrowthstrategy.com/ai-cmo"},{"@type":"ListItem","position":3,"name":"AI CMO vs Human CMO: When to Use Which (Decision Framework)","item":"https://treetopgrowthstrategy.com/ai-cmo-vs-human-cmo-when-to-use-which"}]}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:860px;margin:0 auto}
+.hero{display:flex;align-items:center;padding:7rem 2.5rem 3rem}.hero-inner{max-width:860px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.3rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.7;max-width:760px}
+.verdict{background:rgba(0,200,83,0.06);border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:760px}
+.verdict-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.verdict-p{font-size:1rem;color:#F0FFF0;line-height:1.7;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.005em}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.8;max-width:760px;margin-bottom:1rem}.body strong{color:#F0FFF0}.body a{color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3)}.body a:hover{border-bottom-color:#00C853}
+.compare-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;background:#0A1A0A;border:1px solid #1A3A1A;max-width:860px}
+.compare-table th,.compare-table td{padding:0.85rem 1rem;text-align:left;border-bottom:1px solid #1A3A1A;color:#C0D8C0;vertical-align:top}
+.compare-table th{font-family:'Instrument Serif',serif;color:#F0FFF0;font-weight:400;font-size:1rem;background:rgba(240,255,240,0.02)}
+.compare-table td:first-child{color:#F0FFF0;font-weight:500;width:28%}
+.compare-table tr:last-child td{border-bottom:none}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:860px}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0;max-width:860px}
+.related-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.25rem;text-decoration:none;display:block;transition:border-color 0.2s}
+.related-card:hover{border-color:rgba(0,200,83,0.4)}
+.related-card-title{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1rem;margin-bottom:0.3rem;line-height:1.3}
+.related-card-desc{font-size:0.78rem;color:#8FAF8F;line-height:1.5}
+@media(max-width:768px){section{padding:3rem 1.5rem}.hero{padding:6rem 1.5rem 2rem}.compare-table{font-size:0.78rem}.compare-table th,.compare-table td{padding:0.5rem 0.4rem}}
+</style></head><body>
+
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div style="display:flex;gap:2rem;align-items:center">
+<a href="/ai-cmo" class="nav-link">AI CMO Guide</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+<a href="/resources" class="nav-link">Resources</a>
+</div>
+<a href="/ai-cmo-readiness-quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">AI CMO Quiz →</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Part of the <a href="/ai-cmo" style="color:#00C853;text-decoration:none">AI CMO Guide</a> · Updated May 2026</div>
+<h1 class="hero-h">AI CMO vs human CMO: <em>a decision framework for 2026.</em></h1>
+<p class="hero-sub">There's no universal answer here. The right choice depends on your stage, your existing strategy maturity, and what you actually need leadership for. This is the decision framework we use with new clients when this question comes up — usually within the first 30 minutes of any initial conversation.</p>
+<div class="verdict"><div class="verdict-l">The short version</div><p class="verdict-p">Use the framework below. The short version: pre-revenue → AI alone or founder-led; $1M-$5M ARR → fractional CMO + AI tooling; $5M-$30M ARR → fractional CMO + AI + small team; $30M+ ARR → full-time CMO + AI + team. The AI layer is almost always present in 2026; the question is what kind of human layer sits above it.</p></div>
+</div></div>
+
+<div style="background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;padding:1.25rem 2.5rem;">
+<div style="max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.78rem;color:#8FAF8F;">
+<div>By <a href="/about" style="color:#F0FFF0;text-decoration:none;font-weight:500;">Bill Colbert</a> · <span style="color:#4A6A4A;">Founder, Treetop Growth Strategy</span></div>
+<div style="color:#4A6A4A;">Published May 2026 · <a href="/ai-cmo" style="color:#8FAF8F;text-decoration:none;">Back to AI CMO Guide</a></div>
+</div>
+</div>
+
+<section><div class="sec-inner"><h2 class="h2">The wrong question</h2><p class="body">'AI CMO or human CMO?' is the wrong question. The right questions are: (1) Do I have a marketing strategy? (2) Do I need someone accountable for outcomes? (3) What execution capacity do I have? Different answers point to different combinations.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Decision framework by stage</h2><p class="body"><strong>Pre-revenue / pre-PMF:</strong> Founder is the marketing leader. AI CMO tooling for execution leverage. Cost: $20-$200/month.<br><br><strong>$1M-$5M ARR:</strong> Founder still owns strategy, but capacity is the bottleneck. Add AI CMO tooling + 1 marketing coordinator OR fractional CMO at 1 day/week ($8K/month). AI execution layer is non-negotiable.<br><br><strong>$5M-$30M ARR:</strong> You need real marketing leadership. Fractional CMO ($10K-$25K/month) + AI CMO tooling + 1-3 person execution team. This is the most common Treetop client profile.<br><br><strong>$30M-$100M ARR:</strong> Consider full-time CMO ($30K-$45K/month all-in) + AI tooling + 5-10 person team. The institutional knowledge of a permanent leader starts paying off at this scale.<br><br><strong>$100M+ ARR:</strong> Full-time CMO non-negotiable. AI tooling layered across functions.<br><br>Notice: AI tooling is in every stage. The question is what kind of human leadership sits above it.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Decision framework by strategy maturity</h2><p class="body">If your written GTM strategy fits on one page and you'd commit to it for 6+ months: an AI CMO can execute against it.<br><br>If your strategy changes every quarter or doesn't really exist yet: you need a human owner first. AI without strategy produces noise at scale.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Decision framework by team structure</h2><p class="body">If you have 0 marketers and a clear strategy: AI CMO + you reviewing the output.<br><br>If you have 1-5 marketers who execute well but you need senior direction: fractional CMO + AI tooling underneath them.<br><br>If you have 5+ marketers with good direction but bottlenecked on output: AI CMO tooling distributed across the team, no leadership change.<br><br>If you have 10+ marketers and no clear ownership: you need a CMO (fractional or full-time) before more tooling. Headcount without leadership compounds the problem.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">When 'just AI CMO' actually works</h2><p class="body">Two specific cases:<br><br>1. Founder-led companies pre-$1M ARR. The founder owns strategy; AI does execution.<br>2. Companies between CMOs (3-6 month gap) where you need execution to continue while you hire the next leader.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">When 'just human CMO, no AI' actually works</h2><p class="body">Honestly, rarely in 2026. Even regulated industries (legal, financial, medical) are using AI for internal-facing work (research, planning, reporting) even if customer-facing content needs compliance review. The cost of NOT having AI tooling in the stack is now greater than the cost of integrating it.</p></div></section>
+
+
+
+<section><div class="sec-inner">
+<h2 class="h2">Keep reading the AI CMO Guide</h2>
+<div class="related-grid">
+<a href="/ai-cmo" class="related-card"><div class="related-card-title">The full AI CMO Guide</div><div class="related-card-desc">Pillar page — what it is, products, capabilities, limits, cost.</div></a>
+<a href="/ai-cmo-vs-fractional-cmo" class="related-card"><div class="related-card-title">AI CMO vs Fractional CMO</div><div class="related-card-desc">Side-by-side on what each delivers and when to pair.</div></a>
+<a href="/okara-ai-cmo-review" class="related-card"><div class="related-card-title">Okara AI CMO Review</div><div class="related-card-desc">Honest take on the highest-profile entrant in the category.</div></a>
+<a href="/lindy-ai-cmo-review" class="related-card"><div class="related-card-title">Lindy CMO Agent Review</div><div class="related-card-desc">Configurable, less polished, lower cost.</div></a>
+<a href="/best-ai-cmo-tools-2026" class="related-card"><div class="related-card-title">Best AI CMO Tools 2026</div><div class="related-card-desc">Full comparison across all four categories.</div></a>
+<a href="/ai-cmo-pricing-2026" class="related-card"><div class="related-card-title">AI CMO Pricing 2026</div><div class="related-card-desc">All-in cost including hidden human-time and setup.</div></a>
+<a href="/build-your-own-ai-cmo-with-claude" class="related-card"><div class="related-card-title">DIY: Build Your Own AI CMO with Claude</div><div class="related-card-desc">Step-by-step for technically fluent teams. ~$100/month total.</div></a>
+<a href="/ai-cmo-readiness-quiz" class="related-card"><div class="related-card-title">AI CMO Readiness Quiz</div><div class="related-card-desc">6 questions → personalized recommendation in 60 seconds.</div></a>
+</div>
+</div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want a personalized recommendation?</div><div class="cta-sub">The AI CMO Readiness Quiz takes 6 questions and gives you a recommendation in 60 seconds.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/ai-cmo-readiness-quiz" class="btn-p">Take the quiz →</a>
+<a href="/services/ai-audit" class="btn-g">Book AI Audit</a>
+</div></div></div></section>
+
+<GlobalFooter />
+</body></html>

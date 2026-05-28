@@ -1,0 +1,310 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI CMO Readiness Quiz: Should You Use One? (6 Questions, 60 Seconds) | Treetop</title>
+<meta name="description" content="6-question diagnostic: should you buy an AI CMO product, build a DIY Claude version, hire a fractional CMO, or hire full-time? Get a personalized recommendation in 60 seconds." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-cmo-readiness-quiz" />
+<meta property="og:type" content="website" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-cmo-readiness-quiz" />
+<meta property="og:title" content="AI CMO Readiness Quiz | Treetop" />
+<meta property="og:description" content="Should you buy an AI CMO, build DIY, hire fractional, or hire full-time? 6 questions, 60 seconds, personalized recommendation." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-cmo-readiness-quiz.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-cmo-readiness-quiz.png" />
+<meta name="twitter:title" content="AI CMO Readiness Quiz" />
+<meta name="twitter:description" content="6 questions → recommendation: AI CMO product, DIY Claude, fractional CMO, or full-time hire." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"WebApplication","name":"AI CMO Readiness Quiz","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://treetopgrowthstrategy.com/ai-cmo-readiness-quiz","provider":{"@id":"https://treetopgrowthstrategy.com/#organization"}},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#00C853;color:#050D05;padding:1rem 2rem;font-size:0.92rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:opacity 0.2s}.btn-p:hover{opacity:0.88}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:780px;margin:0 auto}
+.hero{padding:7rem 2.5rem 2.5rem;border-top:none}.hero-inner{max-width:780px;margin:0 auto;text-align:center}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:400;line-height:1.08;color:#F0FFF0;margin-bottom:1rem;letter-spacing:-0.01em}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.7;margin:0 auto;max-width:620px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1rem}
+.progress-bar{position:fixed;top:64px;left:0;right:0;height:3px;background:#0A1A0A;z-index:40}
+.progress-fill{height:100%;background:#00C853;transition:width 0.4s ease;width:0%}
+.question-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;margin:2rem 0}
+.q-meta{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem}
+.q-text{font-family:'Instrument Serif',serif;font-size:1.4rem;font-weight:400;color:#F0FFF0;line-height:1.3;margin-bottom:1.5rem}
+.answers{display:flex;flex-direction:column;gap:0.6rem}
+.answer-btn{display:flex;align-items:flex-start;gap:0.8rem;background:rgba(240,255,240,0.02);border:1px solid #1A3A1A;color:#F0FFF0;padding:0.9rem 1.1rem;font-family:inherit;font-size:0.92rem;font-weight:300;line-height:1.5;cursor:pointer;text-align:left;transition:border-color 0.18s,background 0.18s}
+.answer-btn:hover{border-color:rgba(0,200,83,0.5);background:rgba(0,200,83,0.05)}
+.answer-btn.selected{border-color:#00C853;background:rgba(0,200,83,0.1)}
+.answer-letter{font-size:0.68rem;font-weight:600;color:#00C853;padding-top:3px;min-width:14px;letter-spacing:0.1em}
+.result-card{background:#0A1A0A;border:1px solid #1A3A1A;border-left:3px solid #00C853;padding:2rem;margin:2rem 0;display:none}
+.result-card.show{display:block}
+.result-rec{font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;color:#00C853;line-height:1.15;margin-bottom:0.5rem}
+.result-sub{font-size:0.95rem;color:#C0D8C0;line-height:1.7;margin-bottom:1.25rem}
+.result-detail{font-size:0.9rem;color:#8FAF8F;line-height:1.7;margin-bottom:1rem}
+.result-actions{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.25rem}
+.result-actions .btn-p{padding:0.75rem 1.5rem;font-size:0.85rem}
+.email-gate{margin-top:1.5rem;padding:1.25rem 1.5rem;background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.25)}
+.email-gate-h{font-family:'Instrument Serif',serif;font-size:1.15rem;color:#F0FFF0;margin-bottom:0.4rem}
+.email-gate-sub{font-size:0.85rem;color:#C0D8C0;margin-bottom:0.9rem;line-height:1.55}
+.input-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+.input-row input{flex:1;min-width:200px;background:rgba(240,255,240,0.04);border:1px solid #1A3A1A;color:#F0FFF0;padding:0.75rem 0.9rem;font-family:inherit;font-size:0.88rem;outline:none}
+.input-row input:focus{border-color:rgba(0,200,83,0.5)}
+.input-row input::placeholder{color:#4A6A4A}
+#gate-success{display:none;color:#00C853;font-size:0.88rem;margin-top:0.6rem}
+#gate-error{display:none;color:#ff6b6b;font-size:0.85rem;margin-top:0.6rem}
+@media(max-width:768px){section{padding:2.5rem 1.5rem}.hero{padding:6rem 1.5rem 1.5rem}.question-card{padding:1.5rem}.q-text{font-size:1.2rem}}
+</style></head><body>
+
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div style="display:flex;gap:2rem;align-items:center">
+<a href="/ai-cmo" class="nav-link">AI CMO Guide</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+</div>
+</div></nav>
+
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<section class="hero">
+<div class="hero-inner">
+<span class="lbl">6 questions · ~60 seconds · No signup to start</span>
+<h1 class="hero-h">Should you use an <em>AI CMO?</em></h1>
+<p class="hero-sub">6 questions about your stage, strategy maturity, and team. We'll recommend: a dedicated AI CMO product (Okara), a flexible platform (Lindy), a DIY Claude setup, a fractional CMO, a full-time hire, or a specific combination.</p>
+</div>
+</section>
+
+<section style="padding-top:1rem"><div class="sec-inner">
+
+<div id="quiz-container"></div>
+
+<div class="result-card" id="result">
+<div class="lbl">Your recommendation</div>
+<div class="result-rec" id="rec-headline">Calculating...</div>
+<div class="result-sub" id="rec-body"></div>
+<div class="result-detail" id="rec-detail"></div>
+
+<div class="result-actions" id="rec-actions"></div>
+
+<div class="email-gate">
+<div class="email-gate-h">Want the full PDF recommendation?</div>
+<p class="email-gate-sub">We'll email you a 4-page personalized report: your situation, recommended path, specific vendors to evaluate, expected cost, and the 30-day rollout plan. Free.</p>
+<form id="gate-form" onsubmit="return submitGate(event)">
+<div class="input-row">
+<input type="text" id="g-name" name="first_name" placeholder="First name" required />
+<input type="email" id="g-email" name="email" placeholder="Work email" required />
+<input type="text" id="g-company" name="company" placeholder="Company" required />
+<button type="submit" class="btn-p">Email me the PDF →</button>
+</div>
+<div id="gate-success">✓ On its way. Check your inbox in 2–3 minutes.</div>
+<div id="gate-error">Something went wrong. Email bill@treetopgrowthstrategy.com</div>
+</form>
+</div>
+
+</div>
+
+</div></section>
+
+<GlobalFooter />
+
+<script is:inline>
+const QUESTIONS = [
+  { q: "What's your annual revenue stage?",
+    a: [
+      { t: "Pre-revenue or under $1M ARR", k: "stage_early" },
+      { t: "$1M–$5M ARR", k: "stage_early_growth" },
+      { t: "$5M–$30M ARR", k: "stage_growth" },
+      { t: "$30M+ ARR", k: "stage_scale" },
+    ]},
+  { q: "Do you have a written GTM strategy you'd commit to for 6+ months?",
+    a: [
+      { t: "Yes, written down and stable", k: "strategy_clear" },
+      { t: "Roughly clear but evolving", k: "strategy_evolving" },
+      { t: "Not really — we're still figuring it out", k: "strategy_unclear" },
+    ]},
+  { q: "What's your current marketing team size?",
+    a: [
+      { t: "Just me / the founder", k: "team_zero" },
+      { t: "1–3 marketers", k: "team_small" },
+      { t: "4–10 marketers", k: "team_mid" },
+      { t: "10+ marketers", k: "team_large" },
+    ]},
+  { q: "How technical is your team — would someone build a DIY Claude setup?",
+    a: [
+      { t: "Yes — we have someone willing to do 30–50 hours of setup", k: "tech_yes" },
+      { t: "Maybe — we'd need to find them", k: "tech_maybe" },
+      { t: "No — we want polished tooling without building", k: "tech_no" },
+    ]},
+  { q: "What's the biggest bottleneck right now?",
+    a: [
+      { t: "Execution capacity — strategy is clear, we can't produce enough", k: "bottleneck_capacity" },
+      { t: "Strategic direction — we don't know what to do", k: "bottleneck_strategy" },
+      { t: "Accountability — no one owns marketing outcomes", k: "bottleneck_accountability" },
+      { t: "All three", k: "bottleneck_all" },
+    ]},
+  { q: "What's your monthly marketing-leadership budget?",
+    a: [
+      { t: "Under $1K/month (tooling only)", k: "budget_micro" },
+      { t: "$1K–$10K/month", k: "budget_small" },
+      { t: "$10K–$30K/month", k: "budget_mid" },
+      { t: "$30K+/month", k: "budget_large" },
+    ]},
+];
+
+const answers = [];
+const container = document.getElementById('quiz-container');
+
+function render() {
+  container.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    if (i > answers.length) return;
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.innerHTML = `
+      <div class="q-meta">Question ${i+1} of ${QUESTIONS.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="answers">
+        ${q.a.map((a, j) => `
+          <button class="answer-btn ${answers[i]?.k === a.k ? 'selected' : ''}" onclick="pick(${i}, ${j})">
+            <span class="answer-letter">${String.fromCharCode(65+j)}</span>
+            <span>${a.t}</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  document.getElementById('progress').style.width = Math.round((answers.length / QUESTIONS.length) * 100) + '%';
+}
+
+function pick(qi, ai) {
+  answers[qi] = QUESTIONS[qi].a[ai];
+  if (answers.length === QUESTIONS.length) {
+    setTimeout(showResult, 250);
+  } else {
+    render();
+    setTimeout(() => {
+      const next = container.querySelectorAll('.question-card')[qi + 1];
+      if (next) next.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 200);
+  }
+}
+
+function showResult() {
+  render();
+  const keys = answers.map(a => a.k);
+  const has = k => keys.includes(k);
+
+  let rec, body, detail, actions;
+
+  // Decision logic
+  if (has('stage_early') && has('budget_micro')) {
+    rec = "DIY Claude — you're not ready to spend on tooling yet.";
+    body = "At your stage and budget, building a simple Claude-based AI CMO setup is the right call. Claude Pro is $20/month, and you can be productive within a week with Claude Projects.";
+    detail = "Next steps: subscribe to Claude Pro, set up Projects for Strategy, Content, and Reporting. Don't add complexity until revenue justifies it. Skip fractional CMO until $1M+ ARR.";
+    actions = [['/build-your-own-ai-cmo-with-claude', 'See the DIY guide →'], ['/ai-tool-stack-auditor', 'Audit your current stack']];
+  }
+  else if (has('strategy_unclear') || has('bottleneck_strategy') || has('bottleneck_accountability')) {
+    rec = "Hire a fractional CMO first — AI tooling won't fix this.";
+    body = "Your bottleneck isn't execution capacity — it's strategic direction or accountability. An AI CMO will execute whatever you point it at, which means it'll execute the wrong things faster. Strategy and ownership come first.";
+    detail = "Next steps: book a fractional CMO conversation. Most engagements at $5M-$30M ARR run $10K-$25K/month. AI tooling becomes the execution layer underneath, not the primary investment.";
+    actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/services/ai-audit', 'Book the $1,500 AI Audit']];
+  }
+  else if (has('stage_scale') && has('team_large')) {
+    rec = "Full-time CMO + AI tooling distributed across the team.";
+    body = "At your scale, you need permanent in-house leadership and the institutional knowledge that comes with it. The AI layer goes underneath — distributed across your team, with a marketing-ops or Marketing AI Lead owning the configuration.";
+    detail = "Next steps: if you don't have a full-time CMO, that's the priority hire. If you do, focus on the operating model redesign: who owns AI tooling configuration across the team, what's centralized vs distributed, how do you measure ROI?";
+    actions = [['/cmo-ai-adoption-playbook', "See the CMO's AI adoption playbook →"], ['/services/ai-audit', 'Book the $1,500 AI Audit']];
+  }
+  else if ((has('stage_growth') || has('stage_early_growth')) && (has('bottleneck_capacity') || has('bottleneck_all'))) {
+    if (has('tech_yes')) {
+      rec = "Fractional CMO + DIY Claude AI CMO — the highest-ROI combination.";
+      body = "You have a strategy, you have someone technical, you have execution bottlenecks. The right move: fractional CMO ($10K-$20K/month) for strategy and accountability + DIY Claude setup (~$100/month) for execution leverage. Combined cost ~$10K-$20K/month vs $40K+/month for full-time.";
+      detail = "Next steps: book a fractional CMO conversation and start the DIY build in parallel. The fractional CMO will help shape what the DIY setup should do. Don't pay for Okara or Lindy yet — your tech-fluent team can build it cheaper.";
+      actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/build-your-own-ai-cmo-with-claude', 'See the DIY guide']];
+    } else if (has('tech_no')) {
+      rec = "Fractional CMO + Okara (or similar dedicated AI CMO product).";
+      body = "You have a strategy and need execution leverage, but no one to build DIY. The right move: fractional CMO ($10K-$20K/month) + dedicated AI CMO product like Okara ($500-$2,000/month). Combined cost ~$11K-$22K/month — well below a full-time CMO.";
+      detail = "Next steps: book a fractional CMO conversation. Evaluate Okara, Lindy, and 1-2 others against your specific stack. The fractional CMO will help select and integrate.";
+      actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/best-ai-cmo-tools-2026', 'See AI CMO tool comparison']];
+    } else {
+      rec = "Fractional CMO + AI CMO tooling (decide DIY vs product later).";
+      body = "Strong fit for the fractional + AI combination. Lock in the fractional CMO first; decide DIY vs product in the first 30 days of the engagement based on what your team can support.";
+      detail = "Next steps: book a fractional CMO conversation. In parallel, take the AI Tool Stack Auditor to see what you already have.";
+      actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/ai-tool-stack-auditor', 'Run the stack auditor']];
+    }
+  }
+  else if (has('team_zero') && has('budget_small')) {
+    rec = "DIY Claude or Lindy — you're the strategy, AI is the execution.";
+    body = "Founder-led with limited budget. Don't pay for a fractional CMO yet (you're being the CMO). Get AI tooling working underneath you. Lindy is a good middle ground if you don't want to build DIY.";
+    detail = "Next steps: start with Claude Pro ($20/month) and a few core Skills. If you need more polish without building, evaluate Lindy CMO Agent ($100-$500/month tier).";
+    actions = [['/build-your-own-ai-cmo-with-claude', 'See DIY guide →'], ['/lindy-ai-cmo-review', 'See Lindy review']];
+  }
+  else {
+    // Default: middle of the road
+    rec = "Pair an AI CMO with a fractional CMO — the most common right answer.";
+    body = "Your situation fits the pattern most B2B mid-market companies are in: clear enough strategy, execution bottlenecks, ready to invest. The right move is pairing strategic leadership (fractional CMO) with execution leverage (AI CMO tooling).";
+    detail = "Next steps: book a fractional CMO conversation. Evaluate which AI CMO category fits — DIY if technically fluent, dedicated product (Okara) if not. Combined monthly cost typically $9K-$22K vs $40K+/month for full-time hire.";
+    actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/best-ai-cmo-tools-2026', 'See AI CMO tool comparison']];
+  }
+
+  document.getElementById('rec-headline').textContent = rec;
+  document.getElementById('rec-body').textContent = body;
+  document.getElementById('rec-detail').textContent = detail;
+
+  const actionsEl = document.getElementById('rec-actions');
+  actionsEl.innerHTML = actions.map(([url, text]) => `<a href="${url}" class="btn-p">${text}</a>`).join('');
+
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function submitGate(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const success = document.getElementById('gate-success');
+  const errorEl = document.getElementById('gate-error');
+  success.style.display = 'none'; errorEl.style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Sending...';
+  const payload = {
+    first_name: document.getElementById('g-name').value.trim(),
+    email: document.getElementById('g-email').value.trim(),
+    company: document.getElementById('g-company').value.trim(),
+    source: 'ai-cmo-readiness-quiz',
+    quizAnswers: answers.map(a => a.k),
+    recommendation: document.getElementById('rec-headline').textContent,
+  };
+  try {
+    const res = await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('server');
+    success.style.display = 'block';
+    btn.textContent = '✓ Sent';
+    e.target.querySelectorAll('input').forEach(i => i.disabled = true);
+  } catch (err) {
+    errorEl.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Email me the PDF →';
+  }
+  return false;
+}
+
+render();
+</script>
+
+</body></html>

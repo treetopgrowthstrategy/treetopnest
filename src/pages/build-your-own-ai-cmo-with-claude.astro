@@ -1,0 +1,118 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Build Your Own AI CMO with Claude (2026 Step-by-Step Guide) | Treetop</title>
+<meta name="description" content="How to build a DIY AI CMO using Claude Projects, Skills, and a few connectors. ~40 hours of setup, ~$100/month total cost. Step-by-step instructions and the architectural decisions that matter." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/build-your-own-ai-cmo-with-claude" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/build-your-own-ai-cmo-with-claude" />
+<meta property="og:title" content="Build Your Own AI CMO with Claude (2026 Step-by-Step Guide)" /><meta property="og:description" content="How to build a DIY AI CMO using Claude Projects, Skills, and a few connectors. ~40 hours of setup, ~$100/month total cost. Step-by-step instructions and the architectural decisions that matter." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/build-your-own-ai-cmo-with-claude.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/build-your-own-ai-cmo-with-claude.png" />
+<meta name="twitter:title" content="Build Your Own AI CMO with Claude (2026 Step-by-Step Guide)" />
+<meta name="twitter:description" content="How to build a DIY AI CMO using Claude Projects, Skills, and a few connectors. ~40 hours of setup, ~$100/month total cost. Step-by-step instructions and the architectural decisions that matter." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Build Your Own AI CMO with Claude (2026 Step-by-Step Guide)","description":"How to build a DIY AI CMO using Claude Projects, Skills, and a few connectors. ~40 hours of setup, ~$100/month total cost. Step-by-step instructions and the architectural decisions that matter.","url":"https://treetopgrowthstrategy.com/build-your-own-ai-cmo-with-claude","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-25","dateModified":"2026-05-25","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"AI CMO","item":"https://treetopgrowthstrategy.com/ai-cmo"},{"@type":"ListItem","position":3,"name":"Build Your Own AI CMO with Claude (2026 Step-by-Step Guide)","item":"https://treetopgrowthstrategy.com/build-your-own-ai-cmo-with-claude"}]}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:860px;margin:0 auto}
+.hero{display:flex;align-items:center;padding:7rem 2.5rem 3rem}.hero-inner{max-width:860px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.3rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.7;max-width:760px}
+.verdict{background:rgba(0,200,83,0.06);border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:760px}
+.verdict-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.verdict-p{font-size:1rem;color:#F0FFF0;line-height:1.7;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.005em}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.8;max-width:760px;margin-bottom:1rem}.body strong{color:#F0FFF0}.body a{color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3)}.body a:hover{border-bottom-color:#00C853}
+.compare-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;background:#0A1A0A;border:1px solid #1A3A1A;max-width:860px}
+.compare-table th,.compare-table td{padding:0.85rem 1rem;text-align:left;border-bottom:1px solid #1A3A1A;color:#C0D8C0;vertical-align:top}
+.compare-table th{font-family:'Instrument Serif',serif;color:#F0FFF0;font-weight:400;font-size:1rem;background:rgba(240,255,240,0.02)}
+.compare-table td:first-child{color:#F0FFF0;font-weight:500;width:28%}
+.compare-table tr:last-child td{border-bottom:none}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:860px}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0;max-width:860px}
+.related-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.25rem;text-decoration:none;display:block;transition:border-color 0.2s}
+.related-card:hover{border-color:rgba(0,200,83,0.4)}
+.related-card-title{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1rem;margin-bottom:0.3rem;line-height:1.3}
+.related-card-desc{font-size:0.78rem;color:#8FAF8F;line-height:1.5}
+@media(max-width:768px){section{padding:3rem 1.5rem}.hero{padding:6rem 1.5rem 2rem}.compare-table{font-size:0.78rem}.compare-table th,.compare-table td{padding:0.5rem 0.4rem}}
+</style></head><body>
+
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div style="display:flex;gap:2rem;align-items:center">
+<a href="/ai-cmo" class="nav-link">AI CMO Guide</a>
+<a href="/services" class="nav-link">Services</a>
+<a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+<a href="/resources" class="nav-link">Resources</a>
+</div>
+<a href="/ai-cmo-readiness-quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">AI CMO Quiz →</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Part of the <a href="/ai-cmo" style="color:#00C853;text-decoration:none">AI CMO Guide</a> · Updated May 2026</div>
+<h1 class="hero-h">Build your own AI CMO with Claude: <em>a 2026 step-by-step guide.</em></h1>
+<p class="hero-sub">Building your own AI CMO on Claude is the highest-leverage move for technically fluent marketing teams in 2026. You skip the $500-$2,000/month subscription to dedicated products. You get full control over instructions, memory, and integrations. You own it. The trade-off: 30-50 hours of setup time. Here's the playbook.</p>
+<div class="verdict"><div class="verdict-l">The short version</div><p class="verdict-p">A DIY Claude AI CMO costs $20-$200/month all-in and takes 30-50 hours of setup. For technically fluent teams that already use Claude, it's the highest-ROI option in the category. The build is in 4 steps: configure Claude Projects for context retention, write 6-8 core Skills for repeating workflows, wire up data with simple connectors (Zapier, Make, or n8n), and set the operating cadence. Pairs perfectly with a fractional CMO who owns strategy.</p></div>
+</div></div>
+
+<div style="background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;padding:1.25rem 2.5rem;">
+<div style="max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.78rem;color:#8FAF8F;">
+<div>By <a href="/about" style="color:#F0FFF0;text-decoration:none;font-weight:500;">Bill Colbert</a> · <span style="color:#4A6A4A;">Founder, Treetop Growth Strategy</span></div>
+<div style="color:#4A6A4A;">Published May 2026 · <a href="/ai-cmo" style="color:#8FAF8F;text-decoration:none;">Back to AI CMO Guide</a></div>
+</div>
+</div>
+
+<section><div class="sec-inner"><h2 class="h2">Why DIY Claude often beats dedicated AI CMO products</h2><p class="body">Three structural advantages:<br><br>1. <strong>Cost.</strong> Claude Pro ($20/mo) or Team ($30/seat/mo) is 10-20% the cost of dedicated AI CMO products.<br>2. <strong>Control.</strong> You write the instructions. You decide what gets reviewed. You change behavior in seconds, not via support tickets.<br>3. <strong>Continuity.</strong> The category is moving fast. Dedicated AI CMO products will consolidate over 24 months. Your DIY setup outlives any vendor risk because it's built on the foundation model directly.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Prerequisites</h2><p class="body">Before you build, confirm:<br><br>• You have at least one person willing to spend 30-50 hours on setup<br>• You have Claude Pro or Team (Team unlocks Projects with team sharing)<br>• You have a written GTM strategy stable enough to encode<br>• You have someone (you, fractional CMO, internal leader) who'll review outputs<br>• Your data stack has APIs or Zapier-style connectors for the tools you care about (CRM, analytics, content)</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 1: Set up Claude Projects (4-8 hours)</h2><p class="body">Create one Project per major marketing function:<br><br>• <strong>'Marketing Strategy'</strong> Project — contains your ICP, positioning, top 3 priorities, brand voice guide, competitive context.<br>• <strong>'Content Production'</strong> Project — contains your content style guide, past best-performing pieces, target keywords, content calendar context.<br>• <strong>'Campaign Planning'</strong> Project — contains your channel mix, past campaign performance, audience segments.<br>• <strong>'Reporting & Analysis'</strong> Project — contains your KPI definitions, data source descriptions, executive report templates.<br><br>Each Project keeps its context across sessions. This is your AI CMO's memory.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 2: Write 6-8 Core Skills (12-24 hours)</h2><p class="body">Skills are reusable instructions. Build one Skill per repeating workflow:<br><br>1. <strong>Weekly report Skill</strong> — input: data dump, output: narrative report in your format.<br>2. <strong>Campaign brief Skill</strong> — input: goal + audience, output: structured campaign plan.<br>3. <strong>Blog post drafter Skill</strong> — input: topic + outline, output: draft in brand voice.<br>4. <strong>Email sequence Skill</strong> — input: target persona + objective, output: 5-email sequence.<br>5. <strong>Ad copy variant Skill</strong> — input: offer + audience, output: 10 variants for testing.<br>6. <strong>Competitive analysis Skill</strong> — input: competitor URL, output: positioning + GTM read.<br>7. <strong>ICP refinement Skill</strong> — input: closed-won data, output: refined ICP doc.<br>8. <strong>Optional: industry-specific Skills</strong> for your vertical.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 3: Wire up data (8-12 hours)</h2><p class="body">Three approaches in order of effort:<br><br>1. <strong>Copy-paste (lowest effort).</strong> You manually paste data into Claude. Sounds primitive; works fine for weekly cadence.<br>2. <strong>Zapier/Make.com (medium effort).</strong> Set up flows that auto-fetch data and email it to you or post to a shared doc that Claude then reads. $30-$100/month tooling.<br>3. <strong>Custom API integration (high effort, highest leverage).</strong> Build small scripts that pull data from your CRM/analytics/Stripe and feed it directly to Claude via the API. Requires engineering time but unlocks daily/real-time cadence.<br><br>Most teams should start with #1 or #2 and graduate to #3 only if needed.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Step 4: Set the operating cadence (4-8 hours setup, then ongoing)</h2><p class="body">Define when each Skill runs:<br><br>• <strong>Daily:</strong> Inbox triage Skill (if you wire up email).<br>• <strong>Weekly:</strong> Weekly report Skill, blog post drafter, ad copy variants.<br>• <strong>Bi-weekly:</strong> Campaign brief for next sprint, competitive analysis.<br>• <strong>Monthly:</strong> ICP refinement, executive summary.<br>• <strong>Quarterly:</strong> Strategy re-evaluation conversation with Claude using your Strategy Project context.<br><br>Calendar reminders or a simple Notion checklist works. The cadence is what makes this a 'CMO' rather than 'ad-hoc AI use.'</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">Common DIY mistakes</h2><p class="body">Five things to avoid:<br><br>1. <strong>Not encoding strategy.</strong> If your ICP and priorities aren't in the Strategy Project, every Skill produces generic output.<br>2. <strong>Skipping the review loop.</strong> Set up explicit checkpoints. 'AI drafts → human reviews → AI revises' beats 'AI ships directly.'<br>3. <strong>Over-engineering.</strong> Start with 4 Skills and Zapier integrations. Add complexity only when you've validated the simpler version.<br>4. <strong>No owner.</strong> If nobody owns the iteration, the setup degrades in 90 days.<br>5. <strong>Trying to replace strategic judgment.</strong> Use the DIY setup for execution. Pair with a human (fractional CMO, founder, or internal leader) for strategy.</p></div></section>
+<section><div class="sec-inner"><h2 class="h2">When you should pay for a dedicated product instead</h2><p class="body">Two situations where DIY isn't right:<br><br>1. <strong>You don't have someone willing to do the build.</strong> A polished product (Okara) gets you 80% of the value without the 40-hour build.<br>2. <strong>You need polished output and reporting for a board or investors.</strong> Dedicated products tend to produce more presentable outputs out of the box. DIY catches up with effort, but the first 90 days look rougher.</p></div></section>
+
+
+
+<section><div class="sec-inner">
+<h2 class="h2">Keep reading the AI CMO Guide</h2>
+<div class="related-grid">
+<a href="/ai-cmo" class="related-card"><div class="related-card-title">The full AI CMO Guide</div><div class="related-card-desc">Pillar page — what it is, products, capabilities, limits, cost.</div></a>
+<a href="/ai-cmo-vs-fractional-cmo" class="related-card"><div class="related-card-title">AI CMO vs Fractional CMO</div><div class="related-card-desc">Side-by-side on what each delivers and when to pair.</div></a>
+<a href="/okara-ai-cmo-review" class="related-card"><div class="related-card-title">Okara AI CMO Review</div><div class="related-card-desc">Honest take on the highest-profile entrant in the category.</div></a>
+<a href="/lindy-ai-cmo-review" class="related-card"><div class="related-card-title">Lindy CMO Agent Review</div><div class="related-card-desc">Configurable, less polished, lower cost.</div></a>
+<a href="/best-ai-cmo-tools-2026" class="related-card"><div class="related-card-title">Best AI CMO Tools 2026</div><div class="related-card-desc">Full comparison across all four categories.</div></a>
+<a href="/ai-cmo-pricing-2026" class="related-card"><div class="related-card-title">AI CMO Pricing 2026</div><div class="related-card-desc">All-in cost including hidden human-time and setup.</div></a>
+<a href="/build-your-own-ai-cmo-with-claude" class="related-card"><div class="related-card-title">DIY: Build Your Own AI CMO with Claude</div><div class="related-card-desc">Step-by-step for technically fluent teams. ~$100/month total.</div></a>
+<a href="/ai-cmo-readiness-quiz" class="related-card"><div class="related-card-title">AI CMO Readiness Quiz</div><div class="related-card-desc">6 questions → personalized recommendation in 60 seconds.</div></a>
+</div>
+</div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want this built for you?</div><div class="cta-sub">The $1,500 AI Audit includes a recommendation on DIY vs product. The AI-Native GTM cohort course teaches the full DIY playbook to ~25 operators.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/ai-cmo-readiness-quiz" class="btn-p">Take the quiz →</a>
+<a href="/services/ai-audit" class="btn-g">Book AI Audit</a>
+</div></div></div></section>
+
+<GlobalFooter />
+</body></html>
