@@ -14,6 +14,9 @@ __pycache__/
 gym_scraper.log
 gym_scraper.log.*
 
+# Local-only run history (rotation is week-number-based, no shared state)
+state.json
+
 # Editor
 .idea/
 .vscode/

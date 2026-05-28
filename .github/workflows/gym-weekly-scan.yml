@@ -25,7 +25,7 @@ on:
         default: ""
 
 permissions:
-  contents: write   # needed so the job can commit updated state.json back
+  contents: read
 
 concurrency:
   group: gym-weekly-scan
@@ -75,20 +75,6 @@ jobs:
             ARGS="$ARGS --max-per-market ${{ github.event.inputs.max_per_market }}"
           fi
           eval python main.py $ARGS
-
-      - name: Commit updated state.json
-        if: always()
-        working-directory: .   # back to repo root for the git commit
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet gym-intelligence/state.json; then
-            git add gym-intelligence/state.json
-            git commit -m "chore(gym): advance market rotation state [skip ci]"
-            git push
-          else
-            echo "state.json unchanged; nothing to commit"
-          fi
 
       - name: Upload log artifact
         if: always()

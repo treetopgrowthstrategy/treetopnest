@@ -69,38 +69,46 @@ def setup_logging() -> None:
 
 
 # ---------------------------------------------------------------------------
-# State (which market was processed last)
+# Market rotation
+#
+# Deterministic by ISO week number — no persistent state required, which means
+# the cloud cron doesn't need to commit anything back to the repo. With 15
+# markets, each gets refreshed every 15 weeks (~3.5 months). state.json is
+# kept around as a local-only log of recent runs (for debugging), never as
+# rotation state.
 # ---------------------------------------------------------------------------
+
+def _next_market_by_week() -> str:
+    iso_week = datetime.now(timezone.utc).isocalendar().week
+    return MARKETS[iso_week % len(MARKETS)]
+
 
 def _load_state() -> dict:
     if not STATE_FILE.exists():
-        return {"last_market_index": -1, "last_run_timestamp": None, "last_market": None, "runs": []}
+        return {"runs": []}
     try:
         return json.loads(STATE_FILE.read_text())
-    except Exception as exc:
-        log.warning("Could not read state.json (%s); starting fresh", exc)
-        return {"last_market_index": -1, "last_run_timestamp": None, "last_market": None, "runs": []}
+    except Exception:
+        return {"runs": []}
 
 
 def _save_state(state: dict) -> None:
-    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n")
+    try:
+        STATE_FILE.write_text(json.dumps(state, indent=2) + "\n")
+    except Exception as exc:
+        log.debug("Could not write state.json: %s", exc)
 
 
-def _next_market_from_state(state: dict) -> str:
-    idx = state.get("last_market_index", -1)
-    next_idx = (idx + 1) % len(MARKETS)
-    return MARKETS[next_idx]
-
-
-def _advance_state(state: dict, market: str, summary: "RunSummary") -> None:
-    next_idx = (MARKETS.index(market)) if market in MARKETS else state.get("last_market_index", -1)
-    state["last_market_index"] = next_idx
-    state["last_market"] = market
-    state["last_run_timestamp"] = datetime.now(timezone.utc).isoformat()
+def _log_run(market: str, summary: "RunSummary") -> None:
+    """Append this run to state.json as a local-only history log."""
+    state = _load_state()
     runs = state.setdefault("runs", [])
-    runs.append({"market": market, "ts": state["last_run_timestamp"], **summary.as_dict()})
-    # Keep tail bounded so state.json doesn't grow unbounded
-    state["runs"] = runs[-50:]
+    runs.append({
+        "market": market,
+        "ts": datetime.now(timezone.utc).isoformat(),
+        **summary.as_dict(),
+    })
+    state["runs"] = runs[-50:]  # keep tail bounded
     _save_state(state)
 
 
@@ -251,21 +259,19 @@ def run_for_market(
 
 
 def run_next_market(**kwargs) -> RunSummary:
-    state = _load_state()
-    market = _next_market_from_state(state)
-    log.info("Rotating market — next up: %s", market)
+    market = _next_market_by_week()
+    log.info("Rotating market by ISO week — this run: %s", market)
     summary = run_for_market(market, **kwargs)
-    _advance_state(state, market, summary)
+    _log_run(market, summary)
     return summary
 
 
 def run_all_markets(**kwargs) -> list[RunSummary]:
-    state = _load_state()
     summaries: list[RunSummary] = []
     for market in MARKETS:
         summary = run_for_market(market, **kwargs)
         summaries.append(summary)
-        _advance_state(state, market, summary)
+        _log_run(market, summary)
     return summaries
 
 
@@ -350,10 +356,7 @@ def main() -> int:
                 max_per_market=args.max_per_market,
                 enrich_limit=args.enrich_limit,
             )
-            # Manual single-market run also advances state so the rotation
-            # picks up where the human left off.
-            state = _load_state()
-            _advance_state(state, args.market, summary)
+            _log_run(args.market, summary)
         else:
             run_next_market(
                 do_discover=True,
