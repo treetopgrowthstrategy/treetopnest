@@ -1,0 +1,21 @@
+.env
+.env.local
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+
+# Rotating log files
+gym_scraper.log
+gym_scraper.log.*
+
+# Editor
+.idea/
+.vscode/
+*.swp
+.DS_Store
