@@ -103,19 +103,100 @@ Write the row to Airtable.
 
 ---
 
+## Phase 2: write an HTML digest artifact
+
+After publishing to Airtable (or alongside, as you go), write a single static HTML file that shows what you found at a glance. Bill opens it to scan results without bouncing into Airtable.
+
+**Path:** `/Users/williamcolbert/Documents/swift-discoveries/discovery-{YYYY-MM-DD}-{city-slug}.html`
+Create the directory if it doesn't exist. `city-slug` is lowercase, hyphenated (e.g. `las-vegas`).
+
+**Structure:** one self-contained HTML file. Inline CSS only. No JS. No external assets. Mobile-readable is nice, not required.
+
+**Sections:**
+
+1. **Header** — title `SWIFT Discovery — {City} — {date}`, subtitle showing `{N qualified} of {M surveyed}`, a link to the SWIFT Prospects Airtable view (`https://airtable.com/app0cpbQjtdZh1sHT/tblDxXItwwKRu8gjA`).
+2. **One card per qualified gym**, in publish order, containing:
+   - Gym name (heading)
+   - Website (clickable link, opens in new tab, `rel="noopener"`)
+   - Address line (just city/neighborhood is fine; full street optional)
+   - Location Type chip (`Single` / `Multi` / `Unknown`)
+   - Signal count, prominently displayed
+   - The 2–3 Key Evidence quotes, **verbatim**, each in a `<blockquote>` styled to look like a highlighted review excerpt
+   - The Pitch Angle, italicized below the quotes
+   - Status footer: `→ Published to Billy at {HH:MM}`
+
+**Template you can copy and fill in** (keep CSS exactly like this for consistency across runs):
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SWIFT Discovery — {City} — {Date}</title>
+<style>
+  :root { color-scheme: light; }
+  body { font: 16px/1.5 -apple-system, system-ui, sans-serif; max-width: 880px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  header { border-bottom: 2px solid #1a1a1a; padding-bottom: 1rem; margin-bottom: 2rem; }
+  h1 { margin: 0 0 .25rem; font-size: 1.6rem; }
+  .meta { color: #666; font-size: .9rem; }
+  .meta a { color: #0a58ca; }
+  .card { border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .card h2 { margin: 0 0 .35rem; font-size: 1.2rem; }
+  .row { color: #555; font-size: .9rem; margin: .15rem 0; }
+  .row a { color: #0a58ca; word-break: break-all; }
+  .chip { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #eef; color: #335; font-size: .75rem; margin-right: .4rem; }
+  .signals { color: #b94a00; font-weight: 600; font-size: .9rem; }
+  blockquote { border-left: 3px solid #d4a017; margin: .6rem 0; padding: .55rem .9rem; background: #fff8e7; color: #3a2c00; font-style: normal; font-size: .95rem; }
+  .pitch { margin: 1rem 0 .25rem; padding-top: .75rem; border-top: 1px dashed #ccc; font-style: italic; color: #333; }
+  .status { font-size: .8rem; color: #888; margin-top: .5rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SWIFT Discovery — {City}</h1>
+  <div class="meta">{Date} · {N qualified} of {M surveyed} gyms surveyed · all flagged <code>Billy Status = Ready</code> in <a href="https://airtable.com/app0cpbQjtdZh1sHT/tblDxXItwwKRu8gjA">SWIFT Prospects</a></div>
+</header>
+
+<!-- Repeat this card per qualified gym -->
+<article class="card">
+  <h2>{Gym Name}</h2>
+  <div class="row"><a href="{Website}" target="_blank" rel="noopener">{Website}</a></div>
+  <div class="row">{Address}</div>
+  <div class="row"><span class="chip">{Location Type}</span> <span class="signals">{N} signal review(s)</span></div>
+  <blockquote>"{Verbatim review excerpt 1}"</blockquote>
+  <blockquote>"{Verbatim review excerpt 2}"</blockquote>
+  <p class="pitch">Pitch: {Pitch Angle sentence}</p>
+  <div class="status">→ Published to Billy at {HH:MM}</div>
+</article>
+
+</body>
+</html>
+```
+
+When a gym has 3 strong signal reviews, include all 3 blockquotes. Two is the minimum (matches qualification rule). HTML-escape any `<`, `>`, `&`, `"` in review text.
+
+If no gyms qualified this run, still write the file with the header and a single line `<p>No gyms qualified this scan.</p>` — so Bill sees the run happened.
+
+---
+
 ## Reporting back
 
 After each run, write a single message to Bill in chat:
 
 ```
-Scanned **Chicago**. Surveyed 18 gyms, qualified 7, published to SWIFT Prospects:
+Scanned **Chicago**. Surveyed 18 gyms, qualified 7, published to SWIFT Prospects.
 
+Digest: file:///Users/williamcolbert/Documents/swift-discoveries/discovery-2026-05-28-chicago.html
+
+Top 3:
 1. {Gym Name} — {signal count} signals. Strongest: "{key evidence excerpt}"
 2. {Gym Name} — …
-…
+3. {Gym Name} — …
 
 Billy can take it from here. Existing queue is now {N total} gyms in "Ready".
 ```
+
+The `file://` link makes the digest one-click openable in his browser from the chat. Use the full absolute path.
 
 If you got CAPTCHA'd, dropped your Chrome session, or saw something weird — say so plainly. Don't hide failures.
 
