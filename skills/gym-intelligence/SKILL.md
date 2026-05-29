@@ -1,151 +1,151 @@
 ---
 name: gym-intelligence
-description: Build out the master gym intelligence database in Airtable by mining Google Maps via Claude-in-Chrome. Trigger whenever Bill asks to "scan gyms in [city]", "build out the gym database", "add gyms in [market]", "run the gym scan", "enrich gyms in Airtable", or any variation. Pulls structured data (name, address, phone, website, rating, hours) from Google Maps for each gym, optionally visits each gym's website to extract equipment brands, amenities, group classes, and pricing, then upserts everything into the Gym Intelligence Airtable table using the Maps URL as the dedup key. Distinct from SWIFT — this is the broader prospect database that SWIFT, RevAgentic, and other outreach systems all draw from.
+description: Discovery front-end for SWIFT outreach. When Bill says "scan gyms in [city]", "queue up some gyms for Billy", "find SWIFT prospects in [city]", "find gyms with cancellation complaints", "build out the SWIFT queue", or any variation — this skill opens Google Maps via claude-in-chrome, surveys gyms in the target city, reads their reviews, identifies ones with cancellation / billing / refund / hidden-fee pain signals (SWIFT Financial's pitch), and publishes the qualified ones to the SWIFT Prospects Airtable table with `Billy Status = "Ready"` so Billy picks them up and emails them. This skill does NOT send any emails — it just curates and queues. Billy (the Vercel app) owns the outreach lifecycle from "Ready" onward.
 ---
 
-# Gym Intelligence — CoWork edition
+# Gym Intelligence — SWIFT discovery front-end
 
-This skill builds Bill's master gym/health-club database by scraping Google Maps with the **claude-in-chrome MCP**. No paid APIs. Runs only when Bill asks for it.
+You are the upstream data curator for Bill's **SWIFT Financial** outreach. Bill wants to see gyms found on Google Maps, with the painful reviews surfaced, and have qualified ones land in Billy's outreach queue so Billy can email them with the cadence Bill already set up.
 
-Output: the **Gym Intelligence** Airtable table in the Treetop Database base.
-- Base ID: `app0cpbQjtdZh1sHT`
-- Table ID: `tblXv8Njd7tW9ArNX`
-- Table name: `Gym Intelligence`
-- Dedup key: `Google Place ID` field (stores the unique chunk of the Maps URL — see "Extracting a dedup key" below)
+You do not send emails. You do not enrich contacts. Billy does that.
 
 ---
 
-## What Bill might ask, and how to interpret it
+## The loop, top to bottom
 
-| Phrase | Action |
+```
+You: open Google Maps via claude-in-chrome
+   ↓
+You: for each gym in the target city, read listing + reviews
+   ↓
+You: flag reviews that mention SWIFT-relevant pain signals
+   ↓
+You: qualify gyms with 2+ signal reviews
+   ↓
+You: write qualified gyms to Airtable SWIFT Prospects
+        (Billy Status = "Ready")
+   ↓
+Billy (Vercel, already running): picks them up, enriches contacts via
+Apollo, sends the outreach emails on its 5/day-week-1 cadence
+```
+
+---
+
+## Trigger interpretation
+
+| Bill says | Action |
 |---|---|
-| "scan gyms in Chicago" | Run discovery on that market — Phase 1. Default cap: 25 gyms. |
-| "scan gyms in Chicago and visit their websites" | Phase 1 + Phase 2 enrichment on new gyms. |
-| "add 10 more gyms in Denver" | Phase 1, target 10 new (not-already-in-Airtable) results in Denver. |
-| "enrich the pending gyms" / "fill in equipment for the gyms in Airtable" | Phase 2 only — find records where `Scrape Status` is empty/Pending and visit their websites. Default cap: 10 per run. |
-| "run the gym scan" with no market | Pick the next market from the rotation list below that hasn't been scanned in the last 8 weeks. |
+| "scan gyms in Chicago" | Phase 1: survey Maps, qualify gyms, publish. Default cap: **10 qualified gyms** or 45 wall-clock minutes, whichever hits first. |
+| "find SWIFT prospects in Dallas" | Same as above. |
+| "queue up 5 gyms in Denver for Billy" | Same as above, cap 5. |
+| "build out the SWIFT queue" / no market named | Ask Bill which city; suggest one that hasn't been scanned recently. |
+| "what's in the SWIFT queue right now" | Just list current rows where Billy Status = "Ready" in Airtable SWIFT Prospects. No scraping needed. |
 
-If Bill is vague, ask one clarifying question and proceed.
-
-**Rotation list** (for "no market specified" runs): Chicago, Dallas, Houston, Phoenix, Miami, Atlanta, Denver, Nashville, Austin, Charlotte, Seattle, Minneapolis, Tampa, Portland, Las Vegas.
-
-To pick the next market, query Airtable for `MAX({Last Updated})` grouped by `Market` and choose the one with the oldest max (or never-scanned). One Airtable list call covers it.
+Confirm the market with Bill if ambiguous. Then go.
 
 ---
 
-## Phase 1 — Discover gyms via Google Maps
+## What counts as a SWIFT signal review
+
+A review qualifies as a **signal** if it mentions any of these (and you should look for actual phrases, not just keywords):
+
+- **Cancellation pain** — "couldn't cancel", "tried to cancel for months", "still being charged after cancellation", "they wouldn't let me cancel", "had to cancel my credit card to stop them"
+- **Billing surprises** — "hidden fee", "annual fee I didn't know about", "kept charging after I left", "billed twice", "unauthorized charge"
+- **Refund / collections drama** — "refused to refund", "sent to collections", "had to dispute with my bank", "ruined my credit"
+- **Contract trap** — "stuck in a contract", "can't get out", "auto-renewed without telling me", "lost in fine print"
+
+A complaint about "rude staff" or "broken equipment" is **NOT** a signal. SWIFT sells revenue-recovery infrastructure to gyms — signals must specifically point at membership / billing / cancellation pain that SWIFT solves.
+
+If a gym has **2 or more** signal reviews in its last ~25 visible reviews, it qualifies.
+
+---
+
+## Phase 1: scan a market
 
 1. Use `mcp__Claude_in_Chrome__navigate` to open `https://www.google.com/maps/search/gyms+in+[market]` (URL-encode the market name).
-2. Wait for results to load. Use `mcp__Claude_in_Chrome__read_page` (or `get_page_text`) to get the listing panel content.
-3. For each gym listing visible in the left sidebar (target the cap Bill set, default 25):
-   - Click into the listing to open its details panel.
-   - Read the detail panel. Extract:
-     - **Gym Name**
-     - **Full Address**
-     - **Phone Number**
-     - **Website URL** (the actual gym site, not Google's redirect)
-     - **Google Star Rating** (float)
-     - **Total Review Count** (integer)
-     - **Price Level** ($, $$, $$$, $$$$ if shown)
-     - **Opening Hours** (text)
-     - **Business Status** (assume OPERATIONAL unless the listing says "Temporarily closed" or "Permanently closed")
-   - Capture the **current Chrome URL** as `Google Maps URL`.
-   - Extract the dedup key from that URL (see below).
-4. Also run the searches `health clubs in [market]`, `fitness centers in [market]`, and `athletic clubs in [market]` if you have time budget left, dedupling by Google Place ID across all four searches.
-5. For each gym, **upsert into Airtable** (search for an existing record with the same `Google Place ID`; if found, update Last Updated + any changed fields; if not, create a new row with `Scrape Status` = "Pending").
+2. Use `mcp__Claude_in_Chrome__read_page` or `get_page_text` to read the results sidebar.
+3. **Before processing any gym, check existing SWIFT Prospects** to avoid republishing. Query Airtable SWIFT Prospects (`tblDxXItwwKRu8gjA`) for current rows matching the city → keep a set of existing gym names + websites in memory.
+4. For each gym in the sidebar, in order:
+   - Click into the gym's detail panel.
+   - Capture: **Gym Name**, **Website** URL, **address** (use to infer Single vs Multi), and the gym's review count.
+   - Skip if already in the existing set you loaded in step 3.
+   - Skip if no website (Billy needs a website to enrich).
+   - Click the "Reviews" tab. Sort by "Newest" if available; otherwise "Lowest rated" is also good.
+   - Read up to the ~25 most recent visible reviews. Don't infinite-scroll; one or two scrolls is plenty.
+   - **For each review, decide: is this a SWIFT signal?** Using the criteria above. Quote the exact review text verbatim if so.
+   - If you find **2 or more** signal reviews → qualify the gym.
 
-### Extracting a dedup key
+### When you qualify a gym
 
-Google Maps listing URLs contain a stable identifier. Look for one of these patterns in the current URL:
-- `!1s0x...:0x...!` (the hex pair after `!1s`)
-- `ChIJ...` (a Place ID encoded into the URL — search for the substring starting with `ChIJ`)
-- `cid=...` query parameter
+Build the Airtable record fields:
 
-Use whichever appears (in that priority order), prefixed with the source: `maps:0x123...` or `maps:ChIJ...`. Consistency matters more than format — pick one and stick to it for that market.
-
-### Required Airtable fields for Phase 1
-
-| Field | Source |
+| Field | How to fill it |
 |---|---|
-| Gym Name | from listing |
-| Google Place ID | dedup key extracted from URL |
-| Full Address | from listing |
-| City, State | parse from address |
-| Market | the market name you searched |
-| Phone Number | from listing |
-| Website URL | from listing |
-| Google Star Rating | from listing |
-| Total Review Count | from listing |
-| Price Level | from listing if shown |
-| Google Maps URL | full current URL |
-| Business Status | OPERATIONAL / CLOSED_TEMPORARILY / CLOSED_PERMANENTLY |
-| Opening Hours | from listing |
-| Date Added | now (only on create) |
-| Last Updated | now |
-| Scrape Status | "Pending" (only on create — don't overwrite existing values) |
+| `Gym Name` | exact name from Maps |
+| `Website` | from Maps listing (cleaned — strip tracking params, but keep the path) |
+| `Signal Review Count` | how many signal reviews you found (integer) |
+| `Key Evidence` | 2–3 of the strongest signal reviews **verbatim**, one per line. Trim each to ~280 chars max. Prefix each with `"…"` (open and close quotes). No paraphrasing. No editorializing. |
+| `Pitch Angle` | one sentence Bill can use as the email hook, e.g. *"Three current members report being charged for months after cancelling — SWIFT recovers those disputed charges without going to collections."* Reference the actual pattern you saw in the reviews. |
+| `Billy Status` | always `"Ready"` (exact string, case-sensitive) |
+| `Date Qualified` | today's date, `YYYY-MM-DD` |
+| `Location Type` | `"Single"` if the Maps listing shows one location, `"Multi"` if it's a chain or shows location-pickers / "other locations", `"Unknown"` if unclear. |
 
-Skip CLOSED_PERMANENTLY listings entirely; don't upsert them.
+Don't fill `Contact Name` or `Contact Email` — Billy enriches those via Apollo. Leaving them blank tells Billy to do its own lookup.
 
----
+Write the row to Airtable.
 
-## Phase 2 — Enrich each gym's website (only when Bill asks)
+### Stop conditions
 
-Trigger when Bill says "visit the websites", "enrich", "fill in equipment", or similar. Or as a follow-up immediately after Phase 1 if Bill said so.
-
-For each record needing enrichment (Scrape Status = Pending or empty, has a Website URL):
-
-1. Navigate Chrome to the website.
-2. Read the homepage. If thin (< ~1000 chars of readable text), also visit `/about`, `/classes`, `/amenities`, `/equipment`, `/membership` — whichever exist.
-3. From the combined text, extract structured data **without making things up**:
-   - **Equipment Brands** — only brands that are literally named in the text (Life Fitness, Rogue, Technogym, Peloton, Matrix, Hammer Strength, Precor, Cybex, StairMaster, Woodway, Concept2, Assault Fitness, etc.). Comma-separated.
-   - **Amenities** — sauna, steam room, pool, childcare, basketball court, racquetball, locker rooms, towel service, smoothie bar, tanning, parking, recovery lounge. Comma-separated.
-   - **Group Classes Offered** — HIIT, spin/cycling, yoga, Pilates, Zumba, boxing, barre, CrossFit, boot camp, aqua aerobics, etc. Comma-separated.
-   - **Membership Pricing** — any visible pricing, monthly rates, initiation fees. Verbatim if possible.
-   - **Facility Type** — one of: Independent, Franchise, Studio, YMCA/Non-Profit, Corporate Chain, Unknown.
-   - **Specialty/Focus** — short phrase if there's a notable focus (e.g., "CrossFit affiliate", "women-only", "boxing-focused").
-   - **Social Media Links** — Instagram, Facebook, TikTok, X URLs. Comma-separated.
-4. Update the Airtable record:
-   - Set `Scrape Status` to **Scraped** if extraction succeeded with any data
-   - Set `Scrape Status` to **Failed** with a `Scrape Notes` reason if the site was unreachable, JS-only, blocked, or returned no readable text
-   - Set `Scrape Status` to **Skipped** if there was no website on the record to begin with
-   - Always update `Last Updated`
-
-**Rate limit:** wait 2–4 seconds between website visits. Don't hammer.
-
-**Stop conditions:**
-- Hit the cap Bill set (default: 10 per run for Phase 2).
-- 30 minutes of wall-clock time elapsed on Phase 2 — wrap up and report.
-- Encountered 5 consecutive site failures → likely Chrome/network issue, stop and report.
+- Hit the qualified-cap (default 10).
+- 45 minutes of wall-clock time.
+- 5 consecutive gyms with no qualified signal — likely the city has been worked over already; report and stop.
+- Maps shows a CAPTCHA → stop immediately, tell Bill, do not retry.
 
 ---
 
 ## Reporting back
 
-After each run, write a one-paragraph summary to Bill in chat:
+After each run, write a single message to Bill in chat:
 
-> Scanned **Chicago**. Found 27 listings, 18 new + 9 existing (updated). 18 set to Pending. (Or if Phase 2: 14 enriched, 3 failed, 1 skipped — Failed gyms and reasons listed below.)
+```
+Scanned **Chicago**. Surveyed 18 gyms, qualified 7, published to SWIFT Prospects:
 
-If anything went wrong (Chrome session lost, Maps changed layout, Airtable error), include it plainly.
+1. {Gym Name} — {signal count} signals. Strongest: "{key evidence excerpt}"
+2. {Gym Name} — …
+…
+
+Billy can take it from here. Existing queue is now {N total} gyms in "Ready".
+```
+
+If you got CAPTCHA'd, dropped your Chrome session, or saw something weird — say so plainly. Don't hide failures.
 
 ---
 
 ## Hard rules
 
-1. **Use claude-in-chrome, never the Places API.** That's the whole point — this skill is the free version. Do not call `places.googleapis.com` from this skill under any circumstances.
-2. **Dedup by `Google Place ID`** before creating any new record. Double records in this table will cause downstream pain in SWIFT and RevAgentic.
-3. **Don't overwrite Date Added** on updates. Only set it on create.
-4. **Don't fabricate equipment, amenities, or classes.** If the site doesn't mention it, don't add it. Bill uses this data for outreach signals.
-5. **Skip permanently closed gyms** — don't even create the record.
-6. **Don't enrich gyms that don't have a website** — mark Scrape Status = Skipped with note "no website on record".
-7. **One market per session by default.** If Bill asks for multiple markets in one go, confirm before starting — it's a long-running chore.
-8. **Respect rate limits.** 2–4s between site fetches. If Maps starts showing CAPTCHAs, stop and tell Bill.
+1. **Never send emails. Never enrich Apollo contacts. Never touch sequences.** That's Billy's job. You write rows; Billy reads them.
+2. **Never fabricate review text.** Key Evidence must be verbatim or quote-trimmed-with-ellipsis. If you can't quote it, don't include it.
+3. **Never qualify a gym with fewer than 2 signal reviews.** One angry review = noise; pattern = signal. Bill's emails depend on the pattern being real.
+4. **Never republish a gym already in SWIFT Prospects.** Check upfront. Re-publishing breaks Billy's idempotency assumptions.
+5. **Never skip the website check.** Billy needs a website to enrich the company. If a gym has no website, skip it (don't try to invent one).
+6. **Use the exact `Billy Status` value `"Ready"`** — case-sensitive. Other choices like "In Progress" / "Contacted" / "Converted" / "Dead" are Billy's to set, not yours.
+7. **Stop on CAPTCHA, do not retry from a different session.** Tell Bill, wait for direction.
 
 ---
 
-## Failure modes
+## The Airtable shape (for your reference)
 
-- **Maps shows "couldn't find any results"** — likely a typo in the market name. Confirm with Bill, retry.
-- **Listing panel doesn't load fully** — scroll the sidebar to trigger lazy load; retry up to 3 times before skipping a gym.
-- **Two listings look like the same gym** — same name + same phone or address → treat as a duplicate, keep the first one.
-- **Chrome extension disconnects** — ask Bill to reconnect, then resume from where you left off (you already wrote what you had; Airtable upsert will skip them next pass).
-- **Airtable rate limit (429)** — wait the retry-after, continue. Don't crash.
+- Base: `app0cpbQjtdZh1sHT` (Treetop Database)
+- Table: `tblDxXItwwKRu8gjA` (SWIFT Prospects)
+- Read-back-before-writing: query the table first with `filterByFormula = {Billy Status} = 'Ready'` (or just by city, if there's a city signal you can extract from the gym's address)
+- Write fields listed in the table above
+- Billy Status valid values: `Ready` (you), `In Progress`, `Contacted`, `Replied`, `Connection Sent`, `Converted`, `Dead` (Billy)
+
+---
+
+## Failure modes to watch for
+
+- **Google Maps changes its DOM.** If `read_page` returns no recognizable listing structure, take a screenshot, describe what you see, and ask Bill how to proceed. Don't guess.
+- **Reviews tab requires login.** If Maps starts gating reviews behind a Google account, stop and tell Bill — we'll figure out the workaround together.
+- **Same gym appears twice in results.** Dedup by (gym name + first ~30 chars of address). Pick the listing with more reviews.
+- **Bilingual reviews.** If most reviews are in Spanish/another language, that's fine — translate mentally to spot signals, but **keep the Key Evidence quote in its original language** so Bill has the receipts.
