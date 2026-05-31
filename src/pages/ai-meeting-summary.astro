@@ -1,0 +1,256 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>AI Meeting Summary: The 2026 Guide (Tools, Prompts, How to Actually Use It) | Treetop</title>
+<meta name="description" content="Definitive 2026 guide to AI meeting summaries — which tools to use (Fathom, Otter, Gong, Fireflies, Read.ai), how to write the prompts that produce useful summaries, what to do with them after, and the difference between a summary and a transcript." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/ai-meeting-summary" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/ai-meeting-summary" />
+<meta property="og:title" content="AI Meeting Summary: The 2026 Guide" />
+<meta property="og:description" content="Tools, prompts, and operating models for AI meeting summaries that actually get used." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-meeting-summary.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-meeting-summary.png" />
+<meta name="twitter:title" content="AI Meeting Summary: The 2026 Guide" />
+<meta name="twitter:description" content="Tools, prompts, and operating models for AI meeting summaries that actually get used." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Article","headline":"AI Meeting Summary: The 2026 Guide","description":"Definitive 2026 guide to AI meeting summaries — tools, prompts, operating models.","url":"https://treetopgrowthstrategy.com/ai-meeting-summary","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-27","dateModified":"2026-05-27","image":"https://treetopgrowthstrategy.com/og-default.png"},
+  {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"},
+  {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://treetopgrowthstrategy.com/resources"},{"@type":"ListItem","position":3,"name":"AI Meeting Summary","item":"https://treetopgrowthstrategy.com/ai-meeting-summary"}]},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What's the best AI meeting summary tool in 2026?","acceptedAnswer":{"@type":"Answer","text":"It depends on use case. Fathom is best for solo operators and small teams ($0-$30/seat). Gong is best for revenue teams that need pipeline intelligence ($160+/seat). Otter is best for general knowledge work. Read.ai for distributed teams. Or skip a dedicated tool and route transcripts through Claude — cheaper, more flexible, but more setup."}},
+    {"@type":"Question","name":"What's the difference between a meeting summary and a transcript?","acceptedAnswer":{"@type":"Answer","text":"A transcript is what was said. A summary is what mattered. A transcript is 8,000 words of dialogue; a summary is 200 words of decisions, action items, and unresolved questions. Transcripts are useful for search and reference. Summaries are what get read and acted on."}},
+    {"@type":"Question","name":"Can I use Claude or ChatGPT instead of a dedicated meeting summary tool?","acceptedAnswer":{"@type":"Answer","text":"Yes — and many teams should. Record with any tool (Zoom, Teams, even your phone), get the transcript, paste it into Claude with a structured prompt. Output is often better than what dedicated tools produce, at 1/10th the cost. Trade-off: you do the recording and transcript step manually."}},
+    {"@type":"Question","name":"How do I write a good meeting summary prompt?","acceptedAnswer":{"@type":"Answer","text":"Tell Claude: (1) what meeting type it was, (2) who was there and their roles, (3) what categories you want — decisions, action items with owners, unresolved questions, key context. Don't ask for a 'summary' — ask for a specific structured output. See our prompt library at /how-to-write-a-meeting-summary-prompt."}},
+    {"@type":"Question","name":"Should every meeting have an AI summary?","acceptedAnswer":{"@type":"Answer","text":"No. Recurring 1:1s, casual catch-ups, and brainstorming sessions often don't benefit. Decision meetings, customer calls, and cross-functional syncs almost always do. The test: would someone who wasn't there need to know what happened? If yes, summarize."}}
+  ]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:4.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:860px;margin:0 auto}
+.hero{display:flex;align-items:center;padding:7rem 2.5rem 3rem}.hero-inner{max-width:860px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:400;line-height:1.08;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1.08rem;color:#C0D8C0;line-height:1.75;max-width:760px}
+.tldr{background:rgba(0,200,83,0.06);border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:760px}
+.tldr-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.tldr-p{font-size:1.02rem;color:#F0FFF0;line-height:1.7;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.3rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem;letter-spacing:-0.005em}
+.h3{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2vw,1.5rem);font-weight:400;color:#F0FFF0;margin:1.75rem 0 0.6rem}
+.body{font-size:1.02rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body strong{color:#F0FFF0}.body em{font-style:italic}.body a{color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3)}.body a:hover{border-bottom-color:#00C853}
+.ul,.ol{color:#C0D8C0;font-size:1rem;line-height:1.85;padding-left:1.25rem;margin:1rem 0 1.5rem;max-width:760px}.ul li,.ol li{margin-bottom:0.5rem}.ul li::marker{color:#00C853}.ol li::marker{color:#00C853;font-weight:600}
+.toc{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem 1.75rem;margin:2rem 0;max-width:760px}
+.toc-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:0.75rem}
+.toc ol{list-style:decimal;padding-left:1.5rem;color:#C0D8C0;font-size:0.92rem;line-height:1.9}
+.toc a{color:#C0D8C0;text-decoration:none}.toc a:hover{color:#00C853}
+.callout{background:#0A1A0A;border:1px solid #1A3A1A;border-left:3px solid #00C853;padding:1.4rem 1.75rem;margin:1.5rem 0;max-width:760px}
+.callout p{color:#F0FFF0;font-size:0.96rem;line-height:1.75;margin:0;font-style:italic}
+.compare-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;background:#0A1A0A;border:1px solid #1A3A1A;max-width:860px}
+.compare-table th,.compare-table td{padding:0.85rem 1rem;text-align:left;border-bottom:1px solid #1A3A1A;color:#C0D8C0;vertical-align:top}
+.compare-table th{font-family:'Instrument Serif',serif;color:#F0FFF0;font-weight:400;font-size:1rem;background:rgba(240,255,240,0.02)}
+.compare-table td:first-child{color:#F0FFF0;font-weight:500;width:28%}
+.compare-table tr:last-child td{border-bottom:none}
+.prompt-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;margin:1.5rem 0;max-width:760px;font-family:'DM Sans',monospace;font-size:0.86rem;color:#C0D8C0;line-height:1.7;white-space:pre-wrap}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:860px}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.4rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1.5rem 0;max-width:860px}
+.related-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;display:block;transition:border-color 0.2s}
+.related-card:hover{border-color:rgba(0,200,83,0.4)}
+.related-card-title{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.1rem;margin-bottom:0.4rem;line-height:1.3}
+.related-card-desc{font-size:0.82rem;color:#8FAF8F;line-height:1.55}
+@media(max-width:768px){section{padding:3.5rem 1.5rem}.hero{padding:6rem 1.5rem 2.5rem}.compare-table{font-size:0.76rem}.compare-table th,.compare-table td{padding:0.5rem 0.4rem}}
+</style></head><body>
+
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div style="display:flex;gap:2rem;align-items:center">
+<a href="/services" class="nav-link">Services</a>
+<a href="/fractional-cmo" class="nav-link">Fractional CMO</a>
+<a href="/case-studies" class="nav-link">Case Studies</a>
+<a href="/resources" class="nav-link">Resources</a>
+</div>
+<a href="/ai-tool-stack-auditor" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">AI Tool Auditor →</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>2026 Guide · Updated May 2026</div>
+<h1 class="hero-h">AI meeting summary: <em>what works, what doesn't, and how to actually use one.</em></h1>
+<p class="hero-sub">The honest 2026 guide to AI meeting summaries — which tools to actually use (Fathom, Otter, Gong, Fireflies, Read.ai), how to write prompts that produce useful summaries instead of bad transcripts, what to do with them after, and when to skip them entirely.</p>
+<div class="tldr"><div class="tldr-l">Short answer</div><p class="tldr-p">AI meeting summaries are useful when the summary serves someone who wasn't in the meeting. For solo operators: Fathom ($0-$30/mo). For revenue teams: Gong or Chorus ($130-$160/seat). For knowledge work: Otter or Read.ai. For maximum control + lowest cost: pipe transcripts into Claude with a structured prompt. The tool matters less than the operating model around it.</p></div>
+</div></div>
+
+<div style="background:#0A1A0A;border-top:1px solid #1A3A1A;border-bottom:1px solid #1A3A1A;padding:1.25rem 2.5rem;">
+<div style="max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.78rem;color:#8FAF8F;">
+<div>By <a href="/about" style="color:#F0FFF0;text-decoration:none;font-weight:500;">Bill Colbert</a> · <span style="color:#4A6A4A;">Founder, Treetop Growth Strategy</span></div>
+<div style="color:#4A6A4A;">Published May 2026 · 11 min read · <a href="/content-library" style="color:#8FAF8F;text-decoration:none;">More from the library</a></div>
+</div>
+</div>
+
+<section><div class="sec-inner">
+<div class="toc">
+<div class="toc-l">What's in this guide</div>
+<ol>
+<li><a href="#summary-vs-transcript">The difference between a summary and a transcript</a></li>
+<li><a href="#tools">The tools (Fathom, Otter, Gong, Fireflies, Read.ai, DIY Claude)</a></li>
+<li><a href="#when">When meeting summaries earn their cost</a></li>
+<li><a href="#prompts">Writing a meeting summary prompt that produces useful output</a></li>
+<li><a href="#workflow">The operating model around the tool</a></li>
+<li><a href="#privacy">Privacy, consent, and the parts nobody talks about</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol>
+</div>
+
+<h2 class="h2" id="summary-vs-transcript">A summary is not a transcript</h2>
+<p class="body">The most common failure mode in AI meeting summary deployments: teams confuse transcripts for summaries.</p>
+<p class="body"><strong>A transcript</strong> is what was said. 8,000 words of dialogue, including the "um"s, the small talk, and the three minutes someone spent looking for a file. Useful for search and reference. Nobody reads it.</p>
+<p class="body"><strong>A summary</strong> is what mattered. 200 words of decisions, action items with owners, unresolved questions, and the context someone who wasn't there would need to act. People read these. People forward these.</p>
+<p class="body">Most "AI meeting summary" tools produce summaries that are really just compressed transcripts. The output is structured ("Topics discussed: A, B, C") but doesn't tell you what to do with the information. This is fixable — but you need to know what you're looking for. <a href="/ai-meeting-summary-vs-transcript">Deeper distinction →</a></p>
+
+<h2 class="h2" id="tools">The 2026 tool landscape</h2>
+<p class="body">There are roughly six categories of tool worth considering as of May 2026. Pick by use case, not by feature count.</p>
+<table class="compare-table">
+<thead><tr><th>Tool</th><th>Best for</th><th>Pricing (typical)</th><th>Trade-off</th></tr></thead>
+<tbody>
+<tr><td>Fathom</td><td>Solo operators, small teams, founders</td><td>$0–$30/seat</td><td>Lighter on org features; great for personal use</td></tr>
+<tr><td>Otter.ai</td><td>General knowledge work, education, journalism</td><td>$10–$30/seat</td><td>Good summaries; weaker CRM integrations</td></tr>
+<tr><td>Gong</td><td>Revenue teams needing pipeline intelligence</td><td>$130–$160/seat</td><td>Expensive; deep CRM integration; high ROI for sales orgs</td></tr>
+<tr><td>Chorus (ZoomInfo)</td><td>Sales coaching + call intelligence</td><td>$100–$150/seat</td><td>Similar to Gong; bundle with ZoomInfo data</td></tr>
+<tr><td>Fireflies.ai</td><td>Cross-team knowledge sharing</td><td>$10–$20/seat</td><td>Good search; lighter on revenue features</td></tr>
+<tr><td>Read.ai</td><td>Distributed teams, async communication</td><td>$15–$30/seat</td><td>Better at engagement signals than at deep summary</td></tr>
+<tr><td>DIY (Claude/ChatGPT + transcript)</td><td>Maximum control, lowest cost, sophisticated buyers</td><td>$20–$200/mo total</td><td>You handle recording and transcript yourself</td></tr>
+</tbody>
+</table>
+<p class="body">Full comparison with capability matrix: <a href="/best-ai-meeting-summary-tools-2026">Best AI meeting summary tools 2026 →</a></p>
+
+<div class="callout"><p>Most companies pay for 2–3 of these without realizing they overlap. The free <a href="/ai-tool-stack-auditor">AI Tool Stack Auditor</a> surfaces the redundancies in 3 minutes.</p></div>
+
+<h2 class="h2" id="when">When meeting summaries earn their cost</h2>
+<p class="body">Not every meeting needs a summary. The question to ask: would someone who wasn't in the room need to know what happened? If yes, summarize. If no, the tool is overhead.</p>
+
+<h3 class="h3">High-value meetings to summarize</h3>
+<ul class="ul">
+<li><strong>Customer calls</strong> — discovery, demo, renewal. Summary feeds CRM, alerts cross-functional teams, captures objection patterns.</li>
+<li><strong>Decision meetings</strong> — strategy, roadmap, budget. Summary becomes the record of what was decided and why.</li>
+<li><strong>Cross-functional syncs</strong> — when 4+ teams are involved. Summary keeps everyone aligned without 4 separate recap emails.</li>
+<li><strong>Board meetings</strong> — structured summary plus the recording is the institutional memory.</li>
+<li><strong>Interviews</strong> — candidate, customer, journalist. Pattern recognition across 10+ summaries beats individual recall.</li>
+<li><strong>Important 1:1s</strong> — performance discussions, escalations, decisions about people. The structured record matters.</li>
+</ul>
+
+<h3 class="h3">Low-value meetings to skip</h3>
+<ul class="ul">
+<li>Recurring weekly 1:1s with the same person — nothing new happens that needs summarizing</li>
+<li>Casual catch-ups and team social calls — the surveillance overhead isn't worth it</li>
+<li>Brainstorming sessions — the value is in the live divergent thinking, not the captured output</li>
+<li>Sales meetings where you're the seller and you're going to manually log the highlights anyway</li>
+</ul>
+
+<h2 class="h2" id="prompts">Writing a meeting summary prompt that produces useful output</h2>
+<p class="body">If you're using a dedicated tool (Fathom, Otter, etc.), the prompt is mostly hidden — but you can usually configure custom output formats. If you're using DIY (transcript → Claude), the prompt IS the product.</p>
+<p class="body">Three principles for any meeting summary prompt:</p>
+<ol class="ol">
+<li><strong>Specify the meeting type.</strong> 'Decision meeting' produces different output than 'customer discovery call.' Tell the AI which it is.</li>
+<li><strong>Name the audience.</strong> A summary for the meeting attendees is different than a summary for someone who needs to make a decision based on it. Specify who reads this.</li>
+<li><strong>Ask for structured output, not 'a summary.'</strong> Decisions, action items with owners, unresolved questions, key context — name the sections you want.</li>
+</ol>
+
+<h3 class="h3">A starting-point prompt that works</h3>
+<div class="prompt-box">You are summarizing a [MEETING TYPE] for [AUDIENCE — people who weren't there].
+
+Read the transcript below and produce:
+
+1. **Headline** (1 sentence) — the single most important takeaway
+2. **Decisions made** — what was decided, by whom, when
+3. **Action items** — task, owner, deadline. Bullet list.
+4. **Unresolved questions** — what got raised but didn't get answered
+5. **Key context** — 2-3 things someone catching up needs to know
+6. **Risks or red flags** — anything that should be escalated
+
+Skip greetings, scheduling chat, and anything not in the categories above. Maximum 300 words total.
+
+Transcript:
+[paste transcript]</div>
+
+<p class="body">This prompt produces dramatically better output than 'summarize this meeting.' The structure does the work.</p>
+<p class="body">Full prompt library with variants for sales calls, board meetings, customer interviews, and more: <a href="/how-to-write-a-meeting-summary-prompt">How to write a meeting summary prompt →</a></p>
+
+<h2 class="h2" id="workflow">The operating model around the tool</h2>
+<p class="body">The tool is the easy part. The operating model — what happens to the summary after it's generated — is what determines whether you get value.</p>
+<p class="body">Three patterns that work:</p>
+<ol class="ol">
+<li><strong>Auto-routed to CRM.</strong> Customer-facing call summaries flow into the CRM record automatically. Sales/CS teams stop doing manual logging. Most dedicated tools (Gong, Chorus, Fathom) support this.</li>
+<li><strong>Posted to a shared channel.</strong> Cross-functional meeting summaries go to a Slack/Teams channel within 5 minutes. Anyone who needs to know reads them at their own pace. Reduces the 4-people-write-recaps problem.</li>
+<li><strong>Filed in a searchable knowledge base.</strong> Decision meetings get archived in Notion/Confluence/Drive with consistent tagging. The institutional memory survives turnover.</li>
+</ol>
+
+<p class="body">What doesn't work: emailing summaries to the meeting attendees. They were there. They don't need it. The summary should serve the people who weren't.</p>
+
+<div class="callout"><p>The most common implementation failure: deploying the tool without designing the operating model. Summaries get generated, nobody reads them, the tool gets quietly cancelled in 6 months. Decide WHO reads each summary BEFORE you decide which tool generates them.</p></div>
+
+<h2 class="h2" id="privacy">Privacy, consent, and the parts nobody talks about</h2>
+<p class="body">Three things to think about that don't show up in vendor marketing:</p>
+<ul class="ul">
+<li><strong>Consent.</strong> Some states (CA, FL, etc.) require all-party consent for recording. Don't auto-record meetings without explicit notice to participants. Most tools have a "notify on join" feature — use it.</li>
+<li><strong>Data retention.</strong> Where does the recording live? For how long? Who can access it? Check the vendor's data policy and align with your company's policy. Sensitive meetings (HR, legal, M&A) may need different handling.</li>
+<li><strong>Customer-facing meetings.</strong> Recording sales calls is industry-standard, but make sure your customers know it's happening and have a way to opt out. The CRM record matters; the consent record matters more if anything ever goes to legal.</li>
+</ul>
+
+<h2 class="h2" id="faq">FAQ</h2>
+
+<h3 class="h3">What's the best AI meeting summary tool overall?</h3>
+<p class="body">There's no single best. Fathom for solo and small teams. Gong/Chorus for sales orgs. Otter for general knowledge work. DIY Claude for maximum flexibility and lowest cost. See the <a href="/best-ai-meeting-summary-tools-2026">full 2026 tool comparison</a> for the decision framework.</p>
+
+<h3 class="h3">Can I use Claude or ChatGPT instead of a dedicated tool?</h3>
+<p class="body">Yes — and many teams should. Record with any tool, get the transcript (Zoom, Teams, even Otter's free tier just for transcription), paste into Claude with a structured prompt. Output is often better than dedicated tools at 1/10th the cost. Trade-off: you do the workflow yourself.</p>
+
+<h3 class="h3">How much should I pay?</h3>
+<p class="body">$0–$30/seat for general use (Fathom, Otter). $130–$160/seat for revenue teams that need CRM integration and call intelligence (Gong, Chorus). $20–$200/month all-in for DIY Claude setups. The dedicated tools are not 10× better than DIY — they're 10× easier to deploy.</p>
+
+<h3 class="h3">Will the summaries replace someone's job?</h3>
+<p class="body">No. They eliminate the meeting-notes task, not the meeting-attendee role. The people in the meeting still need to make the decisions, build the relationships, and own the outcomes. The summary just makes their work portable.</p>
+
+<h3 class="h3">What about hybrid meetings where some people are in a room and some on video?</h3>
+<p class="body">Hardest case. Most tools struggle with in-room audio. Two options: (1) require remote attendance to ensure clean audio capture, (2) accept that hybrid meeting summaries will be lower quality and adjust expectations.</p>
+
+</div></section>
+
+<section><div class="sec-inner">
+<h2 class="h2">Keep reading</h2>
+<div class="related-grid">
+<a href="/best-ai-meeting-summary-tools-2026" class="related-card"><div class="related-card-title">Best AI Meeting Summary Tools 2026</div><div class="related-card-desc">Full comparison across Fathom, Otter, Gong, Fireflies, Read.ai, and DIY.</div></a>
+<a href="/how-to-write-a-meeting-summary-prompt" class="related-card"><div class="related-card-title">How to write a meeting summary prompt</div><div class="related-card-desc">Prompt library with variants for sales calls, board meetings, interviews.</div></a>
+<a href="/ai-meeting-summary-vs-transcript" class="related-card"><div class="related-card-title">Summary vs Transcript</div><div class="related-card-desc">Why the distinction matters and how to design for the right output.</div></a>
+<a href="/ai-meeting-summary-for-sales-teams" class="related-card"><div class="related-card-title">AI Meeting Summary for Sales Teams</div><div class="related-card-desc">CRM workflows, call intelligence, and the sales-specific tool stack.</div></a>
+<a href="/ai-meeting-summary-for-executives" class="related-card"><div class="related-card-title">AI Meeting Summary for Executives</div><div class="related-card-desc">Board prep, 1:1 cadence, decision archives.</div></a>
+<a href="/how-to-use-ai-to-summarize-meetings" class="related-card"><div class="related-card-title">How to use AI to summarize meetings</div><div class="related-card-desc">The deeper how-to with examples and templates.</div></a>
+<a href="/ai-tool-stack-auditor" class="related-card"><div class="related-card-title">AI Tool Stack Auditor</div><div class="related-card-desc">Free interactive — surfaces redundancies in your AI stack including meeting tools.</div></a>
+</div>
+</div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Want help picking the right tool for your team?</div><div class="cta-sub">The free AI Tool Stack Auditor takes 3 minutes and gives you a personalized recommendation.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/ai-tool-stack-auditor" class="btn-p">Run the auditor →</a>
+<a href="/services/ai-audit" class="btn-g">Book the $1,500 AI Audit</a>
+</div></div></div></section>
+
+<GlobalFooter />
+</body></html>
