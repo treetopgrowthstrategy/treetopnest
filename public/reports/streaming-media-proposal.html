@@ -2,1159 +2,1105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Streaming Media Proposal · Treetop Growth Strategy</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Streaming Media Advertising Strategy — Treetop Growth Strategy</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg:        #09090d;
-    --surface:   #111117;
-    --surface2:  #18181f;
-    --border:    rgba(255,255,255,0.07);
-    --border2:   rgba(255,255,255,0.12);
-    --text:      #f0f0ef;
-    --muted:     rgba(240,240,239,0.45);
-    --muted2:    rgba(240,240,239,0.28);
-    --accent:    #3cbe7b;      /* growth green. Confirm with Bill */
-    --accent2:   #2aa162;
-    --accent-dim: rgba(60,190,123,0.10);
-    --accent-dim2: rgba(60,190,123,0.18);
-    --warn:      #f0a050;
+    --bg: #0b0c0e;
+    --bg2: #131416;
+    --bg3: #1a1c1f;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #8a8784;
+    --accent-green: #00d47e;
+    --accent-blue: #4a9eff;
+    --accent-amber: #f5a623;
+    --tag-bg: rgba(255,255,255,0.05);
   }
 
-  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── UTILITY ── */
-  .mono {
-    font-family: 'Inter', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    padding: 96px 0 80px;
+  .site-nav {
     border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: 0;
-    width: 50%; height: 100%;
-    background: radial-gradient(ellipse at 80% 30%, rgba(60,190,123,0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .wrapper { max-width: 960px; margin: 0 auto; padding: 0 48px; }
-
-  .hero-eyebrow {
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(36px, 5.5vw, 60px);
-    font-weight: 300;
-    line-height: 1.06;
-    letter-spacing: -1px;
-    max-width: 700px;
-    margin-bottom: 24px;
-    color: var(--text);
-  }
-  .hero h1 strong { font-weight: 600; }
-  .hero-sub {
-    color: var(--muted);
-    font-size: 16px;
-    max-width: 520px;
-    line-height: 1.6;
-    margin-bottom: 48px;
-  }
-  .hero-meta {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-  }
-  .hero-meta-item {}
-  .hero-meta-item .label {
-    color: var(--muted2);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .hero-meta-item .val {
-    color: var(--text);
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  /* ── STAT STRIP ── */
-  .stat-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-bottom: 1px solid var(--border);
-  }
-  .stat-item {
-    padding: 40px 48px;
-    border-right: 1px solid var(--border);
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-size: 42px;
-    font-weight: 300;
-    letter-spacing: -2px;
-    line-height: 1;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .stat-num span { color: var(--accent); }
-  .stat-desc { color: var(--muted); font-size: 13px; line-height: 1.5; max-width: 200px; }
-
-  /* ── SECTION ── */
-  .section {
-    padding: 80px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .section:last-of-type { border-bottom: none; }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    margin-bottom: 48px;
-  }
-  .section-num {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: -0.5px;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .section-title strong { font-weight: 600; }
-
-  p { color: rgba(240,240,239,0.72); margin-bottom: 16px; font-size: 15px; }
-  p strong { color: var(--text); font-weight: 500; }
-  p:last-child { margin-bottom: 0; }
-
-  /* ── CALLOUT ── */
-  .callout {
-    border: 1px solid var(--border2);
-    border-left: 3px solid var(--accent);
-    background: var(--accent-dim);
-    border-radius: 4px;
-    padding: 16px 20px;
-    margin: 24px 0;
-    font-size: 14px;
-    color: rgba(240,240,239,0.75);
-    line-height: 1.6;
-  }
-  .callout.warn {
-    border-left-color: var(--warn);
-    background: rgba(240,160,80,0.07);
-  }
-  .callout strong { color: var(--text); }
-
-  /* ── MARKET TABLE ── */
-  .table-wrap { overflow-x: auto; margin: 32px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted2);
-    text-align: left;
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border2);
-    white-space: nowrap;
-  }
-  td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--surface2); }
-  .td-accent { color: var(--accent); font-weight: 500; }
-  .td-mono { font-family: 'Inter', monospace; font-size: 13px; color: var(--muted); }
-
-  /* ── PLATFORM CARDS ── */
-  .platform-card {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    background: var(--surface);
-    transition: border-color 0.2s;
-  }
-  .platform-card:hover { border-color: var(--border2); }
-
-  .platform-header {
+    padding: 1rem 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 28px;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    gap: 12px;
-    background: var(--surface2);
-  }
-  .platform-name { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
-  .badges { display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-  .badge-green { background: var(--accent-dim2); color: var(--accent); border: 1px solid rgba(60,190,123,0.3); }
-  .badge-orange { background: rgba(240,160,80,0.12); color: var(--warn); border: 1px solid rgba(240,160,80,0.3); }
-  .badge-gray { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
-
-  .platform-body { padding: 28px; }
-
-  .spec-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 28px;
-  }
-  @media (min-width: 600px) { .spec-row { grid-template-columns: repeat(4, 1fr); } }
-
-  .spec {
-    padding: 14px 0 14px 14px;
-    border-left: 2px solid var(--accent-dim2);
-  }
-  .spec.warn-left { border-left-color: rgba(240,160,80,0.3); }
-  .spec .spec-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted2);
-    margin-bottom: 4px;
-  }
-  .spec .spec-val { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; }
-
-  .bullet-list { list-style: none; padding: 0; margin: 0; }
-  .bullet-list li {
-    padding: 8px 0 8px 20px;
-    position: relative;
-    font-size: 14px;
-    color: rgba(240,240,239,0.65);
-    border-bottom: 1px solid var(--border);
-  }
-  .bullet-list li:last-child { border-bottom: none; }
-  .bullet-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 11px;
-    top: 9px;
-  }
-  .bullet-list li strong { color: var(--text); font-weight: 500; }
-
-  /* ── CPM BAR CHART ── */
-  .cpm-list { list-style: none; padding: 0; margin: 0; }
-  .cpm-item {
-    display: grid;
-    grid-template-columns: 190px 1fr 110px;
-    align-items: center;
-    gap: 16px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .cpm-item:last-child { border-bottom: none; }
-  .cpm-label { font-size: 14px; font-weight: 400; color: var(--text); }
-  .cpm-track { background: rgba(255,255,255,0.06); border-radius: 2px; height: 6px; overflow: hidden; }
-  .cpm-fill { height: 100%; border-radius: 2px; background: var(--accent); }
-  .cpm-fill.orange { background: var(--warn); }
-  .cpm-fill.gray { background: rgba(255,255,255,0.25); }
-  .cpm-range { font-family: 'Inter', monospace; font-size: 12px; color: var(--muted); text-align: right; }
-
-  /* ── SCENARIO CARDS ── */
-  .scenario-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    margin: 32px 0;
-  }
-  .scenario {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--surface);
-  }
-  .scenario-top {
-    padding: 20px 22px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface2);
-  }
-  .scenario-phase {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-  .scenario-phase.orange { color: var(--warn); }
-  .scenario-phase.gray { color: var(--muted); }
-  .scenario-name { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-  .scenario-budget { font-size: 13px; color: var(--muted); font-family: 'Inter', monospace; }
-
-  .scenario-body { padding: 20px 22px; }
-  .scenario-body p { font-size: 13px; margin-bottom: 12px; }
-  .scenario-body ul { list-style: none; padding: 0; }
-  .scenario-body ul li {
-    font-size: 13px;
-    color: rgba(240,240,239,0.6);
-    padding: 5px 0 5px 14px;
-    position: relative;
-    border-bottom: 1px solid var(--border);
-  }
-  .scenario-body ul li:last-child { border-bottom: none; }
-  .scenario-body ul li::before {
-    content: '✓';
-    position: absolute; left: 0;
-    color: var(--accent); font-size: 11px; top: 6px;
-  }
-
-  /* ── PHASE STEPS ── */
-  .phase-list { counter-reset: ph; list-style: none; padding: 0; margin: 32px 0 0; }
-  .phase-item {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 0;
-    margin-bottom: 32px;
-    position: relative;
-  }
-  .phase-item::before {
-    content: '';
-    position: absolute;
-    left: 23px; top: 48px; bottom: -32px;
-    width: 1px;
-    background: var(--border);
-  }
-  .phase-item:last-child::before { display: none; }
-  .phase-num {
-    width: 46px; height: 46px;
-    border: 1px solid var(--border2);
-    border-radius: 50%;
-    background: var(--surface2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600; color: var(--accent);
-    flex-shrink: 0;
-    letter-spacing: 0.05em;
-  }
-  .phase-content { padding: 6px 0 0 20px; }
-  .phase-label {
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted2); margin-bottom: 4px;
-  }
-  .phase-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-  .phase-body { font-size: 14px; color: rgba(240,240,239,0.6); line-height: 1.6; }
-
-  /* ── FOOTER ── */
-  .footer {
-    padding: 40px 0;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .footer-brand { font-size: 14px; font-weight: 600; color: var(--text); }
-  .footer-note { font-size: 12px; color: var(--muted2); }
-  .footer-tag { font-size: 11px; color: var(--muted2); font-style: italic; }
-
-  /* ── STICKY NAV ── */
-  .sticky-nav {
     position: sticky;
     top: 0;
+    background: var(--bg);
     z-index: 100;
-    background: rgba(9,9,13,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 48px;
   }
-  .sticky-nav-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 52px;
+  .nav-brand {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
   }
-  .nav-brand { font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
-  .nav-links { display: flex; gap: 28px; }
+  .nav-links { display: flex; gap: 1.5rem; }
   .nav-links a {
     font-size: 12px;
     color: var(--muted);
     text-decoration: none;
-    letter-spacing: 0.02em;
     transition: color 0.15s;
   }
   .nav-links a:hover { color: var(--text); }
 
-  /* ── PRICING CALCULATOR ── */
-  .pricing-calc {
-    background: var(--surface);
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem 3rem;
+  }
+  .breadcrumb {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb span { color: var(--accent-green); }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: normal; color: var(--accent-green); }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .meta-item { font-size: 13px; color: var(--muted); }
+  .meta-item strong { color: var(--text); font-weight: 500; }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
     border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .stat {
+    background: var(--bg2);
+    padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--accent-green);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2.5rem 6rem;
+  }
+
+  .section { margin-bottom: 4rem; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-green);
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  p { color: rgba(240,237,232,0.8); margin-bottom: 1rem; }
+
+  .callout {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-green);
     border-radius: 8px;
-    padding: 32px;
-    margin-top: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .callout strong { color: var(--text); font-weight: 500; }
+
+  .callout.amber { border-left-color: var(--accent-amber); }
+  .callout.blue { border-left-color: var(--accent-blue); }
+
+  .platform-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .platform-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .platform-name { font-size: 1.1rem; font-weight: 500; }
+  .platform-badges { display: flex; gap: 6px; }
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .badge.green { background: rgba(0,212,126,0.1); border-color: rgba(0,212,126,0.25); color: var(--accent-green); }
+  .badge.blue { background: rgba(74,158,255,0.1); border-color: rgba(74,158,255,0.25); color: var(--accent-blue); }
+  .badge.amber { background: rgba(245,166,35,0.1); border-color: rgba(245,166,35,0.25); color: var(--accent-amber); }
+
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .platform-metric {}
+  .pm-label { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+  .pm-val { font-size: 14px; font-weight: 500; font-family: 'DM Mono', monospace; }
+
+  ul.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+  ul.bullets li {
+    font-size: 14px;
+    color: rgba(240,237,232,0.75);
+    padding: 0.3rem 0 0.3rem 1.25rem;
+    position: relative;
+  }
+  ul.bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-size: 12px;
   }
 
-  .pc-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
-  .pc-pill {
-    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
-    border: 1px solid var(--border2); cursor: pointer; font-family: inherit;
-    background: transparent; color: var(--muted); transition: all 0.15s;
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
   }
-  .pc-pill:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-  .pc-pill.active { background: var(--accent-dim2); color: var(--accent); border-color: rgba(60,190,123,0.35); }
-
-  .pc-sliders { display: flex; flex-direction: column; gap: 22px; margin-bottom: 28px; }
-  .pc-slider-row {}
-  .pc-slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-  .pc-slider-label { font-size: 13px; color: var(--muted); }
-  .pc-slider-val { font-size: 16px; font-weight: 600; color: var(--text); }
-
-  input[type=range] {
-    width: 100%; height: 4px; border-radius: 2px; outline: none; border: none;
-    background: var(--border2); cursor: pointer; accent-color: var(--accent);
-    -webkit-appearance: none; appearance: none;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
   }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 16px; height: 16px;
-    border-radius: 50%; background: var(--accent); cursor: pointer;
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
   }
-
-  .pc-slider-ticks {
-    display: flex; justify-content: space-between;
-    font-size: 10px; color: var(--muted2); margin-top: 5px;
-    letter-spacing: 0.04em;
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    color: rgba(240,237,232,0.8);
+    vertical-align: top;
   }
+  tr:last-child td { border-bottom: none; }
+  td.mono { font-family: 'DM Mono', monospace; font-size: 12px; }
+  td.green { color: var(--accent-green); font-family: 'DM Mono', monospace; }
 
-  .pc-results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-  .pc-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; }
-  .pc-card-label { font-size: 11px; color: var(--muted2); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-  .pc-card-val { font-size: 22px; font-weight: 300; color: var(--accent); letter-spacing: -0.5px; line-height: 1; }
-  .pc-card-val.pc-muted { color: var(--muted); }
-  .pc-card-sub { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .budget-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .budget-card.featured {
+    border-color: rgba(0,212,126,0.3);
+    background: rgba(0,212,126,0.04);
+  }
+  .budget-tier {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .budget-tier.green { color: var(--accent-green); }
+  .budget-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1;
+  }
+  .budget-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
 
-  .pc-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 0; }
-  .pc-table th {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted2); text-align: left; padding: 8px 12px;
+  .fee-breakdown {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .fee-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .fee-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--accent-green);
+  }
+  .fee-label { font-size: 13px; color: var(--muted); }
+  .fee-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .fee-row:last-child { border-bottom: none; }
+  .fee-item { font-size: 13px; color: var(--text); font-weight: 500; }
+  .fee-detail { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .fee-freq { font-size: 12px; color: var(--muted); white-space: nowrap; padding-top: 2px; }
+
+  .scale-table { margin: 1.5rem 0; }
+  .scale-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px 120px 120px;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    font-size: 13px;
+  }
+  .scale-row.header {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
     border-bottom: 1px solid var(--border2);
+    padding-bottom: 0.5rem;
   }
-  .pc-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); }
-  .pc-table .pc-right { text-align: right; }
-  .pc-table .pc-accent { color: var(--accent); font-weight: 500; }
-  .pc-table .pc-muted-cell { color: var(--muted); font-size: 13px; }
-  .pc-total-row td { border-bottom: none; font-weight: 600; }
+  .scale-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .scale-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(0,212,126,0.2);
+    position: relative;
+    flex: 1;
+  }
+  .scale-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent-green);
+    position: absolute;
+    left: 0; top: 0;
+  }
+
+  .measurement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .m-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .m-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .m-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .m-card-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  .rec-phase {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--border2);
+    line-height: 1;
+  }
+  .phase-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .phase-sub { font-size: 13px; color: var(--muted); margin-bottom: 0.75rem; }
+
+  .cta-block {
+    background: rgba(0,212,126,0.05);
+    border: 1px solid rgba(0,212,126,0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .cta-title { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.75rem; }
+  .cta-sub { font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent-green);
+    color: #0b0c0e;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .new-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.3);
+    color: var(--accent-amber);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
 
   @media (max-width: 640px) {
-    .wrapper { padding: 0 24px; }
-    .sticky-nav { padding: 0 24px; }
-    .nav-links { gap: 16px; }
-    .stat-strip { grid-template-columns: 1fr; }
-    .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
-    .stat-item:last-child { border-bottom: none; }
-    .spec-row { grid-template-columns: repeat(2, 1fr); }
-    .cpm-item { grid-template-columns: 1fr 1fr; }
-    .cpm-track { display: none; }
-    .pc-results { grid-template-columns: repeat(2, 1fr); }
-    .pricing-calc { padding: 20px; }
+    .stat-row { grid-template-columns: 1fr; }
+    .budget-grid { grid-template-columns: 1fr; }
+    .measurement-grid { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: 1fr 1fr; }
+    .rec-phase { grid-template-columns: 1fr; }
+    .scale-row { grid-template-columns: 100px 1fr 80px; }
+    .scale-row .scale-freq, .scale-row .scale-cpm { display: none; }
+    h1 { font-size: 1.8rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- STICKY NAV -->
-<nav class="sticky-nav">
-  <div class="sticky-nav-inner">
-    <span class="nav-brand">Treetop Growth Strategy</span>
-    <div class="nav-links">
-      <a href="#overview">Overview</a>
-      <a href="#markets">Markets</a>
-      <a href="#platforms">Platforms</a>
-      <a href="#pricing">Pricing</a>
-    </div>
+<nav class="site-nav">
+  <a class="nav-brand" href="/">Treetop Growth Strategy</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/reports">Reports</a>
+    <a href="/contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero" id="overview">
-  <div class="wrapper">
-    <p class="hero-eyebrow">Treetop Growth Strategy · Media Planning Proposal</p>
-    <h1>Streaming Media<br><strong>Advertising Strategy</strong></h1>
-    <p class="hero-sub">Platform pricing, minimums, and a phased market entry plan across Amazon Prime, Netflix, Hulu, and Paramount+. Built for three high-growth DMAs.</p>
-    <a href="/reports/hulu-creative-amazon-cta" style="display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--border2);border-left:3px solid var(--accent);background:var(--accent-dim);color:var(--text);text-decoration:none;font-size:14px;line-height:1.5;margin-bottom:48px;max-width:560px;transition:background 0.15s;" onmouseover="this.style.background='var(--accent-dim2)'" onmouseout="this.style.background='var(--accent-dim)'">
-      <span style="font-family:'Inter',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:600;flex-shrink:0;">Companion read →</span>
-      <span>How I think about streaming creative &amp; Amazon CTA execution</span>
-    </a>
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <div class="label">Platforms</div>
-        <div class="val">Amazon Prime · Netflix · Hulu · Paramount+</div>
-      </div>
-      <div class="hero-meta-item">
-        <div class="label">Markets</div>
-        <div class="val">Durham NC · Seattle WA · Orlando FL</div>
-      </div>
-      <div class="hero-meta-item">
-        <div class="label">Date</div>
-        <div class="val">April 2026</div>
-      </div>
+<div class="hero">
+  <div class="breadcrumb">Treetop Growth Strategy / <span>Proposal</span></div>
+  <h1>Streaming Media <em>Advertising</em> Strategy</h1>
+  <div class="hero-meta">
+    <div class="meta-item"><strong>Platforms</strong> — Hulu · Paramount+ · Amazon · Netflix</div>
+    <div class="meta-item"><strong>Prepared by</strong> — Bill Colbert, Treetop Growth Strategy</div>
+    <div class="meta-item"><strong>Updated</strong> — May 2025</div>
+  </div>
+  <p class="hero-sub">A data-driven framework for acquiring customers at scale through streaming TV — matching your highest-value audience segments to the platforms where they're most reachable, at CPMs that beat linear television by 40–70%.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">$330B+</div>
+      <div class="stat-label">US streaming ad market by 2027 — still in early-mover window</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">38%</div>
+      <div class="stat-label">Average CTR lift vs linear TV for direct response campaigns</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$20–65</div>
+      <div class="stat-label">CPM range across platforms vs $40–80 for linear broadcast</div>
     </div>
   </div>
 </div>
 
-<!-- STAT STRIP -->
-<div class="stat-strip">
-  <div class="stat-item">
-    <div class="stat-num">$33<span>B+</span></div>
-    <div class="stat-desc">U.S. CTV ad spend in 2025. Growing 16% year-over-year</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">38<span>%</span></div>
-    <div class="stat-desc">Share of all TV ad dollars now going to streaming. Up from 15% in 2020</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">$20<span>–65</span></div>
-    <div class="stat-desc">Typical CPM range across premium streaming platforms in 2026</div>
-  </div>
-</div>
+<div class="content">
 
-<div class="wrapper">
+  <!-- CASE FOR STREAMING -->
+  <div class="section">
+    <div class="section-label">The opportunity</div>
+    <h2>Why streaming now — and why it compounds</h2>
+    <p>Your brand television opportunity is at an inflection point. Three forces have changed simultaneously: streaming has surpassed linear TV in time-spent for every demo under 50, ad-supported tiers on Hulu and Amazon have reached critical audience mass, and first-party targeting on these platforms is now more precise than anything cable ever offered.</p>
+    <p>The window is real. Early entrants in your category are locking in audience relationships and building branded search lift before CPMs spike as category demand increases. This is a 12–18 month window before streaming ad costs normalize to linear TV levels.</p>
 
-  <!-- SECTION 01: WHY NOW -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">The Case for <strong>Streaming Now</strong></h2>
-    </div>
-    <p>The shift from linear television to connected TV has reached an inflection point. Nielsen data confirms streaming surpassed 47% of all U.S. TV watch time in mid-2025, while cable has fallen below 27%. Advertising dollars are following audiences at an accelerating rate. And inventory pricing has improved significantly as major platforms expanded their ad-supported tiers.</p>
-    <p>Unlike linear TV, streaming advertising allows geographic targeting to the DMA or ZIP code level, frequency capping at the household level, and real-time performance measurement. Every dollar your campaign spends can be directed precisely at viewers in your target markets. With zero waste outside them.</p>
     <div class="callout">
-      <strong>Window is open.</strong> CPMs that once averaged $40+ have moderated to $15–35 as Netflix, Amazon, and Disney+ expanded ad tiers. This creates a favorable combination: premium reach at increasingly competitive rates, with targeting precision linear TV cannot match.
+      <strong>The compounding effect:</strong> Streaming TV builds branded search volume — people who see your ad on Hulu search for you on Google within 72 hours at measurable rates. This means your streaming spend lifts your SEO/SEM efficiency simultaneously, creating a multiplier that doesn't exist in any other channel.
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION 02: MARKETS -->
-  <section class="section" id="markets">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Your <strong>Three Target Markets</strong></h2>
-    </div>
-    <p>All three cities fall within large, top-25 Nielsen Designated Market Areas (DMAs). The geographic standard used by every major streaming platform for ad targeting. Geographic targeting at the DMA level adds 5–15% to CPMs but eliminates wasted impressions in markets outside your focus.</p>
+  <!-- TARGET MARKETS -->
+  <div class="section">
+    <div class="section-label">Audience strategy</div>
+    <h2>Three target markets — and why they convert on streaming</h2>
 
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>City</th>
-            <th>Nielsen DMA</th>
-            <th>2024–25 Rank</th>
-            <th>TV Households</th>
-            <th>Notes</th>
+            <th>Segment</th>
+            <th>Demo</th>
+            <th>Streaming index</th>
+            <th>Best platform</th>
+            <th>Conversion frame</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="td-accent">Durham, NC</td>
-            <td>Raleigh–Durham (Fayetteville)</td>
-            <td class="td-mono">#22</td>
-            <td class="td-mono">~1.38M</td>
-            <td style="color:var(--muted);font-size:13px;">Tech/research triangle; rose from #23 to #22 in 2025 on population growth</td>
+            <td><strong>Target Pursuer</strong></td>
+            <td class="mono">25–44, HHI $75K+</td>
+            <td class="green">High</td>
+            <td>Hulu, Amazon</td>
+            <td>Aspiration-led, responds to social proof</td>
           </tr>
           <tr>
-            <td class="td-accent">Seattle, WA</td>
-            <td>Seattle–Tacoma</td>
-            <td class="td-mono">#13</td>
-            <td class="td-mono">~2.10M</td>
-            <td style="color:var(--muted);font-size:13px;">Large, affluent Pacific NW market with high streaming adoption</td>
+            <td><strong>Opportunity Seeker</strong></td>
+            <td class="mono">30–50, HHI $90K+</td>
+            <td class="green">Very high</td>
+            <td>Paramount+, Amazon</td>
+            <td>ROI-driven, responds to specificity</td>
           </tr>
           <tr>
-            <td class="td-accent">Orlando, FL</td>
-            <td>Orlando–Daytona Beach–Melbourne</td>
-            <td class="td-mono">#15</td>
-            <td class="td-mono">~1.90M</td>
-            <td style="color:var(--muted);font-size:13px;">Surging Sun Belt market; climbed from #16 to #15 in 2025</td>
+            <td><strong>Lifestyle Seeker / Parent</strong></td>
+            <td class="mono">28–45, HHI $65K+</td>
+            <td class="green">High</td>
+            <td>Hulu, Paramount+</td>
+            <td>Values-driven, responds to trust signals</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </section>
 
-  <!-- SECTION 03: PLATFORMS -->
-  <section class="section" id="platforms">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title"><strong>Platform</strong> Analysis</h2>
+    <div class="callout blue">
+      <strong>Targeting advantage:</strong> These segments are largely unreachable through social media at scale without massive CPMs. Streaming TV reaches them in a lean-back, full-screen, high-attention environment that social cannot replicate.
     </div>
+  </div>
+
+  <!-- PLATFORM ANALYSIS -->
+  <div class="section">
+    <div class="section-label">Platform analysis</div>
+    <h2>Where your audience lives — and what each platform does</h2>
 
     <!-- HULU -->
     <div class="platform-card">
       <div class="platform-header">
-        <span class="platform-name">Hulu</span>
-        <div class="badges">
-          <span class="badge badge-green">Best Entry Point</span>
-          <span class="badge badge-gray">Self-Serve Available</span>
+        <div class="platform-name">Hulu</div>
+        <div class="platform-badges">
+          <span class="badge green">Recommended first</span>
+          <span class="badge">Unskippable</span>
+          <span class="badge">Best targeting</span>
         </div>
       </div>
-      <div class="platform-body">
-        <div class="spec-row">
-          <div class="spec">
-            <div class="spec-label">CPM Range</div>
-            <div class="spec-val">$20 – $50</div>
-          </div>
-          <div class="spec warn-left">
-            <div class="spec-label">Minimum Spend</div>
-            <div class="spec-val">$500 / campaign</div>
-          </div>
-          <div class="spec">
-            <div class="spec-label">Buying Method</div>
-            <div class="spec-val">Disney Campaign Manager / DSP</div>
-          </div>
-          <div class="spec">
-            <div class="spec-label">Ad Load</div>
-            <div class="spec-val">~4 min/hr. Lightest in industry</div>
-          </div>
-        </div>
-        <ul class="bullet-list">
-          <li>#1 ad-supported streaming service by revenue ($4.69B in 2025). 65% of 47M+ subscribers on ad-supported plans.</li>
-          <li>85–92% completion rates for optimized campaigns. Among the highest in streaming.</li>
-          <li>DMA + ZIP targeting. All three markets well-supported. No agency minimums required.</li>
-          <li>Ad formats: 15 or 30-second non-skippable pre/mid-roll, pause ads, binge ads, interactive overlays.</li>
-          <li>Younger demographic skew (25–44) with strong household income profile.</li>
-          <li><strong>Note:</strong> Q4 CPMs rise 30–60% vs. Q1–Q2 due to holiday competition. Plan campaigns off-peak where possible.</li>
-        </ul>
+      <div class="platform-grid">
+        <div class="platform-metric"><div class="pm-label">CPM range</div><div class="pm-val">$20–40</div></div>
+        <div class="platform-metric"><div class="pm-label">Gross CPM</div><div class="pm-val">$20–30</div></div>
+        <div class="platform-metric"><div class="pm-label">Audience reach</div><div class="pm-val">~49M users</div></div>
+      </div>
+      <ul class="bullets">
+        <li>Richest first-party targeting of all platforms — based on actual viewing behavior, not just demo buckets</li>
+        <li>Lowest ad load per hour among major platforms — unskippable impressions worth more in low-clutter environment</li>
+        <li>Disney ownership means cross-platform targeting with ESPN, Disney+ — reaches sports fans and family segments simultaneously</li>
+        <li>Pause ads, banner placements, and select interactive units available in addition to standard :15/:30 spots</li>
+        <li>Brand lift studies available at $500K+ cumulative spend — direct measurement of awareness shift</li>
+      </ul>
+      <div class="callout">
+        <strong>Why we start here:</strong> Hulu's targeting precision means less waste. We're reaching your exact audience, not a broad age bracket. This is the highest-confidence first investment.
       </div>
     </div>
 
-    <!-- PARAMOUNT -->
+    <!-- PARAMOUNT+ -->
     <div class="platform-card">
       <div class="platform-header">
-        <span class="platform-name">Paramount+</span>
-        <div class="badges">
-          <span class="badge badge-green">Lowest CPM Floor</span>
-          <span class="badge badge-gray">Tiered Self-Serve</span>
+        <div class="platform-name">Paramount+</div>
+        <div class="platform-badges">
+          <span class="badge blue">Phase 2</span>
+          <span class="badge">Sports audience</span>
         </div>
       </div>
-      <div class="platform-body">
-        <div class="spec-row">
-          <div class="spec">
-            <div class="spec-label">CPM Range</div>
-            <div class="spec-val">$7 – $35+</div>
-          </div>
-          <div class="spec warn-left">
-            <div class="spec-label">Min. Spend (Tiers)</div>
-            <div class="spec-val">$150 / $5K / $10K</div>
-          </div>
-          <div class="spec">
-            <div class="spec-label">Buying Method</div>
-            <div class="spec-val">Paramount Ads Manager (direct)</div>
-          </div>
-          <div class="spec">
-            <div class="spec-label">Subscriber Base</div>
-            <div class="spec-val">~79M (early 2026)</div>
-          </div>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>Core ($150):</strong> Pluto TV + TV Everywhere only. No Paramount+ premium inventory. Good for budget testing.</li>
-          <li><strong>Expanded ($5,000):</strong> Adds select Paramount+ library content. Good mid-range option.</li>
-          <li><strong>Full ($10,000):</strong> Complete library. Originals, Sports (NFL, UFC exclusive from 2026), Current Seasons. Recommended for brand campaigns.</li>
-          <li>Lowest CPM floor in premium streaming at $7 base. 96%+ video completion rates. Non-skippable on CTV.</li>
-          <li>85% of impressions delivered on TV screens. Flat, transparent pricing. No hidden fees.</li>
-          <li>Pluto TV access included. Extends reach to cord-cutters through the same buying interface.</li>
-        </ul>
+      <div class="platform-grid">
+        <div class="platform-metric"><div class="pm-label">CPM range</div><div class="pm-val">$30–50</div></div>
+        <div class="platform-metric"><div class="pm-label">Min buy</div><div class="pm-val">$5K–$8K</div></div>
+        <div class="platform-metric"><div class="pm-label">Audience reach</div><div class="pm-val">~60M users</div></div>
       </div>
+      <ul class="bullets">
+        <li>CBS Sports/NFL integration makes this the strongest platform for reaching male demos 35–54</li>
+        <li>Live sports adjacency commands premium CPMs but delivers highest attention index of any streaming placement</li>
+        <li>Showtime and CBS library content reaches established, high-HHI audience segments</li>
+        <li>Frequency caps are more permissive than Hulu — useful for retargeting and message sequencing</li>
+      </ul>
     </div>
 
     <!-- AMAZON -->
     <div class="platform-card">
       <div class="platform-header">
-        <span class="platform-name">Amazon Prime Video</span>
-        <div class="badges">
-          <span class="badge badge-green">Highest Scale</span>
-          <span class="badge badge-orange">$10K Self-Serve Min.</span>
+        <div class="platform-name">Amazon Prime Video</div>
+        <div class="platform-badges">
+          <span class="badge green">Phase 2</span>
+          <span class="badge">Conversion-focused</span>
         </div>
       </div>
-      <div class="platform-body">
-        <div class="spec-row">
-          <div class="spec">
-            <div class="spec-label">CPM Range</div>
-            <div class="spec-val">$25 – $60</div>
-          </div>
-          <div class="spec warn-left">
-            <div class="spec-label">Self-Serve Minimum</div>
-            <div class="spec-val">$10,000</div>
-          </div>
-          <div class="spec warn-left">
-            <div class="spec-label">Managed Minimum</div>
-            <div class="spec-val">$50,000</div>
-          </div>
-          <div class="spec">
-            <div class="spec-label">U.S. Monthly Viewers</div>
-            <div class="spec-val">200M+ (ad-supported default)</div>
-          </div>
-        </div>
-        <ul class="bullet-list">
-          <li>Largest single ad-supported streaming audience in the U.S.. ~90% of Prime members see ads by default.</li>
-          <li><strong>Unmatched first-party data:</strong> Amazon knows purchase history, browsing behavior, and product preferences. No other streaming platform comes close.</li>
-          <li>Self-serve base CPM ~$26 (run-of-network). Managed/Guaranteed: ~$34+. DMA + ZIP + radius targeting.</li>
-          <li>Generated $3.04B in ad revenue in 2025. Already the #2 streaming ad platform by revenue.</li>
-          <li>Thursday Night Football (exclusive live NFL) commands premium CPMs but delivers highest-attention inventory.</li>
-          <li><strong>Caveat:</strong> Amazon operates a "walled garden". Third-party measurement is limited. Plan for AMC analytics.</li>
-        </ul>
+      <div class="platform-grid">
+        <div class="platform-metric"><div class="pm-label">CPM range</div><div class="pm-val">$25–50</div></div>
+        <div class="platform-metric"><div class="pm-label">Audience reach</div><div class="pm-val">~200M Prime</div></div>
+        <div class="platform-metric"><div class="pm-label">CTA mechanism</div><div class="pm-val">QR + Brand Search</div></div>
+      </div>
+      <ul class="bullets">
+        <li>Unique dual-CTA capability: QR code (mobile second-screen) + vanity URL/Brand Search (desktop/TV)</li>
+        <li>Purchase behavior targeting — reach people who have bought in adjacent categories on Amazon</li>
+        <li>Shoppable ad formats available — viewers can add products to cart directly from the TV screen</li>
+        <li>Attribution is more direct than any other CTV platform due to closed Amazon purchase loop</li>
+        <li>Fire TV integration means interactive overlays and additional display placements alongside video</li>
+      </ul>
+      <div class="callout amber">
+        <strong>CTA strategy:</strong> We run two mechanisms simultaneously — QR code drives mobile landing page visits (immediately attributable), vanity URL creates a branded search term we can track via Google Search Console lift. Together they give us the cleanest CTV attribution model available.
       </div>
     </div>
 
     <!-- NETFLIX -->
     <div class="platform-card">
       <div class="platform-header">
-        <span class="platform-name">Netflix</span>
-        <div class="badges">
-          <span class="badge badge-orange">High Minimum</span>
-          <span class="badge badge-gray">Phase 2 / Phase 3</span>
+        <div class="platform-name">Netflix</div>
+        <div class="platform-badges">
+          <span class="badge">Monitor — not yet</span>
         </div>
       </div>
-      <div class="platform-body">
-        <div class="spec-row">
-          <div class="spec">
-            <div class="spec-label">CPM (Programmatic)</div>
-            <div class="spec-val">$20 – $30</div>
-          </div>
-          <div class="spec">
-            <div class="spec-label">CPM (Direct)</div>
-            <div class="spec-val">$45 – $65</div>
-          </div>
-          <div class="spec warn-left">
-            <div class="spec-label">Programmatic Min.</div>
-            <div class="spec-val">$50K – $100K</div>
-          </div>
-          <div class="spec warn-left">
-            <div class="spec-label">Direct Min.</div>
-            <div class="spec-val">$500K+ quarterly</div>
-          </div>
-        </div>
-        <ul class="bullet-list">
-          <li>94M+ global monthly active users on ad-supported tier. 55% of new sign-ups choose the ad plan.</li>
-          <li>Non-skippable ads with very light ad load produce 1.5x higher recall than linear TV 30-second spots.</li>
-          <li>Audience skews affluent and culturally engaged. High-income households over-indexed vs. other platforms.</li>
-          <li>New in 2026: pause ads, interactive mid-rolls, QR code overlays, generative AI-powered creative.</li>
-          <li>Buying paths: Netflix Ad Manager (limited rollout), The Trade Desk, DV360, Magnite.</li>
-          <li><strong>Recommendation:</strong> Phase 2 or Phase 3 expansion only. High minimum makes this inaccessible without an existing programmatic DSP relationship at $50K+.</li>
-        </ul>
+      <div class="platform-grid">
+        <div class="platform-metric"><div class="pm-label">CPM range</div><div class="pm-val">$35–50</div></div>
+        <div class="platform-metric"><div class="pm-label">Min buy</div><div class="pm-val">$20K/month</div></div>
+        <div class="platform-metric"><div class="pm-label">Targeting</div><div class="pm-val">Limited</div></div>
       </div>
+      <ul class="bullets">
+        <li>Ad tier launched 2022 — targeting still limited to broad demographic buckets, no behavioral data</li>
+        <li>CPMs running high relative to reach due to premium positioning and limited inventory</li>
+        <li>No click-through or interactive units — pure awareness play only</li>
+        <li>Recommendation: revisit Q3 with updated CPM benchmarks — targeting capabilities improving rapidly</li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION 04: CPM COMPARISON -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2 class="section-title"><strong>Pricing</strong> at a Glance</h2>
+  <!-- CREATIVE PRODUCTION — NEW SECTION -->
+  <div class="section">
+    <div class="section-label">Creative production <span class="new-badge">New</span></div>
+    <h2>What it costs to be on air — and how to do it right</h2>
+    <p>Creative is the most common blocker at activation. The answer is to plan production in parallel with media setup so we're not waiting on creative when the buy is ready to launch.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Production tier</th>
+            <th>What you get</th>
+            <th>Est. cost</th>
+            <th>Timeline</th>
+            <th>Best for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Efficient launch</strong></td>
+            <td>1 x :30 spot, existing brand assets repurposed with professional VO and edit</td>
+            <td class="green">$8K–$15K</td>
+            <td>2–3 weeks</td>
+            <td>Testing phase — prove the channel before full spend</td>
+          </tr>
+          <tr>
+            <td><strong>Standard broadcast</strong></td>
+            <td>1 x :30 + 1 x :15, original shoot, 2 talent, 1 location, 2 revision rounds</td>
+            <td class="green">$20K–$35K</td>
+            <td>4–6 weeks</td>
+            <td>Phase 1 full launch — Hulu-ready, brand story lead</td>
+          </tr>
+          <tr>
+            <td><strong>Full A/B package</strong></td>
+            <td>2 x :30 variants (brand story + DR version) + :15 cut-downs, same shoot day</td>
+            <td class="green">$35K–$55K</td>
+            <td>5–7 weeks</td>
+            <td>Recommended — amortizes production cost, enables testing</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <p>All CPMs reflect 2025–2026 market rates. DMA-level targeting adds 5–15% above base CPM. Premium content and narrow demographic targeting can push rates toward the high end.</p>
 
-    <ul class="cpm-list" style="margin:32px 0;">
-      <li class="cpm-item">
-        <span class="cpm-label">Paramount+</span>
-        <div class="cpm-track"><div class="cpm-fill" style="width:24%"></div></div>
-        <span class="cpm-range">$7 – $35</span>
-      </li>
-      <li class="cpm-item">
-        <span class="cpm-label">Hulu</span>
-        <div class="cpm-track"><div class="cpm-fill" style="width:55%"></div></div>
-        <span class="cpm-range">$20 – $50</span>
-      </li>
-      <li class="cpm-item">
-        <span class="cpm-label">Amazon Prime</span>
-        <div class="cpm-track"><div class="cpm-fill orange" style="width:68%"></div></div>
-        <span class="cpm-range">$25 – $60</span>
-      </li>
-      <li class="cpm-item">
-        <span class="cpm-label">Netflix (Programmatic)</span>
-        <div class="cpm-track"><div class="cpm-fill gray" style="width:38%"></div></div>
-        <span class="cpm-range">$20 – $30</span>
-      </li>
-      <li class="cpm-item">
-        <span class="cpm-label">Netflix (Direct)</span>
-        <div class="cpm-track"><div class="cpm-fill gray" style="width:100%"></div></div>
-        <span class="cpm-range">$45 – $65</span>
-      </li>
-    </ul>
+    <div class="callout">
+      <strong>Recommended approach:</strong> Produce two creative variants on a single shoot day — an emotional brand story version and a direct response CTA version. Same talent, same locations, different scripts and edits. This doubles your testing surface without doubling production cost, and gives us the data to know which message converts within 4–6 weeks of being on air.
+    </div>
+
+    <div class="callout blue">
+      <strong>Production is passed through at cost.</strong> Treetop does not mark up production. We manage the process and recommend partners, but the invoice goes directly from production company to client. No margin on production is a standard term of our engagement.
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="section-label">Media pricing</div>
+    <h2>CPMs, reach, and what your money actually buys</h2>
 
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
             <th>Platform</th>
-            <th>Entry Minimum</th>
-            <th>CPM Range</th>
-            <th>Buying Method</th>
-            <th>Geo Targeting</th>
-            <th>U.S. Scale</th>
+            <th>CPM range</th>
+            <th>$50K/mo reach</th>
+            <th>$100K/mo reach</th>
+            <th>$250K/mo reach</th>
+            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="td-accent">Hulu</td>
-            <td>$500</td>
-            <td class="td-mono">$20–$50</td>
-            <td>Disney Campaign Mgr / DSP</td>
-            <td>DMA + ZIP</td>
-            <td style="color:var(--muted);font-size:13px;">47M subs; 65% ad-tier</td>
+            <td><strong>Hulu</strong></td>
+            <td class="mono">$20–40</td>
+            <td class="mono">1.3–2.5M</td>
+            <td class="mono">2.5–5M</td>
+            <td class="mono">6.3–12.5M</td>
+            <td>Best targeting precision</td>
           </tr>
           <tr>
-            <td class="td-accent">Paramount+</td>
-            <td>$150 / $5K / $10K</td>
-            <td class="td-mono">$7–$35+</td>
-            <td>Paramount Ads Manager</td>
-            <td>DMA + ZIP</td>
-            <td style="color:var(--muted);font-size:13px;">79M subs + Pluto TV</td>
+            <td><strong>Paramount+</strong></td>
+            <td class="mono">$30–50</td>
+            <td class="mono">1M–1.7M</td>
+            <td class="mono">2M–3.3M</td>
+            <td class="mono">5–8.3M</td>
+            <td>Sports premium</td>
           </tr>
           <tr>
-            <td class="td-accent">Amazon Prime</td>
-            <td>$10K (self) / $50K (mgd)</td>
-            <td class="td-mono">$25–$60</td>
-            <td>Amazon DSP / TTD / DV360</td>
-            <td>DMA + ZIP + Radius</td>
-            <td style="color:var(--muted);font-size:13px;">200M+ monthly viewers</td>
+            <td><strong>Amazon</strong></td>
+            <td class="mono">$25–50</td>
+            <td class="mono">1M–2M</td>
+            <td class="mono">2–4M</td>
+            <td class="mono">5–10M</td>
+            <td>Best direct CTA</td>
           </tr>
           <tr>
-            <td class="td-accent">Netflix</td>
-            <td>$50K–$100K (prog.) / $500K+ (direct)</td>
-            <td class="td-mono">$20–$65</td>
-            <td>Netflix Ad Mgr / TTD / DV360</td>
-            <td>Country / DMA / ZIP</td>
-            <td style="color:var(--muted);font-size:13px;">94M+ ad-tier MAUs</td>
+            <td><strong>Netflix</strong></td>
+            <td class="mono">$35–50</td>
+            <td class="mono">1M–1.4M</td>
+            <td class="mono">2–2.9M</td>
+            <td class="mono">5–7.1M</td>
+            <td>Monitor — not yet</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION 05: BUDGET SCENARIOS -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">05</span>
-      <h2 class="section-title"><strong>Budget</strong> Scenarios</h2>
+  <!-- BUDGET SCENARIOS -->
+  <div class="section">
+    <div class="section-label">Budget scenarios</div>
+    <h2>Three operating modes — and what each one does</h2>
+
+    <div class="budget-grid">
+      <div class="budget-card">
+        <div class="budget-tier">Test & learn</div>
+        <div class="budget-amount">$20–50K/mo</div>
+        <div class="budget-desc">Prove the channel. Launch on Hulu only. Establish CPM benchmarks, measure branded search lift, produce first creative learning. Go/no-go decision at week 6.</div>
+      </div>
+      <div class="budget-card featured">
+        <div class="budget-tier green">Market presence</div>
+        <div class="budget-amount">$50–150K/mo</div>
+        <div class="budget-desc">Hulu + Amazon active simultaneously. Full dual-CTA attribution running. Creative A/B testing live. Consistent monthly reach 3–8M uniques. Recommended starting point for serious growth.</div>
+      </div>
+      <div class="budget-card">
+        <div class="budget-tier">Full dominance</div>
+        <div class="budget-amount">$150–500K+/mo</div>
+        <div class="budget-desc">All four platforms active. Conquest targeting on competitor audiences. Monthly reach 8–20M+ uniques. Platform-level ROAS data driving continuous optimization. Category ownership play.</div>
+      </div>
     </div>
-    <p>Three scenarios calibrated for simultaneous campaigns across all three markets. These are recommended monthly investment ranges. Individual flights can be structured as needed.</p>
 
-    <div class="scenario-grid">
-      <div class="scenario">
-        <div class="scenario-top">
-          <div class="scenario-phase">Scenario A</div>
-          <div class="scenario-name">Test &amp; Learn</div>
-          <div class="scenario-budget">$2,500 – $5,000 / month</div>
-        </div>
-        <div class="scenario-body">
-          <p>Establish performance data before committing to larger budgets. Two platforms at entry spend.</p>
-          <ul>
-            <li>Hulu: $1,500–$2,500</li>
-            <li>Paramount+ Full Tier: $1,000–$2,500</li>
-            <li>Amazon: below $10K minimum. Not included</li>
-            <li>Netflix: not included</li>
-            <li>All 3 markets active simultaneously</li>
-          </ul>
-        </div>
+    <!-- SCALE TABLE — NEW -->
+    <h3 style="margin-top:2rem;">What $500K/month looks like <span class="new-badge">New</span></h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">For clients ready to make streaming a primary growth channel, here is the recommended platform split and expected output at scale.</p>
+
+    <div class="scale-table">
+      <div class="scale-row header">
+        <div>Platform</div>
+        <div>Monthly budget</div>
+        <div>% of spend</div>
+        <div>Est. monthly reach</div>
+        <div>Primary objective</div>
       </div>
-
-      <div class="scenario">
-        <div class="scenario-top">
-          <div class="scenario-phase orange">Scenario B</div>
-          <div class="scenario-name">Market Presence</div>
-          <div class="scenario-budget">$12,000 – $20,000 / month</div>
+      <div class="scale-row">
+        <div style="font-weight:500;">Hulu</div>
+        <div class="scale-bar-wrap">
+          <div class="scale-bar"><div class="scale-fill" style="width:50%;"></div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent-green);">$250K</span>
         </div>
-        <div class="scenario-body">
-          <p>Adds Amazon for full three-platform coverage. Meaningful frequency in all three DMAs.</p>
-          <ul>
-            <li>Hulu: $4,000–$6,000</li>
-            <li>Paramount+ Full Tier: $3,000–$5,000</li>
-            <li>Amazon DSP: $10,000 minimum</li>
-            <li>Est. 150K–300K impressions per market/mo</li>
-            <li>Netflix still below programmatic threshold</li>
-          </ul>
-        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">50%</div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">6–12M</div>
+        <div style="font-size:12px;color:var(--muted);">Brand awareness, targeting precision</div>
       </div>
-
-      <div class="scenario">
-        <div class="scenario-top">
-          <div class="scenario-phase gray">Scenario C</div>
-          <div class="scenario-name">Full Dominance</div>
-          <div class="scenario-budget">$60,000 – $100,000 / month</div>
+      <div class="scale-row">
+        <div style="font-weight:500;">Amazon</div>
+        <div class="scale-bar-wrap">
+          <div class="scale-bar"><div class="scale-fill" style="width:30%;background:var(--accent-blue);"></div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent-blue);">$150K</span>
         </div>
-        <div class="scenario-body">
-          <p>All four platforms active. Netflix programmatic unlocked. Strong frequency in all three markets.</p>
-          <ul>
-            <li>Hulu: $12,000–$15,000</li>
-            <li>Paramount+ Full: $10,000–$15,000</li>
-            <li>Amazon Managed: $25,000–$35,000</li>
-            <li>Netflix (via TTD/DV360): $15,000–$25,000</li>
-            <li>Est. 500K–1M+ impressions per market/mo</li>
-          </ul>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">30%</div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">3–6M</div>
+        <div style="font-size:12px;color:var(--muted);">Direct conversion, attribution</div>
+      </div>
+      <div class="scale-row">
+        <div style="font-weight:500;">Paramount+</div>
+        <div class="scale-bar-wrap">
+          <div class="scale-bar"><div class="scale-fill" style="width:15%;background:var(--accent-amber);"></div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent-amber);">$75K</span>
         </div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">15%</div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">1.5–2.5M</div>
+        <div style="font-size:12px;color:var(--muted);">Sports/male demo, frequency</div>
+      </div>
+      <div class="scale-row">
+        <div style="font-weight:500;">Testing</div>
+        <div class="scale-bar-wrap">
+          <div class="scale-bar"><div class="scale-fill" style="width:5%;background:var(--muted);"></div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">$25K</span>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">5%</div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;">Variable</div>
+        <div style="font-size:12px;color:var(--muted);">Netflix, new formats, emerging</div>
       </div>
     </div>
 
     <div class="callout">
-      <strong>Impression math:</strong> At a blended $25–$35 CPM and $10,000/month per platform, expect roughly 285,000–400,000 impressions. Split across three markets: approximately 95,000–135,000 per market. Enough to build meaningful frequency over a 4–6 week flight.
+      <strong>Expected output at $500K/month:</strong> 11–21M monthly uniques. Assuming a 0.5% branded search lift rate (conservative for direct response CTV), that's 55,000–105,000 branded search events per month attributable to the campaign. CAC will depend on your conversion rate and LTV — we align on specific CAC targets in week one of engagement before a dollar is spent.
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION 06: RECOMMENDATION -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">06</span>
-      <h2 class="section-title">Strategic <strong>Recommendation</strong></h2>
-    </div>
-    <p>A phased approach minimizes risk, validates creative before scaling, and ensures each budget threshold (including Amazon's $10K self-serve minimum) is crossed on the strength of proven performance data.</p>
+  <!-- MANAGEMENT FEE BREAKDOWN — NEW -->
+  <div class="section">
+    <div class="section-label">Management fee <span class="new-badge">New</span></div>
+    <h2>What 12% actually buys — and why it's the right number</h2>
+    <p>The management fee is calculated on gross media spend. Here's every deliverable included — nothing is held back for upsell.</p>
 
-    <ul class="phase-list">
-      <li class="phase-item">
-        <div class="phase-num">01</div>
-        <div class="phase-content">
-          <div class="phase-label">Months 1–3</div>
-          <div class="phase-title">Launch on Hulu + Paramount+</div>
-          <div class="phase-body">Run both platforms simultaneously across all three DMAs. Budget: $10K–$20K/month. Validate creative, identify which markets and audience segments respond best, establish baseline Video Completion Rate and engagement benchmarks. Produce at least two creative variants from launch.</div>
+    <div class="fee-breakdown">
+      <div class="fee-header">
+        <div>
+          <div class="fee-pct">12%</div>
+          <div class="fee-label">of gross media spend — no markup on production, no hidden fees</div>
         </div>
-      </li>
-      <li class="phase-item">
-        <div class="phase-num">02</div>
-        <div class="phase-content">
-          <div class="phase-label">Months 4–6</div>
-          <div class="phase-title">Add Amazon Prime Video</div>
-          <div class="phase-body">Bring Amazon DSP online at $10K/month minimum. Leverage Amazon's unmatched first-party purchase data for audience targeting. Optimize Hulu and Paramount+ based on Phase 1 performance. Shift budget toward top-performing markets and creative.</div>
-        </div>
-      </li>
-      <li class="phase-item">
-        <div class="phase-num">03</div>
-        <div class="phase-content">
-          <div class="phase-label">Month 7+</div>
-          <div class="phase-title">Netflix Expansion + Premium Formats</div>
-          <div class="phase-body">When budget and performance support it, explore Netflix via programmatic DSP (The Trade Desk or DV360) at $50K+ commitment. Add Paramount+ sports inventory (NFL on CBS, UFC) for seasonally relevant high-attention placements. Introduce pause ads and interactive formats as they mature in 2026.</div>
-        </div>
-      </li>
-    </ul>
-
-    <div class="callout" style="margin-top:40px;">
-      <strong>To build the full media plan,</strong> we need your target audience profile (age, income, interests), campaign objective (brand awareness vs. conversion), and total media budget range. That unlocks flight dates, CPM bids, impression forecasts, and creative specifications for each platform and market.
-    </div>
-  </section>
-
-  <!-- SECTION 07: PRICING CALCULATOR -->
-  <section class="section" id="pricing">
-    <div class="section-header">
-      <span class="section-num">07</span>
-      <h2 class="section-title"><strong>Fees</strong> &amp; Pricing Model</h2>
-    </div>
-    <p>Treetop operates on a transparent two-part fee structure: a one-time strategy and setup fee to build out the full media plan, followed by a <strong>12% management retainer</strong> on gross monthly media spend once campaigns are live. Use the calculator below to model your investment at any budget level.</p>
-
-    <div class="pricing-calc">
-
-      <!-- Scenario presets -->
-      <div class="pc-pills">
-        <button class="pc-pill active" onclick="pcScenario(2500, this)">Scenario A. Test &amp; Learn</button>
-        <button class="pc-pill" onclick="pcScenario(15000, this)">Scenario B. Market Presence</button>
-        <button class="pc-pill" onclick="pcScenario(75000, this)">Scenario C. Full Dominance</button>
-        <button class="pc-pill" onclick="pcScenario(null, this)">Custom</button>
-      </div>
-
-      <!-- Sliders -->
-      <div class="pc-sliders">
-        <div class="pc-slider-row">
-          <div class="pc-slider-header">
-            <span class="pc-slider-label">Monthly media spend</span>
-            <span class="pc-slider-val" id="pc-spend-display">$2,500</span>
-          </div>
-          <input type="range" id="pc-spend" min="500" max="150000" step="500" value="2500" oninput="pcUpdate()">
-          <div class="pc-slider-ticks">
-            <span>$500</span><span>$37,500</span><span>$75,000</span><span>$112,500</span><span>$150,000</span>
-          </div>
-        </div>
-
-        <div class="pc-slider-row">
-          <div class="pc-slider-header">
-            <span class="pc-slider-label">Strategy &amp; setup fee (one-time)</span>
-            <span class="pc-slider-val" id="pc-setup-display">$2,500</span>
-          </div>
-          <input type="range" id="pc-setup" min="0" max="10000" step="250" value="2500" oninput="pcUpdate()">
-          <div class="pc-slider-ticks">
-            <span>$0</span><span>$2,500 (recommended)</span><span>$10,000</span>
-          </div>
+        <div style="text-align:right;">
+          <div style="font-size:13px;color:var(--muted);">At $100K/mo spend</div>
+          <div style="font-family:'DM Mono',monospace;font-size:1.25rem;color:var(--text);">$12,000/mo</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">vs $15–20K at traditional agency</div>
         </div>
       </div>
-
-      <!-- Result cards -->
-      <div class="pc-results">
-        <div class="pc-card">
-          <div class="pc-card-label">Monthly fee</div>
-          <div class="pc-card-val" id="pc-monthly">$300</div>
-          <div class="pc-card-sub" id="pc-monthly-sub">12% of $2,500</div>
+      <div class="fee-row">
+        <div>
+          <div class="fee-item">Weekly performance report</div>
+          <div class="fee-detail">Platform-level breakdown: impressions, CPM, CTR, branded search lift, CAC trend. Delivered every Monday.</div>
         </div>
-        <div class="pc-card">
-          <div class="pc-card-label">Annual retainer</div>
-          <div class="pc-card-val" id="pc-annual">$3,600</div>
-          <div class="pc-card-sub">12 months</div>
-        </div>
-        <div class="pc-card">
-          <div class="pc-card-label">Year 1 total revenue</div>
-          <div class="pc-card-val" id="pc-year1">$6,100</div>
-          <div class="pc-card-sub" id="pc-year1-sub">Retainer + setup</div>
-        </div>
-        <div class="pc-card">
-          <div class="pc-card-label">Client's annual media spend</div>
-          <div class="pc-card-val pc-muted" id="pc-client">$30,000</div>
-          <div class="pc-card-sub">Media only, excl. fees</div>
-        </div>
+        <div class="fee-freq">Weekly</div>
       </div>
+      <div class="fee-row">
+        <div>
+          <div class="fee-item">Platform management &amp; bid optimization</div>
+          <div class="fee-detail">Daily monitoring and optimization across all active platforms. Budget pacing, frequency management, CPM bid strategy.</div>
+        </div>
+        <div class="fee-freq">Daily</div>
+      </div>
+      <div class="fee-row">
+        <div>
+          <div class="fee-item">Creative iteration &amp; testing</div>
+          <div class="fee-detail">Rotating creative when fatigue signals appear. Managing A/B test structure. Recommending new variants based on performance data. Does not include production costs.</div>
+        </div>
+        <div class="fee-freq">Ongoing</div>
+      </div>
+      <div class="fee-row">
+        <div>
+          <div class="fee-item">Attribution setup &amp; maintenance</div>
+          <div class="fee-detail">Full tech stack: branded search lift tracking, QR code setup, vanity URL infrastructure, Amazon Brand Search monitoring, holdout market configuration.</div>
+        </div>
+        <div class="fee-freq">Ongoing</div>
+      </div>
+      <div class="fee-row">
+        <div>
+          <div class="fee-item">Weekly strategy sync</div>
+          <div class="fee-detail">30-minute standing call — performance review, optimization decisions, upcoming creative rotation, budget allocation recommendations.</div>
+        </div>
+        <div class="fee-freq">Weekly</div>
+      </div>
+      <div class="fee-row">
+        <div>
+          <div class="fee-item">Platform &amp; buying partner relationships</div>
+          <div class="fee-detail">Direct relationships with Hulu, Amazon, and Paramount+ account teams for preferred CPM rates, early access to new ad products, and expedited creative review.</div>
+        </div>
+        <div class="fee-freq">Always on</div>
+      </div>
+    </div>
 
-      <!-- Fee breakdown table -->
-      <table class="pc-table">
+    <div class="callout amber">
+      <strong>Fee context:</strong> A traditional media agency charges 15–20% plus production markups (typically 15–20% on top of production invoices). At $100K/month spend, that's $15–20K in fees plus $3–6K in production markup = $18–26K. Our model: $12K flat, production at cost. The difference compounds significantly at scale.
+    </div>
+  </div>
+
+  <!-- MEASUREMENT — EXPANDED -->
+  <div class="section">
+    <div class="section-label">Measurement &amp; attribution <span class="new-badge">Expanded</span></div>
+    <h2>How we know if it's working — at every stage</h2>
+    <p>CTV attribution is more complex than paid social because there is no click. Here is the three-pronged model that gives us actionable data within 2 weeks of a flight going live.</p>
+
+    <div class="measurement-grid">
+      <div class="m-card">
+        <div class="m-card-label">Signal 1</div>
+        <div class="m-card-title">Branded search lift</div>
+        <div class="m-card-desc">We measure Google and Amazon branded search volume in markets where we're running vs. holdout markets where we're dark. A 15–20% lift in flight markets within 48–72 hours of campaign start is the clearest signal CTV is driving awareness. Tracked weekly.</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-label">Signal 2</div>
+        <div class="m-card-title">Amazon dual CTA tracking</div>
+        <div class="m-card-desc">QR code scans provide immediate, attributable conversion data for mobile second-screen viewers. Vanity URL creates a unique search term we can isolate in Search Console. Together these give us the most direct CTV attribution available in any platform.</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-label">Signal 3</div>
+        <div class="m-card-title">Holdout market methodology</div>
+        <div class="m-card-desc">We designate 2–3 comparable markets where we don't run and use them as a control. Direct traffic, organic conversions, and branded search in holdout vs. flight markets gives us a statistically valid read on incremental lift.</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-label">Decision framework</div>
+        <div class="m-card-title">Kill criteria &amp; scale triggers</div>
+        <div class="m-card-desc">Week 6 decision gate: if branded search lift is below 15% and CPMs are running 25%+ above model, we pause and diagnose. If we're hitting benchmarks, we increase budget. No ambiguity about what constitutes success — we agree on the numbers before we launch.</div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:1.5rem;">
+      <table>
         <thead>
           <tr>
-            <th>Revenue stream</th>
-            <th>Basis</th>
-            <th class="pc-right">Amount</th>
-            <th class="pc-right">Timing</th>
+            <th>Milestone</th>
+            <th>What we measure</th>
+            <th>Decision at this gate</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Strategy &amp; setup fee</td>
-            <td class="pc-muted-cell">Flat / one-time</td>
-            <td class="pc-right pc-accent" id="tbl-setup">$2,500</td>
-            <td class="pc-right pc-muted-cell">Engagement start</td>
+            <td><strong>Week 2</strong></td>
+            <td>Branded search lift, CPM efficiency vs benchmark, creative performance split</td>
+            <td>Confirm or swap creative. Confirm CPMs are within model.</td>
           </tr>
           <tr>
-            <td>Management retainer</td>
-            <td class="pc-muted-cell" id="tbl-basis">12% of monthly spend</td>
-            <td class="pc-right pc-accent" id="tbl-monthly">$300/mo</td>
-            <td class="pc-right pc-muted-cell">Monthly</td>
+            <td><strong>Week 6</strong></td>
+            <td>Search lift trend, holdout market delta, QR/vanity attribution volume</td>
+            <td>Go/no-go to increase budget. Kill or extend test.</td>
           </tr>
           <tr>
-            <td>Annual retainer total</td>
-            <td class="pc-muted-cell">12 months</td>
-            <td class="pc-right pc-accent" id="tbl-annual">$3,600</td>
-            <td class="pc-right pc-muted-cell">Ongoing</td>
+            <td><strong>Month 3</strong></td>
+            <td>Conversion pattern emerging, creative winner identified, CAC trending</td>
+            <td>Scale winning platform. Rotate creative. Add second platform if not already live.</td>
           </tr>
-          <tr class="pc-total-row">
-            <td>Year 1 total revenue</td>
-            <td class="pc-muted-cell">Setup + retainer</td>
-            <td class="pc-right pc-accent" id="tbl-year1">$6,100</td>
-            <td class="pc-right pc-muted-cell">. </td>
+          <tr>
+            <td><strong>Month 6</strong></td>
+            <td>Platform-level ROAS, 6-month CAC trend, share of voice estimate</td>
+            <td>Full scale, category ownership strategy, competitive conquest targeting.</td>
           </tr>
         </tbody>
       </table>
-
-      <div class="callout" id="pc-note" style="margin-top:24px;">
-        At Scenario A spend, the setup fee is load-bearing. Size it to make the engagement profitable from day one, regardless of how long the retainer runs.
-      </div>
-
-    </div><!-- /pricing-calc -->
-  </section>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div>
-      <div class="footer-brand">Treetop Growth Strategy</div>
-      <div class="footer-note">Growth is a system, not a series of bets.</div>
     </div>
-    <div class="footer-tag">April 2026 · Pricing reflects Q1–Q2 2026 market data · All figures are estimates</div>
   </div>
 
-</div><!-- /wrapper -->
+  <!-- STRATEGIC RECOMMENDATION -->
+  <div class="section">
+    <div class="section-label">Recommendation</div>
+    <h2>The phased plan — from first impression to category ownership</h2>
 
-<script>
-function pcFmt(n) {
-  return '$' + Math.round(n).toLocaleString();
-}
+    <div class="rec-phase">
+      <div class="phase-num">01</div>
+      <div>
+        <div class="phase-title">Launch on Hulu — weeks 1–8</div>
+        <div class="phase-sub">Budget: $20–50K/month. Creative: efficient launch or standard broadcast.</div>
+        <ul class="bullets">
+          <li>Brief production and select partner in week 1</li>
+          <li>Platform setup, targeting configuration, attribution stack live by week 3</li>
+          <li>Creative in market by week 7</li>
+          <li>Week 6 data review — is branded search lift present?</li>
+        </ul>
+      </div>
+    </div>
 
-function pcUpdate() {
-  const spend = parseInt(document.getElementById('pc-spend').value);
-  const rate  = 12;
-  const setup = parseInt(document.getElementById('pc-setup').value);
+    <div class="rec-phase">
+      <div class="phase-num">02</div>
+      <div>
+        <div class="phase-title">Add Amazon — months 2–4</div>
+        <div class="phase-sub">Budget: $50–150K/month total. QR + Brand Search CTA live.</div>
+        <ul class="bullets">
+          <li>Amazon dual-CTA infrastructure takes 3–4 weeks to set up properly — start this in parallel with Hulu launch</li>
+          <li>Layer in Amazon in month 2 for the direct conversion push</li>
+          <li>A/B test brand story vs direct response creative with split budget</li>
+          <li>Month 3 read: which platform is driving more attributable conversion?</li>
+        </ul>
+      </div>
+    </div>
 
-  const monthly = spend * rate / 100;
-  const annual  = monthly * 12;
-  const year1   = annual + setup;
-  const client  = spend * 12;
+    <div class="rec-phase">
+      <div class="phase-num">03</div>
+      <div>
+        <div class="phase-title">Full platform + scale — months 4–12</div>
+        <div class="phase-sub">Budget: $150K–$500K+/month. All platforms. Conquest targeting.</div>
+        <ul class="bullets">
+          <li>Add Paramount+ for sports and male demo coverage</li>
+          <li>Conquest targeting on competitor brand keywords and viewing audiences</li>
+          <li>Netflix test budget allocated when targeting capabilities mature (monitor quarterly)</li>
+          <li>Monthly reach 8–20M+ uniques. Category share of voice strategy activated.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  document.getElementById('pc-spend-display').textContent = pcFmt(spend);
-  document.getElementById('pc-rate-display').textContent  = rate + '%';
-  document.getElementById('pc-setup-display').textContent = pcFmt(setup);
+  <!-- SUMMARY TABLE -->
+  <div class="section">
+    <div class="section-label">Summary</div>
+    <h2>Full investment picture</h2>
 
-  document.getElementById('pc-monthly').textContent     = pcFmt(monthly);
-  document.getElementById('pc-monthly-sub').textContent = rate + '% of ' + pcFmt(spend);
-  document.getElementById('pc-annual').textContent      = pcFmt(annual);
-  document.getElementById('pc-year1').textContent       = pcFmt(year1);
-  document.getElementById('pc-year1-sub').textContent   = 'Retainer + ' + pcFmt(setup) + ' setup';
-  document.getElementById('pc-client').textContent      = pcFmt(client);
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Test &amp; Learn</th>
+            <th>Market Presence</th>
+            <th>Full Dominance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly media spend</td>
+            <td class="mono">$20–50K</td>
+            <td class="mono">$50–150K</td>
+            <td class="mono">$150–500K+</td>
+          </tr>
+          <tr>
+            <td>Management fee (12%)</td>
+            <td class="mono">$2.4–6K</td>
+            <td class="mono">$6–18K</td>
+            <td class="mono">$18–60K+</td>
+          </tr>
+          <tr>
+            <td>Production (one-time)</td>
+            <td class="mono">$8–15K</td>
+            <td class="mono">$20–35K</td>
+            <td class="mono">$35–55K</td>
+          </tr>
+          <tr>
+            <td>Active platforms</td>
+            <td>Hulu only</td>
+            <td>Hulu + Amazon</td>
+            <td>All four</td>
+          </tr>
+          <tr>
+            <td>Monthly reach (est.)</td>
+            <td class="mono">1–2.5M</td>
+            <td class="mono">3–8M</td>
+            <td class="mono">8–20M+</td>
+          </tr>
+          <tr>
+            <td>Time to first impression</td>
+            <td>6–8 weeks</td>
+            <td>6–8 weeks</td>
+            <td>8–10 weeks</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  document.getElementById('tbl-setup').textContent   = pcFmt(setup);
-  document.getElementById('tbl-basis').textContent   = rate + '% of monthly spend';
-  document.getElementById('tbl-monthly').textContent = pcFmt(monthly) + '/mo';
-  document.getElementById('tbl-annual').textContent  = pcFmt(annual);
-  document.getElementById('tbl-year1').textContent   = pcFmt(year1);
+  <div class="cta-block">
+    <div class="cta-title">Ready to build the plan for your specific numbers?</div>
+    <div class="cta-sub">Share your current CAC benchmarks and target CPAs — we'll reverse-engineer the budget model and define exactly what success looks like before a dollar is spent.</div>
+    <a href="mailto:william.colbert@treetopgrowthstrategy.com" class="cta-btn">Start the conversation</a>
+  </div>
 
-  const note = document.getElementById('pc-note');
-  if (spend < 5000) {
-    note.innerHTML = '<strong>At this spend level</strong>, the management fee is modest. The setup fee is load-bearing. Size it to make the engagement profitable from day one, regardless of how long the retainer runs.';
-  } else if (spend < 25000) {
-    note.innerHTML = '<strong>Scenario B range.</strong> At $12K–$20K/mo, a 12–15% retainer puts your monthly fee at $1,440–$3,000. A meaningful engagement for full campaign management across three DMAs and monthly reporting.';
-  } else if (spend < 60000) {
-    note.innerHTML = '<strong>Mid-tier range.</strong> Consider whether you want to cap the rate above a threshold (e.g., 12% up to $50K/mo, then 8% above) to keep the client relationship healthy as spend grows.';
-  } else {
-    note.innerHTML = '<strong>Scenario C territory.</strong> At ' + pcFmt(spend) + '/mo, a tiered structure is worth discussing. 12–15% on the first $30K, 8–10% above that. Year 1 total revenue of ' + pcFmt(year1) + ' is a serious engagement either way.';
-  }
-}
-
-function pcScenario(val, btn) {
-  document.querySelectorAll('.pc-pill').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  if (val !== null) {
-    document.getElementById('pc-spend').value = val;
-    pcUpdate();
-  }
-}
-
-pcUpdate();
-</script>
+</div>
 </body>
 </html>
