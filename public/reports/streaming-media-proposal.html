@@ -485,6 +485,80 @@
   .pc-table .pc-muted-cell { color: var(--muted); font-size: 13px; }
   .pc-total-row td { border-bottom: none; font-weight: 600; }
 
+  /* ── NEW BADGE ── */
+  .new-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(240,160,80,0.12);
+    border: 1px solid rgba(240,160,80,0.3);
+    color: var(--warn);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
+  /* ── COMPANION READING ── */
+  .companion-reading {
+    margin: 0 0 0;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .companion-reading a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .companion-reading a:hover {
+    border-color: rgba(60,190,123,0.3);
+    background: var(--surface2);
+  }
+  .companion-reading .cr-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .companion-reading .cr-title { font-size: 16px; font-weight: 500; line-height: 1.4; }
+  .companion-reading .cr-arrow { color: var(--muted); font-size: 22px; flex-shrink: 0; }
+
+  /* ── MEASUREMENT GRID ── */
+  .measurement-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .m-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+  }
+  .m-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .m-card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .m-card-desc { font-size: 13.5px; color: rgba(240,240,239,0.65); line-height: 1.6; }
+
   @media (max-width: 640px) {
     .wrapper { padding: 0 24px; }
     .sticky-nav { padding: 0 24px; }
@@ -497,6 +571,7 @@
     .cpm-track { display: none; }
     .pc-results { grid-template-columns: repeat(2, 1fr); }
     .pricing-calc { padding: 20px; }
+    .measurement-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -555,6 +630,17 @@
 </div>
 
 <div class="wrapper">
+
+  <!-- COMPANION READING -->
+  <div class="companion-reading">
+    <a href="https://treetopgrowthstrategy.com/reports/hulu-creative-amazon-cta">
+      <div>
+        <div class="cr-label">Companion reading</div>
+        <div class="cr-title">How I Think About Streaming Creative &amp; Amazon CTA Execution</div>
+      </div>
+      <span class="cr-arrow">→</span>
+    </a>
+  </div>
 
   <!-- SECTION 01: WHY NOW -->
   <section class="section">
@@ -779,10 +865,64 @@
     </div>
   </section>
 
-  <!-- SECTION 04: CPM COMPARISON -->
+  <!-- SECTION 04: CREATIVE PRODUCTION -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">04</span>
+      <h2 class="section-title"><strong>Creative</strong> Production <span class="new-badge">New</span></h2>
+    </div>
+    <p>Creative is the most common blocker at activation. The answer is to plan production in parallel with media setup so we're not waiting on creative when the buy is ready to launch.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Production tier</th>
+            <th>What you get</th>
+            <th>Est. cost</th>
+            <th>Timeline</th>
+            <th>Best for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-accent">Efficient launch</td>
+            <td style="font-size:13.5px;">1 × :30 spot, existing brand assets repurposed with professional VO and edit</td>
+            <td class="td-mono">$8K–$15K</td>
+            <td class="td-mono">2–3 weeks</td>
+            <td style="color:var(--muted);font-size:13px;">Testing phase — prove the channel before full spend</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Standard broadcast</td>
+            <td style="font-size:13.5px;">1 × :30 + 1 × :15, original shoot, 2 talent, 1 location, 2 revision rounds</td>
+            <td class="td-mono">$20K–$35K</td>
+            <td class="td-mono">4–6 weeks</td>
+            <td style="color:var(--muted);font-size:13px;">Phase 1 full launch — Hulu-ready, brand story lead</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Full A/B package</td>
+            <td style="font-size:13.5px;">2 × :30 variants (brand story + DR version) + :15 cut-downs, same shoot day</td>
+            <td class="td-mono">$35K–$55K</td>
+            <td class="td-mono">5–7 weeks</td>
+            <td style="color:var(--muted);font-size:13px;">Recommended — amortizes production cost, enables testing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Recommended approach:</strong> Produce two creative variants on a single shoot day — an emotional brand story version and a direct response CTA version. Same talent, same locations, different scripts and edits. This doubles your testing surface without doubling production cost, and gives us the data to know which message converts within 4–6 weeks of being on air.
+    </div>
+
+    <div class="callout warn">
+      <strong>Production is passed through at cost.</strong> Treetop does not mark up production. We manage the process and recommend partners, but the invoice goes directly from production company to client. No margin on production is a standard term of our engagement.
+    </div>
+  </section>
+
+  <!-- SECTION 05: CPM COMPARISON -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
       <h2 class="section-title"><strong>Pricing</strong> at a Glance</h2>
     </div>
     <p>All CPMs reflect 2025–2026 market rates. DMA-level targeting adds 5–15% above base CPM. Premium content and narrow demographic targeting can push rates toward the high end.</p>
@@ -865,10 +1005,10 @@
     </div>
   </section>
 
-  <!-- SECTION 05: BUDGET SCENARIOS -->
+  <!-- SECTION 06: BUDGET SCENARIOS -->
   <section class="section">
     <div class="section-header">
-      <span class="section-num">05</span>
+      <span class="section-num">06</span>
       <h2 class="section-title"><strong>Budget</strong> Scenarios</h2>
     </div>
     <p>Three scenarios calibrated for simultaneous campaigns across all three markets. These are recommended monthly investment ranges — individual flights can be structured as needed.</p>
@@ -932,12 +1072,130 @@
     <div class="callout">
       <strong>Impression math:</strong> At a blended $25–$35 CPM and $10,000/month per platform, expect roughly 285,000–400,000 impressions. Split across three markets: approximately 95,000–135,000 per market — enough to build meaningful frequency over a 4–6 week flight.
     </div>
+
+    <!-- $500K SCALE SCENARIO -->
+    <h3 style="font-size:20px;font-weight:400;letter-spacing:-0.3px;margin:48px 0 8px;color:var(--text);">What $500K/month looks like <span class="new-badge">New</span></h3>
+    <p>For clients ready to make streaming a primary growth channel, here is the recommended platform split and expected output at scale.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Monthly budget</th>
+            <th>% of spend</th>
+            <th>Est. monthly reach</th>
+            <th>Primary objective</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-accent">Hulu</td>
+            <td class="td-mono">$250,000</td>
+            <td class="td-mono">50%</td>
+            <td class="td-mono">6–12M</td>
+            <td style="color:var(--muted);font-size:13px;">Brand awareness, targeting precision</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Amazon</td>
+            <td class="td-mono">$150,000</td>
+            <td class="td-mono">30%</td>
+            <td class="td-mono">3–6M</td>
+            <td style="color:var(--muted);font-size:13px;">Direct conversion, attribution</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Paramount+</td>
+            <td class="td-mono">$75,000</td>
+            <td class="td-mono">15%</td>
+            <td class="td-mono">1.5–2.5M</td>
+            <td style="color:var(--muted);font-size:13px;">Sports/male demo, frequency</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Testing reserve</td>
+            <td class="td-mono">$25,000</td>
+            <td class="td-mono">5%</td>
+            <td class="td-mono">Variable</td>
+            <td style="color:var(--muted);font-size:13px;">Netflix, new formats, emerging inventory</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Expected output at $500K/month:</strong> 11–21M monthly uniques. Assuming a 0.5% branded search lift rate (conservative for direct response CTV), that's 55,000–105,000 branded search events per month attributable to the campaign. CAC will depend on your conversion rate and LTV — we align on specific CAC targets in week one of engagement before a dollar is spent.
+    </div>
   </section>
 
-  <!-- SECTION 06: RECOMMENDATION -->
+  <!-- SECTION 07: MEASUREMENT & ATTRIBUTION -->
   <section class="section">
     <div class="section-header">
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
+      <h2 class="section-title"><strong>Measurement</strong> &amp; Attribution <span class="new-badge">New</span></h2>
+    </div>
+    <p>CTV attribution is more complex than paid social because there is no click. Here is the three-pronged model that gives us actionable data within 2 weeks of a flight going live — plus a four-milestone decision framework so we agree on what success looks like before launch.</p>
+
+    <div class="measurement-grid">
+      <div class="m-card">
+        <div class="m-card-label">Signal 1</div>
+        <div class="m-card-title">Branded search lift</div>
+        <div class="m-card-desc">We measure Google and Amazon branded search volume in markets where we're running vs. holdout markets where we're dark. A 15–20% lift in flight markets within 48–72 hours of campaign start is the clearest signal CTV is driving awareness. Tracked weekly.</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-label">Signal 2</div>
+        <div class="m-card-title">Amazon dual CTA tracking</div>
+        <div class="m-card-desc">QR code scans provide immediate, attributable conversion data for mobile second-screen viewers. Vanity URL creates a unique search term we can isolate in Search Console. Together these give us the most direct CTV attribution available in any platform.</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-label">Signal 3</div>
+        <div class="m-card-title">Holdout market methodology</div>
+        <div class="m-card-desc">We designate 2–3 comparable markets where we don't run and use them as a control. Direct traffic, organic conversions, and branded search in holdout vs. flight markets gives us a statistically valid read on incremental lift.</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-label">Decision framework</div>
+        <div class="m-card-title">Kill criteria &amp; scale triggers</div>
+        <div class="m-card-desc">Week 6 decision gate: if branded search lift is below 15% and CPMs are running 25%+ above model, we pause and diagnose. If we're hitting benchmarks, we increase budget. No ambiguity about what constitutes success — we agree on the numbers before we launch.</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>What we measure</th>
+            <th>Decision at this gate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-accent">Week 2</td>
+            <td style="font-size:13.5px;">Branded search lift, CPM efficiency vs benchmark, creative performance split</td>
+            <td style="color:var(--muted);font-size:13px;">Confirm or swap creative. Confirm CPMs are within model.</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Week 6</td>
+            <td style="font-size:13.5px;">Search lift trend, holdout market delta, QR/vanity attribution volume</td>
+            <td style="color:var(--muted);font-size:13px;">Go/no-go to increase budget. Kill or extend test.</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Month 3</td>
+            <td style="font-size:13.5px;">Conversion pattern emerging, creative winner identified, CAC trending</td>
+            <td style="color:var(--muted);font-size:13px;">Scale winning platform. Rotate creative. Add second platform if not already live.</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Month 6</td>
+            <td style="font-size:13.5px;">Platform-level ROAS, 6-month CAC trend, share of voice estimate</td>
+            <td style="color:var(--muted);font-size:13px;">Full scale, category ownership strategy, competitive conquest targeting.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 08: RECOMMENDATION -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
       <h2 class="section-title">Strategic <strong>Recommendation</strong></h2>
     </div>
     <p>A phased approach minimizes risk, validates creative before scaling, and ensures each budget threshold (including Amazon's $10K self-serve minimum) is crossed on the strength of proven performance data.</p>
@@ -977,7 +1235,7 @@
   <!-- SECTION 07: PRICING CALCULATOR -->
   <section class="section" id="pricing">
     <div class="section-header">
-      <span class="section-num">07</span>
+      <span class="section-num">09</span>
       <h2 class="section-title"><strong>Fees</strong> &amp; Pricing Model</h2>
     </div>
     <p>Treetop operates on a transparent two-part fee structure: a one-time strategy and setup fee to build out the full media plan, followed by a <strong>12% management retainer</strong> on gross monthly media spend once campaigns are live. Use the calculator below to model your investment at any budget level.</p>
@@ -1084,6 +1342,58 @@
       </div>
 
     </div><!-- /pricing-calc -->
+
+    <!-- MANAGEMENT FEE BREAKDOWN -->
+    <h3 style="font-size:20px;font-weight:400;letter-spacing:-0.3px;margin:56px 0 8px;color:var(--text);">What 12% actually buys <span class="new-badge">New</span></h3>
+    <p>The management fee is calculated on gross media spend. Every deliverable included — nothing is held back for upsell, no markup on production, no hidden fees.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Deliverable</th>
+            <th>What it includes</th>
+            <th>Frequency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-accent">Weekly performance report</td>
+            <td style="font-size:13.5px;">Platform-level breakdown: impressions, CPM, CTR, branded search lift, CAC trend. Delivered every Monday.</td>
+            <td class="td-mono">Weekly</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Platform management &amp; bid optimization</td>
+            <td style="font-size:13.5px;">Daily monitoring and optimization across all active platforms. Budget pacing, frequency management, CPM bid strategy.</td>
+            <td class="td-mono">Daily</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Creative iteration &amp; testing</td>
+            <td style="font-size:13.5px;">Rotating creative when fatigue signals appear. Managing A/B test structure. Recommending new variants based on performance data. Does not include production costs.</td>
+            <td class="td-mono">Ongoing</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Attribution setup &amp; maintenance</td>
+            <td style="font-size:13.5px;">Full tech stack: branded search lift tracking, QR code setup, vanity URL infrastructure, Amazon Brand Search monitoring, holdout market configuration.</td>
+            <td class="td-mono">Ongoing</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Weekly strategy sync</td>
+            <td style="font-size:13.5px;">30-minute standing call — performance review, optimization decisions, upcoming creative rotation, budget allocation recommendations.</td>
+            <td class="td-mono">Weekly</td>
+          </tr>
+          <tr>
+            <td class="td-accent">Platform &amp; buying partner relationships</td>
+            <td style="font-size:13.5px;">Direct relationships with Hulu, Amazon, and Paramount+ account teams for preferred CPM rates, early access to new ad products, and expedited creative review.</td>
+            <td class="td-mono">Always on</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <strong>Fee context:</strong> A traditional media agency charges 15–20% plus production markups (typically 15–20% on top of production invoices). At $100K/month spend, that's $15–20K in fees plus $3–6K in production markup = $18–26K. Our model: $12K flat, production at cost. The difference compounds significantly at scale.
+    </div>
   </section>
 
   <!-- FOOTER -->
