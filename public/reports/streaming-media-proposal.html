@@ -458,6 +458,128 @@
     vertical-align: middle;
   }
 
+  /* ── FEE CALCULATOR ── */
+  .calc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin: 1.5rem 0;
+  }
+  .calc-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .calc-pill {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .calc-pill:hover { color: var(--text); }
+  .calc-pill.active {
+    background: rgba(0,212,126,0.1);
+    color: var(--accent-green);
+    border-color: rgba(0,212,126,0.35);
+  }
+  .calc-slider-row { margin-bottom: 1.5rem; }
+  .calc-slider-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .calc-slider-label { font-size: 13px; color: var(--muted); }
+  .calc-slider-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .calc input[type=range] {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border2);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    accent-color: var(--accent-green);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .calc input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    cursor: pointer;
+  }
+  .calc-ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+  .calc-fixed {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.875rem 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .calc-fixed-label { font-size: 13px; color: var(--muted); }
+  .calc-fixed-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .calc-fixed-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0;
+  }
+  .calc-results {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .calc-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+  }
+  .calc-card-label {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .calc-card-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--accent-green);
+    line-height: 1;
+  }
+  .calc-card-val.muted { color: var(--muted); }
+  .calc-card-sub { font-size: 11px; color: var(--muted); margin-top: 0.35rem; }
+
   @media (max-width: 640px) {
     .stat-row { grid-template-columns: 1fr; }
     .budget-grid { grid-template-columns: 1fr; }
@@ -466,6 +588,8 @@
     .rec-phase { grid-template-columns: 1fr; }
     .scale-row { grid-template-columns: 100px 1fr 80px; }
     .scale-row .scale-freq, .scale-row .scale-cpm { display: none; }
+    .calc-results { grid-template-columns: repeat(2, 1fr); }
+    .calc { padding: 1.25rem; }
     h1 { font-size: 1.8rem; }
   }
 </style>
@@ -865,6 +989,54 @@
     <h2>What 12% actually buys — and why it's the right number</h2>
     <p>The management fee is calculated on gross media spend. Here's every deliverable included — nothing is held back for upsell.</p>
 
+    <div class="calc">
+      <div class="calc-pills">
+        <button type="button" class="calc-pill active" data-spend="2500">Scenario A — Test &amp; Learn</button>
+        <button type="button" class="calc-pill" data-spend="15000">Scenario B — Market Presence</button>
+        <button type="button" class="calc-pill" data-spend="75000">Scenario C — Full Dominance</button>
+        <button type="button" class="calc-pill" data-spend="">Custom</button>
+      </div>
+
+      <div class="calc-slider-row">
+        <div class="calc-slider-head">
+          <span class="calc-slider-label">Monthly media spend</span>
+          <span class="calc-slider-val" id="calc-spend-display">$2,500</span>
+        </div>
+        <input type="range" id="calc-spend" min="500" max="150000" step="500" value="2500">
+        <div class="calc-ticks">
+          <span>$500</span><span>$37,500</span><span>$75,000</span><span>$112,500</span><span>$150,000</span>
+        </div>
+      </div>
+
+      <div class="calc-fixed">
+        <span class="calc-fixed-label">Strategy &amp; setup fee (one-time) <span class="calc-fixed-note">— flat, locked</span></span>
+        <span class="calc-fixed-val">$2,500</span>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-card">
+          <div class="calc-card-label">Monthly fee</div>
+          <div class="calc-card-val" id="calc-monthly">$300</div>
+          <div class="calc-card-sub" id="calc-monthly-sub">12% of $2,500</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-card-label">Annual retainer</div>
+          <div class="calc-card-val" id="calc-annual">$3,600</div>
+          <div class="calc-card-sub">12 months</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-card-label">Year 1 total</div>
+          <div class="calc-card-val" id="calc-year1">$6,100</div>
+          <div class="calc-card-sub">Retainer + $2,500 setup</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-card-label">Client's annual media</div>
+          <div class="calc-card-val muted" id="calc-client">$30,000</div>
+          <div class="calc-card-sub">Media only, excl. fees</div>
+        </div>
+      </div>
+    </div>
+
     <div class="fee-breakdown">
       <div class="fee-header">
         <div>
@@ -1102,5 +1274,50 @@
   </div>
 
 </div>
+
+<script>
+(function() {
+  const SETUP = 2500;
+  const RATE = 0.12;
+  const fmt = n => '$' + Math.round(n).toLocaleString();
+
+  const spend = document.getElementById('calc-spend');
+  const spendOut = document.getElementById('calc-spend-display');
+  const monthly = document.getElementById('calc-monthly');
+  const monthlySub = document.getElementById('calc-monthly-sub');
+  const annual = document.getElementById('calc-annual');
+  const year1 = document.getElementById('calc-year1');
+  const client = document.getElementById('calc-client');
+  const pills = document.querySelectorAll('.calc-pill');
+
+  function update() {
+    const s = parseInt(spend.value, 10);
+    const m = s * RATE;
+    const a = m * 12;
+    spendOut.textContent = fmt(s);
+    monthly.textContent = fmt(m);
+    monthlySub.textContent = '12% of ' + fmt(s);
+    annual.textContent = fmt(a);
+    year1.textContent = fmt(a + SETUP);
+    client.textContent = fmt(s * 12);
+  }
+
+  spend.addEventListener('input', () => {
+    update();
+    pills.forEach(p => p.classList.toggle('active', p.dataset.spend === ''));
+  });
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    if (p.dataset.spend) {
+      spend.value = p.dataset.spend;
+      update();
+    }
+  }));
+
+  update();
+})();
+</script>
 </body>
 </html>
