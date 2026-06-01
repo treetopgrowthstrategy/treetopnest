@@ -580,6 +580,41 @@
   .calc-card-val.muted { color: var(--muted); }
   .calc-card-sub { font-size: 11px; color: var(--muted); margin-top: 0.35rem; }
 
+  .read-along {
+    max-width: 860px;
+    margin: 0 auto 3rem;
+    padding: 0 2.5rem;
+  }
+  .read-along a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem 1.4rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-green);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .read-along a:hover {
+    border-color: var(--border2);
+    border-left-color: var(--accent-green);
+    background: rgba(0,212,126,0.04);
+  }
+  .read-along-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-green);
+    margin-bottom: 4px;
+  }
+  .read-along-title { font-size: 15px; font-weight: 500; line-height: 1.4; }
+  .read-along-arrow { color: var(--muted); font-size: 20px; flex-shrink: 0; }
+
   @media (max-width: 640px) {
     .stat-row { grid-template-columns: 1fr; }
     .budget-grid { grid-template-columns: 1fr; }
@@ -629,6 +664,16 @@
       <div class="stat-label">CPM range across platforms vs $40–80 for linear broadcast</div>
     </div>
   </div>
+</div>
+
+<div class="read-along">
+  <a href="https://treetopgrowthstrategy.com/reports/hulu-creative-amazon-cta">
+    <div>
+      <div class="read-along-label">Read along</div>
+      <div class="read-along-title">How I Think About Streaming Creative &amp; Amazon CTA Execution</div>
+    </div>
+    <span class="read-along-arrow">→</span>
+  </a>
 </div>
 
 <div class="content">
