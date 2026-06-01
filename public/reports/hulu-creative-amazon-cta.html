@@ -543,11 +543,24 @@
 
     <h3 class="sub">URL and attribution tag architecture</h3>
     <p>The chain that has to be right, in order: <strong>Amazon Attribution tag → short redirect URL → QR code.</strong></p>
+
+    <div class="callout warn">
+      <span class="callout-label">Prerequisite</span>
+      Amazon Attribution requires <strong>Brand Registry enrollment</strong>. Sellers without Brand Registry cannot access the tool. Confirm Brand Registry status before building any campaign around this mechanic.
+    </div>
+
     <ul class="bullet-list">
       <li><strong>Amazon Attribution tag is the destination.</strong> It's the only way Amazon credits the sale back to the campaign — and it's also what unlocks the Brand Referral Bonus (10% back on attributed sales). Skipping it means flying blind and leaving money on the table.</li>
+      <li><strong>The tag is click-based, not impression-based.</strong> Attribution fires when the viewer scans the QR code and lands on the tagged Amazon URL — not from the TV ad impression itself. On Hulu, <strong>the QR scan IS the trackable event.</strong> No scan, no direct attribution — which is exactly why branded-search lift and sales-velocity reads matter alongside the scan number.</li>
       <li><strong>Short redirect URL wraps the tag.</strong> Raw Amazon attribution URLs are hostile to QR encoding (long, fragile, ugly if displayed). A short redirect — brand.com/hulu — keeps the QR dense and clean while preserving the tag on the back end.</li>
       <li><strong>QR code encodes the short URL.</strong> Generate after the redirect is live. Test the scan from across a 10-foot living room on three different phones before the spot goes to master.</li>
     </ul>
+
+    <div class="spec-block">
+      <div class="spec-label">Correct Attribution URL Format</div>
+      <div class="spec-val" style="font-family:'Inter',monospace;font-size:13px;word-break:break-all;line-height:1.55;">https://amazon.com/dp/[ASIN]?maas=maas_adg_[unique_string]_afap_abs&amp;ref_=aa_maas</div>
+    </div>
+    <p style="font-size:13.5px;color:rgba(240,240,239,0.62);margin-top:8px;">The <strong>maas</strong> parameter is the attribution tag identifier. The <strong>ref_=aa_maas</strong> reference parameter is required. Do not substitute <code style="font-family:'Inter',monospace;font-size:12px;color:var(--warn);">amzn_src</code>, <code style="font-family:'Inter',monospace;font-size:12px;color:var(--warn);">amzn_sub</code>, or UTM-style parameters — those are not how Amazon Attribution tags are structured and will not track.</p>
 
     <h3 class="sub">In-spot CTA execution — the 8-second window</h3>
     <ul class="bullet-list">
@@ -605,7 +618,7 @@
       <div class="flow-step">
         <div class="flow-step-num">04</div>
         <div class="flow-step-title">Tagged Product Page</div>
-        <div class="flow-step-note">Amazon Attribution tag fires on the PDP or Brand Store landing.</div>
+        <div class="flow-step-note">QR scan lands on the tagged URL — attribution fires on click, not impression.</div>
       </div>
       <div class="flow-step">
         <div class="flow-step-num">05</div>
