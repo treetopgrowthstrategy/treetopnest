@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pro Air Tech — GoHighLevel Audit & Fix Log | Treetop Growth Strategy</title>
+<meta name="description" content="Pro Air Tech GoHighLevel / Cerum audit and fix log prepared by Treetop Growth Strategy for the MP Group — Tuesday, June 2, 2026." />
+<meta name="robots" content="noindex,nofollow" />
+<style>
+  :root {
+    --ink: #0f1f17;
+    --ink-soft: #2c3a32;
+    --muted: #5b6b62;
+    --line: #e3e8e4;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --accent: #2f6b4a;
+    --accent-soft: #e8f1ec;
+    --warn: #b85c00;
+    --warn-soft: #fff3e6;
+    --bad: #b3261e;
+    --bad-soft: #fbe9e7;
+    --good: #1f7a3a;
+    --good-soft: #e6f4ea;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 48px 28px 80px;
+  }
+  header.masthead {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+  }
+  .brand {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin: 10px 0 8px;
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .meta div strong { color: var(--ink); }
+  h2 {
+    font-size: 22px;
+    margin: 44px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+  h3 {
+    font-size: 17px;
+    margin: 26px 0 10px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  p { margin: 10px 0; }
+  ul, ol { padding-left: 22px; margin: 10px 0; }
+  li { margin: 6px 0; }
+  code {
+    background: #f1efe7;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    color: #3a3a2f;
+  }
+  .lead {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14.5px;
+  }
+  th, td {
+    text-align: left;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    background: #f3f1ea;
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  tr:last-child td { border-bottom: none; }
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .pill.good { background: var(--good-soft); color: var(--good); }
+  .pill.warn { background: var(--warn-soft); color: var(--warn); }
+  .pill.bad { background: var(--bad-soft); color: var(--bad); }
+  .pill.neutral { background: #ecefe9; color: var(--ink-soft); }
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    border: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .callout.warn { background: var(--warn-soft); border-color: #f3d6b0; }
+  .callout.bad { background: var(--bad-soft); border-color: #f3c3bf; }
+  .callout.good { background: var(--good-soft); border-color: #c2e2cc; }
+  .blockers {
+    counter-reset: blk;
+    list-style: none;
+    padding: 0;
+  }
+  .blockers li {
+    counter-increment: blk;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px 14px 56px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .blockers li::before {
+    content: counter(blk);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .blockers li strong { color: var(--ink); }
+  .blockers li .who {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  footer.foot {
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 28px 18px 60px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 19px; }
+    table { font-size: 13.5px; }
+    th, td { padding: 9px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand">Treetop Growth Strategy</div>
+    <h1>Pro Air Tech — Cerum / GoHighLevel Audit &amp; Fix Log</h1>
+    <div class="sub">Prepared for the MP Group · Read-only audit with one in-scope change applied</div>
+    <div class="meta">
+      <div><strong>Date:</strong> Tuesday, June 2, 2026</div>
+      <div><strong>Auditor:</strong> Bill Colbert (william.colbert@treetopgrowthstrategy.com)</div>
+      <div><strong>Location ID:</strong> <code>JTJJeFDooOwA46Km8nfi</code></div>
+    </div>
+  </header>
+
+  <div class="lead">
+    <p style="margin:0;">All read-only audit steps are complete. The only change made during this pass was the calendar reassignment in <em>Part 2 — Calendars</em>. Screenshot receipts were captured at each checkpoint.</p>
+  </div>
+
+  <h2>1. Calendars — State + Reassignments</h2>
+  <p>All four target calendars are <strong>Active</strong> and were reassigned from <strong>Shane Merchant → Josh Smith</strong>. Josh was confirmed in the team list, so no stop step was needed. Each save returned <em>"Calendar saved successfully"</em> and booking availability now reads <em>"Josh Smith, Weekdays 8AM–5PM."</em></p>
+  <table>
+    <thead><tr><th>Calendar</th><th>Status</th><th>Was</th><th>Now</th><th>Saved</th></tr></thead>
+    <tbody>
+      <tr><td>Installation</td><td><span class="pill good">Active</span></td><td>Shane Merchant</td><td>Josh Smith</td><td>✅</td></tr>
+      <tr><td>Maintenance</td><td><span class="pill good">Active</span></td><td>Shane Merchant</td><td>Josh Smith</td><td>✅</td></tr>
+      <tr><td>Air Quality Solutions</td><td><span class="pill good">Active</span></td><td>Shane Merchant</td><td>Josh Smith</td><td>✅</td></tr>
+      <tr><td>Repair</td><td><span class="pill good">Active</span></td><td>Shane Merchant</td><td>Josh Smith</td><td>✅</td></tr>
+    </tbody>
+  </table>
+  <p class="sub">There are 10 calendars total in the account; the 4 above live in the "HVAC Services" group. The other 6 were out of scope.</p>
+
+  <h2>2. Custom Values — All 4 Still <span class="pill bad">Blank</span></h2>
+  <p>Confirmed on <em>Settings → Custom Values</em>. The Value column is empty for every row below:</p>
+  <ul>
+    <li><strong>Hours of Operation</strong> — blank (<code>{{custom_values.hours_of_operation}}</code>)</li>
+    <li><strong>New Booking Thank You Page URL</strong> — blank (<code>{{custom_values.new_booking_ty_url}}</code>)</li>
+    <li><strong>Website Booking Page URL</strong> — blank (<code>{{custom_values.marketing__website_booking_page_url}}</code>)</li>
+    <li><strong>Promotion Name</strong> — blank (<code>{{custom_values.promotion_name}}</code>)</li>
+  </ul>
+  <div class="callout warn">This is the primary reason publishing workflows and re-enrolling leads is on hold.</div>
+
+  <h2>3. Workflows — Status + Broken Triggers</h2>
+  <p>All live inside the "Marketing Workflows" folder. Current statuses:</p>
+  <table>
+    <thead><tr><th>#</th><th>Workflow</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>New Lead Nurture (Fast 5) – Claim Offer</td><td><span class="pill neutral">Draft</span></td></tr>
+      <tr><td>2</td><td>Appointment Confirmation + Reminders</td><td><span class="pill neutral">Draft</span></td></tr>
+      <tr><td>3</td><td>Appt No Show</td><td><span class="pill neutral">Draft</span></td></tr>
+      <tr><td>4</td><td>New Sale – Send Review Request</td><td><span class="pill neutral">Draft</span></td></tr>
+      <tr><td>6</td><td>Stale Leads</td><td><span class="pill neutral">Draft</span></td></tr>
+    </tbody>
+  </table>
+  <p class="sub">Note: a #5 "Long-Term Nurture" exists and is <strong>Published</strong> — it was not on the list and was left untouched. All listed workflows show <strong>0 enrolled</strong>. No workflows were published during this audit.</p>
+
+  <h3>Workflow 1 — The Two Broken Triggers</h3>
+  <div class="callout bad">
+    <strong>Facebook Lead Form Submitted.</strong> Filters are <em>Page Is "Pro Air Tech, LLC"</em> / <em>Form Is "Any."</em> The trigger depends on a live Facebook/Meta page connection to fire. With the Meta side not fully wired for lead forms, this trigger cannot reliably fire, and the page reference is the only selectable option.
+  </div>
+  <div class="callout bad">
+    <strong>Form Submitted — "Claim Offer Form Submission."</strong> The form selector is empty/orphaned. The card references a form ID (<code>…nUgU4ch8RM…</code> plus an empty <code>""</code>) that no longer exists. The field shows the placeholder "Please Select Forms," and the dropdown returns "No Data" — there are no forms in the account to map it to. This is the trigger carrying the red error indicator. It cannot fire as-is.
+  </div>
+
+  <h2>4. Frozen Leads — Confirmed</h2>
+  <p><strong>19 confirmed</strong>, matching the "<em>$79 Spring Tuneup Ad Workflow</em>" (Published; 37 total enrolled, 19 Active Enrolled). In Enrollment History, every one of them is parked at:</p>
+  <ul>
+    <li>Current Action: <strong>Manual Call</strong></li>
+    <li>Current Status: <strong>Processing Step</strong></li>
+    <li>Next Execution: <strong>Not Available</strong></li>
+  </ul>
+  <p>i.e. stuck waiting on a manual step. The same 19 also appear as opportunities in the <em>New Lead</em> stage (see Section 7). <strong>Not re-enrolled</strong> — held, per instruction.</p>
+
+  <h2>5. Google Integration — Needs Re-Auth <span class="pill bad">Untouched</span></h2>
+  <p><em>Settings → Integrations → Google ("Manage Google Accounts")</em> shows 2 accounts, both with the red broken-link icon:</p>
+  <ul>
+    <li><strong>proairtechllc@gmail.com</strong> (marked Primary) — broken-link + gear</li>
+    <li><strong>josh.proairtech@gmail.com</strong> — broken-link</li>
+  </ul>
+  <p>This is the disconnected / needs-reauth state expected, covering Business Profile / Analytics / Ads. <strong>No re-auth attempted</strong> — Shane needs to do this from his own login.</p>
+
+  <h2>6. Funnel / Logo — Swift Air Logo <span class="pill good">Not Found on Live Page</span></h2>
+  <p>The HVAC Offer funnel has 3 steps: <em>Offer → Consultation Appointment → Thank You</em>. On the live "HVAC Offer Thank You" page, every logo is Pro Air Tech (header + footer), the footer reads "Copyright Pro Air Tech 2026," and a text/image scan found no "Swift" reference and no Swift Air asset (only 2 images, both the Pro Air Tech logo).</p>
+  <div class="callout warn">
+    <strong>⚠️ Caveat for the call.</strong> The published/preview page is confirmed clean. I could not safely confirm the funnel-builder canvas (hidden elements / unpublished edits) without opening the editor, which was out of scope. So: <strong>live page = no Swift Air logo; builder-level state still needs a manual look.</strong>
+    <br><br>
+    One related flag — the Offer step pulls several images from a different account path (<code>msgsndr/n4lLPqZ3Dv19TQTebcB6/…</code>), a sign that step was cloned from another client's template (possibly the Swift Air source). None of those were a Swift logo, but worth a glance when you're in the builder.
+  </div>
+
+  <h2>7. Business Niche — <span class="pill good">Correct</span></h2>
+  <p><em>Settings → Business Profile → Business Niche</em> = <strong>"HVAC Contractor."</strong> ✅ Already correct; no change needed.</p>
+
+  <h2>8. Pipelines / Tags / Conversations Inventory</h2>
+
+  <h3>Pipelines</h3>
+  <p>One pipeline: <strong>Marketing Pipeline</strong> (11 stages). Open opportunity counts:</p>
+  <table>
+    <thead><tr><th>Stage</th><th>Opportunities</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>New Lead</td><td>19</td><td>$1,501.00</td></tr>
+      <tr><td>Initial Contact</td><td>0</td><td>—</td></tr>
+      <tr><td>Qualification</td><td>0</td><td>—</td></tr>
+      <tr><td>Consultation &amp; Quote</td><td>0</td><td>—</td></tr>
+      <tr><td>Site Assessment / Inspection</td><td>0</td><td>—</td></tr>
+      <tr><td>Follow-Up / Negotiation</td><td>0</td><td>—</td></tr>
+      <tr><td>Service Performed</td><td>0</td><td>—</td></tr>
+      <tr><td>Post-Service Follow-Up</td><td>0</td><td>—</td></tr>
+      <tr><td>Lead Nurturing / Upsell Opportunities</td><td>0</td><td>—</td></tr>
+      <tr><td>Review Request</td><td>0</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="sub">That's 10 stages with counts; settings reports 11, so there's likely one additional closed/won stage not shown in the open-opportunities view. Every non-New-Lead stage is empty. <strong>All 19 opps = the 19 frozen leads, sitting in New Lead.</strong></p>
+
+  <h3>Tags</h3>
+  <p>Exactly 4, all standard, none test/duplicate/junk: <code>follow-up</code>, <code>high priority</code>, <code>left message</code>, <code>warm lead</code>. No "Spring Tuneup" tag exists — the 19 are tracked by workflow enrollment, not a tag.</p>
+  <p class="sub">Note: the Tags settings screen doesn't expose per-tag contact counts. Getting counts would need 4 separate contact-filter passes — flag if you want those numbers.</p>
+
+  <h3>Conversations / Channels</h3>
+  <table>
+    <thead><tr><th>Channel</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>SMS / Phone</td><td><span class="pill good">Connected</span></td><td>+1 678-737-6463; active SMS threads + voicemails in inbox. No errors.</td></tr>
+      <tr><td>Email</td><td><span class="pill good">Connected</span></td><td>LeadConnector Email System (<code>send.lcmsgsndr.com</code>); shared sending domain — no dedicated sending domain configured (deliverability consideration).</td></tr>
+      <tr><td>Facebook</td><td><span class="pill good">Connected</span></td><td>Pro Air Tech, LLC.</td></tr>
+      <tr><td>Instagram</td><td><span class="pill warn">Unconfirmed</span></td><td>Rides the Meta/Facebook connection; FB is connected but IG message routing not independently confirmed.</td></tr>
+      <tr><td>GMB / Google</td><td><span class="pill bad">Needs Re-Auth</span></td><td>See Section 5.</td></tr>
+      <tr><td>LinkedIn / TikTok / WhatsApp</td><td><span class="pill neutral">Not Connected</span></td><td>"Connect" buttons available.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>9. Open Blockers for the Client Call</h2>
+  <p>What we need from Branson / Shane / Josh:</p>
+  <ol class="blockers">
+    <li><strong>Custom Values</strong> <span class="who">Branson / Shane</span><br>All 4 still blank — Hours of Operation, New Booking Thank You URL, Website Booking Page URL, Promotion Name. <strong>Nothing publishes until these are filled.</strong></li>
+    <li><strong>Workflow 1 form trigger</strong> <span class="who">Branson / Shane</span><br>The "Claim Offer Form Submission" trigger points to a deleted/missing form and there are no forms in the account to remap to. A real form needs to be created/restored before WF1 can work.</li>
+    <li><strong>Workflow 1 Facebook trigger</strong> <span class="who">Shane</span><br>Depends on the Meta/Facebook lead-form connection + field mapping being valid.</li>
+    <li><strong>Google re-auth</strong> <span class="who">Shane (his login)</span><br>Reconnect <code>proairtechllc@gmail.com</code> (primary) and <code>josh.proairtech@gmail.com</code> — both broken — to restore Business Profile / Analytics / Ads / GMB.</li>
+    <li><strong>Swift Air logo</strong> <span class="who">Manual builder check</span><br>Live Thank You page is clean; confirm/remove any legacy Swift asset in the funnel builder. Also check the Offer step's cloned-in images from the other account path.</li>
+    <li><strong>19 frozen leads — decision needed</strong><br>Stuck at a Manual Call step with no next execution. Re-enrollment is on hold until Custom Values are filled and WF1 triggers are fixed.</li>
+    <li><strong>Workflow publishing — decision</strong><br>WF 1/2/3/4/6 stay in Draft until Custom Values are populated — confirm sequencing on the call.</li>
+    <li><strong>Email deliverability — optional</strong> <span class="who">Branson</span><br>No dedicated sending domain — decide whether to set one up before go-live.</li>
+  </ol>
+
+  <h2>10. Side Flags (Not in Fixes Scope)</h2>
+  <ul>
+    <li><strong>Business Industry field</strong> (phone/compliance section of Business Profile) is set to "Retail," which conflicts with HVAC Contractor. Likely should be updated for A2P / compliance accuracy — flagging, not changing.</li>
+    <li><strong>Authorized Representative</strong> on the Business Profile is still Shane Merchant (CEO, <code>proairtechllc@gmail.com</code>, 404-606-7645) — if Josh is becoming primary, this may warrant review.</li>
+  </ul>
+
+  <footer class="foot">
+    <div>© 2026 Treetop Growth Strategy. Prepared for the MP Group.</div>
+    <div>Confidential — Audit dated 2026-06-02.</div>
+  </footer>
+
+</div>
+</body>
+</html>
