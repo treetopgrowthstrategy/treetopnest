@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Fractional GTM - Treetop Growth Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0b0c0e;
+    --bg2: #131416;
+    --bg3: #1a1c1f;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #8a8784;
+    --accent-green: #00d47e;
+    --accent-blue: #4a9eff;
+    --accent-amber: #f5a623;
+    --tag-bg: rgba(255,255,255,0.05);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-nav {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .nav-brand {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem 3rem;
+  }
+  .breadcrumb {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb span { color: var(--accent-green); }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  h1 em { font-style: normal; color: var(--accent-green); }
+
+  .hero-tagline {
+    font-size: 20px;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+    font-weight: 300;
+    max-width: 680px;
+    letter-spacing: -0.005em;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(240,237,232,0.78);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .stat {
+    background: var(--bg2);
+    padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--accent-green);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2.5rem 6rem;
+  }
+
+  .section { margin-bottom: 4rem; scroll-margin-top: 80px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-green);
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  p { color: rgba(240,237,232,0.8); margin-bottom: 1rem; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .col-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .col-card-label.green { color: var(--accent-green); }
+  .col-card p { font-size: 14px; color: rgba(240,237,232,0.78); margin: 0; line-height: 1.65; }
+
+  .callout {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-green);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .callout strong { color: var(--text); font-weight: 500; }
+
+  .callout.amber { border-left-color: var(--accent-amber); }
+  .callout.blue { border-left-color: var(--accent-blue); }
+
+  ul.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+  ul.bullets li {
+    font-size: 14px;
+    color: rgba(240,237,232,0.78);
+    padding: 0.35rem 0 0.35rem 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  ul.bullets li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-size: 12px;
+  }
+  ul.bullets.blue li::before { color: var(--accent-blue); }
+  ul.bullets.amber li::before { color: var(--accent-amber); }
+
+  /* SERVICE LINE CARDS */
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .service-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .service-head {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .service-head.green {
+    background: rgba(0,212,126,0.06);
+    border-bottom-color: rgba(0,212,126,0.2);
+  }
+  .service-head.blue {
+    background: rgba(74,158,255,0.06);
+    border-bottom-color: rgba(74,158,255,0.2);
+  }
+  .service-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .service-eyebrow.green { color: var(--accent-green); }
+  .service-eyebrow.blue { color: var(--accent-blue); }
+  .service-title { font-size: 1.2rem; font-weight: 500; line-height: 1.3; margin-bottom: 0.3rem; }
+  .service-sub { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .service-body { padding: 1.25rem 1.5rem; }
+  .service-body-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  /* PHASE CARDS - 3 col */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .phase-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-green);
+    margin-bottom: 0.5rem;
+  }
+  .phase-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; line-height: 1.3; }
+  .phase-sub { font-size: 12px; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+
+  /* PRICING TIER CARDS */
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .budget-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .budget-card.featured {
+    border-color: rgba(0,212,126,0.3);
+    background: rgba(0,212,126,0.04);
+    position: relative;
+  }
+  .featured-flag {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: var(--accent-green);
+    color: #0b0c0e;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .budget-tier {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .budget-tier.green { color: var(--accent-green); }
+  .budget-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+  .budget-amount-sub { font-size: 11px; color: var(--muted); font-family: 'DM Sans', sans-serif; letter-spacing: 0; }
+  .budget-best {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .budget-includes {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  /* META PRICING TABLE */
+  .meta-fee {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .meta-fee-head {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(74,158,255,0.04);
+  }
+  .meta-fee-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin-bottom: 0.4rem;
+  }
+  .meta-fee-title { font-size: 1.1rem; font-weight: 500; }
+  .meta-fee-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .meta-fee-row:last-child { border-bottom: none; }
+  .meta-fee-row-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .meta-fee-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  .meta-fee-row-detail {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* COMBINED TABLE */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 0.75rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    color: rgba(240,237,232,0.85);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.mono { font-family: 'DM Mono', monospace; font-size: 12px; }
+  td.green { color: var(--accent-green); font-family: 'DM Mono', monospace; }
+
+  /* MEASUREMENT CARDS */
+  .measurement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .m-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .m-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .m-card-label.green { color: var(--accent-green); }
+  .m-card-label.blue { color: var(--accent-blue); }
+  .m-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .m-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 0.6rem; }
+  .m-card-desc:last-child { margin-bottom: 0; }
+  .m-card-desc strong { color: var(--text); font-weight: 500; }
+
+  /* TERMS TABLE */
+  .terms-table {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .terms-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .terms-row:last-child { border-bottom: none; }
+  .terms-key {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .terms-val { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* CTA */
+  .cta-block {
+    background: rgba(0,212,126,0.05);
+    border: 1px solid rgba(0,212,126,0.2);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .cta-title { font-size: 1.5rem; font-weight: 400; margin-bottom: 0.75rem; }
+  .cta-sub { font-size: 14px; color: var(--muted); margin-bottom: 1.75rem; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent-green);
+    color: #0b0c0e;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .sow-link-wrap { margin: 1rem 0; }
+  .sow-link {
+    display: inline-block;
+    color: var(--accent-green);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,212,126,0.3);
+    transition: border-color 0.15s;
+  }
+  .sow-link:hover { border-bottom-color: var(--accent-green); }
+  .sow-note { font-size: 12px; color: var(--muted); margin-top: 0.6rem; font-style: italic; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .site-nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 3rem 1.25rem 2rem; }
+    .content { padding: 0 1.25rem 4rem; }
+    .stat-row { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .service-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .budget-grid { grid-template-columns: 1fr; }
+    .measurement-grid { grid-template-columns: 1fr; }
+    .meta-fee-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .terms-row { grid-template-columns: 1fr; gap: 0.35rem; }
+    .hero-tagline { font-size: 17px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.35rem; }
+  }
+
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; line-height: 1.5; }
+    .site-nav, .cta-block { display: none; }
+    .hero, .content { max-width: 100%; padding: 0.5in; }
+    h1, h2, h3 { color: #000; page-break-after: avoid; }
+    h1 em { color: #006e42; }
+    p, td, li, .budget-desc, .m-card-desc, .terms-val, .service-sub { color: #222; }
+    .section, .budget-card, .service-card, .phase-card, .m-card, .meta-fee, .terms-table, .stat-row, .callout {
+      background: #fff;
+      border-color: #ccc;
+      page-break-inside: avoid;
+    }
+    .stat-num, .budget-tier.green, .section-label, .col-card-label.green,
+    .service-eyebrow.green, .m-card-label.green, .sow-link { color: #006e42; }
+    .service-eyebrow.blue, .meta-fee-eyebrow, .meta-fee-amount, .m-card-label.blue { color: #003d99; }
+    .callout { border-left-color: #006e42; }
+    .callout.amber { border-left-color: #a67000; }
+    .callout.blue { border-left-color: #003d99; }
+    a { color: #000; text-decoration: underline; }
+    ul.bullets li::before { color: #006e42; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="nav-brand" href="/">Treetop Growth Strategy</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#terms">Terms</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">Treetop Growth Strategy / <span>Fractional GTM</span></div>
+  <h1>Fractional <em>GTM</em></h1>
+  <p class="hero-tagline">Acquisition-grade growth infrastructure, without the full-time headcount.</p>
+  <p class="hero-sub">Treetop embeds as your fractional GTM lead, running B2B outbound prospecting, target validation, and outreach alongside paid social acquisition on Meta. Built for companies that need a senior operator running their growth motion, not an agency managing a campaign.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">90 Days</div>
+      <div class="stat-label">Time to a functioning outbound acquisition engine from zero</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0 wasted</div>
+      <div class="stat-label">On unqualified outreach. Targets are validated before contact is made.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12%</div>
+      <div class="stat-label">Of media spend for Meta management. No retainer separate from results.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- SECTION 01 - WHAT FRACTIONAL GTM MEANS -->
+  <div class="section" id="services">
+    <div class="section-label">Section 01</div>
+    <h2>What Fractional GTM actually means</h2>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-label green">What you get</div>
+        <p>A senior GTM operator embedded in your business at a fraction of the cost of a full-time VP of Growth or Head of Sales. Running the functions that drive acquisition: identifying who to sell to, validating that they're real and reachable, building the outreach infrastructure, and running paid social to capture inbound demand in parallel.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-card-label">What you don't get</div>
+        <p>An agency that reports on vanity metrics. A junior SDR sending bulk emails. A consultant who delivers a strategy deck and disappears. Separate invoices for strategy, execution, and reporting. Work that stops when you stop paying attention to it.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Most B2B companies don't have a pipeline problem. They have a targeting problem,</strong> they're reaching the wrong companies, too early, with the wrong message. The GTM work starts with getting that right before a single outreach email is sent.
+    </div>
+  </div>
+
+  <!-- SECTION 02 - TWO SERVICE LINES -->
+  <div class="section">
+    <div class="section-label">Section 02</div>
+    <h2>The two service lines</h2>
+
+    <div class="service-grid">
+
+      <!-- B2B GTM -->
+      <div class="service-card">
+        <div class="service-head green">
+          <div class="service-eyebrow green">Service line 01</div>
+          <div class="service-title">B2B Acquisition Engine</div>
+          <div class="service-sub">Prospecting, validation, and outreach, end to end.</div>
+        </div>
+        <div class="service-body">
+          <div class="service-body-label">What this covers</div>
+          <ul class="bullets">
+            <li><strong>ICP definition and refinement:</strong> building the firmographic and behavioral profile of your best-fit buyer. Not a brainstorm, a validated framework based on your existing customer data and win/loss patterns.</li>
+            <li><strong>Prospect research and list building:</strong> identifying real companies that match the ICP across company size, industry, geography, tech stack, hiring signals, and funding status. Built manually and via tooling, not scraped lists.</li>
+            <li><strong>Target validation:</strong> every prospect qualified against defined criteria before entering a sequence. No spray-and-pray. Effort concentrated on accounts most likely to convert.</li>
+            <li><strong>Outreach sequence build:</strong> personalized multi-touch sequences across email and LinkedIn. Written to reflect the prospect's actual context, not a template with a first name field.</li>
+            <li><strong>Sequence management and optimization:</strong> A/B testing subject lines, messaging, timing, and CTAs. Response handling and reply triage. Sequence rotation when fatigue sets in.</li>
+            <li><strong>Weekly and monthly reporting:</strong> prospects contacted, response rates by sequence, meetings booked, pipeline generated. No attribution games, straightforward numbers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- META ADS -->
+      <div class="service-card">
+        <div class="service-head blue">
+          <div class="service-eyebrow blue">Service line 02</div>
+          <div class="service-title">Meta Ads Management</div>
+          <div class="service-sub">Paid social acquisition. Setup, optimization, and reporting.</div>
+        </div>
+        <div class="service-body">
+          <div class="service-body-label">What this covers</div>
+          <ul class="bullets blue">
+            <li><strong>Campaign architecture:</strong> account structure, campaign objective selection, ad set configuration, audience segmentation. Built for performance from day one, not retrofitted later.</li>
+            <li><strong>Audience management:</strong> pixel retargeting, lookalike builds from customer seed data, suppression lists, and ongoing audience refresh as data accumulates.</li>
+            <li><strong>Creative testing framework:</strong> systematic A/B testing of creative concepts, copy angles, CTAs, and formats. Rotation cadence set by performance data, not a calendar.</li>
+            <li><strong>Bid strategy and budget optimization:</strong> daily monitoring, budget pacing, CPM and CPC management. Rebalancing between ad sets and campaigns based on real-time performance.</li>
+            <li><strong>Weekly performance report:</strong> spend, impressions, CPM, CTR, ROAS, CAC trend. Delivered every Monday.</li>
+            <li><strong>Monthly strategy report:</strong> full-funnel attribution, creative winner analysis, audience performance breakdown, recommended budget adjustments for the following month.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 03 - THE WORK -->
+  <div class="section" id="process">
+    <div class="section-label">Section 03</div>
+    <h2>The work: what actually happens</h2>
+
+    <div class="phase-grid">
+
+      <div class="phase-card">
+        <div class="phase-num">Phase 01</div>
+        <div class="phase-title">Define</div>
+        <div class="phase-sub">Week 1 to 2. Before a single prospect is contacted or a single dollar is spent.</div>
+        <ul class="bullets">
+          <li>ICP workshop: 90-minute session to map your best-fit buyer profile against existing customer data</li>
+          <li>Win/loss analysis: which deals closed, which churned, and why</li>
+          <li>Message architecture: one primary value proposition per ICP, three supporting proof points, one differentiated claim competitors cannot make</li>
+          <li>Competitive landscape: who else is in your buyer's consideration set and how to position against them</li>
+          <li>Approval gate: ICP profile and message architecture signed off before any outreach begins</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num">Phase 02</div>
+        <div class="phase-title">Build</div>
+        <div class="phase-sub">Weeks 2 to 4. Infrastructure before execution.</div>
+        <ul class="bullets">
+          <li>Prospect list build: first batch of 100 to 300 validated targets matching approved ICP</li>
+          <li>Sequence build: three-touch to five-touch outreach sequence per ICP, written and reviewed</li>
+          <li>Technical setup: email domain warm-up, LinkedIn profile optimization, CRM integration, tracking infrastructure</li>
+          <li>Meta account setup: campaign structure, pixel verification, audience seeds uploaded, first creative batch QA'd</li>
+          <li>Pre-launch review: all assets reviewed and approved before any outreach or spend is activated</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num">Phase 03</div>
+        <div class="phase-title">Run</div>
+        <div class="phase-sub">Month 2 onward. Execution with continuous optimization.</div>
+        <ul class="bullets">
+          <li>Weekly outreach: new prospects entering sequences continuously against monthly volume targets</li>
+          <li>Response management: all replies triaged, interested prospects handed off or advanced to next step</li>
+          <li>Meta optimization: daily monitoring, weekly creative and bid adjustments, monthly budget rebalancing</li>
+          <li>Weekly reporting: outreach metrics plus Meta performance in a single combined report</li>
+          <li>Monthly call: 60-minute strategy review, optimization decisions, next month planning</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 04 - PRICING -->
+  <div class="section" id="pricing">
+    <div class="section-label">Section 04</div>
+    <h2>Clear pricing. No surprises.</h2>
+    <p>Two service lines, each priced independently. Take one or both. No bundling required, no minimum commitment beyond the initial term.</p>
+
+    <h3 style="margin-top:2rem;">B2B GTM Retainer, three tiers</h3>
+
+    <div class="budget-grid">
+
+      <div class="budget-card">
+        <div class="budget-tier">Tier 01 / Activate</div>
+        <div class="budget-amount">$4,500<span class="budget-amount-sub">/month</span></div>
+        <div class="budget-best">Best for: companies new to structured outbound, validating ICP before scaling.</div>
+        <div class="budget-includes">Includes</div>
+        <ul class="bullets">
+          <li>ICP definition and validation (initial, one-time)</li>
+          <li>50 qualified prospects contacted per month</li>
+          <li>1 active outreach sequence (email)</li>
+          <li>Response triage and handoff</li>
+          <li>Weekly performance report</li>
+        </ul>
+      </div>
+
+      <div class="budget-card featured">
+        <div class="featured-flag">Most common</div>
+        <div class="budget-tier green">Tier 02 / Build</div>
+        <div class="budget-amount">$8,500<span class="budget-amount-sub">/month</span></div>
+        <div class="budget-best">Best for: companies ready to build a repeatable pipeline engine.</div>
+        <div class="budget-includes">Includes</div>
+        <ul class="bullets">
+          <li>Up to 2 ICPs and 2 personas</li>
+          <li>150+ qualified prospects contacted per month</li>
+          <li>2 to 3 active sequences (email plus LinkedIn)</li>
+          <li>A/B testing: subject lines, messaging, CTAs</li>
+          <li>Response triage, qualification, and meeting booking</li>
+          <li>CRM updates and pipeline tracking</li>
+          <li>Weekly performance report plus monthly strategy call (60 min)</li>
+        </ul>
+      </div>
+
+      <div class="budget-card">
+        <div class="budget-tier">Tier 03 / Scale</div>
+        <div class="budget-amount">$15,000<span class="budget-amount-sub">/month</span></div>
+        <div class="budget-best">Best for: companies treating outbound as a primary growth channel.</div>
+        <div class="budget-includes">Includes</div>
+        <ul class="bullets">
+          <li>Up to 3 ICPs and 4 personas</li>
+          <li>300+ qualified prospects contacted per month</li>
+          <li>Full multi-channel sequences: email plus LinkedIn plus phone</li>
+          <li>Competitive intelligence and account-based targeting</li>
+          <li>SDR management or coordination (if client has internal SDR)</li>
+          <li>CRM workflow buildout and deal stage management</li>
+          <li>Weekly performance report plus weekly strategy call (30 min) plus monthly board-ready pipeline report</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Meta Ads, add to any GTM tier or standalone</h3>
+
+    <div class="meta-fee">
+      <div class="meta-fee-head">
+        <div class="meta-fee-eyebrow">Service line 02</div>
+        <div class="meta-fee-title">Meta Ads Management Fee Structure</div>
+      </div>
+      <div class="meta-fee-row">
+        <div>
+          <div class="meta-fee-row-label">Minimum retainer</div>
+          <span class="meta-fee-amount">$2,500/month</span>
+        </div>
+        <div class="meta-fee-row-detail">Applies when monthly media spend is below approximately $21,000. Covers full account management regardless of spend level.</div>
+      </div>
+      <div class="meta-fee-row">
+        <div>
+          <div class="meta-fee-row-label">Percentage fee</div>
+          <span class="meta-fee-amount">12% of spend</span>
+        </div>
+        <div class="meta-fee-row-detail">Applies to gross monthly media spend when spend exceeds $21,000/month. No additional retainer, the percentage replaces the flat floor above that threshold.</div>
+      </div>
+      <div class="meta-fee-row">
+        <div>
+          <div class="meta-fee-row-label">One-time setup fee</div>
+          <span class="meta-fee-amount">$1,500</span>
+        </div>
+        <div class="meta-fee-row-detail">Covers account audit or build, campaign architecture, pixel setup, audience configuration, and first creative batch QA.</div>
+      </div>
+    </div>
+
+    <div class="callout amber">
+      <strong>Media spend is billed directly by Meta to the client's payment method.</strong> Treetop invoices only for management fees. No markup on creative production.
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Combined investment</h3>
+    <p>What the engagement looks like at different combinations.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Engagement</th>
+            <th>Monthly investment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Activate (outbound only)</td>
+            <td class="green">$4,500/mo</td>
+          </tr>
+          <tr>
+            <td>Activate plus Meta ($10K spend)</td>
+            <td class="green">$7,000/mo ($4,500 plus $2,500)</td>
+          </tr>
+          <tr>
+            <td>Build (outbound only)</td>
+            <td class="green">$8,500/mo</td>
+          </tr>
+          <tr>
+            <td>Build plus Meta ($25K spend)</td>
+            <td class="green">$11,500/mo ($8,500 plus $3,000)</td>
+          </tr>
+          <tr>
+            <td>Scale (outbound only)</td>
+            <td class="green">$15,000/mo</td>
+          </tr>
+          <tr>
+            <td>Scale plus Meta ($50K spend)</td>
+            <td class="green">$21,000/mo ($15,000 plus $6,000)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>The GTM retainer and Meta management fees are independent.</strong> There is no discount for combining them and no penalty for running one without the other. Each is scoped and billed separately.
+    </div>
+  </div>
+
+  <!-- SECTION 05 - MEASUREMENT -->
+  <div class="section">
+    <div class="section-label">Section 05</div>
+    <h2>How we measure the work</h2>
+
+    <div class="measurement-grid">
+
+      <div class="m-card">
+        <div class="m-card-label green">Measurement 01</div>
+        <div class="m-card-title">B2B Outbound</div>
+        <p class="m-card-desc"><strong>Primary metrics:</strong> prospects contacted per month vs. target, response rate (benchmark 8 to 15% for well-targeted outbound), positive response rate (benchmark 2 to 5%), meetings booked per month, pipeline value generated.</p>
+        <p class="m-card-desc"><strong>Secondary:</strong> sequence reply-rate by touch number, best-performing message variant, ICP accuracy signal (positive vs. negative response patterns).</p>
+        <p class="m-card-desc"><strong>What we don't measure:</strong> open rates (unreliable), impressions, or any metric that doesn't connect to pipeline.</p>
+      </div>
+
+      <div class="m-card">
+        <div class="m-card-label blue">Measurement 02</div>
+        <div class="m-card-title">Meta Ads</div>
+        <p class="m-card-desc"><strong>Primary metrics:</strong> spend vs. budget pacing, CPM, CTR, CPC, ROAS (revenue/spend), CAC (cost to acquire one customer).</p>
+        <p class="m-card-desc"><strong>Secondary:</strong> creative performance by variant, audience overlap, frequency, and reach by campaign.</p>
+        <p class="m-card-desc"><strong>Reporting cadence:</strong> weekly summary every Monday, monthly full-attribution report by the 5th.</p>
+      </div>
+
+      <div class="m-card">
+        <div class="m-card-label">Measurement 03</div>
+        <div class="m-card-title">Combined</div>
+        <p class="m-card-desc"><strong>North Star:</strong> cost per qualified meeting booked (outbound) and cost per acquisition (Meta).</p>
+        <p class="m-card-desc"><strong>Monthly review question:</strong> Is the blended CAC trending toward the client's target? If yes, scale. If no, diagnose which input (ICP accuracy, message quality, creative, audience targeting) is causing the gap before adding budget.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 06 - WHAT WE NEED -->
+  <div class="section">
+    <div class="section-label">Section 06</div>
+    <h2>What we need from you</h2>
+
+    <h3 style="margin-top:1.5rem;">Before we start</h3>
+    <ul class="bullets">
+      <li>90 minutes for an ICP and messaging workshop in week one. Non-negotiable, the work can't begin without it.</li>
+      <li>Access to CRM or deal history (even a spreadsheet) so we can analyze existing customers before building new target lists</li>
+      <li>2 to 3 case studies, testimonials, or customer proof points we can use in outreach messaging</li>
+      <li>Designated point of contact with authority to approve ICP definition, messaging, and sequence copy before launch</li>
+      <li>Meta Business Manager access and pixel confirmed on website (or we set it up in week one)</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem;">During the engagement</h3>
+    <ul class="bullets">
+      <li>Respond to ICP, messaging, and creative approvals within 3 business days</li>
+      <li>Weekly 15-minute sync (optional but recommended). These keep the work from drifting.</li>
+      <li>Flag any product changes, pricing changes, or target market shifts immediately. These break sequences if we don't know about them.</li>
+    </ul>
+
+    <div class="callout amber">
+      <strong>The single biggest engagement failure mode is approval bottlenecks.</strong> Sequences can't go live without approved copy. Meta campaigns can't launch without approved creative. The faster approvals move on your end, the faster the engine runs.
+    </div>
+  </div>
+
+  <!-- SECTION 07 - TERMS -->
+  <div class="section" id="terms">
+    <div class="section-label">Section 07</div>
+    <h2>Engagement terms</h2>
+
+    <div class="terms-table">
+      <div class="terms-row">
+        <div class="terms-key">Initial term</div>
+        <div class="terms-val">3 months from engagement start date. Required for both service lines.</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-key">After initial term</div>
+        <div class="terms-val">Month-to-month with 30 days written notice to terminate.</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-key">Setup fees</div>
+        <div class="terms-val">Non-refundable once paid. Setup work is complete at launch regardless of engagement duration.</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-key">Payment terms</div>
+        <div class="terms-val">Net 15 from invoice date. Monthly retainer invoiced on the 1st of each month.</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-key">Late payments</div>
+        <div class="terms-val">1.5% per month on balances unpaid after 15 days.</div>
+      </div>
+      <div class="terms-row">
+        <div class="terms-key">Scope changes</div>
+        <div class="terms-val">Any changes to ICP count, prospect volume, active sequences, or Meta account structure require a written amendment. Verbal scope changes are not binding.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Full terms, service inclusions, exclusions, deliverable cadence, and client obligations are defined in the Statement of Work.</strong> Review it alongside this proposal, it governs the engagement once signed.
+      <div class="sow-link-wrap">
+        <a class="sow-link" href="/reports/streaming-media-sow.html">View Statement of Work →</a>
+        <div class="sow-note">Note: the linked SOW was drafted for the streaming media engagement. A revised SOW scoped to this fractional GTM engagement will be issued at execution.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-title">Ready to build your acquisition engine?</div>
+    <div class="cta-sub">15 minutes is enough to know if this is the right fit. We'll cover your ICP hypothesis, current pipeline, and what the first 90 days would look like.</div>
+    <a href="mailto:william.colbert@treetopgrowthstrategy.com" class="cta-btn">Schedule a discovery call</a>
+  </div>
+
+</div>
+
+</body>
+</html>
