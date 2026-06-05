@@ -32,7 +32,7 @@
   .nav-pill{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-sub);}
   .nav-badge{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);}
   .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:livepulse 2s infinite;flex-shrink:0;}
-  @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(88,188,197,0.6)}70%{box-shadow:0 0 0 8px rgba(88,188,197,0)}100%{box-shadow:0 0 0 0 rgba(88,188,197,0)}}}
+  @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(88,188,197,0.6)}70%{box-shadow:0 0 0 8px rgba(88,188,197,0)}100%{box-shadow:0 0 0 0 rgba(88,188,197,0)}}
 
   /* HERO */
   .hero{padding:56px 40px 48px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
@@ -93,10 +93,10 @@
   .month-card.card-changes{border-color:rgba(245,158,11,0.5)!important;}
 
   /* DRAG HANDLE */
-  .drag-handle{position:absolute;top:14px;left:14px;color:var(--text-muted);cursor:grab;opacity:0;transition:opacity 0.15s;padding:4px;border-radius:4px;z-index:2;line-height:1;}
-  .drag-handle:hover{background:rgba(255,255,255,0.06);}
-  .month-card:hover .drag-handle{opacity:1;}
-  .drag-handle:active{cursor:grabbing;}
+  .drag-handle{position:absolute;top:14px;left:10px;color:var(--text-muted);cursor:grab;opacity:0.3;transition:opacity 0.15s,background 0.15s;padding:5px 4px;border-radius:4px;z-index:5;line-height:1;font-size:14px;user-select:none;-webkit-user-select:none;}
+  .drag-handle:hover{opacity:1;background:rgba(255,255,255,0.07);}
+  .drag-handle:active{cursor:grabbing;opacity:1;}
+  .backlog-card .drag-handle{position:absolute;top:12px;left:8px;}
 
   /* CARD HEADER */
   .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:16px;padding-left:18px;}
@@ -926,57 +926,80 @@ function filterCards(pillar,btn){
   });
 }
 
-// ── DRAG AND DROP
-function setupDragDrop(containerId){
-  const container=document.getElementById(containerId);
-  if(!container)return;
-  let dragged=null;
+// ── DRAG AND DROP — handle-only, works with interactive child elements
+function setupDragDrop(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-  function getCards(){return [...container.querySelectorAll('[draggable="true"]')];}
+  let dragged = null;
+  let dragOverTarget = null;
 
-  container.addEventListener('dragstart',e=>{
-    const card=e.target.closest('[draggable="true"]');
-    if(!card||!container.contains(card))return;
-    dragged=card;
-    setTimeout(()=>card.classList.add('dragging'),0);
-    e.dataTransfer.effectAllowed='move';
-    e.dataTransfer.setData('text/plain',card.dataset.cardId||card.dataset.backlogId||'');
+  // Only enable draggable when mousedown on handle
+  container.querySelectorAll('.drag-handle').forEach(handle => {
+    handle.addEventListener('mousedown', () => {
+      const card = handle.closest('[data-card-id],[data-backlog-id]');
+      if (card) card.setAttribute('draggable', 'true');
+    });
   });
 
-  container.addEventListener('dragend',e=>{
-    const card=e.target.closest('[draggable="true"]');
-    if(card){card.classList.remove('dragging');}
-    container.querySelectorAll('.drag-over').forEach(el=>el.classList.remove('drag-over'));
-    dragged=null;
+  // Remove draggable on mouseup anywhere (prevents accidental drags)
+  document.addEventListener('mouseup', () => {
+    container.querySelectorAll('[draggable="true"]').forEach(c => {
+      c.removeAttribute('draggable');
+    });
+  });
+
+  container.addEventListener('dragstart', e => {
+    const card = e.target.closest('[data-card-id],[data-backlog-id]');
+    if (!card || !container.contains(card)) return;
+    dragged = card;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', card.dataset.cardId || card.dataset.backlogId || '');
+    setTimeout(() => card.classList.add('is-dragging'), 0);
+  });
+
+  container.addEventListener('dragend', () => {
+    if (dragged) dragged.classList.remove('is-dragging');
+    container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    dragged = null;
+    dragOverTarget = null;
     saveOrder(containerId);
+    if (containerId === 'backlog') updatePriorityNumbers();
   });
 
-  container.addEventListener('dragover',e=>{
+  container.addEventListener('dragover', e => {
     e.preventDefault();
-    e.dataTransfer.dropEffect='move';
-    const card=e.target.closest('[draggable="true"]');
-    if(card&&card!==dragged&&container.contains(card)){
-      container.querySelectorAll('.drag-over').forEach(el=>el.classList.remove('drag-over'));
+    e.dataTransfer.dropEffect = 'move';
+    const card = e.target.closest('[data-card-id],[data-backlog-id]');
+    if (card && card !== dragged && container.contains(card) && card !== dragOverTarget) {
+      container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
       card.classList.add('drag-over');
+      dragOverTarget = card;
     }
   });
 
-  container.addEventListener('dragleave',e=>{
-    const card=e.target.closest('[draggable="true"]');
-    if(card)card.classList.remove('drag-over');
+  container.addEventListener('dragleave', e => {
+    if (!container.contains(e.relatedTarget)) {
+      container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+      dragOverTarget = null;
+    }
   });
 
-  container.addEventListener('drop',e=>{
+  container.addEventListener('drop', e => {
     e.preventDefault();
-    const target=e.target.closest('[draggable="true"]');
-    if(target&&target!==dragged&&container.contains(target)&&dragged){
-      const cards=getCards();
-      const fromIdx=cards.indexOf(dragged);
-      const toIdx=cards.indexOf(target);
-      if(fromIdx<toIdx){container.insertBefore(dragged,target.nextSibling);}
-      else{container.insertBefore(dragged,target);}
+    const target = e.target.closest('[data-card-id],[data-backlog-id]');
+    if (target && target !== dragged && container.contains(target) && dragged) {
+      const cards = [...container.querySelectorAll('[data-card-id],[data-backlog-id]')];
+      const fromIdx = cards.indexOf(dragged);
+      const toIdx = cards.indexOf(target);
+      if (fromIdx < toIdx) {
+        container.insertBefore(dragged, target.nextSibling);
+      } else {
+        container.insertBefore(dragged, target);
+      }
     }
-    container.querySelectorAll('.drag-over').forEach(el=>el.classList.remove('drag-over'));
+    container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    dragOverTarget = null;
   });
 }
 
