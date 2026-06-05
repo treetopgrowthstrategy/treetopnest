@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Almost Replaced Equipment That Didn't Need Replacing — EcoFit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#14191f;--bg-dark:#0d1117;--surface:#1a2130;--surface2:#2F3535;--border:rgba(255,255,255,0.08);--green:#84BC41;--green-dk:#6aa130;--green-glow:rgba(132,188,65,0.08);--teal:#58BCC5;--text:#F2F3F8;--text-sub:#9699A2;--text-muted:#6b6f7a;--text-dim:#c8cad1;--r:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;}
+  .dot-bg{position:relative;overflow:hidden;}
+  .dot-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  .dot-bg>*{position:relative;z-index:1;}
+  nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:10;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo img{height:26px;width:auto;}
+  .nav-logo .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-back{font-size:12px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.15s;}
+  .nav-back:hover{color:var(--green);}
+  .hero{padding:72px 40px 64px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none;}
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:20px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px;}
+  .hero h1 em{color:var(--green);font-style:italic;}
+  .hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid var(--border);}
+  .hero-author{display:flex;align-items:center;gap:10px;}
+  .author-avatar{width:36px;height:36px;border-radius:50%;background:var(--green-glow);border:1px solid rgba(132,188,65,0.3);display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;color:var(--green);}
+  .author-name{font-size:13px;font-weight:600;color:var(--text-dim);}
+  .author-title{font-size:11px;color:var(--text-muted);}
+  .meta-divider{width:1px;height:28px;background:var(--border);}
+  .meta-item{font-size:12px;color:var(--text-muted);}
+  .article-wrap{max-width:760px;margin:0 auto;padding:60px 40px 80px;}
+  .article-body p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:22px;font-weight:300;}
+  .article-body p strong{color:var(--text);font-weight:600;}
+  .article-body h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin:44px 0 16px;}
+  .article-body h3{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--text-dim);margin:28px 0 10px;}
+  .pull-quote{border-left:3px solid var(--green);padding:20px 24px;margin:36px 0;background:rgba(132,188,65,0.05);border-radius:0 8px 8px 0;}
+  .pull-quote p{font-family:'Raleway',sans-serif;font-size:19px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.01em;margin:0;}
+  .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+  .data-point{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;}
+  .data-number{font-family:'Raleway',sans-serif;font-weight:800;font-size:26px;color:var(--green);letter-spacing:-0.02em;line-height:1;}
+  .data-label{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.4;}
+  .ph{background:rgba(245,158,11,0.15);border:1px dashed rgba(245,158,11,0.4);border-radius:4px;padding:1px 6px;color:#f59e0b;font-size:0.9em;font-weight:600;font-family:'Work Sans',sans-serif;white-space:nowrap;}
+  .ph-block{display:block;background:rgba(245,158,11,0.08);border:1px dashed rgba(245,158,11,0.3);border-radius:8px;padding:14px 18px;margin:16px 0;color:#f59e0b;font-size:13px;font-weight:500;line-height:1.6;}
+  .ph-block::before{content:'✎ PLACEHOLDER: ';font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;opacity:0.7;}
+  .sprinkle{background:rgba(88,188,197,0.08);border-left:3px solid var(--teal);padding:14px 18px;margin:28px 0;border-radius:0 8px 8px 0;}
+  .sprinkle-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .sprinkle p{font-size:13px;color:var(--text-sub);line-height:1.6;margin:0;font-weight:300;}
+  .before-after{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+  .ba-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;}
+  .ba-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
+  .ba-item{font-size:12.5px;color:var(--text-sub);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.5;}
+  .ba-item:last-child{border-bottom:none;}
+  .ba-item .ph{font-size:0.85em;}
+  .cta-block{background:var(--surface);border:1px solid rgba(132,188,65,0.25);border-radius:14px;padding:36px 40px;margin-top:52px;position:relative;overflow:hidden;}
+  .cta-block::before{content:'';position:absolute;top:0;right:0;width:240px;height:240px;background:radial-gradient(circle at top right,rgba(132,188,65,0.08),transparent 65%);pointer-events:none;}
+  .cta-tag{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+  .cta-block h3{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:var(--text-sub);font-weight:300;margin-bottom:24px;line-height:1.65;}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#0d1117;font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;transition:all 0.2s;}
+  .cta-btn:hover{background:#a8d96b;transform:translateY(-1px);}
+  footer{border-top:1px solid var(--border);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-dark);}
+  footer p{font-size:11px;color:var(--text-muted);}
+  footer a{color:var(--green-dk);text-decoration:none;}
+  @media(max-width:640px){nav,.hero,.article-wrap,footer{padding-left:20px;padding-right:20px;}.hero{padding-top:48px;padding-bottom:40px;}.data-row,.before-after{grid-template-columns:1fr;}.cta-block{padding:24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">
+    <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
+    <span class="nav-div">Operator Stories</span>
+  </a>
+  <a href="/proposals/ecofit-content-calendar.html" class="nav-back">← Back to Calendar</a>
+</nav>
+
+<div class="hero dot-bg">
+  <div class="hero-inner">
+    <div class="section-tag"><span class="section-tag-dot"></span>Equipment Refresh · Operator Story</div>
+    <h1>We Almost Replaced Equipment<br>That <em>Didn't Need Replacing</em></h1>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="author-avatar">DJ</div>
+        <div>
+          <div class="author-name">Dave Johnson</div>
+          <div class="author-title">EVP, EcoFit Networks</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span class="ph">MONTH YEAR</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">Operator: <span class="ph">OPERATOR NAME</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">5 min read</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+<div class="article-body">
+
+<p>When equipment gets old, the instinct is to replace it. It's a reasonable instinct — aging machines break down, member complaints accumulate, and vendor reps are always ready to help you spec something new. What most operators don't know is whether the problem is the equipment, or where the equipment is sitting.</p>
+
+<p><span class="ph">OPERATOR NAME</span> had been running their <span class="ph">NUMBER</span>-location operation for <span class="ph">NUMBER</span> years when they started planning a full cardio floor refresh. Their treadmill fleet was <span class="ph">NUMBER</span> years old. Complaints had been coming in. The team had already shortlisted vendors and was preparing to sign a purchase order for <span class="ph">NUMBER</span> new treadmills at a total cost of <span class="ph">$XXX,XXX</span>.</p>
+
+<span class="ph-block">Insert operator background: size of operation, how long they'd been running the same equipment, what was driving the replacement decision (member complaints, vendor pitch, age of machines, maintenance costs). Any quotes from the operator about what they assumed the problem was.</span>
+
+<p>Before they signed, they agreed to run a six-week EcoFit usage study across their existing floor. What they found stopped the purchase order in its tracks.</p>
+
+<h2>What the Study Revealed</h2>
+
+<p>Of the <span class="ph">NUMBER</span> treadmills on the floor, <span class="ph">NUMBER</span> were running at healthy utilization rates — <span class="ph">X%</span> or above during peak hours. These were the machines that needed replacing. But <span class="ph">NUMBER</span> of them were running at <span class="ph">X%</span> utilization or below — not because they were broken or outdated, but because of where they sat on the floor.</p>
+
+<span class="ph-block">Insert actual EcoFit data from this operator: machine-level utilization rates, peak hour breakdowns, traffic flow patterns that explain why certain machines were underused. Heat map data if available.</span>
+
+<div class="pull-quote">
+  <p>"The machines weren't the problem. They were in the wrong place. We moved them and the usage jumped <span class="ph">X%</span> in 30 days."</p>
+</div>
+
+<p>The underperforming machines were clustered in <span class="ph">DESCRIBE LOCATION — e.g. "the back row, away from windows and mirrors"</span>. EcoFit's dwell time data showed members were avoiding that section of the floor entirely during peak hours, gravitating instead toward <span class="ph">DESCRIBE HIGH-TRAFFIC AREA</span>.</p>
+
+<div class="data-row">
+  <div class="data-point">
+    <div class="data-number"><span class="ph">$XX,XXX</span></div>
+    <div class="data-label">Saved by avoiding unnecessary equipment replacement</div>
+  </div>
+  <div class="data-point">
+    <div class="data-number"><span class="ph">X%</span></div>
+    <div class="data-label">Usage increase on repositioned machines within 30 days</div>
+  </div>
+  <div class="data-point">
+    <div class="data-number"><span class="ph">X</span></div>
+    <div class="data-label">Machines repositioned vs. <span class="ph">X</span> replaced</div>
+  </div>
+</div>
+
+<h2>The Decision</h2>
+
+<p>Based on the EcoFit data, <span class="ph">OPERATOR NAME</span> revised their plan significantly. Instead of replacing all <span class="ph">NUMBER</span> machines, they replaced the <span class="ph">NUMBER</span> highest-usage units — the ones that genuinely needed new hardware — and repositioned the remaining <span class="ph">NUMBER</span> to higher-traffic areas of the floor.</p>
+
+<div class="before-after">
+  <div class="ba-card">
+    <div class="ba-label">Original Plan</div>
+    <div class="ba-item">Replace <span class="ph">NUMBER</span> treadmills</div>
+    <div class="ba-item">Total spend: <span class="ph">$XXX,XXX</span></div>
+    <div class="ba-item">Timeline: <span class="ph">X weeks</span></div>
+    <div class="ba-item">Based on: age and complaints</div>
+  </div>
+  <div class="ba-card" style="border-color:rgba(132,188,65,0.25);">
+    <div class="ba-label" style="color:var(--green);">Data-Driven Decision</div>
+    <div class="ba-item">Replace <span class="ph">NUMBER</span> treadmills</div>
+    <div class="ba-item">Total spend: <span class="ph">$XXX,XXX</span></div>
+    <div class="ba-item">Repositioned: <span class="ph">NUMBER</span> machines</div>
+    <div class="ba-item">Saved: <span class="ph">$XX,XXX</span></div>
+  </div>
+</div>
+
+<span class="ph-block">Insert any quotes from the operator about the decision: how they felt about changing course, what internal conversations happened, whether any team members were skeptical. The human element of a data-driven decision reversal is compelling.</span>
+
+<h2>Thirty Days Later</h2>
+
+<p>Within 30 days of the repositioning, the <span class="ph">NUMBER</span> moved machines had seen their utilization rates climb from <span class="ph">X%</span> to <span class="ph">X%</span>. Member complaints about equipment availability dropped by <span class="ph">X%</span>. The root cause wasn't equipment quality — it was floor layout.</p>
+
+<span class="ph-block">Insert 30-day and 90-day post-repositioning data. Include any member feedback, NPS change, front-desk complaint volume reduction, or maintenance cost changes. If the operator has a quote about the outcome, include it here.</span>
+
+<p><strong>The total saving versus the original purchase order: <span class="ph">$XX,XXX</span>.</strong> The repositioning took two staff members and a Saturday morning.</p>
+
+<div class="sprinkle">
+  <div class="sprinkle-label">Seen across the EcoFit network</div>
+  <p>Across <span class="ph">OPERATOR NAME</span> and <span class="ph">OPERATOR NAME</span> locations in our network, equipment repositioning based on EcoFit usage data has consistently outperformed replacement as the first intervention. In most cases, underutilized equipment is a placement problem, not a hardware problem. The data makes that diagnosis possible before the purchase order goes out.</p>
+</div>
+
+<h2>The Broader Pattern</h2>
+
+<p>Equipment vendors will always tell you your machines are due for replacement. Your maintenance team will flag the units that keep coming up in service requests. Your front desk will pass along member complaints. None of these signals tell you whether the problem is the equipment or where the equipment is.</p>
+
+<p>That distinction is worth <span class="ph">$XX,XXX–$XXX,XXX</span> to most operators. It's also worth six weeks of patience before signing anything.</p>
+
+<p><strong>Run the study first. Then decide what to replace.</strong></p>
+
+</div>
+
+<div class="cta-block">
+  <div class="cta-tag">Next Steps</div>
+  <h3>Planning an equipment refresh? Run the study first.</h3>
+  <p>A six-week EcoFit usage study will tell you exactly which machines need replacing and which ones just need to move. Most operators are surprised by what they find.</p>
+  <a href="#" class="cta-btn">Start Your Floor Study →</a>
+</div>
+</div>
+
+<footer>
+  <p>EcoFit Networks · <a href="https://ecofitnetworks.com">ecofitnetworks.com</a></p>
+  <p>© 2026 EcoFit Networks. All rights reserved.</p>
+</footer>
+</body>
+</html>
