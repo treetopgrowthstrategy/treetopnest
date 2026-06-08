@@ -1467,159 +1467,6 @@ function updatePriorityNumbers(){
   });
 }
 
-// ── STAGE PIPELINE SYSTEM
-const STAGE_DEFS = [
-  { key:'stage-1', label:'Dave\'s Post',     slot:'slot-dave'  },
-  { key:'stage-2', label:'Brand Post',       slot:'slot-brand' },
-  { key:'stage-3', label:'Industry Voice',   slot:'slot-human' },
-  { key:'stage-4', label:'Partner Email',    slot:null         },
-  { key:'stage-5', label:'Article Live',     slot:null         }
-];
-const STATUSES     = ['draft','scheduled','live','done'];
-const STATUS_LABELS = { draft:'Draft', scheduled:'Scheduled', live:'● Live', done:'✓ Done' };
-const STATUS_CSS = {
-  draft:     'color:var(--text-muted);border-color:rgba(255,255,255,0.1);background:transparent;',
-  scheduled: 'color:var(--teal);border-color:rgba(88,188,197,0.35);background:rgba(88,188,197,0.08);',
-  live:      'color:var(--green);border-color:rgba(132,188,65,0.35);background:rgba(132,188,65,0.1);',
-  done:      'color:var(--purple);border-color:rgba(192,132,252,0.35);background:rgba(192,132,252,0.08);'
-};
-
-function getStageState(){ try{ return JSON.parse(localStorage.getItem('ecofit_stages_v1')||'{}'); }catch(e){ return {}; } }
-function setStageState(s){ localStorage.setItem('ecofit_stages_v1', JSON.stringify(s)); }
-
-// ── PARSE DATE for sorting (handles "Jun 11", "June 11, 2026", "6/11", etc.)
-function parseDate(str) {
-  if (!str || !str.trim()) return null;
-  const d = new Date(str + (str.match(/\d{4}/) ? '' : ', 2026'));
-  return isNaN(d.getTime()) ? null : d;
-}
-
-// ── AUTO-SORT GRID by Stage 1 date
-function sortGridByDate() {
-  const grid = document.getElementById('grid');
-  if (!grid) return;
-  const cards = [...grid.querySelectorAll('[data-card-id]')];
-  const s = getStageState();
-  cards.sort((a, b) => {
-    const aDate = parseDate(s[a.dataset.cardId]?.['stage-1']?.date || '');
-    const bDate = parseDate(s[b.dataset.cardId]?.['stage-1']?.date || '');
-    if (!aDate && !bDate) return 0;
-    if (!aDate) return 1;
-    if (!bDate) return -1;
-    return aDate - bDate;
-  });
-  cards.forEach(c => grid.appendChild(c));
-  saveOrder('grid');
-}
-
-function saveStageField(cardId, stageKey, field, value) {
-  const s = getStageState();
-  if (!s[cardId]) s[cardId] = {};
-  if (!s[cardId][stageKey]) s[cardId][stageKey] = { date:'', status:'draft' };
-  s[cardId][stageKey][field] = value;
-  setStageState(s);
-  // Update stage footer appearance
-  const input = document.querySelector(`[data-stage-input="${cardId}-${stageKey}"]`);
-  if (input) input.classList.toggle('has-date', !!value);
-  // Sync campaign date bar and pipeline
-  renderPipeline(cardId);
-  syncCampaignDateBar(cardId);
-  // Auto-sort if Stage 1 date changed
-  if (stageKey === 'stage-1' && field === 'date') {
-    setTimeout(sortGridByDate, 50);
-  }
-}
-
-function cycleStatus(cardId, stageKey) {
-  const s = getStageState();
-  if (!s[cardId]) s[cardId] = {};
-  if (!s[cardId][stageKey]) s[cardId][stageKey] = { date:'', status:'draft' };
-  const cur = s[cardId][stageKey].status || 'draft';
-  s[cardId][stageKey].status = STATUSES[(STATUSES.indexOf(cur)+1) % STATUSES.length];
-  setStageState(s);
-  initStageDates(cardId);
-}
-function cycleStatusFromPip(cardId, stageKey) { cycleStatus(cardId, stageKey); }
-
-// ── CAMPAIGN DATE BAR (top of card — Stage 1 primary date)
-function syncCampaignDateBar(cardId) {
-  const bar = document.getElementById('cdb-'+cardId);
-  if (!bar) return;
-  const s = getStageState();
-  const date = s[cardId]?.['stage-1']?.date || '';
-  const input = bar.querySelector('input');
-  if (input && input.value !== date) input.value = date;
-}
-
-function renderPipeline(cardId) {
-  const pip = document.getElementById('pipeline-'+cardId);
-  if (!pip) return;
-  const s = getStageState();
-  const cs = s[cardId] || {};
-  pip.innerHTML = STAGE_DEFS.map((def, i) => {
-    const d = cs[def.key] || { date:'', status:'draft' };
-    const status = d.status || 'draft';
-    const bgClass = status==='live'?'pip-live-bg':status==='done'?'pip-done-bg':'';
-    return `<div class="stage-pip ${bgClass}" onclick="cycleStatusFromPip('${cardId}','${def.key}')" title="Click to advance status">
-      <div class="stage-pip-num">${i+1}</div>
-      <div class="stage-pip-label">${def.label}</div>
-      <div class="stage-pip-date ${d.date?'has-date':''}">${d.date||'—'}</div>
-      <div><span class="stage-pip-status pip-${status}">${STATUS_LABELS[status]}</span></div>
-    </div>`;
-  }).join('');
-}
-
-function initStageDates(cardId) {
-  const card = document.querySelector(`[data-card-id="${cardId}"]`);
-  if (!card) return;
-  const s = getStageState();
-  const cs = s[cardId] || {};
-
-  // ── Post slots (stages 1-3)
-  ['slot-dave','slot-brand','slot-human'].forEach((cls, idx) => {
-    const slot = card.querySelector('.'+cls);
-    if (!slot) return;
-    const def = STAGE_DEFS[idx];
-    const saved = cs[def.key] || { date:'', status:'draft' };
-    let footer = slot.querySelector('.stage-footer');
-    if (!footer) { footer = document.createElement('div'); footer.className='stage-footer'; slot.appendChild(footer); }
-    footer.innerHTML = buildStageFooterHTML(cardId, def.key, saved, idx+1);
-  });
-
-  // ── Detail rows (stages 4-5)
-  const dRows = card.querySelectorAll('.d-row');
-  [0,1].forEach(idx => {
-    const row = dRows[idx];
-    if (!row) return;
-    const def = STAGE_DEFS[idx+3];
-    const saved = cs[def.key] || { date:'', status:'draft' };
-    let footer = row.querySelector('.stage-footer');
-    if (!footer) { footer = document.createElement('div'); footer.className='stage-footer'; row.appendChild(footer); }
-    footer.innerHTML = buildStageFooterHTML(cardId, def.key, saved, idx+4);
-  });
-
-  renderPipeline(cardId);
-  syncCampaignDateBar(cardId);
-}
-
-function buildStageFooterHTML(cardId, stageKey, saved, num) {
-  const status = saved.status || 'draft';
-  const hasDate = !!saved.date;
-  return `
-    <span class="stage-num-badge">Stage ${num}</span>
-    <input class="stage-date-input ${hasDate?'has-date':''}"
-      data-stage-input="${cardId}-${stageKey}"
-      type="text"
-      placeholder="Set go-live date…"
-      value="${saved.date||''}"
-      onchange="saveStageField('${cardId}','${stageKey}','date',this.value)"
-      onclick="event.stopPropagation()">
-    <button class="stage-status-btn" style="${STATUS_CSS[status]}"
-      onclick="cycleStatus('${cardId}','${stageKey}');event.stopPropagation()">
-      ${STATUS_LABELS[status]}
-    </button>`;
-}
-
 // ── CALENDAR DATE PICKER
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -1653,12 +1500,14 @@ function openDatePicker(anchor, currentIso, onSelect){
   renderPicker(dpCurrentIso);
   positionPicker(anchor);
   document.getElementById('date-picker').classList.add('open');
-  document.addEventListener('click', closePicker, true);
+  // Attach close listener AFTER the current click fully resolves, so the opening click can't close it
+  document.removeEventListener('click', closePicker, true);
+  setTimeout(function(){ document.addEventListener('click', closePicker, true); }, 0);
 }
 
 function closePicker(e){
   const picker = document.getElementById('date-picker');
-  if(picker && !picker.contains(e.target) && e.target !== dpAnchor && !dpAnchor?.contains(e.target)){
+  if(picker && !picker.contains(e.target) && e.target !== dpAnchor && !(dpAnchor && dpAnchor.contains(e.target))){
     picker.classList.remove('open');
     document.removeEventListener('click', closePicker, true);
   }
