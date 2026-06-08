@@ -111,9 +111,17 @@
   .pb-partner{color:#c084fc;background:rgba(192,132,252,0.12);}
 
   /* 3-POST CADENCE STRIP */
-  .post-cadence{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:14px;}
-  .post-slot{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:10px 11px;transition:border-color 0.15s,background 0.15s;}
+  .post-cadence{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 12px;margin-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(132,188,65,0.3) transparent;}
+  .post-cadence::-webkit-scrollbar{height:6px;}
+  .post-cadence::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);border-radius:10px;}
+  .post-cadence::-webkit-scrollbar-thumb{background:rgba(132,188,65,0.3);border-radius:10px;}
+  .post-cadence::-webkit-scrollbar-thumb:hover{background:rgba(132,188,65,0.5);}
+  .post-slot{flex:0 0 88%;scroll-snap-align:start;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:13px 15px;transition:border-color 0.15s,background 0.15s,box-shadow 0.15s;cursor:pointer;}
   .post-slot:hover{background:rgba(132,188,65,0.04);border-color:rgba(132,188,65,0.15);}
+  .post-slot.active{background:rgba(132,188,65,0.07);border-color:rgba(132,188,65,0.45);box-shadow:0 0 0 1px rgba(132,188,65,0.25),0 4px 16px rgba(0,0,0,0.2);}
+  .post-slider-dots{display:flex;gap:6px;justify-content:center;margin-bottom:14px;}
+  .post-slider-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer;transition:all 0.2s;}
+  .post-slider-dot.active{background:var(--green);width:20px;border-radius:4px;}
   .slot-week{font-size:8.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:5px;}
   .slot-icon{width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;flex-shrink:0;}
   .slot-dave .slot-icon{background:rgba(132,188,65,0.2);color:var(--green);}
@@ -136,6 +144,7 @@
   /* DETAIL ROWS */
   .detail-rows{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
   .d-row{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:start;padding:9px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:7px;transition:border-color 0.15s;}
+  .d-row .stage-footer{grid-column:1 / -1;}
   .d-row:hover{border-color:rgba(132,188,65,0.12);}
   .d-label{font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);padding-top:1px;line-height:1.5;}
   .d-title{font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:2px;line-height:1.4;}
@@ -352,7 +361,8 @@
     .hero{padding:36px 18px 32px;}
     .hero-stats{display:none;}
     .card-title{max-width:100%;}
-    .post-cadence{grid-template-columns:1fr;}
+    .post-cadence{gap:8px;}
+    .post-slot{flex:0 0 90%;}
   }
 </style>
 </head>
@@ -1946,6 +1956,64 @@ function initStageDates(cardId){
   renderPipeline(cardId);
 }
 
+// ── POST SLOT SLIDER — dots nav + click to highlight
+function initPostSliders(){
+  CARDS.forEach(cardId => {
+    const card = document.querySelector(`[data-card-id="${cardId}"]`);
+    if(!card) return;
+    const cadence = card.querySelector('.post-cadence');
+    if(!cadence) return;
+    const slots = [...cadence.querySelectorAll('.post-slot')];
+    if(!slots.length) return;
+
+    // Build dots (once)
+    let dots = cadence.nextElementSibling;
+    if(!dots || !dots.classList.contains('post-slider-dots')){
+      dots = document.createElement('div');
+      dots.className = 'post-slider-dots';
+      dots.innerHTML = slots.map((_,i)=>`<div class="post-slider-dot ${i===0?'active':''}" data-idx="${i}"></div>`).join('');
+      cadence.parentNode.insertBefore(dots, cadence.nextSibling);
+    }
+    const dotEls = [...dots.querySelectorAll('.post-slider-dot')];
+
+    function setActive(idx){
+      slots.forEach((s,i)=>s.classList.toggle('active', i===idx));
+      dotEls.forEach((d,i)=>d.classList.toggle('active', i===idx));
+    }
+
+    // Click a slot to highlight (ignore clicks on buttons/inputs)
+    slots.forEach((slot,i)=>{
+      slot.addEventListener('click', e=>{
+        if(e.target.closest('button, input, textarea, .date-trigger')) return;
+        setActive(i);
+      });
+    });
+
+    // Click a dot to scroll to that slot
+    dotEls.forEach((dot,i)=>{
+      dot.addEventListener('click', ()=>{
+        slots[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'});
+        setActive(i);
+      });
+    });
+
+    // Update active dot on scroll
+    let scrollTimer;
+    cadence.addEventListener('scroll', ()=>{
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(()=>{
+        const cadenceLeft = cadence.scrollLeft;
+        let closest = 0, minDist = Infinity;
+        slots.forEach((s,i)=>{
+          const dist = Math.abs(s.offsetLeft - cadence.offsetLeft - cadenceLeft);
+          if(dist < minDist){ minDist = dist; closest = i; }
+        });
+        dotEls.forEach((d,i)=>d.classList.toggle('active', i===closest));
+      }, 80);
+    });
+  });
+}
+
 function injectPipelineBars(){
   CARDS.forEach(cardId=>{
     const card    = document.querySelector(`[data-card-id="${cardId}"]`);
@@ -2135,6 +2203,7 @@ CARDS.forEach(initStageDates);
 initBacklogDates();
 injectVoiceButtons();
 initInlineEditing();
+initPostSliders();
 </script>
 </body>
 </html>
