@@ -1358,14 +1358,31 @@ function filterCards(pillar,btn){
 }
 
 // ── DRAG AND DROP — handle-only, works with interactive child elements
+// Shared drag state — lifted out of the function so cards can move BETWEEN containers
+let dragged = null;
+let dragOverTarget = null;
+
+// Global mouseup clears the draggable attribute everywhere
+document.addEventListener('mouseup', () => {
+  document.querySelectorAll('[draggable="true"]').forEach(c => c.removeAttribute('draggable'));
+});
+
+// Global dragend — fires on the source card wherever it ends up
+document.addEventListener('dragend', () => {
+  if (dragged) dragged.classList.remove('is-dragging');
+  document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+  dragged = null;
+  dragOverTarget = null;
+  saveOrder('grid');
+  saveOrder('backlog');
+  updatePriorityNumbers();
+});
+
 function setupDragDrop(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  let dragged = null;
-  let dragOverTarget = null;
-
-  // Only enable draggable when mousedown on handle
+  // Enable draggable only when grabbing the handle
   container.querySelectorAll('.drag-handle').forEach(handle => {
     handle.addEventListener('mousedown', () => {
       const card = handle.closest('[data-card-id],[data-backlog-id]');
@@ -1373,37 +1390,22 @@ function setupDragDrop(containerId) {
     });
   });
 
-  // Remove draggable on mouseup anywhere (prevents accidental drags)
-  document.addEventListener('mouseup', () => {
-    container.querySelectorAll('[draggable="true"]').forEach(c => {
-      c.removeAttribute('draggable');
-    });
-  });
-
   container.addEventListener('dragstart', e => {
     const card = e.target.closest('[data-card-id],[data-backlog-id]');
-    if (!card || !container.contains(card)) return;
+    if (!card) return;
     dragged = card;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/plain', card.dataset.cardId || card.dataset.backlogId || '');
     setTimeout(() => card.classList.add('is-dragging'), 0);
   });
 
-  container.addEventListener('dragend', () => {
-    if (dragged) dragged.classList.remove('is-dragging');
-    container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
-    dragged = null;
-    dragOverTarget = null;
-    saveOrder(containerId);
-    if (containerId === 'backlog') updatePriorityNumbers();
-  });
-
   container.addEventListener('dragover', e => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
+    if (!dragged) return;
     const card = e.target.closest('[data-card-id],[data-backlog-id]');
-    if (card && card !== dragged && container.contains(card) && card !== dragOverTarget) {
-      container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    if (card && card !== dragged && card !== dragOverTarget) {
+      document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
       card.classList.add('drag-over');
       dragOverTarget = card;
     }
@@ -1418,27 +1420,44 @@ function setupDragDrop(containerId) {
 
   container.addEventListener('drop', e => {
     e.preventDefault();
+    if (!dragged) return;
     const target = e.target.closest('[data-card-id],[data-backlog-id]');
-    if (target && target !== dragged && container.contains(target) && dragged) {
-      const cards = [...container.querySelectorAll('[data-card-id],[data-backlog-id]')];
-      const fromIdx = cards.indexOf(dragged);
-      const toIdx = cards.indexOf(target);
-      if (fromIdx < toIdx) {
+    if (target && target !== dragged) {
+      // Insert relative to the target within THIS container
+      const sibs = [...container.children];
+      const draggedInThis = container.contains(dragged);
+      if (draggedInThis && sibs.indexOf(target) > sibs.indexOf(dragged)) {
         container.insertBefore(dragged, target.nextSibling);
       } else {
         container.insertBefore(dragged, target);
       }
+    } else if (!target) {
+      // Dropped into empty space of this container → append
+      container.appendChild(dragged);
     }
-    container.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
     dragOverTarget = null;
+    // Re-init controls in case the card changed containers
+    refreshAfterMove();
   });
 }
 
-// Save/restore order
+// After any move, make sure controls match the container the card now lives in
+function refreshAfterMove() {
+  // Scheduled cards that gained a pipeline keep it; backlog cards keep their date button.
+  initBacklogDates();
+  CARDS.forEach(id => {
+    const card = document.querySelector(`[data-card-id="${id}"]`);
+    if (card && card.closest('#grid')) initStageDates(id);
+  });
+}
+
+// Save/restore order — handles cards moving between containers
 function saveOrder(containerId){
   const container=document.getElementById(containerId);
   if(!container)return;
-  const ids=[...container.querySelectorAll('[draggable="true"]')].map(c=>c.dataset.cardId||c.dataset.backlogId);
+  const ids=[...container.querySelectorAll('[data-card-id],[data-backlog-id]')]
+    .map(c=>c.dataset.cardId||c.dataset.backlogId).filter(Boolean);
   localStorage.setItem('order_'+containerId,JSON.stringify(ids));
 }
 
@@ -1449,12 +1468,11 @@ function restoreOrder(containerId){
   if(!saved)return;
   try{
     const ids=JSON.parse(saved);
-    const cards={};
-    [...container.querySelectorAll('[draggable="true"]')].forEach(c=>{
-      const id=c.dataset.cardId||c.dataset.backlogId;
-      if(id)cards[id]=c;
+    ids.forEach(id=>{
+      // Find the card anywhere — it may have been moved from the other container
+      const card=document.querySelector(`[data-card-id="${id}"],[data-backlog-id="${id}"]`);
+      if(card)container.appendChild(card);
     });
-    ids.forEach(id=>{if(cards[id])container.appendChild(cards[id]);});
   }catch(e){}
 }
 
@@ -1740,6 +1758,44 @@ function injectPipelineBars(){
   });
 }
 
+// ── BACKLOG DATE ASSIGNMENT
+function getBacklogDates(){ try{ return JSON.parse(localStorage.getItem('ecofit_backlog_dates_v1')||'{}'); }catch(e){ return {}; } }
+function setBacklogDates(s){ localStorage.setItem('ecofit_backlog_dates_v1', JSON.stringify(s)); }
+
+function saveBacklogDate(backlogId, iso){
+  const s = getBacklogDates();
+  if(iso) s[backlogId] = iso; else delete s[backlogId];
+  setBacklogDates(s);
+  initBacklogDates();
+}
+
+function initBacklogDates(){
+  const dates = getBacklogDates();
+  document.querySelectorAll('#backlog .backlog-card').forEach(card => {
+    const id = card.dataset.backlogId;
+    const footer = card.querySelector('.backlog-footer');
+    if(!footer) return;
+    const btn = footer.querySelector('.schedule-btn');
+    if(!btn) return;
+    const iso = dates[id] || '';
+    if(iso){
+      btn.innerHTML = '📅 ' + formatDisplayDate(iso);
+      btn.style.borderColor = 'rgba(132,188,65,0.4)';
+      btn.style.color = 'var(--green)';
+      btn.style.background = 'rgba(132,188,65,0.08)';
+    } else {
+      btn.innerHTML = '+ Assign Date';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      btn.style.background = '';
+    }
+    btn.onclick = function(e){
+      e.stopPropagation();
+      openDatePicker(btn, iso, v => saveBacklogDate(id, v));
+    };
+  });
+}
+
 // ── INIT
 CARDS.forEach(buildFeedback);
 updateCounts();
@@ -1747,9 +1803,9 @@ restoreOrder('grid');
 restoreOrder('backlog');
 setupDragDrop('grid');
 setupDragDrop('backlog');
-document.getElementById('backlog').addEventListener('dragend',updatePriorityNumbers);
 injectPipelineBars();
 CARDS.forEach(initStageDates);
+initBacklogDates();
 </script>
 </body>
 </html>
