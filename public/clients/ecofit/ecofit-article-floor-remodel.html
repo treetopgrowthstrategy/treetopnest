@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Architect's Plan Would Have Cost Us a Year of Growth — EcoFit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#14191f;--bg-dark:#0d1117;--surface:#1a2130;--surface2:#2F3535;--border:rgba(255,255,255,0.08);--green:#84BC41;--green-dk:#6aa130;--green-glow:rgba(132,188,65,0.08);--teal:#58BCC5;--text:#F2F3F8;--text-sub:#9699A2;--text-muted:#6b6f7a;--text-dim:#c8cad1;--r:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;}
+  .dot-bg{position:relative;overflow:hidden;}
+  .dot-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  .dot-bg>*{position:relative;z-index:1;}
+  nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:10;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo img{height:26px;width:auto;}
+  .nav-logo .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-back{font-size:12px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.15s;}
+  .nav-back:hover{color:var(--green);}
+  .hero{padding:72px 40px 64px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none;}
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:20px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px;}
+  .hero h1 em{color:var(--green);font-style:italic;}
+  .hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid var(--border);}
+  .hero-author{display:flex;align-items:center;gap:10px;}
+  .author-avatar{width:36px;height:36px;border-radius:50%;background:var(--green-glow);border:1px solid rgba(132,188,65,0.3);display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;color:var(--green);}
+  .author-name{font-size:13px;font-weight:600;color:var(--text-dim);}
+  .author-title{font-size:11px;color:var(--text-muted);}
+  .meta-divider{width:1px;height:28px;background:var(--border);}
+  .meta-item{font-size:12px;color:var(--text-muted);}
+  .article-wrap{max-width:760px;margin:0 auto;padding:60px 40px 80px;}
+  .article-body p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:22px;font-weight:300;}
+  .article-body p strong{color:var(--text);font-weight:600;}
+  .article-body h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin:44px 0 16px;}
+  .article-body h3{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--text-dim);margin:28px 0 10px;}
+  .pull-quote{border-left:3px solid var(--green);padding:20px 24px;margin:36px 0;background:rgba(132,188,65,0.05);border-radius:0 8px 8px 0;}
+  .pull-quote p{font-family:'Raleway',sans-serif;font-size:19px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.01em;margin:0;}
+  .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+  .data-point{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;}
+  .data-number{font-family:'Raleway',sans-serif;font-weight:800;font-size:26px;color:var(--green);letter-spacing:-0.02em;line-height:1;}
+  .data-label{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.4;}
+  .ph{background:rgba(245,158,11,0.15);border:1px dashed rgba(245,158,11,0.4);border-radius:4px;padding:1px 6px;color:#f59e0b;font-size:0.9em;font-weight:600;font-family:'Work Sans',sans-serif;white-space:nowrap;}
+  .ph-block{display:block;background:rgba(245,158,11,0.08);border:1px dashed rgba(245,158,11,0.3);border-radius:8px;padding:14px 18px;margin:16px 0;color:#f59e0b;font-size:13px;font-weight:500;line-height:1.6;}
+  .ph-block::before{content:'✎ PLACEHOLDER: ';font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;opacity:0.7;}
+  .sprinkle{background:rgba(88,188,197,0.08);border-left:3px solid var(--teal);padding:14px 18px;margin:28px 0;border-radius:0 8px 8px 0;}
+  .sprinkle-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .sprinkle p{font-size:13px;color:var(--text-sub);line-height:1.6;margin:0;font-weight:300;}
+  .floor-comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+  .floor-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;}
+  .floor-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;}
+  .floor-zone{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12.5px;}
+  .floor-zone:last-child{border-bottom:none;}
+  .zone-name{color:var(--text-sub);}
+  .zone-util{font-weight:600;}
+  .util-low{color:#ef4444;}
+  .util-high{color:var(--green);}
+  .util-over{color:#f59e0b;}
+  .roi-block{background:rgba(132,188,65,0.06);border:1px solid rgba(132,188,65,0.2);border-radius:var(--r);padding:24px;margin:32px 0;}
+  .roi-title{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;color:var(--green);margin-bottom:14px;letter-spacing:-0.01em;}
+  .roi-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(132,188,65,0.1);font-size:13px;}
+  .roi-row:last-child{border-bottom:none;}
+  .roi-key{color:var(--text-sub);}
+  .roi-val{font-weight:600;color:var(--text);}
+  .roi-val.green{color:var(--green);}
+  .cta-block{background:var(--surface);border:1px solid rgba(132,188,65,0.25);border-radius:14px;padding:36px 40px;margin-top:52px;position:relative;overflow:hidden;}
+  .cta-block::before{content:'';position:absolute;top:0;right:0;width:240px;height:240px;background:radial-gradient(circle at top right,rgba(132,188,65,0.08),transparent 65%);pointer-events:none;}
+  .cta-tag{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+  .cta-block h3{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:var(--text-sub);font-weight:300;margin-bottom:24px;line-height:1.65;}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#0d1117;font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;transition:all 0.2s;}
+  .cta-btn:hover{background:#a8d96b;transform:translateY(-1px);}
+  footer{border-top:1px solid var(--border);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-dark);}
+  footer p{font-size:11px;color:var(--text-muted);}
+  footer a{color:var(--green-dk);text-decoration:none;}
+  @media(max-width:640px){nav,.hero,.article-wrap,footer{padding-left:20px;padding-right:20px;}.hero{padding-top:48px;padding-bottom:40px;}.data-row,.floor-comparison{grid-template-columns:1fr;}.cta-block{padding:24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">
+    <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
+    <span class="nav-div">Operator Stories</span>
+  </a>
+  <a href="/clients/ecofit/ecofit-content-calendar.html" class="nav-back">← Back to Calendar</a>
+</nav>
+
+<div class="hero dot-bg">
+  <div class="hero-inner">
+    <div class="section-tag"><span class="section-tag-dot"></span>Floor Plan Remodel · Operator Story</div>
+    <h1>The Architect's Plan Would Have<br>Cost Us <em>a Year of Growth</em></h1>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="author-avatar">DJ</div>
+        <div>
+          <div class="author-name">Dave Johnson</div>
+          <div class="author-title">EVP, EcoFit Networks</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span class="ph">MONTH YEAR</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">Operator: <span class="ph">OPERATOR NAME</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">5 min read</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+<div class="article-body">
+
+<p>A floor plan remodel is one of the highest-stakes decisions a fitness operator makes. You're committing six figures, disrupting operations for weeks, and betting that your instincts about what members want are correct. Most operators make that bet without data.</p>
+
+<p><span class="ph">OPERATOR NAME</span> runs a <span class="ph">NUMBER</span> sq ft facility in <span class="ph">CITY/REGION</span>. After <span class="ph">NUMBER</span> years without a major update, they brought in an architect and developed a full remodel plan. The projected cost: <span class="ph">$XXX,XXX</span>. The centerpiece of the plan: expanding the cardio zone by <span class="ph">NUMBER</span> sq ft.</p>
+
+<span class="ph-block">Insert operator background: how long they'd been at the same location, what was driving the remodel decision (member growth, competitive pressure, aging infrastructure, ownership change). Include any quotes from ownership or management about what they believed members wanted.</span>
+
+<p>Before breaking ground, they agreed to run a six-week EcoFit study. The data contradicted almost every assumption in the architect's plan.</p>
+
+<h2>What the Floor Was Actually Saying</h2>
+
+<p>EcoFit's usage analytics and camera-based dwell time data painted a clear picture of how members were actually moving through the facility — and where the friction was.</p>
+
+<div class="floor-comparison">
+  <div class="floor-card">
+    <div class="floor-label">Actual Floor Utilization</div>
+    <div class="floor-zone">
+      <span class="zone-name">Cardio Zone</span>
+      <span class="zone-util util-low"><span class="ph">X%</span> peak</span>
+    </div>
+    <div class="floor-zone">
+      <span class="zone-name">Functional Fitness</span>
+      <span class="zone-util util-over"><span class="ph">X%</span> peak</span>
+    </div>
+    <div class="floor-zone">
+      <span class="zone-name">Free Weights</span>
+      <span class="zone-util util-high"><span class="ph">X%</span> peak</span>
+    </div>
+    <div class="floor-zone">
+      <span class="zone-name">Recovery Zone</span>
+      <span class="zone-util util-over"><span class="ph">X%</span> peak</span>
+    </div>
+  </div>
+  <div class="floor-card" style="border-color:rgba(132,188,65,0.2);">
+    <div class="floor-label" style="color:var(--green);">Architect's Remodel Plan</div>
+    <div class="floor-zone">
+      <span class="zone-name">Cardio Zone</span>
+      <span class="zone-util" style="color:var(--text-sub);">Expand <span class="ph">+X,XXX</span> sq ft</span>
+    </div>
+    <div class="floor-zone">
+      <span class="zone-name">Functional Fitness</span>
+      <span class="zone-util" style="color:var(--text-muted);">No change</span>
+    </div>
+    <div class="floor-zone">
+      <span class="zone-name">Free Weights</span>
+      <span class="zone-util" style="color:var(--text-muted);">Minor update</span>
+    </div>
+    <div class="floor-zone">
+      <span class="zone-name">Recovery Zone</span>
+      <span class="zone-util" style="color:var(--text-muted);">No change</span>
+    </div>
+  </div>
+</div>
+
+<span class="ph-block">Insert actual EcoFit utilization data by zone: specific utilization percentages, peak hours, dwell time readings at congestion points, member flow patterns. If camera data showed specific chokepoints or dead zones, describe them here.</span>
+
+<div class="pull-quote">
+  <p>"The cardio zone was running at <span class="ph">X%</span> utilization. The functional area was at <span class="ph">X%</span> — members were waiting. We were about to make the wrong space bigger."</p>
+</div>
+
+<p>The cardio zone — the area the architect's plan proposed to expand — was running at <span class="ph">X%</span> utilization during peak hours. Well below capacity. Meanwhile, the <span class="ph">NUMBER</span> sq ft functional fitness area was running at <span class="ph">X%</span> — members were visibly waiting for space between <span class="ph">TIME</span> and <span class="ph">TIME</span> on weekday evenings.</p>
+
+<h2>The Revised Plan</h2>
+
+<p>Rather than expanding cardio, the remodel was redesigned to redirect the <span class="ph">NUMBER</span> sq ft toward a functional fitness expansion. The total project cost remained at <span class="ph">$XXX,XXX</span>. The only thing that changed was where the money went.</p>
+
+<span class="ph-block">Insert details on the revised remodel: what was added to functional fitness, what was changed in the cardio configuration (if anything), any secondary changes driven by the EcoFit data (recovery zone, dead zones repurposed). Include contractor or architect response to the data-driven revision.</span>
+
+<div class="data-row">
+  <div class="data-point">
+    <div class="data-number"><span class="ph">X%</span></div>
+    <div class="data-label">Membership growth in first <span class="ph">X</span> months after remodel</div>
+  </div>
+  <div class="data-point">
+    <div class="data-number"><span class="ph">$XXX,XXX</span></div>
+    <div class="data-label">Annualized new revenue generated by membership growth</div>
+  </div>
+  <div class="data-point">
+    <div class="data-number"><span class="ph">X months</span></div>
+    <div class="data-label">Break-even vs. <span class="ph">X-month</span> original projection</div>
+  </div>
+</div>
+
+<h2>Six Months After Reopening</h2>
+
+<p>The facility reopened after <span class="ph">NUMBER</span> weeks of construction. Within the first six months, membership grew by <span class="ph">X%</span>. At an average membership value of <span class="ph">$XX/month</span>, that represents <span class="ph">$XXX,XXX</span> in annualized new revenue that didn't exist before the remodel.</p>
+
+<span class="ph-block">Insert actual post-remodel performance data: membership numbers before and after, retention rate change, revenue vs. projections, NPS or member satisfaction changes. Peak utilization comparison pre- vs. post-remodel by zone. Any quotes from members or staff about the new layout.</span>
+
+<p>The functional fitness zone — the space the data told them to prioritize — now runs at <span class="ph">X%</span> peak utilization. The cardio zone, despite not being expanded, runs at <span class="ph">X%</span> — actually higher than before, because the members who were avoiding a congested facility are now coming back.</p>
+
+<div class="roi-block">
+  <div class="roi-title">Remodel ROI — Data-Driven vs. Original Plan</div>
+  <div class="roi-row">
+    <span class="roi-key">Total remodel cost</span>
+    <span class="roi-val"><span class="ph">$XXX,XXX</span></span>
+  </div>
+  <div class="roi-row">
+    <span class="roi-key">Annualized new revenue (membership growth)</span>
+    <span class="roi-val green"><span class="ph">+$XXX,XXX</span></span>
+  </div>
+  <div class="roi-row">
+    <span class="roi-key">Projected break-even (original plan)</span>
+    <span class="roi-val"><span class="ph">X months</span></span>
+  </div>
+  <div class="roi-row">
+    <span class="roi-key">Actual break-even (data-driven plan)</span>
+    <span class="roi-val green"><span class="ph">X months</span></span>
+  </div>
+  <div class="roi-row" style="border-bottom:none;">
+    <span class="roi-key">Break-even accelerated by</span>
+    <span class="roi-val green"><span class="ph">X months</span></span>
+  </div>
+</div>
+
+<div class="sprinkle">
+  <div class="sprinkle-label">Seen across the EcoFit network</div>
+  <p>At <span class="ph">OPERATOR NAME</span> and <span class="ph">OPERATOR NAME</span> locations in our network, EcoFit floor data has consistently shown that operator assumptions about which spaces need more room are off by a meaningful margin. The cardio zone feels important because it's visible and expensive. The data usually points somewhere else. Knowing which before you commit to a construction budget is worth the six weeks it takes to find out.</p>
+</div>
+
+<h2>What a Remodel Without Data Actually Costs</h2>
+
+<p>The hard number in this story is easy to calculate: a <span class="ph">X-month</span> acceleration to break-even, at a project cost of <span class="ph">$XXX,XXX</span>, represents real money. But the softer number is harder to quantify — the membership that would have churned if the remodel had made the wrong space bigger, the word-of-mouth that comes from a facility that actually responds to what members want.</p>
+
+<p>Architects design to brief. Vendors pitch what they sell. Neither of them has visibility into how your specific members use your specific floor at your specific peak hours. That data exists. <strong>It lives in EcoFit, and it costs a lot less than the wrong remodel decision.</strong></p>
+
+</div>
+
+<div class="cta-block">
+  <div class="cta-tag">Next Steps</div>
+  <h3>Planning a remodel? Let the data brief your architect.</h3>
+  <p>A six-week EcoFit floor study gives you machine-level utilization, zone-by-zone traffic patterns, and dwell time data. Everything your architect needs to design a remodel that actually reflects how your members move.</p>
+  <a href="#" class="cta-btn">Book a Floor Assessment →</a>
+</div>
+</div>
+
+<footer>
+  <p>EcoFit Networks · <a href="https://ecofitnetworks.com">ecofitnetworks.com</a></p>
+  <p>© 2026 EcoFit Networks. All rights reserved.</p>
+</footer>
+</body>
+</html>
