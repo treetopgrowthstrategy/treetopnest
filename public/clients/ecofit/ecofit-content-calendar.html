@@ -2129,6 +2129,7 @@ restoreOrder('grid');
 restoreOrder('backlog');
 setupDragDrop('grid');
 setupDragDrop('backlog');
+CARDS.forEach(buildFeedback);
 injectPipelineBars();
 CARDS.forEach(initStageDates);
 initBacklogDates();
