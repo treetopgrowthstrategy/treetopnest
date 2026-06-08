@@ -146,8 +146,7 @@
   /* POST COPY BOX */
   .post-copy-box{margin-bottom:12px;background:rgba(132,188,65,0.04);border:1px solid rgba(132,188,65,0.15);border-radius:8px;padding:14px 16px;}
   .post-copy-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
-  .post-copy-label::after{content:'Click to edit';font-size:8px;font-weight:500;letter-spacing:0.06em;color:var(--text-muted);opacity:0;transition:opacity 0.15s;}
-  .post-copy-box:hover .post-copy-label::after{opacity:1;}
+  .post-copy-label::after{content:'';}
   .post-copy-text{font-size:12px;color:var(--text-dim);line-height:1.7;white-space:pre-line;}
 
   /* CARD FOOTER */
@@ -252,7 +251,30 @@
   .save-comment-btn{font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:4px 12px;border-radius:6px;cursor:pointer;border:1px solid rgba(132,188,65,0.3);color:var(--green);background:rgba(132,188,65,0.08);transition:all 0.15s;}
   .save-comment-btn:hover{background:rgba(132,188,65,0.18);border-color:var(--green);}
 
-  /* Dave Johnson voice panel */
+  /* Copy editor */
+  .copy-editor-row{margin-top:12px;padding-top:10px;border-top:1px solid rgba(132,188,65,0.15);}
+  .editor-btn-row{display:flex;gap:7px;flex-wrap:wrap;}
+  .btn-edit-copy{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(132,188,65,0.35);color:var(--green);background:rgba(132,188,65,0.07);transition:all 0.15s;}
+  .btn-edit-copy:hover{background:rgba(132,188,65,0.18);border-color:var(--green);}
+  .btn-ai-suggest{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(192,132,252,0.35);color:var(--purple);background:rgba(192,132,252,0.06);transition:all 0.15s;}
+  .btn-ai-suggest:hover{background:rgba(192,132,252,0.15);border-color:var(--purple);}
+  .ai-suggest-row{display:flex;gap:7px;margin-top:8px;align-items:center;}
+  .ai-suggest-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(192,132,252,0.3);border-radius:7px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:12px;padding:7px 12px;outline:none;transition:border-color 0.15s;}
+  .ai-suggest-input:focus{border-color:rgba(192,132,252,0.6);background:rgba(192,132,252,0.04);}
+  .ai-suggest-input::placeholder{color:var(--text-muted);font-size:11px;}
+  .btn-ai-go{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;padding:7px 14px;border-radius:7px;cursor:pointer;border:none;background:var(--purple);color:#fff;transition:all 0.15s;white-space:nowrap;}
+  .btn-ai-go:hover{background:#a855f7;}
+  .btn-ai-go:disabled{opacity:0.5;cursor:default;}
+  .copy-edit-area{margin-top:8px;}
+  .copy-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(132,188,65,0.3);border-radius:7px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:12px;line-height:1.7;padding:10px 12px;resize:vertical;outline:none;transition:border-color 0.15s;}
+  .copy-textarea:focus{border-color:var(--green);background:rgba(132,188,65,0.03);}
+  .copy-edit-actions{display:flex;gap:7px;margin-top:7px;}
+  .btn-save-copy{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;padding:6px 18px;border-radius:7px;cursor:pointer;border:none;background:var(--green);color:#0d1117;transition:all 0.15s;}
+  .btn-save-copy:hover{background:#a8d96b;}
+  .btn-cancel-copy{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:500;padding:6px 14px;border-radius:7px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all 0.15s;}
+  .btn-cancel-copy:hover{border-color:rgba(255,255,255,0.2);color:var(--text-sub);}
+
+  /* Dave voice panel */
   .voice-panel{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;}
   .voice-btn-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
   .btn-voice-check{font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;cursor:pointer;border:1px solid rgba(88,188,197,0.35);color:var(--teal);background:rgba(88,188,197,0.06);transition:all 0.15s;}
@@ -1124,53 +1146,124 @@ function initInlineEditing(){
   CARDS.forEach(cardId => {
     const card = document.querySelector(`[data-card-id="${cardId}"]`);
     if(!card) return;
+
+    // Restore any saved copy edits
     const store = getCopyStore();
-    const cardStore = store[cardId] || {};
-
-    EDITABLE_FIELDS.forEach(({sel, key}) => {
-      const el = card.querySelector(sel);
-      if(!el) return;
-      // Restore saved content if any
-      if(cardStore[key]) el.innerText = cardStore[key];
-      // Make editable
-      el.contentEditable = 'true';
-      el.spellcheck = false;
-      // Auto-save on input
-      el.addEventListener('input', () => {
-        const s = getCopyStore();
-        if(!s[cardId]) s[cardId] = {};
-        s[cardId][key] = el.innerText;
-        saveCopyStore(s);
-      });
-      // Prevent accidental drag when selecting text
-      el.addEventListener('mousedown', e => e.stopPropagation());
+    const saved = store[cardId] || {};
+    if(saved['post-copy']){ const el=card.querySelector('.post-copy-text'); if(el) el.innerText=saved['post-copy']; }
+    if(saved['card-title']){ const el=card.querySelector('.card-title'); if(el) el.innerText=saved['card-title']; }
+    if(saved['cta-text']){ const el=card.querySelector('.cta-text'); if(el) el.innerText=saved['cta-text']; }
+    ['dave-desc','brand-desc','voice-desc'].forEach((key,i)=>{
+      if(saved[key]){ const el=card.querySelectorAll('.slot-desc')[i]; if(el) el.innerText=saved[key]; }
     });
 
-    // Also make slot-desc and d-desc fields editable
-    card.querySelectorAll('.slot-desc').forEach((el, i) => {
-      const key = ['dave-desc','brand-desc','voice-desc'][i];
-      if(!key) return;
-      if(cardStore[key]) el.innerText = cardStore[key];
-      el.contentEditable = 'true';
-      el.spellcheck = false;
-      el.addEventListener('input', () => {
-        const s = getCopyStore(); if(!s[cardId]) s[cardId]={};
-        s[cardId][key] = el.innerText; saveCopyStore(s);
-      });
-      el.addEventListener('mousedown', e => e.stopPropagation());
-    });
-    card.querySelectorAll('.d-title, .d-desc').forEach((el, i) => {
-      const key = el.classList.contains('d-title') ? `detail-${Math.floor(i/2)+1}-title` : `detail-${Math.floor(i/2)+1}-desc`;
-      if(cardStore[key]) el.innerText = cardStore[key];
-      el.contentEditable = 'true';
-      el.spellcheck = false;
-      el.addEventListener('input', () => {
-        const s = getCopyStore(); if(!s[cardId]) s[cardId]={};
-        s[cardId][key] = el.innerText; saveCopyStore(s);
-      });
-      el.addEventListener('mousedown', e => e.stopPropagation());
-    });
+    // Add edit button + AI request row to post-copy-box
+    const copyBox = card.querySelector('.post-copy-box');
+    if(!copyBox || copyBox.querySelector('.copy-editor-row')) return;
+
+    const editorRow = document.createElement('div');
+    editorRow.className = 'copy-editor-row';
+    editorRow.innerHTML = `
+      <div class="editor-btn-row">
+        <button class="btn-edit-copy" onclick="openCopyEditor('${cardId}')">✏ Edit Copy</button>
+        <button class="btn-ai-suggest" onclick="toggleAISuggest('${cardId}')">✨ AI Suggest</button>
+      </div>
+      <div class="ai-suggest-row" id="ai-suggest-${cardId}" style="display:none;">
+        <input class="ai-suggest-input" id="ai-suggest-input-${cardId}"
+          placeholder="Describe a change… e.g. 'make the opening line shorter'" 
+          onkeydown="if(event.key==='Enter')applyAISuggest('${cardId}')">
+        <button class="btn-ai-go" onclick="applyAISuggest('${cardId}')">Apply</button>
+      </div>
+      <div class="copy-edit-area" id="copy-edit-area-${cardId}" style="display:none;">
+        <textarea class="copy-textarea" id="copy-textarea-${cardId}" rows="8"></textarea>
+        <div class="copy-edit-actions">
+          <button class="btn-save-copy" onclick="saveCopyEdit('${cardId}')">Save</button>
+          <button class="btn-cancel-copy" onclick="cancelCopyEdit('${cardId}')">Cancel</button>
+        </div>
+      </div>`;
+    copyBox.appendChild(editorRow);
   });
+}
+
+function openCopyEditor(cardId){
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  const textEl = card?.querySelector('.post-copy-text');
+  const area = document.getElementById('copy-edit-area-'+cardId);
+  const ta = document.getElementById('copy-textarea-'+cardId);
+  if(!textEl||!area||!ta) return;
+  ta.value = textEl.innerText;
+  area.style.display = 'block';
+  ta.focus();
+  // Hide AI suggest if open
+  const suggest = document.getElementById('ai-suggest-'+cardId);
+  if(suggest) suggest.style.display='none';
+}
+
+function saveCopyEdit(cardId){
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  const textEl = card?.querySelector('.post-copy-text');
+  const ta = document.getElementById('copy-textarea-'+cardId);
+  const area = document.getElementById('copy-edit-area-'+cardId);
+  if(!textEl||!ta||!area) return;
+  textEl.innerText = ta.value;
+  const s = getCopyStore();
+  if(!s[cardId]) s[cardId]={};
+  s[cardId]['post-copy'] = ta.value;
+  saveCopyStore(s);
+  area.style.display='none';
+}
+
+function cancelCopyEdit(cardId){
+  const area = document.getElementById('copy-edit-area-'+cardId);
+  if(area) area.style.display='none';
+}
+
+function toggleAISuggest(cardId){
+  const row = document.getElementById('ai-suggest-'+cardId);
+  if(!row) return;
+  const isOpen = row.style.display !== 'none';
+  row.style.display = isOpen ? 'none' : 'flex';
+  if(!isOpen) document.getElementById('ai-suggest-input-'+cardId)?.focus();
+  // Hide edit area if open
+  const area = document.getElementById('copy-edit-area-'+cardId);
+  if(area) area.style.display='none';
+}
+
+async function applyAISuggest(cardId){
+  const input = document.getElementById('ai-suggest-input-'+cardId);
+  const btn = document.querySelector(`#ai-suggest-${cardId} .btn-ai-go`);
+  if(!input||!input.value.trim()) return;
+  const comment = input.value.trim();
+  btn.textContent='⏳'; btn.disabled=true;
+  const currentContent = getCardContent(cardId);
+  try {
+    const r = await fetch(`${ECOFIT_API_BASE}/api/ai-apply`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({cardContent:currentContent, comment})
+    });
+    const result = await r.json();
+    if(result.canApply && result.changes){
+      applyAndSaveCopy(cardId, result.changes);
+      input.value='';
+      document.getElementById('ai-suggest-'+cardId).style.display='none';
+      // Show brief success toast
+      showToast('✓ Applied: '+result.summary);
+    } else {
+      showToast('⚠ '+( result.reason||'Change requires manual edit'), true);
+    }
+  } catch(err){ showToast('✗ '+err.message, true); }
+  btn.textContent='Apply'; btn.disabled=false;
+}
+
+function showToast(msg, isWarn=false){
+  let t = document.getElementById('copy-toast');
+  if(!t){ t=document.createElement('div'); t.id='copy-toast'; document.body.appendChild(t);
+    t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a2130;border:1px solid rgba(132,188,65,0.4);color:#F2F3F8;font-family:Work Sans,sans-serif;font-size:13px;font-weight:500;padding:10px 20px;border-radius:8px;z-index:9998;transition:opacity 0.3s;pointer-events:none;'; }
+  t.textContent=msg;
+  t.style.borderColor=isWarn?'rgba(245,158,11,0.5)':'rgba(132,188,65,0.4)';
+  t.style.opacity='1';
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>{ t.style.opacity='0'; },3000);
 }
 
 // Update applyCardChanges to also save to copy store
