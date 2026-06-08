@@ -152,6 +152,30 @@
   .s-live{color:var(--teal);background:rgba(88,188,197,0.12);}
 
   /* ── FEEDBACK ── */
+  /* ── STAGE PIPELINE ── */
+  .stage-pipeline{display:flex;align-items:center;gap:0;margin-bottom:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .stage-pip{flex:1;padding:8px 10px;text-align:center;position:relative;transition:background 0.15s;cursor:pointer;}
+  .stage-pip:not(:last-child)::after{content:'›';position:absolute;right:-6px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;z-index:1;pointer-events:none;}
+  .stage-pip:hover{background:rgba(255,255,255,0.03);}
+  .stage-pip-num{font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:2px;}
+  .stage-pip-label{font-size:9.5px;font-weight:600;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
+  .stage-pip-date{font-size:9px;color:var(--text-muted);font-family:'Work Sans',sans-serif;white-space:nowrap;}
+  .stage-pip-date.has-date{color:var(--text-sub);}
+  .stage-pip-status{display:inline-block;font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:1px 6px;border-radius:20px;margin-top:2px;border:1px solid;}
+  .pip-draft{color:var(--text-muted);border-color:rgba(255,255,255,0.08);background:transparent;}
+  .pip-scheduled{color:var(--teal);border-color:rgba(88,188,197,0.3);background:rgba(88,188,197,0.08);}
+  .pip-live{color:var(--green);border-color:rgba(132,188,65,0.3);background:rgba(132,188,65,0.1);}
+  .pip-done{color:var(--purple);border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);}
+  .stage-pip.pip-live-bg{background:rgba(132,188,65,0.04);}
+  .stage-pip.pip-done-bg{background:rgba(192,132,252,0.04);}
+  /* Stage footer on each slot/row */
+  .stage-footer{margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+  .stage-num-badge{font-size:8.5px;font-weight:700;letter-spacing:0.08em;color:var(--text-muted);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2px 7px;white-space:nowrap;flex-shrink:0;}
+  .stage-date-input{flex:1;min-width:80px;max-width:110px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:5px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:10px;padding:3px 8px;outline:none;transition:border-color 0.15s;}
+  .stage-date-input:focus{border-color:rgba(132,188,65,0.35);}
+  .stage-date-input::placeholder{color:var(--text-muted);}
+  .stage-status-btn{font-family:'Work Sans',sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px;cursor:pointer;border:1px solid;white-space:nowrap;transition:all 0.15s;flex-shrink:0;}
+
   .feedback-section{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;}
   .feedback-toggle{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
   .approve-btns{display:flex;gap:5px;flex-wrap:wrap;}
@@ -1327,6 +1351,130 @@ function updatePriorityNumbers(){
   });
 }
 
+// ── STAGE PIPELINE SYSTEM
+const STAGE_DEFS = [
+  { key:'stage-1', label:'Dave\'s Post',     slot:'slot-dave'   },
+  { key:'stage-2', label:'Brand Post',       slot:'slot-brand'  },
+  { key:'stage-3', label:'Industry Voice',   slot:'slot-human'  },
+  { key:'stage-4', label:'Partner Email',    slot:null          },
+  { key:'stage-5', label:'Article Live',     slot:null          }
+];
+const STATUSES = ['draft','scheduled','live','done'];
+const STATUS_LABELS = { draft:'Draft', scheduled:'Scheduled', live:'● Live', done:'✓ Done' };
+const STATUS_CSS = {
+  draft:     'color:var(--text-muted);border-color:rgba(255,255,255,0.1);background:transparent;',
+  scheduled: 'color:var(--teal);border-color:rgba(88,188,197,0.35);background:rgba(88,188,197,0.08);',
+  live:      'color:var(--green);border-color:rgba(132,188,65,0.35);background:rgba(132,188,65,0.1);',
+  done:      'color:var(--purple);border-color:rgba(192,132,252,0.35);background:rgba(192,132,252,0.08);'
+};
+
+function getStageState(){ try{ return JSON.parse(localStorage.getItem('ecofit_stages_v1')||'{}'); }catch(e){ return {}; } }
+function setStageState(s){ localStorage.setItem('ecofit_stages_v1', JSON.stringify(s)); }
+
+function saveStageField(cardId, stageKey, field, value){
+  const s = getStageState();
+  if(!s[cardId]) s[cardId] = {};
+  if(!s[cardId][stageKey]) s[cardId][stageKey] = { date:'', status:'draft' };
+  s[cardId][stageKey][field] = value;
+  setStageState(s);
+  renderPipeline(cardId);
+}
+
+function cycleStatus(cardId, stageKey){
+  const s = getStageState();
+  if(!s[cardId]) s[cardId] = {};
+  if(!s[cardId][stageKey]) s[cardId][stageKey] = { date:'', status:'draft' };
+  const cur = s[cardId][stageKey].status || 'draft';
+  s[cardId][stageKey].status = STATUSES[(STATUSES.indexOf(cur)+1) % STATUSES.length];
+  setStageState(s);
+  initStageDates(cardId);
+}
+
+function renderPipeline(cardId){
+  const pip = document.getElementById('pipeline-'+cardId);
+  if(!pip) return;
+  const s = getStageState();
+  const cs = s[cardId] || {};
+  pip.innerHTML = STAGE_DEFS.map((def,i) => {
+    const d = cs[def.key] || { date:'', status:'draft' };
+    const status = d.status || 'draft';
+    const pipClass = status==='live'?'pip-live-bg':status==='done'?'pip-done-bg':'';
+    return `<div class="stage-pip ${pipClass}" onclick="cycleStatusFromPip('${cardId}','${def.key}')" title="Click to advance status">
+      <div class="stage-pip-num">STAGE ${i+1}</div>
+      <div class="stage-pip-label">${def.label}</div>
+      <div class="stage-pip-date ${d.date?'has-date':''}">${d.date||'No date set'}</div>
+      <div><span class="stage-pip-status pip-${status}">${STATUS_LABELS[status]}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function cycleStatusFromPip(cardId, stageKey){
+  cycleStatus(cardId, stageKey);
+}
+
+function initStageDates(cardId){
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  if(!card) return;
+  const s = getStageState();
+  const cs = s[cardId] || {};
+
+  // Inject into post slots (stages 1-3)
+  const slotClasses = ['slot-dave','slot-brand','slot-human'];
+  slotClasses.forEach((cls, idx) => {
+    const slot = card.querySelector('.'+cls);
+    if(!slot) return;
+    const def = STAGE_DEFS[idx];
+    const saved = cs[def.key] || { date:'', status:'draft' };
+    let footer = slot.querySelector('.stage-footer');
+    if(!footer){ footer = document.createElement('div'); footer.className='stage-footer'; slot.appendChild(footer); }
+    footer.innerHTML = buildStageFooterHTML(cardId, def.key, saved, idx+1);
+  });
+
+  // Inject into detail rows (stages 4-5)
+  const dRows = card.querySelectorAll('.d-row');
+  [0,1].forEach(idx => {
+    const row = dRows[idx];
+    if(!row) return;
+    const def = STAGE_DEFS[idx+3];
+    const saved = cs[def.key] || { date:'', status:'draft' };
+    let footer = row.querySelector('.stage-footer');
+    if(!footer){ footer = document.createElement('div'); footer.className='stage-footer'; row.appendChild(footer); }
+    footer.innerHTML = buildStageFooterHTML(cardId, def.key, saved, idx+4);
+  });
+
+  // Update pipeline bar
+  renderPipeline(cardId);
+}
+
+function buildStageFooterHTML(cardId, stageKey, saved, num){
+  const status = saved.status || 'draft';
+  return `
+    <span class="stage-num-badge">Stage ${num}</span>
+    <input class="stage-date-input" type="text" placeholder="Go-live date (e.g. Jun 11)"
+      value="${saved.date||''}"
+      onchange="saveStageField('${cardId}','${stageKey}','date',this.value)"
+      onclick="event.stopPropagation()">
+    <button class="stage-status-btn" style="${STATUS_CSS[status]}"
+      onclick="cycleStatus('${cardId}','${stageKey}');event.stopPropagation()">
+      ${STATUS_LABELS[status]}
+    </button>`;
+}
+
+// Inject pipeline bar into each card (called once on load)
+function injectPipelineBars(){
+  CARDS.forEach(cardId => {
+    const card = document.querySelector(`[data-card-id="${cardId}"]`);
+    if(!card) return;
+    // Insert pipeline bar before .post-cadence
+    const cadence = card.querySelector('.post-cadence');
+    if(!cadence || document.getElementById('pipeline-'+cardId)) return;
+    const bar = document.createElement('div');
+    bar.className = 'stage-pipeline';
+    bar.id = 'pipeline-'+cardId;
+    cadence.parentNode.insertBefore(bar, cadence);
+  });
+}
+
 // ── INIT
 CARDS.forEach(buildFeedback);
 updateCounts();
@@ -1335,6 +1483,8 @@ restoreOrder('backlog');
 setupDragDrop('grid');
 setupDragDrop('backlog');
 document.getElementById('backlog').addEventListener('dragend',updatePriorityNumbers);
+injectPipelineBars();
+CARDS.forEach(initStageDates);
 </script>
 </body>
 </html>
