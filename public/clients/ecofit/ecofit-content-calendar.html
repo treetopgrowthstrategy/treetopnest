@@ -196,6 +196,40 @@
   .btn-changes:hover,.btn-changes.active{background:rgba(245,158,11,0.18);border-color:var(--amber);}
   .btn-pending{color:var(--text-muted);border-color:var(--border);background:transparent;}
   .btn-pending:hover{border-color:rgba(255,255,255,0.2);color:var(--text-sub);}
+  /* ── CALENDAR DATE PICKER ── */
+  #date-picker{position:fixed;z-index:9999;background:#1a2130;border:1px solid rgba(132,188,65,0.3);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.6),0 0 0 1px rgba(132,188,65,0.1);padding:16px;width:288px;display:none;font-family:'Work Sans',sans-serif;}
+  #date-picker.open{display:block;}
+  .dp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .dp-nav{background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#9699A2;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.15s;}
+  .dp-nav:hover{border-color:rgba(132,188,65,0.4);color:#84BC41;background:rgba(132,188,65,0.06);}
+  .dp-month-year{font-family:'Raleway',sans-serif;font-weight:700;font-size:15px;color:#F2F3F8;letter-spacing:-0.01em;}
+  .dp-weekdays{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px;}
+  .dp-wd{text-align:center;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6b6f7a;padding:4px 0;}
+  .dp-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+  .dp-day{text-align:center;padding:7px 0;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;color:#9699A2;transition:all 0.12s;line-height:1;}
+  .dp-day:hover:not(.dp-empty):not(.dp-selected){background:rgba(132,188,65,0.1);color:#F2F3F8;}
+  .dp-day.dp-today{color:#84BC41;font-weight:700;}
+  .dp-day.dp-selected{background:#84BC41;color:#0d1117;font-weight:700;}
+  .dp-day.dp-selected.dp-today{background:#84BC41;}
+  .dp-day.dp-empty{cursor:default;}
+  .dp-clear{width:100%;margin-top:12px;padding:7px;background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#6b6f7a;font-family:'Work Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all 0.15s;}
+  .dp-clear:hover{border-color:rgba(239,68,68,0.3);color:#ef4444;}
+  /* Date trigger buttons */
+  .date-trigger{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:5px 10px;cursor:pointer;transition:all 0.15s;min-width:0;text-align:left;font-family:'Work Sans',sans-serif;}
+  .date-trigger:hover{border-color:rgba(132,188,65,0.35);background:rgba(132,188,65,0.05);}
+  .date-trigger.has-date{border-color:rgba(132,188,65,0.25);background:rgba(132,188,65,0.04);}
+  .date-trigger .dt-icon{font-size:11px;flex-shrink:0;opacity:0.6;}
+  .date-trigger .dt-text{font-size:11px;font-weight:500;color:#c8cad1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .date-trigger.has-date .dt-text{color:#F2F3F8;font-weight:600;}
+  .date-trigger .dt-placeholder{font-size:11px;color:#6b6f7a;}
+  /* Campaign date bar trigger */
+  .cdb-date-trigger{display:flex;align-items:center;gap:8px;background:rgba(132,188,65,0.05);border:1px solid rgba(132,188,65,0.25);border-radius:8px;padding:8px 14px;cursor:pointer;transition:all 0.2s;flex:1;}
+  .cdb-date-trigger:hover{background:rgba(132,188,65,0.1);border-color:rgba(132,188,65,0.4);}
+  .cdb-date-trigger .cdb-cal-icon{font-size:14px;flex-shrink:0;}
+  .cdb-date-trigger .cdb-date-text{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;color:#84BC41;letter-spacing:-0.01em;}
+  .cdb-date-trigger .cdb-date-text.placeholder{color:#6b6f7a;font-weight:400;font-size:12px;font-family:'Work Sans',sans-serif;}
+  .cdb-date-trigger .cdb-chevron{margin-left:auto;color:#6b6f7a;font-size:10px;}
+
   .comment-toggle-btn{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:500;color:var(--text-muted);background:transparent;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;padding:3px 0;transition:color 0.15s;}
   .comment-toggle-btn:hover{color:var(--text-sub);}
   .comment-area{margin-top:10px;display:none;}
@@ -1570,38 +1604,271 @@ function buildStageFooterHTML(cardId, stageKey, saved, num) {
     </button>`;
 }
 
-// ── INJECT PIPELINE BARS + CAMPAIGN DATE BAR
-function injectPipelineBars() {
-  CARDS.forEach(cardId => {
-    const card = document.querySelector(`[data-card-id="${cardId}"]`);
-    if (!card) return;
-    const cadence = card.querySelector('.post-cadence');
-    if (!cadence) return;
+// ── CALENDAR DATE PICKER
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-    // Campaign date bar (Stage 1 primary date — large, editable)
-    if (!document.getElementById('cdb-'+cardId)) {
-      const cdb = document.createElement('div');
-      cdb.className = 'campaign-date-bar';
-      cdb.id = 'cdb-'+cardId;
-      const s = getStageState();
-      const stage1Date = s[cardId]?.['stage-1']?.date || '';
+let dpMonth, dpYear, dpCallback, dpAnchor;
+
+function ordinal(n){ const s=['th','st','nd','rd'],v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
+
+function formatDisplayDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso+'T12:00:00');
+  if(isNaN(d)) return iso;
+  return `${DAYS[d.getDay()]}, ${MONTHS[d.getMonth()]} ${ordinal(d.getDate())}, ${d.getFullYear()}`;
+}
+
+function formatShortDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso+'T12:00:00');
+  if(isNaN(d)) return iso;
+  const mo = MONTHS[d.getMonth()].slice(0,3);
+  return `${mo} ${ordinal(d.getDate())}`;
+}
+
+function openDatePicker(anchor, currentIso, onSelect){
+  dpCallback = onSelect;
+  dpAnchor   = anchor;
+  const now  = currentIso ? new Date(currentIso+'T12:00:00') : new Date();
+  dpMonth    = isNaN(now) ? new Date().getMonth() : now.getMonth();
+  dpYear     = isNaN(now) ? new Date().getFullYear() : now.getFullYear();
+  renderPicker(currentIso);
+  positionPicker(anchor);
+  document.getElementById('date-picker').classList.add('open');
+  document.addEventListener('click', closePicker, true);
+}
+
+function closePicker(e){
+  const picker = document.getElementById('date-picker');
+  if(picker && !picker.contains(e.target) && e.target !== dpAnchor && !dpAnchor?.contains(e.target)){
+    picker.classList.remove('open');
+    document.removeEventListener('click', closePicker, true);
+  }
+}
+
+function positionPicker(anchor){
+  const picker = document.getElementById('date-picker');
+  const rect   = anchor.getBoundingClientRect();
+  const winH   = window.innerHeight;
+  const pickerH = 320;
+  let top = rect.bottom + 6;
+  if(top + pickerH > winH - 16) top = rect.top - pickerH - 6;
+  let left = rect.left;
+  if(left + 288 > window.innerWidth - 16) left = window.innerWidth - 304;
+  picker.style.top  = top + 'px';
+  picker.style.left = Math.max(8, left) + 'px';
+}
+
+function renderPicker(selectedIso){
+  const today = new Date();
+  document.getElementById('dp-month-year').textContent = `${MONTHS[dpMonth]} ${dpYear}`;
+  const first  = new Date(dpYear, dpMonth, 1).getDay();
+  const daysIn = new Date(dpYear, dpMonth+1, 0).getDate();
+  const grid   = document.getElementById('dp-days');
+  grid.innerHTML = '';
+  for(let i=0;i<first;i++){
+    const el=document.createElement('div'); el.className='dp-day dp-empty'; grid.appendChild(el);
+  }
+  for(let d=1;d<=daysIn;d++){
+    const iso = `${dpYear}-${String(dpMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const el  = document.createElement('div');
+    el.className = 'dp-day';
+    el.textContent = d;
+    if(today.getFullYear()===dpYear && today.getMonth()===dpMonth && today.getDate()===d) el.classList.add('dp-today');
+    if(selectedIso===iso) el.classList.add('dp-selected');
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      dpCallback && dpCallback(iso);
+      document.getElementById('date-picker').classList.remove('open');
+      document.removeEventListener('click', closePicker, true);
+    });
+    grid.appendChild(el);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('dp-prev').addEventListener('click', e => {
+    e.stopPropagation(); dpMonth--; if(dpMonth<0){dpMonth=11;dpYear--;} renderPicker(null);
+  });
+  document.getElementById('dp-next').addEventListener('click', e => {
+    e.stopPropagation(); dpMonth++; if(dpMonth>11){dpMonth=0;dpYear++;} renderPicker(null);
+  });
+  document.getElementById('dp-clear').addEventListener('click', e => {
+    e.stopPropagation(); dpCallback && dpCallback('');
+    document.getElementById('date-picker').classList.remove('open');
+    document.removeEventListener('click', closePicker, true);
+  });
+});
+
+// ── STAGE PIPELINE SYSTEM
+const STAGE_DEFS = [
+  { key:'stage-1', label:'Dave\'s Post',   slot:'slot-dave'  },
+  { key:'stage-2', label:'Brand Post',     slot:'slot-brand' },
+  { key:'stage-3', label:'Industry Voice', slot:'slot-human' },
+  { key:'stage-4', label:'Partner Email',  slot:null         },
+  { key:'stage-5', label:'Article Live',   slot:null         }
+];
+const STATUSES      = ['draft','scheduled','live','done'];
+const STATUS_LABELS = { draft:'Draft', scheduled:'Scheduled', live:'● Live', done:'✓ Done' };
+const STATUS_CSS = {
+  draft:     'color:var(--text-muted);border-color:rgba(255,255,255,0.1);background:transparent;',
+  scheduled: 'color:var(--teal);border-color:rgba(88,188,197,0.35);background:rgba(88,188,197,0.08);',
+  live:      'color:var(--green);border-color:rgba(132,188,65,0.35);background:rgba(132,188,65,0.1);',
+  done:      'color:var(--purple);border-color:rgba(192,132,252,0.35);background:rgba(192,132,252,0.08);'
+};
+
+function getStageState(){ try{ return JSON.parse(localStorage.getItem('ecofit_stages_v1')||'{}'); }catch(e){ return {}; } }
+function setStageState(s){ localStorage.setItem('ecofit_stages_v1', JSON.stringify(s)); }
+
+function saveStageField(cardId, stageKey, field, value){
+  const s = getStageState();
+  if(!s[cardId]) s[cardId]={};
+  if(!s[cardId][stageKey]) s[cardId][stageKey]={date:'',status:'draft'};
+  s[cardId][stageKey][field] = value;
+  setStageState(s);
+  initStageDates(cardId);
+  if(stageKey==='stage-1' && field==='date') setTimeout(sortGridByDate, 50);
+}
+
+function cycleStatus(cardId, stageKey){
+  const s = getStageState();
+  if(!s[cardId]) s[cardId]={};
+  if(!s[cardId][stageKey]) s[cardId][stageKey]={date:'',status:'draft'};
+  const cur = s[cardId][stageKey].status||'draft';
+  s[cardId][stageKey].status = STATUSES[(STATUSES.indexOf(cur)+1)%STATUSES.length];
+  setStageState(s);
+  initStageDates(cardId);
+}
+
+function sortGridByDate(){
+  const grid = document.getElementById('grid');
+  if(!grid) return;
+  const cards = [...grid.querySelectorAll('[data-card-id]')];
+  const s = getStageState();
+  cards.sort((a,b)=>{
+    const aD = s[a.dataset.cardId]?.['stage-1']?.date;
+    const bD = s[b.dataset.cardId]?.['stage-1']?.date;
+    if(!aD&&!bD) return 0; if(!aD) return 1; if(!bD) return -1;
+    return new Date(aD) - new Date(bD);
+  });
+  cards.forEach(c=>grid.appendChild(c));
+  saveOrder('grid');
+}
+
+function renderPipeline(cardId){
+  const pip = document.getElementById('pipeline-'+cardId);
+  if(!pip) return;
+  const s  = getStageState();
+  const cs = s[cardId]||{};
+  pip.innerHTML = STAGE_DEFS.map((def,i)=>{
+    const d      = cs[def.key]||{date:'',status:'draft'};
+    const status = d.status||'draft';
+    const bgCls  = status==='live'?'pip-live-bg':status==='done'?'pip-done-bg':'';
+    const short  = d.date ? formatShortDate(d.date) : '—';
+    return `<div class="stage-pip ${bgCls}" onclick="cycleStatus('${cardId}','${def.key}')" title="Click to advance status">
+      <div class="stage-pip-num">${i+1}</div>
+      <div class="stage-pip-label">${def.label}</div>
+      <div class="stage-pip-date ${d.date?'has-date':''}">${short}</div>
+      <div><span class="stage-pip-status pip-${status}">${STATUS_LABELS[status]}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function buildStageFooterHTML(cardId, stageKey, saved, num){
+  const status    = saved.status||'draft';
+  const display   = saved.date ? formatDisplayDate(saved.date) : '';
+  const hasDate   = !!saved.date;
+  const elId      = `sf-${cardId}-${stageKey}`;
+  return `
+    <span class="stage-num-badge">Stage ${num}</span>
+    <button class="date-trigger ${hasDate?'has-date':''}" id="${elId}"
+      onclick="openDatePicker(this, '${saved.date||''}', v=>saveStageField('${cardId}','${stageKey}','date',v));event.stopPropagation()">
+      <span class="dt-icon">📅</span>
+      ${hasDate
+        ? `<span class="dt-text">${display}</span>`
+        : `<span class="dt-placeholder">Set date…</span>`}
+    </button>
+    <button class="stage-status-btn" style="${STATUS_CSS[status]}"
+      onclick="cycleStatus('${cardId}','${stageKey}');event.stopPropagation()">
+      ${STATUS_LABELS[status]}
+    </button>`;
+}
+
+function initStageDates(cardId){
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  if(!card) return;
+  const s  = getStageState();
+  const cs = s[cardId]||{};
+
+  // Post slots (stages 1-3)
+  ['slot-dave','slot-brand','slot-human'].forEach((cls,idx)=>{
+    const slot = card.querySelector('.'+cls);
+    if(!slot) return;
+    const def   = STAGE_DEFS[idx];
+    const saved = cs[def.key]||{date:'',status:'draft'};
+    let footer  = slot.querySelector('.stage-footer');
+    if(!footer){ footer=document.createElement('div'); footer.className='stage-footer'; slot.appendChild(footer); }
+    footer.innerHTML = buildStageFooterHTML(cardId, def.key, saved, idx+1);
+  });
+
+  // Detail rows (stages 4-5)
+  const dRows = card.querySelectorAll('.d-row');
+  [0,1].forEach(idx=>{
+    const row = dRows[idx]; if(!row) return;
+    const def   = STAGE_DEFS[idx+3];
+    const saved = cs[def.key]||{date:'',status:'draft'};
+    let footer  = row.querySelector('.stage-footer');
+    if(!footer){ footer=document.createElement('div'); footer.className='stage-footer'; row.appendChild(footer); }
+    footer.innerHTML = buildStageFooterHTML(cardId, def.key, saved, idx+4);
+  });
+
+  // Campaign date bar
+  const cdb = document.getElementById('cdb-'+cardId);
+  if(cdb){
+    const iso = cs['stage-1']?.date||'';
+    const trigger = cdb.querySelector('.cdb-date-trigger');
+    if(trigger){
+      const span = trigger.querySelector('.cdb-date-text');
+      if(span){
+        if(iso){ span.textContent=formatDisplayDate(iso); span.classList.remove('placeholder'); }
+        else   { span.textContent='Click to set campaign launch date'; span.classList.add('placeholder'); }
+      }
+    }
+  }
+
+  renderPipeline(cardId);
+}
+
+function injectPipelineBars(){
+  CARDS.forEach(cardId=>{
+    const card    = document.querySelector(`[data-card-id="${cardId}"]`);
+    if(!card) return;
+    const cadence = card.querySelector('.post-cadence');
+    if(!cadence) return;
+
+    // Campaign date bar
+    if(!document.getElementById('cdb-'+cardId)){
+      const s    = getStageState();
+      const iso  = s[cardId]?.['stage-1']?.date||'';
+      const cdb  = document.createElement('div');
+      cdb.className = 'campaign-date-bar'; cdb.id = 'cdb-'+cardId;
+      const displayDate = iso ? formatDisplayDate(iso) : 'Click to set campaign launch date';
       cdb.innerHTML = `
-        <span class="cdb-label">📅 Stage 1 Go-Live</span>
-        <input class="cdb-date-input"
-          type="text"
-          placeholder="Enter campaign launch date (e.g. Jun 18)"
-          value="${stage1Date}"
-          oninput="saveStageField('${cardId}','stage-1','date',this.value)"
-          onclick="event.stopPropagation()">
-        <span class="cdb-sort-hint">↕ Calendar auto-sorts on date change</span>`;
+        <span class="cdb-label">📅 Stage 1</span>
+        <button class="cdb-date-trigger"
+          onclick="openDatePicker(this, '${iso}', v=>{saveStageField('${cardId}','stage-1','date',v)});event.stopPropagation()">
+          <span class="cdb-cal-icon">🗓</span>
+          <span class="cdb-date-text ${iso?'':'placeholder'}">${displayDate}</span>
+          <span class="cdb-chevron">▾</span>
+        </button>`;
       cadence.parentNode.insertBefore(cdb, cadence);
     }
 
-    // Pipeline summary bar
-    if (!document.getElementById('pipeline-'+cardId)) {
+    // Pipeline bar
+    if(!document.getElementById('pipeline-'+cardId)){
       const bar = document.createElement('div');
-      bar.className = 'stage-pipeline';
-      bar.id = 'pipeline-'+cardId;
+      bar.className='stage-pipeline'; bar.id='pipeline-'+cardId;
       cadence.parentNode.insertBefore(bar, cadence);
     }
   });
@@ -1618,5 +1885,22 @@ document.getElementById('backlog').addEventListener('dragend',updatePriorityNumb
 injectPipelineBars();
 CARDS.forEach(initStageDates);
 </script>
+
+<!-- CALENDAR DATE PICKER -->
+<div id="date-picker">
+  <div class="dp-header">
+    <button class="dp-nav" id="dp-prev">‹</button>
+    <div class="dp-month-year" id="dp-month-year"></div>
+    <button class="dp-nav" id="dp-next">›</button>
+  </div>
+  <div class="dp-weekdays">
+    <div class="dp-wd">Su</div><div class="dp-wd">Mo</div><div class="dp-wd">Tu</div>
+    <div class="dp-wd">We</div><div class="dp-wd">Th</div><div class="dp-wd">Fr</div>
+    <div class="dp-wd">Sa</div>
+  </div>
+  <div class="dp-days" id="dp-days"></div>
+  <button class="dp-clear" id="dp-clear">Clear date</button>
+</div>
+
 </body>
 </html>
