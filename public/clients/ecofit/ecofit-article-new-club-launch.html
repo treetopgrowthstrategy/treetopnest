@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Were About to Order the Wrong Equipment for Our Fourth Location — EcoFit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#14191f;--bg-dark:#0d1117;--surface:#1a2130;--surface2:#2F3535;
+    --border:rgba(255,255,255,0.08);--green:#84BC41;--green-dk:#6aa130;
+    --green-glow:rgba(132,188,65,0.08);--teal:#58BCC5;
+    --text:#F2F3F8;--text-sub:#9699A2;--text-muted:#6b6f7a;--text-dim:#c8cad1;--r:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;}
+  .dot-bg{position:relative;overflow:hidden;}
+  .dot-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  .dot-bg>*{position:relative;z-index:1;}
+  nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:10;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo img{height:26px;width:auto;}
+  .nav-logo .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-back{font-size:12px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.15s;}
+  .nav-back:hover{color:var(--green);}
+  .hero{padding:72px 40px 64px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none;}
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:20px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px;}
+  .hero h1 em{color:var(--green);font-style:italic;}
+  .hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid var(--border);}
+  .hero-author{display:flex;align-items:center;gap:10px;}
+  .author-avatar{width:36px;height:36px;border-radius:50%;background:var(--green-glow);border:1px solid rgba(132,188,65,0.3);display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;color:var(--green);}
+  .author-name{font-size:13px;font-weight:600;color:var(--text-dim);}
+  .author-title{font-size:11px;color:var(--text-muted);}
+  .meta-divider{width:1px;height:28px;background:var(--border);}
+  .meta-item{font-size:12px;color:var(--text-muted);}
+  .article-wrap{max-width:760px;margin:0 auto;padding:60px 40px 80px;}
+  .article-body p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:22px;font-weight:300;}
+  .article-body p strong{color:var(--text);font-weight:600;}
+  .article-body h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin:44px 0 16px;}
+  .article-body h3{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--text-dim);margin:28px 0 10px;}
+  .pull-quote{border-left:3px solid var(--green);padding:20px 24px;margin:36px 0;background:rgba(132,188,65,0.05);border-radius:0 8px 8px 0;}
+  .pull-quote p{font-family:'Raleway',sans-serif;font-size:19px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.01em;margin:0;}
+  .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+  .data-point{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;}
+  .data-number{font-family:'Raleway',sans-serif;font-weight:800;font-size:26px;color:var(--green);letter-spacing:-0.02em;line-height:1;}
+  .data-label{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.4;}
+  /* PLACEHOLDER STYLING */
+  .ph{background:rgba(245,158,11,0.15);border:1px dashed rgba(245,158,11,0.4);border-radius:4px;padding:1px 6px;color:#f59e0b;font-size:0.9em;font-weight:600;font-family:'Work Sans',sans-serif;white-space:nowrap;}
+  .ph-block{display:block;background:rgba(245,158,11,0.08);border:1px dashed rgba(245,158,11,0.3);border-radius:8px;padding:14px 18px;margin:16px 0;color:#f59e0b;font-size:13px;font-weight:500;line-height:1.6;}
+  .ph-block::before{content:'✎ PLACEHOLDER: ';font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;opacity:0.7;}
+  .sprinkle{background:rgba(88,188,197,0.08);border-left:3px solid var(--teal);padding:14px 18px;margin:28px 0;border-radius:0 8px 8px 0;}
+  .sprinkle-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .sprinkle p{font-size:13px;color:var(--text-sub);line-height:1.6;margin:0;font-weight:300;}
+  .cta-block{background:var(--surface);border:1px solid rgba(132,188,65,0.25);border-radius:14px;padding:36px 40px;margin-top:52px;position:relative;overflow:hidden;}
+  .cta-block::before{content:'';position:absolute;top:0;right:0;width:240px;height:240px;background:radial-gradient(circle at top right,rgba(132,188,65,0.08),transparent 65%);pointer-events:none;}
+  .cta-tag{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+  .cta-block h3{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:var(--text-sub);font-weight:300;margin-bottom:24px;line-height:1.65;}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#0d1117;font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;transition:all 0.2s;}
+  .cta-btn:hover{background:#a8d96b;transform:translateY(-1px);box-shadow:0 8px 24px rgba(132,188,65,0.3);}
+  footer{border-top:1px solid var(--border);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-dark);}
+  footer p{font-size:11px;color:var(--text-muted);}
+  footer a{color:var(--green-dk);text-decoration:none;}
+  @media(max-width:640px){nav,.hero,.article-wrap,footer{padding-left:20px;padding-right:20px;}.hero{padding-top:48px;padding-bottom:40px;}.data-row{grid-template-columns:1fr;}.cta-block{padding:24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">
+    <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
+    <span class="nav-div">Operator Stories</span>
+  </a>
+  <a href="/clients/ecofit/ecofit-content-calendar.html" class="nav-back">← Back to Calendar</a>
+</nav>
+
+<div class="hero dot-bg">
+  <div class="hero-inner">
+    <div class="section-tag"><span class="section-tag-dot"></span>New Club Launch · Operator Story</div>
+    <h1>We Were About to Order the<br><em>Wrong Equipment</em> for Our Fourth Location</h1>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="author-avatar">DJ</div>
+        <div>
+          <div class="author-name">Dave Johnson</div>
+          <div class="author-title">EVP, EcoFit Networks</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span class="ph">MONTH YEAR</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">Operator: <span class="ph">OPERATOR NAME</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">5 min read</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+<div class="article-body">
+
+<p>Most operators open a new location the same way they opened their last one. They take the equipment spec that worked before, maybe adjust for square footage, and place the order. It's fast, it's familiar, and it's often wrong.</p>
+
+<p><span class="ph">OPERATOR NAME</span> had opened <span class="ph">NUMBER</span> successful locations across <span class="ph">REGION</span> when they came to EcoFit. By the time they were planning their fourth club, they had years of gut instinct about what their members wanted. What they didn't have was data.</p>
+
+<span class="ph-block">Insert operator background: how long in business, market type (value, mid-market, premium), rough size of existing locations, what prompted them to start using EcoFit data before the fourth opening.</span>
+
+<h2>What the Data Showed</h2>
+
+<p>When we ran EcoFit analytics across their three existing locations, the picture that emerged was different from what the ownership team expected.</p>
+
+<p>Cardio equipment — specifically treadmills — was running at <span class="ph">X%</span> utilization during peak hours. Below the industry benchmark of <span class="ph">X%</span>. Meanwhile, the functional fitness zones were running at <span class="ph">X%</span> utilization, with visible congestion between <span class="ph">TIME</span> and <span class="ph">TIME</span> on weekdays.</p>
+
+<span class="ph-block">Insert specific equipment usage data from this operator's actual EcoFit dashboard. Which machines overperformed? Which underperformed? What were the peak hours showing?</span>
+
+<div class="pull-quote">
+  <p>"We had planned to order <span class="ph">NUMBER</span> treadmills for location four. The data told us we needed <span class="ph">NUMBER</span>."</p>
+</div>
+
+<p>The original equipment spec for the fourth location had been built on the same assumptions as the previous three: heavy on cardio, moderate functional zone, standard group fitness allocation. The EcoFit data suggested a meaningfully different split.</p>
+
+<div class="data-row">
+  <div class="data-point">
+    <div class="data-number"><span class="ph">$XXX,XXX</span></div>
+    <div class="data-label">Saved on opening equipment spend vs. original spec</div>
+  </div>
+  <div class="data-point">
+    <div class="data-number"><span class="ph">X months</span></div>
+    <div class="data-label">Time to break-even vs. <span class="ph">X-month</span> projection</div>
+  </div>
+  <div class="data-point">
+    <div class="data-number"><span class="ph">X%</span></div>
+    <div class="data-label">Higher peak utilization at location four vs. previous openings</div>
+  </div>
+</div>
+
+<h2>The Decision</h2>
+
+<p>Based on the EcoFit usage data, <span class="ph">OPERATOR NAME</span> revised the equipment order for location four. They reduced their treadmill order from <span class="ph">NUMBER</span> units to <span class="ph">NUMBER</span> units, added <span class="ph">NUMBER</span> additional functional rigs, and expanded the cable station configuration.</p>
+
+<span class="ph-block">Insert specific equipment changes: exact models considered, what was added, what was cut. Include vendor names if approved. Include any quotes from the operator about the decision-making process.</span>
+
+<p>The revised order came in at <span class="ph">$XXX,XXX</span> versus the original spec of <span class="ph">$XXX,XXX</span>. <strong>A saving of <span class="ph">$XXX,XXX</span> on opening day spend alone.</strong></p>
+
+<h2>Six Months After Opening</h2>
+
+<p>Location four opened in <span class="ph">MONTH YEAR</span>. At the <span class="ph">X</span>-month mark, peak utilization across the floor was running at <span class="ph">X%</span> — <span class="ph">X</span> percentage points higher than the average of the first three locations at the same stage.</p>
+
+<span class="ph-block">Insert actual performance data from location four post-opening. Membership numbers, retention rates, revenue vs. projection, any specific member feedback or NPS data if available.</span>
+
+<p>The functional fitness zone — expanded based on EcoFit's usage data from the existing clubs — has been the highest-utilization area in the building since week one.</p>
+
+<div class="sprinkle">
+  <div class="sprinkle-label">Seen across the EcoFit network</div>
+  <p>This pattern holds consistently across our install base. At <span class="ph">OPERATOR NAME (e.g. EoS Fitness)</span>, EcoFit usage data now informs the equipment spec for every new club opening — across <span class="ph">NUMBER</span> locations. At <span class="ph">OPERATOR NAME</span>, the same process cut average opening equipment costs by <span class="ph">X%</span> over <span class="ph">NUMBER</span> new locations. When you open enough clubs, the data becomes your best purchasing advisor.</p>
+</div>
+
+<h2>What This Means for Your Next Opening</h2>
+
+<p>If you're planning a new location, the instinct is to replicate what worked last time. The problem is that what worked last time is based on what you ordered last time — not on what your members actually used.</p>
+
+<p>A six-week EcoFit study across your existing locations will tell you exactly what your members gravitate toward, when they use it, and how hard they push it. That's your equipment spec for the next opening — built on evidence, not assumption.</p>
+
+<p><strong>The difference between guessing and knowing is usually measured in six figures.</strong></p>
+
+</div>
+
+<div class="cta-block">
+  <div class="cta-tag">Next Steps</div>
+  <h3>Opening a new location? Start with your existing data.</h3>
+  <p>A 30-minute EcoFit demo will show you what your current floors are telling you — and how to use that to spec your next one right the first time.</p>
+  <a href="#" class="cta-btn">Book a Demo →</a>
+</div>
+</div>
+
+<footer>
+  <p>EcoFit Networks · <a href="https://ecofitnetworks.com">ecofitnetworks.com</a></p>
+  <p>© 2026 EcoFit Networks. All rights reserved.</p>
+</footer>
+</body>
+</html>
