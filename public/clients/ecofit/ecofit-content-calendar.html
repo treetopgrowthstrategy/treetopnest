@@ -243,6 +243,24 @@
   .commenter-input::placeholder{color:var(--text-muted);}
   .save-comment-btn{font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:4px 12px;border-radius:6px;cursor:pointer;border:1px solid rgba(132,188,65,0.3);color:var(--green);background:rgba(132,188,65,0.08);transition:all 0.15s;}
   .save-comment-btn:hover{background:rgba(132,188,65,0.18);border-color:var(--green);}
+
+  /* Dave Johnson voice panel */
+  .voice-panel{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;}
+  .voice-btn-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .btn-voice-check{font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;cursor:pointer;border:1px solid rgba(88,188,197,0.35);color:var(--teal);background:rgba(88,188,197,0.06);transition:all 0.15s;}
+  .btn-voice-check:hover{background:rgba(88,188,197,0.15);border-color:var(--teal);}
+  .btn-voice-rewrite{font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;cursor:pointer;border:1px solid rgba(192,132,252,0.35);color:var(--purple);background:rgba(192,132,252,0.06);transition:all 0.15s;}
+  .btn-voice-rewrite:hover{background:rgba(192,132,252,0.15);border-color:var(--purple);}
+  .voice-result{margin-top:10px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--text-sub);line-height:1.6;}
+  .voice-result-label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;}
+  .voice-score-good{color:var(--green);}
+  .voice-score-needs{color:var(--amber);}
+  .voice-score-off{color:var(--red);}
+  .voice-issue{padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .voice-issue:last-child{border-bottom:none;}
+  .voice-rewrite-text{white-space:pre-line;color:var(--text-dim);}
+  .btn-apply-rewrite{margin-top:8px;font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:4px 12px;border-radius:6px;cursor:pointer;border:1px solid rgba(132,188,65,0.3);color:var(--green);background:rgba(132,188,65,0.08);transition:all 0.15s;}
+  .btn-apply-rewrite:hover{background:rgba(132,188,65,0.18);}
   .saved-comments{margin-top:7px;display:flex;flex-direction:column;gap:5px;}
   .saved-comment{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;}
   .saved-comment-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;}
@@ -1105,6 +1123,9 @@ function getCardContent(cardId) {
   const fields = {};
   const title = card.querySelector('.card-title');
   if (title) fields['card-title'] = title.innerText.trim();
+  // Post copy box (LinkedIn copy shown on card)
+  const postCopy = card.querySelector('.post-copy-text');
+  if (postCopy) fields['post-copy'] = postCopy.innerText.trim();
   card.querySelectorAll('.slot-name').forEach((el, i) => {
     const keys = ['dave-name','brand-name','voice-name'];
     if (keys[i]) fields[keys[i]] = el.innerText.trim();
@@ -1137,6 +1158,9 @@ function applyCardChanges(cardId, changes) {
   Object.entries(changes).forEach(([key, val]) => {
     if (key === 'card-title') {
       const el = card.querySelector('.card-title');
+      if (el) el.innerText = val;
+    } else if (key === 'post-copy') {
+      const el = card.querySelector('.post-copy-text');
       if (el) el.innerText = val;
     } else if (key === 'cta-text') {
       const el = card.querySelector('.cta-text');
@@ -1816,8 +1840,105 @@ function initBacklogDates(){
   });
 }
 
-// ── INIT
-CARDS.forEach(buildFeedback);
+// ── DAVE JOHNSON VOICE CHECK / REWRITE
+function injectVoiceButtons(){
+  CARDS.forEach(cardId => {
+    const card = document.querySelector(`[data-card-id="${cardId}"]`);
+    if(!card) return;
+    const feedbackEl = document.getElementById('feedback-'+cardId);
+    if(!feedbackEl || feedbackEl.querySelector('.voice-panel')) return;
+    const panel = document.createElement('div');
+    panel.className = 'voice-panel';
+    panel.id = 'voice-'+cardId;
+    panel.innerHTML = `
+      <div class="voice-btn-row">
+        <span style="font-size:9.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Dave's Voice</span>
+        <button class="btn-voice-check" onclick="checkVoice('${cardId}')">🎙 Check Voice</button>
+        <button class="btn-voice-rewrite" onclick="rewriteVoice('${cardId}')">✍ Rewrite in Dave's Voice</button>
+      </div>
+      <div id="voice-result-${cardId}" style="display:none;"></div>`;
+    feedbackEl.appendChild(panel);
+  });
+}
+
+function getPostCopy(cardId){
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  if(!card) return '';
+  const postCopy = card.querySelector('.post-copy-text');
+  if(postCopy) return postCopy.innerText.trim();
+  // Fallback: collect all slot descs
+  return [...card.querySelectorAll('.slot-desc')].map(el=>el.innerText.trim()).join('\n\n');
+}
+
+async function checkVoice(cardId){
+  const btn = document.querySelector(`#voice-${cardId} .btn-voice-check`);
+  const resultEl = document.getElementById('voice-result-'+cardId);
+  if(!btn||!resultEl) return;
+  const content = getPostCopy(cardId);
+  if(!content){ resultEl.style.display='block'; resultEl.innerHTML='<div class="voice-result"><div class="voice-result-label" style="color:var(--amber);">No copy to check</div><div>Add post copy to this card first.</div></div>'; return; }
+  btn.textContent='⏳ Checking…'; btn.disabled=true;
+  try{
+    const r = await fetch(`${ECOFIT_API_BASE}/api/voice`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'check', content})
+    });
+    const data = await r.json();
+    const scoreClass = data.score==='good'?'voice-score-good':data.score==='needs work'?'voice-score-needs':'voice-score-off';
+    const issues = (data.issues||[]).map(i=>`<div class="voice-issue">· ${i}</div>`).join('');
+    resultEl.style.display='block';
+    resultEl.innerHTML=`<div class="voice-result">
+      <div class="voice-result-label ${scoreClass}">Voice Check — ${data.score||'?'}</div>
+      <div style="font-size:12px;color:var(--text-sub);margin-bottom:6px;">${data.summary||''}</div>
+      ${issues}
+    </div>`;
+  }catch(err){
+    resultEl.style.display='block';
+    resultEl.innerHTML=`<div class="voice-result" style="color:var(--red);">Check failed: ${err.message}</div>`;
+  }
+  btn.textContent='🎙 Check Voice'; btn.disabled=false;
+}
+
+async function rewriteVoice(cardId){
+  const btn = document.querySelector(`#voice-${cardId} .btn-voice-rewrite`);
+  const resultEl = document.getElementById('voice-result-'+cardId);
+  if(!btn||!resultEl) return;
+  const content = getPostCopy(cardId);
+  if(!content){ resultEl.style.display='block'; resultEl.innerHTML='<div class="voice-result"><div class="voice-result-label" style="color:var(--amber);">No copy to rewrite</div></div>'; return; }
+  btn.textContent='⏳ Rewriting…'; btn.disabled=true;
+  try{
+    const r = await fetch(`${ECOFIT_API_BASE}/api/voice`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'rewrite', content})
+    });
+    const data = await r.json();
+    const changes = (data.changes||[]).map(c=>`<div class="voice-issue">· ${c}</div>`).join('');
+    resultEl.style.display='block';
+    resultEl.innerHTML=`<div class="voice-result">
+      <div class="voice-result-label" style="color:var(--purple);">Rewritten in Dave's Voice</div>
+      <div class="voice-rewrite-text">${(data.rewritten||'').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+      ${changes ? `<div style="margin-top:8px;font-size:10.5px;color:var(--text-muted);">${changes}</div>` : ''}
+      <button class="btn-apply-rewrite" onclick="applyRewrite('${cardId}', this)">Apply to Card</button>
+    </div>`;
+    resultEl._rewritten = data.rewritten;
+  }catch(err){
+    resultEl.style.display='block';
+    resultEl.innerHTML=`<div class="voice-result" style="color:var(--red);">Rewrite failed: ${err.message}</div>`;
+  }
+  btn.textContent='✍ Rewrite in Dave\'s Voice'; btn.disabled=false;
+}
+
+function applyRewrite(cardId, btn){
+  const resultEl = document.getElementById('voice-result-'+cardId);
+  const rewritten = resultEl?._rewritten;
+  if(!rewritten) return;
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  if(!card) return;
+  const postCopy = card.querySelector('.post-copy-text');
+  if(postCopy) postCopy.innerText = rewritten;
+  btn.textContent = '✓ Applied';
+  btn.disabled = true;
+  btn.style.color = 'var(--green)';
+}
 updateCounts();
 restoreOrder('grid');
 restoreOrder('backlog');
@@ -1826,6 +1947,7 @@ setupDragDrop('backlog');
 injectPipelineBars();
 CARDS.forEach(initStageDates);
 initBacklogDates();
+injectVoiceButtons();
 </script>
 </body>
 </html>
