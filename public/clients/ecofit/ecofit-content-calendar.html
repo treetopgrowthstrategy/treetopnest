@@ -124,6 +124,12 @@
   .slot-human .slot-week{color:var(--teal);}
   .slot-name{font-size:11px;font-weight:600;color:var(--text-dim);margin-bottom:2px;line-height:1.3;}
   .slot-desc{font-size:10.5px;color:var(--text-muted);line-height:1.45;}
+  /* Directly editable copy fields */
+  [contenteditable="true"]{outline:none;border-radius:4px;transition:background 0.15s,box-shadow 0.15s;}
+  [contenteditable="true"]:hover{background:rgba(255,255,255,0.04);box-shadow:inset 0 0 0 1px rgba(132,188,65,0.2);}
+  [contenteditable="true"]:focus{background:rgba(132,188,65,0.04);box-shadow:inset 0 0 0 1px rgba(132,188,65,0.35);}
+  .editable-hint{font-size:8.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);opacity:0;transition:opacity 0.15s;margin-bottom:4px;}
+  .post-copy-box:hover .editable-hint{opacity:1;}
   .slot-link{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--green);text-decoration:none;margin-top:4px;transition:opacity 0.15s;}
   .slot-link:hover{opacity:0.75;}
 
@@ -139,7 +145,9 @@
 
   /* POST COPY BOX */
   .post-copy-box{margin-bottom:12px;background:rgba(132,188,65,0.04);border:1px solid rgba(132,188,65,0.15);border-radius:8px;padding:14px 16px;}
-  .post-copy-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
+  .post-copy-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+  .post-copy-label::after{content:'Click to edit';font-size:8px;font-weight:500;letter-spacing:0.06em;color:var(--text-muted);opacity:0;transition:opacity 0.15s;}
+  .post-copy-box:hover .post-copy-label::after{opacity:1;}
   .post-copy-text{font-size:12px;color:var(--text-dim);line-height:1.7;white-space:pre-line;}
 
   /* CARD FOOTER */
@@ -1099,6 +1107,80 @@ Take our assessment → [LINK HERE]</div>
 
 <script>
 // ── CARD IDS
+
+// ── INLINE EDITING — click any copy field to edit directly, auto-saves to localStorage
+const COPY_STORE = 'ecofit_copy_v1';
+function getCopyStore(){ try{ return JSON.parse(localStorage.getItem(COPY_STORE)||'{}'); }catch(e){ return {}; } }
+function saveCopyStore(s){ localStorage.setItem(COPY_STORE, JSON.stringify(s)); }
+
+// Fields that are directly editable on each card
+const EDITABLE_FIELDS = [
+  { sel: '.post-copy-text', key: 'post-copy' },
+  { sel: '.card-title',     key: 'card-title' },
+  { sel: '.cta-text',       key: 'cta-text'   },
+];
+
+function initInlineEditing(){
+  CARDS.forEach(cardId => {
+    const card = document.querySelector(`[data-card-id="${cardId}"]`);
+    if(!card) return;
+    const store = getCopyStore();
+    const cardStore = store[cardId] || {};
+
+    EDITABLE_FIELDS.forEach(({sel, key}) => {
+      const el = card.querySelector(sel);
+      if(!el) return;
+      // Restore saved content if any
+      if(cardStore[key]) el.innerText = cardStore[key];
+      // Make editable
+      el.contentEditable = 'true';
+      el.spellcheck = false;
+      // Auto-save on input
+      el.addEventListener('input', () => {
+        const s = getCopyStore();
+        if(!s[cardId]) s[cardId] = {};
+        s[cardId][key] = el.innerText;
+        saveCopyStore(s);
+      });
+      // Prevent accidental drag when selecting text
+      el.addEventListener('mousedown', e => e.stopPropagation());
+    });
+
+    // Also make slot-desc and d-desc fields editable
+    card.querySelectorAll('.slot-desc').forEach((el, i) => {
+      const key = ['dave-desc','brand-desc','voice-desc'][i];
+      if(!key) return;
+      if(cardStore[key]) el.innerText = cardStore[key];
+      el.contentEditable = 'true';
+      el.spellcheck = false;
+      el.addEventListener('input', () => {
+        const s = getCopyStore(); if(!s[cardId]) s[cardId]={};
+        s[cardId][key] = el.innerText; saveCopyStore(s);
+      });
+      el.addEventListener('mousedown', e => e.stopPropagation());
+    });
+    card.querySelectorAll('.d-title, .d-desc').forEach((el, i) => {
+      const key = el.classList.contains('d-title') ? `detail-${Math.floor(i/2)+1}-title` : `detail-${Math.floor(i/2)+1}-desc`;
+      if(cardStore[key]) el.innerText = cardStore[key];
+      el.contentEditable = 'true';
+      el.spellcheck = false;
+      el.addEventListener('input', () => {
+        const s = getCopyStore(); if(!s[cardId]) s[cardId]={};
+        s[cardId][key] = el.innerText; saveCopyStore(s);
+      });
+      el.addEventListener('mousedown', e => e.stopPropagation());
+    });
+  });
+}
+
+// Update applyCardChanges to also save to copy store
+function applyAndSaveCopy(cardId, changes){
+  const s = getCopyStore();
+  if(!s[cardId]) s[cardId] = {};
+  Object.entries(changes).forEach(([key, val]) => { s[cardId][key] = val; });
+  saveCopyStore(s);
+  applyCardChanges(cardId, changes);
+}
 const CARDS = ['may25','d1woodway','june','july','august','september','october','november','december'];
 const CARD_LABELS = {
   may25:'May 25 — Podcast Reaction',
@@ -1230,8 +1312,8 @@ async function applyWithAI(cardId, commentIdx) {
       d.comments[commentIdx].applied = true;
       d.comments[commentIdx].appliedSummary = result.summary;
       setState(state);
-      // Apply to DOM
-      applyCardChanges(cardId, result.changes);
+      // Apply to DOM and save to copy store
+      applyAndSaveCopy(cardId, result.changes);
       buildFeedback(cardId);
     } else {
       // Can't apply — flag for Bill
@@ -1934,7 +2016,14 @@ function applyRewrite(cardId, btn){
   const card = document.querySelector(`[data-card-id="${cardId}"]`);
   if(!card) return;
   const postCopy = card.querySelector('.post-copy-text');
-  if(postCopy) postCopy.innerText = rewritten;
+  if(postCopy) {
+    postCopy.innerText = rewritten;
+    // Save to copy store so it persists
+    const s = getCopyStore();
+    if(!s[cardId]) s[cardId] = {};
+    s[cardId]['post-copy'] = rewritten;
+    saveCopyStore(s);
+  }
   btn.textContent = '✓ Applied';
   btn.disabled = true;
   btn.style.color = 'var(--green)';
@@ -1948,6 +2037,7 @@ injectPipelineBars();
 CARDS.forEach(initStageDates);
 initBacklogDates();
 injectVoiceButtons();
+initInlineEditing();
 </script>
 </body>
 </html>
