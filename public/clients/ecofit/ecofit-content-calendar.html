@@ -185,7 +185,11 @@
   .cdb-sort-hint{font-size:9.5px;color:var(--text-muted);white-space:nowrap;font-style:italic;}
 
   /* Stage footer on each slot/row — more prominent */
-  .stage-footer{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:7px;}
+  .stage-footer{margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:5px;}
+  .stage-footer-top{display:flex;align-items:center;gap:5px;}
+  .stage-footer-top .stage-num-badge{flex-shrink:0;}
+  .stage-footer-top .date-trigger{flex:1;min-width:0;}
+  .stage-footer-top .stage-status-btn{flex-shrink:0;}
   .stage-num-badge{font-size:8.5px;font-weight:700;letter-spacing:0.08em;color:var(--text-muted);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:3px 8px;white-space:nowrap;}
   .stage-date-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:11px;font-weight:500;padding:5px 10px;outline:none;transition:border-color 0.15s,background 0.15s;}
   .stage-date-input:focus{border-color:rgba(132,188,65,0.4);background:rgba(132,188,65,0.04);}
@@ -1869,19 +1873,18 @@ function buildStageFooterHTML(cardId, stageKey, saved, num){
   const display   = saved.date ? formatDisplayDate(saved.date) : '';
   const hasDate   = !!saved.date;
   const elId      = `sf-${cardId}-${stageKey}`;
-  return `
-    <span class="stage-num-badge">Stage ${num}</span>
+  return `<div class="stage-footer-top">
+    <span class="stage-num-badge">${num}</span>
     <button class="date-trigger ${hasDate?'has-date':''}" id="${elId}"
       onclick="openDatePicker(this, '${saved.date||''}', v=>saveStageField('${cardId}','${stageKey}','date',v));event.stopPropagation()">
       <span class="dt-icon">📅</span>
-      ${hasDate
-        ? `<span class="dt-text">${display}</span>`
-        : `<span class="dt-placeholder">Set date…</span>`}
+      ${hasDate ? `<span class="dt-text">${display}</span>` : `<span class="dt-placeholder">Set date…</span>`}
     </button>
     <button class="stage-status-btn" style="${STATUS_CSS[status]}"
       onclick="cycleStatus('${cardId}','${stageKey}');event.stopPropagation()">
       ${STATUS_LABELS[status]}
-    </button>`;
+    </button>
+  </div>`;
 }
 
 function initStageDates(cardId){
