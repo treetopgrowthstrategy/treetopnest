@@ -1038,6 +1038,22 @@ Take our assessment → [LINK HERE]</div>
   </div>
 </div>
 
+<!-- CALENDAR DATE PICKER — before script so elements exist when JS runs -->
+<div id="date-picker">
+  <div class="dp-header">
+    <button class="dp-nav" id="dp-prev">&#8249;</button>
+    <div class="dp-month-year" id="dp-month-year"></div>
+    <button class="dp-nav" id="dp-next">&#8250;</button>
+  </div>
+  <div class="dp-weekdays">
+    <div class="dp-wd">Su</div><div class="dp-wd">Mo</div><div class="dp-wd">Tu</div>
+    <div class="dp-wd">We</div><div class="dp-wd">Th</div><div class="dp-wd">Fr</div>
+    <div class="dp-wd">Sa</div>
+  </div>
+  <div class="dp-days" id="dp-days"></div>
+  <button class="dp-clear" id="dp-clear">Clear date</button>
+</div>
+
 <script>
 // ── CARD IDS
 const CARDS = ['may25','d1woodway','june','july','august','september','october','november','december'];
@@ -1608,7 +1624,7 @@ function buildStageFooterHTML(cardId, stageKey, saved, num) {
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-let dpMonth, dpYear, dpCallback, dpAnchor;
+let dpMonth, dpYear, dpCallback, dpAnchor, dpCurrentIso = '';
 
 function ordinal(n){ const s=['th','st','nd','rd'],v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
 
@@ -1628,12 +1644,13 @@ function formatShortDate(iso){
 }
 
 function openDatePicker(anchor, currentIso, onSelect){
-  dpCallback = onSelect;
-  dpAnchor   = anchor;
-  const now  = currentIso ? new Date(currentIso+'T12:00:00') : new Date();
-  dpMonth    = isNaN(now) ? new Date().getMonth() : now.getMonth();
-  dpYear     = isNaN(now) ? new Date().getFullYear() : now.getFullYear();
-  renderPicker(currentIso);
+  dpCallback   = onSelect;
+  dpAnchor     = anchor;
+  dpCurrentIso = currentIso || '';
+  const now    = currentIso ? new Date(currentIso+'T12:00:00') : new Date();
+  dpMonth      = isNaN(now) ? new Date().getMonth()      : now.getMonth();
+  dpYear       = isNaN(now) ? new Date().getFullYear()   : now.getFullYear();
+  renderPicker(dpCurrentIso);
   positionPicker(anchor);
   document.getElementById('date-picker').classList.add('open');
   document.addEventListener('click', closePicker, true);
@@ -1687,18 +1704,18 @@ function renderPicker(selectedIso){
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('dp-prev').addEventListener('click', e => {
-    e.stopPropagation(); dpMonth--; if(dpMonth<0){dpMonth=11;dpYear--;} renderPicker(null);
-  });
-  document.getElementById('dp-next').addEventListener('click', e => {
-    e.stopPropagation(); dpMonth++; if(dpMonth>11){dpMonth=0;dpYear++;} renderPicker(null);
-  });
-  document.getElementById('dp-clear').addEventListener('click', e => {
-    e.stopPropagation(); dpCallback && dpCallback('');
-    document.getElementById('date-picker').classList.remove('open');
-    document.removeEventListener('click', closePicker, true);
-  });
+// Picker nav — elements exist above this script tag
+document.getElementById('dp-prev').addEventListener('click', function(e){
+  e.stopPropagation(); dpMonth--; if(dpMonth<0){dpMonth=11;dpYear--;} renderPicker(dpCurrentIso);
+});
+document.getElementById('dp-next').addEventListener('click', function(e){
+  e.stopPropagation(); dpMonth++; if(dpMonth>11){dpMonth=0;dpYear++;} renderPicker(dpCurrentIso);
+});
+document.getElementById('dp-clear').addEventListener('click', function(e){
+  e.stopPropagation();
+  if(dpCallback) dpCallback('');
+  document.getElementById('date-picker').classList.remove('open');
+  document.removeEventListener('click', closePicker, true);
 });
 
 // ── STAGE PIPELINE SYSTEM
@@ -1885,22 +1902,5 @@ document.getElementById('backlog').addEventListener('dragend',updatePriorityNumb
 injectPipelineBars();
 CARDS.forEach(initStageDates);
 </script>
-
-<!-- CALENDAR DATE PICKER -->
-<div id="date-picker">
-  <div class="dp-header">
-    <button class="dp-nav" id="dp-prev">‹</button>
-    <div class="dp-month-year" id="dp-month-year"></div>
-    <button class="dp-nav" id="dp-next">›</button>
-  </div>
-  <div class="dp-weekdays">
-    <div class="dp-wd">Su</div><div class="dp-wd">Mo</div><div class="dp-wd">Tu</div>
-    <div class="dp-wd">We</div><div class="dp-wd">Th</div><div class="dp-wd">Fr</div>
-    <div class="dp-wd">Sa</div>
-  </div>
-  <div class="dp-days" id="dp-days"></div>
-  <button class="dp-clear" id="dp-clear">Clear date</button>
-</div>
-
 </body>
 </html>
