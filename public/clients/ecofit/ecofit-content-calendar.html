@@ -238,7 +238,55 @@
 </head>
 <body>
 
-<nav>
+<style>
+  #pw-gate{position:fixed;inset:0;background:#0d1117;z-index:99999;display:flex;align-items:center;justify-content:center;}
+  #pw-gate.hidden{display:none;}
+  .pw-box{background:#1a2130;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:48px 40px;width:100%;max-width:380px;text-align:center;}
+  .pw-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:28px;color:#84BC41;letter-spacing:-0.03em;margin-bottom:8px;}
+  .pw-sub{font-size:12px;color:#6b6f7a;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;margin-bottom:32px;}
+  .pw-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9699A2;margin-bottom:10px;text-align:left;}
+  .pw-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#F2F3F8;font-family:'Work Sans',sans-serif;font-size:15px;padding:12px 16px;outline:none;transition:border-color 0.15s;margin-bottom:14px;}
+  .pw-input:focus{border-color:rgba(132,188,65,0.4);}
+  .pw-btn{width:100%;background:#84BC41;color:#0d1117;font-family:'Work Sans',sans-serif;font-size:13px;font-weight:700;padding:13px;border-radius:8px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;}
+  .pw-btn:hover{background:#a8d96b;transform:translateY(-1px);}
+  .pw-error{font-size:12px;color:#ef4444;margin-top:10px;min-height:18px;}
+  .pw-footer{font-size:11px;color:#4A6B52;margin-top:24px;}
+</style>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo">ecofit</div>
+    <div class="pw-sub">Content Strategy · 2026</div>
+    <div class="pw-label">Password</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
+    <button class="pw-btn" onclick="checkPw()">Access Calendar</button>
+    <div class="pw-error" id="pw-error"></div>
+    <div class="pw-footer">Prepared by Treetop Growth Strategy</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const KEY='ecofit_auth_v1';
+  function check(s){ return btoa(s)==='ZWNvZml0MTIzIQ=='; }
+  if(localStorage.getItem(KEY)==='1'){
+    document.getElementById('pw-gate').classList.add('hidden');
+  }
+  window.checkPw=function(){
+    const val=document.getElementById('pw-input').value;
+    if(check(val)){
+      localStorage.setItem(KEY,'1');
+      document.getElementById('pw-gate').classList.add('hidden');
+    } else {
+      document.getElementById('pw-error').textContent='Incorrect password. Please try again.';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  };
+})();
+</script>
+
+
   <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">
     <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
     <span class="nav-div">Content Strategy</span>
