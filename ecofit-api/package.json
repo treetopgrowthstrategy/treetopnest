@@ -1,0 +1,7 @@
+{
+  "name": "ecofit-calendar-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serverless API for the ecofit content calendar — Airtable data layer + article publishing",
+  "engines": { "node": ">=18" }
+}
