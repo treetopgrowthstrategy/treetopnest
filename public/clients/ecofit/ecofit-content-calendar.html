@@ -1157,6 +1157,9 @@ function applyCardChanges(cardId, changes) {
   });
 }
 
+// ── API BASE — update once Vercel is live
+const ECOFIT_API_BASE = 'https://ecofit-api.vercel.app';
+
 // ── AI APPLY
 async function applyWithAI(cardId, commentIdx) {
   const state = getState();
@@ -1170,45 +1173,23 @@ async function applyWithAI(cardId, commentIdx) {
 
   const currentContent = getCardContent(cardId);
 
-  const prompt = `You are helping maintain an ecofit content calendar. A reviewer left a comment on a campaign card.
-
-Current card content (JSON):
-${JSON.stringify(currentContent, null, 2)}
-
-Reviewer comment: "${comment.text}"
-
-Rules:
-- ecofit is always lowercase — never "EcoFit"
-- Only apply NON-MATERIAL changes: wording tweaks, name fixes, minor clarifications, small additions
-- Do NOT apply changes that restructure content, add major new sections, or require strategic decisions
-
-If you can apply this change, respond ONLY with valid JSON:
-{"canApply": true, "changes": {"field-key": "new text"}, "summary": "one line summary of what changed"}
-
-If the change is too material for auto-apply, respond ONLY with valid JSON:
-{"canApply": false, "reason": "brief explanation of why this needs human review"}
-
-Respond with JSON only. No markdown, no explanation outside the JSON.`;
-
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // Route through Vercel proxy — direct Anthropic calls are blocked by CORS on hosted pages
+    const response = await fetch(`${ECOFIT_API_BASE}/api/ai-apply`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
+        cardContent: currentContent,
+        comment: comment.text
       })
     });
 
-    const data = await response.json();
-    const text = data.content?.[0]?.text || '';
-    let result;
-    try {
-      result = JSON.parse(text.replace(/```json|```/g, '').trim());
-    } catch(e) {
-      throw new Error('Could not parse AI response');
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error || `Server error ${response.status}`);
     }
+
+    const result = await response.json();
 
     if (result.canApply && result.changes) {
       // Save revert snapshot
