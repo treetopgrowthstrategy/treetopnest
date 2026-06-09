@@ -316,6 +316,12 @@
   /* ── BACKLOG ── */
   .backlog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;}
 
+  /* Promoted backlog card in the scheduled grid */
+  .promoted-card{border-color:rgba(132,188,65,0.35) !important;background:rgba(132,188,65,0.04) !important;}
+  .promoted-date-badge{font-size:10px;font-weight:600;color:var(--green);letter-spacing:0.04em;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(132,188,65,0.2);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+  .promo-dot{font-size:9px;}
+  .promo-sub{font-size:9.5px;color:var(--text-muted);font-weight:400;}
+
   /* Editorial Content Library */
   .editorial-library{margin-top:44px;}
   .lib-intro{font-size:13px;color:var(--text-sub);line-height:1.7;max-width:840px;margin:4px 0 24px;font-weight:300;}
@@ -908,7 +914,7 @@ Take our assessment → [LINK HERE]</div>
   <h2>Campaign Backlog</h2>
   <div class="section-line"></div>
   <span style="font-size:11px;color:var(--text-muted);">Drag to reprioritize · Assign to a month when ready</span>
-  <div class="section-count">10 queued</div>
+  <div class="section-count" id="backlogCount">10 queued</div>
 </div>
 
 <div class="calendar-wrap" style="padding-bottom:40px;">
@@ -2305,7 +2311,50 @@ function saveBacklogDate(backlogId, iso){
   const s = getBacklogDates();
   if(iso) s[backlogId] = iso; else delete s[backlogId];
   setBacklogDates(s);
-  initBacklogDates();
+  if(iso){
+    promoteToSchedule(backlogId, iso);
+  } else {
+    initBacklogDates();
+  }
+}
+
+function promoteToSchedule(backlogId, iso){
+  const card = document.querySelector(`#backlog [data-backlog-id="${backlogId}"]`);
+  const grid = document.getElementById('grid');
+  if(!card || !grid) return;
+
+  // Save the assigned date as Stage 1 date so sortGridByDate picks it up
+  const ss = getStageState();
+  if(!ss[backlogId]) ss[backlogId] = {};
+  if(!ss[backlogId]['stage-1']) ss[backlogId]['stage-1'] = { status:'draft', date:'' };
+  ss[backlogId]['stage-1'].date = iso;
+  setStageState(ss);
+
+  // Swap from backlog card to grid card
+  card.removeAttribute('data-backlog-id');
+  card.setAttribute('data-card-id', backlogId);
+  card.classList.add('promoted-card');
+
+  // Add scheduled date badge at top of card
+  const existing = card.querySelector('.promoted-date-badge');
+  if(existing) existing.remove();
+  const badge = document.createElement('div');
+  badge.className = 'promoted-date-badge';
+  badge.innerHTML = `<span class="promo-dot">✦</span> Scheduled for ${formatDisplayDate(iso)} <span class="promo-sub">— Drag to reorder · Set additional stage dates below</span>`;
+  card.insertBefore(badge, card.firstChild);
+
+  // Move to scheduled grid and re-sort
+  grid.appendChild(card);
+  sortGridByDate();
+  saveOrder('grid');
+  saveOrder('backlog');
+
+  // Update backlog count
+  const remaining = document.querySelectorAll('#backlog .backlog-card').length;
+  const countEl = document.getElementById('backlogCount');
+  if(countEl) countEl.textContent = `${remaining} queued`;
+
+  showToast(`✓ "${card.querySelector('.backlog-title')?.innerText || backlogId}" moved to schedule — ${formatDisplayDate(iso)}`);
 }
 
 function initBacklogDates(){
