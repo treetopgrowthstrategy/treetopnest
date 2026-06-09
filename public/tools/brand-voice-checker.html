@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Voice Checker — ecofit</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14191f;--surface:#1a2130;--surface2:#222d3d;--border:rgba(255,255,255,0.07);
+  --green:#84BC41;--amber:#f59e0b;--red:#ef4444;--purple:#c084fc;--teal:#58BCC5;
+  --text:#F2F3F8;--text-sub:#9699A2;--text-muted:#6b6f7a;--text-dim:#c8cad1;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;min-height:100vh;font-size:14px;}
+
+/* NAV */
+nav{border-bottom:1px solid var(--border);padding:0 40px;height:58px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:10;}
+.nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:17px;color:var(--green);letter-spacing:-0.03em;}
+.nav-meta{font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;}
+
+/* LAYOUT */
+.wrap{max-width:1140px;margin:0 auto;padding:36px 40px 80px;}
+.page-title{font-family:'Raleway',sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:-0.03em;margin-bottom:6px;}
+.page-sub{font-size:13px;color:var(--text-sub);margin-bottom:32px;font-weight:300;}
+
+/* INPUT PANEL */
+.input-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px;}
+.input-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
+textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:13.5px;line-height:1.75;padding:16px;resize:vertical;outline:none;min-height:180px;transition:border-color 0.15s;}
+textarea:focus{border-color:rgba(132,188,65,0.4);background:rgba(132,188,65,0.02);}
+textarea::placeholder{color:var(--text-muted);}
+.input-actions{display:flex;gap:10px;margin-top:14px;align-items:center;}
+.btn-check{font-family:'Work Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:10px 28px;border-radius:8px;cursor:pointer;border:none;background:var(--green);color:#0d1117;transition:all 0.15s;}
+.btn-check:hover{background:#a8d96b;}
+.btn-check:disabled{opacity:0.5;cursor:default;}
+.btn-clear{font-family:'Work Sans',sans-serif;font-size:11px;font-weight:500;padding:10px 18px;border-radius:8px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all 0.15s;}
+.btn-clear:hover{border-color:rgba(255,255,255,0.2);color:var(--text-sub);}
+.char-count{font-size:11px;color:var(--text-muted);margin-left:auto;}
+
+/* RESULTS GRID */
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.result-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;min-height:220px;transition:border-color 0.3s;}
+.result-panel.grading{border-color:rgba(132,188,65,0.2);}
+.result-panel.result-good{border-color:rgba(132,188,65,0.4);}
+.result-panel.result-needs{border-color:rgba(245,158,11,0.4);}
+.result-panel.result-off{border-color:rgba(239,68,68,0.4);}
+
+.result-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.result-profile{font-family:'Raleway',sans-serif;font-weight:700;font-size:15px;}
+.result-profile-sub{font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;}
+.score-badge{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap;}
+.score-good{background:rgba(132,188,65,0.15);color:var(--green);border:1px solid rgba(132,188,65,0.3);}
+.score-needs{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.3);}
+.score-off{background:rgba(239,68,68,0.12);color:var(--red);border:1px solid rgba(239,68,68,0.3);}
+
+.result-summary{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:16px;font-style:italic;}
+.result-issues{display:flex;flex-direction:column;gap:7px;}
+.result-issue{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--text-sub);line-height:1.5;}
+.issue-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:5px;}
+.issue-dot.good{background:var(--green);}
+
+.placeholder-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:140px;gap:8px;text-align:center;}
+.placeholder-icon{font-size:28px;opacity:0.3;}
+.placeholder-text{font-size:12px;color:var(--text-muted);}
+
+.loading-dots{display:inline-flex;gap:5px;align-items:center;}
+.loading-dots span{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.2s infinite;}
+.loading-dots span:nth-child(2){animation-delay:0.2s;}
+.loading-dots span:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,80%,100%{opacity:0.2;}40%{opacity:1;}}
+
+/* REWRITE PANEL */
+.rewrite-panel{margin-top:16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.rewrite-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.rewrite-title{font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;}
+.btn-rewrite{font-family:'Work Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:7px 16px;border-radius:20px;cursor:pointer;border:1px solid rgba(192,132,252,0.3);color:var(--purple);background:rgba(192,132,252,0.06);transition:all 0.15s;}
+.btn-rewrite:hover{background:rgba(192,132,252,0.15);}
+.btn-rewrite:disabled{opacity:0.5;cursor:default;}
+.rewrite-select{font-family:'Work Sans',sans-serif;font-size:11px;font-weight:500;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text-sub);outline:none;cursor:pointer;}
+.rewrite-output{background:rgba(192,132,252,0.04);border:1px solid rgba(192,132,252,0.2);border-radius:8px;padding:16px;font-size:13px;color:var(--text-dim);line-height:1.75;white-space:pre-line;margin-bottom:12px;}
+.rewrite-changes{display:flex;flex-direction:column;gap:5px;}
+.rewrite-change{font-size:11.5px;color:var(--text-muted);}
+
+/* HISTORY */
+.history-section{margin-top:32px;}
+.history-title{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;}
+.history-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:opacity 0.15s;}
+.history-item:hover{opacity:0.8;}
+.history-snippet{font-size:12px;color:var(--text-sub);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.history-scores{display:flex;gap:6px;flex-shrink:0;}
+.h-score{font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px;}
+.h-good{background:rgba(132,188,65,0.1);color:var(--green);}
+.h-needs{background:rgba(245,158,11,0.1);color:var(--amber);}
+.h-off{background:rgba(239,68,68,0.1);color:var(--red);}
+.history-time{font-size:10px;color:var(--text-muted);}
+
+@media(max-width:700px){.results-grid{grid-template-columns:1fr;}.wrap{padding:24px 20px 60px;}nav{padding:0 20px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ecofit</div>
+  <div class="nav-meta">Brand Voice Checker</div>
+</nav>
+
+<div class="wrap">
+  <div class="page-title">Brand Voice Checker</div>
+  <div class="page-sub">Paste any copy — email, LinkedIn post, article, headline — and grade it against two voice profiles simultaneously.</div>
+
+  <div class="input-panel">
+    <div class="input-label">Paste copy to check</div>
+    <textarea id="copyInput" placeholder="Paste a LinkedIn post, email draft, article intro, headline, or any piece of copy here…"></textarea>
+    <div class="input-actions">
+      <button class="btn-check" id="btnCheck" onclick="checkVoice()">Check Voice</button>
+      <button class="btn-clear" onclick="clearAll()">Clear</button>
+      <span class="char-count" id="charCount">0 characters</span>
+    </div>
+  </div>
+
+  <div class="results-grid">
+    <!-- Dave's Voice -->
+    <div class="result-panel" id="davePanel">
+      <div class="result-header">
+        <div>
+          <div class="result-profile">Dave Johnson</div>
+          <div class="result-profile-sub">EVP · LinkedIn Voice</div>
+        </div>
+        <div id="daveScore"></div>
+      </div>
+      <div id="daveResult">
+        <div class="placeholder-state">
+          <div class="placeholder-icon">🎙</div>
+          <div class="placeholder-text">Paste copy and click Check Voice</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ecofit Brand Voice -->
+    <div class="result-panel" id="brandPanel">
+      <div class="result-header">
+        <div>
+          <div class="result-profile">ecofit Brand</div>
+          <div class="result-profile-sub">Operator-facing copy</div>
+        </div>
+        <div id="brandScore"></div>
+      </div>
+      <div id="brandResult">
+        <div class="placeholder-state">
+          <div class="placeholder-icon">✦</div>
+          <div class="placeholder-text">Paste copy and click Check Voice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rewrite Panel -->
+  <div class="rewrite-panel" id="rewritePanel" style="display:none;">
+    <div class="rewrite-header">
+      <div class="rewrite-title">✍ Rewrite in Voice</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <select class="rewrite-select" id="rewriteProfile">
+          <option value="dave">Dave Johnson</option>
+          <option value="brand">ecofit Brand</option>
+        </select>
+        <button class="btn-rewrite" id="btnRewrite" onclick="rewriteCopy()">Rewrite</button>
+      </div>
+    </div>
+    <div id="rewriteOutput" style="display:none;"></div>
+  </div>
+
+  <!-- History -->
+  <div class="history-section" id="historySection" style="display:none;">
+    <div class="history-title">Recent Checks</div>
+    <div id="historyList"></div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG — swap these profiles per client
+const API_BASE = 'https://treetopnest-williamcolbert-6028s-projects.vercel.app';
+const CLIENT_NAME = 'ecofit';
+
+// History stored in memory for the session
+let history = [];
+let lastContent = '';
+let lastResults = { dave: null, brand: null };
+
+// Char counter
+document.getElementById('copyInput').addEventListener('input', function(){
+  document.getElementById('charCount').textContent = this.value.length + ' characters';
+});
+
+function showLoading(panelId, resultId){
+  const panel = document.getElementById(panelId);
+  panel.className = 'result-panel grading';
+  document.getElementById(resultId).innerHTML = `
+    <div class="placeholder-state">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <div class="placeholder-text" style="margin-top:6px;">Checking voice…</div>
+    </div>`;
+}
+
+function showResult(panelId, scoreId, resultId, data){
+  const panel = document.getElementById(panelId);
+  const score = data.score || 'needs work';
+  const cls = score === 'good' ? 'result-good' : score === 'needs work' ? 'result-needs' : 'result-off';
+  const badgeCls = score === 'good' ? 'score-good' : score === 'needs work' ? 'score-needs' : 'score-off';
+  const label = score === 'good' ? '✓ Good' : score === 'needs work' ? '⚠ Needs Work' : '✗ Off-Brand';
+
+  panel.className = `result-panel ${cls}`;
+  document.getElementById(scoreId).innerHTML = `<div class="score-badge ${badgeCls}">${label}</div>`;
+
+  const issues = (data.issues || []);
+  const issueHTML = issues.length
+    ? issues.map(i => `<div class="result-issue"><div class="issue-dot"></div><div>${i}</div></div>`).join('')
+    : `<div class="result-issue"><div class="issue-dot good"></div><div>No major issues found.</div></div>`;
+
+  document.getElementById(resultId).innerHTML = `
+    <div class="result-summary">${data.summary || ''}</div>
+    <div class="result-issues">${issueHTML}</div>`;
+}
+
+function showError(panelId, resultId, msg){
+  document.getElementById(panelId).className = 'result-panel';
+  document.getElementById(resultId).innerHTML = `<div class="placeholder-state"><div class="placeholder-text" style="color:var(--red);">Error: ${msg}</div></div>`;
+}
+
+async function checkVoice(){
+  const content = document.getElementById('copyInput').value.trim();
+  if(!content){ alert('Paste some copy first.'); return; }
+
+  lastContent = content;
+  const btn = document.getElementById('btnCheck');
+  btn.disabled = true; btn.textContent = 'Checking…';
+
+  showLoading('davePanel', 'daveResult');
+  showLoading('brandPanel', 'brandResult');
+  document.getElementById('daveScore').innerHTML = '';
+  document.getElementById('brandScore').innerHTML = '';
+  document.getElementById('rewritePanel').style.display = 'none';
+  document.getElementById('rewriteOutput').style.display = 'none';
+
+  const [daveRes, brandRes] = await Promise.all([
+    callVoice('check', content, 'dave'),
+    callVoice('check', content, 'brand')
+  ]);
+
+  if(daveRes.error) showError('davePanel', 'daveResult', daveRes.error);
+  else { showResult('davePanel', 'daveScore', 'daveResult', daveRes); lastResults.dave = daveRes; }
+
+  if(brandRes.error) showError('brandPanel', 'brandResult', brandRes.error);
+  else { showResult('brandPanel', 'brandScore', 'brandResult', brandRes); lastResults.brand = brandRes; }
+
+  // Show rewrite panel
+  document.getElementById('rewritePanel').style.display = 'block';
+
+  // Add to history
+  addToHistory(content, daveRes, brandRes);
+
+  btn.disabled = false; btn.textContent = 'Check Voice';
+}
+
+async function rewriteCopy(){
+  const content = lastContent || document.getElementById('copyInput').value.trim();
+  if(!content) return;
+  const profile = document.getElementById('rewriteProfile').value;
+  const btn = document.getElementById('btnRewrite');
+  btn.disabled = true; btn.textContent = 'Rewriting…';
+
+  const result = await callVoice('rewrite', content, profile);
+  const output = document.getElementById('rewriteOutput');
+
+  if(result.error){
+    output.innerHTML = `<div style="color:var(--red);font-size:12px;">Error: ${result.error}</div>`;
+  } else {
+    const profileLabel = profile === 'dave' ? 'Dave Johnson' : 'ecofit Brand';
+    const changes = (result.changes||[]).map(c=>`<div class="rewrite-change">· ${c}</div>`).join('');
+    output.innerHTML = `
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;">Rewritten — ${profileLabel}</div>
+      <div class="rewrite-output">${(result.rewritten||'').replace(/</g,'&lt;')}</div>
+      ${changes ? `<div class="rewrite-changes">${changes}</div>` : ''}
+      <button onclick="copyToClipboard(this)" style="margin-top:12px;font-family:Work Sans,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:6px 16px;border-radius:6px;cursor:pointer;border:1px solid rgba(132,188,65,0.3);color:var(--green);background:rgba(132,188,65,0.08);" data-copy="${encodeURIComponent(result.rewritten||'')}">Copy Text</button>`;
+  }
+  output.style.display = 'block';
+  btn.disabled = false; btn.textContent = 'Rewrite';
+}
+
+function copyToClipboard(btn){
+  const text = decodeURIComponent(btn.dataset.copy);
+  navigator.clipboard.writeText(text).then(()=>{ btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy Text',2000); });
+}
+
+async function callVoice(action, content, profile){
+  try {
+    const r = await fetch(`${API_BASE}/api/voice`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ action, content, profile })
+    });
+    return await r.json();
+  } catch(err){ return { error: err.message }; }
+}
+
+function addToHistory(content, daveRes, brandRes){
+  const item = {
+    snippet: content.slice(0,80) + (content.length > 80 ? '…' : ''),
+    daveScore: daveRes.score || '?',
+    brandScore: brandRes.score || '?',
+    time: new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}),
+    content
+  };
+  history.unshift(item);
+  if(history.length > 8) history.pop();
+  renderHistory();
+}
+
+function renderHistory(){
+  const list = document.getElementById('historyList');
+  const section = document.getElementById('historySection');
+  if(!history.length){ section.style.display='none'; return; }
+  section.style.display='block';
+  list.innerHTML = history.map((item,i) => {
+    const dc = item.daveScore==='good'?'h-good':item.daveScore==='needs work'?'h-needs':'h-off';
+    const bc = item.brandScore==='good'?'h-good':item.brandScore==='needs work'?'h-needs':'h-off';
+    return `<div class="history-item" onclick="loadHistory(${i})">
+      <div class="history-snippet">${item.snippet}</div>
+      <div class="history-scores">
+        <span class="h-score ${dc}">Dave: ${item.daveScore}</span>
+        <span class="h-score ${bc}">Brand: ${item.brandScore}</span>
+      </div>
+      <div class="history-time">${item.time}</div>
+    </div>`;
+  }).join('');
+}
+
+function loadHistory(idx){
+  document.getElementById('copyInput').value = history[idx].content;
+  document.getElementById('charCount').textContent = history[idx].content.length + ' characters';
+}
+
+function clearAll(){
+  document.getElementById('copyInput').value = '';
+  document.getElementById('charCount').textContent = '0 characters';
+  document.getElementById('daveResult').innerHTML = '<div class="placeholder-state"><div class="placeholder-icon">🎙</div><div class="placeholder-text">Paste copy and click Check Voice</div></div>';
+  document.getElementById('brandResult').innerHTML = '<div class="placeholder-state"><div class="placeholder-icon">✦</div><div class="placeholder-text">Paste copy and click Check Voice</div></div>';
+  document.getElementById('daveScore').innerHTML = '';
+  document.getElementById('brandScore').innerHTML = '';
+  document.getElementById('davePanel').className = 'result-panel';
+  document.getElementById('brandPanel').className = 'result-panel';
+  document.getElementById('rewritePanel').style.display = 'none';
+  lastContent = '';
+}
+</script>
+</body>
+</html>
