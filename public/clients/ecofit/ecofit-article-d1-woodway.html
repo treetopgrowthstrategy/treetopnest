@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When Elite Hardware Meets Real-Time Intelligence: ecofit, Woodway, and D1 Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#14191f;--bg-dark:#0d1117;--surface:#1a2130;--surface2:#2F3535;--border:rgba(255,255,255,0.08);--green:#84BC41;--green-dk:#6aa130;--green-glow:rgba(132,188,65,0.08);--teal:#58BCC5;--text:#F2F3F8;--text-sub:#9699A2;--text-muted:#6b6f7a;--text-dim:#c8cad1;--r:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;}
+  .dot-bg{position:relative;overflow:hidden;}
+  .dot-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  .dot-bg>*{position:relative;z-index:1;}
+  nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:10;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-back{font-size:12px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.15s;}
+  .nav-back:hover{color:var(--green);}
+  .hero{padding:72px 40px 64px;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);border-bottom:1px solid var(--border);position:relative;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none;}
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:24px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:2.6rem;font-weight:800;line-height:1.12;margin-bottom:28px;}
+  .hero h1 em{font-style:normal;color:var(--green);}
+  .hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .hero-author{display:flex;align-items:center;gap:11px;}
+  .author-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dk));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#0d1117;font-family:'Raleway',sans-serif;}
+  .author-name{font-weight:600;font-size:14px;}
+  .author-title{font-size:12px;color:var(--text-muted);}
+  .meta-divider{width:1px;height:28px;background:var(--border);}
+  .meta-item{font-size:12px;color:var(--text-sub);}
+  .meta-item span{color:var(--text-muted);}
+  .article-wrap{max-width:760px;margin:0 auto;padding:56px 40px 80px;}
+  .article-body p{margin-bottom:22px;color:var(--text-dim);}
+  .article-body p strong{color:var(--text);font-weight:600;}
+  .article-body h2{font-size:1.5rem;font-weight:700;margin:44px 0 18px;color:var(--text);}
+  .pull-quote{border-left:3px solid var(--green);padding:6px 0 6px 26px;margin:34px 0;}
+  .pull-quote p{font-family:'Raleway',sans-serif;font-size:1.3rem;font-weight:600;line-height:1.4;color:var(--text);margin:0;letter-spacing:-0.01em;}
+  .cta-box{margin-top:48px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);text-align:center;}
+  .cta-box h3{font-size:1.2rem;margin-bottom:10px;}
+  .cta-box p{color:var(--text-sub);font-size:14px;margin-bottom:20px;}
+  .cta-btn{display:inline-block;background:var(--green);color:#0d1117;font-weight:700;font-size:14px;padding:13px 28px;border-radius:8px;text-decoration:none;transition:background 0.15s;}
+  .cta-btn:hover{background:#a8d96b;}
+  @media(max-width:640px){.hero h1{font-size:1.9rem;}.hero,.article-wrap,nav{padding-left:22px;padding-right:22px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank">ecofit<span class="nav-div">Insights</span></a>
+  <a href="/clients/ecofit/ecofit-content-calendar.html" class="nav-back">← Back to Calendar</a>
+</nav>
+
+<div class="hero dot-bg">
+  <div class="hero-inner">
+    <div class="section-tag"><span class="section-tag-dot"></span>Partnership · June 2026</div>
+    <h1>When Elite Hardware Meets<br><em>Real-Time Intelligence</em></h1>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="author-avatar">DJ</div>
+        <div class="author-info">
+          <div class="author-name">Dave Johnson</div>
+          <div class="author-title">EVP, ecofit Networks</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">June 2026</div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span>Partners:</span> Woodway USA · D1 Training</div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">4 min read</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+<div class="article-body">
+
+<p>Woodway just announced a national partnership with D1 Training, one of the fastest-growing athletic training franchises in the country. More than 100 D1 locations across the U.S. are now integrating Woodway's professional-grade treadmill systems into their facilities.</p>
+
+<p>What the press release didn't mention is what happens next.</p>
+
+<p>Woodway ProSmart connected treadmills run on ecofit. That means every D1 Training facility that installs ProSmart equipment now has access to real-time usage analytics, proactive maintenance alerts, and the kind of equipment intelligence that elite operators use to make better decisions, automatically, from the moment the console powers on.</p>
+
+<h2>What ecofit adds to the equation</h2>
+
+<p>D1 Training chose Woodway for precision. Repeatable belt speeds for accurate sprint testing. Low-impact slat-belt design for higher training volume. The same equipment trusted by pro organizations and NCAA programs, now inside their franchise network.</p>
+
+<p><strong>ecofit makes that investment measurable.</strong></p>
+
+<p>Across D1's 100+ locations, operators can now see exactly how athletes are using Woodway equipment. Which machines are driving the most training volume, what peak usage looks like by time of day and day of week, and how utilization compares across facilities. When a machine needs attention, the service team knows before an athlete reports it. When a location is underutilizing its equipment, the data makes that visible.</p>
+
+<p>For a franchise network built around measurable, repeatable performance outcomes, the data layer matters as much as the hardware.</p>
+
+<div class="pull-quote">
+  <p>"D1's model is built around measurable, repeatable outcomes. ecofit makes the equipment side just as measurable as the programming side."</p>
+</div>
+
+<h2>The pattern we keep seeing</h2>
+
+<p>D1 Training's decision to go all-in on Woodway reflects something ecofit's usage data has shown consistently across thousands of facilities: when members have a choice, they gravitate toward Woodway. The equipment earns its utilization rates. Our data just makes that visible and actionable.</p>
+
+<p>Eric Weber, Director of Sales and Marketing at Woodway USA, said it well in the D1 announcement: the goal is placing elite technology into environments where structure, coaching, and accountability are already world-class. ecofit is the intelligence layer that tells you how well that technology is being used.</p>
+
+<h2>What this means for D1 Training operators</h2>
+
+<p>If you're a D1 Training franchisee with Woodway ProSmart equipment, ecofit is already part of your infrastructure. Activation is straightforward. The data starts flowing from day one.</p>
+
+<p>If you're evaluating what a connected equipment investment actually gives you, beyond the hardware, this is what it looks like in practice.</p>
+
+<div class="cta-box">
+  <h3>See what your Woodway equipment is telling you</h3>
+  <p>Book a 30-minute demo and we'll show you your floor, in real time.</p>
+  <a href="#" class="cta-btn">Book a Demo →</a>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
