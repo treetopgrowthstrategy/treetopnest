@@ -2392,17 +2392,17 @@ function initBacklogDates(){
     const btn = footer.querySelector('.schedule-btn');
     if(!btn) return;
     const iso = dates[id] || '';
+
+    // If a date is already saved, promote the card to the schedule
     if(iso){
-      btn.innerHTML = '📅 ' + formatDisplayDate(iso);
-      btn.style.borderColor = 'rgba(132,188,65,0.4)';
-      btn.style.color = 'var(--green)';
-      btn.style.background = 'rgba(132,188,65,0.08)';
-    } else {
-      btn.innerHTML = '+ Assign Date';
-      btn.style.borderColor = '';
-      btn.style.color = '';
-      btn.style.background = '';
+      promoteToSchedule(id, iso);
+      return; // card is now in #grid — skip button update
     }
+
+    btn.innerHTML = '+ Assign Date';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+    btn.style.background = '';
     btn.onclick = function(e){
       e.stopPropagation();
       openDatePicker(btn, iso, v => saveBacklogDate(id, v));
