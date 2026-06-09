@@ -231,9 +231,105 @@
     .item-row{flex-wrap:wrap;}
     .weekly-summary-row{flex-direction:column;align-items:flex-start;}
   }
+
+  /* ACCESS GATE */
+  body.locked > nav.topnav,
+  body.locked > .hero,
+  body.locked > .tabstrip,
+  body.locked > main,
+  body.locked > footer{display:none !important;}
+  .gate{position:fixed;inset:0;z-index:9000;background:linear-gradient(180deg,#14191f 0%,#0d1117 100%);display:none;align-items:center;justify-content:center;padding:24px;}
+  .gate.show{display:flex;}
+  .gate::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(132,188,65,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(132,188,65,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;}
+  .gate::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(132,188,65,0.08),transparent 60%);pointer-events:none;}
+  .gate-card{position:relative;z-index:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:36px 32px;width:100%;max-width:380px;box-shadow:0 24px 64px rgba(0,0,0,0.5);}
+  .gate-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .gate-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:livepulse 2s infinite;}
+  .gate-card h1{font-family:'Raleway',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;color:var(--text);margin-bottom:6px;line-height:1.15;}
+  .gate-card h1 em{color:var(--green);font-style:italic;}
+  .gate-card p{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:22px;font-weight:300;}
+  .gate-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;display:block;}
+  .gate-input{width:100%;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Work Sans',sans-serif;font-size:14px;font-weight:500;padding:11px 14px;outline:none;transition:all 0.15s;letter-spacing:0.04em;}
+  .gate-input:focus{border-color:rgba(132,188,65,0.4);background:rgba(132,188,65,0.03);box-shadow:0 0 0 3px rgba(132,188,65,0.08);}
+  .gate-input.error{border-color:rgba(239,68,68,0.5);animation:shake 0.35s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  .gate-error{font-size:11.5px;color:var(--red);margin-top:8px;min-height:14px;font-weight:500;}
+  .gate-submit{margin-top:18px;width:100%;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px;border-radius:8px;cursor:pointer;border:none;background:var(--green);color:#0d1117;transition:all 0.2s cubic-bezier(.16,1,.3,1);}
+  .gate-submit:hover{background:#a8d96b;}
+  .gate-footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);font-size:10.5px;color:var(--text-muted);text-align:center;letter-spacing:0.04em;font-weight:300;}
+  .gate-footer a{color:var(--green-dk);text-decoration:none;}
+  .gate-footer a:hover{color:var(--green);}
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div class="gate show" id="accessGate">
+  <div class="gate-card">
+    <div class="gate-eyebrow"><span class="gate-eyebrow-dot"></span>ecofit &middot; CMO Nest</div>
+    <h1>Restricted <em>workspace.</em></h1>
+    <p>Internal workspace for Bill and Dave. Enter the access code to continue.</p>
+    <label class="gate-label" for="gatePass">Access code</label>
+    <input type="password" id="gatePass" class="gate-input" autocomplete="off" autofocus>
+    <div class="gate-error" id="gateError"></div>
+    <button class="gate-submit" id="gateSubmit" type="button">Enter</button>
+    <div class="gate-footer">Treetop Growth Strategy &middot; <a href="https://treetopgrowthstrategy.com" target="_blank" rel="noopener">treetopgrowthstrategy.com</a></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Access gate. Client-side only. Change ACCESS_PASSWORD below.
+   This is obscurity, not real security. Anyone with dev tools
+   can bypass. Good enough to keep casual visitors out.
+   ============================================================ */
+const ACCESS_PASSWORD = 'ecofit2026'; // change this then redeploy
+const GATE_KEY = 'cmoNest.gate.v1';
+const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
+
+(function () {
+  const gateEl = document.getElementById('accessGate');
+  const passEl = document.getElementById('gatePass');
+  const errEl = document.getElementById('gateError');
+  const btnEl = document.getElementById('gateSubmit');
+
+  function unlocked() {
+    try {
+      const raw = localStorage.getItem(GATE_KEY);
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      if (!data || !data.until) return false;
+      return Date.now() < data.until;
+    } catch (e) { return false; }
+  }
+  function persistUnlock() {
+    try {
+      localStorage.setItem(GATE_KEY, JSON.stringify({ until: Date.now() + GATE_TTL_HOURS * 3600 * 1000 }));
+    } catch (e) {}
+  }
+  function openGate() {
+    document.body.classList.remove('locked');
+    gateEl.classList.remove('show');
+  }
+  function tryUnlock() {
+    const v = (passEl.value || '').trim();
+    if (v === ACCESS_PASSWORD) {
+      persistUnlock();
+      openGate();
+      errEl.textContent = '';
+    } else {
+      passEl.classList.add('error');
+      errEl.textContent = 'Wrong code.';
+      setTimeout(function () { passEl.classList.remove('error'); }, 400);
+      passEl.select();
+    }
+  }
+  btnEl.addEventListener('click', tryUnlock);
+  passEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); tryUnlock(); }
+  });
+  if (unlocked()) openGate();
+})();
+</script>
 
 <nav class="topnav">
   <a href="https://ecofit-website.web.app" class="nav-logo" target="_blank" rel="noopener">
