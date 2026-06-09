@@ -315,6 +315,30 @@
 
   /* ── BACKLOG ── */
   .backlog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;}
+
+  /* Editorial Content Library */
+  .editorial-library{margin-top:44px;}
+  .lib-intro{font-size:13px;color:var(--text-sub);line-height:1.7;max-width:840px;margin:4px 0 24px;font-weight:300;}
+  .lib-intro strong{color:var(--text-dim);font-weight:600;}
+  .pillar-block{margin-bottom:24px;}
+  .lib-pillar-header{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:10px;}
+  .lib-pillar-header span{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+  .lib-posts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .lib-post{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px 14px;transition:border-color 0.15s,background 0.15s;}
+  .lib-post:hover{border-color:rgba(132,188,65,0.2);background:rgba(132,188,65,0.03);}
+  .lib-cornerstone{border-color:rgba(132,188,65,0.3);background:rgba(132,188,65,0.04);}
+  .lib-num{font-family:'Raleway',sans-serif;font-size:13px;font-weight:800;color:var(--text-muted);flex-shrink:0;width:24px;line-height:1.4;}
+  .lib-cornerstone .lib-num{color:var(--green);}
+  .lib-body{flex:1;min-width:0;}
+  .lib-title{font-size:12.5px;font-weight:600;color:var(--text-dim);line-height:1.4;margin-bottom:4px;}
+  .lib-corner-tag{display:inline-block;font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);background:rgba(132,188,65,0.12);border-radius:4px;padding:2px 6px;margin-left:7px;vertical-align:middle;}
+  .lib-desc{font-size:11px;color:var(--text-muted);line-height:1.55;font-weight:300;}
+  .lib-tags{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0;}
+  .lib-week{font-size:8.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--amber);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);border-radius:5px;padding:2px 7px;white-space:nowrap;}
+  .lib-voice{font-size:8.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:5px;padding:2px 7px;white-space:nowrap;}
+  .lib-voice-dave{color:var(--green);background:rgba(132,188,65,0.1);border:1px solid rgba(132,188,65,0.25);}
+  .lib-voice-brand{color:var(--text-sub);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);}
+  @media(max-width:760px){.lib-posts{grid-template-columns:1fr;}}
   .backlog-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;cursor:default;transition:border-color 0.2s,transform 0.2s,opacity 0.2s;}
   .backlog-card:hover{border-color:rgba(255,255,255,0.12);}
   .backlog-card.dragging{opacity:0.35;transform:scale(0.97);border-style:dashed;}
@@ -1090,6 +1114,231 @@ Take our assessment → [LINK HERE]</div>
   </div>
 
 </div><!-- /backlog-grid -->
+
+<div class="editorial-library" id="editorialLibrary">
+<div class="section-header" style="margin-top:8px;">
+<div class="section-title">Editorial Content Library</div>
+<div class="section-count">24 posts · 6 pillars</div>
+</div>
+<p class="lib-intro">A 24-post thought-leadership engine, organized by pillar. The first 12 weeks follow a recommended sequence that lets each post stand alone while building a worldview, anchored by the cornerstone post (#22). <strong>Wk</strong> badges mark the launch sequence. Voice tag shows whether the post runs in Dave's first-person voice or ecofit brand voice.</p>
+<div class="pillar-block">
+<div class="lib-pillar-header">Pillar 1 — The Shift<span>Market-level</span></div>
+<div class="lib-posts">
+<div class="lib-post">
+  <span class="lib-num">01</span>
+  <div class="lib-body">
+    <div class="lib-title">The 40% Problem: Cardio Is Shrinking and Most Operators Are Still Buying It</div>
+    <div class="lib-desc">The cardio reallocation thesis. Why members are migrating to strength and functional, and why operators planning capex are buying yesterday's footprint.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 3</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">02</span>
+  <div class="lib-body">
+    <div class="lib-title">What Members Actually Want in 2026 (And Why Your 2018 Floor Plan Doesn't Deliver It)</div>
+    <div class="lib-desc">Cohort-level shift in training preferences: functional, strength, recovery, group accountability. What the modern member's session actually looks like.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 8</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">03</span>
+  <div class="lib-body">
+    <div class="lib-title">The Death of the Set-and-Forget Gym</div>
+    <div class="lib-desc">Equipment lifecycles used to be 7-10 years and floor plans static. That era is over. Why 'buy and forget' operators are quietly falling behind.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-dave">Dave</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">04</span>
+  <div class="lib-body">
+    <div class="lib-title">Five Trends Reshaping Commercial Fitness Floor Plans Right Now</div>
+    <div class="lib-desc">Tactical roundup. Functional zones expanding, cardio compressing, recovery getting square footage, hybrid HIIT/strength layouts, member flow design.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+</div></div>
+<div class="pillar-block">
+<div class="lib-pillar-header">Pillar 2 — The Cost<span>Financial / operational</span></div>
+<div class="lib-posts">
+<div class="lib-post">
+  <span class="lib-num">05</span>
+  <div class="lib-body">
+    <div class="lib-title">Dead Zones: The Most Expensive Square Footage in Your Gym</div>
+    <div class="lib-desc">The vocabulary post. Defines 'dead zone' as a category. The $60K-per-10-pieces math. The zero-occupancy daily chart. This post owns the term.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 2</span><span class="lib-voice lib-voice-dave">Dave</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">06</span>
+  <div class="lib-body">
+    <div class="lib-title">The Real Cost of Buying the Wrong Equipment (And How to Tell Before You Do)</div>
+    <div class="lib-desc">Equipment misalignment as a CFO problem, not a facilities problem. Cost in dollars per square foot, member churn, opportunity cost. A procurement question.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">07</span>
+  <div class="lib-body">
+    <div class="lib-title">Zero Occupancy Is the Most Honest KPI in Your Facility</div>
+    <div class="lib-desc">Single-metric deep dive. If you could add one number to your dashboard, this is it. What it reveals about placement, programming, and dead space.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 6</span><span class="lib-voice lib-voice-dave">Dave</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">08</span>
+  <div class="lib-body">
+    <div class="lib-title">Why Your Standard Operations Report Doesn't Show Why Members Leave</div>
+    <div class="lib-desc">The four silent killers: under-utilized space, wait times, flow problems, equipment placement. None show up in churn analysis. A new operations report.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 5</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">09</span>
+  <div class="lib-body">
+    <div class="lib-title">The Hidden Liability in Broken Equipment Nobody Reported</div>
+    <div class="lib-desc">The proactive maintenance argument. Member-reported broken equipment is already too late. Duty-of-care exposure, retention cost, brand cost.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+</div></div>
+<div class="pillar-block">
+<div class="lib-pillar-header">Pillar 3 — The Bifurcation<span>Positioning / competitive</span></div>
+<div class="lib-posts">
+<div class="lib-post lib-cornerstone">
+  <span class="lib-num">10</span>
+  <div class="lib-body">
+    <div class="lib-title">The Middle Ground Is Disappearing<span class="lib-corner-tag">Cornerstone</span></div>
+    <div class="lib-desc">The bifurcation manifesto. Legacy Operators vs Optimized Leaders. For the operator who thinks they're in the middle. The cornerstone post.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 4</span><span class="lib-voice lib-voice-dave">Dave</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">11</span>
+  <div class="lib-body">
+    <div class="lib-title">Are You a Legacy Operator or a Performance Leader? A Self-Assessment</div>
+    <div class="lib-desc">Interactive checklist. 12-15 questions, reader scores themselves. Implicit positioning. Lead-generation potential if gated.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 11</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">12</span>
+  <div class="lib-body">
+    <div class="lib-title">Why "Best in Class" Is About to Mean Something Completely Different</div>
+    <div class="lib-desc">The standard used to be amenities and equipment selection. Now it's data agility. Reframes what excellent looks like in 2026.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">13</span>
+  <div class="lib-body">
+    <div class="lib-title">The Operators Who Are Quietly Pulling Ahead Right Now</div>
+    <div class="lib-desc">Trend piece. Without naming names, describes the behaviors of facilities running ahead: what they measure, how they make equipment decisions.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+</div></div>
+<div class="pillar-block">
+<div class="lib-pillar-header">Pillar 4 — The Data Gap<span>Analytical / educational</span></div>
+<div class="lib-posts">
+<div class="lib-post">
+  <span class="lib-num">14</span>
+  <div class="lib-body">
+    <div class="lib-title">Five Things You Cannot Manage Without Live Occupancy Data</div>
+    <div class="lib-desc">Tactical list. Equipment placement, class scheduling, staffing, programming changes, new investment decisions. Each gets a real example.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">15</span>
+  <div class="lib-body">
+    <div class="lib-title">How to Read a Heat Map (And What Operators Get Wrong About Them)</div>
+    <div class="lib-desc">Educational deep dive. Most operators don't know how to use the output. Explains dwell time, traffic patterns, what a 'hot spot' actually means.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">16</span>
+  <div class="lib-body">
+    <div class="lib-title">Dwell Time vs. Traffic Count: Why One Tells You the Truth</div>
+    <div class="lib-desc">The contrarian metric post. Traffic counts tell you who came in. Dwell time tells you whether your facility delivered. The more honest engagement metric.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 7</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">17</span>
+  <div class="lib-body">
+    <div class="lib-title">The Quiet Data You Already Have (And Aren't Using)</div>
+    <div class="lib-desc">Most operators are sitting on usable data: security cameras, member check-ins, equipment consoles. What's already collectible without new spend.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">18</span>
+  <div class="lib-body">
+    <div class="lib-title">What a True Industry Benchmark Looks Like (And Why You Probably Don't Have One)</div>
+    <div class="lib-desc">The network-effect argument. Anonymized aggregated benchmarks across high-performing facilities. The unique value of joining a data network.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 12</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+</div></div>
+<div class="pillar-block">
+<div class="lib-pillar-header">Pillar 5 — Operator Simplicity<span>Product philosophy</span></div>
+<div class="lib-posts">
+<div class="lib-post">
+  <span class="lib-num">19</span>
+  <div class="lib-body">
+    <div class="lib-title">What "Enterprise Grade" Should Actually Mean for Operators</div>
+    <div class="lib-desc">The anti-analyst-tool argument. Most enterprise software needs a data team. That's not enterprise grade, that's enterprise complexity.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">20</span>
+  <div class="lib-body">
+    <div class="lib-title">Built for Operators, Not Analysts: A Different Philosophy for Facility Software</div>
+    <div class="lib-desc">Sister to #19. Goes deeper on the design principle. What 'operator simplicity' looks like: actionable insights, role-appropriate dashboards, decisions not data.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 10</span><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">21</span>
+  <div class="lib-body">
+    <div class="lib-title">Why Your Multi-Location Strategy Should Not Depend on a Data Analyst</div>
+    <div class="lib-desc">For franchise/multi-location audiences. Scale and analyst dependence don't mix. Franchisees need to act on data without a central data team.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+</div></div>
+<div class="pillar-block">
+<div class="lib-pillar-header">Pillar 6 — The Discipline<span>Philosophical / manifesto</span></div>
+<div class="lib-posts">
+<div class="lib-post lib-cornerstone">
+  <span class="lib-num">22</span>
+  <div class="lib-body">
+    <div class="lib-title">Optimization Is a Discipline, Not a Project<span class="lib-corner-tag">Cornerstone</span></div>
+    <div class="lib-desc">The manifesto. Best fit for Dave's voice. Why facilities that treat optimization as a one-time project end up back where they started. The case for rhythm.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 1</span><span class="lib-voice lib-voice-dave">Dave</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">23</span>
+  <div class="lib-body">
+    <div class="lib-title">The 30-Day Optimization Sprint: A Framework for Operators</div>
+    <div class="lib-desc">The how-to companion to #22. A repeatable monthly rhythm any facility can run. Week-by-week breakdown. Tactical and immediately usable.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-week">Wk 9</span><span class="lib-voice lib-voice-dave">Dave</span></div>
+</div>
+<div class="lib-post">
+  <span class="lib-num">24</span>
+  <div class="lib-body">
+    <div class="lib-title">From Static Inventory to a High-Yield Ecosystem</div>
+    <div class="lib-desc">The frame-shift post. Equipment isn't inventory, it's an asset class that generates data, signals, and member outcomes. Reframes what leaders own.</div>
+  </div>
+  <div class="lib-tags"><span class="lib-voice lib-voice-brand">Brand</span></div>
+</div>
+</div></div>
+</div><!-- /editorial-library -->
+
 </div><!-- /calendar-wrap -->
 
 <div class="legend-bar">
