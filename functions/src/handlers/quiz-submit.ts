@@ -394,11 +394,15 @@ async function logToAirtable(data: QuizPayload, tier: ReturnType<typeof getTierD
   if (reportUrl) fields['Report URL']  = reportUrl;
   if (slug)      fields['Report Slug'] = slug;
 
-  await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/GTM%20Quiz%20Submissions`, {
+  const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/GTM%20Quiz%20Submissions`, {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields }),
+    body: JSON.stringify({ fields, typecast: true }),
   });
+  if (!res.ok) {
+    const errBody = await res.text();
+    throw new Error(`Airtable ${res.status}: ${errBody}`);
+  }
 }
 
 export async function handle(request: Request): Promise<Response> {
