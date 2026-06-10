@@ -224,6 +224,22 @@
   footer a{color:var(--green-dk);text-decoration:none;}
   footer a:hover{color:var(--green);}
 
+  /* SYNC STATUS */
+  .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--text-muted);flex-shrink:0;transition:background 0.2s;}
+  .sync-dot.synced{background:var(--green);box-shadow:0 0 6px rgba(132,188,65,0.6);}
+  .sync-dot.syncing{background:var(--amber);animation:livepulse 1.2s infinite;}
+  .sync-dot.error{background:var(--red);}
+  .sync-dot.off{background:var(--text-muted);}
+  #syncStatus{font-size:10.5px;}
+
+  /* SETTINGS PANEL */
+  .settings-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;margin-bottom:14px;}
+  .settings-card h3{font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px;letter-spacing:-0.01em;}
+  .settings-card p{font-size:12.5px;color:var(--text-muted);line-height:1.55;margin-bottom:14px;}
+  .settings-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .settings-meta{font-size:11px;color:var(--text-muted);margin-top:10px;}
+  .kbd{display:inline-block;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-family:'Work Sans',sans-serif;font-size:10.5px;font-weight:600;color:var(--text-sub);}
+
   @media(max-width:720px){
     nav.topnav,.hero,.tabstrip,main,footer{padding-left:18px;padding-right:18px;}
     .hero{padding:32px 18px 28px;}
@@ -337,6 +353,10 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
     <span class="nav-div">CMO Nest</span>
   </a>
   <div class="nav-right">
+    <span class="nav-pill" id="syncStatus" title="Airtable sync status" style="cursor:default;display:flex;align-items:center;gap:7px;">
+      <span class="sync-dot" id="syncDot"></span>
+      <span id="syncLabel">Synced</span>
+    </span>
     <span class="nav-pill" id="navStat">Fractional CMO Workspace</span>
     <div class="nav-badge"><span class="pulse-dot"></span>Treetop Growth Strategy</div>
   </div>
@@ -363,6 +383,7 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
   <button class="tab-btn" data-tab="items">Active Items <span class="tab-count" id="tabCountItems">0</span></button>
   <button class="tab-btn" data-tab="weekly">Weekly Update</button>
   <button class="tab-btn" data-tab="log">Call Log <span class="tab-count" id="tabCountCalls">0</span></button>
+  <button class="tab-btn" data-tab="settings">Settings</button>
 </div>
 
 <main>
@@ -528,7 +549,8 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
       </div>
       <div class="email-body" id="emailBody"></div>
       <div class="email-actions">
-        <button class="btn-primary" id="btnCopyEmail" type="button">Copy email</button>
+        <button class="btn-primary" id="btnSendGmail" type="button">Send via Gmail</button>
+        <button class="btn-ghost" id="btnCopyEmail" type="button">Copy email</button>
         <button class="btn-ghost" id="btnMarkSent" type="button">Mark as sent</button>
         <button class="btn-ghost" id="btnRegenerate" type="button">Regenerate</button>
       </div>
@@ -542,6 +564,47 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
       <p>Every transcript processed, newest first. Click any card to see the items extracted from that call.</p>
     </div>
     <div class="call-log" id="callLog"></div>
+  </section>
+
+  <!-- SETTINGS PANEL -->
+  <section class="panel" id="panel-settings">
+    <div class="panel-header">
+      <h2>Settings</h2>
+      <p>Airtable backup, device sync, and access controls.</p>
+    </div>
+
+    <div class="settings-card">
+      <h3>Airtable backup</h3>
+      <p>Your data lives in this browser by default. Sync writes a copy to the ECOFIT Airtable base (tables: CMO Nest Calls, CMO Nest Items, CMO Nest Weekly Updates, CMO Nest Settings). Auto-sync runs a few seconds after any change.</p>
+      <div class="settings-row">
+        <button class="btn-primary" id="btnSyncNow" type="button">
+          <span id="btnSyncLabel">Sync now</span>
+        </button>
+        <button class="btn-ghost" id="btnRestoreAirtable" type="button">Pull from Airtable</button>
+        <label style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--text-sub);cursor:pointer;">
+          <input type="checkbox" id="autoSyncToggle" checked style="accent-color:var(--green);">
+          Auto-sync after changes
+        </label>
+      </div>
+      <div class="settings-meta" id="syncMeta">Not synced yet this session.</div>
+    </div>
+
+    <div class="settings-card">
+      <h3>Local data</h3>
+      <p>Clear the local cache in this browser. Your Airtable backup is not affected. Pull from Airtable afterward to rehydrate from the cloud copy.</p>
+      <div class="settings-row">
+        <button class="btn-danger" id="btnClearLocal" type="button">Clear local data</button>
+        <button class="btn-ghost" id="btnExportJson" type="button">Export JSON</button>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h3>Access</h3>
+      <p>The access code is stored in the page source. To change it, edit <span class="kbd">ACCESS_PASSWORD</span> near the top of <span class="kbd">cmo-nest.html</span> and redeploy. Unlocked sessions persist for one week per browser.</p>
+      <div class="settings-row">
+        <button class="btn-ghost" id="btnLockNow" type="button">Lock this browser now</button>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -559,8 +622,14 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
    No em or en dashes anywhere in this file.
    ============================================================ */
 
+/* CONFIGURE: change these and redeploy */
+const DAVE_EMAIL = 'dave@ecofit.com'; // change to Dave's real address
+const DAVE_NAME = 'Dave';
 const API_BASE = 'https://treetopnest-williamcolbert-6028s-projects.vercel.app';
+const AUTO_SYNC_DEBOUNCE_MS = 2500;
+
 const STORE_KEY = 'cmoNest.v1';
+const AUTOSYNC_KEY = 'cmoNest.autoSync';
 
 /* PDF.js worker */
 if (window.pdfjsLib) {
@@ -595,6 +664,7 @@ function saveState() {
   } catch (e) {
     showToast('Could not save to local storage', true);
   }
+  scheduleAutoSync();
 }
 
 /* ---------- Utility ---------- */
@@ -666,6 +736,7 @@ function switchTab(tab) {
   if (tab === 'weekly') renderWeekly();
   if (tab === 'log') renderCallLog();
   if (tab === 'hub') renderHub();
+  if (tab === 'settings') renderSettings();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.querySelectorAll('.tab-btn').forEach(function (b) {
@@ -1171,9 +1242,229 @@ function renderAllCounts() {
   renderHub();
 }
 
+/* ---------- Send via Gmail (mailto-style, opens Gmail compose) ---------- */
+document.getElementById('btnSendGmail').addEventListener('click', function () {
+  const subject = document.getElementById('emailSubject').textContent;
+  const body = document.getElementById('emailBody').textContent;
+  if (!subject && !body) {
+    showToast('Generate an email first', true);
+    return;
+  }
+  // Gmail web compose URL. Works on both Gmail web and any browser logged into Google.
+  const url = 'https://mail.google.com/mail/?view=cm&fs=1'
+    + '&to=' + encodeURIComponent(DAVE_EMAIL)
+    + '&su=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+  window.open(url, '_blank', 'noopener');
+  showToast('Opening Gmail compose');
+});
+
+/* ---------- Airtable sync ---------- */
+let syncTimer = null;
+let lastSyncAt = null;
+let syncInFlight = false;
+
+function autoSyncEnabled() {
+  try {
+    const v = localStorage.getItem(AUTOSYNC_KEY);
+    if (v === null) return true; // default on
+    return v === 'true';
+  } catch (e) { return true; }
+}
+function setAutoSync(on) {
+  try { localStorage.setItem(AUTOSYNC_KEY, on ? 'true' : 'false'); } catch (e) {}
+}
+
+function setSyncStatus(kind, label) {
+  const dot = document.getElementById('syncDot');
+  const lab = document.getElementById('syncLabel');
+  if (!dot || !lab) return;
+  dot.classList.remove('synced','syncing','error','off');
+  if (kind) dot.classList.add(kind);
+  lab.textContent = label;
+}
+
+function scheduleAutoSync() {
+  if (!autoSyncEnabled()) {
+    setSyncStatus('off', 'Auto-sync off');
+    return;
+  }
+  setSyncStatus('syncing', 'Pending...');
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(function () { syncToAirtable(false); }, AUTO_SYNC_DEBOUNCE_MS);
+}
+
+async function syncToAirtable(showSuccess) {
+  if (syncInFlight) return;
+  syncInFlight = true;
+  setSyncStatus('syncing', 'Syncing...');
+  try {
+    const res = await fetch(API_BASE + '/api/sync', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: 'sync_all', state: state })
+    });
+    if (!res.ok) {
+      const t = await res.text();
+      throw new Error('Server returned ' + res.status + ': ' + t.slice(0, 180));
+    }
+    const data = await res.json();
+    lastSyncAt = new Date();
+    setSyncStatus('synced', 'Synced');
+    if (showSuccess) showToast('Synced ' + (data.synced.calls + data.synced.items) + ' records to Airtable');
+    renderSettings();
+  } catch (err) {
+    console.error('Sync failed:', err);
+    setSyncStatus('error', 'Sync error');
+    if (showSuccess) showToast('Sync failed: ' + (err.message || 'unknown'), true);
+  } finally {
+    syncInFlight = false;
+  }
+}
+
+async function restoreFromAirtable() {
+  if (!confirm('Pull from Airtable will overwrite your local data with whatever is in the ECOFIT base. Continue?')) return;
+  setSyncStatus('syncing', 'Restoring...');
+  try {
+    const res = await fetch(API_BASE + '/api/sync', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: 'restore' })
+    });
+    if (!res.ok) {
+      const t = await res.text();
+      throw new Error('Server returned ' + res.status + ': ' + t.slice(0, 180));
+    }
+    const data = await res.json();
+    if (!data.state) throw new Error('No state returned');
+    state = {
+      calls: Array.isArray(data.state.calls) ? data.state.calls : [],
+      items: Array.isArray(data.state.items) ? data.state.items : [],
+      lastWeeklySendDate: data.state.lastWeeklySendDate || null
+    };
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+    lastSyncAt = new Date();
+    setSyncStatus('synced', 'Restored');
+    showToast('Restored ' + state.calls.length + ' calls and ' + state.items.length + ' items from Airtable');
+    renderAllCounts();
+    renderItems();
+    renderCallLog();
+    renderWeekly();
+    renderHub();
+    renderSettings();
+  } catch (err) {
+    console.error('Restore failed:', err);
+    setSyncStatus('error', 'Restore error');
+    showToast('Restore failed: ' + (err.message || 'unknown'), true);
+  }
+}
+
+/* ---------- Settings panel rendering and handlers ---------- */
+function renderSettings() {
+  const meta = document.getElementById('syncMeta');
+  if (!meta) return;
+  const auto = autoSyncEnabled();
+  document.getElementById('autoSyncToggle').checked = auto;
+  if (lastSyncAt) {
+    meta.textContent = 'Last sync: ' + lastSyncAt.toLocaleString() + '. Auto-sync ' + (auto ? 'is on' : 'is off') + '.';
+  } else {
+    meta.textContent = 'Not synced yet this session. Auto-sync ' + (auto ? 'is on' : 'is off') + '.';
+  }
+}
+
+document.getElementById('btnSyncNow').addEventListener('click', async function () {
+  const btn = document.getElementById('btnSyncNow');
+  const lbl = document.getElementById('btnSyncLabel');
+  btn.disabled = true;
+  const originalLabel = lbl.textContent;
+  lbl.innerHTML = '<span class="spinner"></span> Syncing...';
+  await syncToAirtable(true);
+  btn.disabled = false;
+  lbl.textContent = originalLabel;
+});
+
+document.getElementById('btnRestoreAirtable').addEventListener('click', restoreFromAirtable);
+
+document.getElementById('autoSyncToggle').addEventListener('change', function (e) {
+  setAutoSync(e.target.checked);
+  if (e.target.checked) {
+    setSyncStatus('synced', 'Synced');
+    showToast('Auto-sync on');
+  } else {
+    setSyncStatus('off', 'Auto-sync off');
+    showToast('Auto-sync off. Use Sync now to back up manually.');
+  }
+  renderSettings();
+});
+
+document.getElementById('btnClearLocal').addEventListener('click', function () {
+  if (!confirm('Clear all local data? Your Airtable backup is not affected. You can pull it back with "Pull from Airtable".')) return;
+  state = { calls: [], items: [], lastWeeklySendDate: null };
+  try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+  renderAllCounts();
+  renderItems();
+  renderCallLog();
+  renderWeekly();
+  renderHub();
+  renderSettings();
+  showToast('Local data cleared');
+});
+
+document.getElementById('btnExportJson').addEventListener('click', function () {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'cmo-nest-export-' + todayISO() + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('btnLockNow').addEventListener('click', function () {
+  try { localStorage.removeItem('cmoNest.gate.v1'); } catch (e) {}
+  location.reload();
+});
+
 /* ---------- Init ---------- */
 document.getElementById('callDate').value = todayISO();
 renderAllCounts();
+setSyncStatus(autoSyncEnabled() ? 'synced' : 'off', autoSyncEnabled() ? 'Synced' : 'Auto-sync off');
+// Replace the local-only logSend behavior: when Bill marks as sent, also log to Airtable.
+(function wrapMarkSent() {
+  const origBtn = document.getElementById('btnMarkSent');
+  const newBtn = origBtn.cloneNode(true);
+  origBtn.parentNode.replaceChild(newBtn, origBtn);
+  newBtn.addEventListener('click', async function () {
+    const subject = document.getElementById('emailSubject').textContent;
+    const body = document.getElementById('emailBody').textContent;
+    const scope = itemsInWeeklyScope();
+    state.lastWeeklySendDate = new Date().toISOString();
+    saveState();
+    renderWeekly();
+    renderAllCounts();
+    showToast('Marked as sent. Next window starts now.');
+    // Fire and forget weekly log to Airtable
+    if (autoSyncEnabled()) {
+      try {
+        await fetch(API_BASE + '/api/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mode: 'log_send',
+            send: {
+              subject: subject,
+              body: body,
+              itemCount: scope.length,
+              itemIds: scope.map(function (i) { return i.id; })
+            }
+          })
+        });
+      } catch (e) { /* non-blocking */ }
+    }
+  });
+})();
 </script>
 </body>
 </html>
