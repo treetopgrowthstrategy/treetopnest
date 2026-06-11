@@ -6,7 +6,7 @@
 const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
 const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_API_KEY = process.env.AIRTABLE_TOKEN || process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT';
 const BOOKING_LINK     = process.env.BOOKING_LINK   || 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
 const GITHUB_TOKEN     = process.env.GITHUB_TOKEN;
