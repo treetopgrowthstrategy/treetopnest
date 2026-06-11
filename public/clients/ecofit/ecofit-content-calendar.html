@@ -271,7 +271,13 @@
   .btn-edit-copy:hover{background:rgba(132,188,65,0.18);border-color:var(--green);}
   .btn-ai-suggest{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(192,132,252,0.35);color:var(--purple);background:rgba(192,132,252,0.06);transition:all 0.15s;}
   .btn-ai-suggest:hover{background:rgba(192,132,252,0.15);border-color:var(--purple);}
-  .ai-suggest-row{display:flex;gap:7px;margin-top:8px;align-items:center;}
+  .btn-li-preview{font-family:'Work Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(88,188,197,0.35);color:var(--teal);background:rgba(88,188,197,0.06);transition:all 0.15s;}
+  .btn-li-preview:hover{background:rgba(88,188,197,0.15);border-color:var(--teal);}
+  .btn-li-preview:disabled{opacity:0.5;cursor:default;}
+  .preview-url-bar{margin-top:8px;display:flex;gap:7px;align-items:center;background:rgba(88,188,197,0.06);border:1px solid rgba(88,188,197,0.2);border-radius:7px;padding:8px 12px;}
+  .preview-url-text{flex:1;font-size:11.5px;color:var(--teal);word-break:break-all;}
+  .btn-copy-url{font-family:'Work Sans',sans-serif;font-size:9.5px;font-weight:700;padding:4px 12px;border-radius:5px;cursor:pointer;border:none;background:var(--teal);color:#0d1117;white-space:nowrap;transition:all 0.15s;}
+  .btn-copy-url:hover{opacity:0.85;}
   .ai-suggest-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(192,132,252,0.3);border-radius:7px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:12px;padding:7px 12px;outline:none;transition:border-color 0.15s;}
   .ai-suggest-input:focus{border-color:rgba(192,132,252,0.6);background:rgba(192,132,252,0.04);}
   .ai-suggest-input::placeholder{color:var(--text-muted);font-size:11px;}
@@ -1462,6 +1468,7 @@ function initInlineEditing(){
       <div class="editor-btn-row">
         <button class="btn-edit-copy" onclick="openCopyEditor('${cardId}')">✏ Edit Copy</button>
         <button class="btn-ai-suggest" onclick="toggleAISuggest('${cardId}')">✨ AI Suggest</button>
+        <button class="btn-li-preview" onclick="generateLinkedInPreview('${cardId}')">🔗 Send Preview</button>
       </div>
       <div class="ai-suggest-row" id="ai-suggest-${cardId}" style="display:none;">
         <input class="ai-suggest-input" id="ai-suggest-input-${cardId}"
@@ -2237,7 +2244,47 @@ function initStageDates(cardId){
   renderPipeline(cardId);
 }
 
-// ── POST SLOT SLIDER — dots nav + click to highlight
+// ── LINKEDIN PREVIEW GENERATOR
+async function generateLinkedInPreview(cardId){
+  const card = document.querySelector(`[data-card-id="${cardId}"]`);
+  if(!card) return;
+  const postCopy = card.querySelector('.post-copy-text')?.innerText?.trim();
+  if(!postCopy){ showToast('No post copy to preview — add copy first.', true); return; }
+
+  const campaignTitle = card.querySelector('.card-title')?.innerText?.trim() || cardId;
+  const ss = getStageState();
+  const date = ss[cardId]?.['stage-1']?.date || '';
+  const displayDate = date ? formatDisplayDate(date) : '';
+
+  // Find the preview button and show loading
+  const previewBtn = card.querySelector('.btn-li-preview');
+  if(previewBtn){ previewBtn.disabled = true; previewBtn.textContent = '⏳ Generating…'; }
+
+  try {
+    const r = await fetch(`${ECOFIT_API_BASE}/api/preview`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ cardId, campaignTitle, date: displayDate, postCopy })
+    });
+    const data = await r.json();
+    if(!data.ok || !data.url) throw new Error(data.error || 'Preview generation failed');
+
+    // Show the URL bar below the button row
+    const editorRow = previewBtn.closest('.copy-editor-row');
+    let urlBar = editorRow.querySelector('.preview-url-bar');
+    if(urlBar) urlBar.remove();
+    urlBar = document.createElement('div');
+    urlBar.className = 'preview-url-bar';
+    urlBar.innerHTML = `<span class="preview-url-text">${data.url}</span>
+      <button class="btn-copy-url" onclick="navigator.clipboard.writeText('${data.url}').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy URL',2000)})">Copy URL</button>
+      <a href="${data.url}" target="_blank" style="font-family:Work Sans,sans-serif;font-size:9.5px;font-weight:700;padding:4px 12px;border-radius:5px;border:1px solid rgba(88,188,197,0.3);color:var(--teal);text-decoration:none;white-space:nowrap;">Open ↗</a>`;
+    editorRow.appendChild(urlBar);
+
+    showToast('✓ Preview ready — share the URL with Dave');
+  } catch(err){
+    showToast('✗ Preview failed: ' + err.message, true);
+  }
+  if(previewBtn){ previewBtn.disabled = false; previewBtn.textContent = '🔗 Send Preview'; }
+}
 function initPostSliders(){
   CARDS.forEach(cardId => {
     const card = document.querySelector(`[data-card-id="${cardId}"]`);
@@ -2385,7 +2432,8 @@ function promoteToSchedule(backlogId, iso){
 
 function initBacklogDates(){
   const dates = getBacklogDates();
-  document.querySelectorAll('#backlog .backlog-card').forEach(card => {
+  // Spread to static array first — live NodeList shifts when promoteToSchedule moves cards out of #backlog
+  [...document.querySelectorAll('#backlog .backlog-card')].forEach(card => {
     const id = card.dataset.backlogId;
     const footer = card.querySelector('.backlog-footer');
     if(!footer) return;
@@ -2395,17 +2443,15 @@ function initBacklogDates(){
 
     // If a date is already saved, promote the card to the schedule
     if(iso){
-      promoteToSchedule(id, iso);
-      return; // card is now in #grid — skip button update
+      try { promoteToSchedule(id, iso); } catch(e){ console.warn('promoteToSchedule failed for', id, e); }
+      return;
     }
 
     btn.innerHTML = '+ Assign Date';
-    btn.style.borderColor = '';
-    btn.style.color = '';
-    btn.style.background = '';
+    btn.style.cssText = '';
     btn.onclick = function(e){
       e.stopPropagation();
-      openDatePicker(btn, iso, v => saveBacklogDate(id, v));
+      openDatePicker(btn, '', v => saveBacklogDate(id, v));
     };
   });
 }
