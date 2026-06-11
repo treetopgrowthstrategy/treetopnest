@@ -455,9 +455,13 @@ export default async function handler(req: any, res: any) {
     await sendEmail(BILL_EMAIL, `🎯 New GTM Quiz Lead: ${data.name} at ${data.company} (${tier.label})`, billEmail);
 
     // 5. Log to Airtable (typecast:true so the Tier singleSelect auto-creates options)
-    await logToAirtable(data, tier, reportUrl, slug).catch(e => console.error('Airtable log failed:', e));
+    let airtableError: string | null = null;
+    await logToAirtable(data, tier, reportUrl, slug).catch(e => {
+      airtableError = String(e);
+      console.error('Airtable log failed:', e);
+    });
 
-    return res.status(200).json({ success: true, reportUrl, githubError });
+    return res.status(200).json({ success: true, reportUrl, githubError, airtableError });
 
   } catch (err) {
     console.error('quiz-submit error:', err);
