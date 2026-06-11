@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    { "source": "/insights/what-is-a-fractional-cmo", "destination": "/resources/what-is-a-fractional-cmo", "permanent": true },
+    { "source": "/insights/:slug*", "destination": "/resources/:slug*", "permanent": true },
+    { "source": "/fractional-cmo-austin-tx", "destination": "/fractional-cmo-austin", "permanent": true },
+    { "source": "/contact", "destination": "/about#contact", "permanent": true },
+    { "source": "/how-it-works", "destination": "/services", "permanent": true }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
