@@ -1,0 +1,37 @@
+[debug] [2026-06-12T13:59:29.893Z] ----------------------------------------------------------------------
+[debug] [2026-06-12T13:59:29.894Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting:treetopgrowthstrategy --debug
+[debug] [2026-06-12T13:59:29.894Z] CLI Version:   15.18.0
+[debug] [2026-06-12T13:59:29.894Z] Platform:      darwin
+[debug] [2026-06-12T13:59:29.894Z] Node Version:  v24.14.1
+[debug] [2026-06-12T13:59:29.894Z] Time:          Fri Jun 12 2026 08:59:29 GMT-0500 (Central Daylight Time)
+[debug] [2026-06-12T13:59:29.894Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-12T13:59:30.238Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-12T13:59:30.239Z] > authorizing via signed-in user (william.colbert@treetopgrowthstrategy.com)
+[debug] [2026-06-12T13:59:30.239Z] [iam] checking project treetopgrowthstrategy for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-06-12T13:59:30.239Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:30.239Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:30.239Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/treetopgrowthstrategy:testIamPermissions [none]
+[debug] [2026-06-12T13:59:30.240Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/treetopgrowthstrategy:testIamPermissions  x-goog-user-project=treetopgrowthstrategy
+[debug] [2026-06-12T13:59:30.240Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/treetopgrowthstrategy:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-12T13:59:30.351Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/treetopgrowthstrategy:testIamPermissions 200
+[debug] [2026-06-12T13:59:30.352Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/treetopgrowthstrategy:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-12T13:59:30.352Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:30.352Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:30.352Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/treetopgrowthstrategy [none]
+[debug] [2026-06-12T13:59:30.617Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/treetopgrowthstrategy 200
+[debug] [2026-06-12T13:59:30.617Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/treetopgrowthstrategy {"projectId":"treetopgrowthstrategy","projectNumber":"545276301421","displayName":"treetopgrowthstrategy","name":"projects/treetopgrowthstrategy","resources":{"hostingSite":"treetopgrowthstrategy"},"state":"ACTIVE","etag":"1_b51f599a-9093-4e00-b223-7947237d8cc0"}
+[info] 
+[info] === Deploying to 'treetopgrowthstrategy'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-06-12T13:59:30.621Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:30.621Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:30.621Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/treetopgrowthstrategy/sites/treetopgrowthstrategy [none]
+[debug] [2026-06-12T13:59:31.184Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/treetopgrowthstrategy/sites/treetopgrowthstrategy 200
+[debug] [2026-06-12T13:59:31.184Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/treetopgrowthstrategy/sites/treetopgrowthstrategy {"name":"projects/treetopgrowthstrategy/sites/treetopgrowthstrategy","defaultUrl":"https://treetopgrowthstrategy.web.app","type":"DEFAULT_SITE"}
+[debug] [2026-06-12T13:59:31.187Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:31.187Z] Checked if tokens are valid: true, expires at: 1781276159748
+[debug] [2026-06-12T13:59:31.188Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/treetopgrowthstrategy/versions [none]
+[debug] [2026-06-12T13:59:31.188Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/treetopgrowthstrategy/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-06-12T13:59:32.395Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/treetopgrowthstrategy/versions 200

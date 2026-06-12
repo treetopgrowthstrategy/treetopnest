@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dave Johnson · Brand Voice | EcoFIT × Treetop Growth Strategy</title>
+<meta name="description" content="Internal brand voice reference for Dave Johnson. How Dave actually sounds, and how to write like him.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a1f1a;
+    --bg-elev: #102b24;
+    --bg-card: #143329;
+    --bg-card-hover: #173d31;
+    --border: #1f4a3c;
+    --border-soft: #1a3d31;
+    --text: #ecf2ec;
+    --text-muted: #a8b8b0;
+    --text-faint: #6f827a;
+    --accent: #84BC41;
+    --accent-bright: #9fd454;
+    --accent-soft: rgba(132, 188, 65, 0.12);
+    --accent-line: rgba(132, 188, 65, 0.3);
+    --warn: #d97757;
+    --warn-soft: rgba(217, 119, 87, 0.1);
+    --dot: rgba(132, 188, 65, 0.18);
+    --serif-display: 'Raleway', system-ui, sans-serif;
+    --sans: 'Work Sans', system-ui, sans-serif;
+    --max: 1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  /* ---------- Top utility bar ---------- */
+  .util {
+    border-bottom: 1px solid var(--border-soft);
+    background: rgba(10, 31, 26, 0.85);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .util-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .util-brand {
+    font-family: var(--serif-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .util-brand .dot {
+    color: var(--accent);
+    margin: 0 8px;
+  }
+  .util-nav {
+    display: flex;
+    gap: 22px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .util-nav a {
+    color: var(--text-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .util-nav a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 120px 32px 100px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: 0 0;
+    opacity: 0.7;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    padding: 8px 16px;
+    border: 1px solid var(--accent-line);
+    border-radius: 100px;
+    background: var(--accent-soft);
+  }
+  .hero-eyebrow .dot-pulse {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(132, 188, 65, 0.5); }
+    70% { box-shadow: 0 0 0 10px rgba(132, 188, 65, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(132, 188, 65, 0); }
+  }
+  h1.hero-title {
+    font-family: var(--serif-display);
+    font-weight: 200;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.5;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-meta-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .hero-meta-value {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* ---------- Section wrapper ---------- */
+  .section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 96px 32px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    margin-bottom: 56px;
+  }
+  .section-num {
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    padding-top: 8px;
+  }
+  .section-title-block { display: flex; flex-direction: column; gap: 12px; }
+  h2.section-title {
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .section-kicker {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 620px;
+  }
+
+  /* ---------- Who Dave Is ---------- */
+  .who {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+  }
+  .who-body {
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--text);
+    max-width: 760px;
+  }
+  .who-body p + p { margin-top: 24px; }
+  .who-body strong {
+    font-weight: 600;
+    color: var(--accent-bright);
+  }
+  .who-pull {
+    margin-top: 48px;
+    padding: 32px 36px;
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .who-pull-attr {
+    display: block;
+    margin-top: 14px;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ---------- Voice traits grid ---------- */
+  .traits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .trait {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 28px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .trait:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    border-color: var(--accent-line);
+  }
+  .trait-num {
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    margin-bottom: 14px;
+  }
+  .trait-title {
+    font-family: var(--serif-display);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .trait-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Do/Don't ---------- */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 760px) { .do-dont { grid-template-columns: 1fr; } }
+  .dd-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 36px 32px;
+  }
+  .dd-do { border-top: 3px solid var(--accent); }
+  .dd-dont { border-top: 3px solid var(--warn); }
+  .dd-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .dd-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .dd-do .dd-badge { background: var(--accent-soft); color: var(--accent-bright); }
+  .dd-dont .dd-badge { background: var(--warn-soft); color: var(--warn); }
+  .dd-label {
+    font-family: var(--serif-display);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--text);
+  }
+  .dd-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .dd-list li {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text);
+    padding-left: 22px;
+    position: relative;
+  }
+  .dd-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 1px;
+  }
+  .dd-do .dd-list li::before { background: var(--accent); }
+  .dd-dont .dd-list li::before { background: var(--warn); }
+  .dd-list code {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 12.5px;
+    background: rgba(255,255,255,0.05);
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: var(--accent-bright);
+  }
+
+  /* ---------- Signature phrases ---------- */
+  .phrases-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    max-width: 680px;
+  }
+  .phrases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .phrase {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 12px 22px;
+    font-family: var(--serif-display);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    user-select: none;
+  }
+  .phrase:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-bright);
+  }
+  .phrase::before {
+    content: '"';
+    color: var(--accent);
+    font-family: var(--serif-display);
+    margin-right: 2px;
+    opacity: 0.6;
+  }
+  .phrase::after {
+    content: '"';
+    color: var(--accent);
+    font-family: var(--serif-display);
+    margin-left: 2px;
+    opacity: 0.6;
+  }
+  .phrase.governing {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-bright);
+    font-weight: 600;
+  }
+  .phrase.governing::after {
+    content: '"  ★';
+  }
+  .phrase-copied {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .phrase.copied .phrase-copied { opacity: 1; }
+
+  .phrases-legend {
+    margin-top: 28px;
+    padding: 18px 22px;
+    background: var(--bg-elev);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-left: 2px solid var(--accent);
+  }
+  .phrases-legend strong { color: var(--accent-bright); font-weight: 600; }
+
+  /* ---------- Example blocks (LinkedIn + Email) ---------- */
+  .examples {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .ex {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .ex-head {
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-elev);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .ex-head-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ex-tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    background: var(--accent-soft);
+    border-radius: 3px;
+  }
+  .ex-tag.email { color: var(--warn); background: var(--warn-soft); }
+  .ex-title {
+    font-family: var(--serif-display);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--text);
+  }
+  .ex-copy {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ex-copy:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .ex-copy.copied {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .ex-body {
+    padding: 32px 36px;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .ex-body p + p { margin-top: 18px; }
+  .ex-body .subject {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-soft);
+  }
+  .ex-body .subject span {
+    color: var(--accent-bright);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: 500;
+  }
+  .ex-body .sig {
+    display: block;
+    margin-top: 24px;
+    font-family: var(--serif-display);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--accent-bright);
+  }
+  .ex-annotate {
+    padding: 16px 36px 24px;
+    border-top: 1px dashed var(--border-soft);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .ex-annotate strong { color: var(--accent-bright); font-weight: 600; }
+
+  /* ---------- Quick reference ---------- */
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .qr-cell {
+    padding: 28px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .qr-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .qr-value {
+    font-family: var(--serif-display);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--text);
+  }
+  .qr-value code {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 13px;
+    background: rgba(255,255,255,0.04);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--accent-bright);
+  }
+  .qr-final {
+    grid-column: 1 / -1;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-right: none;
+    border-bottom: none;
+  }
+  .qr-final .qr-value {
+    font-style: italic;
+    color: var(--accent-bright);
+    font-size: 22px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 48px 32px;
+    border-top: 1px solid var(--border-soft);
+    background: var(--bg-elev);
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  .footer-mark {
+    font-family: var(--serif-display);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .footer-mark em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .footer-meta {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .section { padding: 64px 24px; }
+    .hero { padding: 80px 24px 60px; }
+    .util-inner { padding: 12px 24px; }
+    .util-nav { display: none; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+    .who { grid-template-columns: 1fr; gap: 16px; }
+    .who-body { font-size: 19px; }
+    .hero-meta { gap: 24px; }
+    .ex-body { padding: 24px 22px; }
+    .ex-annotate { padding: 14px 22px 20px; }
+    .ex-head { padding: 16px 22px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .util, footer { display: none; }
+    body { background: white; color: black; }
+    .section { padding: 32px 0; border-color: #ddd; }
+    .hero { padding: 32px 0; border-color: #ddd; }
+    .hero::before { display: none; }
+    h1.hero-title, h2.section-title { color: black; }
+    h1.hero-title em, h2.section-title em { color: #5a8a2a; }
+    .trait, .dd-col, .ex, .phrases-legend, .qr-cell, .who-pull {
+      background: white; border-color: #ddd; color: black;
+    }
+    .ex-head { background: #f7f7f7; }
+    .trait-desc, .who-body, .ex-body, .qr-value { color: #222; }
+  }
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="util-inner">
+    <div class="util-brand">Treetop <span class="dot">×</span> EcoFIT</div>
+    <nav class="util-nav">
+      <a href="#who">Who</a>
+      <a href="#traits">Traits</a>
+      <a href="#do-dont">Do / Don't</a>
+      <a href="#phrases">Phrases</a>
+      <a href="#linkedin">LinkedIn</a>
+      <a href="#email">Email</a>
+      <a href="#reference">Reference</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dot-pulse"></span>
+      Brand Voice · Internal Reference
+    </div>
+    <h1 class="hero-title">Dave Johnson,<br>in his <em>own words</em>.</h1>
+    <p class="hero-sub">How Dave actually sounds, and how to write like him. Built from eight transcripts, March through June. Use this whenever you're drafting under his name.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Subject</span>
+        <span class="hero-meta-value">Dave Johnson, EcoFIT</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Source</span>
+        <span class="hero-meta-value">8 transcripts · Mar–Jun 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Governing instinct</span>
+        <span class="hero-meta-value">Low-hanging fruit</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Owner</span>
+        <span class="hero-meta-value">Treetop Growth Strategy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01. WHO DAVE IS -->
+<section class="section" id="who">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Who Dave <em>is</em>.</h2>
+      <p class="section-kicker">The shortest possible orientation, so anyone drafting under his name knows what they're channeling.</p>
+    </div>
+  </div>
+
+  <div class="who">
+    <div></div>
+    <div class="who-body">
+      <p>Dave is a senior operator. He's been inside gyms, he's been across multi-site rollouts, and he knows the difference between what sounds good in a deck and what actually moves the needle on a Tuesday morning.</p>
+      <p>He thinks out loud. He names specific systems, partners, and numbers (<strong>Matrix, EOS, Woodway, 330 sensors, 40 locations</strong>). He treats every conversation like a working session, not a presentation. He'll admit when he doesn't know something, then move on with confidence.</p>
+      <p>His writing should feel like Dave on a phone call: fast, candid, named, and never polished into corporate mush.</p>
+
+      <div class="who-pull">
+        "I think we're overthinking it. Here's the thing. The low-hanging fruit is right in front of us. Are we ready?"
+        <span class="who-pull-attr">Composite. Dave, several occasions.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02. VOICE TRAITS -->
+<section class="section" id="traits">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Six <em>voice traits</em>.</h2>
+      <p class="section-kicker">Every line of copy under Dave's name should hit at least two of these. If it hits zero, rewrite.</p>
+    </div>
+  </div>
+
+  <div class="traits">
+    <div class="trait">
+      <div class="trait-num">01 · TRAIT</div>
+      <h3 class="trait-title">Thinks out loud</h3>
+      <p class="trait-desc">Reasoning shows up on the page. He works through the problem in front of the reader instead of arriving with a polished verdict.</p>
+    </div>
+    <div class="trait">
+      <div class="trait-num">02 · TRAIT</div>
+      <h3 class="trait-title">Stacked enthusiasm</h3>
+      <p class="trait-desc">Short, punchy bursts of energy. "Cool stuff." "Moving pretty fast." Multiple beats of momentum, not one polished sentence.</p>
+    </div>
+    <div class="trait">
+      <div class="trait-num">03 · TRAIT</div>
+      <h3 class="trait-title">Specific and named</h3>
+      <p class="trait-desc">Brands, partners, integers. Matrix. EOS. Woodway. 330 sensors. 40 locations. Real nouns, real numbers, no abstractions.</p>
+    </div>
+    <div class="trait">
+      <div class="trait-num">04 · TRAIT</div>
+      <h3 class="trait-title">Closer energy</h3>
+      <p class="trait-desc">He brings every thread to a decision. "Are we ready?" "Let's get rolling." Always asking the reader to commit.</p>
+    </div>
+    <div class="trait">
+      <div class="trait-num">05 · TRAIT</div>
+      <h3 class="trait-title">Self-aware vulnerability</h3>
+      <p class="trait-desc">"I don't know enough about this, but..." He'll admit a gap, then keep moving. The admission earns the credibility for everything else.</p>
+    </div>
+    <div class="trait">
+      <div class="trait-num">06 · TRAIT</div>
+      <h3 class="trait-title">Casual but credible</h3>
+      <p class="trait-desc">Phone-call energy, not LinkedIn-influencer energy. He'll say "candidly" and "anyhow" in the same paragraph as a hard operational metric.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03. DO / DON'T -->
+<section class="section" id="do-dont">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Do this. <em>Never that.</em></h2>
+      <p class="section-kicker">The fastest review check. If a draft violates anything on the right, send it back.</p>
+    </div>
+  </div>
+
+  <div class="do-dont">
+    <div class="dd-col dd-do">
+      <div class="dd-head">
+        <div class="dd-badge">✓</div>
+        <div class="dd-label">Do</div>
+      </div>
+      <ul class="dd-list">
+        <li>Name specific systems and partners. <code>Matrix</code>, <code>EOS</code>, <code>Woodway</code>.</li>
+        <li>Use real numbers. <code>330 sensors</code>, <code>40 locations</code>, <code>18 of 40 live</code>.</li>
+        <li>Ask rhetorical questions. "Are we ready?" "Right?"</li>
+        <li>Admit uncertainty when it's real. "I don't know enough about this, but..."</li>
+        <li>Move fast. Short sentences. Working-session pace.</li>
+        <li>Sound like a phone call, not a memo.</li>
+        <li>Use "candidly" and "here's the thing" to introduce the real point.</li>
+        <li>End with a decision or a question, not a sign-off.</li>
+      </ul>
+    </div>
+
+    <div class="dd-col dd-dont">
+      <div class="dd-head">
+        <div class="dd-badge">✕</div>
+        <div class="dd-label">Don't</div>
+      </div>
+      <ul class="dd-list">
+        <li>No em dashes. Ever. Use periods, commas, colons, or parentheses.</li>
+        <li>No <code>leverage</code>, <code>synergy</code>, <code>best-in-class</code>, <code>excited to announce</code>.</li>
+        <li>Don't polish the voice into LinkedIn-thought-leader sludge.</li>
+        <li>Don't hide behind passive voice ("It was decided that...").</li>
+        <li>Don't pad with corporate framing ("In today's landscape...").</li>
+        <li>Don't write paragraphs that sound the same as every other CEO post.</li>
+        <li>Don't use abstractions when a brand name and a number will do.</li>
+        <li>Don't be polite when the truth is more interesting.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04. SIGNATURE PHRASES -->
+<section class="section" id="phrases">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div class="section-title-block">
+      <h2 class="section-title">The <em>phrasebook</em>.</h2>
+      <p class="section-kicker">Lift these directly when they fit. They are Dave's natural cadence, not stylistic flourishes.</p>
+    </div>
+  </div>
+
+  <p class="phrases-intro">Tap any phrase to copy. The starred phrase below is Dave's governing instinct. If a draft can earn a "low-hanging fruit" frame without forcing it, use it.</p>
+
+  <div class="phrases" id="phrases-container">
+    <span class="phrase governing" data-phrase="low-hanging fruit">low-hanging fruit<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="get rolling">get rolling<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="spin things up">spin things up<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="cruise control">cruise control<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="moving pretty fast">moving pretty fast<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="are we ready?">are we ready?<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="here's the thing">here's the thing<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="I don't know enough about this, but...">I don't know enough about this, but...<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="right?">right?<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="I mean">I mean<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="anyhow">anyhow<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="I think we're overthinking it">I think we're overthinking it<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="candidly">candidly<span class="phrase-copied">copied</span></span>
+    <span class="phrase" data-phrase="cool stuff">cool stuff<span class="phrase-copied">copied</span></span>
+  </div>
+
+  <div class="phrases-legend">
+    <strong>★ Governing instinct.</strong> Dave's worldview reduces to "what's the low-hanging fruit." When you're stuck on framing, ask: what would Dave call the low-hanging fruit in this situation? Then lead with that.
+  </div>
+</section>
+
+<!-- 05. LINKEDIN EXAMPLES -->
+<section class="section" id="linkedin">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div class="section-title-block">
+      <h2 class="section-title">LinkedIn, <em>in voice</em>.</h2>
+      <p class="section-kicker">Three reference posts. Match the pace, the named specifics, the closer. Length is roughly right for LinkedIn.</p>
+    </div>
+  </div>
+
+  <div class="examples">
+    <article class="ex">
+      <div class="ex-head">
+        <div class="ex-head-left">
+          <span class="ex-tag">LinkedIn · 01</span>
+          <span class="ex-title">Operations win</span>
+        </div>
+        <button class="ex-copy" data-target="ex-li-1">copy</button>
+      </div>
+      <div class="ex-body" id="ex-li-1">
+        <p>Spent the morning with the Matrix team mapping out how we instrument 40 locations with one telemetry layer. 330 sensors, one dashboard, one source of truth on equipment health.</p>
+        <p>Here's the thing. Most multi-site operators are flying blind on equipment downtime, and downtime is the most expensive thing nobody measures.</p>
+        <p>We're moving pretty fast on this. Are we ready? Yeah, I think we are.</p>
+      </div>
+      <div class="ex-annotate">
+        <strong>Why this works:</strong> Named partner (Matrix). Real numbers (40, 330). "Here's the thing" sets up the real point. Closer energy. Phone-call cadence. Zero corporate framing.
+      </div>
+    </article>
+
+    <article class="ex">
+      <div class="ex-head">
+        <div class="ex-head-left">
+          <span class="ex-tag">LinkedIn · 02</span>
+          <span class="ex-title">Industry observation</span>
+        </div>
+        <button class="ex-copy" data-target="ex-li-2">copy</button>
+      </div>
+      <div class="ex-body" id="ex-li-2">
+        <p>I keep seeing operators chase the shiny new modality when the low-hanging fruit is right in front of them. Cleaner data on member behavior. Better retention triggers. A floor that actually works at 6 AM.</p>
+        <p>I mean, the basics aren't sexy, but they're what compound.</p>
+        <p>Cool stuff happens when you get the basics on cruise control.</p>
+      </div>
+      <div class="ex-annotate">
+        <strong>Why this works:</strong> Governing instinct ("low-hanging fruit") drives the point. Three concrete examples instead of abstract ones. "I mean" mid-paragraph. Closes with "cool stuff" and "cruise control" stacked.
+      </div>
+    </article>
+
+    <article class="ex">
+      <div class="ex-head">
+        <div class="ex-head-left">
+          <span class="ex-tag">LinkedIn · 03</span>
+          <span class="ex-title">Honest reflection</span>
+        </div>
+        <button class="ex-copy" data-target="ex-li-3">copy</button>
+      </div>
+      <div class="ex-body" id="ex-li-3">
+        <p>Candidly, I think we're overthinking AI in fitness.</p>
+        <p>I don't know enough about the model layer to talk about that, but here's what I do know. Operators need three things. They need to see what's happening on their floor in real time, they need to know which members are about to churn, and they need their teams to spend less time on busywork.</p>
+        <p>Everything else is noise. Right?</p>
+      </div>
+      <div class="ex-annotate">
+        <strong>Why this works:</strong> Opens with "candidly" and "overthinking it." Admits the gap ("I don't know enough"). Then earns the right to be authoritative with three named priorities. Closes on "right?" without resolving. Invites engagement.
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 06. EMAIL EXAMPLES -->
+<section class="section" id="email">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Email, <em>in voice</em>.</h2>
+      <p class="section-kicker">Two reference emails. One outbound to a partner, one internal update to the team. Subject lines stay lowercase and short.</p>
+    </div>
+  </div>
+
+  <div class="examples">
+    <article class="ex">
+      <div class="ex-head">
+        <div class="ex-head-left">
+          <span class="ex-tag email">Email · 01</span>
+          <span class="ex-title">Partner intro</span>
+        </div>
+        <button class="ex-copy" data-target="ex-em-1">copy</button>
+      </div>
+      <div class="ex-body" id="ex-em-1">
+        <span class="subject">Subject:<span>quick intro · EcoFIT + your team</span></span>
+        <p>Hey [Name],</p>
+        <p>Tim looped me in. I wanted to get this rolling before the holiday week kills momentum.</p>
+        <p>Here's the short version. EcoFIT is building the operating system layer for multi-location fitness operators. We're working with Matrix, Woodway, and a few others on the equipment side, and we're standing up the EOS framework on the management side. 40 locations, 330 sensors, one dashboard.</p>
+        <p>The low-hanging fruit for your team is probably the equipment telemetry piece. I think we can spin something up in a couple weeks and have a working pilot in 30 days.</p>
+        <p>Want to jump on a call this week? I'm pretty wide open Thursday and Friday.</p>
+        <p>Anyhow, thanks for the introduction.</p>
+        <span class="sig">Dave</span>
+      </div>
+      <div class="ex-annotate">
+        <strong>Why this works:</strong> Lowercase subject. References a real person (Tim). "Get this rolling," "here's the short version," "low-hanging fruit," "spin something up," "anyhow": five signature phrases in a 130-word email. Closes with a concrete ask, not a hope.
+      </div>
+    </article>
+
+    <article class="ex">
+      <div class="ex-head">
+        <div class="ex-head-left">
+          <span class="ex-tag email">Email · 02</span>
+          <span class="ex-title">Internal update</span>
+        </div>
+        <button class="ex-copy" data-target="ex-em-2">copy</button>
+      </div>
+      <div class="ex-body" id="ex-em-2">
+        <span class="subject">Subject:<span>where we are on the 40-location rollout</span></span>
+        <p>Team,</p>
+        <p>Quick update. We're moving pretty fast on the sensor deployment. 18 of 40 locations are live, 12 are in install this month, and the last 10 land in Q3.</p>
+        <p>Here's the thing. The data we're already pulling is more interesting than I expected. We're seeing usage patterns that nobody is talking about in the industry, and I think there's a real story to tell once we hit 30 sites.</p>
+        <p>Candidly, the part I'm less sure about is the dashboard UX. I don't know enough about how the managers are actually going to use this day-to-day. We should probably get three or four GMs in a room and just watch them try to use it.</p>
+        <p>Are we ready to do that next week? Let's get it on the calendar.</p>
+        <span class="sig">Dave</span>
+      </div>
+      <div class="ex-annotate">
+        <strong>Why this works:</strong> Status update opens with the real numbers (18/12/10). Mid-email pivot to a forward-looking thesis ("more interesting than I expected"). Admits a gap ("I don't know enough about how managers will use it") then proposes a specific test. Closes with the closer.
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 07. QUICK REFERENCE -->
+<section class="section" id="reference">
+  <div class="section-head">
+    <div class="section-num">07</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Quick <em>reference</em>.</h2>
+      <p class="section-kicker">If you only remember one thing per row, you'll write Dave correctly.</p>
+    </div>
+  </div>
+
+  <div class="qr-grid">
+    <div class="qr-cell">
+      <div class="qr-label">Voice in one line</div>
+      <div class="qr-value">Phone-call energy, named specifics, governing instinct: <code>low-hanging fruit</code>.</div>
+    </div>
+    <div class="qr-cell">
+      <div class="qr-label">Pace</div>
+      <div class="qr-value">Short sentences. Fast. No padding. Working-session, not deck.</div>
+    </div>
+    <div class="qr-cell">
+      <div class="qr-label">Punctuation</div>
+      <div class="qr-value">Never em dashes. Use periods, commas, colons, parentheses.</div>
+    </div>
+    <div class="qr-cell">
+      <div class="qr-label">Use</div>
+      <div class="qr-value"><code>low-hanging fruit</code>, <code>here's the thing</code>, <code>right?</code>, <code>candidly</code>, <code>cool stuff</code>, <code>get rolling</code>.</div>
+    </div>
+    <div class="qr-cell">
+      <div class="qr-label">Avoid</div>
+      <div class="qr-value"><code>leverage</code>, <code>synergy</code>, <code>best-in-class</code>, <code>excited to announce</code>.</div>
+    </div>
+    <div class="qr-cell">
+      <div class="qr-label">Naming default</div>
+      <div class="qr-value">Brands and integers beat abstractions. Matrix, EOS, Woodway, 330 sensors, 40 locations.</div>
+    </div>
+    <div class="qr-cell qr-final">
+      <div class="qr-label">Final check</div>
+      <div class="qr-value">Would Dave actually say this on a phone call?</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">Built by <em>Treetop Growth Strategy</em> for the EcoFIT brand voice infrastructure.</div>
+    <div class="footer-meta">Internal · Not Indexed · v1.0 · June 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Phrase pill copy-to-clipboard
+  document.querySelectorAll('.phrase').forEach(el => {
+    el.addEventListener('click', () => {
+      const phrase = el.getAttribute('data-phrase');
+      navigator.clipboard.writeText(phrase).then(() => {
+        el.classList.add('copied');
+        setTimeout(() => el.classList.remove('copied'), 1200);
+      }).catch(() => {});
+    });
+  });
+
+  // Example block copy-to-clipboard
+  document.querySelectorAll('.ex-copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const node = document.getElementById(targetId);
+      if (!node) return;
+      // Get plain text, including subject line
+      const clone = node.cloneNode(true);
+      // Normalize subject line for plaintext
+      const subj = clone.querySelector('.subject');
+      if (subj) {
+        const subjText = subj.textContent.replace(/\s+/g, ' ').trim();
+        subj.textContent = subjText + '\n';
+      }
+      const text = clone.innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1400);
+      }).catch(() => {});
+    });
+  });
+</script>
+
+</body>
+</html>
