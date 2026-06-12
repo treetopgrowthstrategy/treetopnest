@@ -6,7 +6,7 @@
 const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
 const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
-const AIRTABLE_API_KEY = process.env.AIRTABLE_TOKEN || process.env.AIRTABLE_API_KEY;
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const BOOKING_LINK     = process.env.BOOKING_LINK   || 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
 const GITHUB_TOKEN     = process.env.GITHUB_TOKEN;
@@ -461,17 +461,7 @@ export default async function handler(req: any, res: any) {
       console.error('Airtable log failed:', e);
     });
 
-    return res.status(200).json({
-      success: true,
-      reportUrl,
-      githubError,
-      airtableError,
-      _debug: {
-        tokenStart: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.slice(0, 8) : 'UNSET',
-        tokenEnd: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.slice(-4) : 'UNSET',
-        tokenLen: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.length : 0,
-      },
-    });
+    return res.status(200).json({ success: true, reportUrl, githubError, airtableError });
 
   } catch (err) {
     console.error('quiz-submit error:', err);
