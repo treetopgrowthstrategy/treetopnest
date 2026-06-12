@@ -1,15 +1,16 @@
-export const prerender = false;
+// Vercel-native serverless function for GTM quiz submission.
+// Moved here (root api/) from src/pages/api/ because Astro's Vercel adapter
+// conflicts with the existing root api/ functions and the Astro routes weren't
+// being served. Matches the pattern of api/transcript.js, api/voice.js, etc.
 
-import type { APIRoute } from 'astro';
-
-const RESEND_API_KEY   = import.meta.env.RESEND_API_KEY || import.meta.env.MAILGUN_API_KEY;
-const FROM_EMAIL       = import.meta.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
-const BILL_EMAIL       = import.meta.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
-const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = import.meta.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT';
-const BOOKING_LINK     = import.meta.env.BOOKING_LINK   || 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
-const GITHUB_TOKEN     = import.meta.env.GITHUB_TOKEN;
-const GITHUB_REPO      = import.meta.env.GITHUB_REPO    || 'treetopgrowthstrategy/treetopnest';
+const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
+const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
+const BOOKING_LINK     = process.env.BOOKING_LINK   || 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
+const GITHUB_TOKEN     = process.env.GITHUB_TOKEN;
+const GITHUB_REPO      = process.env.GITHUB_REPO    || 'treetopgrowthstrategy/treetopnest';
 const SITE_URL         = 'https://treetopgrowthstrategy.com';
 
 interface QuizPayload {
@@ -398,7 +399,7 @@ async function logToAirtable(data: QuizPayload, tier: ReturnType<typeof getTierD
   if (reportUrl) fields['Report URL']  = reportUrl;
   if (slug)      fields['Report Slug'] = slug;
 
-  const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/GTM%20Quiz%20Submissions`, {
+  const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/tbl1gK6bdlamEwuOH`, {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ fields, typecast: true }),
@@ -409,11 +410,22 @@ async function logToAirtable(data: QuizPayload, tier: ReturnType<typeof getTierD
   }
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export default async function handler(req: any, res: any) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
+
   try {
-    const data: QuizPayload = await request.json();
+    let data: QuizPayload = req.body;
+    if (typeof data === 'string') {
+      try { data = JSON.parse(data); } catch { data = {} as QuizPayload; }
+    }
+
     if (!data.email || !data.name || !data.company) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
     const tier = getTierDetails(data.totalScore);
@@ -433,26 +445,26 @@ export const POST: APIRoute = async ({ request }) => {
       githubError = String(e);
       console.error('GitHub push failed:', e);
     }
-    // Note: No 35s wait — Vercel deploys in ~45s, email takes minutes to open
 
-    // 4. Send prospect email with report URL
+    // 3. Send prospect email with report URL
     const prospectEmail = buildProspectEmail(data, reportUrl, tier);
     await sendEmail(data.email, `Your AI-Native GTM Gap Report, ${firstName}`, prospectEmail);
 
-    // 5. Notify Bill
+    // 4. Notify Bill
     const billEmail = buildBillNotifyEmail(data, tier, reportUrl);
     await sendEmail(BILL_EMAIL, `🎯 New GTM Quiz Lead: ${data.name} at ${data.company} (${tier.label})`, billEmail);
 
-    // 6. Log to Airtable
-    await logToAirtable(data, tier, reportUrl, slug).catch(e => console.error('Airtable log failed:', e));
-
-    return new Response(JSON.stringify({ success: true, reportUrl, githubError }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
+    // 5. Log to Airtable (typecast:true so the Tier singleSelect auto-creates options)
+    let airtableError: string | null = null;
+    await logToAirtable(data, tier, reportUrl, slug).catch(e => {
+      airtableError = String(e);
+      console.error('Airtable log failed:', e);
     });
+
+    return res.status(200).json({ success: true, reportUrl, githubError, airtableError });
 
   } catch (err) {
     console.error('quiz-submit error:', err);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
+    return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}
