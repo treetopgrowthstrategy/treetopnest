@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The First 90 Days. Bill Colbert at ONX Sports.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark only;
+    --black: #0b0b0b;
+    --white: #f4f3ee;
+    --yellow: #FFE000;
+    --green: #00E676;
+    --blue: #3D8BFF;
+    --pink: #FF5C8A;
+    --grey: #161616;
+    --grey2: #1d1d1d;
+    --muted: #7d7d78;
+    --border: rgba(244,243,238,0.09);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: #0b0b0b; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 48px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 45% at 85% 15%, rgba(255,224,0,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 45% 50% at 5% 85%, rgba(0,230,118,0.08) 0%, transparent 65%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(244,243,238,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,243,238,0.022) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+  }
+  .hero-inner { position: relative; }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--yellow); }
+  .eyebrow b { color: var(--yellow); font-weight: 500; }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 9.5vw, 132px);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+    margin-bottom: 36px;
+  }
+  .hero h1 .y { color: var(--yellow); }
+  .hero h1 .g { color: var(--green); }
+
+  .hero-lead {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(19px, 2.3vw, 26px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(244,243,238,0.82);
+    max-width: 680px;
+    margin-bottom: 44px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .hm-item { display: flex; flex-direction: column; gap: 5px; }
+  .hm-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hm-value { font-size: 15px; font-weight: 500; }
+  .hm-value.y { color: var(--yellow); }
+  .hm-value.g { color: var(--green); }
+  .hm-value.b { color: var(--blue); }
+
+  /* ── SECTION SHELL ── */
+  section { padding: 110px 0; border-top: 1px solid var(--border); }
+
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sec-label::after { content: ''; width: 48px; height: 1px; background: var(--border); }
+
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 5.6vw, 68px);
+    line-height: 1.0;
+    margin-bottom: 16px;
+  }
+
+  /* ── THESIS ── */
+  .thesis-body { max-width: 720px; }
+  .thesis-body p {
+    font-size: 18px;
+    line-height: 1.78;
+    color: rgba(244,243,238,0.74);
+    margin-bottom: 24px;
+  }
+  .thesis-body p.opener {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    line-height: 1.55;
+    color: var(--white);
+  }
+  .thesis-body strong { color: var(--yellow); font-weight: 500; }
+
+  .pull {
+    margin: 56px 0 8px;
+    padding: 36px 40px;
+    background: var(--grey);
+    border-left: 3px solid var(--green);
+  }
+  .pull p {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 2.6vw, 28px);
+    line-height: 1.45;
+    color: var(--white);
+    margin: 0;
+  }
+  .pull p em { color: var(--green); font-style: italic; }
+
+  /* ── FRAMEWORK OVERVIEW ── */
+  .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 12px;
+  }
+  .fw-col { background: var(--grey); padding: 30px 26px; position: relative; }
+  .fw-col::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .fw-col.c1::before { background: var(--yellow); }
+  .fw-col.c2::before { background: var(--green); }
+  .fw-col.c3::before { background: var(--blue); }
+  .fw-col.c4::before { background: var(--pink); }
+
+  .fw-act {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .fw-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 25px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .fw-list { list-style: none; }
+  .fw-list li {
+    font-size: 13px;
+    color: rgba(244,243,238,0.62);
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 9px;
+    line-height: 1.4;
+  }
+  .fw-list li span { font-family: 'DM Mono', monospace; font-size: 11px; flex-shrink: 0; }
+  .fw-col.c1 .fw-list li span { color: var(--yellow); }
+  .fw-col.c2 .fw-list li span { color: var(--green); }
+  .fw-col.c3 .fw-list li span { color: var(--blue); }
+  .fw-col.c4 .fw-list li span { color: var(--pink); }
+
+  /* ── PUNCH LIST ── tight branded bullets, usable in any context ── */
+  .punch-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .punch-list li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(244,243,238,0.78);
+  }
+  .punch-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+    transform: rotate(45deg);
+  }
+  .punch-list.g li::before { background: var(--green); }
+  .punch-list.b li::before { background: var(--blue); }
+  .punch-list.pink li::before { background: var(--pink); }
+  .punch-list li b, .punch-list li strong { color: var(--white); font-weight: 600; }
+  .punch-list li.mono { font-family: 'DM Mono', monospace; font-size: 13px; color: rgba(244,243,238,0.66); }
+  .punch-list-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244,243,238,0.48);
+    margin: 18px 0 6px;
+  }
+
+  /* ── ACT ── */
+  .act { padding-top: 96px; }
+  .act:first-of-type { padding-top: 0; }
+
+  .act-head { display: flex; align-items: baseline; gap: 20px; margin-bottom: 8px; }
+  .act-num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; }
+  .act-num.a1 { color: var(--yellow); }
+  .act-num.a2 { color: var(--green); }
+  .act-num.a3 { color: var(--blue); }
+  .act-num.a4 { color: var(--pink); }
+
+  .act-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4.4vw, 52px);
+    line-height: 1;
+  }
+  .act-desc {
+    font-size: 16px;
+    color: rgba(244,243,238,0.6);
+    max-width: 600px;
+    margin-bottom: 44px;
+    line-height: 1.7;
+  }
+
+  /* ── QUESTION CARD ── */
+  .q {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .q:last-child { border-bottom: 1px solid var(--border); }
+
+  .q-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    padding: 38px 0;
+    color: var(--grey2);
+    -webkit-text-stroke: 1px rgba(244,243,238,0.2);
+  }
+  .q.a1 .q-num { -webkit-text-stroke-color: rgba(255,224,0,0.35); }
+  .q.a2 .q-num { -webkit-text-stroke-color: rgba(0,230,118,0.35); }
+  .q.a3 .q-num { -webkit-text-stroke-color: rgba(61,139,255,0.4); }
+  .q.a4 .q-num { -webkit-text-stroke-color: rgba(255,92,138,0.4); }
+
+  .q-body { padding: 38px 0 38px 8px; }
+
+  .q-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 4px 9px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+  }
+
+  .q-new {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    background: rgba(61,139,255,0.16);
+    color: var(--blue);
+    padding: 4px 9px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    margin-left: 8px;
+  }
+
+  .q-text {
+    font-size: clamp(20px, 2.5vw, 25px);
+    font-weight: 500;
+    line-height: 1.42;
+    color: var(--white);
+    margin-bottom: 22px;
+  }
+
+  .q-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 20px; }
+
+  .q-unlock-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .q.a1 .q-unlock-label { color: var(--yellow); }
+  .q.a2 .q-unlock-label { color: var(--green); }
+  .q.a3 .q-unlock-label { color: var(--blue); }
+  .q.a4 .q-unlock-label { color: var(--pink); }
+
+  .q-unlock-lead {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--white);
+    margin-bottom: 16px;
+    max-width: 730px;
+  }
+
+  .q-unlock-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 730px;
+  }
+  .q-unlock-list li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(244,243,238,0.64);
+    padding-left: 20px;
+    position: relative;
+  }
+  .q-unlock-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    transform: rotate(45deg);
+  }
+  .q.a1 .q-unlock-list li::before { background: var(--yellow); }
+  .q.a2 .q-unlock-list li::before { background: var(--green); }
+  .q.a3 .q-unlock-list li::before { background: var(--blue); }
+  .q.a4 .q-unlock-list li::before { background: var(--pink); }
+
+  .q-proof {
+    margin-top: 22px;
+    padding: 16px 20px;
+    background: rgba(61,139,255,0.09);
+    border-left: 2px solid var(--blue);
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: rgba(244,243,238,0.82);
+    max-width: 730px;
+  }
+  .q-proof b { color: var(--blue); font-weight: 600; }
+  .q-proof .pl {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  /* ── HYPOTHESES ── */
+  .hyp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .hyp { background: var(--grey); padding: 40px; position: relative; }
+  .hyp-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .hyp-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    line-height: 1.06;
+    margin-bottom: 14px;
+  }
+  .hyp-title b { color: var(--green); }
+  .hyp-body { font-size: 15px; line-height: 1.7; color: rgba(244,243,238,0.62); }
+
+  /* ── PATH ── */
+  .path { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 36px; }
+  .path-step { background: var(--grey); padding: 36px 32px; position: relative; }
+  .path-phase {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 14px;
+  }
+  .path-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  .path-body { font-size: 14px; line-height: 1.65; color: rgba(244,243,238,0.6); }
+  .path-note { font-size: 16px; line-height: 1.75; color: rgba(244,243,238,0.7); max-width: 720px; }
+  .path-note strong { color: var(--yellow); font-weight: 500; }
+
+  /* ── LENS ── */
+  .lens { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; margin-top: 12px; }
+  .lens-item { background: var(--grey); padding: 32px 26px; position: relative; }
+  .lens-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--yellow); }
+  .lens-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--yellow);
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .lens-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .lens-desc { font-size: 13.5px; line-height: 1.62; color: rgba(244,243,238,0.66); }
+  .lens-desc b { color: var(--white); font-weight: 600; }
+
+  /* ── PROOF ── */
+  .proof-intro { font-size: 16px; color: rgba(244,243,238,0.7); max-width: 760px; margin-bottom: 46px; line-height: 1.75; }
+  .proof-intro b { color: var(--white); font-weight: 500; }
+  .proof-intro .y { color: var(--yellow); font-weight: 500; }
+  .proof-intro .g { color: var(--green); font-weight: 500; }
+
+  .proof-heroes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 36px; }
+  .proof-hero { background: var(--grey); padding: 38px 30px 32px; position: relative; display: flex; flex-direction: column; }
+  .proof-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--yellow); }
+  .proof-hero.alt::before { background: var(--green); }
+
+  .ph-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    background: rgba(255,224,0,0.10);
+    color: var(--yellow);
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,224,0,0.28);
+    align-self: flex-start;
+  }
+  .ph-badge.green { background: rgba(0,230,118,0.08); color: var(--green); border-color: rgba(0,230,118,0.3); }
+
+  .ph-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    margin-bottom: 4px;
+  }
+  .ph-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+  .ph-stats {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .ph-stats.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px; }
+  .ph-stat { display: flex; flex-direction: column; gap: 2px; }
+  .ph-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--yellow);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .ph-stat-num.green { color: var(--green); }
+  .ph-stat-num small { font-size: 19px; opacity: 0.75; letter-spacing: 0; }
+  .ph-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ph-desc { font-size: 13.5px; line-height: 1.65; color: rgba(244,243,238,0.68); }
+  .ph-desc b { color: var(--white); font-weight: 600; }
+
+  .proof-supporting { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+  .lens-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    margin-bottom: 14px;
+    background: rgba(255,224,0,0.08);
+    color: var(--yellow);
+    border: 1px solid rgba(255,224,0,0.22);
+  }
+  .lens-badge.green {
+    background: rgba(0,230,118,0.08);
+    color: var(--green);
+    border-color: rgba(0,230,118,0.22);
+  }
+
+  .proof-footnote {
+    margin-top: 38px;
+    padding: 22px 0 0;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(244,243,238,0.5);
+    max-width: 900px;
+  }
+  .proof-footnote b { color: rgba(244,243,238,0.78); font-weight: 500; }
+  .proof-footnote .y { color: var(--yellow); font-weight: 500; }
+  .proof-footnote .g { color: var(--green); font-weight: 500; }
+
+  .proof-bridge {
+    margin: 56px 0 8px;
+    padding: 32px 38px;
+    background: var(--grey);
+    border-left: 3px solid var(--yellow);
+  }
+  .bridge-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+  }
+  .bridge-body {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--white);
+    margin: 0;
+  }
+  .bridge-body strong { color: var(--yellow); font-weight: 500; }
+
+  /* ── CLOSE ── */
+  .close {
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+    background: var(--black);
+  }
+  .close-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7.5vw, 104px);
+    line-height: 0.95;
+    margin-bottom: 36px;
+    color: var(--white);
+  }
+  .close-headline .y { color: var(--yellow); }
+  .close-body {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    line-height: 1.65;
+    color: rgba(244,243,238,0.92);
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+  .close-body b, .close-body strong { color: var(--white); }
+  .close .punch-list li {
+    color: rgba(244,243,238,0.92);
+    font-size: 16px;
+  }
+  .close .punch-list li b, .close .punch-list li strong { color: var(--white); }
+  .close-contact {
+    display: flex;
+    gap: 44px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .cc-item { display: flex; flex-direction: column; gap: 5px; }
+  .cc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .cc-value { font-size: 16px; font-weight: 500; }
+  .cc-value a { color: var(--yellow); text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 0; }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  footer .mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    color: var(--yellow);
+    letter-spacing: 0.09em;
+  }
+
+  /* ── ANIM ── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .eyebrow   { animation: rise 0.6s ease 0.05s both; }
+  .hero h1   { animation: rise 0.6s ease 0.18s both; }
+  .hero-lead { animation: rise 0.6s ease 0.32s both; }
+  .hero-meta { animation: rise 0.6s ease 0.46s both; }
+
+  @media (max-width: 900px) {
+    .wrap { padding: 0 22px; }
+    section, .hero, .close { padding: 64px 0; }
+    .fw-grid, .hyp-grid, .path, .lens { grid-template-columns: 1fr; }
+    .proof-heroes, .proof-supporting { grid-template-columns: 1fr; }
+    .ph-stats.grid2 { grid-template-columns: 1fr 1fr; }
+    .q { grid-template-columns: 1fr; }
+    .q-num { font-size: 56px; padding: 28px 0 0; }
+    .q-body { padding: 14px 0 32px; }
+    .hero-meta, .close-contact { gap: 28px; }
+  }
+  /* ── COMPETITIVE AUDIT ── */
+  .audit-lead {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(244,243,238,0.82);
+    max-width: 760px;
+    margin-bottom: 16px;
+  }
+  .audit-lead strong { color: var(--yellow); font-weight: 500; }
+  .audit-subtitle {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 760px;
+    margin-bottom: 48px;
+  }
+  .audit-h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .camps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 64px;
+  }
+  .camp {
+    background: var(--grey);
+    padding: 32px 30px;
+    border-top: 3px solid var(--yellow);
+  }
+  .camp.b { border-top-color: var(--blue); }
+  .camp-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .camp-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .camp.a .camp-name { color: var(--yellow); }
+  .camp.b .camp-name { color: var(--blue); }
+  .camp-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(244,243,238,0.7);
+    margin-bottom: 20px;
+  }
+  .camp-list {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    line-height: 2;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+  .metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 56px;
+    margin-top: 16px;
+    font-size: 13px;
+  }
+  .metrics-table thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    padding: 14px 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+  .metrics-table thead th:first-child { text-align: left; }
+  .metrics-table tbody td {
+    padding: 16px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    color: rgba(244,243,238,0.84);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .metrics-table tbody td:first-child {
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .metrics-table tbody tr:hover td { background: rgba(244,243,238,0.02); }
+  .metrics-table tbody tr.onx td { background: rgba(0, 230, 118, 0.05); }
+  .metrics-table tbody tr.onx td:first-child { color: var(--green); font-weight: 600; }
+  .here-tag {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    border: 1px solid rgba(0,230,118,0.45);
+    border-radius: 2px;
+    vertical-align: 2px;
+    font-weight: 400;
+  }
+  .metrics-table .dr { color: var(--yellow); }
+  .metrics-table .zero { color: var(--muted); }
+  .playbooks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 56px;
+    margin-top: 16px;
+  }
+  .pb {
+    background: var(--grey);
+    padding: 36px 32px;
+  }
+  .pb-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pb.a .pb-brand { color: var(--yellow); }
+  .pb.b .pb-brand { color: var(--green); }
+  .pb-thesis {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pb-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin: 20px 0 8px;
+  }
+  .pb-cat:first-of-type { margin-top: 0; }
+  .pb-items {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(244,243,238,0.74);
+  }
+  .implic {
+    background: var(--grey);
+    border-left: 3px solid var(--green);
+    padding: 36px 40px;
+  }
+  .implic-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .implic-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .implic-list li {
+    font-size: 15px;
+    line-height: 1.62;
+    color: rgba(244,243,238,0.84);
+    padding-left: 22px;
+    position: relative;
+  }
+  .implic-list li::before {
+    content: "\2192";
+    position: absolute;
+    left: 0;
+    font-family: 'DM Mono', monospace;
+    color: var(--green);
+  }
+  .implic-list li strong { color: var(--white); font-weight: 500; }
+  .audit-source {
+    margin-top: 32px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.02em;
+    max-width: 820px;
+  }
+
+  /* ── BRAND LEVER CALLOUT ── */
+  .brand-lever {
+    background: var(--grey);
+    border-left: 3px solid var(--pink);
+    padding: 36px 40px;
+    margin: 56px 0 32px;
+  }
+  .brand-lever-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+  .brand-lever-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .brand-lever-body {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(244,243,238,0.84);
+    margin-bottom: 16px;
+    max-width: 780px;
+  }
+  .brand-lever-conclusion {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--white);
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    margin-bottom: 0;
+    max-width: 780px;
+  }
+  .brand-lever-conclusion strong { color: var(--pink); font-weight: 500; }
+
+  /* ── 30/60/90 PLAN ── */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 12px;
+  }
+  .phase {
+    background: var(--grey);
+    padding: 34px 30px 36px;
+    border-top: 3px solid var(--yellow);
+  }
+  .phase.p2 { border-top-color: var(--green); }
+  .phase.p3 { border-top-color: var(--blue); }
+  .phase-days {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 82px;
+    line-height: 0.9;
+    margin-bottom: 2px;
+    letter-spacing: 0.01em;
+  }
+  .phase.p1 .phase-days { color: var(--yellow); }
+  .phase.p2 .phase-days { color: var(--green); }
+  .phase.p3 .phase-days { color: var(--blue); }
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .phase-theme {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.28;
+    margin-bottom: 24px;
+    color: var(--white);
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-bullets {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .phase-bullets li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(244,243,238,0.84);
+    padding-left: 20px;
+    position: relative;
+  }
+  .phase-bullets li::before {
+    content: "\2192";
+    position: absolute;
+    left: 0;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+  .phase.p1 .phase-bullets li::before { color: var(--yellow); }
+  .phase.p2 .phase-bullets li::before { color: var(--green); }
+  .phase.p3 .phase-bullets li::before { color: var(--blue); }
+  .phase-bullets li strong { color: var(--white); font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .camps, .playbooks, .plan-grid { grid-template-columns: 1fr; }
+    .metrics-table { font-size: 11px; }
+    .metrics-table thead th, .metrics-table tbody td { padding: 12px 8px; }
+    .pb-brand { font-size: 32px; }
+    .phase-days { font-size: 68px; }
+  }
+  /* ── PATH TO $2M / LTV MODEL ── */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 24px;
+  }
+  .journey-card {
+    background: var(--grey);
+    padding: 32px 30px 36px;
+    border-top: 3px solid var(--yellow);
+  }
+  .journey-card.j2 { border-top-color: var(--green); }
+  .journey-card.j3 { border-top-color: var(--blue); }
+  .journey-month {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .journey-product {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 14px;
+    color: var(--white);
+  }
+  .journey-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    letter-spacing: 0.01em;
+  }
+  .journey-card.j1 .journey-price { color: var(--yellow); }
+  .journey-card.j2 .journey-price { color: var(--green); }
+  .journey-card.j3 .journey-price { color: var(--blue); }
+  .journey-note {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(244,243,238,0.72);
+    margin: 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .ltv-total {
+    background: var(--grey);
+    border-left: 3px solid var(--yellow);
+    padding: 28px 36px;
+    margin-top: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .ltv-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ltv-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--yellow);
+    letter-spacing: 0.01em;
+  }
+  .scenarios-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13.5px;
+  }
+  .scenarios-table thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    padding: 14px 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+  .scenarios-table thead th:first-child,
+  .scenarios-table thead th:last-child { text-align: left; }
+  .scenarios-table tbody td {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+    color: rgba(244,243,238,0.84);
+    font-size: 13.5px;
+  }
+  .scenarios-table tbody td:first-child {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .scenarios-table tbody td.num {
+    font-family: 'DM Mono', monospace;
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+  .scenarios-table tbody td.note {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .scenarios-table .hero-row td {
+    background: rgba(255,224,0,0.06);
+    color: var(--white);
+  }
+  .scenarios-table .hero-row td:first-child { color: var(--yellow); font-weight: 600; }
+  .scenarios-table .hero-row td.num { color: var(--yellow); }
+  @media (max-width: 900px) {
+    .journey-grid { grid-template-columns: 1fr; }
+    .ltv-total { flex-direction: column; align-items: flex-start; gap: 8px; padding: 24px 28px; }
+    .ltv-value { font-size: 58px; }
+    .scenarios-table { font-size: 11px; }
+    .scenarios-table thead th, .scenarios-table tbody td { padding: 10px 6px; }
+    .scenarios-table tbody td.note { display: none; }
+  }
+
+  /* ── PRACTITIONER COMMITMENT LADDER ── */
+  .ladder-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 24px;
+  }
+  .ladder-card {
+    background: var(--grey);
+    padding: 28px 24px 32px;
+    border-top: 3px solid var(--yellow);
+    position: relative;
+  }
+  .ladder-card.r2 { border-top-color: var(--green); }
+  .ladder-card.r3 { border-top-color: var(--blue); background: rgba(255,224,0,0.04); }
+  .ladder-card.r4 { border-top-color: var(--pink); }
+  .rung-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .rung-target-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
+    padding: 3px 7px;
+    margin-bottom: 10px;
+  }
+  .rung-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .rung-ltv {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    margin-bottom: 2px;
+  }
+  .ladder-card.r1 .rung-ltv { color: var(--yellow); }
+  .ladder-card.r2 .rung-ltv { color: var(--green); }
+  .ladder-card.r3 .rung-ltv { color: var(--blue); }
+  .ladder-card.r4 .rung-ltv { color: var(--pink); }
+  .rung-ltv-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rung-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: rgba(244,243,238,0.78);
+  }
+  .rung-list li strong {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .rung-pro-note {
+    margin-top: 28px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(244,243,238,0.74);
+    background: var(--grey);
+    padding: 20px 28px;
+    border-left: 1px solid var(--border);
+    max-width: none;
+  }
+  .rung-pro-note strong {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 400;
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">90-Day Engagement Plan &nbsp;/&nbsp; <b>Bill Colbert &times; ONX Sports &middot; Kickoff: Week of June 15, 2026</b></p>
+    <h1>
+      THE FIRST<br>
+      <span class="y">90 DAYS.</span>
+    </h1>
+    <p class="hero-lead">
+      This document covers how the engagement runs: the operating cadence, what gets built in each phase, how athlete partnerships are selected and measured, how the gym channel gets activated, and what ONX should expect at Day 90. <b>The goal is a live five-channel GTM operation with first-cycle data sufficient to make confident Year 1 decisions.</b>
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Kickoff</span>
+        <span class="meta-value">Week of June 15, 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Day 30 Gate</span>
+        <span class="meta-value">Tooling Live. Engine Lit.</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Day 60 Gate</span>
+        <span class="meta-value">First Data In.</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Day 90</span>
+        <span class="meta-value">QBR. Year 1 Plan.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- OPERATING CADENCE -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">Operating Cadence</p>
+    <h2 class="sec-title">HOW WE<br><span class="y">WORK TOGETHER.</span></h2>
+    <p class="audit-lead">Three standing touchpoints. Everything else is async. The rhythm keeps the team aligned without creating overhead on a lean operation.</p>
+
+    <div class="fw-grid" style="margin-top:40px;">
+      <div class="fw-item">
+        <div class="fw-num">01</div>
+        <div class="fw-tag">Weekly Strategic Sync</div>
+        <p class="fw-body"><b>30 minutes, weekly.</b> Bill plus the relevant channel owner (Megan Neal or equivalent). What shipped. What's blocked. What decision needs to be made before next week. Decision log maintained in writing after every call.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">02</div>
+        <div class="fw-tag">Monthly Written Update</div>
+        <p class="fw-body"><b>Written, not a call.</b> Sent to Desmond Croan and Sarah Arango by the first Friday of each month. Channel-by-channel status. Metrics vs. targets. One decision needed from leadership. One risk flagged. Readable in under five minutes.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">03</div>
+        <div class="fw-tag">Quarterly Business Review</div>
+        <p class="fw-body"><b>60 minutes, end of each quarter.</b> Full channel performance review with Desmond and the team. What worked. What didn't. Where to accelerate. What to kill. <b>Q1 QBR at Day 90 doubles as the Year 1 planning session.</b></p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">04</div>
+        <div class="fw-tag">Async Default</div>
+        <p class="fw-body">Everything else is Slack or email. <b>24-hour response on business days.</b> If a decision can be made in writing, it gets made in writing. The weekly sync is for things that can't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 1-30 -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">Phase One · Days 1–30</p>
+    <h2 class="sec-title">FOUNDATION.<br><span class="g">NOTHING LAUNCHES BEFORE THE TRACKING IS LIVE.</span></h2>
+    <p class="audit-lead">
+      The first thirty days are infrastructure and first motions. <b>No athlete content goes out before GRIN and Triple Whale are integrated. No gym conversations happen before the activation playbook is built. No paid spend before brand protection clusters are mapped.</b> Speed kills when the attribution isn't ready.
+    </p>
+
+    <div class="path" style="margin-top:48px;">
+      <div class="path-item">
+        <div class="path-num">W1</div>
+        <h3 class="path-h3" style="color: var(--green);">Week One &middot; Baseline Audit</h3>
+        <p class="path-body">Pull the current ONX numbers before any strategy is finalized. No assumption goes unverified.</p>
+        <ul class="punch-list g">
+          <li>Shopify analytics: current AOV, conversion rate, repeat purchase rate, top SKUs by revenue</li>
+          <li>Email list: size, open rate, click rate, last campaign performance</li>
+          <li>Current customer cohort: first-purchase SKU, LTV at 90/180/365 days</li>
+          <li>Existing athlete agreements: contract terms, deliverable structure, current attribution method, RPF baseline</li>
+          <li>Channel mix: where is current revenue coming from (DTC direct, organic, paid, referral)?</li>
+          <li>Competitive landscape confirmed: Hayabusa (DR 53, $82K/mo paid, $1.65M org value), Venum (DR 64, $67K/mo paid), Everlast (DR 63, $7K/mo paid). ONX: DR 0, $0 paid, $0 organic.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">W2</div>
+        <h3 class="path-h3">Week Two &middot; Tooling Live</h3>
+        <p class="path-body">Attribution infrastructure deployed before any content, paid spend, or athlete activation. <b>If we can't measure it, we don't launch it.</b></p>
+        <ul class="punch-list">
+          <li><b>GRIN</b> deployed and Shopify integrated. Creator profiles built for all existing athletes (Gaethje, Usman, Sandhagen). Content brief templates created. Approval workflow configured.</li>
+          <li><b>Triple Whale</b> multi-touch attribution live. Pixel verified. Post-click and view-through windows set.</li>
+          <li><b>Fairing</b> post-purchase survey deployed on Shopify. "How did you hear about ONX?" with athlete dropdown, gym dropdown, organic/search/ad options.</li>
+          <li>Unique UTM structure assigned: utm_source=[athlete-name], utm_medium=athlete, utm_campaign=[quarter]. Unique promo codes assigned: GAETHJE15, USMAN15, SANDHAGEN15.</li>
+          <li>Google Analytics verified. Shopify-to-GA connection clean.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">W3</div>
+        <h3 class="path-h3">Week Three &middot; First Channel Motions</h3>
+        <p class="path-body">Content engine starts. Anchor athlete comp restructured. Brand protection paid live.</p>
+        <ul class="punch-list">
+          <li>First 4 content pieces published or in final draft stage. At least one Wittman-bylined.</li>
+          <li>Press outreach initiated to first three targets: Sherdog (DR 74, 412 existing links to Hayabusa), BJJHeroes (DR 72, 2,966 existing links to Hayabusa), Brobible (DR 73).</li>
+          <li>Anchor athlete comp restructuring conversation with Gaethje, Usman, Sandhagen initiated. Target structure: 30% base retainer, 60% performance commission (10-15% on attributed sales), 10% equity (Gaethje only, 4-year vest).</li>
+          <li>Paid search brand protection cluster live at $5K-$10K/mo: "ONX gloves," "ONX Sports," "Trevor Wittman," "X-Factor gloves," "Wittman gloves."</li>
+          <li>HypeAuditor audits run on first 5 rising star athlete candidates. Audience quality threshold: &gt;85% real followers, &gt;50% practitioner audience.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">W4</div>
+        <h3 class="path-h3">Week Four &middot; Gym Channel Pilot Prep</h3>
+        <p class="path-body">Tier 0 gym activation prepared. Welcome kit finalized. First seminar scoped.</p>
+        <ul class="punch-list">
+          <li>Elevation Fight Team (Wittman's gym, Denver) agreement confirmed. Activation playbook delivered to gym management.</li>
+          <li>Bang Muay Thai affiliate network: key affiliate locations identified, pilot agreement drafted.</li>
+          <li>Welcome Kit SKU finalized: hand wraps + training gear, wholesale cost ~$30-40, included in new member onboarding at gym.</li>
+          <li>First Wittman seminar date scoped for Days 40-55 at Elevation or Bang Muay Thai location.</li>
+          <li>Tier 1 gym outreach list built: ATT (6-time MMA Gym of the Year, Coconut Creek HQ + US affiliates), Tiger Schulmann's (200K+ students, NY/NJ/PA/CT), Gracie Barra striking programs (100+ US locations), 10th Planet (Eddie Bravo no-gi MMA network).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proof-bridge" style="margin-top:48px; border-left-color: var(--green);">
+      <p class="bridge-label" style="color: var(--green);">Day 30 Gate &middot; What Should Be True</p>
+      <p class="bridge-body">
+        GRIN and Triple Whale live. Fairing survey deployed. Unique codes and UTMs assigned to every active athlete. Four content pieces published. Press outreach to Sherdog, BJJHeroes, Brobible initiated. Anchor athlete comp restructuring conversation open. Brand protection paid running at $5K-$10K/mo. Tier 0 gyms ready to activate. <strong>If anything on this list is not in place at Day 30, it becomes the first weekly sync agenda item, not a footnote.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 31-60 -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">Phase Two · Days 31–60</p>
+    <h2 class="sec-title">BUILD.<br><span class="y">FIRST DATA IN. EVERY CHANNEL ACTIVE.</span></h2>
+    <p class="audit-lead">
+      The second thirty days layer in the gym channel, scale content, get first attribution data back from athletes and paid. <b>By Day 60 every active channel has at least one cycle of data. No channel exits this phase without a number attached to it.</b>
+    </p>
+
+    <div class="path" style="margin-top:48px;">
+      <div class="path-item">
+        <div class="path-num">D31</div>
+        <h3 class="path-h3" style="color: var(--yellow);">Content Engine Scaling</h3>
+        <ul class="punch-list">
+          <li>8 total content pieces published (4 from Phase 1 + 4 new)</li>
+          <li>Content mix: 3 definitive listicles (Wittman expertise frame), 2 buyer guides, 2 athlete deep dives, 1 What Hones You Show podcast-to-article conversion</li>
+          <li>First editorial responses from press outreach tracked. If no response from Sherdog or BJJHeroes by Day 35, escalate to direct contact with named editor.</li>
+          <li>First referring domain acquisition tracked in Ahrefs. Milestone target: 15 referring domains by Day 45.</li>
+          <li>Sparkmembership.com outreach initiated: recommended-vendor placement pitch tied to gym partnership program announcement.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D35</div>
+        <h3 class="path-h3" style="color: var(--green);">Gym Channel Tier 0 Live</h3>
+        <ul class="punch-list">
+          <li>Elevation Fight Team and Bang Muay Thai affiliate locations active with full playbook</li>
+          <li>Welcome kit deployed to all new member onboarding at Tier 0 locations</li>
+          <li><b>First Wittman seminar executed (target: Day 40-55).</b> Members pay $150 to attend. Gear sells at event. Gym keeps event revenue. ONX measures: units sold, SKU breakdown, attendee conversion rate. Seminar data becomes the Tier 1 sales proof point.</li>
+          <li>Fight-night sponsored fighter program activated: gym's amateur fighters in ONX gear at next local card. Content captured for social.</li>
+          <li>Tier 1 outreach calls initiated: ATT HQ (Coconut Creek FL), Tiger Schulmann's network HQ, 10th Planet corporate.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D40</div>
+        <h3 class="path-h3" style="color: var(--blue);">Athlete Attribution: First Read</h3>
+        <p class="path-body">First 30+ days of post-restructure data for anchor athletes. The question is not "did they post" but "did posts drive purchases."</p>
+        <ul class="punch-list b">
+          <li>Promo code redemption rate by athlete (GAETHJE15, USMAN15, SANDHAGEN15)</li>
+          <li>UTM-attributed sessions and conversion rate by athlete link</li>
+          <li>Post-purchase survey: what % of buyers in this period self-attributed to an athlete</li>
+          <li>Triple Whale blended RPF calculation per anchor athlete: total attributed revenue / total followers</li>
+          <li>Key diagnostic question: are anchor athletes posting differently under the performance comp structure? Look at content type (technique vs. lifestyle), post frequency, link/code inclusion rate.</li>
+          <li>HypeAuditor audits completed on all rising star candidates. Shortlist of 5-7 candidates with &gt;85% audience quality and &gt;50% practitioner audience.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D45</div>
+        <h3 class="path-h3">Gym Tier 1 Pipeline Active</h3>
+        <ul class="punch-list">
+          <li>ATT affiliate program: master agreement term sheet in discussion</li>
+          <li>Tiger Schulmann's: second call with HQ team, wholesale pricing model presented</li>
+          <li>10th Planet: initial agreement in negotiation</li>
+          <li>Tier 2 soft outreach initiated: AKA San Jose (Cain Velasquez/Khabib/Cormier lineage), Team Alpha Male (Sacramento, Urijah Faber lineage), Jackson Wink MMA (Albuquerque, Jon Jones/Holly Holm lineage)</li>
+          <li>Gym segmentation criteria applied to all pipeline: active fight team (yes/no), monthly dues &gt;$120 (yes/no), head coach competitive background (yes/no), disciplines (striking-heavy or mixed). Any gym failing two of four criteria deprioritized.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D50</div>
+        <h3 class="path-h3" style="color: var(--pink);">Paid Acquisition Scaled</h3>
+        <ul class="punch-list pink">
+          <li>All four paid search clusters live. Budget scaled to $15K-$20K/mo.</li>
+          <li>Brand protection: "ONX gloves," "ONX Sports," "Trevor Wittman," "X-Factor gloves"</li>
+          <li>Athlete-name cluster: "Gaethje gloves," "Justin Gaethje gear," "Usman gloves," "Sandhagen gear"</li>
+          <li>Technique long-tail: "best gloves for sparring," "headgear for amateur fights," "shin guards for muay thai," "training gloves vs sparring gloves"</li>
+          <li>Selective conquest: "Hayabusa T3 alternatives," "premium MMA gloves" (limited budget, high-intent)</li>
+          <li>GRIN whitelisted-ad workflow activated: top-performing organic athlete posts boosted through athlete accounts. Budget: $5K-$10K additional on best-performing creative. Attribution through Meta pixel feeding into Triple Whale.</li>
+          <li>Hayabusa benchmark: they drive 303 paid visitors/mo to a single buyer's guide page ("What Boxing Gloves Should I Buy") with 14 ads running. ONX equivalent content piece drafted and in paid rotation.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D55</div>
+        <h3 class="path-h3">Rising Star Athletes: First Signings</h3>
+        <p class="path-body">Sign the first 2-3 rising star athletes from the shortlist built in Phase 1. Comp structure: 30% base retainer ($10K-$30K annualized), 60% performance commission (10-15% on attributed sales), no equity at rising star tier.</p>
+        <ul class="punch-list">
+          <li>First content brief delivered to each: 4-week training camp content arc (if fight scheduled) or technique series (if no fight in window)</li>
+          <li>Brief specifies: which SKUs to feature, mandatory code and link inclusion, 48-hour approval window before posting, content type distribution (minimum 60% technique content, max 40% lifestyle)</li>
+          <li>90-day RPF measurement window opens for each new signing on date of first post</li>
+          <li>Remaining 2-4 rising star candidates: ongoing monitoring via Modash for rising-star indicator signals (new UFC contract, championship win, breakout fight)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proof-bridge" style="margin-top:48px;">
+      <p class="bridge-label">Day 60 Gate &middot; What Should Be True</p>
+      <p class="bridge-body">
+        Every channel has data. Content has 20+ pieces live and 15+ referring domains. Tier 0 gyms have sold gear and run at least one seminar. Tier 1 gym conversations are active with at least two networks in term-sheet stage. Anchor athletes have 30 days of RPF data. 2-3 rising star athletes signed. Paid at $15K-$20K/mo with all four clusters live. <strong>Day 60 written update goes to Desmond and Sarah: what the first cycle shows, what we're doubling, what we're adjusting.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DAYS 61-90 -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">Phase Three · Days 61–90</p>
+    <h2 class="sec-title">READ.<br><span class="b">DECIDE. SCALE.</span></h2>
+    <p class="audit-lead">
+      The third thirty days are about reading the data and making the decisions that shape Year 1. <b>Every channel gets a verdict: accelerate, adjust, or kill.</b> By Day 90 ONX has a data-backed Year 1 plan, not a hypothesis.
+    </p>
+
+    <div class="path" style="margin-top:48px;">
+      <div class="path-item">
+        <div class="path-num">D61</div>
+        <h3 class="path-h3">Channel Performance Review &middot; Honest Verdicts</h3>
+        <ul class="punch-list b">
+          <li><b>Content:</b> referring domains vs. 50-domain target. Which pieces earned links. Press outreach conversion rate (pitch-to-placement ratio). Organic keyword footprint vs. Day 1 baseline (was 0).</li>
+          <li><b>Athletes:</b> RPF by athlete vs. tier threshold. Anchor athletes: &gt;$0.30 to keep/expand. Rising star: &gt;$0.50. Anyone below threshold gets a comp conversation, not an automatic renewal.</li>
+          <li><b>Gyms:</b> Tier 0 welcome kit units sold per new member. Wittman seminar: attendees, gear units sold, revenue, cost. Tier 1 pipeline: how many conversations, how many term sheets, how many signed?</li>
+          <li><b>Paid:</b> CPC by cluster. Conversion rate by campaign. ROAS. Paid-to-organic assist rate (how much organic lift is paid driving via retargeting?)</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D70</div>
+        <h3 class="path-h3" style="color: var(--green);">Gym Tier 1: First Signings</h3>
+        <ul class="punch-list g">
+          <li>First multi-unit affiliate network agreement signed. Target: ATT affiliate network or 10th Planet.</li>
+          <li>First 3-5 affiliate locations onboarded with activation playbook: welcome kit ordered at wholesale (40-50% off retail), sparring bundle displayed, fight-night sponsored fighter program active.</li>
+          <li>First Tier 2 flagship deal in closing: AKA San Jose or Jackson Wink. Deal structure: 50-60% wholesale, sponsored fighter program, co-branded gear option, territory exclusivity in their immediate market.</li>
+          <li>Gym economics validated or revised: does a 500-member gym actually clear $25K-$40K/yr with all five activation motions running? Tier 0 seminar data tells us the Wittman multiplier.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D75</div>
+        <h3 class="path-h3" style="color: var(--blue);">Athlete Program: Second Wave</h3>
+        <ul class="punch-list b">
+          <li>Remaining rising star athletes signed (target total: 5-7 across full rising tier)</li>
+          <li>First emerging/local pro athletes signed from partner gym pipeline: 3-5 athletes from Tier 0 and early Tier 1 gyms on gear-only + 20% commission structure</li>
+          <li>Anchor athlete 90-day RPF first full window closes. Decision: keep at current comp, expand to exclusivity, or have the comp conversation if below $0.30.</li>
+          <li>GRIN: content brief for Q2 delivered to all active athletes. Q2 brief updated based on Q1 content performance data: which content types drove the most attributed sales?</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D80</div>
+        <h3 class="path-h3">Year 1 Plan Drafted</h3>
+        <ul class="punch-list">
+          <li>Channel-by-channel Year 1 targets revised from hypothesis to data-backed. GTM roadmap numbers stress-tested against 60 days of real performance.</li>
+          <li>Budget envelope recommendation for Q2-Q4: how much paid, how much athlete retainers, how much content production, what specialist support (paid media agency, Amazon agency, creative production).</li>
+          <li>Headcount or agency needs identified. What work requires dedicated internal hire vs. agency vs. continued fractional?</li>
+          <li>Wholesale launch plan scoped for Month 7: specialty fitness B2B targets (Power Systems, Iron Company, Perform Better, Sorinex), combat sports specialty (Title Boxing retail arm, Combat Sports Inc., Suplay.com), Amazon selective SKU launch (gloves, headgear, shin guards only, controlled pricing).</li>
+          <li>Dropship pro-shop integration scoped for active Tier 1 gym partners: 25% commission to gym, ONX handles inventory and fulfillment, no retail buy-in required from gym.</li>
+        </ul>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">D90</div>
+        <h3 class="path-h3" style="color: var(--yellow);">Quarterly Business Review</h3>
+        <p class="path-body"><b>60-minute session with Desmond Croan, Sarah Arango, and Megan Neal.</b> The QBR is not a progress update. It is the meeting where the engagement either proves its model or revises it. Either outcome is better than operating without data.</p>
+        <ul class="punch-list">
+          <li>Channel-by-channel performance vs. Day 1, Day 30, and Day 60 targets</li>
+          <li>Athlete program: full RPF dashboard, roster decisions, Q2 signing targets</li>
+          <li>Gym channel: active partners, sell-through data, Wittman seminar results, Tier 1 network revenue</li>
+          <li>Content: referring domains, keyword ranking movement, press placements secured</li>
+          <li>Paid: ROAS by cluster, paid CAC vs. gym channel CAC vs. organic CAC comparison</li>
+          <li>Year 1 plan presented: revised targets, budget recommendation for Q2-Q4, wholesale launch timeline</li>
+          <li>Decision agenda: what three decisions does Desmond need to make before Q2 begins?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proof-bridge" style="margin-top:48px; border-left-color: var(--blue);">
+      <p class="bridge-label" style="color: var(--blue);">The Day 90 Deliverable</p>
+      <p class="bridge-body">
+        A written QBR document covering: channel-by-channel performance vs. targets, first-cycle attribution data, athlete RPF dashboard, gym channel economics vs. model, Year 1 plan revised from hypothesis to evidence, budget and headcount recommendation for Q2-Q4, and ranked list of highest-leverage moves for the next 90 days. <strong>This is what Bill hands Desmond at the QBR.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ATHLETE AND INFLUENCER FRAMEWORK -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">The Framework · Athletes and Influencers</p>
+    <h2 class="sec-title">HOW WE SELECT.<br><span class="b">HOW WE MEASURE. HOW WE PAY.</span></h2>
+    <p class="audit-lead">
+      The influencer marketing trap is vanity metrics. Views and followers predict almost nothing about purchase intent in a practitioner audience. <b>The ONX framework is built around Revenue Per Follower (RPF) as the primary metric, attribution infrastructure that actually captures revenue, and a comp structure that changes what athletes choose to post.</b>
+    </p>
+
+    <p class="sec-label" style="margin-top:64px;">Pre-Signing Evaluation</p>
+    <h3 class="audit-h3">SIX SIGNALS BEFORE A SIGNATURE</h3>
+    <p class="audit-subtitle">Every candidate is run through this evaluation before any conversation happens. HypeAuditor audit is the first step, not the last.</p>
+
+    <div class="fw-grid" style="margin-top:32px;">
+      <div class="fw-item">
+        <div class="fw-num">01</div>
+        <div class="fw-tag">Audience Quality Score</div>
+        <p class="fw-body">HypeAuditor verification before any conversation. <b>Threshold: &gt;85% real followers.</b> Bot detection, engagement pod detection, fake-follower ratio. Catches the "1M followers, 60% bots" trap that destroys ROI.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">02</div>
+        <div class="fw-tag">Audience-Product Fit</div>
+        <p class="fw-body">Percent of followers who actually train combat sports. <b>500K with 60% practitioners beats 2M with 15% practitioners.</b> Spectator audiences watch. Practitioner audiences buy.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">03</div>
+        <div class="fw-tag">Earned Media Volume</div>
+        <p class="fw-body">Is the athlete in the MMA press cycle monthly? Sherdog mentions, Fightmatrix coverage, Yahoo Sports inclusion. <b>Earned media multiplies the partnership for free.</b> Athletes already in the press cycle expand ONX reach without additional budget.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">04</div>
+        <div class="fw-tag">Endorsement Load</div>
+        <p class="fw-body">Lower is better. Five existing brand deals = 1/5 share of voice for ONX. <b>One or two existing deals = real visibility.</b> Cheaper signings with fewer brand conflicts often outperform expensive signings with full endorsement loads.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">05</div>
+        <div class="fw-tag">Storytelling Capacity</div>
+        <p class="fw-body">Watch six months of their content. Technique posts drive purchase intent. Gym mirror selfies drive vanity engagement. <b>The athlete who can explain WHY a piece of gear matters to their training process is the one who converts their audience.</b></p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">06</div>
+        <div class="fw-tag">Rising-Star Indicator</div>
+        <p class="fw-body">New UFC contract, recent title win, breakout fight in last 12 months. <b>The rising athlete signs cheap today and becomes expensive in six months.</b> Modash catches them before the market does.</p>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:80px;">The Tool Stack</p>
+    <h3 class="audit-h3">FOUR TOOLS. FOUR JOBS. NONE INTERCHANGEABLE.</h3>
+
+    <div class="lens" style="grid-template-columns: repeat(2, 1fr); margin-top:32px;">
+      <div class="lens-item">
+        <div class="lens-tag">HypeAuditor</div>
+        <div class="lens-role">Pre-Signing Audience Quality</div>
+        <p class="lens-desc">Run before any conversation. Audience authenticity score, fake-follower detection, demographic breakdown, audience-product fit scoring.</p>
+        <p class="punch-list-label">Catches:</p>
+        <ul class="punch-list b">
+          <li>Bot-inflated follower counts</li>
+          <li>Engagement pod manipulation</li>
+          <li>Misaligned audience demographics</li>
+        </ul>
+      </div>
+      <div class="lens-item">
+        <div class="lens-tag">Modash</div>
+        <div class="lens-role">Discovery · Finding Rising Tier Before the Market</div>
+        <p class="lens-desc">Search by niche (MMA, Muay Thai, boxing), follower range, engagement rate, location, audience quality. <b>Lowest-cost signings come from this layer</b>, before candidates hit agency representation and pricing.</p>
+        <p class="punch-list-label">Use for:</p>
+        <ul class="punch-list">
+          <li>Emerging tier discovery (10K-100K followers)</li>
+          <li>Amateur pipeline from partner gyms</li>
+        </ul>
+      </div>
+      <div class="lens-item">
+        <div class="lens-tag">GRIN</div>
+        <div class="lens-role">Platform · Active Roster Management</div>
+        <p class="lens-desc">Shopify integration native. Automated affiliate tracking, automated payments, content brief delivery, content approval workflow. Whitelisted-ad (dark post) workflow built in.</p>
+        <p class="punch-list-label">Handles:</p>
+        <ul class="punch-list g">
+          <li>Content brief delivery and approval</li>
+          <li>Promo code and UTM tracking per creator</li>
+          <li>Performance comp calculations and payments</li>
+          <li>Whitelisted ad deployment through creator accounts</li>
+        </ul>
+      </div>
+      <div class="lens-item">
+        <div class="lens-tag">Triple Whale</div>
+        <div class="lens-role">Attribution · The Source of Truth</div>
+        <p class="lens-desc">Multi-touch attribution for Shopify DTC. Connects athlete content, paid spend, and organic traffic to actual conversions. <b>Without Triple Whale, RPF cannot be calculated.</b> Without RPF, the comp structure has no data to run on.</p>
+        <p class="punch-list-label">Feeds:</p>
+        <ul class="punch-list pink">
+          <li>RPF calculation per athlete per 90-day window</li>
+          <li>Channel-level CAC comparison</li>
+          <li>Paid-to-organic assist rate</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:80px;">Attribution Stack</p>
+    <h3 class="audit-h3">FOUR LAYERS. TRIANGULATED.</h3>
+    <p class="audit-subtitle">No single signal captures the full picture. These four layers in combination give a defensible RPF calculation. Promo codes undercount (not everyone uses them). UTMs miss dark social. The survey catches what both miss.</p>
+
+    <div class="path" style="margin-top:48px;">
+      <div class="path-item">
+        <div class="path-num">L1</div>
+        <h3 class="path-h3">Promo Code &middot; Direct Revenue Signal</h3>
+        <p class="path-body">Unique code per athlete. GAETHJE15, USMAN15, SANDHAGEN15, etc. Shopify tracks every redemption by code. <b>Strongest signal because the buyer actively chose to use the code.</b> Undercounts because some buyers discover through the athlete but don't use the code at checkout.</p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">L2</div>
+        <h3 class="path-h3">UTM-Tagged Custom URL &middot; Behavioral Signal</h3>
+        <p class="path-body">Every athlete gets a unique URL. onx-sports.com/?utm_source=gaethje&utm_medium=athlete&utm_campaign=q3. Triple Whale captures the session and links it to any conversion within the attribution window. <b>Catches buyers who clicked the link but didn't use the promo code.</b></p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">L3</div>
+        <h3 class="path-h3">Post-Purchase Survey (Fairing) &middot; Self-Reported Signal</h3>
+        <p class="path-body">"How did you hear about ONX?" with athlete dropdown, gym dropdown, and organic options in the checkout flow. <b>Historically captures 20-40% additional attribution that promo codes and UTMs miss.</b> Buyers who saw a post, went directly to the site later, and never clicked a link or used a code still self-report the athlete as the discovery source.</p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">L4</div>
+        <h3 class="path-h3">Whitelisted Ads &middot; Paid Amplification Layer</h3>
+        <p class="path-body">When an athlete post performs well organically, GRIN runs paid ads from the athlete's account (not ONX's). The ad appears as a native creator post in the feed. <b>Creator-context ads historically outperform brand-run ads because the social proof is built into the placement.</b> Attribution through Meta pixel feeding into Triple Whale. Hayabusa runs 161 ads; some will be whitelisted creator content.</p>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:80px;">The RPF Framework</p>
+    <h3 class="audit-h3">EVERY ATHLETE GETS A VERDICT EVERY 90 DAYS</h3>
+    <p class="audit-subtitle">Revenue Per Follower = total attributed revenue (Layers 1-4) divided by total followers. Measured per 90-day window. Below threshold for two consecutive windows = restructure or exit.</p>
+
+    <table class="scenarios-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Athletes</th>
+          <th>RPF Threshold</th>
+          <th>Action If Below</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Anchor</b></td>
+          <td>Gaethje, Usman, Sandhagen</td>
+          <td class="num">&gt;$0.30</td>
+          <td class="note">Comp conversation. Consider exclusivity if above.</td>
+        </tr>
+        <tr class="hero-row">
+          <td><b>Rising Star</b></td>
+          <td>Pereira, Nickal, Topuria-tier</td>
+          <td class="num">&gt;$0.50</td>
+          <td class="note">Restructure to awareness-only or exit at contract end.</td>
+        </tr>
+        <tr>
+          <td><b>Emerging / Local Pro</b></td>
+          <td>Regional UFC, PFL, ONE fighters</td>
+          <td class="num">&gt;$0.75</td>
+          <td class="note">Exit. Replace with next candidate from Modash pipeline.</td>
+        </tr>
+        <tr>
+          <td><b>Amateur Pipeline</b></td>
+          <td>From partner gyms</td>
+          <td class="num">&gt;$1.00</td>
+          <td class="note">Exit or elevate to emerging tier if showing upward trajectory.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="audit-lead" style="margin-top:24px;">Higher tiers have lower thresholds because larger audiences dilute concentration. <b>A small athlete with a dense practitioner audience frequently outperforms an anchor athlete on RPF.</b> Both drive revenue. The threshold structure accounts for the asymmetry.</p>
+
+    <p class="sec-label" style="margin-top:80px;">Contract Terms That Matter</p>
+    <h3 class="audit-h3">FIVE TERMS THAT MAKE OR BREAK ENFORCEMENT</h3>
+
+    <div class="fw-grid" style="margin-top:32px;">
+      <div class="fw-item">
+        <div class="fw-num">01</div>
+        <div class="fw-tag">Deliverable Cadence</div>
+        <p class="fw-body">Not "six posts." <b>"Six posts, minimum two per month, no more than 45 days between posts."</b> Vague cadence means all six posts go up in week one. Nothing after.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">02</div>
+        <div class="fw-tag">48-Hour Approval Window</div>
+        <p class="fw-body">Every post requires approval before publishing. <b>GRIN enforces this as a workflow.</b> Without it, athletes post whatever they want and you find out when it's live.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">03</div>
+        <div class="fw-tag">Usage Rights</div>
+        <p class="fw-body">Two separate rights, both explicit: <b>whitelisting rights</b> (run paid ads from their account) and <b>creative usage rights</b> (repurpose their content in ONX ads, email, website). These are not the same right and both need to be stated.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">04</div>
+        <div class="fw-tag">Category Exclusivity</div>
+        <p class="fw-body">Not "no other brands." <b>"No other combat sports equipment brands."</b> Gaethje can wear Nike shoes. He cannot wear Hayabusa gloves. Specific and enforceable.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">05</div>
+        <div class="fw-tag">Content Brief Compliance</div>
+        <p class="fw-body">The brief is a contract deliverable, not a suggestion. Minimum 60% technique content, maximum 40% lifestyle. Code and link included in every post. <b>Three compliance failures in a contract period triggers a comp conversation before renewal.</b></p>
+      </div>
+    </div>
+
+    <div class="pull" style="border-left-color: var(--blue); margin-top:48px;">
+      <p>The brief we give a fighter preparing for a title shot is not "post about our gloves." It's a four-week content arc: <em>Week 1 of camp: gear setup and glove unboxing. Week 3: training footage with technique focus. Fight week: pre-fight kit post. Fight night: gear worn in the cage. Post-fight: maintenance content and product education.</em> Five posts. One narrative. The audience is emotionally invested in the outcome. The gear is in the story, not beside it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYM ACQUISITION FRAMEWORK -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">The Framework · Gym Acquisition</p>
+    <h2 class="sec-title">THE GYM CHANNEL.<br><span class="g">BUILT ON WORKSTREAM INJECTION.</span></h2>
+    <p class="audit-lead">
+      Selling gear at a gym is not retail. It is injecting a product into a workstream where the customer is already using gear, and replacing it on a predictable cycle. <b>The math works when the gym is the right gym, the activation playbook runs fully, and the economics are structured correctly from day one.</b>
+    </p>
+
+    <p class="sec-label" style="margin-top:64px;">Segmentation First</p>
+    <h3 class="audit-h3">REAL MMA GYMS. NOT FITNESS GYMS.</h3>
+    <p class="audit-subtitle">When you join Title Boxing Club and buy $50 gloves, that is the right customer for Everlast. It is not the right customer for ONX. The segmentation criteria below separate the practitioner ecosystem from the fitness ecosystem. ONX's price point ($219-$319 for gloves alone) requires a member who has decided they are serious about the sport, not someone testing it.</p>
+
+    <div class="fw-grid" style="margin-top:32px;">
+      <div class="fw-item">
+        <div class="fw-num">YES</div>
+        <div class="fw-tag" style="color: var(--green);">Signs of the Right Gym</div>
+        <p class="fw-body">Active fight team that competes regionally or nationally. Head coach with professional competitive background. Monthly dues above $120. Discipline mix is striking-heavy or MMA-blended. Posts fight results on social media ("Congratulations to our fighter on their win at [regional promotion]"). Member tenure skews 6+ months (practitioners stay; fitness members churn). Progression curriculum that creates gear upgrade moments.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">NO</div>
+        <div class="fw-tag" style="color: var(--pink);">Signs of the Wrong Gym</div>
+        <p class="fw-body">Cardio kickboxing as primary class offering. New Year's resolution spike in January followed by summer churn. Posts "Great Monday morning workout class!" on social. Under $100/month dues. No belt system or progression curriculum. Members who have been training under 6 months dominate the floor. Pure fitness positioning despite the combat sports branding. <b>Title Boxing, iLoveKickboxing, UFC Gym mass locations: all wrong.</b></p>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:80px;">The Questions to Ask in Every Gym Conversation</p>
+    <h3 class="audit-h3">SIX NUMBERS THAT TELL YOU IF THE MATH WORKS</h3>
+    <p class="audit-subtitle">Before any proposal is made, these six numbers need to be in the room. They determine whether the economics clear $25K/year at that location.</p>
+
+    <table class="scenarios-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Why It Matters</th>
+          <th>Target Threshold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total active members?</td>
+          <td class="note">Determines the addressable base for welcome kits and recurring replacement</td>
+          <td class="num">&gt;300</td>
+        </tr>
+        <tr>
+          <td>Monthly new member signups?</td>
+          <td class="note">Drives welcome kit volume (one kit per new member)</td>
+          <td class="num">&gt;20/mo</td>
+        </tr>
+        <tr>
+          <td>Weekly active members?</td>
+          <td class="note">Active members wear out gear. Inactive members don't replace it. High WAM/total ratio = healthy churn model.</td>
+          <td class="num">&gt;60% of total</td>
+        </tr>
+        <tr>
+          <td>Monthly dues?</td>
+          <td class="note">Signals practitioner commitment. Above $120 = serious student.</td>
+          <td class="num">&gt;$120/mo</td>
+        </tr>
+        <tr>
+          <td>How many members currently spar?</td>
+          <td class="note">Sparring members need headgear and shin guards. Defines the sparring bundle market.</td>
+          <td class="num">&gt;30% of active</td>
+        </tr>
+        <tr>
+          <td>Do they have an active fight team competing regionally?</td>
+          <td class="note">Fight team drives the sponsored fighter motion and the most visible gear placement.</td>
+          <td class="note">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="sec-label" style="margin-top:80px;">The Deal Structure</p>
+    <h3 class="audit-h3">THREE MODELS. ONE HYBRID THAT WORKS.</h3>
+
+    <div class="lens" style="grid-template-columns: repeat(3, 1fr); margin-top:32px;">
+      <div class="lens-item">
+        <div class="lens-tag">Flat Advertising Fee</div>
+        <div class="lens-role">$200-$1,500/mo depending on gym size</div>
+        <p class="lens-desc">Signage, display rack, logo on wall. <b>No revenue participation.</b> ONX pays regardless of sell-through. Gym has no incentive to actively sell. Works for brand visibility. Does not drive the workstream injection.</p>
+      </div>
+      <div class="lens-item">
+        <div class="lens-tag">Pro-Shop Revenue Split</div>
+        <div class="lens-role">25-35% to gym on retail price</div>
+        <p class="lens-desc">Gym carries inventory, sells to members. ONX nets 65-75% of retail. <b>Gym compensated by margin, not fee.</b> Gives gym real incentive to sell. Gym carries inventory risk. Best for established Tier 1 partners with proven sell-through.</p>
+      </div>
+      <div class="lens-item">
+        <div class="lens-tag">Welcome Kit at Wholesale</div>
+        <div class="lens-role">50% off retail, built into membership</div>
+        <p class="lens-desc">Gym buys at wholesale, includes in new member onboarding. <b>Predictable revenue per new member with no ongoing split.</b> Zero advertising fee. Zero revenue share. One-time clean transaction per new member.</p>
+      </div>
+    </div>
+
+    <div class="proof-bridge" style="margin-top:48px; border-left-color: var(--green);">
+      <p class="bridge-label" style="color: var(--green);">The Hybrid That Actually Works</p>
+      <p class="bridge-body">
+        <strong>Welcome kit at wholesale</strong> (predictable base revenue per new member, no advertising fee, no split) <strong>plus dropship pro-shop</strong> for upgrade purchases (sparring bundle, fight-night gear: gym gets 25% commission, ONX handles inventory and fulfillment, gym has zero inventory risk). <strong>No flat advertising fee.</strong> ONX is not paying to be in the gym. The gym is compensated by margin and commission as their incentive to sell.
+      </p>
+    </div>
+
+    <p class="sec-label" style="margin-top:80px;">The Activation Economics</p>
+    <h3 class="audit-h3">FIVE MOTIONS. ONE MATH MODEL.</h3>
+
+    <div class="path" style="margin-top:48px;">
+      <div class="path-item">
+        <div class="path-num">01</div>
+        <h3 class="path-h3">Welcome Kit &middot; Onboarding</h3>
+        <p class="path-body">Every new member: hand wraps + basic gear at ~$50 wholesale. 20 new members/mo = $1,000/mo guaranteed wholesale to ONX. <b>Zero active selling required by gym after initial setup.</b></p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">02</div>
+        <h3 class="path-h3">Sparring Bundle &middot; Progression Trigger</h3>
+        <p class="path-body">When a member moves to sparring class: headgear + shin guards, ~$400 retail. Gym dropships: gym keeps $100 (25%), ONX nets $300. 30% of 300 active members spar = 90 sparring members. Replace at 12-month cycle = 7-8 sparring bundles per month. <b>$560-640/mo net to ONX from sparring upgrades alone.</b></p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">03</div>
+        <h3 class="path-h3">Quarterly Refresh &middot; Replacement Cycle</h3>
+        <p class="path-body">Gloves wear in 6-12 months of active training. Trade-in old gloves for $50 off new ones. 5-10 replacement purchases/mo at a healthy partner gym. <b>$1,400-2,800/mo net to ONX at $319 retail minus 25% gym commission.</b></p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">04</div>
+        <h3 class="path-h3">Fight-Night Gear &middot; Sponsored Fighter</h3>
+        <p class="path-body">Amateur and pro fighters in ONX gear at every local card. Fight gloves wear fast. 2-4 sets of fight gloves per competing fighter per year at $319. A 10-fighter fight team = $6,380-12,760/yr in fight-night gear alone at retail.</p>
+      </div>
+      <div class="path-item">
+        <div class="path-num">05</div>
+        <h3 class="path-h3">Wittman Seminar &middot; Annual Event</h3>
+        <p class="path-body">Once per year per top partner. Half-day seminar. Members pay $150 to attend. Gear sells at the event. Gym keeps event revenue. <b>ONX measures gear sold at the event as the Wittman multiplier.</b> Hayabusa cannot send Wittman. Venum cannot send Wittman. This is the unfair advantage.</p>
+      </div>
+    </div>
+
+    <div class="pull" style="border-left-color: var(--green); margin-top:56px;">
+      <p>A 300-member gym, 20 new members/month, 90 sparring members, active fight team: <em>$1,000/mo welcome kits + $600/mo sparring bundles + $2,100/mo glove replacement + $1,000/mo fight-night gear = roughly $4,700/mo or $56,000/yr from a single partner gym at full activation.</em> The $25K-$40K target in the GTM roadmap is conservative on a gym this size. Three months of data from Tier 0 will calibrate the real number.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I NEED FROM ONX -->
+<section>
+  <div class="wrap">
+    <p class="sec-label">To Execute This</p>
+    <h2 class="sec-title">WHAT I NEED<br><span class="y">FROM ONX BEFORE DAY 1.</span></h2>
+    <p class="audit-lead">Four things. None are long-lead items. Each is a conversation or an access grant.</p>
+
+    <div class="fw-grid" style="margin-top:40px;">
+      <div class="fw-item">
+        <div class="fw-num">01</div>
+        <div class="fw-tag">Data Access</div>
+        <p class="fw-body">Shopify analytics, email platform, existing customer cohorts, existing athlete contract terms. <b>Week 1 is a baseline audit. No baseline without access. No strategy without the baseline.</b></p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">02</div>
+        <div class="fw-tag">Wittman Availability</div>
+        <p class="fw-body">Content days and seminar dates for the first 90 days. Target: <b>2-3 seminar dates, 4-6 content session days.</b> The gym channel and content engine both depend on his availability. The earlier this is calendared, the more leverage it creates in Tier 1 gym conversations.</p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">03</div>
+        <div class="fw-tag">Budget Envelope</div>
+        <p class="fw-body">Not a line-item approval on Day 1. A rough operating envelope for tooling (GRIN, Triple Whale, HypeAuditor, Fairing), paid acquisition ($15K-$20K/mo Phase 2), content production, and athlete retainers. <b>The plan is scoped to the envelope, not the other way around.</b></p>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">04</div>
+        <div class="fw-tag">Team Introduction</div>
+        <p class="fw-body">An introduction to Megan Neal (Head of Growth) and whoever owns operations or fulfillment. <b>The weekly sync rhythm starts with those relationships</b>, not with strategy documents. The first call with Megan on June 13 is the right start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close">
+  <div class="wrap">
+    <h2 class="close-headline">NINETY DAYS.<br><span class="y">THEN WE HAVE DATA.</span></h2>
+    <p class="close-body">
+      The GTM roadmap is the strategy. This document is how the strategy becomes operational. The first 90 days are not about proving the strategy is right. They are about getting the infrastructure in place, starting every channel, and collecting the data that makes the Year 1 decisions clear.
+    </p>
+    <ul class="punch-list" style="margin: 24px 0;">
+      <li><b>Day 30:</b> tooling live, content engine started, brand protection paid running, Tier 0 gyms activating, anchor athletes on performance comp</li>
+      <li><b>Day 60:</b> first RPF data per athlete, Tier 1 gym pipeline in term-sheet stage, 20+ content pieces live, all four paid clusters active, 2-3 rising star athletes signed</li>
+      <li><b>Day 90:</b> quarterly business review, Year 1 plan from evidence not hypothesis, budget recommendation for Q2-Q4, three decisions for Desmond</li>
+    </ul>
+    <p class="close-body">
+      <b>The roadmap and this document are companion pieces.</b> The roadmap answers what and why. This document answers how and when.
+    </p>
+    <div class="close-contact">
+      <div class="cc-item">
+        <span class="cc-label">Prepared by</span>
+        <span class="cc-value">Bill Colbert</span>
+      </div>
+      <div class="cc-item">
+        <span class="cc-label">Companion to</span>
+        <span class="cc-value"><a href="/reports/dg-gtm-roadmap">GTM Roadmap</a> &middot; <a href="/reports/dg-merch-approach">Approach Memo</a></span>
+      </div>
+      <div class="cc-item">
+        <span class="cc-label">For</span>
+        <span class="cc-value">ONX Sports &middot; June 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Prepared June 2026 &bull; Confidential</span>
+    <span class="mark">NINETY DAYS. THEN WE HAVE DATA.</span>
+    <span>Bill Colbert &times; ONX Sports</span>
+  </div>
+</footer>
+
+</body>
+</html>
