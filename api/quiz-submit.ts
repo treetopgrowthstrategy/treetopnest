@@ -461,7 +461,17 @@ export default async function handler(req: any, res: any) {
       console.error('Airtable log failed:', e);
     });
 
-    return res.status(200).json({ success: true, reportUrl, githubError, airtableError });
+    return res.status(200).json({
+      success: true,
+      reportUrl,
+      githubError,
+      airtableError,
+      _debug: {
+        tokenStart: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.slice(0, 8) : 'UNSET',
+        tokenEnd: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.slice(-4) : 'UNSET',
+        tokenLen: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.length : 0,
+      },
+    });
 
   } catch (err) {
     console.error('quiz-submit error:', err);
