@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dave Voice Grader · EcoFIT</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,600;1,200;1,300&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ──────────────────────────────────────────────────── */
+:root {
+  --bg:        #0b1f19;
+  --surface:   #102b22;
+  --surface2:  #142f26;
+  --border:    #1c3d30;
+  --border2:   #173629;
+  --green:     #84BC41;
+  --green-hi:  #9fd454;
+  --green-dim: rgba(132,188,65,.13);
+  --green-line:rgba(132,188,65,.28);
+  --red:       #e05b4b;
+  --red-dim:   rgba(224,91,75,.12);
+  --amber:     #d9a64a;
+  --amber-dim: rgba(217,166,74,.12);
+  --text:      #dff0df;
+  --text-mid:  #8fb89f;
+  --text-dim:  #4d7060;
+  --ff-display:'Raleway', system-ui, sans-serif;
+  --ff-body:   'Work Sans', system-ui, sans-serif;
+  --radius:    8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--ff-body);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+.bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:13px 28px;
+  border-bottom:1px solid var(--border2);
+  background:rgba(11,31,25,.92);
+  backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:60;
+  gap:16px;
+}
+.bar-id{
+  font-family:var(--ff-display);
+  font-size:12px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-mid);
+}
+.bar-id b{color:var(--green)}
+.bar-links{display:flex;gap:20px}
+.bar-links a{
+  font-size:11px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-dim);text-decoration:none;
+  transition:color .15s;
+}
+.bar-links a:hover{color:var(--green)}
+
+/* ── Page header ─────────────────────────────────────────────── */
+.page-head{
+  padding:44px 28px 28px;
+  max-width:1280px;margin:0 auto;width:100%;
+}
+.page-head h1{
+  font-family:var(--ff-display);
+  font-weight:200;
+  font-size:clamp(30px,4vw,50px);
+  line-height:1.06;
+  letter-spacing:-.025em;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.page-head h1 em{color:var(--green);font-style:italic}
+.page-head p{
+  font-size:14px;color:var(--text-mid);max-width:520px;line-height:1.6;
+}
+
+/* ── Main workspace ──────────────────────────────────────────── */
+.workspace{
+  max-width:1280px;margin:0 auto;width:100%;
+  padding:0 28px 60px;
+  display:flex;flex-direction:column;gap:16px;
+}
+
+/* Top row: draft + grade */
+.top-row{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:14px;
+  align-items:start;
+}
+
+/* ── Draft panel ─────────────────────────────────────────────── */
+.draft-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.draft-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;
+  border-bottom:1px solid var(--border2);
+  gap:12px;flex-wrap:wrap;
+}
+.panel-label{
+  font-size:10px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-dim);
+}
+.sample-row{display:flex;gap:6px;flex-wrap:wrap}
+.sample-btn{
+  font-family:var(--ff-body);
+  font-size:11px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-mid);
+  padding:5px 11px;border-radius:4px;
+  cursor:pointer;transition:all .15s;
+}
+.sample-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+#draft-ta{
+  width:100%;min-height:380px;
+  background:transparent;border:none;
+  padding:18px 18px;
+  font-family:var(--ff-body);font-size:15px;
+  line-height:1.75;color:var(--text);
+  resize:vertical;outline:none;
+}
+#draft-ta::placeholder{color:var(--text-dim);font-style:italic}
+.draft-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 16px;
+  border-top:1px solid var(--border2);
+}
+#wc-label{font-size:11px;color:var(--text-dim)}
+.clear-btn{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;border:none;color:var(--text-dim);
+  cursor:pointer;transition:color .15s;padding:0;
+}
+.clear-btn:hover{color:var(--red)}
+
+/* ── Grade panel ─────────────────────────────────────────────── */
+.grade-panel{
+  display:flex;flex-direction:column;gap:10px;
+  position:sticky;top:58px;
+}
+
+/* Verdict */
+.verdict-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-top:3px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 20px;
+  text-align:center;
+  transition:border-color .3s;
+}
+.verdict-card.pass {border-top-color:var(--green)}
+.verdict-card.mid  {border-top-color:var(--amber)}
+.verdict-card.fail {border-top-color:var(--red)}
+.verdict-word{
+  font-family:var(--ff-display);
+  font-weight:200;
+  font-size:clamp(22px,3vw,34px);
+  letter-spacing:-.02em;
+  line-height:1.1;
+  color:var(--text-dim);
+  transition:color .3s;
+  min-height:44px;
+  display:flex;align-items:center;justify-content:center;
+}
+.verdict-card.pass .verdict-word{color:var(--green-hi)}
+.verdict-card.mid  .verdict-word{color:var(--amber)}
+.verdict-card.fail .verdict-word{color:var(--red)}
+.verdict-note{
+  margin-top:8px;font-size:12px;
+  color:var(--text-dim);line-height:1.5;
+}
+.verdict-bar-wrap{
+  margin:14px auto 0;max-width:180px;
+  height:2px;background:var(--border);
+  border-radius:100px;overflow:hidden;
+}
+.verdict-bar{
+  height:100%;width:0%;
+  background:var(--green);
+  transition:width .4s ease,background .3s;
+  border-radius:100px;
+}
+
+/* Stats strip */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.stat{
+  padding:12px 8px;text-align:center;
+  border-right:1px solid var(--border2);
+}
+.stat:last-child{border-right:none}
+.stat-n{
+  font-family:var(--ff-display);
+  font-weight:300;font-size:20px;
+  line-height:1;color:var(--text);
+}
+.stat-l{
+  font-size:9px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-top:3px;
+}
+
+/* Issue groups */
+.issue-group{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.ig-head{
+  display:flex;align-items:center;gap:9px;
+  padding:10px 14px;
+  cursor:pointer;user-select:none;
+  transition:background .15s;
+}
+.ig-head:hover{background:rgba(255,255,255,.02)}
+.ig-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.violations .ig-dot{background:var(--red)}
+.warnings   .ig-dot{background:var(--amber)}
+.hits       .ig-dot{background:var(--green)}
+.ig-label{
+  font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;flex:1;
+}
+.violations .ig-label{color:var(--red)}
+.warnings   .ig-label{color:var(--amber)}
+.hits       .ig-label{color:var(--green)}
+.ig-count{font-size:12px;font-weight:600;color:var(--text-dim)}
+.ig-chev{font-size:9px;color:var(--text-dim);transition:transform .2s}
+.issue-group.open .ig-chev{transform:rotate(180deg)}
+.ig-body{display:none;flex-direction:column}
+.issue-group.open .ig-body{display:flex}
+.ig-row{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:10px 14px;
+  border-top:1px solid var(--border2);
+  font-size:12.5px;line-height:1.55;color:var(--text);
+}
+.ig-bullet{
+  flex-shrink:0;margin-top:5px;
+  width:4px;height:4px;border-radius:50%;
+}
+.violations .ig-bullet{background:var(--red)}
+.warnings   .ig-bullet{background:var(--amber)}
+.hits       .ig-bullet{background:var(--green)}
+.ig-row strong{font-weight:600}
+.violations .ig-row strong{color:#ff8070}
+.warnings   .ig-row strong{color:#f0c070}
+.hits       .ig-row strong{color:var(--green-hi)}
+.ig-empty{
+  padding:10px 14px;border-top:1px solid var(--border2);
+  font-size:12px;font-style:italic;color:var(--text-dim);
+}
+
+/* ── Alt button ──────────────────────────────────────────────── */
+.alt-row{
+  display:none;
+  align-items:center;gap:14px;
+  padding:16px 0 2px;
+  flex-wrap:wrap;
+}
+.alt-row.visible{display:flex}
+.alt-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 24px;
+  background:var(--green);color:var(--bg);
+  font-family:var(--ff-body);
+  font-size:13px;font-weight:700;
+  letter-spacing:.06em;
+  border:none;border-radius:6px;
+  cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 3px 12px rgba(132,188,65,.2);
+}
+.alt-btn:hover{
+  background:var(--green-hi);
+  transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(132,188,65,.3);
+}
+.alt-btn:disabled{
+  background:var(--border);color:var(--text-dim);
+  cursor:not-allowed;transform:none;box-shadow:none;
+}
+.alt-btn svg{width:15px;height:15px;flex-shrink:0}
+.alt-note{font-size:12px;color:var(--text-dim)}
+
+/* ── Side-by-side rewrite area ───────────────────────────────── */
+.compare-area{
+  display:none;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.compare-area.visible{display:grid}
+.compare-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.compare-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;
+  border-bottom:1px solid var(--border2);
+  gap:10px;
+}
+.compare-tag{
+  font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+}
+.compare-tag.original{color:var(--text-dim)}
+.compare-tag.rewrite{color:var(--green)}
+.compare-body{
+  padding:20px 18px;
+  font-size:15px;line-height:1.75;
+  color:var(--text);
+  flex:1;
+  min-height:200px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.compare-body.streaming{color:var(--text-mid)}
+.compare-body .cursor{
+  display:inline-block;width:2px;height:16px;
+  background:var(--green);
+  margin-left:2px;vertical-align:middle;
+  animation:blink .9s steps(1) infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.copy-btn{
+  font-size:11px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--border);
+  color:var(--text-dim);padding:5px 12px;
+  border-radius:4px;cursor:pointer;
+  transition:all .15s;
+}
+.copy-btn:hover{color:var(--green);border-color:var(--green)}
+.copy-btn.copied{color:var(--green);border-color:var(--green)}
+
+/* Rewrite grade badge */
+.rewrite-grade{
+  display:none;
+  padding:8px 16px;
+  border-top:1px solid var(--border2);
+  font-size:12px;color:var(--text-mid);
+  gap:8px;align-items:center;
+}
+.rewrite-grade.visible{display:flex}
+.rg-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* ── Error toast ─────────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--surface2);
+  border:1px solid var(--red);
+  border-left:3px solid var(--red);
+  border-radius:var(--radius);
+  padding:14px 18px;
+  font-size:13px;color:var(--text);
+  max-width:340px;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+  transform:translateY(12px);opacity:0;
+  transition:opacity .25s,transform .25s;
+  pointer-events:none;z-index:999;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast strong{color:var(--red);display:block;margin-bottom:4px}
+
+/* ── Reference accordion ─────────────────────────────────────── */
+.ref-section{
+  max-width:1280px;margin:0 auto;width:100%;
+  padding:0 28px 60px;
+}
+.ref-toggle{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 0;
+  border-top:1px solid var(--border2);
+  cursor:pointer;user-select:none;
+}
+.ref-toggle-label{
+  font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-dim);flex:1;
+}
+.ref-chev{font-size:10px;color:var(--text-dim);transition:transform .2s}
+.ref-section.open .ref-chev{transform:rotate(180deg)}
+.ref-body{
+  display:none;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:12px;padding-bottom:32px;
+}
+.ref-section.open .ref-body{display:grid}
+.ref-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+}
+.ref-card-label{
+  font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green);margin-bottom:8px;
+}
+.ref-card-body{
+  font-size:12.5px;color:var(--text-mid);line-height:1.6;
+}
+.ref-card-body code{
+  font-family:'SF Mono',monospace;font-size:11.5px;
+  background:rgba(255,255,255,.05);
+  padding:1px 5px;border-radius:3px;color:var(--green-hi);
+}
+
+footer{
+  border-top:1px solid var(--border2);
+  padding:20px 28px;
+  text-align:center;
+  font-size:11px;color:var(--text-dim);
+}
+footer em{color:var(--text-mid);font-style:normal}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media(max-width:900px){
+  .top-row{grid-template-columns:1fr}
+  .grade-panel{position:static}
+  .compare-area{grid-template-columns:1fr}
+  .workspace,.page-head,.ref-section{padding-left:18px;padding-right:18px}
+  .bar{padding:12px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="bar">
+  <div class="bar-id">Treetop <b>×</b> EcoFIT · Dave Voice Grader</div>
+  <nav class="bar-links">
+    <a href="/tools/ecofit/brand-voice">Voice spec</a>
+    <a href="/clients/ecofit/ecofit-content-calendar">Calendar</a>
+  </nav>
+</header>
+
+<!-- Page heading -->
+<div class="page-head">
+  <h1>Does this sound like <em>Dave</em>,<br>or LinkedIn Dave?</h1>
+  <p>Paste a draft. Get a live grade. If it doesn't pass, click the button and get a version that does.</p>
+</div>
+
+<!-- Workspace -->
+<div class="workspace">
+
+  <!-- Draft + Grade row -->
+  <div class="top-row">
+
+    <!-- Draft input -->
+    <div class="draft-panel">
+      <div class="draft-head">
+        <span class="panel-label">Your draft</span>
+        <div class="sample-row">
+          <button class="sample-btn" data-s="dave">Load real Dave</button>
+          <button class="sample-btn" data-s="ghost">Load LinkedIn Dave</button>
+        </div>
+      </div>
+      <textarea id="draft-ta" spellcheck="true" placeholder="Paste a LinkedIn post, email, or internal update. The grader watches for banned corporate words, missing operator vocabulary, wrong cadence, and missing named specifics from the June 12 interview."></textarea>
+      <div class="draft-foot">
+        <span id="wc-label">0 words</span>
+        <button class="clear-btn" id="clear-btn">Clear</button>
+      </div>
+    </div>
+
+    <!-- Grade -->
+    <div class="grade-panel">
+
+      <div class="verdict-card idle" id="verdict-card">
+        <div class="verdict-word" id="verdict-word">Paste something</div>
+        <div class="verdict-note" id="verdict-note">Built from the June 12 transcript. No aspirational composites.</div>
+        <div class="verdict-bar-wrap"><div class="verdict-bar" id="verdict-bar"></div></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-n" id="s-words">0</div><div class="stat-l">Words</div></div>
+        <div class="stat"><div class="stat-n" id="s-sent">0</div><div class="stat-l">Avg sent.</div></div>
+        <div class="stat"><div class="stat-n" id="s-spec">0</div><div class="stat-l">Specifics</div></div>
+        <div class="stat"><div class="stat-n" id="s-ph">0</div><div class="stat-l">Phrases</div></div>
+      </div>
+
+      <div class="issue-group violations open" id="g-v">
+        <div class="ig-head"><span class="ig-dot"></span><span class="ig-label">Violations</span><span class="ig-count" id="c-v"></span><span class="ig-chev">▲</span></div>
+        <div class="ig-body" id="l-v"><div class="ig-empty">None yet.</div></div>
+      </div>
+
+      <div class="issue-group warnings open" id="g-w">
+        <div class="ig-head"><span class="ig-dot"></span><span class="ig-label">Missing signals</span><span class="ig-count" id="c-w"></span><span class="ig-chev">▲</span></div>
+        <div class="ig-body" id="l-w"><div class="ig-empty">None yet.</div></div>
+      </div>
+
+      <div class="issue-group hits open" id="g-h">
+        <div class="ig-head"><span class="ig-dot"></span><span class="ig-label">Voice hits</span><span class="ig-count" id="c-h"></span><span class="ig-chev">▲</span></div>
+        <div class="ig-body" id="l-h"><div class="ig-empty">Nothing from Dave's voice yet.</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Alt button row (shown when score < 82) -->
+  <div class="alt-row" id="alt-row">
+    <button class="alt-btn" id="alt-btn">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M2 8h12M9 4l5 4-5 4"/>
+      </svg>
+      Give me an alternative version
+    </button>
+    <span class="alt-note" id="alt-note">Claude will rewrite this to sound like Dave.</span>
+  </div>
+
+  <!-- Side-by-side compare -->
+  <div class="compare-area" id="compare-area">
+
+    <div class="compare-panel">
+      <div class="compare-head">
+        <span class="compare-tag original">Original</span>
+        <button class="copy-btn" data-target="original-body">Copy</button>
+      </div>
+      <div class="compare-body" id="original-body"></div>
+    </div>
+
+    <div class="compare-panel">
+      <div class="compare-head">
+        <span class="compare-tag rewrite">Alternative</span>
+        <button class="copy-btn" data-target="rewrite-body">Copy</button>
+      </div>
+      <div class="compare-body streaming" id="rewrite-body"></div>
+      <div class="rewrite-grade" id="rg">
+        <span class="rg-dot"></span>
+        <span id="rg-text"></span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Reference accordion -->
+<section class="ref-section" id="ref-section">
+  <div class="ref-toggle" id="ref-toggle">
+    <span class="ref-toggle-label">What this grades against</span>
+    <span class="ref-chev">▼</span>
+  </div>
+  <div class="ref-body">
+    <div class="ref-card">
+      <div class="ref-card-label">Governing instinct</div>
+      <div class="ref-card-body">The industry is a <code>moving target</code>. Operators who treat the floor as static lose. Dave's discipline is to <code>stay on top of</code> what's happening on the floor before the next refresh cycle.</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-label">Operator vocabulary (hits)</div>
+      <div class="ref-card-body"><code>on the floor</code> <code>right mix</code> <code>right buy</code> <code>status quo</code> <code>drop and run</code> <code>living environment</code> <code>secret sauce</code> <code>very very</code> <code>quite often</code> <code>right?</code> <code>interesting question</code> <code>moving target</code> <code>stay on top of</code></div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-label">Named specifics (hits)</div>
+      <div class="ref-card-body">Equipment brands (Woodway, Matrix), equipment categories (cardio, selectorized, plate-loaded), real dollar amounts ($3-4K per console), real time horizons (5 to 7 year lease), real counts (40 locations).</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-label">Cadence</div>
+      <div class="ref-card-body">Flowing explainer. 14 to 22 word average, but goes long (40+ words) walking through a system. Not punchy. Not three-word impact sentences.</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-label">Violations (instant deduction)</div>
+      <div class="ref-card-body">Em dashes. <code>leverage</code> <code>synergy</code> <code>best-in-class</code> <code>excited to announce</code> <code>thought leader</code> <code>actionable insights</code> <code>deep dive</code> <code>circling back</code> <code>game-changer</code> <code>paradigm shift</code> <code>in today's landscape</code> <code>win-win</code> <code>empower</code> <code>unlock</code> <code>holistic</code></div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-label">Source of truth</div>
+      <div class="ref-card-body">June 12, 2026 interview. 2,595 words of Dave talking about EcoFIT, equipment integration, operator purchasing habits, Vision AI, and the fitness industry. No aspirational composites.</div>
+    </div>
+  </div>
+</section>
+
+<footer><em>Treetop Growth Strategy</em> · EcoFIT internal · Not indexed · June 2026</footer>
+
+<!-- Error toast -->
+<div class="toast" id="toast"><strong id="toast-title"></strong><span id="toast-body"></span></div>
+
+<script>
+/* ================================================================
+   DAVE VOICE GRADER: full page with live scoring + Claude rewrite
+   Source: June 12, 2026 interview transcript (2,595 words)
+   ================================================================ */
+
+// ── Voice rules ──────────────────────────────────────────────────
+
+const PHRASES = [
+  "moving target","stay on top of","on the floor",
+  "right mix","right buy","status quo","drop and run",
+  "living environment","living space","secret sauce",
+  "very very","quite often","quite frequently","right?",
+  "interesting question","i have to think about that one",
+  "you got me on that one","got me on that one"
+];
+
+const GOVERNING = ["moving target","stay on top of"];
+
+const BANNED = [
+  {w:"leverage",           f:'name the actual action'},
+  {w:"leveraging",         f:'name the actual action'},
+  {w:"synergy",            f:'name how the two things connect'},
+  {w:"synergies",          f:'name how things connect'},
+  {w:"best-in-class",      f:'"the best at X", name the metric'},
+  {w:"best in class",      f:'"the best at X"'},
+  {w:"excited to announce",f:'skip the announcement, go straight to the news'},
+  {w:"circling back",      f:'"following up"'},
+  {w:"circle back",        f:'"follow up"'},
+  {w:"touch base",         f:'"talk"'},
+  {w:"at the end of the day",f:'cut it'},
+  {w:"thought leader",     f:'"operator" or name the person'},
+  {w:"thought leaders",    f:'"operators" or name the people'},
+  {w:"actionable insights",f:'"what to do next"'},
+  {w:"in today's landscape",f:'cut it'},
+  {w:"deep dive",          f:'"look at" or "walk through"'},
+  {w:"double-click",       f:'"look closer"'},
+  {w:"game-changer",       f:'name the actual change and its scale'},
+  {w:"paradigm shift",     f:'cut it'},
+  {w:"win-win",            f:'name what each side actually gets'},
+  {w:"empower",            f:'name what the person can now do'},
+  {w:"unlock",             f:'"use" or name the mechanism'},
+  {w:"holistic",           f:'say what is included, specifically'},
+  {w:"innovative solution",f:'name the specific thing it does'},
+];
+
+const SPECIFIC_RES = [
+  /\b(woodway|matrix|life fitness|technogym|ecofit|csafe|vision ai)\b/gi,
+  /\b(cardio|selectorized|plate.?loaded|multi.?station|treadmill|rower|bike)\b/gi,
+  /\$[\d,]+/g,
+  /\b\d+[,.]?\d*\s*(locations?|sites?|units?|pieces?|years?|months?|sensors?)\b/gi,
+];
+
+const SAMPLES = {
+  dave:`Status quo purchasing is one of the biggest sources of capex waste in our industry. An operator finishes a five to seven year equipment lease, then signs the next one for the exact same mix without looking at what was actually getting used on the floor.
+
+Here is what people miss. The industry is a moving target. The right mix on the floor today is not the right mix three years from now. Members shift, modalities shift, usage patterns shift.
+
+If you are not staying on top of utilization data through the lease, you are not making the right buy when it is time to refresh. You are buying the floor you had, not the floor you need. Right?`,
+
+  ghost:`We are excited to announce a new strategic partnership that will leverage best-in-class technology to drive synergies across our portfolio. At the end of the day, this paradigm shift is a true game-changer for our stakeholders. In today's landscape, we're circling back on actionable insights that will move the needle. We look forward to a deep dive with our thought leaders to unlock new opportunities across the ecosystem.`
+};
+
+// ── Claude system prompt (SKILL file, compressed) ────────────────
+
+const SYSTEM = `You are a writing assistant. Your only job is to rewrite the text the user provides so it sounds like Dave Johnson, EVP at EcoFIT, based strictly on evidence from his June 12, 2026 interview transcript.
+
+## Who Dave is
+Fifteen-year fitness facility operator. Runs equipment partnerships and product for EcoFIT. Explains complex technical systems in flowing operator language. Names specific equipment categories and dollar amounts. Admits when he doesn't have an answer.
+
+## Voice
+- Flowing technical explainer, not a punchy LinkedIn closer
+- Average sentence 14-22 words; goes long (40+ words) when walking through a system
+- Names real things: Woodway, Matrix, cardio, selectorized, plate-loaded, CSAFE port, $3-4K per console, 5 to 7 year lease, 40 locations
+- Operator vocabulary: "on the floor," "right mix," "right buy," "status quo," "drop and run," "living environment," "moving target," "stay on top of," "secret sauce"
+- Doubled adverbs occasionally: "very very," "quite often"
+- Admits uncertainty: "interesting question," "I have to think about that one," "you got me on that one"
+- Closes with a concrete point or "Right?" not a sign-off
+
+## Hard rules
+- NEVER use em dashes. Use periods, commas, colons, or parentheses.
+- NEVER use: leverage, synergy, best-in-class, excited to announce, circling back, thought leader, actionable insights, deep dive, game-changer, paradigm shift, in today's landscape, win-win, empower, unlock, holistic
+- Do not force punchy short sentences. Dave is a flowing explainer.
+- Use 1-2 signature phrases per 150 words, not more. Tic-stacking is the failure mode.
+
+## Example (from his voice)
+"Status quo purchasing is one of the biggest sources of capex waste in our industry. An operator finishes a five to seven year equipment lease, then signs the next one for the exact same mix without looking at what was actually getting used on the floor. Here is what people miss. The industry is a moving target. The right mix on the floor today is not the right mix three years from now. Right?"
+
+## Task
+Rewrite the user's text to sound like this. Keep the same topic and core message. Do not add a preamble or explanation. Output only the rewritten copy.`;
+
+// ── DOM refs ─────────────────────────────────────────────────────
+
+const $ta    = document.getElementById('draft-ta');
+const $wc    = document.getElementById('wc-label');
+const $clr   = document.getElementById('clear-btn');
+const $vc    = document.getElementById('verdict-card');
+const $vw    = document.getElementById('verdict-word');
+const $vn    = document.getElementById('verdict-note');
+const $vb    = document.getElementById('verdict-bar');
+const $sW    = document.getElementById('s-words');
+const $sS    = document.getElementById('s-sent');
+const $sSp   = document.getElementById('s-spec');
+const $sPh   = document.getElementById('s-ph');
+const $lV    = document.getElementById('l-v');
+const $lW    = document.getElementById('l-w');
+const $lH    = document.getElementById('l-h');
+const $cV    = document.getElementById('c-v');
+const $cW    = document.getElementById('c-w');
+const $cH    = document.getElementById('c-h');
+const $altRow  = document.getElementById('alt-row');
+const $altBtn  = document.getElementById('alt-btn');
+const $altNote = document.getElementById('alt-note');
+const $cmpArea = document.getElementById('compare-area');
+const $origBody= document.getElementById('original-body');
+const $rwBody  = document.getElementById('rewrite-body');
+const $rgWrap  = document.getElementById('rg');
+const $rgText  = document.getElementById('rg-text');
+const $toast   = document.getElementById('toast');
+
+let lastScore = null;
+let streaming = false;
+
+// ── Collapsible issue groups ──────────────────────────────────────
+document.querySelectorAll('.ig-head').forEach(h => {
+  h.addEventListener('click', () => h.closest('.issue-group').classList.toggle('open'));
+});
+
+// ── Reference accordion ───────────────────────────────────────────
+const refSection = document.getElementById('ref-section');
+document.getElementById('ref-toggle').addEventListener('click',
+  () => refSection.classList.toggle('open'));
+
+// ── Sample buttons ────────────────────────────────────────────────
+document.querySelectorAll('.sample-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    $ta.value = SAMPLES[b.dataset.s] || '';
+    hideCmp();
+    run($ta.value);
+  });
+});
+
+$clr.addEventListener('click', () => {
+  $ta.value = '';
+  hideCmp();
+  run('');
+});
+
+// ── Copy buttons ──────────────────────────────────────────────────
+document.querySelectorAll('.copy-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    const el = document.getElementById(b.dataset.target);
+    if (!el) return;
+    navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+      b.textContent = 'Copied';
+      b.classList.add('copied');
+      setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('copied'); }, 2000);
+    });
+  });
+});
+
+// ── Live analysis ─────────────────────────────────────────────────
+let timer;
+$ta.addEventListener('input', () => {
+  clearTimeout(timer);
+  timer = setTimeout(() => { hideCmp(); run($ta.value); }, 180);
+});
+
+function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function run(text) {
+  const lower   = text.toLowerCase();
+  const words   = text.trim().split(/\s+/).filter(Boolean);
+  const wc      = words.length;
+  const sents   = text.split(/[.!?]+\s+/).filter(s => s.trim().length > 0);
+  const avgSent = sents.length > 0 ? Math.round(wc / sents.length) : 0;
+
+  $wc.textContent = wc + (wc === 1 ? ' word' : ' words');
+  $sW.textContent = wc;
+  $sS.textContent = avgSent || 0;
+
+  if (wc < 12) {
+    setIdle(); $sSp.textContent = 0; $sPh.textContent = 0;
+    paintList($lV, [], ''); paintList($lW, [], ''); paintList($lH, [], '');
+    $cV.textContent = ''; $cW.textContent = ''; $cH.textContent = '';
+    $altRow.classList.remove('visible');
+    lastScore = null;
+    return;
+  }
+
+  const V = [], W = [], H = [];
+
+  // 1. Em dashes
+  const emC = (text.match(/\u2014/g) || []).length;
+  if (emC) V.push({ w: 14 * emC, html: `<strong>${emC} em dash${emC > 1 ? 'es' : ''}.</strong> Replace with period, comma, colon, or parentheses.` });
+
+  // 2. Banned words
+  BANNED.forEach(b => {
+    const re = new RegExp('\\b' + esc(b.w) + '\\b', 'gi');
+    const m = text.match(re);
+    if (m) V.push({ w: 11 * m.length, html: `<strong>"${m[0]}"</strong> is not Dave's language. ${b.f}.` });
+  });
+
+  // 3. Passive voice
+  const passive = (text.match(/\b(was|were|been|is|are)\s+\w+ed\b/gi) || []).length;
+  if (passive >= 2) W.push({ w: 5, html: `<strong>Passive voice (${passive} instances).</strong> Dave names who does what.` });
+
+  // 4. Named specifics
+  let specCount = 0;
+  SPECIFIC_RES.forEach(re => { const m = text.match(re); if (m) specCount += m.length; });
+  $sSp.textContent = specCount;
+  if (wc > 40 && specCount === 0) {
+    W.push({ w: 14, html: `<strong>No named specifics.</strong> Dave names equipment (Woodway, Matrix, cardio, selectorized), dollar amounts ($3-4K per console), time horizons (5 to 7 year lease).` });
+  } else if (specCount > 0) {
+    H.push({ html: `<strong>${specCount} named specific${specCount > 1 ? 's' : ''}.</strong> Real equipment, brands, or numbers present.` });
+  }
+
+  // 5. Operator phrases
+  const found = PHRASES.filter(p => lower.includes(p));
+  const phC   = found.length;
+  const gov   = found.some(p => GOVERNING.includes(p));
+  $sPh.textContent = phC;
+  if (wc > 40 && phC === 0) {
+    W.push({ w: 16, html: `<strong>No operator vocabulary.</strong> Dave's phrases: "moving target," "on the floor," "stay on top of," "status quo," "right mix," "drop and run," "right?"` });
+  } else if (phC > 0) {
+    const shown = found.slice(0, 3).map(p => `"${p}"`).join(', ');
+    H.push({ html: `<strong>${phC} operator phrase${phC > 1 ? 's' : ''}${gov ? ' · governing instinct ★' : ''}:</strong> ${shown}${found.length > 3 ? ` +${found.length - 3}` : ''}.` });
+  }
+
+  // 6. Closing question
+  const qC = (text.match(/\?/g) || []).length;
+  if (wc > 60 && qC === 0) {
+    W.push({ w: 5, html: `<strong>No closing invitation.</strong> Dave often ends on "Right?" to invite agreement.` });
+  } else if (qC > 0) {
+    H.push({ html: `<strong>Closes with a question.</strong> ${qC} question mark${qC > 1 ? 's' : ''}.` });
+  }
+
+  // 7. Cadence
+  if (wc > 40 && avgSent < 8) {
+    W.push({ w: 9, html: `<strong>Too punchy (${avgSent}-word average).</strong> Dave is a flowing explainer. Short impact sentences are not his register.` });
+  } else if (wc > 40 && avgSent > 36) {
+    W.push({ w: 4, html: `<strong>Very dense (${avgSent}-word average).</strong> Dave goes long on systems, but this never breathes. Break a few.` });
+  } else if (wc > 30 && avgSent >= 12 && avgSent <= 28) {
+    H.push({ html: `<strong>Flowing-explainer cadence.</strong> ${avgSent}-word average.` });
+  }
+
+  // 8. Tic-stacking
+  if (phC > 4 && wc < 120) {
+    W.push({ w: 6, html: `<strong>Tic risk.</strong> ${phC} signature phrases in ${wc} words. One or two per 150 is right. More starts to sound like an impression.` });
+  }
+
+  // Score
+  let score = 100;
+  V.forEach(v => { score -= v.w; });
+  W.forEach(w => { score -= w.w; });
+  if (gov) score += 6;
+  if (specCount >= 2) score += 4;
+  score = Math.max(0, Math.min(100, score));
+  lastScore = score;
+
+  // Verdict
+  let word, note, cls;
+  if (score >= 82) {
+    word = 'Sounds like Dave'; note = 'Operator voice. Real specifics. Not performing.'; cls = 'pass';
+  } else if (score >= 58) {
+    word = 'Getting closer'; note = 'Some Dave present. Check the flags below.'; cls = 'mid';
+  } else if (score >= 30) {
+    word = 'LinkedIn voice creeping in'; note = 'Fixable. See the violations and missing signals.'; cls = 'mid';
+  } else {
+    word = 'Not Dave'; note = 'Sounds like someone performing on LinkedIn.'; cls = 'fail';
+  }
+
+  $vc.className = 'verdict-card ' + cls;
+  $vw.textContent = word;
+  $vn.textContent = note;
+  $vb.style.width = score + '%';
+  $vb.style.background = cls === 'pass' ? 'var(--green)' : cls === 'fail' ? 'var(--red)' : 'var(--amber)';
+
+  paintList($lV, V, 'No violations. Good.');
+  paintList($lW, W, 'No missing signals.');
+  paintList($lH, H, 'Nothing from Dave\'s voice yet.');
+  $cV.textContent = V.length || '';
+  $cW.textContent = W.length || '';
+  $cH.textContent = H.length || '';
+
+  if (V.length > 0) document.getElementById('g-v').classList.add('open');
+
+  // Show/hide alt button
+  if (score < 82 && wc >= 20) {
+    $altRow.classList.add('visible');
+    $altNote.textContent = score < 40
+      ? 'This draft has significant violations. Claude will rewrite from scratch in Dave\'s voice.'
+      : 'Close but not quite there. Claude will fix what\'s flagged.';
+  } else {
+    $altRow.classList.remove('visible');
+  }
+}
+
+function paintList(node, items, empty) {
+  if (!items.length) { node.innerHTML = `<div class="ig-empty">${empty}</div>`; return; }
+  node.innerHTML = items.map(i =>
+    `<div class="ig-row"><span class="ig-bullet"></span><span>${i.html}</span></div>`
+  ).join('');
+}
+
+function setIdle() {
+  $vc.className = 'verdict-card idle';
+  $vw.textContent = 'Paste something';
+  $vn.textContent = 'Built from the June 12 transcript. No aspirational composites.';
+  $vb.style.width = '0%';
+  $wc.textContent = '0 words';
+  $sW.textContent = 0; $sS.textContent = 0;
+  $altRow.classList.remove('visible');
+}
+
+// ── Alt button: call Claude API, stream rewrite ───────────────────
+$altBtn.addEventListener('click', async () => {
+  const draft = $ta.value.trim();
+  if (!draft || streaming) return;
+
+  streaming = true;
+  $altBtn.disabled = true;
+  $altBtn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" style="animation:spin 1s linear infinite"><path d="M8 2a6 6 0 1 0 6 6"/></svg> Rewriting...`;
+
+  // Show compare area
+  $origBody.textContent = draft;
+  $rwBody.innerHTML = '<span class="cursor"></span>';
+  $rwBody.classList.add('streaming');
+  $cmpArea.classList.add('visible');
+  $rgWrap.classList.remove('visible');
+
+  // Scroll into view
+  $cmpArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        stream: true,
+        system: SYSTEM,
+        messages: [{ role: 'user', content: `Rewrite this in Dave's voice:\n\n${draft}` }]
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${res.status}`);
+    }
+
+    const reader = res.body.getReader();
+    const dec    = new TextDecoder();
+    let rewrite  = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = dec.decode(value, { stream: true });
+      const lines = chunk.split('\n');
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') break;
+        try {
+          const ev = JSON.parse(data);
+          if (ev.type === 'content_block_delta' && ev.delta?.type === 'text_delta') {
+            rewrite += ev.delta.text;
+            $rwBody.innerHTML = escHTML(rewrite) + '<span class="cursor"></span>';
+          }
+        } catch (_) {}
+      }
+    }
+
+    // Done streaming
+    $rwBody.textContent = rewrite;
+    $rwBody.classList.remove('streaming');
+
+    // Grade the rewrite
+    const rwScore = scoreText(rewrite);
+    let rwLabel;
+    if (rwScore >= 82)      rwLabel = 'Sounds like Dave (' + rwScore + '/100)';
+    else if (rwScore >= 58) rwLabel = 'Getting closer (' + rwScore + '/100)';
+    else                    rwLabel = 'Still needs work (' + rwScore + '/100)';
+    $rgText.textContent = 'Alternative graded: ' + rwLabel;
+    $rgWrap.classList.add('visible');
+
+  } catch (err) {
+    showToast('Rewrite failed', err.message || 'Something went wrong. Try again.');
+    $rwBody.textContent = '';
+    $cmpArea.classList.remove('visible');
+  } finally {
+    streaming = false;
+    $altBtn.disabled = false;
+    $altBtn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 4l5 4-5 4"/></svg> Give me another version`;
+  }
+});
+
+// ── Score helper for rewrite grading ─────────────────────────────
+function scoreText(text) {
+  if (!text || text.trim().split(/\s+/).length < 12) return 0;
+  const lower  = text.toLowerCase();
+  const wc     = text.trim().split(/\s+/).filter(Boolean).length;
+  const sents  = text.split(/[.!?]+\s+/).filter(s => s.trim().length > 0);
+  const avg    = sents.length > 0 ? Math.round(wc / sents.length) : 0;
+  let score    = 100;
+  const emC = (text.match(/\u2014/g) || []).length;
+  score -= emC * 14;
+  BANNED.forEach(b => { const m = text.match(new RegExp('\\b' + esc(b.w) + '\\b', 'gi')); if (m) score -= 11 * m.length; });
+  let spec = 0; SPECIFIC_RES.forEach(re => { const m = text.match(re); if (m) spec += m.length; });
+  if (wc > 40 && spec === 0) score -= 14;
+  const ph = PHRASES.filter(p => lower.includes(p));
+  if (wc > 40 && ph.length === 0) score -= 16;
+  if (GOVERNING.some(p => lower.includes(p))) score += 6;
+  if (spec >= 2) score += 4;
+  if (wc > 40 && avg < 8) score -= 9;
+  return Math.max(0, Math.min(100, score));
+}
+
+// ── Helpers ───────────────────────────────────────────────────────
+function hideCmp() {
+  $cmpArea.classList.remove('visible');
+  $rgWrap.classList.remove('visible');
+  $altBtn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 4l5 4-5 4"/></svg> Give me an alternative version`;
+}
+
+function escHTML(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function showToast(title, body) {
+  document.getElementById('toast-title').textContent = title;
+  document.getElementById('toast-body').textContent  = body;
+  $toast.classList.add('show');
+  setTimeout(() => $toast.classList.remove('show'), 5000);
+}
+
+// CSS for spin animation
+const style = document.createElement('style');
+style.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+document.head.appendChild(style);
+
+// Init
+run('');
+</script>
+</body>
+</html>
