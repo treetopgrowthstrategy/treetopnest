@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONX Merch — 30/60/90 Day Plan | Treetop Growth Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #050D05;
+    --bg2: #0A1A0A;
+    --green: #00C853;
+    --text: #F0FFF0;
+    --muted: #8FAF8F;
+    --dim: #4A6A4A;
+    --border: #1A3A1A;
+    --border2: rgba(0,200,83,0.25);
+  }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(5,13,5,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .nav-back { font-size: 0.78rem; color: var(--dim); text-decoration: none; transition: color .2s; }
+  .nav-back:hover { color: var(--muted); }
+
+  .phase-nav { background: var(--bg2); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 90; overflow-x: auto; }
+  .phase-nav-inner { max-width: 1100px; margin: 0 auto; display: flex; padding: 0 2rem; }
+  .phase-tab { display: flex; align-items: center; gap: 8px; padding: .75rem 1.25rem; font-size: 0.75rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--dim); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; }
+  .phase-tab:hover { color: var(--muted); }
+  .t-m1 { border-color: var(--green); color: var(--green); }
+  .t-m2 { border-color: #EF9F27; color: #EF9F27; }
+  .t-m3 { border-color: #5DCAA5; color: #5DCAA5; }
+  .tab-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .d-green { background: var(--green); }
+  .d-amber { background: #EF9F27; }
+  .d-teal { background: #5DCAA5; }
+
+  .header { padding: 7rem 2rem 4rem; border-bottom: 1px solid var(--border); }
+  .header-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; }
+  .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .header h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+  .header h1 em { font-style: italic; color: var(--green); }
+  .header-sub { font-size: 0.95rem; color: var(--muted); max-width: 620px; line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
+  .header-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .meta-item { font-size: 0.72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+
+  .main { max-width: 1100px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  .phase-block { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+  .phase-block:last-child { border-bottom: none; }
+  .phase-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .phase-label { font-size: 0.65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .5rem; }
+  .lbl-g { color: var(--green); }
+  .lbl-a { color: #EF9F27; }
+  .lbl-t { color: #5DCAA5; }
+  .phase-name { font-family: 'Instrument Serif', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.15; }
+  .phase-desc { font-size: 0.85rem; color: var(--muted); margin-top: .4rem; font-weight: 300; }
+  .phase-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .35rem 1rem; border: 1px solid; white-space: nowrap; flex-shrink: 0; margin-top: 4px; }
+  .badge-g { border-color: var(--border2); color: var(--green); background: rgba(0,200,83,0.06); }
+  .badge-a { border-color: rgba(239,159,39,0.3); color: #EF9F27; background: rgba(239,159,39,0.06); }
+  .badge-t { border-color: rgba(93,202,165,0.3); color: #5DCAA5; background: rgba(93,202,165,0.06); }
+
+  .section-label { font-size: 0.62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 2.25rem 0 .875rem; }
+
+  .flow-steps { display: flex; flex-direction: column; }
+  .flow-step { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .flow-step:last-child { border-bottom: none; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .sn-g { background: rgba(0,200,83,0.12); color: var(--green); }
+  .sn-a { background: rgba(239,159,39,0.12); color: #EF9F27; }
+  .sn-t { background: rgba(93,202,165,0.12); color: #5DCAA5; }
+  .sn-d { background: rgba(74,106,74,0.2); color: var(--dim); font-size: 13px; }
+  .step-title { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .step-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .tag { font-size: 0.68rem; font-weight: 500; padding: 2px 8px; border: 1px solid var(--border); color: var(--dim); }
+
+  /* STAT ROW */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.5rem; }
+  .stat-cell { background: var(--bg2); padding: 1rem 1.25rem; }
+  .stat-val { font-family: 'Instrument Serif', serif; font-size: 1.75rem; font-style: italic; color: var(--green); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 0.68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); line-height: 1.4; }
+
+  /* INSIGHT BOX */
+  .insight { border-left: 3px solid var(--border2); background: var(--bg2); padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.85rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .insight strong { color: var(--text); font-weight: 500; }
+
+  /* WARN */
+  .warn { border: 1px solid rgba(239,159,39,0.3); background: rgba(239,159,39,0.04); padding: 1.25rem 1.5rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 0.62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #EF9F27; margin-bottom: .5rem; }
+  .warn-body { font-size: 0.82rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+  /* ECON */
+  .econ-card { border: 1px solid var(--border2); background: var(--bg2); padding: 1.5rem; margin-bottom: 1rem; }
+  .econ-note { font-size: 0.68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
+  .econ-row { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; gap: 1rem; }
+  .econ-row:last-of-type { border-bottom: none; font-weight: 600; font-size: 0.9rem; padding-top: 12px; margin-top: 4px; border-top: 1px solid rgba(0,200,83,0.2); color: var(--text); }
+  .econ-label { color: var(--muted); font-weight: 300; }
+  .econ-val { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--text); }
+  .econ-footer { font-size: 0.75rem; color: var(--dim); margin-top: .875rem; line-height: 1.6; font-weight: 300; }
+
+  /* TIER TABLE */
+  .tier-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: .75rem; }
+  .tier-table th { font-size: 0.62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-align: left; color: var(--dim); padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg2); }
+  .tier-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; color: var(--muted); font-size: 0.8rem; }
+  .tier-table tr:last-child td { border-bottom: none; }
+  .tier-badge { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px; border: 1px solid; }
+  .tb-g { border-color: var(--border2); color: var(--green); }
+  .tb-a { border-color: rgba(239,159,39,0.3); color: #EF9F27; }
+  .tb-r { border-color: rgba(200,30,30,0.3); color: #C8102E; }
+  .tb-d { border-color: var(--border); color: var(--dim); }
+
+  /* NAMED GYM GRID */
+  .gym-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.25rem; }
+  .gym-card { background: var(--bg2); padding: 1rem 1.25rem; }
+  .gym-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .gym-detail { font-size: 0.75rem; color: var(--dim); line-height: 1.5; }
+
+  /* FILTER GRID */
+  .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.25rem; }
+  .filter-card { background: var(--bg2); padding: 1.25rem; }
+  .filter-num { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: rgba(0,200,83,0.2); line-height: 1; margin-bottom: .5rem; }
+  .filter-title { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .filter-desc { font-size: 0.75rem; color: var(--dim); line-height: 1.55; font-weight: 300; }
+
+  /* ACTIVATION GRID */
+  .activation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.25rem; }
+  .activation-card { background: var(--bg2); padding: 1.25rem; }
+  .act-num { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: rgba(0,200,83,0.2); line-height: 1; margin-bottom: .5rem; }
+  .act-title { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .act-desc { font-size: 0.75rem; color: var(--dim); line-height: 1.6; font-weight: 300; }
+
+  /* DEAL TERM TABLE */
+  .deal-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-bottom: .75rem; }
+  .deal-table th { font-size: 0.62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-align: left; color: var(--dim); padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg2); }
+  .deal-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.65; color: var(--muted); font-weight: 300; }
+  .deal-table tr:last-child td { border-bottom: none; }
+  .deal-table td:first-child { font-weight: 600; color: var(--text); font-size: 0.82rem; white-space: nowrap; }
+  .deal-note { font-size: 0.72rem; color: var(--dim); margin-top: 3px; font-style: italic; }
+
+  /* BENCH GRID */
+  .bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .bench-card { background: var(--bg2); border: 1px solid var(--border); padding: 1rem; }
+  .bench-brand { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .bench-row { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--dim); padding: 3px 0; border-bottom: 1px solid rgba(26,58,26,0.5); }
+  .bench-row:last-child { border-bottom: none; }
+  .bench-val { color: var(--muted); font-weight: 500; }
+
+  /* VENDOR TABLE */
+  .vendor-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  .vendor-table th { font-size: 0.62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-align: left; color: var(--dim); padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg2); }
+  .vendor-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.65; color: var(--muted); font-weight: 300; }
+  .vendor-table tr:last-child td { border-bottom: none; }
+  .vendor-table td:first-child { font-weight: 600; color: var(--text); font-size: 0.82rem; }
+  .red-flag { font-size: 0.68rem; color: #C8102E; border: 1px solid rgba(200,30,30,0.3); padding: 2px 7px; display: inline-block; margin-top: 3px; }
+
+  /* DELIVERABLES */
+  .deliverable-list { list-style: none; padding: 0; }
+  .deliverable-list li { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; line-height: 1.5; color: var(--muted); font-weight: 300; align-items: flex-start; }
+  .deliverable-list li:last-child { border-bottom: none; }
+  .check { color: var(--green); font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+  .site-footer { border-top: 1px solid var(--border); background: var(--bg2); padding: 2.5rem; text-align: center; }
+  .footer-logo { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.1rem; color: var(--text); text-decoration: none; display: inline-block; margin-bottom: .5rem; }
+  .footer-sub { font-size: 0.72rem; color: var(--dim); }
+  .footer-sub a { color: var(--dim); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .header { padding: 5rem 1.25rem 3rem; }
+    .main { padding: 0 1.25rem 4rem; }
+    .phase-nav-inner { padding: 0 1rem; }
+    .phase-header-row { flex-direction: column; }
+    .bench-grid { grid-template-columns: 1fr 1fr; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://treetopgrowthstrategy.com" class="nav-logo">Treetop</a>
+    <a href="https://treetopgrowthstrategy.com" class="nav-back">← treetopgrowthstrategy.com</a>
+  </div>
+</nav>
+
+<nav class="phase-nav">
+  <div class="phase-nav-inner">
+    <a href="#month1" class="phase-tab t-m1"><span class="tab-dot d-green"></span>Month 1 — Intelligence</a>
+    <a href="#month2" class="phase-tab t-m2"><span class="tab-dot d-amber"></span>Month 2 — Execution</a>
+    <a href="#month3" class="phase-tab t-m3"><span class="tab-dot d-teal"></span>Month 3 — Scale</a>
+  </div>
+</nav>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>ONX Merch · Confidential</div>
+    <h1>30 / 60 / 90 Day<br><em>Execution Plan</em></h1>
+    <p class="header-sub">A structured path from $20K ARR to a $2M merch channel — through gym partnerships, Amazon operator selection, and a DTC foundation built for LTV. The gym layer is uncontested. Hayabusa does editorial. Venum does federations. Everlast does big-box. Nobody is running gyms.</p>
+    <div class="header-meta">
+      <span class="meta-item">Bill Colbert</span>
+      <span class="meta-item">June 2026</span>
+      <span class="meta-item">DTC · Gyms · Amazon</span>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+<!-- ═══════ MONTH 1 ═══════ -->
+<section class="phase-block" id="month1">
+  <div class="phase-header-row">
+    <div>
+      <div class="phase-label lbl-g">Month 1 · Days 1–30</div>
+      <h2 class="phase-name">Benchmark + model architecture</h2>
+      <p class="phase-desc">No revenue pressure. Build the operational foundation and intelligence base to execute from.</p>
+    </div>
+    <span class="phase-badge badge-g">Intelligence</span>
+  </div>
+
+  <!-- SKU Foundation -->
+  <div class="section-label">SKU + data foundation</div>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-num sn-g">1</div>
+      <div>
+        <div class="step-title">Build single source of truth</div>
+        <div class="step-detail">Pull SKU list (Tanner), PDP status (Megan), production timelines (David) into one master document. Columns: SKU · product name · status (ready / sampling / TBD) · channel allocation (DTC / gym / partner) · COGS · price point · MOQ · 3-day production flag. Nothing ships without it being current.</div>
+        <div class="tag-row"><span class="tag">Tanner → SKUs</span><span class="tag">Megan → PDP</span><span class="tag">David → production</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-g">2</div>
+      <div>
+        <div class="step-title">Define Phase 1 product set</div>
+        <div class="step-detail">From ~80 SKUs, identify the subset that is production-ready or near-ready. Anchor the gym pilot on 3–5 SKUs with clear practitioner utility — gloves, rash guard, compression shorts, hand wraps — matching the $339–$399 premium price band. Headgear and shin guards are the progression upsell, not the entry point.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Competitive Whitespace -->
+  <div class="section-label">Competitive whitespace — why the gym layer is open</div>
+  <div class="stat-row">
+    <div class="stat-cell">
+      <div class="stat-val">Hayabusa</div>
+      <div class="stat-label">Editorial recommendations only. No partnership program.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">Venum</div>
+      <div class="stat-label">Sponsors federations (IBJJF, CFJJB). Not running gyms.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">Everlast</div>
+      <div class="stat-label">Big-box retail (Dick's, Walmart). Bypasses the gym layer.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">ONX</div>
+      <div class="stat-label">First mover. The gym layer — 5,000 US combat sports gyms — is uncontested.</div>
+    </div>
+  </div>
+  <div class="insight">The gym layer is where practitioners spend 3–5 hours a week and where gear gets used and replaced. <strong>The first brand to build a 50–100 gym partnership network owns a structural advantage that compounds.</strong> Federations bring sanctioning authority. Gyms bring weekly touchpoints. These are not the same thing.</div>
+
+  <!-- Gym Fit Filters -->
+  <div class="section-label">Four fit filters — qualify before any outreach</div>
+  <div class="filter-grid">
+    <div class="filter-card">
+      <div class="filter-num">01</div>
+      <div class="filter-title">Discipline mix</div>
+      <div class="filter-desc">Striking-heavy or MMA-blended. BJJ-only schools are deprioritized. The gear catalog is gloves, headgear, shin guards, hand wraps. Pure grappling schools do not consume that gear at scale.</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-num">02</div>
+      <div class="filter-title">Operating model</div>
+      <div class="filter-desc">Membership-based with progression curriculum. Drop-in studios and class-pass models are deprioritized. Recurring members generate the replacement cycle that funds the channel.</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-num">03</div>
+      <div class="filter-title">Brand authority</div>
+      <div class="filter-desc">Affiliated with a recognized lineage, fighter, or method — ATT, Tiger Schulmann, Gracie Barra, 10th Planet. Brand-name gyms make brand-name gear partnerships work.</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-num">04</div>
+      <div class="filter-title">Member density + ticket</div>
+      <div class="filter-desc">300+ active members. Average monthly dues $150+. This is the threshold where the activation math clears $25K/yr per gym. Below this, the unit economics break.</div>
+    </div>
+  </div>
+
+  <!-- Gym Universe -->
+  <div class="section-label">Gym universe — four tiers, named candidates</div>
+  <div style="overflow-x:auto;">
+    <table class="tier-table">
+      <thead>
+        <tr><th>Tier</th><th>Definition</th><th>Named targets</th><th>Deal structure</th><th>Y1 target</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tier-badge tb-d">T0 · Wittman</span></td>
+          <td>Internal alignment first. Cost-only or free gear. Testimonial and content production. The proof the playbook works before we scale it.</td>
+          <td>Elevation Fight Team (Denver), Bang Muay Thai / Duane Ludwig network</td>
+          <td>Free or cost gear. Content + testimonial in return. No commercial terms yet.</td>
+          <td>2 gyms</td>
+          <td style="color:var(--green);font-weight:600;">Activate D1</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tb-g">T1 · Networks</span></td>
+          <td>Multi-unit affiliate networks. Master agreement with HQ, individual gym opt-in. 40–50% wholesale margin. 5% override to network HQ on affiliate purchases.</td>
+          <td>American Top Team (6x MMA Gym of Year, HQ Coconut Creek FL), Tiger Schulmann's (200K+ students, NY/NJ/PA/CT), Gracie Barra striking schools (1,000+ globally), 10th Planet (Eddie Bravo, no-gi MMA network)</td>
+          <td>Master agreement + affiliate opt-in. 40–50% wholesale. 5% HQ override.</td>
+          <td>25–40 locations · $300K–$500K</td>
+          <td style="color:var(--green);font-weight:600;">Primary target</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tb-a">T2 · Flagships</span></td>
+          <td>Elite single-location gyms with major fighter lineage. Bespoke per-gym deal. High brand halo, lower volume. Territorial exclusivity negotiable.</td>
+          <td>AKA San Jose (Khabib, Cormier), Jackson Wink (Jon Jones, Holly Holm), Team Alpha Male (Faber, Dillashaw), Kings MMA (Rafael Cordeiro), Syndicate MMA (Las Vegas), Roufusport (Pettis), Sityodtong USA (DellaGrotte Muay Thai)</td>
+          <td>Bespoke. 50–60% wholesale. Co-branded gear, sponsored fighter program, territorial exclusivity.</td>
+          <td>4–6 deals · brand halo</td>
+          <td style="color:#EF9F27;font-weight:600;">Month 2</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tb-r">T3 · Avoid</span></td>
+          <td>Mass-market chains. Wrong customer. Optimize for membership volume not gear sell-through. Audience is fitness, not combat sports practitioner.</td>
+          <td>UFC Gym (Endeavor-owned, already locked to UFC merch), Title Boxing Club (fitness positioning), iLoveKickboxing</td>
+          <td>N/A</td>
+          <td>—</td>
+          <td style="color:#C8102E;font-weight:600;">Avoid</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Unit Economics -->
+  <div class="section-label">Unit economics — the math per gym</div>
+  <div class="stat-row" style="margin-bottom:1rem;">
+    <div class="stat-cell"><div class="stat-val">~5,000</div><div class="stat-label">Combat sports gyms in the US</div></div>
+    <div class="stat-cell"><div class="stat-val">50–100</div><div class="stat-label">Active partners targeted in year 1</div></div>
+    <div class="stat-cell"><div class="stat-val">$219</div><div class="stat-label">Average order value (modeled)</div></div>
+    <div class="stat-cell"><div class="stat-val">34–68</div><div class="stat-label">Orders per gym per year needed</div></div>
+    <div class="stat-cell"><div class="stat-val">$25K–$40K</div><div class="stat-label">Annual pull-through at a 500-member gym</div></div>
+  </div>
+  <div class="econ-card">
+    <div class="econ-note">Illustrative model — Tier 1 network · 10 active locations · 1,000 new members / month</div>
+    <div class="econ-row"><span class="econ-label">New members / month (10 locations)</span><span class="econ-val">1,000</span></div>
+    <div class="econ-row"><span class="econ-label">Gear package attachment rate (target 40–60%)</span><span class="econ-val">500 units</span></div>
+    <div class="econ-row"><span class="econ-label">Average package revenue (gloves + rash guard, ~10% discount)</span><span class="econ-val">$475</span></div>
+    <div class="econ-row"><span class="econ-label">Gross revenue / month</span><span class="econ-val">$237,500</span></div>
+    <div class="econ-row"><span class="econ-label">COGS (~40% of revenue)</span><span class="econ-val">−$95,000</span></div>
+    <div class="econ-row"><span class="econ-label">Gym cost: placement fee + rev share (~15%)</span><span class="econ-val">−$35,625</span></div>
+    <div class="econ-row"><span class="econ-label">Estimated net contribution / month (1 Tier 1 network partner)</span><span class="econ-val">~$106,875</span></div>
+    <div class="econ-footer">Three Tier 1 network partners at full attachment rate reaches the $750K gym channel target. Even at 25% attachment, one partner contributes ~$53K/month. Attachment rate is the single most important variable to validate in the month 2 pilot.</div>
+  </div>
+
+  <!-- Five Activation Mechanics -->
+  <div class="section-label">Five revenue motions inside a partner gym</div>
+  <div class="insight">Signing the gym is not enough. Gyms forget to sell. The activation playbook converts the partnership into recurring revenue through five member-moments each year. <strong>Hayabusa and Venum can sell gloves to a gym. They cannot send a UFC coach to run a seminar at the gym. The hardest-to-replicate offering in the competitive set is the ONX founder relationship.</strong></div>
+  <div class="activation-grid">
+    <div class="activation-card">
+      <div class="act-num">01</div>
+      <div class="act-title">Welcome kit · Onboarding moment</div>
+      <div class="act-desc">Every new member receives an ONX welcome kit (hand wraps, basic gear) in their first month. Gym buys at wholesale, builds into membership pricing or sells as add-on. Predictable unit per new member acquired.</div>
+    </div>
+    <div class="activation-card">
+      <div class="act-num">02</div>
+      <div class="act-title">Sparring bundle · Progression trigger</div>
+      <div class="act-desc">When a member moves from cardio to sparring class, headgear and shin guards become mandatory. Gym presents the "Sparring-Ready Bundle" at ~$400. A real merchandising moment tied to a natural milestone.</div>
+    </div>
+    <div class="activation-card">
+      <div class="act-num">03</div>
+      <div class="act-title">Quarterly refresh · Replacement cycle</div>
+      <div class="act-desc">Gloves wear in 6–12 months. Structured refresh promotion: trade in old gloves for $50 off new ones. Repeatable. Predictable. Gives the gym a sales conversation hook every quarter.</div>
+    </div>
+    <div class="activation-card">
+      <div class="act-num">04</div>
+      <div class="act-title">Sponsored fighter · Fight-night moment</div>
+      <div class="act-desc">The gym's amateurs and pros wear ONX at every local card. Photographed, broadcast, posted on gym social. Built-in replacement cycle from fight wear and a content asset at every event.</div>
+    </div>
+    <div class="activation-card">
+      <div class="act-num">05</div>
+      <div class="act-title">Wittman seminar · Annual event</div>
+      <div class="act-desc">Once per year per top partner. Half-day UFC-connected coach seminar at the gym. Members pay $150 to attend. Gear sells at the event. Gym keeps event revenue. ONX owns the brand moment.</div>
+    </div>
+  </div>
+
+  <!-- Partnership Mechanics Flow -->
+  <div class="section-label">Partnership mechanics — end-to-end channel flow</div>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-num sn-g">1</div>
+      <div>
+        <div class="step-title">Initial outreach + qualification</div>
+        <div class="step-detail">Cold email to gym GM or owner referencing their specific fighter affiliation or location footprint. Run through all four fit filters before the call. Qualify: discipline mix, operating model, member count, monthly dues, current gear partner. First meeting goal is a term sheet conversation, not a handshake.</div>
+        <div class="tag-row"><span class="tag">four fit filters</span><span class="tag">discovery call</span><span class="tag">qualification scorecard</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-g">2</div>
+      <div>
+        <div class="step-title">Inject ONX into the membership sales flow</div>
+        <div class="step-detail">Work with the gym's membership sales team to add a gear recommendation into the post-signup step — at POS, in the welcome packet, or via a dedicated gear consultation. Provide a printed or digital new member gear guide featuring the Phase 1 bundle with a gym-specific discount code. The discount code is the attribution mechanism across the entire partnership.</div>
+        <div class="tag-row"><span class="tag">unique discount code per gym</span><span class="tag">new member gear guide</span><span class="tag">gym staff sales script</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-g">3</div>
+      <div>
+        <div class="step-title">Dual-track in-gym commerce</div>
+        <div class="step-detail">Two parallel tracks operate inside every partner gym. The wholesale/on-site track covers a small curated display of 2–3 hero SKUs (gloves, hand wraps) for impulse purchase — gym buys at wholesale and sells at their own markup. The DTC/QR track routes the full catalog through a gym-specific QR code to a co-branded ONX landing page with the discount code pre-applied. Full catalog, email capture, LTV path — all on ONX's owned channel.</div>
+        <div class="tag-row"><span class="tag">on-site display — wholesale</span><span class="tag">QR → Shopify PDP</span><span class="tag">dual attribution</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-g">4</div>
+      <div>
+        <div class="step-title">Email capture + practitioner LTV path</div>
+        <div class="step-detail">Every QR-path purchase captures name, email, and gym source in Shopify. The gym-sourced customer is a verified practitioner — the highest-quality email list ONX can build, free as a byproduct of the gym channel. Post-purchase they enter a practitioner-specific flow: training content, product education, and a 30-day upgrade offer (headgear or shin guards at 10% off).</div>
+        <div class="tag-row"><span class="tag">Shopify customer tag</span><span class="tag">gym source attribution</span><span class="tag">practitioner email sequence</span><span class="tag">Klaviyo</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-g">5</div>
+      <div>
+        <div class="step-title">In-club signage + brand presence</div>
+        <div class="step-detail">ONX provides the creative assets and covers production cost. Gym approves placement. Approved locations defined in the agreement: bag station, cage/ring entrance, check-in desk. Standardized formats — no custom creative per gym. QR codes embedded in signage bridge the awareness moment directly to the DTC checkout path.</div>
+        <div class="tag-row"><span class="tag">ONX provides creative</span><span class="tag">standardized placements</span><span class="tag">QR embedded in signage</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deal Term Framework -->
+  <div class="section-label">Deal term framework — questions to resolve in month 1</div>
+  <div style="overflow-x:auto;">
+    <table class="deal-table">
+      <thead>
+        <tr><th>Term</th><th>Structure</th><th>Rationale</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Annual placement fee</td>
+          <td>ONX pays the gym a monthly flat fee ($200–$500/location depending on tier), OR negotiates a rev share override in lieu of a flat fee. Fee covers signage real estate and access to the new member sales floor.</td>
+          <td>The gym is providing shelf space and a captive audience. They need a reason to prioritize ONX over the next brand that walks in. A flat fee creates an obligation; rev share aligns incentives.</td>
+        </tr>
+        <tr>
+          <td>Staff product allocation</td>
+          <td>Onboarding: 2–4 hero SKUs (gloves + one apparel piece) at cost or free for head coach/GM. Annual credit of $300–$500/location for ongoing staff gear. Treated as a marketing cost, not COGS.</td>
+          <td>The coach wearing and using the product visibly is the highest-leverage endorsement in the building. Every class is a product demo.</td>
+        </tr>
+        <tr>
+          <td>On-site inventory</td>
+          <td>Small curated display: 2–3 hero SKUs (gloves, hand wraps) at wholesale. Gym owns the inventory and the markup on in-person sales. Full catalog available via QR to DTC. Hybrid model, not binary.</td>
+          <td>Impulse buys happen at the gym. LTV and catalog depth happen on the DTC channel. Both matter. Avoid forcing the gym to hold deep inventory — keep the wholesale risk low to lower the barrier to entry.</td>
+        </tr>
+        <tr>
+          <td>Wholesale + markup model</td>
+          <td>T1 networks: 40–50% wholesale margin. T2 flagships: 50–60% wholesale margin. MAP enforcement required in the agreement — gym cannot discount below MSRP without approval.</td>
+          <td>MAP protection is non-negotiable. One gym discounting heavily against MSRP undercuts the brand value for every other partner and for the DTC channel simultaneously.</td>
+        </tr>
+        <tr>
+          <td>New member pass-through</td>
+          <td>Yes — this is the Welcome Kit mechanic. Gym buys the kit at wholesale and either builds it into membership pricing or sells it as an add-on at their own markup. ONX still captures the member email via QR even when the transaction happens at gym POS.</td>
+          <td>Clean and margin-positive for the gym. Drives the attachment rate metric that funds the model. The QR path preserves the ONX customer relationship even when the gym owns the transaction.</td>
+        </tr>
+        <tr>
+          <td>Financing for large orders</td>
+          <td>Net-30 terms for T1 network initial buys across 10+ locations. Consignment on first buy for T2 flagship to reduce capital risk before sell-through is proven. No formal credit facility at this stage.</td>
+          <td>Consignment removes the hesitation for elite flagships who are used to being courted, not invoiced. Net-30 is industry-standard for wholesale. Full upfront payment is a deal-killer at this stage.</td>
+        </tr>
+        <tr>
+          <td>In-club signage</td>
+          <td>ONX provides creative assets and covers print production cost. Gym provides approved placement locations per the agreement. Standardized formats (banner sizes, vinyl specs) — no custom creative per gym. QR codes embedded in all signage.</td>
+          <td>Standardization keeps production costs predictable and prevents the signage program from becoming a custom design job for every partner. QR-embedded signage converts brand awareness into trackable DTC revenue.</td>
+        </tr>
+        <tr>
+          <td>QR code for ecommerce</td>
+          <td>Each gym gets a unique QR that routes to a co-branded ONX landing page with their discount code pre-applied. Tracks attribution. Captures email at checkout. Feeds the practitioner email sequence. Can be embedded in signage, printed on the gear guide, and displayed at the front desk.</td>
+          <td>The QR is the bridge between in-gym awareness and owned-channel revenue. It lets ONX maintain the DTC data relationship even when the gym is the physical touchpoint — and it makes every piece of signage a measurable revenue driver.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Amazon Benchmarking -->
+  <div class="section-label">Amazon channel — benchmarking + vendor selection framework</div>
+  <p style="font-size:0.82rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;font-weight:300;">Amazon represents the majority of the $1.2M external partner channel target. The goal in month 1 is not to launch — it's to map the competitive landscape, define what a qualified operator looks like, and build the evaluation scorecard used to select one in month 2. Walking into vendor pitches without this context means getting sold to instead of doing the selecting.</p>
+
+  <div class="section-label" style="margin-top:0;">Amazon competitive benchmark</div>
+  <div class="bench-grid">
+    <div class="bench-card">
+      <div class="bench-brand">Hayabusa</div>
+      <div class="bench-row"><span>Presence</span><span class="bench-val">Brand Store + Sponsored</span></div>
+      <div class="bench-row"><span>Reviews (gloves)</span><span class="bench-val">3,000–8,000+</span></div>
+      <div class="bench-row"><span>Category BSR</span><span class="bench-val">Top 10</span></div>
+      <div class="bench-row"><span>A+ content</span><span class="bench-val">Yes</span></div>
+      <div class="bench-row"><span>Fulfillment</span><span class="bench-val">FBA</span></div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-brand">Venum</div>
+      <div class="bench-row"><span>Presence</span><span class="bench-val">Brand Store + Sponsored</span></div>
+      <div class="bench-row"><span>Reviews (gloves)</span><span class="bench-val">5,000–15,000+</span></div>
+      <div class="bench-row"><span>Category BSR</span><span class="bench-val">Top 5</span></div>
+      <div class="bench-row"><span>A+ content</span><span class="bench-val">Yes — premium</span></div>
+      <div class="bench-row"><span>Fulfillment</span><span class="bench-val">FBA</span></div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-brand">Fairtex</div>
+      <div class="bench-row"><span>Presence</span><span class="bench-val">Listing only</span></div>
+      <div class="bench-row"><span>Reviews (gloves)</span><span class="bench-val">500–2,000</span></div>
+      <div class="bench-row"><span>Category BSR</span><span class="bench-val">Top 25</span></div>
+      <div class="bench-row"><span>A+ content</span><span class="bench-val">No</span></div>
+      <div class="bench-row"><span>Fulfillment</span><span class="bench-val">FBM / mixed</span></div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-brand">Sanabul</div>
+      <div class="bench-row"><span>Presence</span><span class="bench-val">Amazon-native brand</span></div>
+      <div class="bench-row"><span>Reviews (gloves)</span><span class="bench-val">20,000+</span></div>
+      <div class="bench-row"><span>Category BSR</span><span class="bench-val">Top 3</span></div>
+      <div class="bench-row"><span>A+ content</span><span class="bench-val">Yes — optimized</span></div>
+      <div class="bench-row"><span>Fulfillment</span><span class="bench-val">FBA</span></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">Key insight from benchmark</div>
+    <div class="warn-body">Sanabul is the cautionary tale — Amazon-native, 20,000+ reviews, built entirely on volume at $30–$60 gloves. ONX cannot out-review them at launch. The play is to own the premium practitioner segment ($150–$350) where Hayabusa and Venum dominate but the review gap is smaller and the buyer is less price-sensitive. A generalist agency will race to the bottom on price to drive volume. That destroys the brand before it has a chance to build.</div>
+  </div>
+
+  <div class="section-label" style="margin-top:0;">Benchmarks to complete before vendor interviews</div>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-num sn-d">→</div>
+      <div>
+        <div class="step-title">Category BSR landscape</div>
+        <div class="step-detail">Map the top 20 ASINs by BSR in boxing gloves, MMA gloves, rash guards, and compression shorts. Note FBA vs. FBM, Brand Store presence, A+ content status, and review count at positions 1, 5, 10, and 20. This is the map that tells you where the battle is being fought and where the gaps are.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-d">→</div>
+      <div>
+        <div class="step-title">Keyword + search volume audit</div>
+        <div class="step-detail">Helium 10 or Jungle Scout across core terms: "MMA gloves," "boxing gloves," "rash guard MMA," "Muay Thai shorts." Identify where competitors are winning organically vs. through Sponsored Products. This defines the paid vs. organic mix the operator needs to manage and what realistic ramp timelines look like.</div>
+        <div class="tag-row"><span class="tag">Helium 10</span><span class="tag">Jungle Scout</span><span class="tag">organic vs. paid split</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-d">→</div>
+      <div>
+        <div class="step-title">Review velocity analysis</div>
+        <div class="step-detail">For the top 3 competitors per category, estimate how many reviews they're generating monthly. A new ASIN with 10 reviews against a competitor at 8,000 is invisible. The operator needs a clear review acquisition strategy and the patience to build. Set the expectation with Desmond before selecting a vendor.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-d">→</div>
+      <div>
+        <div class="step-title">Pricing + margin floor analysis</div>
+        <div class="step-detail">Map competitor pricing against ONX's current MSRP. Factor in: Amazon referral fee (~15%), FBA fulfillment cost, storage fees, and the operator revenue share (3–30%). If the contribution margin math doesn't work at ONX's price floor, that needs to surface before selecting a vendor — not after.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:1.5rem;">Amazon vendor selection scorecard</div>
+  <div style="overflow-x:auto;">
+    <table class="vendor-table">
+      <thead>
+        <tr><th>Criterion</th><th>What good looks like</th><th>Weight</th><th>Red flag</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Category fit</td>
+          <td>Active management of premium sporting goods, combat sports, or performance apparel. Ask for 2–3 reference brands in the $100–$400 price range.</td>
+          <td><span class="tier-badge tb-g">High</span></td>
+          <td><span class="red-flag">Budget / commodity SKU experience only</span></td>
+        </tr>
+        <tr>
+          <td>Review acquisition</td>
+          <td>Clear TOS-compliant approach. Should reference Vine, Request a Review automation, and post-purchase email within Amazon's allowed framework.</td>
+          <td><span class="tier-badge tb-g">High</span></td>
+          <td><span class="red-flag">Vague or mentions incentivized reviews</span></td>
+        </tr>
+        <tr>
+          <td>A+ content + Brand Store</td>
+          <td>In-house creative or vetted partner. Should have live examples from current clients in a comparable price tier.</td>
+          <td><span class="tier-badge tb-g">High</span></td>
+          <td><span class="red-flag">No examples, lowest-cost outsource</span></td>
+        </tr>
+        <tr>
+          <td>Brand protection</td>
+          <td>Explicit approach to unauthorized resellers, counterfeit monitoring, MAP enforcement. One unauthorized seller discounting heavily tanks the brand store before it has traction.</td>
+          <td><span class="tier-badge tb-g">High</span></td>
+          <td><span class="red-flag">No policy, no monitoring</span></td>
+        </tr>
+        <tr>
+          <td>Paid advertising depth</td>
+          <td>Manages Sponsored Products, Sponsored Brands, and Sponsored Display. Should provide TACOS benchmarks by category from existing clients.</td>
+          <td><span class="tier-badge tb-a">Medium</span></td>
+          <td><span class="red-flag">SP only, no brand awareness layer</span></td>
+        </tr>
+        <tr>
+          <td>Fulfillment model</td>
+          <td>FBA preferred for launch — Prime badge is essential for conversion. Experience managing FBA inventory to avoid stockout or long-term storage fees.</td>
+          <td><span class="tier-badge tb-a">Medium</span></td>
+          <td><span class="red-flag">Recommends FBM for launch</span></td>
+        </tr>
+        <tr>
+          <td>Revenue share structure</td>
+          <td>Ad spend must be separated from agency fee. A bundled % gives the agency no incentive to optimize spend efficiency.</td>
+          <td><span class="tier-badge tb-a">Medium</span></td>
+          <td><span class="red-flag">Bundled % with no ad transparency</span></td>
+        </tr>
+        <tr>
+          <td>Reporting cadence</td>
+          <td>Weekly revenue and ASIN-level performance. BSR tracking. Review count delta. TACOS by campaign. Plugs into ONX channel dashboard — not a separate silo.</td>
+          <td><span class="tier-badge tb-a">Medium</span></td>
+          <td><span class="red-flag">Monthly reports only, no dashboard access</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Month 1 Deliverables -->
+  <div class="section-label">Month 1 deliverables</div>
+  <ul class="deliverable-list">
+    <li><span class="check">✓</span>Single source of truth: SKU × status × channel × COGS × MOQ — all teams aligned</li>
+    <li><span class="check">✓</span>Phase 1 product set defined — 3–5 SKUs, gym-pilot-ready and production-confirmed</li>
+    <li><span class="check">✓</span>T0 gyms (Elevation, Bang Muay Thai) onboarded — free/cost gear, content in production</li>
+    <li><span class="check">✓</span>Tier 1 network prospect list — ATT, Tiger Schulmann, Gracie Barra, 10th Planet scored and ranked</li>
+    <li><span class="check">✓</span>Tier 2 flagship longlist — AKA, Jackson Wink, Team Alpha Male, Kings MMA, Syndicate, Roufusport, Sityodtong</li>
+    <li><span class="check">✓</span>Unit economics model validated with real COGS data from David</li>
+    <li><span class="check">✓</span>Deal term framework finalized — placement fee structure, wholesale margins, MAP policy, consignment terms, QR attribution model</li>
+    <li><span class="check">✓</span>In-gym signage creative brief + standardized format specs ready for production</li>
+    <li><span class="check">✓</span>Gym-specific QR code system built in Shopify — unique code per partner, co-branded landing page, email capture live</li>
+    <li><span class="check">✓</span>Outreach email sequence drafted and ready for Tier 1 network targets</li>
+    <li><span class="check">✓</span>Amazon category benchmark — top 20 ASINs per category, BSR, review count, A+ status, fulfillment model</li>
+    <li><span class="check">✓</span>Keyword + search volume audit across core product categories (Helium 10 / Jungle Scout)</li>
+    <li><span class="check">✓</span>Pricing + margin floor analysis — ONX MSRP vs. competitor pricing vs. Amazon fee stack</li>
+    <li><span class="check">✓</span>Amazon vendor shortlist — 3–5 agencies scored against scorecard, interviews scheduled for month 2</li>
+    <li><span class="check">✓</span>DTC competitor benchmarks — Hayabusa, Venum, Fairtex: PDP structure, conversion signals, upsell paths</li>
+  </ul>
+</section>
+
+<!-- ═══════ MONTH 2 ═══════ -->
+<section class="phase-block" id="month2">
+  <div class="phase-header-row">
+    <div>
+      <div class="phase-label lbl-a">Month 2 · Days 31–60</div>
+      <h2 class="phase-name">Pilot execution + partner activation</h2>
+      <p class="phase-desc">First real revenue. Validate the model before committing to scale.</p>
+    </div>
+    <span class="phase-badge badge-a">Execution</span>
+  </div>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-num sn-a">1</div>
+      <div>
+        <div class="step-title">Launch gym pilot — Elevation + Bang Muay Thai (T0)</div>
+        <div class="step-detail">T0 gyms are live on day 1 — this is the read. By day 31, you have the first attachment rate data, the first email captures, and the first content assets from the T0 case study. That case study is the social proof that opens the Tier 1 network conversation. Publish it before the first ATT or Tiger Schulmann meeting.</div>
+        <div class="tag-row"><span class="tag">attachment rate data</span><span class="tag">email captures</span><span class="tag">T0 case study published</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-a">2</div>
+      <div>
+        <div class="step-title">Sign first Tier 1 network agreement — pilot in 3–5 locations</div>
+        <div class="step-detail">Target: ATT or Tiger Schulmann master agreement signed by day 45. Pilot launches in 3–5 affiliate locations from that network. Run all five activation mechanics from day one — don't soft-launch with just the discount code. The mechanic that doesn't get deployed in the pilot is the mechanic that never gets deployed.</div>
+        <div class="tag-row"><span class="tag">master agreement signed</span><span class="tag">3–5 pilot locations live</span><span class="tag">all 5 mechanics deployed</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-a">3</div>
+      <div>
+        <div class="step-title">Initiate first Tier 2 flagship conversation</div>
+        <div class="step-detail">AKA San Jose or Jackson Wink as the opening target. Use the T0 case study and T1 pilot data in the pitch. Tier 2 gyms are brand-halo plays — the deal terms are more generous (50–60% wholesale, potential territorial exclusivity, co-branded gear) because the brand association is worth more than the unit volume.</div>
+        <div class="tag-row"><span class="tag">AKA or Jackson Wink</span><span class="tag">co-branded gear discussed</span><span class="tag">territorial exclusivity on table</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-a">4</div>
+      <div>
+        <div class="step-title">Interview Amazon vendor shortlist — select operator</div>
+        <div class="step-detail">Run structured interviews with 3–5 shortlisted vendors using the month 1 scorecard. Ask for specific case studies in premium sporting goods. Press on review acquisition strategy, brand protection, and TACOS benchmarks from comparable categories. Select 1 operator and finalize economics by end of month 2.</div>
+        <div class="tag-row"><span class="tag">scorecard interviews</span><span class="tag">premium sporting goods case studies</span><span class="tag">operator selected</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-a">5</div>
+      <div>
+        <div class="step-title">DTC conversion baseline + first A/B test</div>
+        <div class="step-detail">Pull Shopify analytics: conversion rate by channel, PDP drop-off, AOV. Work with Megan to identify the top 2 friction points. Run first A/B test — headline, bundle offer, or hero image. Set 30/60/90-day conversion rate targets. Goal is not a site overhaul — it's a clean baseline and one test.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-a">6</div>
+      <div>
+        <div class="step-title">Build revenue tracking dashboard</div>
+        <div class="step-detail">Weekly view: revenue by channel (DTC / gym QR codes / wholesale / partner), units sold, AOV, conversion rate, email captures by gym source, attachment rate per gym. Every action maps to a revenue line. Shared with Desmond weekly — no surprises, no silo.</div>
+        <div class="tag-row"><span class="tag">channel revenue by source</span><span class="tag">attachment rate per gym</span><span class="tag">weekly Desmond report</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MONTH 3 ═══════ -->
+<section class="phase-block" id="month3">
+  <div class="phase-header-row">
+    <div>
+      <div class="phase-label lbl-t">Month 3 · Days 61–90</div>
+      <h2 class="phase-name">Scale what's working</h2>
+      <p class="phase-desc">Expand the gym network. Activate Amazon. Optimize DTC with real data.</p>
+    </div>
+    <span class="phase-badge badge-t">Scale</span>
+  </div>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-num sn-t">1</div>
+      <div>
+        <div class="step-title">Review 90-day pilot numbers — expand or adjust</div>
+        <div class="step-detail">First 90-day partner revenue numbers reviewed against the $25K/yr per gym benchmark. If the math holds, green-light Tier 1 expansion to the next 10–15 affiliate locations. If attachment rate is below target, diagnose before scaling — the mechanic that isn't working in 3 gyms won't work in 30.</div>
+        <div class="tag-row"><span class="tag">$25K/yr per gym benchmark</span><span class="tag">attachment rate review</span><span class="tag">scale or adjust decision</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-t">2</div>
+      <div>
+        <div class="step-title">Expand gym network — next 10–15 Tier 1 affiliate locations</div>
+        <div class="step-detail">Use pilot data to sharpen the pitch and term sheet. Activate the next wave of affiliate locations from the signed Tier 1 network agreement. Refine the activation playbook based on which of the five mechanics drove the most revenue in the pilot. Close the first Tier 2 flagship deal.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-t">3</div>
+      <div>
+        <div class="step-title">Execute first Wittman seminar at a top partner gym</div>
+        <div class="step-detail">Booked in month 1, executed in month 3. Half-day seminar at the highest-performing T0 or T1 gym. Members pay $150. Gear sells at the event. ONX captures the brand moment, the content, and the sell-through data. This is the proof-of-concept for the annual seminar mechanic at scale.</div>
+        <div class="tag-row"><span class="tag">seminar executed</span><span class="tag">sell-through measured</span><span class="tag">content captured</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-t">4</div>
+      <div>
+        <div class="step-title">Activate Amazon operator — catalog setup + Brand Store</div>
+        <div class="step-detail">Selected operator begins Phase 1 catalog setup: FBA enrollment for pilot SKUs, Brand Store build, A+ content creation, initial keyword targeting. Month 3 goal is not Amazon revenue — it's a clean, protected launch foundation. Early negative reviews compound fast. A deliberate setup now is worth more than a rushed launch.</div>
+        <div class="tag-row"><span class="tag">FBA enrollment</span><span class="tag">Brand Store built</span><span class="tag">A+ content live</span><span class="tag">initial keyword targeting</span></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-t">5</div>
+      <div>
+        <div class="step-title">Practitioner email program live</div>
+        <div class="step-detail">Segmented flows running for all gym-sourced customers. Upsell sequences generating second purchases. Track the LTV delta between gym-sourced customers vs. direct DTC customers — this is the most compelling data point for scaling the gym channel further and for the Desmond 90-day report.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num sn-t">6</div>
+      <div>
+        <div class="step-title">Report to Desmond: updated $2M model with real data</div>
+        <div class="step-detail">Replace every financial model assumption with actual data: DTC conversion rate, gym attachment rate per location, QR vs. wholesale split, Amazon operator economics. Define what scaling each channel requires — production capacity, headcount, capital. The 90-day report is not a status update. It's the honest version of the roadmap, built on evidence rather than projections.</div>
+        <div class="tag-row"><span class="tag">assumptions → real data</span><span class="tag">channel model updated</span><span class="tag">scale requirements defined</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <a href="https://treetopgrowthstrategy.com" class="footer-logo">Treetop</a>
+  <p class="footer-sub">Prepared by Bill Colbert · ONX Merch · June 2026 · <a href="https://treetopgrowthstrategy.com">treetopgrowthstrategy.com</a></p>
+</footer>
+
+</body>
+</html>

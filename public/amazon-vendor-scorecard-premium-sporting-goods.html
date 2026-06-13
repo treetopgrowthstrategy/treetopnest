@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Amazon Vendor Scorecard for Premium Sporting Goods Brands | Treetop</title>
+<meta name="description" content="A diagnostic framework for evaluating whether Amazon is a strategic asset or a margin trap for premium performance gear brands. Eight criteria, a scoring model, and a clear decision framework.">
+<link rel="canonical" href="https://treetopgrowthstrategy.com/amazon-vendor-scorecard-premium-sporting-goods">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Amazon Vendor Scorecard for Premium Sporting Goods Brands",
+  "description": "A diagnostic framework for evaluating whether Amazon is a strategic asset or a margin trap for premium performance gear brands.",
+  "author": {"@type": "Person", "name": "Bill Colbert"},
+  "publisher": {"@type": "Organization", "name": "Treetop Growth Strategy"},
+  "keywords": ["Amazon sporting goods", "premium brand Amazon strategy", "sports brand marketing", "DTC vs Amazon", "sporting goods distribution"]
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-link { font-size: .82rem; color: rgba(240,255,240,.5); text-decoration: none; transition: color .2s; }
+  .nav-link:hover { color: #F0FFF0; }
+  .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: .6rem 1.25rem; font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+  .btn-p:hover { opacity: .88; }
+  .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: .875rem 1.75rem; font-size: .85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; transition: border-color .2s; }
+  .btn-g:hover { border-color: rgba(0,200,83,.4); }
+  .rule { width: 100%; height: 1px; background: #1A3A1A; }
+  .lbl { font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #00C853; margin-bottom: 1.25rem; display: block; }
+
+  .hero { padding: 9rem 2.5rem 5rem; background: #050D05; }
+  .hero-inner { max-width: 820px; margin: 0 auto; }
+  .breadcrumb { font-size: .75rem; color: rgba(240,255,240,.3); margin-bottom: 2rem; display: flex; gap: .75rem; }
+  .breadcrumb a { color: rgba(240,255,240,.3); text-decoration: none; }
+
+  .article-container { max-width: 820px; margin: 0 auto; padding: 4rem 2.5rem; }
+  .article-container h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; color: #F0FFF0; line-height: 1.2; margin-bottom: 1rem; margin-top: 3rem; }
+  .article-container h2:first-child { margin-top: 0; }
+  .article-container h3 { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-bottom: .75rem; margin-top: 2rem; }
+  .article-container p { font-size: .95rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1.25rem; }
+  .article-container strong { color: #C0D8C0; font-weight: 600; }
+
+  .callout { border-left: 3px solid rgba(0,200,83,.4); background: #0A1A0A; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+  .callout-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #00C853; margin-bottom: .75rem; }
+  .callout p { margin: 0; font-size: .88rem; color: #C0D8C0; line-height: 1.75; }
+
+  /* SCORECARD — the signature element */
+  .scorecard { border: 1px solid #1A3A1A; margin: 2.5rem 0; }
+  .scorecard-header { background: #0A1A0A; padding: 1.25rem 1.5rem; border-bottom: 1px solid #1A3A1A; display: grid; grid-template-columns: 1fr 80px 80px; gap: 1rem; }
+  .scorecard-header-label { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #4A6A4A; }
+  .scorecard-row { display: grid; grid-template-columns: 1fr 80px 80px; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid #1A3A1A; align-items: start; }
+  .scorecard-row:last-child { border-bottom: none; }
+  .score-title { font-size: .88rem; font-weight: 600; color: #F0FFF0; margin-bottom: .3rem; }
+  .score-body { font-size: .78rem; color: #8FAF8F; line-height: 1.65; }
+  .score-col { text-align: center; display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+  .score-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; line-height: 1; }
+  .score-good { color: #00C853; }
+  .score-med { color: #8FAF8F; }
+  .score-bad { color: rgba(240,255,240,.25); }
+  .score-sublabel { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #4A6A4A; }
+  .scorecard-footer { background: #0A1A0A; padding: 1.25rem 1.5rem; border-top: 2px solid #1A3A1A; display: grid; grid-template-columns: 1fr 80px 80px; gap: 1rem; }
+  .score-total { font-size: .88rem; font-weight: 700; color: #F0FFF0; }
+  .score-total-num { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: #00C853; text-align: center; }
+
+  /* DECISION BANDS */
+  .decision-bands { display: flex; flex-direction: column; gap: .75rem; margin: 2rem 0; }
+  .decision-band { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; align-items: center; }
+  .band-score { font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-style: italic; color: #C0D8C0; }
+  .band-content { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1rem 1.25rem; }
+  .band-verdict { font-size: .85rem; font-weight: 600; color: #F0FFF0; margin-bottom: .25rem; }
+  .band-action { font-size: .78rem; color: #8FAF8F; line-height: 1.6; }
+
+  .pillar-back { display: flex; align-items: flex-start; gap: 1rem; background: #0A1A0A; border: 1px solid rgba(0,200,83,.2); padding: 1.5rem; text-decoration: none; margin: 3rem 0 0; transition: border-color .2s; }
+  .pillar-back:hover { border-color: rgba(0,200,83,.4); }
+
+  .cta-section { padding: 5rem 2.5rem; background: #0A1A0A; text-align: center; }
+  .cta-inner { max-width: 640px; margin: 0 auto; }
+  .cta-rule { width: 60px; height: 3px; background: #00C853; margin: 0 auto 2.5rem; }
+  .cta-h { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 400; color: #F0FFF0; line-height: 1.2; margin-bottom: 1rem; }
+  .cta-p { font-size: .92rem; color: #8FAF8F; line-height: 1.8; margin-bottom: 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid #1A3A1A; background: #050D05; padding: 2rem 2.5rem; }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
+  .footer-copy { font-size: .72rem; color: #2A3A2A; }
+  .footer-links { display: flex; gap: 1.5rem; font-size: .72rem; }
+  .footer-links a { color: #2A3A2A; text-decoration: none; }
+
+  @media (max-width: 900px) { .nav-links { display: none; } .scorecard-header, .scorecard-row, .scorecard-footer { grid-template-columns: 1fr 60px 60px; } }
+  @media (max-width: 600px) { .hero, .article-container, .cta-section { padding-left: 1.25rem; padding-right: 1.25rem; } .decision-band { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="nav-links">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p">Start the Conversation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="/">Treetop</a> <span>›</span>
+      <a href="/the-gym-partnership-playbook-for-performance-gear-brands">Gym Partnership Playbook</a> <span>›</span>
+      <span>Amazon Vendor Scorecard</span>
+    </div>
+    <span class="lbl">Channel Strategy · Brand Operators</span>
+    <h1 style="font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1.5rem;">The Amazon Vendor Scorecard for Premium Sporting Goods Brands</h1>
+    <p style="font-size:1rem;color:#8FAF8F;line-height:1.85;margin-bottom:2rem;">Amazon is not a yes-or-no decision for performance gear brands. It's a strategic evaluation — with eight criteria that determine whether the channel is building your brand or liquidating it. This scorecard is designed for brand operators, fractional CMOs, and investors asking the question that should have been asked sooner: is Amazon actually working for this brand, or are we just hooked on the revenue?</p>
+    <div style="font-size:.72rem;color:rgba(240,255,240,.3);display:flex;gap:2rem;">
+      <span>By Bill Colbert</span><span>Treetop Growth Strategy</span><span>~12 min read</span>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<div class="article-container">
+
+  <h2>The Question Most Brands Don't Ask</h2>
+
+  <p>Every performance gear brand eventually ends up on Amazon. The reasons are always the same: a brand operator notices their product is already being sold there by third-party sellers at undefined margins, decides they should control the listing, and starts selling. Within a year, Amazon represents 30–50% of revenue.</p>
+
+  <p>The question brands rarely ask at this point: <strong>at what cost?</strong></p>
+
+  <p>Amazon revenue is real. But Amazon revenue comes with a set of strategic liabilities that accumulate quietly until they're expensive to reverse. Price visibility that floors your retail partnerships. Brand page limitations that commoditize your story. MAP violations that erode your premium positioning. Customer data you'll never see. And a referral fee + FBA structure that, at premium price points, often leaves less margin than the gym wholesale channel this playbook advocates for.</p>
+
+  <div class="callout">
+    <div class="callout-label">This scorecard is a thinking tool, not a verdict</div>
+    <p>The scorecard below is designed to generate a structured conversation, not to tell you to leave Amazon. Most brands should be on Amazon in some capacity. The question is whether your current Amazon posture is strategic or reactive — and whether it's building or eroding the things that make your brand valuable long-term.</p>
+  </div>
+
+  <h2>The Eight-Criteria Scorecard</h2>
+
+  <p>Score your brand on each criterion. Each criterion is scored 1–3, where 3 indicates Amazon is working as a strategic asset on that dimension and 1 indicates it's creating a liability. Maximum score: 24. Score interpretation at the bottom.</p>
+
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-label">Criterion</div>
+      <div style="text-align:center;" class="scorecard-header-label">Asset (3)</div>
+      <div style="text-align:center;" class="scorecard-header-label">Liability (1)</div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Gross Margin After Amazon Fees</div>
+        <div class="score-body">Amazon typically takes 15% referral fee + 10–20% FBA (pick/pack/storage/returns) = 25–35% channel cost. At a $90 MSRP with 50% COGS, you have $45 gross margin before Amazon takes $27–$32. Score 3 if you're netting 25%+ after all fees; score 1 if you're netting under 15%.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Net 25%+</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">Net &lt;15%</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Price Control and MAP Enforcement</div>
+        <div class="score-body">If third-party sellers are undercutting your listed price, you have a MAP enforcement problem. Amazon won't enforce MAP for you — that's your legal and operational burden. Score 3 if your listing is clean and all sellers hold price; score 1 if you're seeing regular MAP violations you can't control.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Clean / enforced</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">Regular violations</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Brand Registry and Content Control</div>
+        <div class="score-body">Amazon Brand Registry gives you control of your listing content — A+ content, storefront, video, enhanced imagery. If you're enrolled and actively managing content quality, score 3. If you're selling on a generic listing with no brand page and letting the algorithm decide your story, score 1.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Full Brand Registry</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">No registry / generic</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Customer Data Capture Rate</div>
+        <div class="score-body">Amazon owns the customer relationship. You never see email addresses, purchase history patterns at the individual level, or repeat purchase triggers. Score 3 if your Amazon strategy includes product inserts, QR codes, or warranty registration that captures customer data for your own CRM. Score 1 if Amazon is a black box — revenue in, no data out.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Data capture active</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">Zero capture</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Channel Conflict Risk</div>
+        <div class="score-body">Does your Amazon presence undercut your gym wholesale channel, your DTC site, or any retail partnerships? If Amazon is your lowest effective price point (because of third-party competition), it floors your wholesale economics. Score 3 if Amazon is clearly additive — a discovery channel for new customers. Score 1 if Amazon is cannibalizing other channels.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Additive / no conflict</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">Active cannibal</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Review Velocity and Quality</div>
+        <div class="score-body">Amazon reviews are a brand asset that travels — they influence Google Shopping, DTC conversion rates, and retail buyer perception. Score 3 if you have 100+ reviews at 4.5+ stars on your primary product and an active review generation strategy. Score 1 if you have under 50 reviews, a sub-4.0 average, or an unresolved negative review trend.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">100+ / 4.5★</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">&lt;50 / &lt;4.0★</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Revenue Concentration Risk</div>
+        <div class="score-body">What percentage of total brand revenue flows through Amazon? Score 3 if Amazon is under 25% of revenue — a meaningful but non-dominant channel. Score 1 if Amazon is over 60% — meaning Amazon policy changes, fee increases, or listing suspensions could materially damage the business. Score 2 for the 25–60% range.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Under 25%</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">Over 60%</div></div>
+    </div>
+
+    <div class="scorecard-row">
+      <div>
+        <div class="score-title">Premium Positioning Signal</div>
+        <div class="score-body">Amazon's search environment commoditizes everything that lives on it. Being next to Everlast and generic private-label gloves at $24.99 dilutes Hayabusa's $180 positioning, even if only by proximity and algorithm adjacency. Score 3 if your category on Amazon is not dominated by commodity competition and your listing clearly communicates premium. Score 1 if you're consistently adjacent to budget alternatives and competing on Sponsored Products ads just to maintain visibility.</div>
+      </div>
+      <div class="score-col"><div class="score-num score-good">3</div><div class="score-sublabel">Premium / clear signal</div></div>
+      <div class="score-col"><div class="score-num score-bad">1</div><div class="score-sublabel">Commodity adjacent</div></div>
+    </div>
+
+    <div class="scorecard-footer">
+      <div class="score-total">Total Score</div>
+      <div style="text-align:center;" class="score-total-num">_ / 24</div>
+      <div></div>
+    </div>
+  </div>
+
+  <h2>Reading Your Score</h2>
+
+  <div class="decision-bands">
+    <div class="decision-band">
+      <div class="band-score">20–24</div>
+      <div class="band-content">
+        <div class="band-verdict">Amazon is a strategic asset — invest and optimize.</div>
+        <div class="band-action">You're running Amazon well. The channel is additive, your margins are healthy, you're capturing customer data, and your brand positioning is intact. Continue investing in listing optimization, review generation, and Sponsored Brands. Consider Amazon DSP for retargeting.</div>
+      </div>
+    </div>
+    <div class="decision-band">
+      <div class="band-score">14–19</div>
+      <div class="band-content">
+        <div class="band-verdict">Mixed signal — identify and address the weak criteria.</div>
+        <div class="band-action">There are specific liabilities worth fixing before they compound. Prioritize the criteria where you scored 1 or 2. Brand Registry, MAP enforcement, and data capture are often the fastest wins. Don't add channel investment until you've addressed the weak points.</div>
+      </div>
+    </div>
+    <div class="decision-band">
+      <div class="band-score">8–13</div>
+      <div class="band-content">
+        <div class="band-verdict">Amazon is eroding your brand — restructure your posture.</div>
+        <div class="band-action">The channel is likely producing revenue while creating compounding liabilities in pricing, positioning, and data. You need a channel restructure: review whether specific product SKUs should be pulled, address MAP violations aggressively, and begin building alternative channels (gym wholesale, DTC growth) before Amazon revenue becomes too concentrated to exit cleanly.</div>
+      </div>
+    </div>
+    <div class="decision-band">
+      <div class="band-score">Below 8</div>
+      <div class="band-content">
+        <div class="band-verdict">Consider exiting Amazon for premium SKUs.</div>
+        <div class="band-action">At this score, Amazon is more liability than asset for your premium positioning. Brands like Patagonia have exited Amazon entirely; others use Amazon only for commodity-tier products while protecting premium SKUs for DTC and wholesale. Model what revenue diversification looks like before making the decision — but don't let convenience delay the conversation.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>The Relationship Between Amazon Posture and Gym Channel Viability</h2>
+
+  <p>There's a direct connection between how your brand shows up on Amazon and how attractive you are as a gym wholesale partner. Gym owners will research your brand before agreeing to recommend your product to their members. They'll look at your Amazon listing and make three rapid judgments:</p>
+
+  <p>One: Is your product quality reflected in the listing content and reviews? Two: Is the price I'm being offered at wholesale actually below what my members can find on Amazon in 30 seconds? Three: Does this brand feel like the kind of company I want to put my name behind?</p>
+
+  <p>A brand with commodity-adjacent Amazon positioning, sub-4.0 reviews, and active MAP violations is not an attractive wholesale partner — regardless of what their product is actually like. The scorecard above is a gym-facing brand audit as much as it is a channel profitability analysis. Fixing your Amazon posture is a prerequisite for building a credible gym wholesale program.</p>
+
+  <a href="/the-gym-partnership-playbook-for-performance-gear-brands" class="pillar-back">
+    <div style="color:#00C853;font-size:.85rem;flex-shrink:0;padding-top:.1rem;">↑</div>
+    <div>
+      <div style="font-size:.88rem;font-weight:600;color:#F0FFF0;margin-bottom:.2rem;">Part of the Gym Partnership Playbook</div>
+      <div style="font-size:.78rem;color:#8FAF8F;line-height:1.6;">The full framework for performance gear brands building gym distribution — from fit filters and pricing tiers to the QR/DTC channel that generates passive recurring revenue.</div>
+    </div>
+  </a>
+
+</div>
+
+<div class="rule"></div>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-rule"></div>
+    <h2 class="cta-h">Need a channel strategy audit for your brand?</h2>
+    <p class="cta-p">Treetop evaluates your full distribution posture — Amazon, DTC, gym wholesale — and builds the architecture that maximizes margin and brand positioning simultaneously.</p>
+    <div class="cta-btns">
+      <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p" style="font-size:.9rem;padding:1rem 2rem;">Schedule a Discovery Call</a>
+      <a href="mailto:bill@treetopgrowthstrategy.com" class="btn-g">Send a Note</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Treetop Growth Strategy</span>
+    <div class="footer-links">
+      <a href="/the-gym-partnership-playbook-for-performance-gear-brands">← Gym Playbook</a>
+      <a href="/resources">Resources</a>
+      <a href="/about">About</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
