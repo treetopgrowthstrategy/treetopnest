@@ -15,7 +15,7 @@
   const CONFIG = {
     // Where the form submits — update to your actual form endpoint
     // Options: Mailchimp embed URL, ConvertKit, your Firebase function, Formspree
-    formAction: 'https://formspree.io/f/YOUR_FORM_ID',
+    formAction: 'https://formspree.io/f/xbdeqldr',
 
     // Delay before sticky bar appears (ms after scroll threshold)
     stickyBarDelay: 3000,
