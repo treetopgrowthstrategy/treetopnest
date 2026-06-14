@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLG vs Sales-Led Growth: How to Choose the Right GTM Motion | Treetop</title>
+<meta name="description" content="Product-led growth vs sales-led growth compared. How to evaluate which GTM motion fits your product, ACV, buyer, and stage — with a decision framework.">
+<link rel="canonical" href="https://treetopgrowthstrategy.com/plg-vs-sales-led-growth">
+<meta property="og:title" content="PLG vs Sales-Led Growth: How to Choose the Right GTM Motion | Treetop">
+<meta property="og:description" content="Product-led growth vs sales-led growth compared. How to evaluate which GTM motion fits your product, ACV, buyer, and stage — with a decision framework.">
+<meta property="og:url" content="https://treetopgrowthstrategy.com/plg-vs-sales-led-growth">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og/plg-vs-sales-led-growth.png">
+<meta property="og:site_name" content="Treetop Growth Strategy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PLG vs Sales-Led Growth: How to Choose the Right GTM Motion | Treetop">
+<meta name="twitter:description" content="Product-led growth vs sales-led growth compared. How to evaluate which GTM motion fits your product, ACV, buyer, and stage — with a decision framework.">
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/plg-vs-sales-led-growth.png">
+<meta name="author" content="Bill Colbert">
+<style>
+:root {
+  --bg: #faf8f4;
+  --bg-card: #ffffff;
+  --ink: #14160d;
+  --ink-soft: #3a3d2e;
+  --ink-muted: #6b6d5d;
+  --rule: #e5e2d6;
+  --accent: #2d5a3d;
+  --accent-deep: #1a3a26;
+  --warn: #b8551c;
+  --billy: #3a6b8f;
+  --max-w: 760px;
+  --serif: ui-serif, "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+.wide { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header.site {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(8px);
+}
+header.site .row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 24px; max-width: 1100px; margin: 0 auto;
+  font-size: 14px;
+}
+header.site .brand { font-family: var(--serif); font-size: 22px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+header.site nav a { color: var(--ink-soft); text-decoration: none; margin-left: 22px; }
+header.site nav a:hover { color: var(--accent); }
+header.site .cta {
+  background: var(--ink); color: var(--bg); padding: 8px 16px; border-radius: 4px;
+  text-decoration: none; font-size: 13px; margin-left: 22px;
+}
+
+/* Hero */
+.hero { padding: 72px 0 40px; }
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-muted); font-weight: 500;
+}
+h1.hero-title {
+  font-family: var(--serif); font-size: clamp(34px, 5vw, 56px); line-height: 1.08;
+  letter-spacing: -0.02em; margin: 14px 0 22px; color: var(--ink);
+}
+h1.hero-title em { font-style: italic; color: var(--accent); }
+.lede { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 640px; }
+.byline { font-size: 13px; color: var(--ink-muted); margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.byline strong { color: var(--ink); font-weight: 500; }
+
+/* Section labels */
+.section-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-muted); margin: 56px 0 10px; font-weight: 600;
+}
+article h2 {
+  font-family: var(--serif); font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15;
+  letter-spacing: -0.015em; color: var(--ink); margin: 6px 0 18px;
+}
+article h3 {
+  font-family: var(--serif); font-size: 22px; line-height: 1.2;
+  color: var(--ink); margin: 36px 0 12px;
+}
+article p { margin: 0 0 18px; color: var(--ink-soft); }
+article ul, article ol { color: var(--ink-soft); padding-left: 22px; }
+article ul li, article ol li { margin-bottom: 8px; }
+article strong { color: var(--ink); font-weight: 600; }
+
+/* TL;DR / answer box */
+.answer-box {
+  background: #f1efe6; border-left: 3px solid var(--accent);
+  padding: 22px 26px; margin: 28px 0 36px; border-radius: 0 6px 6px 0;
+  font-size: 17px; color: var(--ink);
+}
+.answer-box strong { color: var(--accent-deep); }
+
+/* Pull quote */
+blockquote {
+  font-family: var(--serif); font-size: 22px; line-height: 1.4; font-style: italic;
+  color: var(--ink); border-left: 3px solid var(--ink); padding: 8px 0 8px 22px;
+  margin: 32px 0;
+}
+
+/* Comparison table */
+.cmp-table { width: 100%; border-collapse: collapse; margin: 24px 0 36px; font-size: 15px; }
+.cmp-table th, .cmp-table td {
+  text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.cmp-table th { background: #f1efe6; font-weight: 600; color: var(--ink); font-size: 13px; letter-spacing: 0.02em; }
+.cmp-table tr:hover td { background: #faf8f4; }
+.cmp-table .price { font-family: var(--mono); font-size: 13px; color: var(--accent-deep); white-space: nowrap; }
+.cmp-table .yes { color: var(--accent); font-weight: 600; }
+.cmp-table .no { color: var(--warn); }
+
+/* FAQ */
+.faq-section { margin: 56px 0 24px; }
+.faq-item {
+  border-top: 1px solid var(--rule); padding: 22px 0;
+}
+.faq-item:last-of-type { border-bottom: 1px solid var(--rule); }
+.faq-q {
+  font-family: var(--serif); font-size: 20px; line-height: 1.3;
+  color: var(--ink); margin: 0 0 10px; font-weight: 500;
+}
+.faq-a { color: var(--ink-soft); margin: 0; }
+.faq-a p { margin: 0 0 10px; }
+.faq-a p:last-child { margin: 0; }
+
+/* Billy CTA - inline */
+.billy-inline {
+  background: linear-gradient(135deg, #f4f1e8 0%, #ebe5d2 100%);
+  border: 1px solid #d9d3bf;
+  padding: 22px 26px;
+  border-radius: 8px;
+  margin: 28px 0;
+  font-size: 16px;
+  color: var(--ink);
+}
+.billy-inline strong { color: var(--billy); }
+.billy-inline a.billy-link {
+  color: var(--billy); font-weight: 600; text-decoration: underline;
+}
+
+/* Billy CTA - card */
+.billy-card {
+  background: var(--ink); color: var(--bg);
+  padding: 36px 32px; border-radius: 10px; margin: 48px 0;
+}
+.billy-card .eyebrow { color: #b8b9a6; }
+.billy-card h3 {
+  font-family: var(--serif); font-size: 26px; line-height: 1.2;
+  color: var(--bg); margin: 6px 0 12px;
+}
+.billy-card p { color: #d9d6c9; margin: 0 0 18px; font-size: 16px; }
+.billy-card a.btn {
+  display: inline-block; background: var(--bg); color: var(--ink);
+  padding: 12px 22px; border-radius: 4px; text-decoration: none; font-weight: 600;
+  font-size: 14px;
+}
+.billy-card a.btn-ghost {
+  display: inline-block; color: var(--bg); border: 1px solid #44473a;
+  padding: 12px 22px; border-radius: 4px; text-decoration: none; font-weight: 500;
+  font-size: 14px; margin-left: 8px;
+}
+
+/* Related */
+.related-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin: 24px 0;
+}
+.related-card {
+  background: var(--bg-card); border: 1px solid var(--rule);
+  padding: 20px 22px; border-radius: 8px; text-decoration: none;
+  color: var(--ink); display: block; transition: border-color .15s, transform .15s;
+}
+.related-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.related-card .rc-eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+.related-card .rc-title { font-family: var(--serif); font-size: 18px; line-height: 1.3; margin: 6px 0 0; color: var(--ink); }
+
+/* Footer */
+footer.site {
+  background: var(--ink); color: #d9d6c9;
+  padding: 64px 24px 40px; margin-top: 72px;
+}
+footer.site .grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+}
+footer.site h4 { color: var(--bg); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 14px; }
+footer.site a { color: #d9d6c9; text-decoration: none; display: block; padding: 4px 0; font-size: 14px; }
+footer.site a:hover { color: var(--bg); }
+footer.site .brand-block { font-family: var(--serif); font-size: 24px; color: var(--bg); margin-bottom: 10px; }
+footer.site .legal { max-width: 1100px; margin: 48px auto 0; padding-top: 24px; border-top: 1px solid #2a2d22; font-size: 13px; color: #7a7c6a; }
+
+@media (max-width: 720px) {
+  header.site nav { display: none; }
+  footer.site .grid { grid-template-columns: 1fr; gap: 28px; }
+  h1.hero-title { font-size: 32px; }
+  .hero { padding: 48px 0 24px; }
+  .cmp-table { font-size: 13px; }
+  .cmp-table th, .cmp-table td { padding: 10px 8px; }
+}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://treetopgrowthstrategy.com/plg-vs-sales-led-growth#article", "headline": "PLG vs Sales-Led Growth: How to Choose the Right GTM Motion", "description": "Product-led growth vs sales-led growth compared. How to evaluate which GTM motion fits your product, ACV, buyer, and stage — with a decision framework.", "datePublished": "2026-06-07", "dateModified": "2026-06-07", "url": "https://treetopgrowthstrategy.com/plg-vs-sales-led-growth", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://treetopgrowthstrategy.com/plg-vs-sales-led-growth"}, "author": {"@type": "Person", "@id": "https://treetopgrowthstrategy.com/about#person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about", "image": "https://treetopgrowthstrategy.com/img/bill-colbert.jpg", "sameAs": ["https://linkedin.com/in/williamcolbert"]}, "publisher": {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com#org", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com", "logo": {"@type": "ImageObject", "url": "https://treetopgrowthstrategy.com/img/treetop-logo.svg"}}}, {"@type": "BreadcrumbList", "@id": "https://treetopgrowthstrategy.com/plg-vs-sales-led-growth#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://treetopgrowthstrategy.com"}, {"@type": "ListItem", "position": 2, "name": "GTM Strategy", "item": "https://treetopgrowthstrategy.com/gtm-strategy-guide"}, {"@type": "ListItem", "position": 3, "name": "PLG vs Sales-Led", "item": ""}]}, {"@type": "FAQPage", "@id": "https://treetopgrowthstrategy.com/plg-vs-sales-led-growth#faq", "mainEntity": [{"@type": "Question", "name": "What is product-led growth?", "acceptedAnswer": {"@type": "Answer", "text": "Product-led growth (PLG) is a GTM motion where the product itself drives acquisition, activation, and expansion — with minimal or no sales involvement in the initial adoption. PLG relies on free or freemium access, short time-to-value, and self-serve onboarding. Classic PLG companies include Slack, Figma, Notion, and Dropbox."}}, {"@type": "Question", "name": "What is sales-led growth?", "acceptedAnswer": {"@type": "Answer", "text": "Sales-led growth is a GTM motion where a sales team converts inbound and outbound leads into customers. The sales team manages the relationship from first contact through close and often owns the expansion conversation. Sales-led growth is the dominant model for high-ACV B2B products where the buying decision involves multiple stakeholders."}}, {"@type": "Question", "name": "Can a company run both PLG and sales-led?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most companies between $5M-$20M ARR run some form of hybrid — PLG for SMB and self-serve segments, sales-led for enterprise accounts. The key to making hybrid work is organizational clarity about which motion applies to which segment and separate playbooks for each."}}]}]}</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="https://treetopgrowthstrategy.com" class="brand">Treetop</a>
+    <nav>
+      <a href="https://treetopgrowthstrategy.com/services">Services</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-alternatives">HubSpot Alternatives</a>
+      <a href="https://treetopgrowthstrategy.com/resources">Resources</a>
+      <a href="https://treetopgrowthstrategy.com/about">About</a>
+      <a href="https://treetopgrowthstrategy.com/quiz" class="cta">Take the Gap Assessment →</a>
+    </nav>
+  </div>
+</header>
+
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">GTM Strategy</div>
+      <h1 class="hero-title">PLG vs Sales-Led Growth: <em>How to Choose the Right Motion</em></h1>
+      <p class="lede">Choosing between PLG and sales-led isn't a philosophical decision — it's an operational one driven by your ACV, buyer profile, and time-to-value. Here's the framework.</p>
+      <div class="byline">By <strong>Bill Colbert</strong>, founder of Treetop Growth Strategy · Updated June 2026</div>
+    </div>
+  </section>
+
+  <article class="container">
+    
+<p>The PLG vs sales-led debate has generated more conference talks and LinkedIn posts than almost any other B2B topic in the last five years. Most of the debate is philosophical. This guide is operational: given your specific product, ACV, buyer, and stage, which motion produces better unit economics?</p>
+
+<h2>The Decision Framework</h2>
+<p>Answer these five questions before picking a motion:</p>
+<ol>
+<li><strong>What is your current ACV?</strong> PLG is economically viable below $5K ACV. Sales-led is required above $25K. Between $5K-$25K, you have a genuine choice — evaluate the other factors.</li>
+<li><strong>Who makes the buying decision?</strong> If an individual contributor can adopt the product without organizational approval, PLG is feasible. If the decision requires a committee, budget approval, or procurement, you need a sales motion regardless of ACV.</li>
+<li><strong>How fast does the product deliver value?</strong> PLG requires short time-to-value. If a user needs 4+ hours of setup before seeing value, PLG activation rates will be too low to be economically viable.</li>
+<li><strong>Do you have product analytics infrastructure?</strong> PLG only works with deep instrumentation. If you can't track activation events, feature adoption, and expansion signals by user, you can't run PLG effectively.</li>
+<li><strong>What does your competitive set look like?</strong> If the market leader runs PLG and you run sales-led, you're playing a structural disadvantage in attracting individual users who self-select into free tiers. If the market leader is sales-led and you can run PLG, you have a significant CAC advantage.</li>
+</ol>
+
+<table style="width:100%;border-collapse:collapse;margin:24px 0;font-size:.9rem;">
+<thead><tr style="background:#1a1a2e;color:#fff;"><th style="padding:11px 14px;text-align:left;">Factor</th><th style="padding:11px 14px;text-align:left;">PLG Signal</th><th style="padding:11px 14px;text-align:left;">Sales-Led Signal</th></tr></thead>
+<tbody><tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:11px 14px;">ACV</td><td style="padding:11px 14px;">Under $5K</td><td style="padding:11px 14px;">Above $25K</td></tr><tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:11px 14px;">Buyer</td><td style="padding:11px 14px;">Individual contributor</td><td style="padding:11px 14px;">Committee or C-suite</td></tr><tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:11px 14px;">Time to value</td><td style="padding:11px 14px;">Minutes to hours</td><td style="padding:11px 14px;">Days to weeks</td></tr><tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:11px 14px;">Product complexity</td><td style="padding:11px 14px;">Low — self-serve intuitive</td><td style="padding:11px 14px;">High — requires configuration</td></tr><tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:11px 14px;">Market awareness</td><td style="padding:11px 14px;">Category exists, buyer searches</td><td style="padding:11px 14px;">Category education required</td></tr><tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:11px 14px;">Support intensity</td><td style="padding:11px 14px;">Low — scalable self-serve</td><td style="padding:11px 14px;">High — requires human touchpoints</td></tr></tbody></table>
+
+<h2>Hybrid Motions: The Reality for Most $5M-$20M ARR Companies</h2>
+<p>Most companies operating between $5M-$20M ARR run a hybrid motion whether they call it that or not. PLG drives SMB and mid-market adoption through self-serve; a sales team works enterprise accounts and manages PLG-to-enterprise expansion. The challenge with hybrid is that it requires two separate playbooks, two different sets of metrics, and organizational clarity about which motion applies to which segment.</p>
+<p>The common failure mode: a company optimizes its PLG motion for SMB at the expense of building the enterprise sales muscle it needs to capture the large accounts that will drive the majority of ARR. Enterprise sales in a PLG company requires specific skills — patience, multi-stakeholder navigation, and comfort with long sales cycles — that are different from the optimization mindset that drives PLG growth.</p>
+
+<h2>When to Switch Motions</h2>
+<p>PLG-to-sales-led: When enterprise accounts start showing up in your user base and you're losing them to competitors who have sales teams to manage the relationship. The signal is large companies starting trials and then churning without converting — not because the product isn't good, but because nobody called them.</p>
+<p>Sales-led-to-PLG: When your product has become self-serve intuitive enough that a free tier would reduce CAC substantially and your per-seat economics support a bottom-up motion. This rarely happens by accident — it requires product investment to reduce the friction that currently requires sales.</p>
+
+<p>See also: <a href="/gtm-strategy-guide">GTM strategy guide</a> | <a href="/fractional-cmo-for-saas-guide">Fractional CMO for SaaS</a> | <a href="/b2b-marketing-benchmarks">B2B marketing benchmarks</a></p><div style="background:#f0f4ff;border:1px solid #c7d2fe;border-radius:10px;padding:28px 32px;margin:48px 0 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;"><div style="flex:1;min-width:200px;"><div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6366f1;margin-bottom:6px;">Free Download</div><strong style="font-size:1rem;color:#1a1a2e;">GTM Motion Selection Framework</strong><p style="font-size:.88rem;color:#64748b;margin:5px 0 0;">A practical framework for choosing between PLG, sales-led, marketing-led, and hybrid GTM motions.</p></div><a href="#" onclick="document.querySelector('#tt-sticky-bar input')?.focus();return false;" style="background:#6366f1;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;font-size:.88rem;text-decoration:none;white-space:nowrap;">Get It Free</a></div>
+    <div class="faq-section"><div class="faq-item"><h3 class="faq-q">What is product-led growth?</h3><div class="faq-a"><p>Product-led growth (PLG) is a GTM motion where the product itself drives acquisition, activation, and expansion — with minimal or no sales involvement in the initial adoption. PLG relies on free or freemium access, short time-to-value, and self-serve onboarding. Classic PLG companies include Slack, Figma, Notion, and Dropbox.</p></div></div><div class="faq-item"><h3 class="faq-q">What is sales-led growth?</h3><div class="faq-a"><p>Sales-led growth is a GTM motion where a sales team converts inbound and outbound leads into customers. The sales team manages the relationship from first contact through close and often owns the expansion conversation. Sales-led growth is the dominant model for high-ACV B2B products where the buying decision involves multiple stakeholders.</p></div></div><div class="faq-item"><h3 class="faq-q">Can a company run both PLG and sales-led?</h3><div class="faq-a"><p>Yes. Most companies between $5M-$20M ARR run some form of hybrid — PLG for SMB and self-serve segments, sales-led for enterprise accounts. The key to making hybrid work is organizational clarity about which motion applies to which segment and separate playbooks for each.</p></div></div></div>
+    
+<div class="billy-card">
+  <div class="eyebrow">Our recommendation</div>
+  <h3>If you want HubSpot's power without HubSpot's price, look at Billy.</h3>
+  <p>Billy is the AI-native CRM we build with and recommend to clients who refuse to be locked into the HubSpot stack. It's a personified agentic CRM — you assign work to Billy the way you'd assign work to a sales rep. No per-seat pricing tax. No upgrade ladder. No surprise contact-tier surcharges.</p>
+  <a href="https://usebilly.io" class="btn">See Billy →</a>
+  <a href="https://treetopgrowthstrategy.com/services/ai-audit" class="btn-ghost">Or get the $1,500 AI Audit</a>
+</div>
+
+  </article>
+</main>
+
+
+<footer class="site">
+  <div class="grid">
+    <div>
+      <div class="brand-block">Treetop</div>
+      <p style="margin: 0 0 14px; font-size: 14px; line-height: 1.55;">AI-native GTM transformation for B2B mid-market ($5M–$50M). Honest analysis of the SaaS stack, including the parts your vendor doesn't want you to see.</p>
+      <a href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a>
+    </div>
+    <div>
+      <h4>HubSpot Alternatives</h4>
+      <a href="https://treetopgrowthstrategy.com/hubspot-alternatives">The pillar guide</a>
+      <a href="https://treetopgrowthstrategy.com/cheaper-alternative-to-hubspot">Cheaper alternatives</a>
+      <a href="https://treetopgrowthstrategy.com/ai-alternative-to-hubspot">AI-native alternatives</a>
+      <a href="https://treetopgrowthstrategy.com/free-hubspot-alternatives">Free alternatives</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-alternatives-for-small-business">Small business alternatives</a>
+    </div>
+    <div>
+      <h4>Head-to-Head</h4>
+      <a href="https://treetopgrowthstrategy.com/hubspot-vs-salesforce">HubSpot vs Salesforce</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-vs-pipedrive">HubSpot vs Pipedrive</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-vs-mailchimp">HubSpot vs Mailchimp</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-vs-zoho">HubSpot vs Zoho</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-vs-activecampaign">HubSpot vs ActiveCampaign</a>
+    </div>
+    <div>
+      <h4>Decision Tools</h4>
+      <a href="https://treetopgrowthstrategy.com/is-hubspot-worth-it">Is HubSpot worth it?</a>
+      <a href="https://treetopgrowthstrategy.com/hubspot-starter-vs-professional">Starter vs Professional</a>
+      <a href="https://treetopgrowthstrategy.com/why-hubspot-is-too-expensive">Why HubSpot is expensive</a>
+      <a href="https://usebilly.io">Billy (recommended) ↗</a>
+      <a href="https://treetopgrowthstrategy.com/services/ai-audit">Get the AI Audit</a>
+    </div>
+  </div>
+  <div class="legal">© 2026 Treetop Growth Strategy · Austin, TX · <a href="https://treetopgrowthstrategy.com/sitemap.xml" style="display:inline;">Sitemap</a> · <a href="https://treetopgrowthstrategy.com/llms.txt" style="display:inline;">llms.txt</a></div>
+</footer>
+
+</body>
+</html>
