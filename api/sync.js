@@ -81,19 +81,48 @@ async function ensureSchema(token) {
   }
   const listData = await listRes.json();
   const existing = {};
-  (listData.tables || []).forEach(t => { existing[t.name] = t.id; });
+  const existingTablesByName = {};
+  (listData.tables || []).forEach(t => {
+    existing[t.name] = t.id;
+    existingTablesByName[t.name] = t;
+  });
 
   const ids = {};
   for (const key of Object.keys(TABLE_NAMES)) {
     const name = TABLE_NAMES[key];
     if (existing[name]) {
       ids[key] = existing[name];
+      // Migrate: add any missing fields
+      await migrateTable(token, existingTablesByName[name], key);
     } else {
       ids[key] = await createTable(token, key);
     }
   }
   tableIdCache = ids;
   return ids;
+}
+
+async function migrateTable(token, existingTable, key) {
+  const desired = tableSchema(key);
+  const existingFieldNames = new Set((existingTable.fields || []).map(f => f.name));
+  for (const desiredField of desired.fields) {
+    if (existingFieldNames.has(desiredField.name)) continue;
+    // Add missing field via Meta API
+    const url = `${AIRTABLE_API}/meta/bases/${BASE_ID}/tables/${existingTable.id}/fields`;
+    const body = { name: desiredField.name, type: desiredField.type };
+    if (desiredField.options) body.options = desiredField.options;
+    if (desiredField.description) body.description = desiredField.description;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      // Non-fatal: log and continue. The sync will still work for existing fields.
+      const t = await res.text();
+      console.warn(`Could not add field ${desiredField.name} to ${existingTable.name}: ${res.status} ${t.slice(0, 200)}`);
+    }
+  }
 }
 
 function tableSchema(key) {
@@ -115,7 +144,7 @@ function tableSchema(key) {
   if (key === 'items') {
     return {
       name: TABLE_NAMES.items,
-      description: 'CMO Nest: next steps, decisions, open questions extracted from calls',
+      description: 'CMO Nest: next steps, decisions, open questions extracted from calls or added manually',
       fields: [
         { name: 'Item ID', type: 'singleLineText' },
         { name: 'Text', type: 'multilineText' },
@@ -136,6 +165,11 @@ function tableSchema(key) {
           { name: 'Done', color: 'greenBright' }
         ] } },
         { name: 'Archived', type: 'checkbox', options: { icon: 'check', color: 'grayBright' } },
+        { name: 'Tag', type: 'singleLineText' },
+        { name: 'Source', type: 'singleSelect', options: { choices: [
+          { name: 'Call', color: 'cyanBright' },
+          { name: 'Manual', color: 'orangeBright' }
+        ] } },
         { name: 'Call ID', type: 'singleLineText' },
         { name: 'Call Date', type: 'date', options: { dateFormat: { name: 'iso' } } },
         { name: 'Created At', type: 'dateTime', options: { dateFormat: { name: 'iso' }, timeFormat: { name: '24hour' }, timeZone: TIMEZONE } },
@@ -256,6 +290,8 @@ async function syncAll(token, tableIds, state) {
       'Owner': i.owner || 'Bill',
       'Status': statusToLabel(i.status),
       'Archived': !!i.archived,
+      'Tag': i.tag || '',
+      'Source': i.source === 'manual' ? 'Manual' : 'Call',
       'Call ID': i.call_id || '',
       'Call Date': i.call_date || null,
       'Created At': i.created_at || null,
@@ -368,6 +404,8 @@ async function restore(token, tableIds) {
       owner: r.fields['Owner'] || 'Bill',
       status: statusFromLabel(r.fields['Status']),
       archived: !!r.fields['Archived'],
+      tag: r.fields['Tag'] || '',
+      source: r.fields['Source'] === 'Manual' ? 'manual' : 'call',
       call_id: r.fields['Call ID'] || '',
       call_date: r.fields['Call Date'] || '',
       created_at: r.fields['Created At'] || '',
