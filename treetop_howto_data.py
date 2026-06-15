@@ -431,3 +431,438 @@ HOWTOS["how-to-write-blog-headlines-with-claude"] = {
         R_PROMPTS, R_MKT,
     ],
 }
+
+# ---------------------------------------------------------------------------
+# BATCH B2: content, decks, research, analysis
+# ---------------------------------------------------------------------------
+
+AVOID_G = [
+    "Vague prompts. 'Help me write this' produces generic output. Specifics in, specifics out.",
+    "Publishing or sharing without editing. Always do the final human pass for voice, facts, and judgment.",
+    "Skipping the Project setup, which forces you to re-paste context every single time.",
+    "Treating Claude as a vending machine instead of a thinking partner you iterate with.",
+]
+
+HOWTOS["how-to-write-linkedin-articles-with-claude"] = {
+    "title": "How to Write LinkedIn Articles with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for writing LinkedIn articles with Claude, including a copy-paste prompt template built around a single point of view, the workflow, and pitfalls to avoid.",
+    "og_title": "How to Write LinkedIn Articles with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for LinkedIn articles that build authority, not noise.",
+    "crumb": "How to Write LinkedIn Articles with Claude",
+    "howto_name": "How to Write LinkedIn Articles with Claude",
+    "h1": "How to write LinkedIn articles with Claude: <em>step-by-step.</em>",
+    "hero_sub": "A LinkedIn article earns attention with one sharp point of view, not a summary of everything. This playbook gives you a prompt template that builds the piece around your argument.",
+    "verdict": "Give Claude your single point of view, the audience, and a real example or story, then ask for a structured article with a strong hook. You get a draft that sounds like you and makes one argument well, in minutes.",
+    "prompt_intro": "This template forces a single thesis and a strong opening, the two things most LinkedIn articles lack. Feed it your take and supporting story.",
+    "prompt": ("You are my thought-leadership writing partner. Draft a LinkedIn article.\n\n"
+               "Context:\n"
+               "- My point of view (one sentence): [your argument]\n"
+               "- Audience: [who I want to reach]\n"
+               "- Supporting story or example: [a real moment or data point]\n"
+               "- What I want readers to do or think after: [takeaway]\n"
+               "- My voice: [plainspoken / bold / analytical]\n\n"
+               "Rules:\n"
+               "- Open with a 1-2 line hook that earns the next sentence.\n"
+               "- Make ONE argument; cut anything that does not serve it.\n"
+               "- 600-900 words, short paragraphs, no buzzwords, no listicle filler.\n"
+               "- End with a question or a clear takeaway. Do not use em dashes.\n\n"
+               "Draft the article."),
+    "prompt_outro": "One argument, one story, one takeaway beats a survey of the topic. For shorter formats, see <a href=\"/how-to-write-twitter-threads-with-claude\">Twitter threads with Claude</a>, and for titles, <a href=\"/how-to-write-blog-headlines-with-claude\">blog headlines with Claude</a>.",
+    "workflow": _workflow("your point of view, past posts, and voice", "two versions, one bolder and one more analytical"),
+    "example": "Start with a one-line take like 'most GTM dashboards measure the wrong thing' plus a story from your own work. Claude opens with a hook, builds the argument around your story, and lands a takeaway, giving you a draft that reads as your opinion rather than a generic explainer.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("What is the best prompt for a LinkedIn article?", "One that gives Claude a single point of view, the audience, a real supporting story, and a takeaway, then asks for one tight argument with a strong hook. Use the template here."),
+        ("How do I keep my voice in AI-written articles?", "Set up a Claude Project with your past posts and a note on your voice, and prompt for one argument. Then edit. The thinking and final polish stay yours."),
+        ("How long should a LinkedIn article be?", "Usually 600 to 900 words with short paragraphs. Prompt Claude to cap the length and cut anything that does not serve the single argument."),
+        ("Will readers know it was AI-assisted?", "Not if you bring the point of view and story and edit the result. Generic AI output is obvious; a well-prompted, edited piece built on your real take is not."),
+    ],
+    "related": [
+        ("how-to-write-twitter-threads-with-claude", "Twitter threads with Claude", "Short-form posts that travel."),
+        ("how-to-write-blog-headlines-with-claude", "Blog headlines with Claude", "Titles that earn the click."),
+        R_PROMPTS, R_MKT,
+    ],
+}
+
+HOWTOS["how-to-write-twitter-threads-with-claude"] = {
+    "title": "How to Write Twitter/X Threads with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for writing Twitter/X threads with Claude, including a copy-paste prompt template for a hook-driven thread, the workflow, and pitfalls to avoid.",
+    "og_title": "How to Write Twitter/X Threads with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for threads with a hook that earns the next tap.",
+    "crumb": "How to Write Twitter/X Threads with Claude",
+    "howto_name": "How to Write Twitter and X Threads with Claude",
+    "h1": "How to write Twitter/X threads with Claude: <em>step-by-step.</em>",
+    "hero_sub": "A thread lives or dies on the first tweet. This playbook gives you a prompt template that nails the hook and keeps every line earning the next tap.",
+    "verdict": "Give Claude the one idea, the audience, and your proof, then ask for a hook plus 6 to 9 tight tweets that each advance the point. You get a scroll-stopping thread draft you can refine in minutes.",
+    "prompt_intro": "This template treats the first tweet as the whole job and structures the rest as one idea per line. Give it your single insight.",
+    "prompt": ("You are my short-form social writer. Write a Twitter/X thread.\n\n"
+               "Context:\n"
+               "- The one idea: [single insight or lesson]\n"
+               "- Audience: [who should care]\n"
+               "- Proof or story: [data, example, experience]\n"
+               "- Goal: [followers / clicks / replies]\n\n"
+               "Rules:\n"
+               "- Tweet 1 is a HOOK: specific, curiosity or stakes, no setup.\n"
+               "- 6-9 tweets, one idea each, under 270 characters, plain language.\n"
+               "- No threads-about-threads, no fluff, no hashtag spam.\n"
+               "- Last tweet: a takeaway and one soft CTA. Do not use em dashes.\n\n"
+               "Write the thread, numbered."),
+    "prompt_outro": "If tweet 1 does not stop the scroll, nothing else matters. For long-form versions of the same ideas, see <a href=\"/how-to-write-linkedin-articles-with-claude\">LinkedIn articles with Claude</a>.",
+    "workflow": _workflow("your niche, voice, and a few threads that worked", "three different hook options for tweet 1"),
+    "example": "Give Claude one lesson ('we cut churn 30 percent by fixing onboarding, not the product') and a couple of specifics. It writes a sharp hook, then a tweet per step of the story, ending on a takeaway, so you start from a strong draft instead of a blank composer.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("What is the best prompt for a Twitter thread?", "One that gives Claude a single idea, the audience, and proof, then demands a real hook and one idea per tweet. Ask for a few hook options. Use the template here."),
+        ("How long should a thread be?", "Usually 6 to 9 tweets. Long enough to deliver the idea, short enough to finish. Prompt Claude to cut anything that does not advance the point."),
+        ("How do I write a better hook?", "Ask Claude for three hook variants for tweet 1, each specific and stakes-driven with no setup, then pick the strongest. The hook is most of the result."),
+        ("Can Claude repurpose a blog post into a thread?", "Yes. Paste the post and ask for a thread that pulls the single best idea, not a summary. One idea per thread travels further than a recap."),
+    ],
+    "related": [
+        ("how-to-write-linkedin-articles-with-claude", "LinkedIn articles with Claude", "Long-form authority posts."),
+        ("how-to-write-podcast-show-notes-with-claude", "Podcast show notes with Claude", "Turn audio into shareable text."),
+        R_PROMPTS, R_MKT,
+    ],
+}
+
+HOWTOS["how-to-write-meta-descriptions-with-claude"] = {
+    "title": "How to Write Meta Descriptions with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for writing SEO meta descriptions with Claude, including a copy-paste prompt template that hits length, keyword, and click appeal, plus pitfalls to avoid.",
+    "og_title": "How to Write Meta Descriptions with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for meta descriptions that fit and earn the click.",
+    "crumb": "How to Write Meta Descriptions with Claude",
+    "howto_name": "How to Write Meta Descriptions with Claude",
+    "h1": "How to write meta descriptions with Claude: <em>step-by-step.</em>",
+    "hero_sub": "A meta description is a 155-character ad for your page. This playbook gives you a prompt template that hits the length, works the keyword in, and earns the click.",
+    "verdict": "Give Claude the page topic, the target keyword, and the searcher's intent, then ask for three meta descriptions under 155 characters with a clear benefit and soft CTA. You get options that fit and convert.",
+    "prompt_intro": "This template enforces the constraints search engines and searchers care about: length, keyword, benefit, and a reason to click. Run it per page.",
+    "prompt": ("You are my SEO copywriter. Write meta descriptions.\n\n"
+               "Context:\n"
+               "- Page topic: [what the page is about]\n"
+               "- Target keyword: [primary keyword]\n"
+               "- Searcher intent: [what they want to find or do]\n"
+               "- Brand: [name, if it should appear]\n\n"
+               "Rules:\n"
+               "- 3 options, each 150-155 characters MAX (count them).\n"
+               "- Work the keyword in naturally, lead with the benefit.\n"
+               "- Active voice, one soft call to action, no clickbait.\n"
+               "- Do not use em dashes.\n\n"
+               "Write 3 meta descriptions and note the character count of each."),
+    "prompt_outro": "Asking Claude to count characters keeps you inside the truncation limit. Pair this with <a href=\"/how-to-write-blog-headlines-with-claude\">blog headlines with Claude</a> so the title and snippet work together.",
+    "workflow": _workflow("target keywords, page topics, and brand naming rules", "three options with character counts"),
+    "example": "For a page on fractional CMO cost, give Claude the keyword and intent. It returns three 155-character options that lead with the benefit ('See 2026 fractional CMO pricing...'), include the keyword, and end with a soft CTA, with counts so you can paste the one that fits.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("How long should a meta description be?", "Aim for 150 to 155 characters so it does not truncate in search results. Ask Claude to count characters and stay under the limit, as the template here does."),
+        ("Does the keyword have to be in the meta description?", "It helps, because search engines bold matching terms, which improves click-through. Prompt Claude to work the keyword in naturally rather than stuffing it."),
+        ("Can Claude write meta descriptions in bulk?", "Yes. Paste a list of page topics and keywords and ask for one option each at the right length. Review them before publishing."),
+        ("Do meta descriptions affect rankings?", "Not directly, but they affect click-through rate, which matters. A clear, benefit-led description earns more clicks from the same ranking."),
+    ],
+    "related": [
+        ("how-to-write-blog-headlines-with-claude", "Blog headlines with Claude", "Titles that earn the click."),
+        ("how-to-write-help-center-articles-with-claude", "Help center articles with Claude", "Clear docs that deflect tickets."),
+        R_PROMPTS, R_MKT,
+    ],
+}
+
+HOWTOS["how-to-write-webinar-promotion-with-claude"] = {
+    "title": "How to Write Webinar Promotion with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for writing webinar promotion with Claude, including a copy-paste prompt template for a full promo sequence built on the attendee takeaway, plus pitfalls to avoid.",
+    "og_title": "How to Write Webinar Promotion with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for a webinar promo sequence that fills seats.",
+    "crumb": "How to Write Webinar Promotion with Claude",
+    "howto_name": "How to Write Webinar Promotion with Claude",
+    "h1": "How to write webinar promotion with Claude: <em>step-by-step.</em>",
+    "hero_sub": "Registrations come from the promise of a takeaway, repeated across enough touches. This playbook gives you a prompt template for a full promo sequence.",
+    "verdict": "Give Claude the webinar topic, the takeaway, and the audience, then ask for a promo sequence (invite, reminders, last call) plus social copy, all built around the payoff. You get a complete promotion kit in minutes.",
+    "prompt_intro": "This template produces the whole campaign, not one email, with each touch escalating urgency while keeping the takeaway front and center.",
+    "prompt": ("You are my webinar marketing assistant. Write a promotion kit.\n\n"
+               "Context:\n"
+               "- Webinar: [title, date, time, duration]\n"
+               "- Audience: [who it is for]\n"
+               "- The takeaway: [what attendees will leave able to do]\n"
+               "- Speaker / hook: [name or draw]\n"
+               "- Register link CTA: [register]\n\n"
+               "Rules:\n"
+               "- Produce: 1 invite email, 2 reminder emails (3 days and 1 hour before),\n"
+               "  1 last-call email, and 3 social posts.\n"
+               "- Every piece leads with the takeaway, one CTA, no hype.\n"
+               "- Escalate urgency across the sequence. Do not use em dashes.\n\n"
+               "Write the full kit, labeled."),
+    "prompt_outro": "One prompt, a full campaign. For the standalone invite, see <a href=\"/how-to-write-event-invitations-with-claude\">event invitations with Claude</a>.",
+    "workflow": _workflow("webinar details, audience, and brand voice", "a full sequence plus social, then refine the invite"),
+    "example": "Give Claude a webinar title, the takeaway ('build a 90-day AI adoption plan live'), and the date. It returns an invite, two reminders, a last-call email, and three social posts, each leading with the takeaway and escalating urgency, so you launch the whole campaign from one prompt.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("How many emails should webinar promotion include?", "Typically an invite, one or two reminders, and a last-call email, plus social. Ask Claude for the full sequence with the right timing, as the template here does."),
+        ("What should webinar promo emails lead with?", "The takeaway: what attendees will leave able to do. Give Claude that and it builds every touch around it, with logistics secondary."),
+        ("Can Claude write the social posts too?", "Yes. The prompt here produces social copy alongside the emails so the message stays consistent across channels. Edit each for platform fit."),
+        ("How do I boost webinar attendance, not just sign-ups?", "Ask Claude for the day-of and one-hour-before reminders that restate the takeaway. Show-up rate improves when the value is reinforced close to the event."),
+    ],
+    "related": [
+        ("how-to-write-event-invitations-with-claude", "Event invitations with Claude", "Invites that sell the takeaway."),
+        ("how-to-write-product-launch-emails-with-claude", "Product launch emails with Claude", "Benefit-led launch copy."),
+        R_PROMPTS, R_MKT,
+    ],
+}
+
+HOWTOS["how-to-write-all-hands-decks-with-claude"] = {
+    "title": "How to Write All-Hands Decks with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for building all-hands and leadership decks with Claude, including a copy-paste prompt template that structures a narrative arc, plus pitfalls to avoid.",
+    "og_title": "How to Write All-Hands Decks with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for all-hands decks with a real narrative arc.",
+    "crumb": "How to Write All-Hands Decks with Claude",
+    "howto_name": "How to Write All-Hands Decks with Claude",
+    "h1": "How to write all-hands decks with Claude: <em>step-by-step.</em>",
+    "hero_sub": "An all-hands deck should tell one story, not dump every team's update. This playbook gives you a prompt template that structures a clear narrative arc.",
+    "verdict": "Give Claude the meeting's one message, the updates, and the audience, then ask for a slide-by-slide outline with a narrative arc and speaker notes. You get a structured deck outline to build from, in minutes.",
+    "prompt_intro": "This template turns raw updates into a story: where we are, what changed, what is next, what we need from you. Paste your inputs.",
+    "prompt": ("You are my internal comms and presentation partner. Outline an all-hands deck.\n\n"
+               "Context:\n"
+               "- The ONE message of this all-hands: [the thing everyone should leave with]\n"
+               "- Key updates: [paste metrics, wins, changes, challenges]\n"
+               "- Audience: [whole company / size / context]\n"
+               "- Tone: [candid / rallying / steady]\n\n"
+               "Rules:\n"
+               "- Structure a narrative arc: where we are, what changed, what is next, the ask.\n"
+               "- One idea per slide, a clear title sentence, 2-4 bullets, and a speaker note.\n"
+               "- 8-12 slides. Lead and close on the ONE message.\n"
+               "- Do not use em dashes.\n\n"
+               "Output a slide-by-slide outline."),
+    "prompt_outro": "The arc is the point: a deck that argues one message beats a stack of team updates. For the written version, see <a href=\"/how-to-write-internal-newsletters-with-claude\">internal newsletters with Claude</a>.",
+    "workflow": _workflow("company metrics, prior decks, and your leadership voice", "two outline options with different narrative framings"),
+    "example": "Drop in the one message ('we are doubling down on retention this quarter') and your metrics. Claude returns a slide-by-slide outline that opens on that message, walks the arc, gives each slide a title sentence and speaker note, and closes on the ask, so you build slides instead of structuring from scratch.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("How do I structure an all-hands deck?", "Around one message, with a narrative arc: where we are, what changed, what is next, the ask. Give Claude your updates and the template here builds that arc."),
+        ("Can Claude write speaker notes?", "Yes. The prompt asks for a speaker note per slide so you have talking points, not just bullets. Edit them into your own voice."),
+        ("How many slides should an all-hands have?", "Usually 8 to 12. Prompt Claude to keep one idea per slide and cut anything that does not serve the single message."),
+        ("Does Claude build the actual slides?", "It builds the outline, titles, bullets, and notes. You drop that into your slide tool. The thinking and structure are the slow part, and that is what it handles."),
+    ],
+    "related": [
+        ("how-to-write-internal-newsletters-with-claude", "Internal newsletters with Claude", "Written updates that land."),
+        ("how-to-draft-investor-pitch-decks-with-claude", "Investor pitch decks with Claude", "A fundable narrative arc."),
+        R_PROMPTS, R_USE,
+    ],
+}
+
+HOWTOS["how-to-write-podcast-show-notes-with-claude"] = {
+    "title": "How to Write Podcast Show Notes with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for writing podcast show notes with Claude, including a copy-paste prompt template that turns a transcript into summary, timestamps, and pull quotes, plus pitfalls to avoid.",
+    "og_title": "How to Write Podcast Show Notes with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template that turns a transcript into complete show notes.",
+    "crumb": "How to Write Podcast Show Notes with Claude",
+    "howto_name": "How to Write Podcast Show Notes with Claude",
+    "h1": "How to write podcast show notes with Claude: <em>step-by-step.</em>",
+    "hero_sub": "Good show notes make an episode searchable and shareable. This playbook gives you a prompt template that turns a transcript into a summary, timestamps, and pull quotes.",
+    "verdict": "Paste the transcript and tell Claude the show and audience, then ask for a summary, key takeaways, timestamped topics, and pull quotes. You get complete, SEO-friendly show notes from raw audio in minutes.",
+    "prompt_intro": "This template does the tedious part: reading the whole transcript and extracting structure. Paste your transcript into the brackets.",
+    "prompt": ("You are my podcast producer. Write show notes from this transcript.\n\n"
+               "Context:\n"
+               "- Show and episode: [name, guest, topic]\n"
+               "- Audience: [who listens]\n"
+               "- Transcript: [paste full transcript]\n\n"
+               "Produce:\n"
+               "- A 2-3 sentence episode summary (SEO-friendly, keyword-aware).\n"
+               "- 5-7 key takeaways as short bullets.\n"
+               "- Timestamped topic list (approximate from the transcript order).\n"
+               "- 3 pull quotes worth sharing on social.\n"
+               "- A 1-line title option.\n\n"
+               "Rules: faithful to the transcript, no invented claims. Do not use em dashes."),
+    "prompt_outro": "The 'no invented claims' rule matters: keep show notes faithful to what was actually said. Turn the pull quotes into <a href=\"/how-to-write-twitter-threads-with-claude\">Twitter threads with Claude</a> for distribution.",
+    "workflow": _workflow("show name, audience, and a sample of past notes for format", "the full notes, then tighten the summary and quotes"),
+    "example": "Paste a 45-minute interview transcript. Claude returns a tight summary, seven takeaways, a timestamped topic list, and three shareable quotes, turning an hour of manual note-writing into a five-minute review-and-edit.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("Can Claude write show notes from a transcript?", "Yes. Paste the transcript and it produces a summary, takeaways, timestamps, and pull quotes. Keep it faithful to the transcript and review before publishing, as the template here specifies."),
+        ("How do I make show notes SEO-friendly?", "Ask Claude for a keyword-aware summary and a clear title. The summary and topic list give search engines text to index from an otherwise audio-only episode."),
+        ("Can Claude generate social clips from an episode?", "It can pull the most shareable quotes and turn them into posts or a thread. The audio or video clipping is separate, but the copy comes from the same transcript."),
+        ("Will the timestamps be accurate?", "They approximate from transcript order. If your transcript has real timestamps, include them and Claude will use them. Otherwise spot-check before publishing."),
+    ],
+    "related": [
+        ("how-to-write-twitter-threads-with-claude", "Twitter threads with Claude", "Turn quotes into shareable posts."),
+        ("how-to-analyze-call-recordings-with-claude", "Analyze call recordings with Claude", "Extract insight from transcripts."),
+        R_PROMPTS, R_MKT,
+    ],
+}
+
+HOWTOS["how-to-write-help-center-articles-with-claude"] = {
+    "title": "How to Write Help Center Articles with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for writing help center and support articles with Claude, including a copy-paste prompt template structured for task completion, plus pitfalls to avoid.",
+    "og_title": "How to Write Help Center Articles with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for support docs that actually deflect tickets.",
+    "crumb": "How to Write Help Center Articles with Claude",
+    "howto_name": "How to Write Help Center Articles with Claude",
+    "h1": "How to write help center articles with Claude: <em>step-by-step.</em>",
+    "hero_sub": "A good help article gets one job done fast. This playbook gives you a prompt template structured for task completion, so articles deflect tickets instead of creating them.",
+    "verdict": "Give Claude the task the user is trying to complete, the steps, and common pitfalls, then ask for a scannable article with numbered steps and a troubleshooting section. You get clear support docs that reduce tickets.",
+    "prompt_intro": "This template structures the article the way users read help docs: task first, numbered steps, then edge cases. Give it the workflow.",
+    "prompt": ("You are my support documentation writer. Write a help center article.\n\n"
+               "Context:\n"
+               "- Task the user wants to complete: [the job]\n"
+               "- Product / feature: [name]\n"
+               "- The steps: [paste the actual steps]\n"
+               "- Common mistakes or edge cases: [list]\n"
+               "- Audience skill level: [new user / admin]\n\n"
+               "Rules:\n"
+               "- Start with a 1-line statement of what this article helps them do.\n"
+               "- Numbered steps, one action each, plain language, no jargon.\n"
+               "- Add a short 'Troubleshooting' section for the edge cases.\n"
+               "- Scannable headers, no marketing. Do not use em dashes.\n\n"
+               "Write the article."),
+    "prompt_outro": "Task-first structure is what makes a help article deflect a ticket. For public-facing SEO snippets, see <a href=\"/how-to-write-meta-descriptions-with-claude\">meta descriptions with Claude</a>.",
+    "workflow": _workflow("product steps, common tickets, and your docs style guide", "a draft, then a tightened version with clearer steps"),
+    "example": "Paste the real steps to set up a feature plus the three most common support tickets about it. Claude writes a task-first article with numbered steps and a troubleshooting section addressing those exact tickets, turning your top support questions into self-serve docs.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("How do I write help articles that reduce tickets?", "Structure them around the user's task: a one-line purpose, numbered steps, and a troubleshooting section for common issues. Give Claude the steps and the template here does this."),
+        ("Can Claude turn support tickets into help articles?", "Yes. Paste recurring tickets and the resolution steps, and it produces a self-serve article that addresses those exact issues. Review for accuracy before publishing."),
+        ("How technical should help articles be?", "Match the audience. Tell Claude whether readers are new users or admins, and it adjusts the language. Keep jargon out for end users."),
+        ("Should help articles include screenshots?", "Yes, but Claude writes the text and step structure; you add the visuals. The clear, numbered structure is what makes the screenshots useful."),
+    ],
+    "related": [
+        ("how-to-write-customer-success-emails-with-claude", "Customer success emails with Claude", "Proactive CS communication."),
+        ("how-to-write-meta-descriptions-with-claude", "Meta descriptions with Claude", "Snippets that earn the click."),
+        R_PROMPTS, R_USE,
+    ],
+}
+
+HOWTOS["how-to-design-customer-research-studies-with-claude"] = {
+    "title": "How to Design Customer Research Studies with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for designing customer research studies with Claude, including a copy-paste prompt template for objectives, methods, and unbiased questions, plus pitfalls to avoid.",
+    "og_title": "How to Design Customer Research Studies with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for research plans with unbiased questions.",
+    "crumb": "How to Design Customer Research Studies with Claude",
+    "howto_name": "How to Design Customer Research Studies with Claude",
+    "h1": "How to design customer research studies with Claude: <em>step-by-step.</em>",
+    "hero_sub": "Good research starts with the right questions, asked without bias. This playbook gives you a prompt template that turns a decision into a sound study design.",
+    "verdict": "Tell Claude the decision you need to inform, who you can talk to, and your constraints, then ask for objectives, the right method, and an unbiased question guide. You get a defensible research plan, fast.",
+    "prompt_intro": "This template starts from the decision (not the questions), which is what keeps research useful, then drafts a non-leading interview or survey guide.",
+    "prompt": ("You are my UX and customer research partner. Design a research study.\n\n"
+               "Context:\n"
+               "- Decision this research will inform: [the choice you face]\n"
+               "- What we think we know / assumptions: [hypotheses]\n"
+               "- Who we can reach: [segment, sample size, access]\n"
+               "- Constraints: [time, budget, qual vs quant]\n\n"
+               "Produce:\n"
+               "- 3-5 clear research objectives tied to the decision.\n"
+               "- The recommended method and why (interviews, survey, usability test).\n"
+               "- A question guide with NON-LEADING, open questions.\n"
+               "- What a good vs misleading result would look like.\n\n"
+               "Rules: flag any leading questions and rewrite them. Do not use em dashes."),
+    "prompt_outro": "Designing from the decision and screening for leading questions is what separates research that informs from research that confirms your bias. For applying findings, see <a href=\"/how-to-use-ai-in-your-business\">how to use AI in your business</a>.",
+    "workflow": _workflow("the decision at hand, your assumptions, and prior research", "the plan, then a pass that hunts for leading questions"),
+    "example": "Say you are deciding whether to build a feature. Tell Claude the decision and your assumptions, and it returns objectives, recommends interviews over a survey, drafts open and non-leading questions, and flags any that lead the witness, giving you a study that tests your assumption rather than confirming it.",
+    "avoid": AVOID_G,
+    "faqs": [
+        ("Can Claude design a customer research study?", "Yes. Give it the decision, your assumptions, and constraints, and it produces objectives, a recommended method, and a non-leading question guide. Use the template here."),
+        ("How does AI help avoid biased research questions?", "Ask Claude to flag and rewrite leading questions. It is good at spotting questions that presume an answer, which is one of the most common research mistakes."),
+        ("Should research start with questions or the decision?", "The decision. Prompt Claude to tie every objective to the choice you face, so you gather what you will actually act on, not interesting trivia."),
+        ("Can Claude analyze the results too?", "Yes, once you have transcripts or survey data. Paste them and ask for themes and counter-evidence. See analyzing call recordings with Claude for the interview side."),
+    ],
+    "related": [
+        ("how-to-analyze-call-recordings-with-claude", "Analyze call recordings with Claude", "Turn interviews into themes."),
+        ("how-to-draft-investor-pitch-decks-with-claude", "Investor pitch decks with Claude", "Evidence-backed narrative."),
+        R_PROMPTS, R_USE,
+    ],
+}
+
+HOWTOS["how-to-draft-investor-pitch-decks-with-claude"] = {
+    "title": "How to Draft Investor Pitch Decks with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for drafting investor pitch decks with Claude, including a copy-paste prompt template that structures a fundable narrative, plus pitfalls to avoid.",
+    "og_title": "How to Draft Investor Pitch Decks with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template for a pitch-deck narrative investors follow.",
+    "crumb": "How to Draft Investor Pitch Decks with Claude",
+    "howto_name": "How to Draft Investor Pitch Decks with Claude",
+    "h1": "How to draft investor pitch decks with Claude: <em>step-by-step.</em>",
+    "hero_sub": "Investors fund a story with evidence, not a feature list. This playbook gives you a prompt template that structures the standard pitch arc around your specifics.",
+    "verdict": "Give Claude your problem, solution, traction, and the raise, then ask for a slide-by-slide narrative following the proven pitch arc. You get a structured first-draft deck you can sharpen with real numbers.",
+    "prompt_intro": "This template follows the arc investors expect (problem, solution, why now, market, traction, model, team, ask) and prompts you for the evidence each slide needs.",
+    "prompt": ("You are my pitch advisor. Outline an investor pitch deck.\n\n"
+               "Context:\n"
+               "- Company: [one-line description]\n"
+               "- Problem: [who hurts and how much]\n"
+               "- Solution: [what you do, why it is different]\n"
+               "- Why now: [the shift that makes this the moment]\n"
+               "- Traction: [revenue, growth, customers, metrics]\n"
+               "- Market: [TAM/SAM logic]\n"
+               "- Business model: [how you make money]\n"
+               "- Team: [why you]\n"
+               "- The raise: [amount, use of funds]\n\n"
+               "Rules:\n"
+               "- Slide-by-slide: one message per slide, a title sentence, key points,\n"
+               "  and the evidence/number each slide needs.\n"
+               "- Flag any slide where my input is thin or unconvincing.\n"
+               "- 10-12 slides. Do not use em dashes.\n\n"
+               "Outline the deck."),
+    "prompt_outro": "The most useful part is Claude flagging weak slides before an investor does. Build the verbal version with <a href=\"/how-to-write-all-hands-decks-with-claude\">all-hands decks with Claude</a> techniques, and back claims with <a href=\"/how-to-design-customer-research-studies-with-claude\">customer research</a>.",
+    "workflow": _workflow("your metrics, prior decks, and the round you are raising", "the outline, then a pass flagging weak or unproven slides"),
+    "example": "Fill in your traction and market logic. Claude returns a 10-slide outline following the standard arc, tells you which slides need a harder number (often 'why now' and market sizing), and drafts a title sentence per slide, so you refine evidence rather than invent structure.",
+    "avoid": [
+        "Letting Claude invent numbers. Give it your real metrics; never present fabricated traction.",
+        "Sharing confidential figures with consumer AI tools. Use appropriate accounts and judgment.",
+        "Accepting the first outline. The value is in the flagged weak slides and your revisions.",
+        "Treating the deck as the pitch. The deck supports your story; it does not replace your judgment.",
+    ],
+    "faqs": [
+        ("Can Claude write my pitch deck?", "It drafts the narrative and structure from your inputs and flags weak slides. You supply the real numbers and make the final calls. Never present figures Claude invented."),
+        ("What pitch deck structure does Claude use?", "The proven arc: problem, solution, why now, market, traction, model, team, ask. The template here prompts you for the evidence each slide needs."),
+        ("Is it safe to use AI for a confidential pitch?", "Use appropriate accounts and judgment with sensitive financials. Many founders draft structure and narrative with AI and keep the most confidential numbers out of consumer tools."),
+        ("How does Claude improve a deck?", "Its best move is flagging slides where your input is thin or unconvincing, so you fix them before an investor pokes holes. That pre-mortem is worth more than the prose."),
+    ],
+    "related": [
+        ("how-to-write-all-hands-decks-with-claude", "All-hands decks with Claude", "Narrative-driven decks."),
+        ("how-to-design-customer-research-studies-with-claude", "Customer research with Claude", "Evidence to back your claims."),
+        R_PROMPTS, R_USE,
+    ],
+}
+
+HOWTOS["how-to-analyze-call-recordings-with-claude"] = {
+    "title": "How to Analyze Call Recordings with Claude (2026 Playbook) | Treetop",
+    "desc": "A step-by-step playbook for analyzing sales and customer call recordings with Claude, including a copy-paste prompt template that extracts objections, action items, and themes, plus pitfalls to avoid.",
+    "og_title": "How to Analyze Call Recordings with Claude (2026 Playbook)",
+    "og_desc": "Copy-paste prompt template that turns call transcripts into insight.",
+    "crumb": "How to Analyze Call Recordings with Claude",
+    "howto_name": "How to Analyze Call Recordings with Claude",
+    "h1": "How to analyze call recordings with Claude: <em>step-by-step.</em>",
+    "hero_sub": "Your calls are full of insight that no one has time to mine. This playbook gives you a prompt template that turns a transcript into objections, action items, and themes.",
+    "verdict": "Paste a call transcript and tell Claude what you are looking for, then ask for a structured analysis: summary, objections, action items, and notable quotes. You turn a recording into usable insight in minutes, and you can analyze many calls for patterns.",
+    "prompt_intro": "This template extracts the structure buried in a transcript. Use it per call, or paste several transcripts and ask for cross-call patterns.",
+    "prompt": ("You are my revenue and research analyst. Analyze this call transcript.\n\n"
+               "Context:\n"
+               "- Call type: [sales discovery / demo / customer interview / support]\n"
+               "- What I want to learn: [objections / buying signals / feature requests / churn risk]\n"
+               "- Transcript: [paste transcript]\n\n"
+               "Produce:\n"
+               "- A 3-sentence summary.\n"
+               "- Objections or concerns raised, with the exact quote.\n"
+               "- Buying signals or risk signals, with quotes.\n"
+               "- Action items and follow-ups.\n"
+               "- 2-3 notable quotes in the customer's own words.\n\n"
+               "Rules: only use what is in the transcript, no inference presented as fact. Do not use em dashes."),
+    "prompt_outro": "Quote-backed analysis keeps it honest, and pasting several transcripts surfaces patterns one call cannot. Feed what you learn into <a href=\"/how-to-write-follow-up-emails-with-claude\">follow-up emails</a> and <a href=\"/how-to-design-customer-research-studies-with-claude\">research design</a>.",
+    "workflow": [
+        ("Get a clean transcript.", "Use your meeting recorder (Fathom, Gong, Otter) to export the transcript. Claude analyzes text, so the transcript is your input."),
+        ("Paste the prompt and transcript.", "Tell Claude the call type and exactly what you want to learn. Specific questions get specific, useful answers."),
+        ("Ask for quotes, not just summaries.", "Quote-backed findings keep the analysis honest and let you verify. The template requires exact quotes for each point."),
+        ("Run it across many calls for patterns.", "Paste several transcripts and ask for the objections and signals that repeat. That cross-call view is where the strategic insight lives."),
+        ("Turn insight into action, then save the prompt.", "Route action items to owners and patterns to product or marketing. Save the prompt so every call gets analyzed the same way."),
+    ],
+    "example": "Paste a discovery-call transcript and ask for objections and buying signals. Claude returns the exact objection quotes, the moments of interest, the action items, and a few customer-voice quotes, turning a 40-minute call into a one-screen brief, and across 20 calls it surfaces the objection you keep losing on.",
+    "avoid": [
+        "Presenting inference as fact. Require quotes so findings are grounded in what was actually said.",
+        "Pasting sensitive recordings into tools without appropriate data agreements and consent.",
+        "Analyzing one call and generalizing. Patterns come from many transcripts, not one.",
+        "Skipping the human read. Use the analysis to focus your attention, not replace your judgment.",
+    ],
+    "faqs": [
+        ("Can Claude analyze a sales call?", "Yes, from the transcript. Paste it and ask for objections, buying signals, action items, and quotes. The template here keeps every finding tied to an exact quote."),
+        ("How do I get a transcript for Claude?", "Export it from your meeting recorder (Fathom, Gong, Otter, or similar). Claude works on the text, so a clean transcript is all you need."),
+        ("Can Claude find patterns across many calls?", "Yes, and that is the highest-value use. Paste multiple transcripts and ask for the objections, requests, or risks that repeat across them."),
+        ("Is it safe to analyze customer calls with AI?", "Use appropriate data agreements and ensure recording consent. Keep sensitive transcripts in tools with the right privacy terms, not random consumer apps."),
+    ],
+    "related": [
+        ("how-to-design-customer-research-studies-with-claude", "Customer research with Claude", "Design the interviews you analyze."),
+        ("how-to-write-follow-up-emails-with-claude", "Follow-up emails with Claude", "Act on what the call revealed."),
+        R_PROMPTS, R_USE,
+    ],
+}
