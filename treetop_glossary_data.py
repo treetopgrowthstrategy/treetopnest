@@ -588,3 +588,298 @@ TERMS["what-is-zero-party-data"] = {
     ],
 }
 
+# ---- G3: brand / category / positioning + AI-era search ----
+
+TERMS["what-is-intent-data"] = {
+    "term": "Intent Data", "term_q": "Intent Data",
+    "title": "What is Intent Data? Plain-English 2026 Definition | Treetop",
+    "desc": "What is intent data? A plain-English definition, the types, examples, and how B2B teams use it to reach buyers who are actively researching.",
+    "og_title": "What is Intent Data? Plain-English Definition",
+    "og_desc": "First-party vs third-party intent data, and how B2B teams use it.",
+    "hero_sub": "Intent data tells you which accounts are actively researching what you sell, so you reach them while they are in-market. Here is how it works.",
+    "short_def": "Intent data is information that signals a buyer is actively researching a product or category, used to identify and prioritize accounts that are likely in a buying cycle.",
+    "definition": "Intent data captures buying signals: content consumed, searches run, pages visited, topics surged on. First-party intent comes from your own properties (someone reading your pricing page repeatedly); third-party intent is aggregated across the web by providers who detect topic surges at the account level. Used well, it points sales and marketing at accounts that are in-market now, complementing your <a href=\"/what-is-first-party-data\">first-party data</a>.",
+    "why": "Most of a buyer's research happens before they ever talk to sales. Intent data lets you reach those accounts during that window rather than after a competitor has. For B2B teams running account-based motions, it is the difference between guessing who to prioritize and knowing. It pairs naturally with the kind of signal-based outreach that AI now makes practical at scale.",
+    "watch": [
+        "Signal is noisy. Intent data shows interest, not a guaranteed buyer. Treat it as a prioritization input.",
+        "First-party intent is strongest. Activity on your own site beats inferred third-party surges.",
+        "Act fast. Intent decays; a surge is only useful while it is hot.",
+        "Combine with fit. High intent on a poor-fit account is still a poor-fit account.",
+    ],
+    "faqs": [
+        ("What is an example of intent data?", "Repeated visits to your pricing page (first-party), or a third-party provider detecting that an account is surging on searches and content about your category across the web."),
+        ("What is the difference between first-party and third-party intent data?", "First-party intent comes from activity on your own properties and is the strongest signal. Third-party intent is aggregated across the web and detects category research you cannot see directly."),
+        ("How do B2B teams use intent data?", "To prioritize accounts that are actively researching, so sales and marketing can reach them during the buying window. It works best combined with fit data and fast follow-up."),
+    ],
+    "related": [
+        ("what-is-first-party-data", "First-party data", "Data you collect directly."),
+        ("what-is-dark-funnel", "Dark funnel", "The research you cannot track."),
+        ("what-is-gtm-strategy", "GTM strategy", "Turning signals into a motion."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-brand-equity"] = {
+    "term": "Brand Equity", "term_q": "Brand Equity",
+    "title": "What is Brand Equity? Plain-English 2026 Definition | Treetop",
+    "desc": "What is brand equity? A plain-English definition, what drives it, how it shows up in pricing and demand, and how to build it.",
+    "og_title": "What is Brand Equity? Plain-English Definition",
+    "og_desc": "What brand equity is, what drives it, and why it shows up in pricing power.",
+    "hero_sub": "Brand equity is the commercial value of how customers feel about your brand, and it shows up in pricing power and demand. Here is what drives it.",
+    "short_def": "Brand equity is the commercial value a brand holds in customers' minds, the premium in awareness, trust, and preference that lets a brand command higher prices and win demand more easily.",
+    "definition": "Brand equity is the difference between a generic product and yours in the customer's eyes. It is built from awareness, perceived quality, associations, and loyalty. Strong brand equity shows up concretely: customers pay more, choose you by default, and forgive the occasional misstep. It is the asset behind durable pricing power and lower acquisition costs, and it compounds with category leadership like becoming a <a href=\"/what-is-category-king\">category king</a>.",
+    "why": "Brand equity is what makes marketing cheaper and pricing stronger over time. A brand customers trust converts better, retains longer, and needs less paid acquisition to grow, because demand comes to it. It is hard to measure precisely, which is why some teams neglect it in favor of short-term metrics, but it is one of the most durable competitive advantages a company can build.",
+    "watch": [
+        "It is built slowly and lost quickly. Consistency over years builds it; a betrayal of trust erodes it fast.",
+        "Hard to measure does not mean unimportant. Use brand-tracking, share of voice, and pricing power as proxies.",
+        "It is not just a logo. Equity lives in experience, quality, and associations, not visual identity alone.",
+        "Do not trade it for short-term wins. Discounting and off-brand stunts can quietly drain equity.",
+    ],
+    "faqs": [
+        ("What drives brand equity?", "Awareness, perceived quality, strong and positive associations, and customer loyalty. Together they create preference and trust that customers will pay a premium for."),
+        ("How do you measure brand equity?", "There is no single number, but proxies include brand-tracking surveys, share of voice, pricing power, unaided awareness, and the share of demand that is direct or organic rather than paid."),
+        ("Why does brand equity matter?", "It lowers acquisition cost, supports higher prices, and improves retention, because customers choose and trust the brand by default. It is one of the most durable competitive advantages."),
+    ],
+    "related": [
+        ("what-is-category-king", "Category king", "The dominant brand in a category."),
+        ("what-is-share-of-voice", "Share of voice", "Your slice of market attention."),
+        ("what-is-category-creation", "Category creation", "Building a new market."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-share-of-voice"] = {
+    "term": "Share of Voice (SOV)", "term_q": "Share of Voice",
+    "title": "What is Share of Voice? Plain-English 2026 Definition | Treetop",
+    "desc": "What is share of voice? A plain-English definition with the formula, a worked example, and why SOV predicts market share growth.",
+    "og_title": "What is Share of Voice? Plain-English Definition",
+    "og_desc": "The SOV formula and why it predicts market-share growth.",
+    "hero_sub": "Share of voice is your brand's slice of the total attention in your market, and it tends to predict where market share is heading. Here is how to measure it.",
+    "short_def": "Share of voice (SOV) is the percentage of total market presence (advertising, mentions, search visibility, or conversation) that your brand owns relative to competitors.",
+    "definition": "SOV measures how much of the market's attention you command. It can be calculated across channels: ad spend, organic search visibility, social mentions, or press coverage. The classic principle is that when your share of voice exceeds your market share, you tend to gain share over time, and when it lags, you tend to lose it. It is closely tied to <a href=\"/what-is-brand-equity\">brand equity</a> and category leadership.",
+    "formula": "Share of Voice = (Your brand's presence / Total market presence across all competitors) x 100",
+    "formula_example": "If your brand accounts for 8,000 of 50,000 total category mentions this quarter, SOV = (8,000 / 50,000) x 100 = 16 percent. If your market share is only 10 percent, that excess share of voice suggests you are positioned to gain share.",
+    "why": "Share of voice is a leading indicator of market share. Brands that consistently out-shout their share of market tend to grow into that voice, while brands that go quiet tend to shrink. It turns the abstract goal of 'building the brand' into a measurable target you can track against competitors, channel by channel.",
+    "watch": [
+        "Pick the right channel. SOV in paid, organic, social, and PR are different numbers; define which you mean.",
+        "Quality matters, not just volume. Negative mentions are still voice but not the kind you want.",
+        "Compare to market share. Excess SOV is the signal worth acting on.",
+        "Track the trend. A declining SOV is an early warning even if the level looks fine.",
+    ],
+    "faqs": [
+        ("How do you calculate share of voice?", "Divide your brand's presence (mentions, ad spend, search visibility) by the total across all competitors, times 100. The channel you measure should match your goal."),
+        ("Why does share of voice matter?", "It is a leading indicator of market share. Brands whose share of voice exceeds their market share tend to gain share over time; those that go quiet tend to lose it."),
+        ("What is excess share of voice?", "The amount by which your share of voice exceeds your market share. A positive gap signals you are positioned to grow; a negative gap signals risk of decline."),
+    ],
+    "related": [
+        ("what-is-brand-equity", "Brand equity", "The value of how customers see you."),
+        ("what-is-category-king", "Category king", "The dominant brand in a category."),
+        ("what-is-vanity-metrics", "Vanity metrics", "Attention that does not convert."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-vanity-metrics"] = {
+    "term": "Vanity Metrics", "term_q": "Vanity Metrics",
+    "title": "What is a Vanity Metric? Plain-English 2026 Definition | Treetop",
+    "desc": "What are vanity metrics? A plain-English definition, examples, how they differ from actionable metrics, and how to avoid being fooled by them.",
+    "og_title": "What is a Vanity Metric? Plain-English Definition",
+    "og_desc": "What vanity metrics are and how to replace them with actionable ones.",
+    "hero_sub": "Vanity metrics look impressive and tell you nothing useful. Here is how to spot them and replace them with metrics that actually inform decisions.",
+    "short_def": "Vanity metrics are numbers that look impressive but do not inform decisions or correlate with real business outcomes, such as raw page views, registered users, or social followers.",
+    "definition": "A vanity metric goes up and feels good but does not change what you do next. Total signups, impressions, and follower counts are classic examples: big numbers that hide whether anyone activated, retained, or paid. The test is simple: if a metric cannot fail and cannot change a decision, it is vanity. The cure is to track actionable metrics tied to value, anchored by a <a href=\"/what-is-northstar-metric\">north star metric</a>.",
+    "why": "Vanity metrics are dangerous because they create the feeling of progress without the substance. Teams optimize the impressive number while the business that matters stalls. Replacing them with actionable metrics (activation, retention, revenue, conversion) forces honesty and better decisions. It is one of the most common traps in startup and marketing reporting.",
+    "watch_heading": "How to spot one",
+    "watch": [
+        "Ask if it can change a decision. If not, it is vanity.",
+        "Ask if it can go down. Cumulative totals that only ever rise are usually vanity.",
+        "Prefer rates and cohorts over raw totals. Conversion and retention beat impressions and signups.",
+        "Anchor on a north star and its real input metrics, not the metrics that flatter.",
+    ],
+    "faqs": [
+        ("What are examples of vanity metrics?", "Total page views, registered users, app downloads, social followers, and impressions. They look big but do not reveal whether people activated, retained, or paid."),
+        ("How are vanity metrics different from actionable metrics?", "Actionable metrics inform a decision and can fail, like activation rate, retention, and conversion. Vanity metrics only rise and rarely change what you do next."),
+        ("How do I avoid vanity metrics?", "Anchor reporting on a north star metric and its real inputs, prefer rates and cohorts over raw totals, and ask of every metric whether it could change a decision."),
+    ],
+    "related": [
+        ("what-is-northstar-metric", "North Star metric", "The metric that captures value."),
+        ("what-is-activation-rate", "Activation rate", "An actionable early metric."),
+        ("what-is-share-of-voice", "Share of voice", "Attention measured meaningfully."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-dark-funnel"] = {
+    "term": "Dark Funnel", "term_q": "the Dark Funnel",
+    "title": "What is the Dark Funnel? Plain-English 2026 Definition | Treetop",
+    "desc": "What is the dark funnel? A plain-English definition, examples of untrackable touchpoints, why it matters in B2B, and how to work with it.",
+    "og_title": "What is the Dark Funnel? Plain-English Definition",
+    "og_desc": "The untrackable touchpoints that shape B2B buying, and how to work with them.",
+    "hero_sub": "The dark funnel is all the buyer research and influence you cannot track, and in B2B it is where most decisions actually form. Here is what it is.",
+    "short_def": "The dark funnel is the collection of untrackable touchpoints (private communities, peer conversations, podcasts, word of mouth) that influence buyers before they ever appear in your analytics.",
+    "definition": "Most attribution tools see only the trackable last clicks. The dark funnel is everything before and around that: Slack communities, peer recommendations, podcasts, social feeds, and direct conversations that shape a buyer's shortlist invisibly. By the time a buyer fills out a form, the real decision was often already influenced in the dark. It is closely related to <a href=\"/what-is-intent-data\">intent data</a> and explains why attribution alone misleads.",
+    "why": "The dark funnel matters because attribution models systematically undercredit it, leading teams to over-invest in the trackable channels and under-invest in brand, community, and word of mouth, which is where much B2B buying actually starts. Accepting that you cannot track everything, and measuring with surveys (how did you hear about us) and overall pipeline lift, leads to better decisions than chasing perfect attribution.",
+    "watch": [
+        "Attribution understates it. Self-reported sourcing often reveals channels your tools never saw.",
+        "Do not kill what you cannot track. Brand, community, and word of mouth work even when invisible.",
+        "Use surveys. A simple 'how did you hear about us' recovers signal the dark funnel hides.",
+        "Measure lift, not just clicks. Watch overall pipeline against brand and community investment.",
+    ],
+    "faqs": [
+        ("What is an example of the dark funnel?", "A buyer hears your brand on a podcast, sees it discussed in a private Slack community, and gets a peer recommendation, then later searches your name directly. The influence is real but invisible to attribution tools."),
+        ("Why does the dark funnel matter?", "Because attribution undercredits it, teams over-invest in trackable channels and under-invest in brand and community, where much B2B buying actually begins. Recognizing it leads to better budget decisions."),
+        ("How do you measure the dark funnel?", "You cannot track it precisely, but self-reported attribution surveys ('how did you hear about us') and overall pipeline lift against brand investment recover much of the signal."),
+    ],
+    "related": [
+        ("what-is-intent-data", "Intent data", "Signals of in-market research."),
+        ("what-is-share-of-voice", "Share of voice", "Brand presence that shapes demand."),
+        ("what-is-brand-equity", "Brand equity", "Why buyers arrive pre-sold."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-category-creation"] = {
+    "term": "Category Creation", "term_q": "Category Creation",
+    "title": "What is Category Creation? Plain-English 2026 Definition | Treetop",
+    "desc": "What is category creation? A plain-English definition, examples, why it is powerful and risky, and how it relates to becoming a category king.",
+    "og_title": "What is Category Creation? Plain-English Definition",
+    "og_desc": "What category creation is, why it is powerful, and why it is risky.",
+    "hero_sub": "Category creation is defining a new market and teaching the world it exists. Done right it is the most durable advantage in business; done wrong it is an expensive way to fail.",
+    "short_def": "Category creation is the strategy of defining and naming a new market category, then establishing your company as the leader of it, rather than competing in an existing one.",
+    "definition": "Instead of fighting for share in a crowded market, category creation invents a new one: a new way of framing a problem and the solution to it. The creator educates the market on the problem, names the category, and positions itself as the obvious leader. Done well, the creator usually becomes the <a href=\"/what-is-category-king\">category king</a> and captures the majority of the category's value. Done poorly, it is a costly exercise in educating a market that never forms.",
+    "why": "Category creation is powerful because the company that defines a category often dominates it, setting the terms competitors must play by and capturing a disproportionate share of profits and <a href=\"/what-is-brand-equity\">brand equity</a>. It is risky because it requires educating the market, which is slow and expensive, and because not every problem deserves a new category. It is a strategy for genuinely novel solutions, not a marketing relabel.",
+    "watch": [
+        "It requires market education, which is slow and costly. Budget for it.",
+        "Not everything is a category. Relabeling an existing market fools no one.",
+        "You must own the problem, not just the product name. Frame the problem first.",
+        "Winner takes most, so commit fully or do not start. Half-hearted category creation just funds competitors.",
+    ],
+    "faqs": [
+        ("What is an example of category creation?", "Companies that named and defined a new market (such as marketing automation or customer data platforms) and then led it. They taught buyers the problem framing, then owned the resulting category."),
+        ("Why is category creation risky?", "It requires educating the market on a problem and solution that did not have a name, which is slow and expensive. If the category never forms, the spend is wasted, and you may educate buyers who choose a competitor."),
+        ("How does category creation relate to being a category king?", "The company that successfully creates a category usually becomes its king, the dominant leader that captures most of the category's value and defines the terms others compete on."),
+    ],
+    "related": [
+        ("what-is-category-king", "Category king", "The dominant brand in a category."),
+        ("what-is-brand-equity", "Brand equity", "The asset category leaders build."),
+        ("what-is-gtm-strategy", "GTM strategy", "Taking a category to market."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-category-king"] = {
+    "term": "Category King", "term_q": "a Category King",
+    "title": "What is a Category King? Plain-English 2026 Definition | Treetop",
+    "desc": "What is a category king? A plain-English definition, examples, why category kings capture most of the value, and how a company becomes one.",
+    "og_title": "What is a Category King? Plain-English Definition",
+    "og_desc": "Why category kings capture most of a market's value.",
+    "hero_sub": "A category king is the company that dominates its market category and captures most of its value. Here is what makes one and why the position is so powerful.",
+    "short_def": "A category king is the company that dominates a market category, capturing the majority of its economics, mindshare, and growth, often the company that created or defined the category.",
+    "definition": "In most categories, the leader does not just win a bit more; it wins most. Research on category dynamics finds that the category king frequently captures a large majority of the total profit pool. Kings earn the position through a combination of a strong product, a defining point of view on the category, and relentless presence, usually after <a href=\"/what-is-category-creation\">creating the category</a>. The result is durable <a href=\"/what-is-brand-equity\">brand equity</a> and pricing power.",
+    "why": "Being a category king matters because category economics are winner-take-most. The king sets the agenda, attracts the best talent and partners, and enjoys lower acquisition costs because buyers think of it first. For founders, this is why defining and leading a category can be worth more than building a slightly better product in a crowded one, the position itself is the moat.",
+    "watch": [
+        "Kingship follows category leadership, not just product quality. The framing matters as much as the features.",
+        "It is defensible but not permanent. Kings that stop innovating get unseated.",
+        "Mindshare compounds. Being top-of-mind lowers acquisition cost over time.",
+        "You usually have to create or redefine the category to become its king.",
+    ],
+    "faqs": [
+        ("What makes a company a category king?", "Dominating a market category in mindshare and economics, usually by creating or defining the category, holding a strong point of view, and maintaining relentless presence, which compounds into durable advantage."),
+        ("Why do category kings capture most of the value?", "Category economics are winner-take-most. The leader becomes the default choice, attracts the best partners and talent, and enjoys lower acquisition costs, capturing a disproportionate share of the profit pool."),
+        ("How does a company become a category king?", "Most often by creating or redefining a category and then leading the market education, combining a strong product with a defining point of view and consistent presence until it becomes the default."),
+    ],
+    "related": [
+        ("what-is-category-creation", "Category creation", "Defining a new market."),
+        ("what-is-brand-equity", "Brand equity", "The asset kings accumulate."),
+        ("what-is-share-of-voice", "Share of voice", "The presence kings dominate."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-geo"] = {
+    "term": "Generative Engine Optimization (GEO)", "term_q": "Generative Engine Optimization (GEO)",
+    "title": "What is Generative Engine Optimization (GEO)? Definition | Treetop",
+    "desc": "What is GEO? A plain-English definition of generative engine optimization, how it differs from SEO and AEO, and how to get cited by AI answer engines.",
+    "og_title": "What is Generative Engine Optimization (GEO)? Definition",
+    "og_desc": "How to get your content cited by AI answer engines in 2026.",
+    "hero_sub": "GEO is optimizing your content to be cited by AI answer engines like ChatGPT, Claude, and Google's AI overviews. Here is what it means and how it differs from SEO.",
+    "short_def": "Generative engine optimization (GEO) is the practice of optimizing content so that AI generative engines (ChatGPT, Claude, Perplexity, Google AI overviews) cite and surface it in their answers.",
+    "definition": "As people increasingly get answers from AI assistants instead of clicking blue links, GEO is the discipline of being the source those assistants quote. It overlaps with SEO but optimizes for being synthesized and cited rather than ranked: clear structure, factual accuracy, quotable statements, and strong topical authority. It is closely related to <a href=\"/what-is-aeo\">answer engine optimization (AEO)</a> and is a response to the rise of <a href=\"/what-is-zero-click-search\">zero-click search</a>.",
+    "why": "GEO matters because a growing share of research never reaches a website; the answer is generated and the source is cited, or not. Brands that structure content to be quotable and authoritative get represented in AI answers; those that do not become invisible in the channel that is rapidly growing. It is the SEO of the AI era, and treating it as optional is the same mistake as ignoring search was twenty years ago.",
+    "watch": [
+        "Clarity and structure win. AI engines favor content that is well-organized and quotable.",
+        "Accuracy and authority matter more than keyword tricks. Engines cite trustworthy sources.",
+        "Track AI visibility, not just rankings. Being cited in answers is the new goal.",
+        "It complements SEO, it does not replace it. Do both.",
+    ],
+    "faqs": [
+        ("What is the difference between GEO and SEO?", "SEO optimizes to rank in traditional search results. GEO optimizes to be cited and synthesized by AI generative engines. They overlap, but GEO emphasizes quotable, structured, authoritative content over ranking signals."),
+        ("How do you optimize for AI answer engines?", "Structure content clearly, state facts and conclusions plainly so they are quotable, build genuine topical authority, and keep information accurate and current. AI engines cite sources they can trust and easily extract."),
+        ("Is GEO the same as AEO?", "They are closely related. GEO focuses on generative engines that synthesize answers, while AEO (answer engine optimization) is the broader practice of being the answer. In practice the tactics overlap heavily."),
+    ],
+    "related": [
+        ("what-is-aeo", "Answer engine optimization (AEO)", "Being the answer, not a link."),
+        ("what-is-zero-click-search", "Zero-click search", "Searches that never leave the page."),
+        ("what-is-share-of-voice", "Share of voice", "Presence in the new channels."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-aeo"] = {
+    "term": "Answer Engine Optimization (AEO)", "term_q": "Answer Engine Optimization (AEO)",
+    "title": "What is Answer Engine Optimization (AEO)? Definition | Treetop",
+    "desc": "What is AEO? A plain-English definition of answer engine optimization, how it differs from SEO and GEO, and how to be the answer instead of a link.",
+    "og_title": "What is Answer Engine Optimization (AEO)? Definition",
+    "og_desc": "How to be the answer, not just a link, in the AI search era.",
+    "hero_sub": "AEO is optimizing to be the direct answer that search and AI engines surface, not just a link in a list. Here is what it means and how to do it.",
+    "short_def": "Answer engine optimization (AEO) is the practice of structuring content so search and AI answer engines return it directly as the answer to a question, in featured snippets, voice results, and AI summaries.",
+    "definition": "AEO optimizes for the moment a user asks a question and gets a direct answer rather than a list of links. That means writing clear question-and-answer content, using structured data, and stating answers concisely enough to be extracted. It powers featured snippets, voice assistants, and AI summaries. It overlaps heavily with <a href=\"/what-is-geo\">generative engine optimization (GEO)</a> and is a direct response to <a href=\"/what-is-zero-click-search\">zero-click search</a>.",
+    "why": "AEO matters because being the answer is the new page-one. As featured snippets, voice search, and AI overviews intercept more queries, the content that is structured to be the answer wins the visibility, and the content that is not disappears. For most businesses, the practical move is to write genuinely useful question-and-answer content (like the FAQ sections on these pages) with clean structure and schema.",
+    "watch": [
+        "Answer the question directly and early. Engines extract concise, clear answers.",
+        "Use structured data and FAQ markup so engines can parse your answers.",
+        "Match real questions. Write to how people actually ask, not to keywords alone.",
+        "It complements SEO and GEO. Treat them as one content discipline.",
+    ],
+    "faqs": [
+        ("What is the difference between AEO and SEO?", "SEO aims to rank a page in results; AEO aims to be the direct answer, in featured snippets, voice results, and AI summaries. AEO emphasizes concise, structured, question-and-answer content."),
+        ("How do you optimize for answer engines?", "Answer questions directly and early, use FAQ and structured-data markup, write to how people actually ask, and keep answers concise and accurate so engines can extract them."),
+        ("Is AEO the same as GEO?", "They overlap heavily. AEO is about being the answer across search and AI engines; GEO focuses specifically on being cited by generative AI engines. The tactics are largely shared."),
+    ],
+    "related": [
+        ("what-is-geo", "Generative engine optimization (GEO)", "Being cited by AI engines."),
+        ("what-is-zero-click-search", "Zero-click search", "Searches resolved on the page."),
+        ("what-is-share-of-voice", "Share of voice", "Presence across channels."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-zero-click-search"] = {
+    "term": "Zero-Click Search", "term_q": "Zero-Click Search",
+    "title": "What is Zero-Click Search? Plain-English 2026 Definition | Treetop",
+    "desc": "What is zero-click search? A plain-English definition, why it is growing, what it means for traffic, and how to stay visible.",
+    "og_title": "What is Zero-Click Search? Plain-English Definition",
+    "og_desc": "Why zero-click search is growing and how to stay visible.",
+    "hero_sub": "A zero-click search is one where the user gets their answer without clicking any result. It is a growing share of all search, and it changes how visibility works.",
+    "short_def": "A zero-click search is a search where the user finds the answer directly on the results page (in a featured snippet, knowledge panel, or AI overview) without clicking through to any website.",
+    "definition": "More and more searches end on the results page itself. Featured snippets, knowledge panels, and AI overviews answer the query in place, so the user never clicks. For some informational queries, the majority of searches are now zero-click. This reshapes SEO: ranking first matters less if no one clicks, which pushes brands toward <a href=\"/what-is-aeo\">answer engine optimization</a> and <a href=\"/what-is-geo\">generative engine optimization</a> to stay present even when the click never happens.",
+    "why": "Zero-click search matters because it breaks the old SEO bargain of rank-then-click-then-convert. If the answer is given on the page, visibility no longer guarantees traffic. The response is to optimize for presence in the answer itself (being the cited source or featured snippet), to focus on queries that still drive clicks (commercial, comparison, and deep how-to intent), and to build brand so people seek you directly.",
+    "watch": [
+        "Traffic and rankings diverge. You can rank and still lose the click.",
+        "Aim to be the answer, not just a link, for informational queries.",
+        "Prioritize click-worthy intent. Commercial and deep how-to queries still convert.",
+        "Build brand and direct demand so you are less dependent on the click.",
+    ],
+    "faqs": [
+        ("What is an example of a zero-click search?", "Searching a definition, a conversion, or a quick fact and getting the answer in a featured snippet or AI overview at the top of the page, without clicking any website."),
+        ("Why is zero-click search growing?", "Search engines and AI increasingly answer queries directly on the results page through snippets, knowledge panels, and AI overviews, so users get what they need without clicking through."),
+        ("How do you stay visible with zero-click search?", "Optimize to be the cited answer (AEO and GEO), focus on commercial and deep how-to queries that still earn clicks, and build brand so users seek you directly rather than via a generic search."),
+    ],
+    "related": [
+        ("what-is-aeo", "Answer engine optimization (AEO)", "Being the answer on the page."),
+        ("what-is-geo", "Generative engine optimization (GEO)", "Being cited by AI engines."),
+        ("what-is-share-of-voice", "Share of voice", "Presence beyond the click."),
+        R_GLOSS,
+    ],
+}
+
