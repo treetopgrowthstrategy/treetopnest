@@ -232,6 +232,39 @@
   .sync-dot.off{background:var(--text-muted);}
   #syncStatus{font-size:10.5px;}
 
+  /* QUICK ADD + TAGS */
+  .quick-add{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 18px;margin-bottom:14px;transition:border-color 0.15s;}
+  .quick-add.expanded{border-color:rgba(132,188,65,0.25);background:rgba(132,188,65,0.03);}
+  .qa-toggle{background:transparent;border:none;color:var(--text-sub);font-family:'Work Sans',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:0.04em;cursor:pointer;padding:6px 0;width:100%;text-align:left;display:flex;align-items:center;gap:8px;}
+  .qa-toggle:hover{color:var(--green);}
+  .qa-toggle .qa-plus{font-size:16px;font-weight:300;color:var(--green);line-height:1;}
+  .qa-form{display:none;flex-direction:column;gap:10px;}
+  .quick-add.expanded .qa-form{display:flex;}
+  .quick-add.expanded .qa-toggle{display:none;}
+  .qa-text{width:100%;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:'Work Sans',sans-serif;font-size:13.5px;padding:9px 12px;outline:none;transition:border-color 0.15s;}
+  .qa-text:focus{border-color:rgba(132,188,65,0.4);background:rgba(132,188,65,0.03);}
+  .qa-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .qa-meta select,.qa-meta input[type="text"]{background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Work Sans',sans-serif;font-size:12px;padding:6px 10px;outline:none;cursor:pointer;}
+  .qa-meta input[type="text"]{min-width:140px;cursor:text;}
+  .qa-meta select:focus,.qa-meta input[type="text"]:focus{border-color:rgba(132,188,65,0.4);}
+  .qa-spacer{flex:1;}
+  .qa-actions{display:flex;gap:8px;}
+
+  /* TAG PILLS */
+  .tag-pill{font-size:9.5px;font-weight:600;letter-spacing:0.04em;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;border:1px solid;}
+  .tag-c0{color:#84BC41;background:rgba(132,188,65,0.08);border-color:rgba(132,188,65,0.25);}
+  .tag-c1{color:#58BCC5;background:rgba(88,188,197,0.08);border-color:rgba(88,188,197,0.25);}
+  .tag-c2{color:#c084fc;background:rgba(192,132,252,0.08);border-color:rgba(192,132,252,0.25);}
+  .tag-c3{color:#f59e0b;background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.25);}
+  .tag-c4{color:#ef4444;background:rgba(239,68,68,0.07);border-color:rgba(239,68,68,0.25);}
+  .tag-c5{color:#9699A2;background:rgba(150,153,162,0.08);border-color:rgba(150,153,162,0.25);}
+  .item-source-tag{font-size:8.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding:2px 6px;border-radius:4px;background:rgba(255,255,255,0.03);border:1px solid var(--border);}
+
+  /* INLINE EDIT */
+  .item-text.editing{background:rgba(132,188,65,0.05);border:1px solid rgba(132,188,65,0.3);border-radius:6px;padding:6px 10px;outline:none;}
+  .item-text[data-editable]:hover{cursor:text;background:rgba(255,255,255,0.02);border-radius:4px;}
+  .edit-hint{font-size:10px;color:var(--text-muted);margin-bottom:10px;font-style:italic;}
+
   /* SETTINGS PANEL */
   .settings-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;margin-bottom:14px;}
   .settings-card h3{font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px;letter-spacing:-0.01em;}
@@ -276,18 +309,6 @@
   .gate-footer a{color:var(--green-dk);text-decoration:none;}
   .gate-footer a:hover{color:var(--green);}
 </style>
-
-<link rel="canonical" href="https://treetopgrowthstrategy.com/clients/ecofit/cmo-nest.html">
-<meta name="description" content="Internal workspace for Bill and Dave. Enter the access code to continue.">
-<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png">
-<meta property="og:title" content="ecofit, CMO Nest">
-<meta property="og:description" content="Internal workspace for Bill and Dave. Enter the access code to continue.">
-<meta property="og:url" content="https://treetopgrowthstrategy.com/clients/ecofit/cmo-nest.html">
-<meta property="og:site_name" content="Treetop Growth Strategy">
-<meta property="og:type" content="website">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com","logo":"https://treetopgrowthstrategy.com/og-default.png","founder":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"sameAs":["https://www.linkedin.com/company/treetop-growth-strategy/"]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/clients/ecofit/cmo-nest.html","name":"ecofit, CMO Nest","description":"Internal workspace for Bill and Dave. Enter the access code to continue.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Clients","item":"https://treetopgrowthstrategy.com/clients"},{"@type":"ListItem","position":3,"name":"Ecofit","item":"https://treetopgrowthstrategy.com/clients/ecofit"},{"@type":"ListItem","position":4,"name":"Cmo Nest","item":"https://treetopgrowthstrategy.com/clients/ecofit/cmo-nest"}]}</script>
 </head>
 <body class="locked">
 
@@ -498,7 +519,34 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
   <section class="panel" id="panel-items">
     <div class="panel-header">
       <h2>Active Items</h2>
-      <p>Click any status pill to cycle: Open, In Progress, Done. Archive Done items when they are no longer relevant.</p>
+      <p>Click any status pill to cycle Open, In Progress, Done. Double-click an item to edit its text. Archive Done items when no longer relevant.</p>
+    </div>
+
+    <div class="quick-add" id="quickAdd">
+      <button class="qa-toggle" id="qaToggle" type="button"><span class="qa-plus">+</span> Add an item or follow-up</button>
+      <div class="qa-form">
+        <input type="text" id="qaText" class="qa-text" placeholder="What needs to happen? (e.g. Coordinate intro call with Acme Brand)">
+        <div class="qa-meta">
+          <select id="qaType">
+            <option value="next_step">Next step</option>
+            <option value="decision">Decision</option>
+            <option value="open_question">Open question</option>
+          </select>
+          <select id="qaOwner">
+            <option value="Bill">Bill</option>
+            <option value="Dave">Dave</option>
+            <option value="Phil">Phil</option>
+            <option value="Both">Both</option>
+          </select>
+          <input type="text" id="qaTag" placeholder="Tag (e.g. brand partner)" list="tagSuggestions" autocomplete="off">
+          <datalist id="tagSuggestions"></datalist>
+          <span class="qa-spacer"></span>
+          <div class="qa-actions">
+            <button class="btn-ghost" id="qaCancel" type="button">Cancel</button>
+            <button class="btn-primary" id="qaSave" type="button">Add</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="items-filters">
@@ -518,6 +566,11 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
       <button class="filter-btn active" data-filter-status="active" type="button">Active</button>
       <button class="filter-btn" data-filter-status="all" type="button">All</button>
       <button class="filter-btn" data-filter-status="archived" type="button">Archived</button>
+    </div>
+
+    <div class="items-filters" id="tagFilterRow" style="display:none;">
+      <span class="if-label">Tag</span>
+      <div id="tagFilterButtons" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
     </div>
 
     <div class="items-list" id="itemsList"></div>
@@ -651,7 +704,7 @@ if (window.pdfjsLib) {
 /* ---------- State ---------- */
 let state = loadState();
 let pendingExtract = null;
-let filters = { type: 'all', owner: 'all', status: 'active' };
+let filters = { type: 'all', owner: 'all', status: 'active', tag: 'all' };
 
 function loadState() {
   try {
@@ -923,6 +976,8 @@ document.getElementById('btnSaveCall').addEventListener('click', function () {
         call_date: call.date,
         status: 'open',
         archived: false,
+        tag: '',
+        source: 'call',
         created_at: now,
         status_changed_at: now
       });
@@ -941,6 +996,72 @@ document.getElementById('btnSaveCall').addEventListener('click', function () {
   renderAllCounts();
   showToast('Saved to nest');
   switchTab('items');
+});
+
+/* ---------- Quick add (manual item entry) ---------- */
+const qaBlock = document.getElementById('quickAdd');
+const qaToggle = document.getElementById('qaToggle');
+const qaText = document.getElementById('qaText');
+const qaType = document.getElementById('qaType');
+const qaOwner = document.getElementById('qaOwner');
+const qaTag = document.getElementById('qaTag');
+const qaSave = document.getElementById('qaSave');
+const qaCancel = document.getElementById('qaCancel');
+
+function openQuickAdd() {
+  qaBlock.classList.add('expanded');
+  setTimeout(function () { qaText.focus(); }, 50);
+  renderTagSuggestions();
+}
+function closeQuickAdd(resetValues) {
+  qaBlock.classList.remove('expanded');
+  if (resetValues) {
+    qaText.value = '';
+    qaType.value = 'next_step';
+    qaOwner.value = 'Bill';
+    qaTag.value = '';
+  }
+}
+qaToggle.addEventListener('click', openQuickAdd);
+qaCancel.addEventListener('click', function () { closeQuickAdd(true); });
+
+function saveManualItem() {
+  const text = qaText.value.trim();
+  if (!text) {
+    showToast('Type something first', true);
+    qaText.focus();
+    return;
+  }
+  const now = new Date().toISOString();
+  const item = {
+    id: uid('item'),
+    type: qaType.value,
+    text: text,
+    owner: qaOwner.value,
+    call_id: '',
+    call_date: '',
+    status: 'open',
+    archived: false,
+    tag: qaTag.value.trim(),
+    source: 'manual',
+    created_at: now,
+    status_changed_at: now
+  };
+  state.items.push(item);
+  saveState();
+  closeQuickAdd(true);
+  renderItems();
+  renderAllCounts();
+  showToast('Added');
+}
+qaSave.addEventListener('click', saveManualItem);
+qaText.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+    e.preventDefault();
+    saveManualItem();
+  } else if (e.key === 'Escape') {
+    closeQuickAdd(true);
+  }
 });
 
 /* ---------- Items rendering ---------- */
@@ -975,29 +1096,91 @@ function filteredItems() {
     if (filters.owner !== 'all' && i.owner !== filters.owner) return false;
     if (filters.status === 'active' && i.archived) return false;
     if (filters.status === 'archived' && !i.archived) return false;
+    if (filters.tag !== 'all') {
+      const t = (i.tag || '').trim();
+      if (filters.tag === '__untagged__' && t) return false;
+      if (filters.tag !== '__untagged__' && t !== filters.tag) return false;
+    }
     return true;
   });
 }
 
+function uniqueTags() {
+  const set = {};
+  state.items.forEach(function (i) {
+    const t = (i.tag || '').trim();
+    if (t) set[t] = true;
+  });
+  return Object.keys(set).sort();
+}
+
+function tagColorClass(tag) {
+  if (!tag) return 'tag-c5';
+  let h = 0;
+  for (let k = 0; k < tag.length; k++) {
+    h = (h * 31 + tag.charCodeAt(k)) | 0;
+  }
+  return 'tag-c' + (Math.abs(h) % 5);
+}
+
+function renderTagFilter() {
+  const row = document.getElementById('tagFilterRow');
+  const btns = document.getElementById('tagFilterButtons');
+  const tags = uniqueTags();
+  if (tags.length === 0) {
+    row.style.display = 'none';
+    return;
+  }
+  row.style.display = '';
+  let html = '<button class="filter-btn ' + (filters.tag === 'all' ? 'active' : '') + '" data-tag-filter="all" type="button">All</button>';
+  html += '<button class="filter-btn ' + (filters.tag === '__untagged__' ? 'active' : '') + '" data-tag-filter="__untagged__" type="button">Untagged</button>';
+  tags.forEach(function (t) {
+    const active = filters.tag === t ? 'active' : '';
+    html += '<button class="filter-btn ' + active + '" data-tag-filter="' + escapeHtml(t) + '" type="button">' + escapeHtml(t) + '</button>';
+  });
+  btns.innerHTML = html;
+  btns.querySelectorAll('[data-tag-filter]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filters.tag = b.getAttribute('data-tag-filter');
+      renderItems();
+    });
+  });
+}
+
+function renderTagSuggestions() {
+  const dl = document.getElementById('tagSuggestions');
+  if (!dl) return;
+  dl.innerHTML = uniqueTags().map(function (t) { return '<option value="' + escapeHtml(t) + '"></option>'; }).join('');
+}
+
 function renderItems() {
+  renderTagFilter();
+  renderTagSuggestions();
   const list = document.getElementById('itemsList');
   const items = filteredItems().slice().sort(function (a, b) {
     if (a.archived !== b.archived) return a.archived ? 1 : -1;
     const order = { open: 0, in_progress: 1, done: 2 };
     if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
-    return (b.call_date || '').localeCompare(a.call_date || '');
+    const ad = a.call_date || a.created_at || '';
+    const bd = b.call_date || b.created_at || '';
+    return bd.localeCompare(ad);
   });
   if (items.length === 0) {
-    list.innerHTML = '<div class="empty"><h3>Nothing here yet</h3><p>Process a call on the previous tab to populate this list.</p></div>';
+    list.innerHTML = '<div class="empty"><h3>Nothing here yet</h3><p>Add an item above, or process a call on the Process Call tab.</p></div>';
     return;
   }
   list.innerHTML = items.map(function (i) {
     const statusLabel = i.status === 'in_progress' ? 'In Progress' : (i.status === 'done' ? 'Done' : 'Open');
+    const tag = (i.tag || '').trim();
+    const tagHtml = tag ? '<span class="tag-pill ' + tagColorClass(tag) + '">' + escapeHtml(tag) + '</span>' : '';
+    const source = i.source || 'call';
+    const dateLabel = i.call_date ? fmtShortDate(i.call_date) : (source === 'manual' ? 'Manual' : fmtShortDate(i.created_at));
     return '<div class="item-row status-' + i.status + (i.archived ? ' archived' : '') + '" data-id="' + i.id + '">'
       + '<span class="item-type-tag ' + typeClass(i.type) + '">' + typeLabel(i.type) + '</span>'
-      + '<div class="item-text">' + escapeHtml(i.text) + '</div>'
+      + '<div class="item-text" data-editable="true" data-id="' + i.id + '" title="Double-click to edit">' + escapeHtml(i.text) + '</div>'
       + '<div class="item-meta">'
-      +   '<span class="item-call-date">' + escapeHtml(fmtShortDate(i.call_date)) + '</span>'
+      +   tagHtml
+      +   '<span class="item-call-date">' + escapeHtml(dateLabel) + '</span>'
       +   '<span class="owner-badge ' + ownerClass(i.owner) + '">' + escapeHtml(i.owner) + '</span>'
       +   '<button class="status-pill status-' + i.status + '" data-cycle="' + i.id + '" type="button">' + statusLabel + '</button>'
       +   (i.status === 'done' && !i.archived ? '<button class="archive-btn" data-archive="' + i.id + '" title="Archive" type="button">&#10005;</button>' : '')
@@ -1015,6 +1198,58 @@ function renderItems() {
   list.querySelectorAll('[data-unarchive]').forEach(function (btn) {
     btn.addEventListener('click', function () { archiveItem(btn.getAttribute('data-unarchive'), false); });
   });
+  list.querySelectorAll('[data-editable]').forEach(function (el) {
+    el.addEventListener('dblclick', function () { startEditItem(el); });
+  });
+}
+
+function startEditItem(el) {
+  if (el.classList.contains('editing')) return;
+  const id = el.getAttribute('data-id');
+  const original = el.textContent;
+  el.classList.add('editing');
+  el.contentEditable = 'true';
+  el.focus();
+  // Place cursor at end
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+
+  function commit(save) {
+    el.contentEditable = 'false';
+    el.classList.remove('editing');
+    el.removeEventListener('blur', onBlur);
+    el.removeEventListener('keydown', onKey);
+    if (save) {
+      const newText = el.textContent.trim();
+      if (newText && newText !== original) {
+        updateItemText(id, newText);
+      } else {
+        el.textContent = original;
+      }
+    } else {
+      el.textContent = original;
+    }
+  }
+  function onBlur() { commit(true); }
+  function onKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); commit(true); }
+    else if (e.key === 'Escape') { e.preventDefault(); commit(false); }
+  }
+  el.addEventListener('blur', onBlur);
+  el.addEventListener('keydown', onKey);
+}
+
+function updateItemText(id, newText) {
+  const i = state.items.find(function (x) { return x.id === id; });
+  if (!i) return;
+  i.text = newText;
+  i.status_changed_at = new Date().toISOString();
+  saveState();
+  showToast('Updated');
 }
 
 function cycleStatus(id) {
