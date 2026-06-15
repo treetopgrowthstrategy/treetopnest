@@ -198,7 +198,18 @@ def nearby_cities(city: str) -> list[str]:
     """Return a list of nearby city slugs. Falls back to alpha-neighbors if unknown."""
     if city in NEARBY_CITIES_BY_REGION:
         return NEARBY_CITIES_BY_REGION[city][:4]
-    return []
+    # Fallback: alphabetical neighbors from the same role's city list.
+    # We don't have that list inside this helper, so use a deterministic
+    # rotation across the largest cities to ensure something useful gets linked.
+    BIG_CITIES = [
+        "austin", "boston", "chicago", "dallas", "denver", "houston",
+        "los-angeles", "miami", "new-york", "phoenix", "seattle", "san-francisco",
+        "atlanta", "philadelphia", "washington-dc", "san-diego",
+    ]
+    fallback = [c for c in BIG_CITIES if c != city]
+    h = sum(ord(c) for c in city)
+    n = len(fallback)
+    return [fallback[(h + i * 7) % n] for i in range(3)]
 
 
 def humanize_city(city: str) -> str:
@@ -678,6 +689,105 @@ def fractional_canonical_recipe(url: str) -> list[tuple[str, str]]:
     return [(u, a) for u, a in cands if u != url]
 
 
+def ai_consultant_city_recipe(url: str) -> list[tuple[str, str]]:
+    """For /ai-consultant-{city} pages (mirror of fractional-city pattern)."""
+    m = re.match(r"^/ai-consultant-([a-z][a-z-]+)$", url)
+    if not m:
+        return []
+    city = m.group(1)
+    city_h = humanize_city(city)
+    cands: list[tuple[str, str]] = [
+        ("/ai-implementation-consultant", "AI implementation consultant services"),
+        ("/how-much-does-an-ai-consultant-cost", "How much does an AI consultant cost?"),
+        ("/services/ai-audit", "Treetop AI Audit"),
+        ("/how-to-use-ai-in-your-business", "How to use AI in your business"),
+        ("/the-ai-native-gtm-framework", "The AI-native GTM framework"),
+        ("/ai-for-cmos", "AI for CMOs"),
+        ("/claude-for-business", "Claude for business"),
+    ]
+    # Nearby cities use the same map as fractional cities
+    for nc in nearby_cities(city):
+        cands.append((f"/ai-consultant-{nc}", f"AI consultant in {humanize_city(nc)}"))
+    cands.append(("/fractional-cmo-near-me", "Fractional CMO near me"))
+    return cands
+
+
+def ai_tool_for_recipe(url: str) -> list[tuple[str, str]]:
+    """For /chatgpt-for-X, /copilot-for-X, /gemini-for-X, /perplexity-for-X pages."""
+    m = re.match(r"^/(chatgpt|copilot|gemini|perplexity)-for-([a-z][a-z-]+)$", url)
+    if not m:
+        return []
+    tool = m.group(1)
+    topic = m.group(2)
+    # Link to siblings across the same tool family AND to Claude equivalents
+    cands: list[tuple[str, str]] = []
+    OTHER_TOOLS = [t for t in ("chatgpt", "copilot", "gemini", "perplexity") if t != tool]
+    # Same-topic, other tools
+    for other in OTHER_TOOLS:
+        cands.append((f"/{other}-for-{topic}", f"{other.title()} for {topic.replace('-', ' ')}"))
+    # Claude equivalent
+    cands.append((f"/claude-for-{topic}", f"Claude for {topic.replace('-', ' ')}"))
+    # Comparisons
+    cands.append((f"/{tool}-vs-claude", f"{tool.title()} vs Claude"))
+    cands.append(("/claude-for-business", "Claude for business"))
+    cands.append((f"/how-much-does-{tool}-cost", f"How much does {tool.title()} cost?"))
+    cands.append(("/how-to-use-ai-in-your-business", "How to use AI in your business"))
+    cands.append(("/services/ai-audit", "Treetop AI Audit"))
+    return cands
+
+
+def how_to_general_recipe(url: str) -> list[tuple[str, str]]:
+    """For /how-to-X (not ending in -with-claude). Cluster of operator how-tos."""
+    if not url.startswith("/how-to-") or url.endswith("-with-claude"):
+        return []
+    POOL = [
+        ("/how-to-use-ai-in-your-business", "How to use AI in your business"),
+        ("/how-to-use-claude-for-marketing", "How to use Claude for marketing"),
+        ("/how-to-build-a-gtm-strategy", "How to build a GTM strategy"),
+        ("/how-to-hire-a-fractional-cmo", "How to hire a fractional CMO"),
+        ("/how-to-roll-out-ai-to-a-50-person-company", "How to roll out AI to a 50-person company"),
+        ("/how-to-measure-ai-roi", "How to measure AI ROI"),
+        ("/how-to-choose-an-ai-strategy-consultant", "How to choose an AI strategy consultant"),
+        ("/how-to-write-a-claude-system-prompt", "How to write a Claude system prompt"),
+        ("/how-to-train-your-team-on-claude", "How to train your team on Claude"),
+        ("/how-to-run-an-ai-pilot", "How to run an AI pilot"),
+        ("/how-to-clean-your-crm-with-ai", "How to clean your CRM with AI"),
+        ("/how-to-build-an-internal-prompt-library", "How to build an internal prompt library"),
+        ("/how-to-audit-your-current-ai-usage", "How to audit your current AI usage"),
+        ("/how-to-pitch-ai-to-your-board", "How to pitch AI to your board"),
+        ("/how-to-use-claude-as-a-ceo", "How to use Claude as a CEO"),
+        ("/how-to-use-claude-as-a-coo", "How to use Claude as a COO"),
+        ("/how-to-use-claude-as-a-founder", "How to use Claude as a founder"),
+        ("/how-to-use-ai-in-performance-reviews", "How to use AI in performance reviews"),
+        ("/how-to-onboard-a-new-hire-with-ai", "How to onboard a new hire with AI"),
+        ("/how-to-explain-ai-to-your-team", "How to explain AI to your team"),
+        ("/how-to-evaluate-a-saas-vendor-with-claude", "How to evaluate a SaaS vendor with Claude"),
+        ("/how-to-prep-for-a-board-meeting-with-claude", "How to prep for a board meeting with Claude"),
+        ("/how-to-summarize-customer-calls-with-claude", "How to summarize customer calls with Claude"),
+        ("/how-to-do-competitive-research-with-claude", "Competitive research with Claude"),
+        ("/services/ai-audit", "Treetop AI Audit"),
+        ("/fractional-cmo", "Fractional CMO services"),
+        ("/claude-for-business", "Claude for business"),
+    ]
+    POOL = [(u, a) for u, a in POOL if u != url]
+    h = sum(ord(c) for c in url)
+    n = len(POOL)
+    picks = []
+    seen = set()
+    # Always include core hubs
+    for u, a in POOL[:4]:
+        picks.append((u, a))
+        seen.add(u)
+    for i in range(20):
+        u, a = POOL[(h + i * 13) % n]
+        if u not in seen:
+            picks.append((u, a))
+            seen.add(u)
+        if len(picks) >= 10:
+            break
+    return picks
+
+
 def cmo_city_recipe(url: str) -> list[tuple[str, str]]:
     """For /cmo-{city} pages (different cluster from /fractional-cmo-{city})."""
     m = re.match(r"^/cmo-([a-z][a-z-]+)$", url)
@@ -768,11 +878,14 @@ def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
     for fn in (
         fractional_city_recipe,
         fractional_canonical_recipe,
+        ai_consultant_city_recipe,
         cmo_city_recipe,
         ai_agents_for_recipe,
         ai_cmo_for_recipe,
+        ai_tool_for_recipe,
         best_ai_recipe,
         how_to_with_claude_recipe,
+        how_to_general_recipe,
         glossary_recipe,
         claude_for_recipe,
         comparison_recipe,
