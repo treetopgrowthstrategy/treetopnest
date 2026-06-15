@@ -375,3 +375,216 @@ TERMS["what-is-gross-merchandise-value"] = {
         R_GLOSS,
     ],
 }
+
+# ---- G2: market sizing + product-market fit + data types ----
+
+TERMS["what-is-product-market-fit"] = {
+    "term": "Product-Market Fit", "term_q": "Product-Market Fit",
+    "title": "What is Product-Market Fit? Plain-English 2026 Definition | Treetop",
+    "desc": "What is product-market fit? A plain-English definition, the signals you have it, how to measure it, and how it differs from go-to-market fit.",
+    "og_title": "What is Product-Market Fit? Plain-English Definition",
+    "og_desc": "The signals of product-market fit and how it differs from go-to-market fit.",
+    "hero_sub": "Product-market fit is the milestone every startup chases and few can define. Here is a plain-English answer, the signals you have it, and how it differs from go-to-market fit.",
+    "short_def": "Product-market fit (PMF) is the point at which a product satisfies a strong market demand, where customers want it, use it, keep using it, and tell others.",
+    "definition": "PMF is when the market pulls the product out of your hands. It shows up as strong retention, organic word of mouth, and customers who would be genuinely disappointed if the product disappeared. It is the prerequisite for scaling: without it, growth spend just accelerates churn. PMF is about the product wanting; <a href=\"/what-is-go-to-market-fit\">go-to-market fit</a> is the separate question of whether you can reach and win those customers repeatably.",
+    "why": "PMF is the dividing line between searching and scaling. Before it, the job is to find the product the market wants. After it, the job is to build the engine to sell it, which is where a <a href=\"/what-is-gtm-strategy\">GTM strategy</a> and a repeatable motion come in. Trying to scale before PMF is the most common and expensive startup mistake.",
+    "watch_heading": "How to tell if you have it",
+    "watch": [
+        "Retention curves that flatten, meaning a cohort keeps using the product rather than decaying to zero.",
+        "The Sean Ellis test: at least ~40 percent of users would be very disappointed without your product.",
+        "Organic pull: word of mouth, inbound demand, and usage growing without proportional spend.",
+        "Do not confuse early excitement for PMF. Trials and signups are not retention.",
+    ],
+    "faqs": [
+        ("How do you measure product-market fit?", "Common signals include flattening retention curves, strong word of mouth, and the Sean Ellis survey, where 40 percent or more of users say they would be very disappointed without the product."),
+        ("What is the difference between product-market fit and go-to-market fit?", "Product-market fit means people want the product. Go-to-market fit means you can reach and win them repeatably and profitably. You need PMF first, then GTM fit to scale."),
+        ("Why is product-market fit so important?", "It is the prerequisite for scaling. Before PMF, growth spending accelerates churn. After it, the same spending compounds. It is the line between searching and scaling."),
+    ],
+    "related": [
+        ("what-is-go-to-market-fit", "Go-to-market fit", "Reaching and winning customers repeatably."),
+        ("what-is-activation-rate", "Activation rate", "Getting users to first value."),
+        ("what-is-churn-rate", "Churn rate", "The retention side of PMF."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-total-addressable-market"] = {
+    "term": "Total Addressable Market (TAM)", "term_q": "Total Addressable Market (TAM)",
+    "title": "What is Total Addressable Market (TAM)? Plain-English Definition | Treetop",
+    "desc": "What is TAM? A plain-English definition with how to calculate it (top-down and bottom-up), a worked example, and how it relates to SAM and SOM.",
+    "og_title": "What is Total Addressable Market (TAM)? Definition",
+    "og_desc": "How to size TAM bottom-up, and how it relates to SAM and SOM.",
+    "hero_sub": "TAM is the total revenue opportunity if you captured your entire market. Here is how to size it credibly, and how it relates to SAM and SOM.",
+    "short_def": "Total addressable market (TAM) is the total revenue opportunity available if a product achieved 100 percent market share. It is the largest of the three market-sizing figures, above SAM and SOM.",
+    "definition": "TAM answers how big the whole opportunity is. The credible way to size it is bottom-up: number of potential customers multiplied by what each would pay per year. The lazy way is top-down (citing a giant industry report), which investors distrust. TAM sits above <a href=\"/what-is-serviceable-addressable-market\">SAM</a> (the part you can actually serve) and <a href=\"/what-is-serviceable-obtainable-market\">SOM</a> (the part you can realistically win).",
+    "formula": "Bottom-up TAM = Number of potential customers x Annual revenue per customer",
+    "formula_example": "If there are 50,000 businesses that fit your buyer and each would pay $12,000 per year, bottom-up TAM = 50,000 x 12,000 = $600,000,000. That is far more credible than citing a $50B 'industry' number from a market report.",
+    "why": "TAM frames the size of the prize and tells you whether an opportunity is venture-scale. But it is routinely abused: a huge top-down TAM means little if you cannot serve or reach most of it. Smart founders lead with a bottom-up TAM and then show the SAM and SOM that make it actionable, which is core to a credible <a href=\"/what-is-gtm-strategy\">GTM strategy</a>.",
+    "watch": [
+        "Bottom-up beats top-down. Multiplying customers by price is more defensible than a report's headline number.",
+        "TAM is not your forecast. SOM is what you can realistically capture near term.",
+        "Define the market honestly. A TAM that includes buyers you cannot serve is fiction.",
+        "Revisit it. TAM changes as your product and pricing evolve.",
+    ],
+    "faqs": [
+        ("How do you calculate TAM?", "The credible method is bottom-up: multiply the number of potential customers by the annual revenue each would generate. Top-down (citing an industry report) is weaker and investors discount it."),
+        ("What is the difference between TAM, SAM, and SOM?", "TAM is the whole opportunity, SAM is the portion you can actually serve given your model and geography, and SOM is the portion you can realistically win in the near term."),
+        ("Why does TAM matter to investors?", "It signals whether an opportunity is large enough to build a big company. But investors weigh a credible bottom-up TAM and a realistic SOM far more than a giant top-down number."),
+    ],
+    "related": [
+        ("what-is-serviceable-addressable-market", "Serviceable addressable market (SAM)", "The market you can serve."),
+        ("what-is-serviceable-obtainable-market", "Serviceable obtainable market (SOM)", "The market you can win."),
+        ("what-is-gtm-strategy", "GTM strategy", "Turning market size into a plan."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-serviceable-addressable-market"] = {
+    "term": "Serviceable Addressable Market (SAM)", "term_q": "Serviceable Addressable Market (SAM)",
+    "title": "What is Serviceable Addressable Market (SAM)? Definition | Treetop",
+    "desc": "What is SAM? A plain-English definition with a worked example and how it sits between TAM and SOM.",
+    "og_title": "What is Serviceable Addressable Market (SAM)? Definition",
+    "og_desc": "The portion of TAM you can actually serve, with a worked example.",
+    "hero_sub": "SAM is the slice of the total market you can actually serve given your product, model, and geography. Here is how to size it and where it fits.",
+    "short_def": "Serviceable addressable market (SAM) is the portion of the total addressable market that your product can actually serve, given your business model, segment focus, and geography.",
+    "definition": "TAM is everyone in theory; SAM is everyone you can realistically sell to today. It narrows TAM by the constraints that actually apply: who your product fits, where you can operate, and which segment you target. SAM sits between <a href=\"/what-is-total-addressable-market\">TAM</a> and <a href=\"/what-is-serviceable-obtainable-market\">SOM</a>, the portion you can win near term.",
+    "formula": "SAM = TAM filtered to the segment, model, and geography you can actually serve",
+    "formula_example": "If your TAM is 50,000 businesses worth $600M, but your product only fits mid-market companies in North America, that might be 12,000 businesses worth roughly $144M. That $144M SAM is a far more useful planning number than the headline TAM.",
+    "why": "SAM is where strategy gets real. It forces you to define who you actually serve, which sharpens positioning, sales targeting, and channel choices. A clear SAM keeps you from chasing buyers your product does not fit, and it is the basis for the realistic <a href=\"/what-is-serviceable-obtainable-market\">SOM</a> you will actually forecast against.",
+    "watch": [
+        "Be honest about fit. SAM should exclude buyers your product genuinely cannot serve.",
+        "Geography and compliance count. If you cannot legally or operationally serve a region, it is not in SAM.",
+        "SAM evolves. New features or markets expand it; pruning a segment shrinks it.",
+        "It is still not a forecast. SOM is the near-term target.",
+    ],
+    "faqs": [
+        ("How is SAM different from TAM?", "TAM is the entire market opportunity; SAM is the portion you can actually serve given your product fit, business model, and geography. SAM is always smaller and more useful for planning."),
+        ("How do you calculate SAM?", "Start with TAM and filter it down to the customers you can realistically serve: the right segment, the right geography, and a genuine product fit. Bottom-up sizing keeps it credible."),
+        ("Why does SAM matter?", "It defines who you actually serve, which sharpens positioning, targeting, and channel strategy, and it is the basis for a realistic obtainable market (SOM)."),
+    ],
+    "related": [
+        ("what-is-total-addressable-market", "Total addressable market (TAM)", "The whole opportunity."),
+        ("what-is-serviceable-obtainable-market", "Serviceable obtainable market (SOM)", "What you can win near term."),
+        ("what-is-gtm-strategy", "GTM strategy", "Turning market size into a plan."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-serviceable-obtainable-market"] = {
+    "term": "Serviceable Obtainable Market (SOM)", "term_q": "Serviceable Obtainable Market (SOM)",
+    "title": "What is Serviceable Obtainable Market (SOM)? Definition | Treetop",
+    "desc": "What is SOM? A plain-English definition with a worked example and why it is the market-sizing number that should drive your forecast.",
+    "og_title": "What is Serviceable Obtainable Market (SOM)? Definition",
+    "og_desc": "The realistic slice you can win, and why SOM should drive your forecast.",
+    "hero_sub": "SOM is the share of the market you can realistically capture in the near term, and the number your forecast should actually be built on. Here is how to size it.",
+    "short_def": "Serviceable obtainable market (SOM) is the portion of your serviceable market that you can realistically capture in the near term, given competition, resources, and reach.",
+    "definition": "SOM is the grounded number. It takes your <a href=\"/what-is-serviceable-addressable-market\">SAM</a> and asks what share you can actually win in the next year or few, accounting for competitors, your sales capacity, and your go-to-market reach. It is the smallest of the three figures and the one a sober forecast is built on, sitting below <a href=\"/what-is-total-addressable-market\">TAM</a> and SAM.",
+    "formula": "SOM = SAM x the realistic market share you can capture near term",
+    "formula_example": "If your SAM is $144M and you can credibly win 3 percent of it in the next two years given your team and competition, SOM = 144,000,000 x 0.03 = $4.3M. That is the number to plan headcount and pipeline against, not the TAM.",
+    "why": "SOM is where ambition meets reality. It is the number that should drive hiring, targets, and investor forecasts, because it reflects what you can actually capture, not what exists in theory. Founders who plan against TAM overspend; founders who plan against SOM build a model that holds up. It flows directly from your <a href=\"/what-is-gtm-strategy\">GTM strategy</a> and capacity.",
+    "watch": [
+        "Be realistic about share. Early-stage SOM is a small slice of SAM, not half of it.",
+        "Account for competition. SOM should reflect who else is winning those customers.",
+        "Tie it to capacity. Your sales and marketing reach caps what you can obtain.",
+        "Use SOM, not TAM, for forecasts and hiring plans.",
+    ],
+    "faqs": [
+        ("How do you calculate SOM?", "Multiply your serviceable market (SAM) by the share you can realistically capture in the near term, given competition, sales capacity, and reach. It is the smallest and most grounded of the three figures."),
+        ("What is the difference between SAM and SOM?", "SAM is everyone you could serve; SOM is the realistic portion you can actually win near term given competition and resources. SOM should drive your forecast."),
+        ("Which market size should I use for forecasting?", "SOM. TAM and SAM frame the opportunity, but SOM reflects what you can realistically capture, so it is the right basis for targets, hiring, and forecasts."),
+    ],
+    "related": [
+        ("what-is-serviceable-addressable-market", "Serviceable addressable market (SAM)", "The market you can serve."),
+        ("what-is-total-addressable-market", "Total addressable market (TAM)", "The whole opportunity."),
+        ("what-is-gtm-strategy", "GTM strategy", "Turning market size into a plan."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-first-party-data"] = {
+    "term": "First-Party Data", "term_q": "First-Party Data",
+    "title": "What is First-Party Data? Plain-English 2026 Definition | Treetop",
+    "desc": "What is first-party data? A plain-English definition, examples, why it matters more in 2026, and how it differs from zero-party and third-party data.",
+    "og_title": "What is First-Party Data? Plain-English Definition",
+    "og_desc": "Why first-party data is the most valuable data you own in 2026.",
+    "hero_sub": "First-party data is the information you collect directly from your own customers, and in 2026 it is the most valuable data you own. Here is why.",
+    "short_def": "First-party data is information a company collects directly from its own audience through its own channels, such as website behavior, purchase history, and account activity.",
+    "definition": "First-party data comes straight from your relationship with the customer: what they bought, how they use your product, what they clicked on your site. It is accurate, consent-based, and uniquely yours, which makes it more reliable than data bought from outside. It differs from <a href=\"/what-is-zero-party-data\">zero-party data</a> (which customers proactively give you) and <a href=\"/what-is-third-party-data\">third-party data</a> (bought from outside aggregators).",
+    "why": "As third-party cookies disappear and privacy rules tighten, first-party data has become the foundation of modern marketing. It powers personalization, segmentation, and measurement that you actually own and that respects consent. Companies that invest in collecting and activating first-party data have a durable advantage; those that relied on third-party data are scrambling. AI makes first-party data far more usable by surfacing patterns at scale.",
+    "watch": [
+        "Collection requires value exchange. Customers share data when they get something for it.",
+        "Consent and governance matter. First-party data must still be collected and used transparently.",
+        "It is only as good as your tracking. Clean, well-structured data beats more data.",
+        "Activate it. Data sitting in a warehouse does nothing; the value is in using it.",
+    ],
+    "faqs": [
+        ("What is an example of first-party data?", "Purchase history, website and product usage, email engagement, survey responses, and account activity. Anything you collect directly from your own customers through your own channels."),
+        ("Why is first-party data more important in 2026?", "Because third-party cookies are going away and privacy rules are tightening. First-party data is consent-based, accurate, and owned by you, making it the durable foundation for personalization and measurement."),
+        ("What is the difference between first-party and third-party data?", "First-party data you collect directly from your own audience. Third-party data is purchased from outside aggregators who collected it elsewhere. First-party is more accurate and privacy-safe."),
+    ],
+    "related": [
+        ("what-is-zero-party-data", "Zero-party data", "Data customers proactively give you."),
+        ("what-is-third-party-data", "Third-party data", "Data bought from outside sources."),
+        ("what-is-intent-data", "Intent data", "Signals of buying intent."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-third-party-data"] = {
+    "term": "Third-Party Data", "term_q": "Third-Party Data",
+    "title": "What is Third-Party Data? Plain-English 2026 Definition | Treetop",
+    "desc": "What is third-party data? A plain-English definition, examples, why it is declining, and how it differs from first-party and zero-party data.",
+    "og_title": "What is Third-Party Data? Plain-English Definition",
+    "og_desc": "What third-party data is and why it is in decline in 2026.",
+    "hero_sub": "Third-party data is information bought from outside aggregators, and in 2026 it is in steep decline. Here is what it is and why its era is ending.",
+    "short_def": "Third-party data is information collected by an outside party that did not have a direct relationship with the consumer, then aggregated and sold to other companies for targeting.",
+    "definition": "Third-party data is bought, not earned. Aggregators collect it across many sites and sources, then sell it for ad targeting and enrichment. It once powered much of digital advertising, but it is less accurate than first-party data and increasingly restricted by privacy laws and the death of third-party cookies. It contrasts with <a href=\"/what-is-first-party-data\">first-party data</a> (collected directly) and <a href=\"/what-is-zero-party-data\">zero-party data</a> (volunteered by the customer).",
+    "why": "Understanding third-party data matters mostly because of its decline. Browser changes and privacy regulation have gutted its reliability, pushing marketers toward first-party and zero-party data. There are still legitimate uses (B2B firmographic enrichment, for instance), but building a strategy on third-party data is now building on sand. The shift is one of the defining changes in 2026 marketing.",
+    "watch": [
+        "Accuracy is lower. It was collected without a direct relationship, so it is often stale or inferred.",
+        "Privacy risk. Regulations increasingly restrict how it can be collected and used.",
+        "The cookie is dying. Much third-party data depended on tracking that is disappearing.",
+        "Shift the strategy. Invest in first-party and zero-party data for durability.",
+    ],
+    "faqs": [
+        ("What is an example of third-party data?", "Audience segments and consumer profiles bought from data brokers and ad platforms, assembled from activity across many sites the buyer has no direct relationship with."),
+        ("Why is third-party data declining?", "Browsers are phasing out third-party cookies and privacy laws are tightening, which undercuts how this data is collected. It is becoming less available, less accurate, and riskier to use."),
+        ("Should I still use third-party data?", "Selectively. Some uses like B2B firmographic enrichment remain valid, but it should not be the foundation of your strategy. Invest in first-party and zero-party data instead."),
+    ],
+    "related": [
+        ("what-is-first-party-data", "First-party data", "Data you collect directly."),
+        ("what-is-zero-party-data", "Zero-party data", "Data customers volunteer."),
+        ("what-is-intent-data", "Intent data", "Signals of buying intent."),
+        R_GLOSS,
+    ],
+}
+
+TERMS["what-is-zero-party-data"] = {
+    "term": "Zero-Party Data", "term_q": "Zero-Party Data",
+    "title": "What is Zero-Party Data? Plain-English 2026 Definition | Treetop",
+    "desc": "What is zero-party data? A plain-English definition, examples, why it is so valuable, and how it differs from first-party data.",
+    "og_title": "What is Zero-Party Data? Plain-English Definition",
+    "og_desc": "Data customers proactively give you, and why it is gold in 2026.",
+    "hero_sub": "Zero-party data is information customers proactively and willingly give you, which makes it the cleanest, most consented data of all. Here is what it is.",
+    "short_def": "Zero-party data is information that a customer intentionally and proactively shares with a brand, such as preferences, intentions, and stated needs, usually through surveys, quizzes, or preference centers.",
+    "definition": "Where first-party data is observed (you watch what customers do), zero-party data is declared (customers tell you directly). It comes from preference centers, quizzes, polls, and onboarding questions. Because the customer volunteers it knowingly, it is accurate, fully consented, and ideal for personalization. It is a subset distinct from <a href=\"/what-is-first-party-data\">first-party data</a>, which you collect through behavior rather than direct declaration.",
+    "why": "Zero-party data is the cleanest fuel for personalization in a privacy-first world. Because customers chose to share it, there is no consent ambiguity and no accuracy guesswork, they told you what they want. It powers tailored recommendations, segmentation, and messaging that feel relevant rather than creepy. The challenge is the value exchange: customers share when they get something useful (a better recommendation, a tailored experience) in return.",
+    "watch": [
+        "It requires a value exchange. Customers volunteer data when they get a clear benefit.",
+        "Keep it current. Stated preferences change; refresh them periodically.",
+        "Use what you collect. Asking for preferences then ignoring them erodes trust.",
+        "Do not over-ask. Long forms kill the value exchange; collect progressively.",
+    ],
+    "faqs": [
+        ("What is the difference between zero-party and first-party data?", "Zero-party data is declared: the customer proactively tells you (preferences, intentions). First-party data is observed: you collect it from their behavior. Zero-party is the most explicit and consented."),
+        ("What is an example of zero-party data?", "A style quiz, a preference center selection, a survey response, or onboarding questions where the customer directly states what they want or need."),
+        ("Why is zero-party data valuable?", "Because the customer shared it knowingly, it is accurate and fully consented, making it ideal for personalization in a privacy-first world without the guesswork or consent risk of other data."),
+    ],
+    "related": [
+        ("what-is-first-party-data", "First-party data", "Data you collect from behavior."),
+        ("what-is-third-party-data", "Third-party data", "Data bought from outside."),
+        ("what-is-intent-data", "Intent data", "Signals of buying intent."),
+        R_GLOSS,
+    ],
+}
+
