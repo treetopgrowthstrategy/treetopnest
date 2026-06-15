@@ -604,3 +604,232 @@ NICHES["ai-for-pet-businesses"] = {
         R_USE, R_WF,
     ],
 }
+
+# ---------------------------------------------------------------------------
+# BATCH 2: healthcare practices + trades
+# ---------------------------------------------------------------------------
+
+def _practice(slug, label, plural, crumb, software, ehr_phrase, recall_line, edu_line, siblings):
+    """Shared builder for medical/clinical practices (HIPAA-forward)."""
+    return {
+        "title": f"AI for {crumb} 2026: Use Cases, Tools, and ROI | Treetop",
+        "desc": f"How {plural} should use AI in 2026: patient communication and recall, visit-note and intake drafting, patient education, and review responses. Real tools, ROI math, HIPAA cautions, and what to avoid.",
+        "og_title": f"AI for {crumb} 2026: Use Cases, Tools, and ROI",
+        "og_desc": f"Patient comms, recall, documentation, and reviews. The practical 2026 playbook for {plural}.",
+        "crumb": f"AI for {crumb}",
+        "h1": f"AI for {plural}: <em>the practical 2026 playbook.</em>",
+        "hero_sub": f"{label} practices run on patient throughput and reputation, and both depend on communication and documentation that eat clinical time. AI takes the drafting load while you keep the medicine. The practical playbook follows.",
+        "verdict": f"{label} practices get the most from AI on patient communication and recall, visit-note and intake drafting, patient education content, and review responses. Start with Claude Pro ($20/mo) for content plus the AI in {software}. Keep anything clinical or patient-identifying under provider review and HIPAA-appropriate agreements. Budget under $150/mo.",
+        "uc_heading": f"Where AI actually moves the needle for {plural}",
+        "uc_intro": "The bottleneck in most practices is administrative: recall, documentation, and patient messaging. AI compresses all three without touching the clinical decision.",
+        "use_cases": [
+            ("Patient communication and recall.", f"Draft appointment reminders, {recall_line}, and follow-up instructions that keep the schedule full and patients on track."),
+            ("Visit-note and intake drafting.", f"With an ambient or {ehr_phrase} tool, turn the visit into a draft note or summary the provider reviews and signs, cutting after-hours charting."),
+            ("Patient education content.", f"Produce clear, plain-language explainers, {edu_line}, and pre- and post-visit instructions, consistently and on-brand."),
+            ("Review and reputation responses.", "Draft warm, HIPAA-careful replies to Google and Yelp reviews in seconds, protecting the reputation patients check first."),
+        ],
+        "uc_outro": f"As {HUB['use']} frames it, automate the administrative writing and keep clinical judgment human. The order matters in healthcare.",
+        "stack": [
+            "<strong>Claude Pro ($20/mo)</strong> for education content, reminders, and review replies (no patient identifiers).",
+            f"<strong>{software}</strong> for records, scheduling, recall, and patient messaging, using built-in AI under your BAA.",
+            "<strong>An ambient documentation tool</strong> (with a HIPAA BAA) if you want AI-assisted visit notes.",
+        ],
+        "stack_outro": f"Under $150 a month on top of your practice management system. For a tuned, compliant build, see the {HUB['wf']}.",
+        "roi": f"Charting and recall are where practices bleed hours. AI-assisted notes can cut after-hours documentation substantially, and consistent recall messaging recovers no-shows and lapsed patients, each of which is direct revenue. Even modest gains outweigh a sub-$150 tool cost. See {HUB['save']} and {HUB['mktcost']}.",
+        "donts_heading": f"What AI should not do for your {label.lower()} practice",
+        "donts": [
+            "Make diagnoses or treatment decisions. AI drafts; the provider decides and signs.",
+            "Touch protected health information without a HIPAA business associate agreement and appropriate safeguards.",
+            "Send patient-facing clinical messages unreviewed.",
+            "Replace the provider relationship and bedside judgment that patients are paying for.",
+        ],
+        "faqs": [
+            (f"What is the best AI tool for {plural}?", f"Claude Pro ($20/mo) for education content and review replies, plus the AI in {software} under a BAA. Keep clinical and identifying data under provider review. Under $150/mo for most practices."),
+            ("Is it HIPAA-compliant to use AI in a medical practice?", "It can be, with a business associate agreement and proper safeguards. Use general consumer AI only for non-identifying content, and use HIPAA-covered tools for anything involving patient data."),
+            (f"How does AI save {plural} time?", "Mostly through documentation and recall. AI-assisted visit notes cut after-hours charting, and automated recall and reminders reduce no-shows and reactivate lapsed patients."),
+            ("Does AI replace clinical staff?", "No. It removes administrative drafting so providers and staff spend more time on care. Clinical decisions stay human."),
+        ],
+        "related": siblings + [R_SB, R_USE],
+    }
+
+
+NICHES["ai-for-dermatologists"] = _practice(
+    "ai-for-dermatologists", "Dermatology", "dermatologists", "Dermatologists",
+    "ModMed (EMA) or Nextech", "ModMed",
+    "recall notices for annual skin checks", "skincare and procedure aftercare guides",
+    [("ai-for-med-spas", "AI for med spas", "Consult follow-up, retention, and reviews."),
+     ("ai-for-optometrists", "AI for optometrists", "Recall, patient comms, and content.")])
+
+NICHES["ai-for-optometrists"] = _practice(
+    "ai-for-optometrists", "Optometry", "optometrists", "Optometrists",
+    "RevolutionEHR or Eyefinity", "RevolutionEHR",
+    "annual exam recall and contact-lens reorder reminders", "eye-health and eyewear explainers",
+    [("ai-for-dermatologists", "AI for dermatologists", "Patient comms and practice content."),
+     ("ai-for-pediatricians", "AI for pediatricians", "Recall, parent comms, and education.")])
+
+NICHES["ai-for-pediatricians"] = _practice(
+    "ai-for-pediatricians", "Pediatric", "pediatricians", "Pediatricians",
+    "Office Practicum or athenahealth", "athenahealth",
+    "well-visit and vaccination recall for parents", "parent-friendly health and milestone guides",
+    [("ai-for-optometrists", "AI for optometrists", "Recall, patient comms, and content."),
+     ("ai-for-dentists", "AI for dentists", "Recall, treatment comms, and reviews.")])
+
+NICHES["ai-for-veterinarians"] = _practice(
+    "ai-for-veterinarians", "Veterinary", "veterinarians", "Veterinarians",
+    "ezyVet, Vetspire, or AVImark", "ezyVet",
+    "vaccination and wellness recall for pet owners", "pet-care and post-procedure instructions",
+    [("ai-for-pet-businesses", "AI for pet businesses", "Booking, reminders, and social."),
+     ("ai-for-chiropractors", "AI for chiropractors", "Patient comms and practice content.")])
+
+NICHES["ai-for-chiropractors"] = _practice(
+    "ai-for-chiropractors", "Chiropractic", "chiropractors", "Chiropractors",
+    "ChiroTouch or Jane", "ChiroTouch",
+    "care-plan and re-care reminders", "posture, exercise, and recovery guides",
+    [("ai-for-dentists", "AI for dentists", "Recall, treatment comms, and reviews."),
+     ("ai-for-veterinarians", "AI for veterinarians", "Client comms and practice content.")])
+
+NICHES["ai-for-dentists"] = _practice(
+    "ai-for-dentists", "Dental", "dentists", "Dentists",
+    "Dentrix, Open Dental, or Curve Dental", "Dentrix",
+    "hygiene recall and treatment-plan follow-up", "procedure and post-op care explainers",
+    [("ai-for-dermatologists", "AI for dermatologists", "Patient comms and practice content."),
+     ("ai-for-pediatricians", "AI for pediatricians", "Recall, parent comms, and education.")])
+
+NICHES["ai-for-senior-care"] = {
+    "title": "AI for Senior Care and Home Health 2026: Use Cases and Tools | Treetop",
+    "desc": "How senior care and home health agencies should use AI in 2026: family communication, caregiver scheduling and coordination, intake and care-plan drafting, and recruiting. Real tools, ROI, HIPAA cautions, and what to avoid.",
+    "og_title": "AI for Senior Care and Home Health 2026: Use Cases and Tools",
+    "og_desc": "Family comms, scheduling, care plans, and recruiting. The practical 2026 playbook for agencies.",
+    "crumb": "AI for Senior Care and Home Health",
+    "h1": "AI for senior care and home health: <em>the practical 2026 playbook.</em>",
+    "hero_sub": "Home care agencies run on family trust, caregiver coordination, and constant recruiting, all communication-heavy. AI carries the drafting so your team stays focused on care. The practical playbook follows.",
+    "verdict": "Senior care and home health agencies get the most from AI on family communication, caregiver scheduling and coordination, intake and care-plan drafting, and caregiver recruiting. Start with Claude Pro ($20/mo) plus the messaging in AlayaCare, WellSky, or your agency platform. Keep client health data under HIPAA-appropriate agreements. Budget under $150/mo.",
+    "uc_heading": "Where AI actually moves the needle for home care agencies",
+    "uc_intro": "Agencies juggle families, caregivers, and compliance at once. AI keeps the communication consistent across all three without adding office staff.",
+    "use_cases": [
+        ("Family communication.", "Draft warm, clear update messages, care summaries, and difficult-conversation talking points that keep families informed and reassured."),
+        ("Caregiver scheduling and coordination.", "Produce shift notices, fill-in requests, and coordination messages quickly when schedules change, which they always do."),
+        ("Intake and care-plan drafting.", "Turn assessment notes into a draft care plan and intake summary the care manager reviews and finalizes."),
+        ("Caregiver recruiting.", "Draft job posts, screening questions, and applicant follow-ups to keep the hiring pipeline moving in a tight labor market."),
+    ],
+    "uc_outro": f"As {HUB['use']} explains, automate the communication and documentation, keep care decisions and family relationships human.",
+    "stack": [
+        "<strong>Claude Pro ($20/mo)</strong> for family messages, recruiting, and coordination (no client identifiers in consumer tools).",
+        "<strong>AlayaCare or WellSky</strong> for scheduling, EVV, and care management under your BAA.",
+        "<strong>An applicant tracking or hiring tool</strong> for the recruiting pipeline.",
+    ],
+    "stack_outro": f"Under $150 a month on top of your agency platform. For a compliant build, see the {HUB['wf']}.",
+    "roi": f"Recruiting and family communication are the two biggest time sinks. Faster applicant follow-up fills shifts sooner (directly billable), and consistent family updates reduce churn and complaints. Both outweigh a sub-$150 tool cost. See {HUB['save']} and {HUB['mktcost']}.",
+    "donts_heading": "What AI should not do for a home care agency",
+    "donts": [
+        "Make care or medical decisions. Care managers and clinicians decide.",
+        "Handle protected health information without a HIPAA business associate agreement.",
+        "Send sensitive family messages unreviewed. These conversations require human care.",
+        "Replace the caregiver relationship and the human judgment at the center of the service.",
+    ],
+    "faqs": [
+        ("What is the best AI tool for a home care agency?", "Claude Pro ($20/mo) for family communication and recruiting, plus the AI in AlayaCare or WellSky under a BAA. Keep client health data in HIPAA-covered tools. Under $150/mo."),
+        ("How can a senior care agency use AI for recruiting?", "AI drafts job posts, screening questions, and fast applicant follow-ups, which keeps the hiring pipeline moving and fills billable shifts sooner in a tight labor market."),
+        ("Is AI HIPAA-compliant for home health?", "Only with a business associate agreement and safeguards. Use consumer AI for non-identifying content and HIPAA-covered platforms for anything involving client data."),
+        ("Does AI replace caregivers or care managers?", "No. It removes administrative drafting so your team spends more time on care and family relationships. Care decisions stay human."),
+    ],
+    "related": [
+        ("ai-for-pediatricians", "AI for pediatricians", "Recall, parent comms, and education."),
+        ("ai-for-small-business", "AI for small business", "Where AI pays off first for owners."),
+        R_USE, R_WF,
+    ],
+}
+
+
+def _trade(slug, label, plural, crumb, software, work_word, estimate_line, siblings):
+    """Shared builder for home-service trades (estimate-speed ROI)."""
+    return {
+        "title": f"AI for {crumb} 2026: Use Cases, Tools, and ROI | Treetop",
+        "desc": f"How {plural} should use AI in 2026: estimates and quotes, customer communication, review responses, and marketing content. Real tools, ROI math, and what to avoid.",
+        "og_title": f"AI for {crumb} 2026: Use Cases, Tools, and ROI",
+        "og_desc": f"Estimates, customer comms, reviews, and marketing. The practical 2026 playbook for {plural}.",
+        "crumb": f"AI for {crumb}",
+        "h1": f"AI for {plural}: <em>the practical 2026 playbook.</em>",
+        "hero_sub": f"{label} is a speed-and-trust business: the fastest clear estimate often wins the job, and reviews drive the next call. AI handles the writing around both so you stay on the tools. The practical playbook follows.",
+        "verdict": f"For {plural}, AI delivers the most on estimates and quotes, customer communication, review responses, and marketing content. Start with Claude Pro ($20/mo) plus the AI in {software}. Budget under $100/mo. Faster estimates and follow-up win more jobs, so ROI shows up quickly.",
+        "uc_heading": f"Where AI actually moves the needle for {plural}",
+        "uc_intro": f"The money in {label.lower()} is won between the site visit and the signed estimate. AI compresses that, and removes the after-hours admin that owners hate.",
+        "use_cases": [
+            ("Estimates and quotes.", f"Turn your site-visit notes into a clear, itemized estimate and scope-of-work {estimate_line}, sent the same day while you are still top of mind."),
+            ("Customer communication.", "Draft scheduling confirmations, on-the-way texts, and post-job follow-ups in a consistent, professional voice, so nothing slips."),
+            ("Review responses and reputation.", "Draft on-brand replies to Google reviews in seconds, the single biggest driver of new calls for a local trade."),
+            ("Marketing content.", "Produce service-page copy, seasonal promos, and social posts that bring in leads without a marketing hire."),
+        ],
+        "uc_outro": f"As {HUB['sb']} shows, automate the writing and admin, keep your hands free for the {work_word}.",
+        "stack": [
+            "<strong>Claude Pro ($20/mo)</strong> for estimates, follow-up, and marketing copy.",
+            f"<strong>{software}</strong> for scheduling, dispatch, invoicing, and customer messaging, using built-in AI where available.",
+            "<strong>A reviews tool</strong> (or your platform's built-in) to request and reply to reviews.",
+        ],
+        "stack_outro": f"Under $100 a month for most shops. For the wider cost picture, see {HUB['claudecost']}.",
+        "roi": f"If a detailed estimate takes 45 minutes and you write several a week, AI cuts each to a few minutes, recovering hours and, more importantly, letting you respond same-day. In the trades, fastest clear quote wins, so even one extra job a month dwarfs a sub-$100 tool bill. See {HUB['mktcost']} and {HUB['save']}.",
+        "donts_heading": f"What AI should not do for your {label.lower()} business",
+        "donts": [
+            "Set final pricing or commit to scope without your judgment. It drafts the estimate; you own the number.",
+            "Make safety, code, or warranty claims it cannot stand behind.",
+            "Send customer messages on sensitive issues (damage, disputes) unreviewed.",
+            "Replace the trust you build on site. AI supports the relationship, it does not do the work.",
+        ],
+        "faqs": [
+            (f"What is the best AI tool for {plural}?", f"Claude Pro ($20/mo) for estimates and follow-up, paired with {software} for scheduling and invoicing. Under $100/mo for most shops."),
+            (f"How can {plural} use AI to win more jobs?", "Speed on estimates. Turning site-visit notes into a clear, same-day quote beats competitors who take days, and fast quotes win in the trades."),
+            ("Can AI handle customer reviews?", "Yes. It drafts on-brand replies to Google reviews in seconds, which protects the local reputation that generates your next calls."),
+            (f"Is AI worth it for a small {label.lower()} business?", "Yes. Estimates, follow-up, and reviews are daily, so even a one- or two-truck operation recovers hours a week and wins more bids."),
+        ],
+        "related": siblings + [R_SB, R_USE],
+    }
+
+
+NICHES["ai-for-home-services"] = _trade(
+    "ai-for-home-services", "Home services", "home services businesses", "Home Services Businesses",
+    "Jobber, Housecall Pro, or ServiceTitan", "work",
+    "in minutes",
+    [("ai-for-hvac-contractors", "AI for HVAC contractors", "Estimates, customer comms, and reviews."),
+     ("ai-for-contractors", "AI for general contractors", "Bids, client comms, and project docs.")])
+
+NICHES["ai-for-hvac-contractors"] = _trade(
+    "ai-for-hvac-contractors", "HVAC", "HVAC contractors", "HVAC Contractors",
+    "ServiceTitan, FieldEdge, or Housecall Pro", "install and service work",
+    "with maintenance-plan options",
+    [("ai-for-plumbers", "AI for plumbers", "Estimates, customer comms, and reviews."),
+     ("ai-for-electricians", "AI for electricians", "Estimates, customer comms, and reviews.")])
+
+NICHES["ai-for-plumbers"] = _trade(
+    "ai-for-plumbers", "Plumbing", "plumbers", "Plumbers and Plumbing Contractors",
+    "ServiceTitan, Jobber, or Workiz", "pipes and fixtures",
+    "with clear line items",
+    [("ai-for-hvac-contractors", "AI for HVAC contractors", "Estimates, customer comms, and reviews."),
+     ("ai-for-electricians", "AI for electricians", "Estimates, customer comms, and reviews.")])
+
+NICHES["ai-for-electricians"] = _trade(
+    "ai-for-electricians", "Electrical", "electricians", "Electricians and Electrical Contractors",
+    "ServiceTitan, Jobber, or FieldEdge", "wiring and panels",
+    "with code and safety notes for your review",
+    [("ai-for-plumbers", "AI for plumbers", "Estimates, customer comms, and reviews."),
+     ("ai-for-hvac-contractors", "AI for HVAC contractors", "Estimates, customer comms, and reviews.")])
+
+NICHES["ai-for-painters"] = _trade(
+    "ai-for-painters", "Painting", "painting contractors", "Painting Contractors",
+    "Jobber, Housecall Pro, or PaintScout", "prep and paint work",
+    "with surface and coat detail",
+    [("ai-for-landscapers", "AI for landscapers", "Estimates, client comms, and content."),
+     ("ai-for-contractors", "AI for general contractors", "Bids, client comms, and project docs.")])
+
+NICHES["ai-for-landscapers"] = _trade(
+    "ai-for-landscapers", "Landscaping", "landscapers and landscape architects", "Landscapers and Landscape Architects",
+    "Jobber, LMN, or Aspire", "design and crew work",
+    "with phased and maintenance options",
+    [("ai-for-painters", "AI for painters", "Estimates, client comms, and content."),
+     ("ai-for-home-services", "AI for home services", "Estimates, customer comms, and reviews.")])
+
+NICHES["ai-for-contractors"] = _trade(
+    "ai-for-contractors", "General contracting", "general contractors", "General Contractors",
+    "Buildertrend, Jobber, or CompanyCam", "build",
+    "with phased scope and allowances",
+    [("ai-for-home-services", "AI for home services", "Estimates, customer comms, and reviews."),
+     ("ai-for-hvac-contractors", "AI for HVAC contractors", "Estimates, customer comms, and reviews.")])
