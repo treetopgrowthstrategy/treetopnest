@@ -177,6 +177,128 @@ ANCHOR_VARIANTS: dict[str, list[str]] = {
         "Fractional CMO near me",
         "Find a fractional CMO near you",
     ],
+    "/ai-tool-stack-auditor": [
+        "AI Tool Stack Auditor",
+        "Free AI stack audit",
+        "Treetop's AI Tool Stack Auditor",
+    ],
+    "/ai-implementation-consultant": [
+        "AI implementation consultant",
+        "AI implementation services",
+        "Treetop's AI implementation consultant",
+    ],
+    "/how-to-hire-a-fractional-cmo": [
+        "How to hire a fractional CMO",
+        "The step-by-step guide to hiring a fractional CMO",
+        "Hiring a fractional CMO: the process",
+    ],
+    "/what-is-a-fractional-executive": [
+        "What is a fractional executive?",
+        "Fractional executive, defined",
+        "Plain-English: fractional executive",
+    ],
+    "/fractional-cmo-vs-agency": [
+        "Fractional CMO vs. agency",
+        "Fractional CMO vs marketing agency",
+        "Comparing fractional CMO and agency",
+    ],
+    "/fractional-cmo-vs-full-time-cmo": [
+        "Fractional vs. full-time CMO",
+        "Fractional CMO vs full-time CMO compared",
+        "When to choose fractional over full-time CMO",
+    ],
+    "/how-much-does-a-fractional-cmo-cost": [
+        "Fractional CMO cost",
+        "How much a fractional CMO costs",
+        "2026 fractional CMO pricing",
+    ],
+    "/how-much-does-a-fractional-cro-cost": [
+        "Fractional CRO cost",
+        "How much a fractional CRO costs",
+        "2026 fractional CRO pricing",
+    ],
+    "/how-much-does-a-fractional-cfo-cost": [
+        "Fractional CFO cost",
+        "How much a fractional CFO costs",
+        "2026 fractional CFO pricing",
+    ],
+    "/how-much-does-a-fractional-coo-cost": [
+        "Fractional COO cost",
+        "How much a fractional COO costs",
+        "2026 fractional COO pricing",
+    ],
+    "/how-much-does-a-fractional-cto-cost": [
+        "Fractional CTO cost",
+        "How much a fractional CTO costs",
+        "2026 fractional CTO pricing",
+    ],
+    "/how-much-does-ai-marketing-cost": [
+        "How much AI marketing costs",
+        "AI marketing cost reference",
+        "2026 AI marketing pricing",
+    ],
+    "/how-much-does-claude-cost": [
+        "How much Claude costs",
+        "Claude pricing breakdown",
+        "Claude cost across tiers",
+    ],
+    "/how-much-does-chatgpt-cost": [
+        "How much ChatGPT costs",
+        "ChatGPT pricing breakdown",
+        "ChatGPT cost across tiers",
+    ],
+    "/save-time-with-ai-small-business": [
+        "How small businesses save time with AI",
+        "Time savings from AI for small business",
+        "Small business AI time savings",
+    ],
+    "/ai-workflow-automation-small-business": [
+        "Small-business AI workflow guide",
+        "Automating workflows with AI for small business",
+        "AI workflow automation playbook",
+    ],
+    "/ai-for-small-business": [
+        "AI for small business",
+        "Where AI pays off first for small business owners",
+        "Treetop's small-business AI guide",
+    ],
+    "/claude-for-small-business": [
+        "Claude for small business",
+        "Practical Claude for small business",
+        "Using Claude in a small business",
+    ],
+    "/ai-cmo": [
+        "AI CMO: the buyer's guide",
+        "AI CMO products and platforms",
+        "Choosing an AI CMO",
+    ],
+    "/ai-agents-for-business": [
+        "AI agents for business",
+        "The cross-functional AI agents playbook",
+        "AI agents at a B2B company",
+    ],
+    "/ai-agents-for-sales": [
+        "AI agents for sales",
+        "Sales AI agents playbook",
+        "AI agents in the sales function",
+    ],
+    "/ai-agents-for-marketing": [
+        "AI agents for marketing",
+        "Marketing AI agents playbook",
+        "AI agents in the marketing function",
+    ],
+    "/state-of-b2b-gtm-report-2026": [
+        "State of B2B GTM (2026 report)",
+        "The 2026 B2B GTM report",
+        "Treetop's B2B GTM benchmark",
+    ],
+    "/fractional-cmo": [
+        "Fractional CMO services",
+        "Treetop's fractional CMO offering",
+        "Hire a fractional Chief Marketing Officer",
+        "The fractional CMO playbook",
+        "What a fractional CMO does",
+    ],
 }
 
 
