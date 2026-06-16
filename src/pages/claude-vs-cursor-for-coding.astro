@@ -5,94 +5,171 @@ export const prerender = true;
 <!doctype html><html lang="en"><head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<title>Claude vs Cursor for Coding — When to Use Each | Treetop</title>
-<meta name="description" content="Cursor (built on Claude) and Claude (used directly) are both coding tools — but for different jobs. Here is when each wins." />
+<title>Claude vs Cursor for Coding: When to Use Each | Treetop</title>
+<meta name="description" content="Claude vs Cursor for coding: when to use each. Claude is the better reasoning and architecture partner; Cursor is the better in-editor implementation tool. Most engineers should use both." />
 <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding" />
 <meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding" />
-<meta property="og:title" content="Claude vs Cursor for Coding — When to Use Each" /><meta property="og:description" content="Cursor (built on Claude) and Claude (used directly) are both coding tools — but for different jobs. Here is when each wins." />
+<meta property="og:title" content="Claude vs Cursor for Coding: When to Use Each" />
+<meta property="og:description" content="Reasoning + architecture vs in-editor implementation." />
 <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-vs-cursor-for-coding.png" />
 <meta property="og:site_name" content="Treetop Growth Strategy" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-vs-cursor-for-coding.png" /><meta name="twitter:title" content="Claude vs Cursor for Coding — When to Use Each" />
-<meta name="twitter:description" content="Cursor (built on Claude) and Claude (used directly) are both coding tools — but for different jobs. Here is when each wins." />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-vs-cursor-for-coding.png" />
+<meta name="twitter:title" content="Claude vs Cursor for Coding: When to Use Each" />
+<meta name="twitter:description" content="Reasoning + architecture vs in-editor implementation." />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Claude vs Cursor for Coding — When to Use Each","description":"Cursor (built on Claude) and Claude (used directly) are both coding tools — but for different jobs. Here is when each wins.","url":"https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Claude vs Cursor for Coding: When to Use Each | Treetop", "description": "Claude vs Cursor for coding: when to use each. Claude is the better reasoning and architecture partner; Cursor is the better in-editor implementation tool. Most engineers should use both.", "url": "https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-28", "dateModified": "2026-06-15", "image": "https://treetopgrowthstrategy.com/og-default.png"}, {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://treetopgrowthstrategy.com/"}, {"@type": "ListItem", "position": 2, "name": "Claude vs Cursor for Coding", "item": "https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Cursor better than Claude at coding?", "acceptedAnswer": {"@type": "Answer", "text": "Cursor is better at editing code in your repo. Claude is better at reasoning about code without an editor. Both are excellent at code in their own surface."}}, {"@type": "Question", "name": "Can Cursor use Claude as its model?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Cursor lets you select from several frontier models, often including Claude. So the choice between Claude and Cursor is really the choice between two interfaces, not two underlying models."}}, {"@type": "Question", "name": "Should solo developers use both?", "acceptedAnswer": {"@type": "Answer", "text": "Yes if your day includes both planning and editing. If you are doing pure execution against a clear plan, Cursor alone may be enough."}}, {"@type": "Question", "name": "How do they compare for code review?", "acceptedAnswer": {"@type": "Answer", "text": "Claude is excellent for whole-PR review when you paste a diff in. Cursor is excellent for line-by-line review inside the editor."}}, {"@type": "Question", "name": "Which is better for non-coders working with code?", "acceptedAnswer": {"@type": "Answer", "text": "Claude. Cursor's value is the editor integration, which non-coders do not benefit from."}}]}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300}
 nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
 .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
 .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
-.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
-.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
-section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
-.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
-.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
-.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
-.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
-.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
-.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
-.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
-@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853}
+section{padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:860px;margin:0 auto}
+.hero{display:flex;align-items:center;padding:7rem 2.5rem 3rem}.hero-inner{max-width:860px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-h em{font-style:italic;color:#00C853}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.7;max-width:760px}
+.verdict{background:rgba(0,200,83,0.06);border-left:3px solid #00C853;padding:1.4rem 1.7rem;margin-top:2rem;max-width:760px}
+.verdict-l{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.5rem}
+.verdict-p{font-size:1rem;color:#F0FFF0;line-height:1.7;margin:0}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.1rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body strong{color:#F0FFF0}.body a{color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3)}
+.ul{color:#C0D8C0;font-size:1rem;line-height:1.8;padding-left:1.25rem;margin:0.75rem 0 1.5rem;max-width:760px}.ul li{margin-bottom:0.55rem}.ul li::marker{color:#00C853}.ul strong{color:#F0FFF0}
+.cmp-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem;background:#0A1A0A;border:1px solid #1A3A1A;max-width:860px}
+.cmp-table th,.cmp-table td{padding:0.95rem 1.1rem;text-align:left;border-bottom:1px solid #1A3A1A;color:#C0D8C0;vertical-align:top;line-height:1.55}
+.cmp-table th{font-family:'Instrument Serif',serif;color:#F0FFF0;font-weight:400;font-size:1rem;background:rgba(240,255,240,0.02)}
+.cmp-table td:first-child{color:#F0FFF0;font-weight:500;width:24%}
+.cmp-table tr:last-child td{border-bottom:none}
+.faq-item{border-bottom:1px solid #1A3A1A;padding:1.4rem 0;max-width:760px}.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:1.02rem;font-weight:600;color:#F0FFF0;margin-bottom:0.55rem}
+.faq-a{font-size:0.96rem;color:#C0D8C0;line-height:1.75}.faq-a a{color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1rem;max-width:860px}
+.rcard{display:block;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.3rem;text-decoration:none;transition:border-color .2s,background .2s}.rcard:hover{border-color:rgba(0,200,83,0.35);background:#0f200f}
+.rcard-t{font-size:0.92rem;font-weight:600;color:#F0FFF0;margin-bottom:0.3rem}.rcard-d{font-size:0.82rem;color:#8FAF8F;line-height:1.55}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;max-width:860px}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0}.cta-sub{font-size:0.85rem;color:#8FAF8F;margin-top:0.4rem}
+.note{font-size:0.86rem;color:#8FAF8F;font-style:italic;margin-top:0.5rem;max-width:760px}
+@media(max-width:768px){section{padding:2.5rem 1.5rem}.hero{padding:6rem 1.5rem 2rem}.cmp-table{font-size:0.78rem}.cmp-table th,.cmp-table td{padding:0.5rem 0.4rem}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding","name":"Claude vs Cursor for Coding \u2014 When to Use Each | Treetop","description":"Cursor (built on Claude) and Claude (used directly) are both coding tools \u2014 but for different jobs. Here is when each wins.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Vs Cursor For Coding","item":"https://treetopgrowthstrategy.com/claude-vs-cursor-for-coding"}]}</script>
 </head><body>
 <nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
-<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
-<a href="/services" class="nav-link">Services</a>
-<a href="/blog" class="nav-link">Blog</a>
-<a href="/resources" class="nav-link">Resources</a>
-<a href="/about" class="nav-link">About</a>
-</div>
-<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+<div style="display:flex;gap:2rem;align-items:center"><a href="/services" class="nav-link">Services</a><a href="/resources" class="nav-link">Resources</a></div>
+<a href="/ai-tool-stack-auditor" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">AI Tool Auditor →</a>
 </div></nav>
 <div class="hero"><div class="hero-inner">
-<div class="badge"><span class="badge-dot"></span>Comparison</div>
-<h1 class="hero-h">Claude vs <em style="color:#00C853;font-style:italic;">Cursor for coding.</em></h1>
-<p class="hero-sub">Many engineers ask "should I use Cursor or Claude directly?" The answer is usually both, for different things. Cursor wins for IDE-integrated coding work. Claude wins for sustained planning, architecture, and code-adjacent writing. Here is the split.</p>
+<div class="badge"><span class="badge-dot"></span>Honest 2026 comparison</div>
+<h1 class="hero-h">Claude vs Cursor for coding: <em>when to use each.</em></h1>
+<p class="hero-sub">When the coding decision is design, debate, or planning, reach for Claude. When the coding decision is shipping a multi-file edit, reach for Cursor. They are different tools that work well together.</p>
+<div class="verdict"><div class="verdict-l">Short answer</div><p class="verdict-p">Use Claude for thinking about code (architecture, debugging, code review, explanations). Use Cursor for working on code (multi-file edits, refactors, test generation in your repo). Most engineers should keep both open.</p></div>
+<p class="note">Pricing references are as of June 2026 and may change. Always verify on each vendor's site before committing.</p>
 </div></div>
 
-<section><div class="sec-inner"><span class="lbl">Where Cursor wins</span><h2 class="h2">In-IDE coding</h2>
-    <p class="body"><strong>Inline code generation and editing.</strong> Cursor lives in your editor; Claude does not.</p>
-    <p class="body"><strong>Multi-file refactors.</strong> Cursor can see and edit across files in the workspace.</p>
-    <p class="body"><strong>Iterative debugging.</strong> The IDE-aware context is meaningfully better than copy-paste workflows.</p>
-    <p class="body"><strong>Speed of iteration.</strong> No context switching between Claude tab and IDE.</p>
-    </div></section>
+<section><div class="sec-inner">
+<h2 class="h2">Claude: where it wins</h2>
+<p class="body">Claude is a general-purpose AI assistant. For coding it is best as a reasoning partner. It explains, debugs, designs, and reviews; it does not edit your repo directly.</p>
+<ul class="ul">
+<li><strong>Architecture and design discussions.</strong> Reason about trade-offs across systems before you write code.</li>
+<li><strong>Debugging.</strong> Paste a stack trace and a relevant file; Claude walks the cause and the fix.</li>
+<li><strong>Code review.</strong> Paste a diff; Claude points out real bugs, edge cases, and stylistic improvements.</li>
+<li><strong>Explanations.</strong> Read unfamiliar code and get a plain-English walk-through.</li>
+<li><strong>Long-context.</strong> Drop in many files for a discussion that holds them all at once.</li>
+</ul>
+</div></section>
 
-<section><div class="sec-inner"><span class="lbl">Where Claude (directly) wins</span><h2 class="h2">Strategic / planning work</h2>
-    <p class="body"><strong>Architecture planning.</strong> Long-form discussions about system design, with persistent context via Projects.</p>
-    <p class="body"><strong>Code-adjacent writing.</strong> ADRs, documentation, READMEs, technical proposals.</p>
-    <p class="body"><strong>Cross-codebase synthesis.</strong> When you need to think about systems beyond what fits in one IDE window.</p>
-    <p class="body"><strong>Educational / explanation work.</strong> Understanding an unfamiliar codebase or library.</p>
-    </div></section>
+<section><div class="sec-inner">
+<h2 class="h2">Cursor: where it wins</h2>
+<p class="body">Cursor is an AI-native code editor. It edits files in your repo, sees your project structure, and makes multi-file changes. The right tool when you are shipping.</p>
+<ul class="ul">
+<li><strong>Multi-file edits.</strong> Apply a refactor across the codebase in one step.</li>
+<li><strong>Inline completion and chat.</strong> Generate code where the cursor is, with awareness of the file.</li>
+<li><strong>Repo-aware chat.</strong> Ask questions about your code with the project as context.</li>
+<li><strong>Test generation.</strong> Write tests for a function or a module quickly.</li>
+<li><strong>Choice of underlying model.</strong> Switch between frontier models, often including Claude itself.</li>
+</ul>
+</div></section>
 
-<section><div class="sec-inner"><span class="lbl">The recommended pattern</span><h2 class="h2">Use both</h2>
-    <p class="body">Cursor for everything you do in the IDE. Claude (Team or Pro) for planning, architecture, and the writing that surrounds the code. Combined cost: ~$50/seat/month. Combined value: dramatically more than either alone.</p>
-    </div></section>
+<section><div class="sec-inner">
+<h2 class="h2">Side-by-side</h2>
+<p class="body">A direct, dimension-by-dimension look. Use this as a quick scan, then read the decision framework below.</p>
+<table class="cmp-table">
+<thead><tr><th>Dimension</th><th>Claude</th><th>Cursor</th></tr></thead>
+<tbody>
+<tr><td>Best for</td><td>Thinking about code</td><td>Editing code</td></tr>
+<tr><td>Where it lives</td><td>Browser, desktop, API</td><td>Inside an editor (VS Code fork)</td></tr>
+<tr><td>Repo awareness</td><td>Whatever you paste</td><td>Native</td></tr>
+<tr><td>Multi-file edits</td><td>No (suggestions only)</td><td>Yes (apply across files)</td></tr>
+<tr><td>Debugging</td><td>Strong at root-cause reasoning</td><td>Strong at in-editor fixes</td></tr>
+<tr><td>Code review</td><td>Strong on pasted diffs</td><td>Strong on the active file</td></tr>
+</tbody>
+</table>
+</div></section>
 
-<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
-<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
-<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/best-ai-tools-for-b2b-sales" style="color:#00C853;text-decoration:none;">Best AI tools for B2B sales &rarr;</a></li>
-      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-for-code-review" style="color:#00C853;text-decoration:none;">How to use AI for code review &rarr;</a></li>
-      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-for-ctos" style="color:#00C853;text-decoration:none;">AI for CTOs &rarr;</a></li>
-      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-for-vp-engineering" style="color:#00C853;text-decoration:none;">AI for VPs of Engineering &rarr;</a></li>
-      
-</ul></div></section>
+<section><div class="sec-inner">
+<h2 class="h2">When to choose Claude</h2>
+<ul class="ul">
+<li>You are reasoning about an architectural decision.</li>
+<li>You are debugging a hard problem and want to think through causes.</li>
+<li>You are reviewing a teammate's diff or learning unfamiliar code.</li>
+<li>You want a long-context conversation about many files at once.</li>
+<li>You are doing language-agnostic work where the editor does not help.</li>
+</ul>
+</div></section>
+
+<section><div class="sec-inner">
+<h2 class="h2">When to choose Cursor</h2>
+<ul class="ul">
+<li>You are inside an editor and want to write or refactor code.</li>
+<li>You need a change applied across many files at once.</li>
+<li>You are generating tests, lint fixes, or boilerplate.</li>
+<li>You want inline completion as you type.</li>
+<li>You are working in a codebase Cursor can index.</li>
+</ul>
+</div></section>
+
+<section><div class="sec-inner">
+<h2 class="h2">When most teams should run both</h2>
+<p class="body">The most productive engineers we see run both. Claude for the thinking; Cursor for the shipping.</p>
+<ul class="ul">
+<li>Plan and design in Claude (sometimes paste in Cursor's output for review).</li>
+<li>Implement in Cursor.</li>
+<li>Code-review pull requests in Claude before merging.</li>
+<li>Use Claude when you are away from the repo (planning, deep debugging in conversation); Cursor when you are inside it.</li>
+</ul>
+<p class="body">Combined seat cost is small relative to the productivity lift from picking the right tool for each job. The wrong move is buying one because it is cheaper and forcing it into work it is not built for.</p>
+</div></section>
+
+<section><div class="sec-inner">
+<h2 class="h2">Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Is Cursor better than Claude at coding?</div><div class="faq-a">Cursor is better at editing code in your repo. Claude is better at reasoning about code without an editor. Both are excellent at code in their own surface.</div></div>
+<div class="faq-item"><div class="faq-q">Can Cursor use Claude as its model?</div><div class="faq-a">Yes. Cursor lets you select from several frontier models, often including Claude. So the choice between Claude and Cursor is really the choice between two interfaces, not two underlying models.</div></div>
+<div class="faq-item"><div class="faq-q">Should solo developers use both?</div><div class="faq-a">Yes if your day includes both planning and editing. If you are doing pure execution against a clear plan, Cursor alone may be enough.</div></div>
+<div class="faq-item"><div class="faq-q">How do they compare for code review?</div><div class="faq-a">Claude is excellent for whole-PR review when you paste a diff in. Cursor is excellent for line-by-line review inside the editor.</div></div>
+<div class="faq-item"><div class="faq-q">Which is better for non-coders working with code?</div><div class="faq-a">Claude. Cursor's value is the editor integration, which non-coders do not benefit from.</div></div>
+</div></section>
+
+<section><div class="sec-inner">
+<h2 class="h2">Keep reading</h2>
+<div class="rgrid">
+<a href="/claude-vs-cursor" class="rcard"><div class="rcard-t">Claude vs Cursor (general comparison)</div><div class="rcard-d">When to use each beyond coding.</div></a>
+<a href="/how-to-use-claude-for-coding" class="rcard"><div class="rcard-t">How to use Claude for coding</div><div class="rcard-d">Patterns that work in practice.</div></a>
+<a href="/claude-for-business" class="rcard"><div class="rcard-t">Claude for business</div><div class="rcard-d">The practical Claude playbook for B2B teams.</div></a>
+<a href="/services/ai-audit" class="rcard"><div class="rcard-t">Treetop AI Audit</div><div class="rcard-d">$1,500 written roadmap in 5 business days.</div></a>
+</div>
+</div></section>
+
 <section><div class="sec-inner"><div class="cta-box">
-<div><div class="cta-text">Want engineering AI workflows built?</div><div class="cta-sub">Implementation includes engineering workflow design.</div></div>
-<div style="display:flex;gap:1rem;flex-wrap:wrap;">
-<a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
-<a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
-</div></div></div></section>
+<div><div class="cta-text">Designing your AI stack?</div><div class="cta-sub">The free AI Tool Stack Auditor surfaces redundancies and gaps in 3 minutes. The $1,500 AI Audit goes deeper: a written roadmap in 5 business days.</div></div>
+<div style="display:flex;gap:0.75rem;flex-wrap:wrap;"><a href="/ai-tool-stack-auditor" class="btn-p">Free auditor →</a><a href="/services/ai-audit" class="btn-p" style="background:transparent;color:#F0FFF0;border:1px solid #1A3A1A;">Book AI Audit →</a></div>
+</div></div></section>
+
 <!-- treetop-linker-related-START -->
 <section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
   <div style="max-width:780px;margin:0 auto;">
@@ -102,11 +179,11 @@ section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:92
     <li><a href="/chatgpt-vs-claude-for-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">ChatGPT vs Claude for business &rarr;</a></li>
     <li><a href="/claude-ai-vs-chatgpt-small-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude vs ChatGPT (small business) &rarr;</a></li>
     <li><a href="/claude-vs-microsoft-copilot" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude vs Microsoft Copilot &rarr;</a></li>
-    <li><a href="/claude-vs-cursor" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude vs Cursor &rarr;</a></li>
     <li><a href="/claude-vs-perplexity" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude vs Perplexity &rarr;</a></li>
     <li><a href="/notion-ai-vs-claude" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Notion AI vs Claude &rarr;</a></li>
     <li><a href="/jasper-vs-claude" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Jasper vs Claude &rarr;</a></li>
     <li><a href="/copy-ai-vs-claude" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Copy.ai vs Claude &rarr;</a></li>
+    <li><a href="/how-much-does-claude-cost" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How much does Claude cost? &rarr;</a></li>
     </ul>
   </div>
 </section>
