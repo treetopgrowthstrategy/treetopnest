@@ -66,12 +66,34 @@ def collect_terms() -> list[tuple[str, str]]:
 
 
 def render_section(terms: list[tuple[str, str]]) -> str:
+    import json
     grid = "\n".join(
         f'  <a class="card" href="{u}"><div class="card-h">{name}</div></a>'
         for u, name in terms
     )
+    # ItemList schema so Google knows this is a comprehensive index
+    BASE = "https://treetopgrowthstrategy.com"
+    item_list = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Treetop AI & GTM Glossary — full A-Z index",
+        "url": f"{BASE}/glossary#all-terms",
+        "numberOfItems": len(terms),
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": i + 1,
+                "url": f"{BASE}{u}",
+                "name": name,
+            }
+            for i, (u, name) in enumerate(terms)
+        ],
+    }
+    schema_json = json.dumps(item_list, ensure_ascii=False)
     return (
         f"{MARK_START}\n"
+        f'<script type="application/ld+json">\n{schema_json}\n</script>\n'
         f'<section id="all-terms"><div class="sec-inner">\n'
         f'<span class="lbl">Full A-Z index</span>\n'
         f'<h2 class="sec-h">Every term, A to Z</h2>\n'
