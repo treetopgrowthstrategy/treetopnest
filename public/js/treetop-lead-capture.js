@@ -13,9 +13,13 @@
 
   // ── CONFIG ────────────────────────────────────────────────────────────────
   const CONFIG = {
-    // Where the form submits — update to your actual form endpoint
-    // Options: Mailchimp embed URL, ConvertKit, your Firebase function, Formspree
-    formAction: 'https://formspree.io/f/xbdeqldr',
+    // Where the form submits.
+    // /api/lead-capture is a Vercel/Astro API route that:
+    //   1. Sends the requested asset email to the user (via Resend)
+    //   2. Notifies bill@ of the submission (via Resend)
+    //   3. Logs the contact to Airtable (Contacts table)
+    // See src/pages/api/lead-capture.ts for the asset-to-email mapping.
+    formAction: '/api/lead-capture',
 
     // Delay before sticky bar appears (ms after scroll threshold)
     stickyBarDelay: 3000,
@@ -237,7 +241,7 @@
         return;
       }
       submitEmail(email, offer.asset, () => {
-        bar.innerHTML = `<div style="text-align:center;width:100%;font-size:.9rem;color:#a5b4fc;">✓ &nbsp;Check your inbox — we'll send the download shortly.</div>`;
+        bar.innerHTML = `<div style="text-align:center;width:100%;font-size:.9rem;color:#a5b4fc;">✓ &nbsp;Sent. Check your inbox in a minute.</div>`;
         suppress();
         setTimeout(() => bar.classList.remove('visible'), 3000);
       });
@@ -265,7 +269,7 @@
         <div class="tt-p-success">
           <div class="icon">✓</div>
           <h4>You're in.</h4>
-          <p>Check your inbox — the download is on its way.</p>
+          <p>Sent. Check your inbox in a minute.</p>
         </div>
       </div>
     `;
