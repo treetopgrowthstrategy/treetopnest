@@ -34,6 +34,161 @@ PUB = REPO / "public"
 MARK_START = "<!-- treetop-linker-related-START -->"
 MARK_END = "<!-- treetop-linker-related-END -->"
 
+# ---------------------------------------------------------------------------
+# Anchor variety map: for high-volume targets, provide 3-4 anchor variants
+# so the link block doesn't repeat the same anchor across thousands of pages.
+# A deterministic per-source pick keeps it stable while varying across pages.
+# ---------------------------------------------------------------------------
+ANCHOR_VARIANTS: dict[str, list[str]] = {
+    "/fractional-cmo": [
+        "Fractional CMO services",
+        "Treetop's fractional CMO offering",
+        "Hire a fractional Chief Marketing Officer",
+        "The fractional CMO playbook",
+    ],
+    "/fractional-cro": [
+        "Fractional CRO services",
+        "Treetop's fractional CRO offering",
+        "Hire a fractional Chief Revenue Officer",
+    ],
+    "/fractional-cfo": [
+        "Fractional CFO services",
+        "Treetop's fractional CFO offering",
+        "Hire a fractional Chief Financial Officer",
+    ],
+    "/fractional-coo": [
+        "Fractional COO services",
+        "Treetop's fractional COO offering",
+        "Hire a fractional Chief Operating Officer",
+    ],
+    "/fractional-chro": [
+        "Fractional CHRO services",
+        "Treetop's fractional CHRO offering",
+        "Hire a fractional Chief People Officer",
+    ],
+    "/fractional-cto": [
+        "Fractional CTO services",
+        "Treetop's fractional CTO offering",
+        "Hire a fractional Chief Technology Officer",
+    ],
+    "/hire-fractional-cmo": [
+        "Hire a fractional CMO",
+        "Engage a fractional CMO",
+        "Treetop fractional CMO engagement",
+        "Start a fractional CMO engagement",
+    ],
+    "/ai-for-cmos": [
+        "AI for CMOs",
+        "The AI toolkit for marketing leaders",
+        "AI tools every CMO should know",
+    ],
+    "/ai-for-cros": [
+        "AI for CROs",
+        "The AI toolkit for revenue leaders",
+        "AI tools for chief revenue officers",
+    ],
+    "/ai-for-cfos": [
+        "AI for CFOs",
+        "The AI toolkit for finance leaders",
+        "AI tools for chief financial officers",
+    ],
+    "/ai-for-coos": [
+        "AI for COOs",
+        "The AI toolkit for operations leaders",
+        "AI tools for chief operating officers",
+    ],
+    "/ai-for-chros": [
+        "AI for CHROs",
+        "The AI toolkit for people leaders",
+        "AI tools for chief people officers",
+    ],
+    "/how-to-use-ai-in-your-business": [
+        "How to use AI in your business",
+        "Getting started with AI in your business",
+        "A practical guide to AI for your business",
+        "How to roll out AI in your business",
+    ],
+    "/the-ai-native-gtm-framework": [
+        "The AI-native GTM framework",
+        "Treetop's AI-native GTM framework",
+        "How AI-native GTM works",
+    ],
+    "/what-is-ai-native-gtm": [
+        "What is AI-native GTM?",
+        "AI-native GTM, defined",
+        "Plain-English: AI-native GTM",
+    ],
+    "/glossary": [
+        "AI &amp; GTM glossary",
+        "Treetop's glossary",
+        "Full AI and GTM glossary",
+    ],
+    "/resources": [
+        "Treetop resources",
+        "Resource library",
+        "All Treetop resources",
+    ],
+    "/content-library": [
+        "Content library",
+        "Treetop content library",
+        "All Treetop content",
+    ],
+    "/services/ai-audit": [
+        "Treetop AI Audit",
+        "Book the Treetop AI Audit",
+        "The $1,500 AI Audit",
+        "AI Audit service",
+    ],
+    "/quiz": [
+        "AI-Native GTM Gap Assessment",
+        "Take the GTM Gap Assessment",
+        "Treetop's gap assessment quiz",
+    ],
+    "/about": [
+        "About Treetop",
+        "Treetop Growth Strategy: about us",
+    ],
+    "/fractional-executive-pricing-guide-2026": [
+        "Fractional executive pricing (2026)",
+        "The 2026 fractional executive pricing guide",
+        "What fractional executives cost in 2026",
+    ],
+    "/how-to-hire-a-fractional-cmo": [
+        "How to hire a fractional CMO",
+        "The step-by-step guide to hiring a fractional CMO",
+        "Hiring a fractional CMO: the process",
+    ],
+    "/case-studies": [
+        "Case studies",
+        "Treetop case studies",
+        "Real client outcomes",
+    ],
+    "/blog": [
+        "Treetop blog",
+        "All posts",
+        "Blog",
+    ],
+    "/claude-for-business": [
+        "Claude for business",
+        "Using Claude in business",
+        "Claude: the practical guide for business",
+    ],
+    "/fractional-cmo-near-me": [
+        "Fractional CMO near me",
+        "Find a fractional CMO near you",
+    ],
+}
+
+
+def vary_anchor(url: str, base_anchor: str, source_url: str) -> str:
+    """Return a deterministically-varied anchor for `url` given the source page."""
+    variants = ANCHOR_VARIANTS.get(url)
+    if not variants:
+        return base_anchor
+    # Deterministic pick by source URL hash so each source uses ONE specific variant
+    h = sum(ord(c) for c in source_url)
+    return variants[h % len(variants)]
+
 DRY_RUN = "--dry-run" in sys.argv
 
 
@@ -907,10 +1062,11 @@ def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
 # ---------------------------------------------------------------------------
 
 
-def render_block(items: list[tuple[str, str]]) -> str:
-    """Render the Related guides block in the site's dark-green design system."""
+def render_block(items: list[tuple[str, str]], source_url: str = "") -> str:
+    """Render the Related guides block in the site's dark-green design system.
+    Anchors are deterministically-varied per source page via ANCHOR_VARIANTS."""
     li_html = "\n".join(
-        f'    <li><a href="{u}" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">{a} &rarr;</a></li>'
+        f'    <li><a href="{u}" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">{vary_anchor(u, a, source_url)} &rarr;</a></li>'
         for u, a in items
     )
     return (
@@ -1067,7 +1223,7 @@ def main():
             untouched += 1
             continue
 
-        block = render_block(deduped)
+        block = render_block(deduped, source_url=url)
         new_content = insert_block(content, block)
         if new_content == content:
             untouched += 1
