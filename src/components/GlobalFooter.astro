@@ -138,3 +138,8 @@ const hoverOutExt = "this.style.color='#4A6A4A'";
     }
   </style>
 </footer>
+
+<!-- Site-wide lead capture (exit-intent popup + sticky bar).
+     Lives in GlobalFooter so it loads on every page, including standalone
+     HTML pages that bypass Layout.astro. -->
+<script src="/js/treetop-lead-capture.js" defer></script>

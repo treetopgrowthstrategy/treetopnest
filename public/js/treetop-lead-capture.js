@@ -26,18 +26,53 @@
     // Days to suppress popup after dismissal
     suppressDays: 7,
 
-    // Page-specific offer mapping (slug → offer text)
-    // Falls back to default if no match
+    // Page-specific offer mapping (slug substring → offer text)
+    // First match wins; order matters. Falls back to default if no match.
+    // The order here is intentional: more specific patterns first.
     offers: {
-      '30-60-90-day-plan-marketing':   { asset: '30-60-90 Day Marketing Plan Template', desc: 'The benchmark tracker, testing cadence, and 90-day report structure — pre-built.' },
-      'b2b-marketing-benchmarks':       { asset: 'B2B Marketing Benchmark Tracker', desc: 'Every benchmark in this guide as a pre-formatted spreadsheet you can fill with your numbers.' },
-      'competitive-marketing-audit':    { asset: 'Competitive Audit Matrix Template', desc: 'The blank competitive matrix from this guide, ready to fill in for your top competitors.' },
-      'fractional-cmo':                 { asset: 'Fractional CMO Scope of Work Template', desc: 'What good fractional CMO deliverables look like — scope, KPIs, and 90-day milestones.' },
-      'fractional-cro':                 { asset: 'Fractional CRO Playbook', desc: 'Revenue leadership scope, benchmarks, and what a fractional CRO should deliver in 90 days.' },
-      'gtm':                            { asset: 'GTM Strategy Framework', desc: 'The go-to-market framework used by AI-native B2B companies to pick their motion and execute.' },
-      'marketing-budget':               { asset: 'Marketing Budget Template', desc: 'B2B marketing budget breakdown by stage, channel, and headcount — pre-built spreadsheet.' },
-      'demand-generation':              { asset: 'Demand Gen vs Lead Gen Playbook', desc: 'The complete playbook for building demand gen programs that don\'t depend on existing search volume.' },
-      'default':                        { asset: 'AI-Native GTM Playbook', desc: 'The Treetop framework for building AI-native go-to-market programs that scale without adding headcount.' },
+      // Cost / pricing pages: deliver the 2026 Fractional Executive Pricing Report
+      'how-much-does-a-fractional': { asset: '2026 Fractional Executive Pricing Report', desc: 'Side-by-side rates, retainer ranges, and what to negotiate for fractional CMO, CRO, CFO, COO, CHRO, and CTO. Updated June 2026.' },
+      'how-much-does-an-ai':        { asset: 'AI Investment Budget Worksheet', desc: 'What B2B mid-market companies actually spend on AI in 2026: tools, consultants, implementation, and run-rate. Pre-built worksheet with sane ranges.' },
+      'how-much-does-claude':       { asset: 'Claude Pricing & ROI Worksheet', desc: 'Tier-by-tier Claude pricing for 2026 plus a worksheet for sizing the right plan against your team and use cases.' },
+      'how-much-does-chatgpt':      { asset: 'ChatGPT Pricing & ROI Worksheet', desc: 'Tier-by-tier ChatGPT pricing for 2026 plus a worksheet for sizing Plus vs Team vs Enterprise against your use case.' },
+      'how-much-does-ai-marketing': { asset: 'AI Marketing Budget Template', desc: 'Realistic AI marketing budgets by company stage, with the line items most teams underspend on.' },
+
+      // Comparison pages (X-vs-Y): AI Tool Comparison Matrix
+      '-vs-':                       { asset: 'AI Tool Comparison Matrix (2026)', desc: 'Side-by-side scorecard for Claude, ChatGPT, Gemini, Copilot, Perplexity, plus the verticals (Notion AI, Airtable AI, Jasper, Copy.ai). Editable and decision-ready.' },
+
+      // AI agents pages: AI Agents Implementation Playbook
+      'ai-agents-for':              { asset: 'AI Agents Implementation Playbook', desc: 'The operating model for deploying AI agents: workflow selection, human-in-the-loop design, vendor choice, and the metrics that prove ROI.' },
+
+      // Industry × role and industry pages: Industry AI Operating Model
+      'ai-for-saas':                { asset: 'B2B SaaS AI Operating Model', desc: 'The role-by-role AI deployment playbook for B2B SaaS. CMO, CRO, CFO, VP of Marketing, Founder mapped to specific workflows and tools.' },
+      'ai-for-fintech':             { asset: 'Fintech AI Operating Model', desc: 'AI deployment inside the fintech regulatory perimeter. BAA-grade vendor selection, audit-trail design, and the playbook for each function.' },
+      'ai-for-healthcare-tech':     { asset: 'Healthcare Tech AI Operating Model', desc: 'HIPAA-aware AI deployment for healthcare technology. Vendor selection, BAA setup, and the role-by-role playbook.' },
+      'ai-for-legal':               { asset: 'Legal Services AI Operating Model', desc: 'UPL-aware AI deployment for legal services. Vendor selection, supervision design, and ethics-compliant workflows.' },
+      'ai-for-insurance':           { asset: 'Insurance AI Operating Model', desc: 'Compliance-aware AI deployment for insurance. State regulatory considerations, underwriting integrity, and the role-by-role playbook.' },
+      'ai-for-ecommerce':           { asset: 'Ecommerce AI Operating Model', desc: 'AI deployment for DTC and B2B ecommerce. Catalog ops, customer-service deflection, and conversion-economics playbook.' },
+      'ai-for-manufacturing':       { asset: 'Manufacturing AI Operating Model', desc: 'AI deployment for B2B manufacturing. Technical content, long-cycle nurture, and channel enablement playbook.' },
+      'ai-for-small-business':      { asset: 'Small Business AI Stack Worksheet', desc: 'Pick the right AI stack for your small business in 30 minutes. Workflow audit, tool selector, and budget calculator.' },
+      'ai-for-':                    { asset: 'Industry AI Operating Model', desc: 'The role-by-role AI deployment playbook for your industry. Concrete workflows, tools, and ROI math.' },
+
+      // Glossary: AI-Native GTM Glossary PDF
+      'what-is-':                   { asset: 'AI-Native GTM Glossary (PDF)', desc: 'Every term in the Treetop glossary in a citation-friendly PDF. 100+ plain-English definitions for AI, GTM, and fractional executive vocabulary.' },
+
+      // How-to pages: Operator AI How-To Library
+      'how-to-':                    { asset: 'Operator AI How-To Library', desc: 'A curated library of practical Claude and AI workflows for B2B operators. Prompt templates included.' },
+
+      // Claude-for pages
+      'claude-for':                 { asset: 'Claude for B2B Operators Guide', desc: 'A practical Claude guide for B2B operators by industry and role. Workflows, prompts, and the operating model.' },
+
+      // Existing offers (kept; less specific so listed after)
+      '30-60-90-day-plan-marketing': { asset: '30-60-90 Day Marketing Plan Template', desc: 'The benchmark tracker, testing cadence, and 90-day report structure, pre-built.' },
+      'b2b-marketing-benchmarks':    { asset: 'B2B Marketing Benchmark Tracker', desc: 'Every benchmark in this guide as a pre-formatted spreadsheet you can fill with your numbers.' },
+      'competitive-marketing-audit': { asset: 'Competitive Audit Matrix Template', desc: 'The blank competitive matrix from this guide, ready to fill in for your top competitors.' },
+      'fractional-cmo':              { asset: 'Fractional CMO Scope of Work Template', desc: 'What good fractional CMO deliverables look like: scope, KPIs, and 90-day milestones.' },
+      'fractional-cro':              { asset: 'Fractional CRO Playbook', desc: 'Revenue leadership scope, benchmarks, and what a fractional CRO should deliver in 90 days.' },
+      'gtm':                         { asset: 'GTM Strategy Framework', desc: 'The go-to-market framework used by AI-native B2B companies to pick their motion and execute.' },
+      'marketing-budget':            { asset: 'Marketing Budget Template', desc: 'B2B marketing budget breakdown by stage, channel, and headcount, pre-built spreadsheet.' },
+      'demand-generation':           { asset: 'Demand Gen vs Lead Gen Playbook', desc: "The complete playbook for building demand gen programs that don't depend on existing search volume." },
+      'default':                     { asset: 'AI-Native GTM Playbook', desc: 'The Treetop framework for building AI-native go-to-market programs that scale without adding headcount.' },
     },
   };
 
