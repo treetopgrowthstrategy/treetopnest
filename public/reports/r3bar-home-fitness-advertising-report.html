@@ -50,6 +50,49 @@ h2{font-family:var(--display);font-weight:600;font-size:32px;line-height:1.12;
 .cover .tagline{padding:0 70px 34px;font-family:var(--display);font-style:italic;
   font-size:16px;color:#7fd3a3;position:relative;z-index:1}
 
+/* DECISION LAYER */
+.decision{background:linear-gradient(180deg,#f3f1ea 0%,var(--paper) 100%)}
+.decision h2{margin-bottom:8px}
+.d-play,.d-wedge{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0}
+.d-play{border-left:4px solid var(--accent)}
+.d-play h4,.d-wedge h4,.d-plan h4,.d-kpis h4,.d-h{margin:0 0 10px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.d-play p{margin:0;font-family:var(--display);font-size:19px;line-height:1.5;color:var(--ink);font-weight:500}
+.d-wedge ul{list-style:none;margin:0;padding:0}
+.d-wedge li{position:relative;padding:8px 0 8px 24px;font-size:15px;color:var(--ink);border-top:1px solid var(--line);font-weight:500}
+.d-wedge li:first-child{border-top:0}
+.d-wedge li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:2px;background:var(--gold)}
+.d-h{margin-top:28px}
+.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.rec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px}
+.rec header{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.r-num{font-family:var(--display);font-size:24px;color:var(--accent);font-weight:600;line-height:1}
+.r-name{font-family:var(--display);font-size:16px;font-weight:600;line-height:1.2;flex:1}
+.r-prod{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:#fdf6ea;border:1px solid #ecd8ab;border-radius:30px;padding:3px 9px;font-weight:600;white-space:nowrap}
+.r-why{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink2)}
+.r-met{margin:0;font-size:12.5px;color:var(--ink2);padding-top:8px;border-top:1px solid var(--line)}
+.r-met b{color:var(--accent)}
+.d-sub{margin:0 0 14px;font-size:13px;color:var(--muted);font-style:italic}
+.ranked{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+.ranked th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}
+.ranked td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+.ranked tr:last-child td{border-bottom:0}
+.rk-pat{font-weight:600;color:var(--ink);width:34%}
+.rk-pat .inf{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);background:#fdf6ea;border-radius:20px;padding:2px 7px;margin-left:6px;font-weight:600}
+.rk-days{width:14%}
+.rk-days b{font-family:var(--display);font-size:22px;color:var(--accent);font-weight:600;display:block;line-height:1}
+.rk-days span{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rk-n{width:12%;color:var(--ink);font-weight:600}
+.d-twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.d-plan,.d-kpis{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.d-plan dl{margin:0}
+.d-plan dt{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;font-weight:600}
+.d-plan dd{margin:0 0 12px;font-size:14px;color:var(--ink);font-weight:500}
+.d-plan dd:last-child{margin-bottom:0}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.k-name{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
+.k-tgt{font-family:var(--display);font-size:17px;color:var(--ink);font-weight:600;line-height:1.2}
+
 /* EXEC SUMMARY */
 .exec{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start}
 .lede{font-family:var(--display);font-size:22px;line-height:1.5;color:var(--ink);margin:0;font-weight:400}
@@ -138,7 +181,7 @@ footer{padding:32px 70px 46px;background:var(--ink);color:#9fb7aa;font-size:12px
   display:flex;justify-content:space-between;align-items:center}
 footer b{color:#eaf2ec;font-family:var(--display);font-weight:600}
 
-@media (max-width:760px){section{padding:36px 26px}.pgrid,.concepts,.glance,.exec,.legend-grid{grid-template-columns:1fr}
+@media (max-width:760px){section{padding:36px 26px}.pgrid,.concepts,.glance,.exec,.legend-grid,.recs,.d-twocol,.kpis{grid-template-columns:1fr}
   .ad{grid-template-columns:1fr}.cover .body{padding:48px 26px 32px}.covertitle{font-size:36px}
   .cover .bar,.cover .stats,.cover .tagline{padding-left:26px;padding-right:26px}.cover .stats{gap:30px}}
 @media print{body{background:#fff}.page{max-width:none;margin:0;box-shadow:none}
@@ -155,7 +198,7 @@ footer b{color:#eaf2ec;font-family:var(--display);font-weight:600}
     <div class="body">
       <div class="kicker"><span class="idx">01</span> Competitive Ad Intelligence</div>
       <h1 class="covertitle">How R3BAR Out-Creates the Category</h1>
-      <p class="coversub">Prepared for <b>R3BAR</b>, June 14, 2026</p>
+      <p class="coversub">Prepared for <b>R3BAR</b>, June 16, 2026</p>
       <div class="coverchips"><span class="chip">Gorilla Fitness</span><span class="chip">X3 Bar</span></div>
     </div>
     <div class="stats">
@@ -166,8 +209,44 @@ footer b{color:#eaf2ec;font-family:var(--display);font-weight:600}
     <div class="tagline">Growth is a system, not a series of bets.</div>
   </header>
 
+  
+  <section class="decision">
+    <div class="kicker"><span class="idx">02</span> Decision layer</div>
+    <h2>What to do this week for R3BAR</h2>
+    <p class="deck">The one-page brief. Lead with the call, not the analysis. Patterns below are ranked by how long competitors keep paying to run them.</p>
+
+    <div class="d-play">
+      <h4>The play</h4>
+      <p>This category wins by killing the viewer&#x27;s top excuse in frame one, then flooding them with proof before the CTA lands. Competitors dominate with busy-schedule and home-gym angles but have no rehab or injury-prevention credibility to occupy. R3BAR owns the rehab and recovery wedge while matching the excuse-demolition playbook.</p>
+    </div>
+
+    <div class="d-wedge">
+      <h4>Your wedge</h4>
+      <ul><li>The R3 wedge (Resistance, Rehab, Recovery) in one portable system: no competitor positions explicitly as prehab and rehab-grade, which unlocks FSA/HSA eligibility and a PT/coach referral channel.</li><li>Two-piece split-bar design enables unilateral and rotational loading that fixed-bar and bow systems structurally cannot replicate, a mechanical differentiator demonstrable in under 5 seconds of video.</li><li>Named elite athlete validation (NBA veteran Spencer Hawes, G-League and national-team athletes) is a credential neither Gorilla Fitness nor X3 Bar surfaces in the ads analyzed.</li></ul>
+    </div>
+
+    <h4 class="d-h">Run these three first</h4>
+    <div class="recs"><article class="rec"><header><span class="r-num">01</span><span class="r-name">Your FSA Pays for This</span><span class="r-prod">Low cost</span></header><p class="r-why">Reframes price before the objection forms and exploits a lane competitors have not touched in any analyzed ad</p><p class="r-met"><b>Proof:</b> CPA versus all-in site average</p></article><article class="rec"><header><span class="r-num">02</span><span class="r-name">Stop Rehabbing Blind</span><span class="r-prod">Low cost</span></header><p class="r-why">Occupies the rehab angle no competitor owns, matches the UGC PAS framework with the longest competitor longevity (194 days) at low cost</p><p class="r-met"><b>Proof:</b> Hook rate (3-second hold)</p></article><article class="rec"><header><span class="r-num">03</span><span class="r-name">No Gym. No Excuse.</span><span class="r-prod">Low cost</span></header><p class="r-why">Mirrors the highest-volume winning pattern (PAS excuse callout plus multi-creator UGC) while leading with R3BAR&#x27;s portability proof</p><p class="r-met"><b>Proof:</b> CTR to product page</p></article></div>
+
+    <h4 class="d-h">Evidence of performance</h4>
+    <p class="d-sub">Patterns are ranked by how long competitors keep paying to run them.</p>
+    <table class="ranked"><thead><tr><th>Pattern</th><th>Longevity</th><th>Volume</th><th>Note</th></tr></thead><tbody><tr><td class="rk-pat">PAS excuse callout (busy schedule)</td><td class="rk-days"><b>194</b><span>days live</span></td><td class="rk-n">4 ads</td><td class="rk-note">longest-lived pattern in the set, proven across multiple creators</td></tr><tr><td class="rk-pat">Aspirational identity via brand belonging</td><td class="rk-days"><b>194</b><span>days live</span></td><td class="rk-n">2 ads</td><td class="rk-note">tied longest longevity, sells identity not equipment</td></tr><tr><td class="rk-pat">Extreme resistance spec as scroll-stopper</td><td class="rk-days"><b>189</b><span>days live</span></td><td class="rk-n">2 ads</td><td class="rk-note">specific pound number self-qualifies serious buyers instantly</td></tr><tr><td class="rk-pat">Desire-first benefit stacking (30 min, home, full body)</td><td class="rk-days"><b>123</b><span>days live</span></td><td class="rk-n">3 ads</td><td class="rk-note">three-punch objection removal drives consistent mid-funnel conversion</td></tr><tr><td class="rk-pat">FSA/HSA financial reframe</td><td class="rk-days"><b>69</b><span>days live</span></td><td class="rk-n">1 ads</td><td class="rk-note">shorter run but zero competitor overlap makes it high-priority for R3BAR</td></tr></tbody></table>
+
+    <div class="d-twocol">
+      <div class="d-plan">
+        <h4>The test plan</h4>
+        <dl><div><dt>Budget</dt><dd>[$X] split equally across three concepts</dd></div><div><dt>Duration</dt><dd>[Y days]</dd></div><div><dt>Kill threshold</dt><dd>Kill any concept below [Z%] hook rate or above [$N CPA] by day [Y/2]</dd></div><div><dt>Scale rule</dt><dd>Increase winning concept budget by [W%] per week while CPA holds</dd></div></dl>
+      </div>
+      <div class="d-kpis">
+        <h4>Success metrics</h4>
+        <div class="kpis"><div class="kpi"><div class="k-name">Hook rate</div><div class="k-tgt">30%+ of impressions reach 3 seconds</div></div><div class="kpi"><div class="k-name">3-sec view rate</div><div class="k-tgt">40%+ for video formats</div></div><div class="kpi"><div class="k-name">CTR</div><div class="k-tgt">1.5%+ link click-through</div></div><div class="kpi"><div class="k-name">CPA</div><div class="k-tgt">At or below current blended site CPA benchmark</div></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="rule"></div>
+
   <section>
-    <div class="kicker"><span class="idx">02</span> Executive summary</div>
+    <div class="kicker"><span class="idx">03</span> Executive summary</div>
     <h2>The category playbook</h2>
     <p class="deck">What this competitor set is collectively betting on, and the openings it leaves for R3BAR.</p>
     <div class="exec">
@@ -184,7 +263,7 @@ footer b{color:#eaf2ec;font-family:var(--display);font-weight:600}
   <div class="rule"></div>
 
   <section>
-    <div class="kicker"><span class="idx">03</span> What is working for them</div>
+    <div class="kicker"><span class="idx">04</span> What is working for them</div>
     <h2>Repeating hooks, angles &amp; triggers</h2>
     <p class="deck">The recurring moves we found across every active ad. Each card names a category, explains it, and lists the specific patterns ranked by importance.</p>
     <div class="pgrid"><div class="pcard"><h3>Top hooks</h3><p class="psub">The opening moments engineered to stop the scroll.</p><ul><li><span class='ptext'>Bold excuse callout with red X</span><span class="pev">3 ads</span><span class="pwhy">Mirrors viewer&#x27;s self-justification, creating instant identity recognition.</span></li><li><span class='ptext'>Mass progress photo grid</span><span class="pev">2 ads</span><span class="pwhy">Volume of sequential evidence overwhelms skepticism no single before/after can.</span></li><li><span class='ptext'>Macro close-up product mystery tease</span><span class="pev">3 ads</span><span class="pwhy">Disorientation forces longer watch time before product is revealed.</span></li><li><span class='ptext'>Extreme resistance spec as scroll-stopper</span><span class="pev">2 ads</span><span class="pwhy">High pound number self-qualifies serious buyers instantly.</span></li><li><span class='ptext'>Unique financial benefit headline</span><span class="pev">1 ads</span><span class="pwhy">FSA/HSA angle reframes cost before price objection forms.</span></li></ul></div><div class="pcard"><h3>Dominant angles</h3><p class="psub">The core problems and desires the ads lead with.</p><ul><li><span class='ptext'>Busy schedule excuse elimination</span><span class="pev">4 ads</span><span class="pwhy">Targets the #1 self-reported reason people skip workouts.</span></li><li><span class='ptext'>Home replaces gym entirely</span><span class="pev">4 ads</span><span class="pwhy">Removes gym access as a prerequisite, expanding the addressable audience.</span></li><li><span class='ptext'>Workout consistency over transformation</span><span class="pev">3 ads</span><span class="pwhy">Adherence promise is more believable and less risky than extreme claims.</span></li><li><span class='ptext'>Aspirational identity through brand belonging</span><span class="pev">2 ads</span><span class="pwhy">Sells the person you become, not the equipment you buy.</span></li></ul></div><div class="pcard"><h3>Repeating frameworks</h3><p class="psub">The persuasion structures used to make the case.</p><ul><li><span class='ptext'>PAS with excuse as the problem</span><span class="pev">4 ads</span><span class="pwhy">Agitating a known excuse accelerates emotional buy-in before solution lands.</span></li><li><span class='ptext'>Before/after social proof at scale</span><span class="pev">2 ads</span><span class="pwhy">Documented progression reads as earned and tamper-resistant.</span></li><li><span class='ptext'>Desire-first benefit stacking</span><span class="pev">3 ads</span><span class="pwhy">Three-punch specificity (30 min / home / full body) removes all objections fast.</span></li><li><span class='ptext'>Credibility stat as rational permission</span><span class="pev">5 ads</span><span class="pwhy">Specific numbers convert emotional resonance into justified purchase logic.</span></li></ul></div><div class="pcard"><h3>Emotional triggers</h3><p class="psub">The feelings the creative is built to activate.</p><ul><li><span class='ptext'>Relief from guilt and failed restarts</span><span class="pev">4 ads</span><span class="pwhy">Resolves recurring shame loop without requiring willpower as the fix.</span></li><li><span class='ptext'>Aspiration via elite physique proof</span><span class="pev">4 ads</span><span class="pwhy">Viewer projects themselves into visible end-state shown on screen.</span></li><li><span class='ptext'>Belonging to a community of doers</span><span class="pev">2 ads</span><span class="pwhy">Tribe identity lowers resistance by making purchase a social act.</span></li><li><span class='ptext'>Empowerment through elite-grade equipment</span><span class="pev">3 ads</span><span class="pwhy">Owning serious specs signals serious intent, boosting self-identity.</span></li></ul></div><div class="pcard"><h3>Format preferences</h3><p class="psub">The creative formats the category leans on.</p><ul><li><span class='ptext'>UGC video with multi-creator demos</span><span class="pev">4 ads</span><span class="pwhy">Diverse real-world settings broaden audience identification simultaneously.</span></li><li><span class='ptext'>Static collage as proof cascade</span><span class="pev">2 ads</span><span class="pwhy">Grid format communicates sustained commitment no single image can.</span></li><li><span class='ptext'>Produced lifestyle video with macro tease</span><span class="pev">3 ads</span><span class="pwhy">Cinematic open buys watch time before brand or product appears.</span></li><li><span class='ptext'>Clean flat-lay product on white</span><span class="pev">2 ads</span><span class="pwhy">Clinical aesthetic signals premium quality without lifestyle distraction.</span></li></ul></div><div class="pcard"><h3>CTA patterns</h3><p class="psub">How the ads ask for the click, and how hard.</p><ul><li><span class='ptext'>Shop Now plus percentage discount urgency</span><span class="pev">4 ads</span><span class="pwhy">Discount converts lingering aspiration into immediate transactional action.</span></li><li><span class='ptext'>Passive Shop Now after proof saturation</span><span class="pev">4 ads</span><span class="pwhy">Creative pre-sells so completely the CTA only captures converted intent.</span></li><li><span class='ptext'>Shop Now reframed as financial smart move</span><span class="pev">1 ads</span><span class="pwhy">FSA/HSA framing eliminates price objection before CTA appears.</span></li></ul></div><div class="pcard" style="grid-column:1/-1"><h3>Production signal</h3><p class="psub">What the production quality reveals about what is working.</p><p class="pwhy" style="margin-top:0">Low-production UGC and mid-production lifestyle video run simultaneously, signaling format agnosticism, proof and relevance outweigh polish.</p></div></div>
@@ -192,7 +271,7 @@ footer b{color:#eaf2ec;font-family:var(--display);font-weight:600}
   <div class="rule"></div>
 
   <section>
-    <div class="kicker"><span class="idx">04</span> Recommended creative</div>
+    <div class="kicker"><span class="idx">05</span> Recommended creative</div>
     <h2>Ten concepts in R3BAR&#x27;s voice, traced to the data</h2>
     <p class="deck">Ready-to-brief ad ideas. Each one borrows a proven competitor mechanic and reframes it through R3BAR differentiators.</p>
     <div class="concepts">
@@ -280,7 +359,7 @@ footer b{color:#eaf2ec;font-family:var(--display);font-weight:600}
   <div class="rule"></div>
 
   <section>
-    <div class="kicker"><span class="idx">05</span> The evidence</div>
+    <div class="kicker"><span class="idx">06</span> The evidence</div>
     <h2>Ad-by-ad breakdown</h2>
     <p class="deck">Every active ad we pulled, each scored on the same seven dimensions so the patterns above are traceable to source.</p>
     <div class="legend"><h4>How to read each ad</h4><div class="legend-grid"><div><b>Hook.</b> What stops the scroll in the first seconds.</div><div><b>Angle.</b> The core problem or desire it leads with.</div><div><b>Visual Format.</b> How the creative is built (UGC, demo, lifestyle...).</div><div><b>Copy Framework.</b> The persuasion structure at work.</div><div><b>CTA.</b> The ask, and how hard it pushes.</div><div><b>Emotional Trigger.</b> The primary emotion it activates.</div><div><b>What Makes It Work.</b> The core mechanic driving its effectiveness.</div></div></div>
