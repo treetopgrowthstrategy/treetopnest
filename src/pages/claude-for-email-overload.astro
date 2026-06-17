@@ -1,0 +1,236 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>How to Use Claude to Tame Email Overload | Treetop</title>
+  <meta name="description" content="A practical, non-technical guide to using Claude for email: triage a full inbox, draft replies in your voice, handle multiple inboxes, and get hours back every week." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-for-email-overload" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-for-email-overload" />
+  <meta property="og:title" content="How to Use Claude to Tame Email Overload" />
+  <meta property="og:description" content="Triage, drafting, multiple inboxes, and getting time back, with no jargon." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-for-email-overload.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-for-email-overload.png" />
+  <meta name="twitter:title" content="How to Use Claude to Tame Email Overload" />
+  <meta name="twitter:description" content="Practical email workflows for busy professionals." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to Use Claude to Tame Email Overload",
+      "description": "A practical, non-technical guide to using Claude for email triage, drafting, and multiple inboxes.",
+      "url": "https://treetopgrowthstrategy.com/claude-for-email-overload",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-06-16",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Can Claude read my whole inbox automatically?", "acceptedAnswer": {"@type": "Answer", "text": "Not on its own. By default you bring email to Claude by pasting or forwarding messages into a chat. If your business sets up a permissioned connector to your mail system, Claude can work from your real inbox, but that is a deliberate, administrator-controlled step. Most people get huge value just from pasting in the messages that matter."}},
+        {"@type": "Question", "name": "Will the replies sound like me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if you give it a sample of your writing. Paste in three or four emails you are happy with, or keep a short voice note in a Project, and Claude will match your tone. The first few drafts you will edit. After that, it learns your patterns and the edits shrink."}},
+        {"@type": "Question", "name": "How does this help with multiple inboxes?", "acceptedAnswer": {"@type": "Answer", "text": "Keep a separate Project per inbox or per role, each with its own voice and context, such as a client-facing inbox and an internal one. You paste messages into the right Project and the replies come back in the right register for that audience, instead of you mentally switching gears all day."}},
+        {"@type": "Question", "name": "Is it safe to paste work email into Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On a business plan, your conversations are not used to train the model by default, which makes routine work email reasonable to use. Still apply judgment: avoid pasting privileged, regulated, or highly sensitive content unless your plan and internal policy clearly allow it. When in doubt, summarize rather than paste verbatim."}},
+        {"@type": "Question", "name": "How much time can this actually save?", "acceptedAnswer": {"@type": "Answer", "text": "Most professionals who build the habit report getting back somewhere between thirty minutes and a couple of hours a day, depending on email volume. The biggest wins are triaging a backed-up inbox in minutes and never starting a routine reply from a blank screen."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4.5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 820px; margin: 0 auto; }
+    .hero { min-height: 48vh; display: flex; align-items: center; padding: 7rem 2.5rem 3.5rem; }
+    .hero-inner { max-width: 820px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.08rem; color: #C0D8C0; line-height: 1.8; max-width: 740px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; margin-top: 2rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.15rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .body strong { color: #F0FFF0; font-weight: 600; }
+    .body ul { margin: 0 0 1.15rem 1.25rem; color: #C0D8C0; }
+    .body li { margin-bottom: 0.5rem; line-height: 1.7; }
+    .body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .answer { font-size: 1.05rem; color: #F0FFF0; }
+    .prompt { background: #0A1A0A; border: 1px solid #1A3A1A; border-left: 3px solid #00C853; padding: 1.1rem 1.4rem; margin: 1.25rem 0; font-size: 0.92rem; color: #C0D8C0; line-height: 1.65; }
+    .prompt .plabel { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: #00C853; display: block; margin-bottom: 0.5rem; }
+    .faq-q { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: #F0FFF0; font-weight: 400; margin: 1.75rem 0 0.4rem; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.9rem; color: #8FAF8F; margin-top: 0.5rem; max-width: 440px; }
+    .rel-list { list-style: none; padding: 0; font-size: 0.96rem; line-height: 1.9; color: #C0D8C0; }
+    .rel-list a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    @media(max-width:800px){ section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-for-email-overload","name":"How to Use Claude to Tame Email Overload | Treetop","description":"A practical, non-technical guide to using Claude for email triage, drafting, and multiple inboxes.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-h",".hero-sub",".answer"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude For Email Overload","item":"https://treetopgrowthstrategy.com/claude-for-email-overload"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Get your time back</div>
+    <h1 class="hero-h">Use Claude to tame <em style="color:#00C853;font-style:italic;">email overload.</em></h1>
+    <p class="hero-sub">Email is the task that eats the most time and feels the least like real work. Claude will not magically empty your inbox, but it will do the two things that drain you most: it triages what matters in minutes, and it drafts replies in your voice so you never start from a blank screen. Most people reclaim between thirty minutes and a couple of hours a day.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The short answer</span>
+    <h2 class="h2">How Claude actually helps with email</h2>
+    <p class="body answer">You use Claude for email in two moves. First, <strong>triage</strong>: paste a backed-up inbox or a long thread and ask it to sort what needs a reply, what is informational, and what can wait, with a one-line summary of each. Second, <strong>drafting</strong>: hand it the message and a few bullet points and let it write the reply in your voice. By default you bring messages to Claude by pasting or forwarding them. If your business connects it to your mail system, it can work from your real inbox, but you get most of the benefit from pasting alone.</p>
+    <p class="body">That is the whole idea. The rest of this guide turns it into a routine you can run every morning.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The workflows</span>
+    <h2 class="h2">Five email jobs to hand to Claude</h2>
+
+    <h3 class="h3">1. Triage a backed-up inbox</h3>
+    <p class="body">Coming back from two days out to 80 emails is the classic time sink. Copy the list of subject lines and senders, or paste the messages themselves, and ask Claude to sort them.</p>
+    <div class="prompt"><span class="plabel">Try this</span>"Here are the emails from the last two days. Group them into: needs a reply from me today, needs a reply this week, just keep me informed, and can be ignored. Give each one a one-line summary so I can decide fast."</div>
+    <p class="body">In a minute you have a map of your inbox instead of a wall of bold text.</p>
+
+    <h3 class="h3">2. Draft replies in your voice</h3>
+    <p class="body">Most replies are not hard, just time-consuming to start. Give Claude the message and the gist of your answer.</p>
+    <div class="prompt"><span class="plabel">Try this</span>"Draft a reply to the email below. The key points: yes to the meeting, prefer Thursday, ask them to send the deck first. Keep it warm, brief, and in my voice (samples attached)."</div>
+    <p class="body">Keep a short voice note or a few sample emails in a Project so the drafts sound like you from the start. See <a href="/how-to-write-follow-up-emails-with-claude">how to write follow-up emails with Claude</a> for the follow-up case.</p>
+
+    <h3 class="h3">3. Turn a long thread into a decision</h3>
+    <p class="body">Twelve-reply threads bury the actual question. Paste the thread and ask, "What is being decided here, what are the open questions, and what should my reply move forward?" You answer the thread instead of rereading it.</p>
+
+    <h3 class="h3">4. Handle multiple inboxes without whiplash</h3>
+    <p class="body">If you run a client inbox and an internal one, switching tone all day is its own tax. Keep one Project per inbox, each with its own voice and context. Paste a client message into the client Project and the reply comes back appropriately polished; paste an internal one into the internal Project and it comes back direct. For recurring operational mail, <a href="/claude-prompts-for-operations">Claude prompts for operations</a> has ready patterns.</p>
+
+    <h3 class="h3">5. Knock out the repeat emails</h3>
+    <p class="body">Every role has emails you send constantly: scheduling, intro requests, status nudges, polite declines. Save a prompt for each in a Project. The repeat email goes from a two-minute write to a ten-second confirm.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The routine</span>
+    <h2 class="h2">A ten-minute morning email routine</h2>
+    <ul class="body">
+      <li><strong>Minute 1 to 3:</strong> paste the overnight inbox, get the triaged map.</li>
+      <li><strong>Minute 3 to 8:</strong> draft replies to the "today" pile in your voice, edit lightly, send.</li>
+      <li><strong>Minute 8 to 10:</strong> ask Claude to summarize the "keep me informed" pile into three bullets so you are caught up without reading every message.</li>
+    </ul>
+    <p class="body">Do this for two weeks and the dread lifts, because you are deciding and directing instead of wading. The catch is the same one that applies to every Claude habit: it only works if you actually keep it open and reach for it. That reflex is what our <a href="/claude-fluency">Claude Fluency</a> training builds, and it is one of the first wins people get when they start <a href="/claude-for-business">using Claude in business</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Set expectations</span>
+    <h2 class="h2">What Claude will not do for your email</h2>
+    <p class="body">It helps to be clear about the boundary, because overselling this leads to disappointment. Claude is not an autopilot for your inbox. It will not silently send messages on your behalf, and you would not want it to. It does not know the unwritten context of every relationship, the history with a difficult client, the thing said on a call last week, unless you tell it. And it should never be the final eye on anything that carries weight. A sensitive reply, a commitment, a number: you read those before they go.</p>
+    <p class="body">What it does is remove the part of email that is pure friction. The staring at a blank reply. The rereading of a long thread to find the actual question. The fifth near-identical scheduling message of the day. Those are the things that drain an hour without producing anything you would call work. Hand those over, keep the judgment for yourself, and email stops being the thing that eats your morning. A useful way to think about it: Claude turns email from writing into editing. You almost never start from nothing, and you almost always finish faster, because editing a good draft into a great message is a fundamentally lighter task than producing one from a blank screen.</p>
+    <p class="body">Here is what the shift looks like in practice. One reader who runs a small advisory firm described his old Monday as ninety minutes clearing a weekend backlog before he could start real work. His new Monday is a ten-minute triage in Claude, a handful of drafted replies he edits and sends, and a three-bullet summary of everything that did not need a reply. The email did not get smaller. His relationship to it changed. He decides and directs instead of wading, and the ninety minutes goes to clients instead of his inbox.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+
+    <div class="faq-q">Can Claude read my whole inbox automatically?</div>
+    <p class="body">Not on its own. By default you bring email to Claude by pasting or forwarding messages. If your business sets up a permissioned connector to your mail system, it can work from your real inbox, but that is a deliberate, administrator-controlled step. Most people get huge value just from pasting in what matters.</p>
+
+    <div class="faq-q">Will the replies sound like me?</div>
+    <p class="body">Yes, if you give it a sample of your writing. Paste in a few emails you are happy with, or keep a short voice note in a Project, and Claude matches your tone. The first few drafts you will edit. After that the edits shrink.</p>
+
+    <div class="faq-q">How does this help with multiple inboxes?</div>
+    <p class="body">Keep a separate Project per inbox or role, each with its own voice and context. You paste messages into the right Project and the replies come back in the right register for that audience, instead of you switching gears all day.</p>
+
+    <div class="faq-q">Is it safe to paste work email into Claude?</div>
+    <p class="body">On a business plan, your conversations are not used to train the model by default, which makes routine work email reasonable to use. Still apply judgment: avoid pasting privileged, regulated, or highly sensitive content unless your plan and policy allow it. When in doubt, summarize rather than paste verbatim.</p>
+
+    <div class="faq-q">How much time can this actually save?</div>
+    <p class="body">Most people who build the habit report getting back thirty minutes to a couple of hours a day, depending on volume. The biggest wins are triaging a backed-up inbox in minutes and never starting a routine reply from a blank screen.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep reading</span>
+    <h2 class="h2">Related guides</h2>
+    <ul class="rel-list">
+      <li><a href="/how-to-write-follow-up-emails-with-claude">How to write follow-up emails with Claude &rarr;</a></li>
+      <li><a href="/claude-prompts-for-operations">Claude prompts for operations &rarr;</a></li>
+      <li><a href="/how-to-set-up-claude-first-time">How to set up Claude for the first time &rarr;</a></li>
+      <li><a href="/claude-for-business">Using Claude in business &rarr;</a></li>
+      <li><a href="/claude-fluency">Claude Fluency: team training &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want your inbox routine built for you?</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment, or book a working session and we will set up your email Projects and voice so replies write themselves.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/book-a-call" class="btn-p">Book a working session &rarr;</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+    <p class="body" style="margin-top:1.75rem;">Want the whole team out of the inbox faster? <a href="/claude-fluency">Claude Fluency</a> makes email triage and drafting a daily habit.</p>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Book a Call with Treetop | Claude &amp; AI for Your Business</title>
+  <meta name="description" content="Tell us a little about your situation and we will send you a link to book a working session. We will look at where Claude fits in your day-to-day and what to set up first." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/book-a-call" />
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/book-a-call" />
+  <meta property="og:title" content="Book a Call with Treetop" />
+  <meta property="og:description" content="Tell us about your situation and we will send a link to book a working session." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/book-a-call.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/book-a-call.png" />
+  <meta name="twitter:title" content="Book a Call with Treetop" />
+  <meta name="twitter:description" content="Tell us about your situation and we will send a link to book a working session." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 680px; margin: 0 auto; }
+    .hero { padding: 8rem 2.5rem 1rem; }
+    .hero-inner { max-width: 680px; margin: 0 auto; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1rem; }
+    .hero-sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1rem; }
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.875rem 1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .input-field:focus { border-color: rgba(0,200,83,0.5); }
+    .input-field::placeholder { color: #4A6A4A; }
+    .form-label { font-size: 0.75rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .thankyou { display: none; text-align: center; padding: 2rem 0; }
+    .thankyou-h { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .trust { display:flex; gap:0.6rem; align-items:flex-start; font-size:0.82rem; color:#8FAF8F; border:1px solid #1A3A1A; background:#0A1A0A; padding:0.85rem 1rem; margin-bottom:1.5rem; line-height:1.6; }
+    @media(max-width:768px){ .hide-mob{display:none!important} section{padding:3rem 1.5rem} .hero{padding-top:6rem} .form-grid{grid-template-columns:1fr} }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/book-a-call","name":"Book a Call with Treetop","description":"Tell us about your situation and we will send a link to book a working session.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US"}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="lbl">Book a working session</span>
+    <h1 class="hero-h">Let's find where Claude fits in your week.</h1>
+    <p class="hero-sub">Tell us a little about your situation below. We will email you a link to pick a time, and we will use the call to look at where Claude saves you the most time and what to set up first. No pitch deck, no pressure.</p>
+  </div>
+</div>
+
+<section style="border-top:none;padding-top:1.5rem;">
+  <div class="sec-inner">
+    <div class="trust">
+      <span style="color:#00C853;">&#10003;</span>
+      <span>This is a working session, not a sales call. Most people leave with one or two Claude workflows they can use the same week.</span>
+    </div>
+    <div id="contact-form">
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input class="input-field" type="text" id="first_name" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input class="input-field" type="text" id="last_name" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Work Email</label>
+        <input class="input-field" type="email" id="email" placeholder="jane@yourfirm.com" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Company</label>
+        <input class="input-field" type="text" id="company" placeholder="Your firm or company" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">What would you like to get out of Claude? (optional)</label>
+        <textarea class="input-field" id="gain" placeholder="Less time on email, cleaner reports, a team that actually uses it..." style="min-height:90px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Send me the booking link &rarr;</button>
+      <p id="err-msg" style="display:none;font-size:0.78rem;color:#E0A0A0;margin-top:0.75rem;text-align:center;"></p>
+      <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. Takes about a minute.</p>
+    </div>
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-h">Check your inbox.</div>
+      <p style="color:#C0D8C0;line-height:1.7;margin-bottom:1.5rem;">We just sent your booking link. You can also grab a time right now:</p>
+      <a href="https://calendar.app.google/HhtvptQrmaChgyzt6" class="btn-p" style="justify-content:center;">Book your call &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+async function submitForm() {
+  var btn = document.getElementById('submit-btn');
+  var email = document.getElementById('email').value.trim();
+  var err = document.getElementById('err-msg');
+  if (!email || email.indexOf('@') === -1) {
+    err.textContent = 'Please enter a valid work email.';
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    var res = await fetch('/api/lead-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: email,
+        company: document.getElementById('company').value,
+        gain: document.getElementById('gain').value,
+        source: 'book-a-call'
+      })
+    });
+    var data = await res.json().catch(function(){ return {}; });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  } catch (e) {
+    btn.textContent = 'Send me the booking link →'; btn.disabled = false;
+    err.textContent = 'Something went wrong. Email bill@treetopgrowthstrategy.com and we will send the link.';
+    err.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>

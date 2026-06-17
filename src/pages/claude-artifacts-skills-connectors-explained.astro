@@ -1,0 +1,257 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Artifacts, Skills, and Connectors, Explained in Plain English | Treetop</title>
+  <meta name="description" content="A plain-English guide to Claude Artifacts, Skills, and Connectors for non-technical professionals. What each one is, why it matters, and a real example of each." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-artifacts-skills-connectors-explained" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-artifacts-skills-connectors-explained" />
+  <meta property="og:title" content="Claude Artifacts, Skills, and Connectors, Explained in Plain English" />
+  <meta property="og:description" content="What Artifacts, Skills, and Connectors are, why they matter, and a real example of each, with no jargon." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-artifacts-skills-connectors-explained.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-artifacts-skills-connectors-explained.png" />
+  <meta name="twitter:title" content="Claude Artifacts, Skills, and Connectors, Explained" />
+  <meta name="twitter:description" content="A plain-English guide for non-technical professionals." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Claude Artifacts, Skills, and Connectors, Explained in Plain English",
+      "description": "A plain-English guide to Claude Artifacts, Skills, and Connectors for non-technical professionals.",
+      "url": "https://treetopgrowthstrategy.com/claude-artifacts-skills-connectors-explained",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-06-16",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is a Claude Artifact?", "acceptedAnswer": {"@type": "Answer", "text": "An Artifact is a working document that Claude creates in a panel beside the chat. Instead of burying a draft, a table, or a simple tool inside the conversation, Claude puts it in its own space where you can read it cleanly, ask for edits, and copy or download the result. Think of it as the deliverable, sitting next to the discussion."}},
+        {"@type": "Question", "name": "What is a Claude Skill?", "acceptedAnswer": {"@type": "Answer", "text": "A Skill is a reusable set of instructions and know-how that Claude can load to do a specialized task well, such as building a properly formatted Word document, a slide deck, or a spreadsheet. You do not have to teach it the steps each time. You ask for the outcome and the Skill supplies the expertise."}},
+        {"@type": "Question", "name": "What is a Claude Connector?", "acceptedAnswer": {"@type": "Answer", "text": "A Connector links Claude to another tool or source of information you already use, such as a document store or a knowledge base, so it can work with that material directly. Connectors are set up with permission and let Claude act on your real context instead of you copying and pasting everything in."}},
+        {"@type": "Question", "name": "Do I need to be technical to use these?", "acceptedAnswer": {"@type": "Answer", "text": "No. Artifacts and Skills appear automatically when they are useful. Connectors are usually set up once by whoever administers your account, and after that you simply use them. None of the three require coding."}},
+        {"@type": "Question", "name": "Are Connectors safe with company data?", "acceptedAnswer": {"@type": "Answer", "text": "Connectors only reach what you grant access to, and on business plans your data is governed by your account's settings rather than being used to train models. As with any tool, connect only the sources your business is comfortable with, and keep regulated or privileged material out unless your plan and policy explicitly allow it."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4.5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 820px; margin: 0 auto; }
+    .hero { min-height: 48vh; display: flex; align-items: center; padding: 7rem 2.5rem 3.5rem; }
+    .hero-inner { max-width: 820px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.08rem; color: #C0D8C0; line-height: 1.8; max-width: 740px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; margin-top: 2rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.15rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .body strong { color: #F0FFF0; font-weight: 600; }
+    .body ul { margin: 0 0 1.15rem 1.25rem; color: #C0D8C0; }
+    .body li { margin-bottom: 0.5rem; line-height: 1.7; }
+    .body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .answer { font-size: 1.05rem; color: #F0FFF0; }
+    .feature { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.75rem 2rem; margin: 1.5rem 0; }
+    .feature h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.25rem; margin-top: 0; }
+    .feature .plain { font-size: 0.78rem; color: #00C853; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .feature p { font-size: 0.97rem; color: #C0D8C0; line-height: 1.8; margin-bottom: 0.85rem; }
+    .feature p:last-child { margin-bottom: 0; }
+    .feature strong { color: #F0FFF0; }
+    .faq-q { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: #F0FFF0; font-weight: 400; margin: 1.75rem 0 0.4rem; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.9rem; color: #8FAF8F; margin-top: 0.5rem; max-width: 440px; }
+    .rel-list { list-style: none; padding: 0; font-size: 0.96rem; line-height: 1.9; color: #C0D8C0; }
+    .rel-list a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    @media(max-width:800px){ section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-artifacts-skills-connectors-explained","name":"Claude Artifacts, Skills, and Connectors, Explained in Plain English | Treetop","description":"A plain-English guide to Claude Artifacts, Skills, and Connectors for non-technical professionals.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-h",".hero-sub",".answer"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Artifacts Skills And Connectors Explained","item":"https://treetopgrowthstrategy.com/claude-artifacts-skills-connectors-explained"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Plain-English guide</div>
+    <h1 class="hero-h">Artifacts, Skills, and Connectors, <em style="color:#00C853;font-style:italic;">explained.</em></h1>
+    <p class="hero-sub">Three words you will see around Claude that sound technical and are not. In short: Artifacts are the documents Claude builds for you, Skills are specialized abilities it can call on, and Connectors plug Claude into the tools you already use. Here is what each one means and why it matters, with no jargon.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The short answer</span>
+    <h2 class="h2">All three in one breath</h2>
+    <p class="body answer"><strong>Artifacts</strong> are working documents Claude creates in a panel next to the chat, so a draft or a table or a small tool has its own clean space you can edit and download. <strong>Skills</strong> are packaged expertise Claude can load to do a specialized job well, like producing a properly formatted Word file or slide deck, without you explaining the steps. <strong>Connectors</strong> link Claude to tools and information you already use, with your permission, so it can work from your real context instead of you copying everything in by hand.</p>
+    <p class="body">You do not need to understand how any of them work under the hood. You just need to know when each one is helping you, which is what the rest of this guide covers.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Feature one</span>
+    <h2 class="h2">Artifacts: the deliverable, beside the discussion</h2>
+    <div class="feature">
+      <div class="plain">What it is</div>
+      <h3>Artifacts</h3>
+      <p>When you ask Claude for something substantial, a memo, a table, a checklist, a simple calculator, it often opens a separate panel and builds it there, rather than tucking it into the back-and-forth of the chat. That panel is an Artifact. It is the finished thing, sitting next to the conversation about it.</p>
+      <p><strong>Why it matters:</strong> you get a clean version you can actually read, keep refining ("make it shorter," "add a column for owner"), and then copy or download when it is right. Nothing gets lost in a wall of chat. For anyone who produces documents, this is the feature that makes Claude feel less like a chatbot and more like a workspace.</p>
+      <p><strong>A real example:</strong> ask Claude to turn your messy meeting notes into a one-page action plan. It builds the plan as an Artifact. You tweak two lines, then paste it straight into an email. The discussion and the deliverable stay separate and tidy.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Feature two</span>
+    <h2 class="h2">Skills: expertise it can call on</h2>
+    <div class="feature">
+      <div class="plain">What it is</div>
+      <h3>Skills</h3>
+      <p>A Skill is a reusable bundle of instructions and know-how that Claude can pull in to handle a specialized task properly. Rather than you describing, step by step, how to lay out a professional Word document or a slide deck, the Skill already contains that expertise. You ask for the outcome and Claude applies it.</p>
+      <p><strong>Why it matters:</strong> it raises the floor on quality and saves you from being the expert on formatting and structure. The work comes out looking like a professional made it, because the steps a professional would take are baked in.</p>
+      <p><strong>A real example:</strong> you say "turn this into a clean Word report with a cover page and a contents list." A document Skill handles the structure and formatting so the file is ready to send, not something you have to reformat yourself. We go deeper on this in <a href="/word-reports-to-polished-output-with-claude">turning Word reports into polished output</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Feature three</span>
+    <h2 class="h2">Connectors: Claude, plugged into your tools</h2>
+    <div class="feature">
+      <div class="plain">What it is</div>
+      <h3>Connectors</h3>
+      <p>A Connector is a permissioned link between Claude and a tool or store of information you already use, such as a document library or a knowledge base. Once connected, Claude can work with that material directly, instead of you pasting it in piece by piece.</p>
+      <p><strong>Why it matters:</strong> most of the friction in using AI is shuttling information back and forth. Connectors remove that. Claude can draft from your actual documents and answer from your real reference material, which makes its output far more relevant to your business.</p>
+      <p><strong>A real example:</strong> with a document store connected, you can ask "summarize the three most recent client agreements and flag anything unusual," and Claude works from the real files. Connectors are usually set up once by whoever administers your account, and you should connect only the sources your business is comfortable sharing. For more on the boundaries, see <a href="/is-claude-safe-on-your-work-computer">is Claude safe to use on your work computer</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How they fit together</span>
+    <h2 class="h2">One workflow, all three</h2>
+    <p class="body">Picture a Monday-morning task: pull the latest project updates and turn them into a status report for leadership.</p>
+    <ul class="body">
+      <li>A <strong>Connector</strong> lets Claude read the latest updates from where they already live.</li>
+      <li>A <strong>Skill</strong> shapes the result into a properly formatted report.</li>
+      <li>The finished report shows up as an <strong>Artifact</strong> you review, adjust, and send.</li>
+    </ul>
+    <p class="body">None of that required a single technical step from you. That is the point: these features exist to take the manual labor out of getting good output. The hard part is not the features. It is building the habit of reaching for them, which is exactly what our <a href="/claude-fluency">Claude Fluency</a> training and our <a href="/claude-training">workflow training</a> are built to do. If you are just getting going, start with <a href="/claude-for-business">using Claude in business</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep them straight</span>
+    <h2 class="h2">Where people get confused</h2>
+    <p class="body">Because the three names get used together, people blur them. Here is the clean way to remember the difference. <strong>Artifacts are about the output:</strong> the thing you end up with. <strong>Skills are about the ability:</strong> the expertise that produced it. <strong>Connectors are about the input:</strong> where the raw material came from. Output, ability, input. If you can place a feature in one of those three buckets, you understand it well enough to use it.</p>
+    <p class="body">A second source of confusion is thinking you have to switch these on or configure them. You mostly do not. Artifacts and Skills surface on their own when a task calls for them, which is the entire design goal: the tool reaches for the right capability so you never have to know its name. Connectors are the one piece that involves a deliberate choice, and that choice is usually made once, by whoever runs your account, rather than by you in the moment.</p>
+    <p class="body">The last thing worth saying is that none of this is a reason to wait. People sometimes hold off on Claude because they feel they should learn the features first. It is the other way around. You start using it for a real task, and the features show up exactly when they are useful, already doing their job. Understanding them, as you now do, simply means you will recognize what is happening and lean into it instead of being surprised by it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+
+    <div class="faq-q">What is a Claude Artifact?</div>
+    <p class="body">An Artifact is a working document Claude creates in a panel beside the chat. Instead of burying a draft, a table, or a simple tool inside the conversation, Claude gives it its own space where you can read it cleanly, ask for edits, and copy or download the result.</p>
+
+    <div class="faq-q">What is a Claude Skill?</div>
+    <p class="body">A Skill is a reusable set of instructions and expertise Claude can load to do a specialized task well, such as building a formatted Word document, a slide deck, or a spreadsheet. You ask for the outcome and the Skill supplies the know-how.</p>
+
+    <div class="faq-q">What is a Claude Connector?</div>
+    <p class="body">A Connector links Claude to a tool or source of information you already use, so it can work with that material directly. Connectors are set up with permission and let Claude act on your real context instead of you copying and pasting everything in.</p>
+
+    <div class="faq-q">Do I need to be technical to use these?</div>
+    <p class="body">No. Artifacts and Skills appear automatically when they are useful. Connectors are usually set up once by whoever administers your account, and after that you simply use them. None of the three require coding.</p>
+
+    <div class="faq-q">Are Connectors safe with company data?</div>
+    <p class="body">Connectors only reach what you grant access to, and on business plans your data is governed by your account's settings rather than used to train models. Connect only the sources your business is comfortable with, and keep regulated or privileged material out unless your plan and policy allow it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep reading</span>
+    <h2 class="h2">Related guides</h2>
+    <ul class="rel-list">
+      <li><a href="/claude-for-business">Using Claude in business &rarr;</a></li>
+      <li><a href="/how-to-set-up-claude-first-time">How to set up Claude for the first time &rarr;</a></li>
+      <li><a href="/what-is-claude-projects">What are Claude Projects? &rarr;</a></li>
+      <li><a href="/claude-training">Workflow-specific Claude training &rarr;</a></li>
+      <li><a href="/claude-fluency">Claude Fluency: team training &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want your team using all three, well?</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment, or book a working session and we will set up the Artifacts, Skills, and Connectors that fit your work.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/book-a-call" class="btn-p">Book a working session &rarr;</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+    <p class="body" style="margin-top:1.75rem;">Rolling Claude out across a team? <a href="/claude-fluency">Claude Fluency</a> is our hands-on training that turns curiosity into confident, daily use.</p>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

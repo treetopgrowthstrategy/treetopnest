@@ -1,0 +1,301 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude vs ChatGPT for Knowledge Work: Why Professionals Are Switching | Treetop</title>
+  <meta name="description" content="An honest, plain-English comparison of Claude vs ChatGPT for knowledge work. What is actually different, where each one wins, and whether it is worth switching." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-vs-chatgpt-for-knowledge-work" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-vs-chatgpt-for-knowledge-work" />
+  <meta property="og:title" content="Claude vs ChatGPT for Knowledge Work: Why Professionals Are Switching" />
+  <meta property="og:description" content="What is actually different between Claude and ChatGPT for writing, analysis, and research, and whether it is worth switching." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-vs-chatgpt-for-knowledge-work.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-vs-chatgpt-for-knowledge-work.png" />
+  <meta name="twitter:title" content="Claude vs ChatGPT for Knowledge Work" />
+  <meta name="twitter:description" content="An honest comparison for non-technical professionals, and whether it is worth switching." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Claude vs ChatGPT for Knowledge Work: Why Professionals Are Switching",
+      "description": "An honest, plain-English comparison of Claude and ChatGPT for knowledge work, and whether it is worth switching.",
+      "url": "https://treetopgrowthstrategy.com/claude-vs-chatgpt-for-knowledge-work",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-06-16",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Is Claude better than ChatGPT for writing?", "acceptedAnswer": {"@type": "Answer", "text": "For most professional writing, most people find Claude's drafts need less rewriting. Claude tends to write in a more natural, less templated voice and follows detailed instructions more faithfully. ChatGPT is still excellent and has a broader feature set. If your main job is producing written work, Claude is the one most professionals settle on."}},
+        {"@type": "Question", "name": "Do I have to choose just one?", "acceptedAnswer": {"@type": "Answer", "text": "No. Both have a free tier and cost about twenty dollars a month for the paid version. Many professionals keep both: Claude as the daily writing and analysis tool, ChatGPT for image generation, voice, and its wider plugin ecosystem. For a single team standard, most knowledge-work teams are best served by Claude."}},
+        {"@type": "Question", "name": "Is it hard to switch from ChatGPT to Claude?", "acceptedAnswer": {"@type": "Answer", "text": "No. The interface is nearly identical: you type, it responds. There is nothing to install and no new skill to learn. You can test Claude on a real task in your next free hour and decide for yourself within a week."}},
+        {"@type": "Question", "name": "Which is safer for confidential work?", "acceptedAnswer": {"@type": "Answer", "text": "Both offer business plans where your conversations are not used to train their models. On the paid Team and Enterprise tiers, Anthropic does not train on your business data by default. Always confirm your plan's data settings, and avoid pasting regulated or privileged information into any consumer tool."}},
+        {"@type": "Question", "name": "Will switching disrupt my team?", "acceptedAnswer": {"@type": "Answer", "text": "Not if you do it deliberately. Run both for two weeks on the same real tasks, compare the output, then standardize. The bigger lever than the tool choice is fluency: teaching people what to hand over and how to ask. That is what turns a license into daily use."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4.5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 820px; margin: 0 auto; }
+    .hero { min-height: 48vh; display: flex; align-items: center; padding: 7rem 2.5rem 3.5rem; }
+    .hero-inner { max-width: 820px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.08rem; color: #C0D8C0; line-height: 1.8; max-width: 740px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; margin-top: 2rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.15rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .body strong { color: #F0FFF0; font-weight: 600; }
+    .body ul { margin: 0 0 1.15rem 1.25rem; color: #C0D8C0; }
+    .body li { margin-bottom: 0.5rem; line-height: 1.7; }
+    .body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .answer { font-size: 1.05rem; color: #F0FFF0; }
+    .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+    @media(max-width:800px){ .vs-grid { grid-template-columns: 1fr; } section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+    .vs-card { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.75rem; }
+    .vs-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.4rem; }
+    .vs-card .subhead { font-size: 0.78rem; color: #00C853; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .vs-card ul { list-style: none; padding: 0; }
+    .vs-card ul li { font-size: 0.9rem; color: #C0D8C0; padding: 0.4rem 0 0.4rem 1.5rem; position: relative; line-height: 1.55; }
+    .vs-card ul li::before { content: "→"; position: absolute; left: 0; color: #00C853; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.9rem; }
+    .compare-table th, .compare-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #1A3A1A; color: #C0D8C0; vertical-align: top; }
+    .compare-table th { color: #F0FFF0; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; background: #0A1A0A; }
+    .compare-table tr td:first-child { color: #F0FFF0; font-weight: 500; }
+    .verdict { background: rgba(0,200,83,0.06); border-left: 3px solid #00C853; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .verdict h3 { font-family: 'Instrument Serif', serif; color: #F0FFF0; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; margin-top: 0; }
+    .verdict p { color: #C0D8C0; font-size: 0.96rem; line-height: 1.75; margin: 0; }
+    .faq-q { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: #F0FFF0; font-weight: 400; margin: 1.75rem 0 0.4rem; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.9rem; color: #8FAF8F; margin-top: 0.5rem; max-width: 440px; }
+    .rel-list { list-style: none; padding: 0; font-size: 0.96rem; line-height: 1.9; color: #C0D8C0; }
+    .rel-list a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-vs-chatgpt-for-knowledge-work","name":"Claude vs ChatGPT for Knowledge Work: Why Professionals Are Switching | Treetop","description":"An honest, plain-English comparison of Claude vs ChatGPT for knowledge work, and whether it is worth switching.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-h",".hero-sub",".answer"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Vs ChatGPT For Knowledge Work","item":"https://treetopgrowthstrategy.com/claude-vs-chatgpt-for-knowledge-work"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>For knowledge workers · 2026</div>
+    <h1 class="hero-h">Claude vs ChatGPT <em style="color:#00C853;font-style:italic;">for knowledge work.</em></h1>
+    <p class="hero-sub">Here is the honest version. For everyday knowledge work, writing, analysis, research, and working with documents, Claude and ChatGPT are both excellent, but they have different personalities. The reason a lot of professionals are quietly switching to Claude comes down to one thing: the drafts it produces tend to need less rewriting.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The short answer</span>
+    <h2 class="h2">What is actually different, in one paragraph</h2>
+    <p class="body answer">Claude, made by Anthropic, is tuned to write in a natural, measured voice and to follow detailed instructions closely. That makes it feel less like a chatbot and more like a sharp assistant who read your brief. ChatGPT, made by OpenAI, is the broader product: it has image generation, voice, a large library of add-ons, and the biggest user base. For pure writing and thinking work, most professionals find Claude's output more usable out of the box. For an all-purpose tool with the widest feature set, ChatGPT is hard to beat. You do not have to pick a side to start, but if you want one team standard for knowledge work, Claude is the safer default.</p>
+    <p class="body">The rest of this guide explains where that difference comes from, where ChatGPT still wins, and how to test the switch in a single week without disrupting anything.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The real differences</span>
+    <h2 class="h2">Four differences you will actually feel</h2>
+
+    <h3 class="h3">1. The writing sounds less like a robot</h3>
+    <p class="body">This is the difference most people notice first. Ask both tools to draft a client update or a board summary and Claude's version usually reads closer to how a thoughtful person writes: fewer stock phrases, less padding, a more even tone. You still edit it, but you start from a better place. Over a week of writing, that adds up to real time saved.</p>
+
+    <h3 class="h3">2. It follows detailed instructions more faithfully</h3>
+    <p class="body">If you say "keep it under 200 words, no bullet points, warm but direct, and do not mention pricing," Claude tends to hold all of those constraints at once. Long, specific instructions are exactly where careful instruction-following matters, and it is a big part of why the output needs less correction.</p>
+
+    <h3 class="h3">3. It handles long documents with more care</h3>
+    <p class="body">Paste in a 40-page report, a messy transcript, or a stack of meeting notes and ask for a summary or an analysis. Claude is well suited to long inputs and tends to keep track of detail without losing the thread. For professionals who live in documents, this is often the single most useful capability.</p>
+
+    <h3 class="h3">4. Projects keep your context in one place</h3>
+    <p class="body">Both tools let you save reusable context, but Claude Projects are simple and powerful: you load your materials once (your voice, your templates, your reference documents) and every chat inside that Project already knows them. For a team, shared Projects mean everyone works from the same standards instead of reinventing prompts. If you want the deeper version, see <a href="/claude-for-business">using Claude in business</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Side by side</span>
+    <h2 class="h2">Where each one is stronger</h2>
+    <div class="vs-grid">
+      <div class="vs-card">
+        <h3>Claude</h3>
+        <div class="subhead">The writing &amp; thinking tool</div>
+        <ul>
+          <li>More natural, less templated writing</li>
+          <li>Strong instruction-following on detailed briefs</li>
+          <li>Careful handling of long documents</li>
+          <li>Projects and shared team context</li>
+          <li>A measured, low-hype default tone</li>
+        </ul>
+      </div>
+      <div class="vs-card">
+        <h3>ChatGPT</h3>
+        <div class="subhead">The widest all-rounder</div>
+        <ul>
+          <li>Image generation and voice built in</li>
+          <li>The largest library of add-ons and integrations</li>
+          <li>Huge community and prompt resources</li>
+          <li>Familiar to most people already</li>
+          <li>Strong all-around general capability</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>For this job</th><th>Better pick</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Drafting reports, emails, proposals</td><td>Claude</td></tr>
+        <tr><td>Summarizing long documents and transcripts</td><td>Claude</td></tr>
+        <tr><td>A reusable team writing standard</td><td>Claude (Projects)</td></tr>
+        <tr><td>Generating images or using voice</td><td>ChatGPT</td></tr>
+        <tr><td>The widest set of plug-ins and tools</td><td>ChatGPT</td></tr>
+        <tr><td>One tool for non-technical knowledge work</td><td>Claude</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The honest other side</span>
+    <h2 class="h2">Where ChatGPT still wins</h2>
+    <p class="body">This is not a one-sided contest. ChatGPT has a wider feature surface: image generation, voice conversations, and the largest ecosystem of add-ons. If your work involves creating visuals, or you rely on a specific integration that lives in the ChatGPT world, that matters. ChatGPT is also the tool most people already know, so there is no learning curve at all.</p>
+    <p class="body">If you want the version of this comparison aimed at company-wide deployment, including pricing tiers and team plans, read <a href="/chatgpt-vs-claude-for-business">Claude vs ChatGPT for business</a> and the <a href="/how-much-does-claude-cost">Claude cost breakdown</a>.</p>
+
+    <div class="verdict">
+      <h3>So, is it worth switching?</h3>
+      <p>If your day is mostly writing, analyzing, and working with documents, yes. Most professionals who try Claude on real work keep it as their primary tool because the output needs less rewriting and the long-document handling is genuinely better. Keep ChatGPT around for images, voice, and anything its ecosystem does well. You are not switching religions. You are picking the right default for the bulk of your work.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">A simple test</span>
+    <h2 class="h2">How to decide in one week, without disruption</h2>
+    <p class="body">You do not need a project plan to evaluate this. You need one honest week.</p>
+    <ul class="body">
+      <li><strong>Pick three real tasks</strong> from your actual week: a report you have to write, a long document you need summarized, and a tricky email.</li>
+      <li><strong>Run each through both tools</strong> with the same instructions. Spend two minutes giving real context, not one line.</li>
+      <li><strong>Compare the drafts</strong> on one question: which needed less rewriting to be ready?</li>
+      <li><strong>Standardize on the winner</strong> for that kind of work. For most knowledge work, that ends up being Claude.</li>
+    </ul>
+    <p class="body">The tool is only half of it. The other half is fluency: knowing what to hand over and how to ask. A team with average tools and real fluency beats a team with the best tool and no idea how to use it. That gap is what our <a href="/claude-fluency">Claude Fluency</a> training closes, and it is why <a href="/claude-for-small-business">small businesses</a> see adoption stick rather than fade.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">One more difference</span>
+    <h2 class="h2">It tells you when something is off</h2>
+    <p class="body">A subtler difference shows up the more you lean on these tools for real decisions. Ask Claude to review a plan, a contract, or a draft, and it will more readily flag a weak assumption, a gap, or a claim that does not hold, rather than agreeing to be agreeable. For a professional, that pushback is worth a great deal. The job of an assistant is not to tell you everything is excellent. It is to catch the thing you would have missed.</p>
+    <p class="body">You can ask either tool to be critical, but Claude tends to do it without being prompted, and to do it with specifics rather than generic caveats. If you mostly want a tool that produces confident-sounding text, this will not matter to you. If you want a second set of eyes you can trust on work that carries consequences, it matters a lot. It is one reason people who do high-stakes writing, board materials, client deliverables, regulated documents, tend to settle on Claude once they have felt the difference. The output needing less rewriting gets you in the door. The willingness to push back is what keeps people there.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+
+    <div class="faq-q">Is Claude better than ChatGPT for writing?</div>
+    <p class="body">For most professional writing, people find Claude's drafts need less rewriting. It writes in a more natural voice and follows detailed instructions faithfully. ChatGPT is still excellent and has a broader feature set, but if your main job is producing written work, Claude is the one most professionals settle on.</p>
+
+    <div class="faq-q">Do I have to choose just one?</div>
+    <p class="body">No. Both have a free tier and cost about twenty dollars a month for the paid version. Plenty of people keep both: Claude for daily writing and analysis, ChatGPT for images, voice, and its wider ecosystem. For a single team standard, most knowledge-work teams are best served by Claude.</p>
+
+    <div class="faq-q">Is it hard to switch?</div>
+    <p class="body">No. The interface is nearly identical. You type, it responds. There is nothing to install and no new skill to learn to get started. You can test Claude on a real task in your next free hour.</p>
+
+    <div class="faq-q">Which is safer for confidential work?</div>
+    <p class="body">Both offer business plans where your conversations are not used to train their models. On Claude's paid Team and Enterprise tiers, Anthropic does not train on your business data by default. Always confirm your plan's settings, and never paste regulated or privileged information into a consumer tool.</p>
+
+    <div class="faq-q">Will switching disrupt my team?</div>
+    <p class="body">Not if you do it deliberately. Run both for two weeks on the same real tasks, compare, then standardize. The bigger lever than the tool choice is fluency: teaching people what to hand over and how to ask.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep reading</span>
+    <h2 class="h2">Related guides</h2>
+    <ul class="rel-list">
+      <li><a href="/claude-for-business">Using Claude in business &rarr;</a></li>
+      <li><a href="/claude-for-small-business">Claude for small business &rarr;</a></li>
+      <li><a href="/chatgpt-vs-claude-for-business">Claude vs ChatGPT for business &rarr;</a></li>
+      <li><a href="/how-much-does-claude-cost">How much does Claude cost? &rarr;</a></li>
+      <li><a href="/how-to-set-up-claude-first-time">How to set up Claude for the first time &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Not sure which to standardize on?</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment, or book a working session and we will pick the right tool and the first workflows for your situation.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/book-a-call" class="btn-p">Book a working session &rarr;</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+    <p class="body" style="margin-top:1.75rem;">Rolling Claude out across a team? <a href="/claude-fluency">Claude Fluency</a> is our hands-on training that turns curiosity into confident, daily use.</p>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

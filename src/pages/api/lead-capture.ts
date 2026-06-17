@@ -300,6 +300,29 @@ export const POST: APIRoute = async ({ request }) => {
     await sendEmail(email, spec.subject, userHtml, BILL_EMAIL);
   }
 
+  // ─── 1b. Book-a-call: email the booking link to the user ───────────────
+  // The /book-a-call form captures the lead first, then we email the live
+  // Google Calendar booking link so they can pick a time.
+  const BOOKING_LINK = 'https://calendar.app.google/HhtvptQrmaChgyzt6';
+  if (source === 'book-a-call') {
+    const bookHtml = `
+      <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff;padding:32px 24px;color:#1a1a1a;line-height:1.6;">
+        <p style="margin:0 0 18px;font-size:15px;">Hi${first_name ? ' ' + escape(first_name) : ''},</p>
+        <p style="margin:0 0 18px;font-size:15px;">Thanks for reaching out. Here is the link to grab a time that works for you. We will use the call to look at where Claude fits in your day-to-day and what to set up first.</p>
+        <p style="margin:0 0 28px;">
+          <a href="${BOOKING_LINK}" style="display:inline-block;background:#00C853;color:#050D05;padding:14px 22px;text-decoration:none;font-weight:600;font-size:15px;border-radius:4px;">
+            Book your call &rarr;
+          </a>
+        </p>
+        <p style="margin:0 0 14px;font-size:14px;color:#555;">Direct link: <a href="${BOOKING_LINK}" style="color:#00897B;">${BOOKING_LINK}</a></p>
+        <p style="margin:24px 0 8px;font-size:14px;color:#444;border-top:1px solid #eaeaea;padding-top:20px;">If it is easier to do this async, just reply to this email with what you are trying to get out of Claude and we can point you in the right direction.</p>
+        <p style="margin:24px 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>
+        <p style="margin:0;font-size:13px;color:#777;">Founder, Treetop Growth Strategy<br/><a href="${SITE}" style="color:#777;">treetopgrowthstrategy.com</a></p>
+      </div>
+    `;
+    await sendEmail(email, 'Book your call with Treetop', bookHtml, BILL_EMAIL);
+  }
+
   // ─── 2. Notify Bill ─────────────────────────────────────────────────────
   const ctxRows = isPopup
     ? [

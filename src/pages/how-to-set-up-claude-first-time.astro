@@ -1,0 +1,276 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>How to Set Up Claude for the First Time (Non-Technical Guide) | Treetop</title>
+  <meta name="description" content="A simple, non-technical guide to setting up Claude: your first chat, uploading files, giving it context, creating a Project, a sensible folder structure, and your first real workflow." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/how-to-set-up-claude-first-time" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/how-to-set-up-claude-first-time" />
+  <meta property="og:title" content="How to Set Up Claude for the First Time (Non-Technical Guide)" />
+  <meta property="og:description" content="Your first chat, files, context, Projects, folder structure, and first workflow, with no jargon." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/how-to-set-up-claude-first-time.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/how-to-set-up-claude-first-time.png" />
+  <meta name="twitter:title" content="How to Set Up Claude for the First Time" />
+  <meta name="twitter:description" content="A non-technical, step-by-step setup guide." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to Set Up Claude for the First Time (Non-Technical Guide)",
+      "description": "A simple, non-technical guide to setting up Claude, from your first chat to your first real workflow.",
+      "url": "https://treetopgrowthstrategy.com/how-to-set-up-claude-first-time",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-06-16",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Do I need any technical skill to set up Claude?", "acceptedAnswer": {"@type": "Answer", "text": "No. If you can use email and attach a file, you can set up Claude. There is nothing to install. You sign in through a web browser, start typing, and add documents by uploading them. The only setup worth doing is creating a Project and giving it a little context, which takes a few minutes."}},
+        {"@type": "Question", "name": "What is a Claude Project and do I need one?", "acceptedAnswer": {"@type": "Answer", "text": "A Project is a saved workspace that remembers context across chats. You load your materials once, such as your writing voice, templates, and reference documents, and every conversation in that Project already knows them. You do not strictly need one to start, but it is the single setup step that makes Claude dramatically more useful, so do it early."}},
+        {"@type": "Question", "name": "Which plan should I start on?", "acceptedAnswer": {"@type": "Answer", "text": "For trying it out, the free tier is fine. For real work that touches company information, use a paid business plan (Team or Enterprise), because your data is not used for training by default and an administrator controls the settings. Most professionals quickly move to a paid plan because the usage limits on free are low."}},
+        {"@type": "Question", "name": "How should I organize my files for Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Keep it simple. Create one Project per recurring job, and inside it load a short voice or style note, a couple of templates, and the key reference documents that job needs. You do not need an elaborate folder system. You need the right few documents in the right Project."}},
+        {"@type": "Question", "name": "What should my first workflow be?", "acceptedAnswer": {"@type": "Answer", "text": "Pick something you do every week that involves writing or summarizing: a status report, recurring client emails, or turning notes into a clean document. A repeating task pays back the small setup effort immediately and builds the habit faster than a one-off experiment."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4.5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 820px; margin: 0 auto; }
+    .hero { min-height: 48vh; display: flex; align-items: center; padding: 7rem 2.5rem 3.5rem; }
+    .hero-inner { max-width: 820px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.08rem; color: #C0D8C0; line-height: 1.8; max-width: 740px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.15rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .body strong { color: #F0FFF0; font-weight: 600; }
+    .body ul { margin: 0 0 1.15rem 1.25rem; color: #C0D8C0; }
+    .body li { margin-bottom: 0.5rem; line-height: 1.7; }
+    .body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .answer { font-size: 1.05rem; color: #F0FFF0; }
+    .step { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-bottom: 1px solid #1A3A1A; }
+    .step:last-child { border-bottom: none; }
+    .step-num { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: rgba(0,200,83,0.4); flex-shrink: 0; width: 2.75rem; line-height: 1.1; }
+    .step-body h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin: 0 0 0.5rem; }
+    .step-body p { font-size: 0.98rem; color: #C0D8C0; line-height: 1.8; margin-bottom: 0.6rem; max-width: 700px; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #F0FFF0; }
+    .step-body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .notice { background: rgba(0,200,83,0.06); border: 1px solid rgba(0,200,83,0.2); padding: 1.25rem 1.5rem; margin: 1.75rem 0; font-size: 0.97rem; color: #C0D8C0; line-height: 1.75; }
+    .notice strong { color: #00C853; font-weight: 600; }
+    .faq-q { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: #F0FFF0; font-weight: 400; margin: 1.75rem 0 0.4rem; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.9rem; color: #8FAF8F; margin-top: 0.5rem; max-width: 440px; }
+    .rel-list { list-style: none; padding: 0; font-size: 0.96rem; line-height: 1.9; color: #C0D8C0; }
+    .rel-list a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    @media(max-width:800px){ section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/how-to-set-up-claude-first-time","name":"How to Set Up Claude for the First Time (Non-Technical Guide) | Treetop","description":"A simple, non-technical guide to setting up Claude, from your first chat to your first real workflow.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-h",".hero-sub",".answer"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"How To Set Up Claude First Time","item":"https://treetopgrowthstrategy.com/how-to-set-up-claude-first-time"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Non-technical setup guide</div>
+    <h1 class="hero-h">How to set up Claude <em style="color:#00C853;font-style:italic;">for the first time.</em></h1>
+    <p class="hero-sub">There is almost nothing to set up, and that trips people up. You sign in through a browser, start typing, and add documents by uploading them. The only real setup worth doing is creating a Project and giving it a little context. This guide walks you through it in plain English, ending with a first workflow you can use the same day.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The short answer</span>
+    <h2 class="h2">Five minutes to useful</h2>
+    <p class="body answer">To set up Claude: sign in at the Claude website (there is nothing to install), start a chat to get a feel for it, then create a Project and load a few documents into it, your writing voice, a template or two, and any reference material a recurring task needs. That Project now remembers your context across every conversation inside it. Point it at one weekly task and you are genuinely set up. Everything else is refinement.</p>
+    <p class="body">Below is the same thing, step by step, with no assumptions about technical skill.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Step by step</span>
+    <h2 class="h2">The setup, one step at a time</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Sign in and pick a plan</h3>
+        <p>Go to the Claude website and create an account. There is no software to download. The free tier is fine for trying it. The moment your work touches client or company information, move to a paid business plan (Team or Enterprise), where your conversations are not used to train the model by default and an administrator holds the settings.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Have a real first conversation</h3>
+        <p>Do not overthink this. Paste in a long email you received and ask, "What is this person actually asking for, and what are my options for replying?" Or paste a document and ask for a one-paragraph summary. The goal is to feel how it responds and learn that the more context you give, the better the answer.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Give it a file to work from</h3>
+        <p>Upload a document, a report, a contract, a spreadsheet, and ask a question about it. This is where Claude earns its keep for professionals: it reads the whole thing and answers from it. Notice that it only knows what you uploaded. Nothing else on your computer is involved.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Create your first Project</h3>
+        <p>This is the one setup step that changes everything. A Project is a saved workspace that remembers context across chats. Create one for a job you do often, say, "Client Updates." Inside it, you will add the context that job always needs, so you never have to re-explain yourself. For a deeper look, see <a href="/what-is-claude-projects">what are Claude Projects</a>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Load a little context, not a library</h3>
+        <p>Into that Project, add three things: a short note on your voice and standards ("we write plainly, no jargon, warm but direct"), one or two templates you reuse, and the key reference documents the task needs. That is it. People imagine an elaborate folder system. What actually matters is the right few documents in the right Project.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Build one real workflow</h3>
+        <p>Use the Project for a task you repeat every week. Ask Claude to draft this week's client update from your bullet points, in your voice, using your template. The first time takes a few minutes of guidance. By the third week it is a 60-second job. That repetition is what makes the setup pay off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Make it stick</span>
+    <h2 class="h2">The habits that turn setup into daily use</h2>
+    <p class="body">Setup is easy. Adoption is the real work, and it is mostly about habit.</p>
+    <ul class="body">
+      <li><strong>Keep Claude open</strong> like you keep email open. The friction of opening it is what stops people, so remove it.</li>
+      <li><strong>Reach for it on the boring tasks first:</strong> summarizing, drafting, reformatting. Easy wins build the reflex.</li>
+      <li><strong>When an answer is weak, add context</strong> rather than giving up. Nine times out of ten the fix is more input, not a better prompt.</li>
+      <li><strong>Save your good prompts</strong> back into the Project so they get reused instead of reinvented.</li>
+    </ul>
+    <div class="notice"><strong>The honest truth about adoption:</strong> setup takes minutes, but habits take a few weeks and usually some help. That is the entire reason our <a href="/claude-fluency">Claude Fluency</a> program exists, and why structured <a href="/claude-training">Claude training</a> turns a license into daily use rather than a tab people forget.</div>
+    <p class="body">If you run a smaller team, the same approach applies. See <a href="/claude-for-small-business">Claude for small business</a> and, once you are comfortable, <a href="/claude-artifacts-skills-connectors-explained">Artifacts, Skills, and Connectors explained</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Avoid these</span>
+    <h2 class="h2">Three mistakes first-timers make</h2>
+    <p class="body">Almost everyone who finds Claude underwhelming at first made one of three avoidable mistakes.</p>
+    <p class="body"><strong>One: treating it like a search box.</strong> A one-line question gets a generic answer, and people conclude the tool is mediocre. The fix is context. The difference between a forgettable response and a genuinely useful one is almost always the amount of relevant material you put in front of it. Give it the document, the background, the constraints, and an example of what good looks like.</p>
+    <p class="body"><strong>Two: starting with a hard, novel task.</strong> The instinct is to test it on something difficult, which is exactly where any tool, and any new hire, looks weakest. Start instead with the boring, repetitive work you already know the answer to. That builds trust and reveals the patterns, and the hard tasks get easier once you have a feel for how it works.</p>
+    <p class="body"><strong>Three: never creating a Project.</strong> People run every task as a fresh chat, re-explaining themselves each time, and never feel the compounding benefit. Five minutes setting up one Project, with your voice and a couple of reference documents, changes the experience completely, because the tool stops being a stranger and starts being something that already knows your work. Avoid those three and the early weeks go very differently. None of them are about intelligence or technical skill. They are about approach, which is exactly why a little structure at the start pays off so quickly.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+
+    <div class="faq-q">Do I need any technical skill to set up Claude?</div>
+    <p class="body">No. If you can use email and attach a file, you can set up Claude. There is nothing to install. You sign in through a browser, start typing, and add documents by uploading them. The only setup worth doing is creating a Project and giving it context, which takes a few minutes.</p>
+
+    <div class="faq-q">What is a Claude Project and do I need one?</div>
+    <p class="body">A Project is a saved workspace that remembers context across chats. You load your materials once, such as your voice, templates, and reference documents, and every conversation in that Project already knows them. You do not strictly need one to start, but it is the single step that makes Claude dramatically more useful.</p>
+
+    <div class="faq-q">Which plan should I start on?</div>
+    <p class="body">For trying it out, the free tier is fine. For real work that touches company information, use a paid business plan, because your data is not used for training by default and an admin controls the settings. Most professionals move to a paid plan quickly because free usage limits are low.</p>
+
+    <div class="faq-q">How should I organize my files for Claude?</div>
+    <p class="body">Keep it simple. Create one Project per recurring job, and inside it load a short voice note, a couple of templates, and the key reference documents that job needs. You do not need an elaborate folder system. You need the right few documents in the right Project.</p>
+
+    <div class="faq-q">What should my first workflow be?</div>
+    <p class="body">Pick something you do every week that involves writing or summarizing: a status report, recurring client emails, or turning notes into a clean document. A repeating task pays back the small setup effort immediately and builds the habit faster than a one-off experiment.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep reading</span>
+    <h2 class="h2">Related guides</h2>
+    <ul class="rel-list">
+      <li><a href="/what-is-claude-projects">What are Claude Projects? &rarr;</a></li>
+      <li><a href="/claude-artifacts-skills-connectors-explained">Artifacts, Skills, and Connectors explained &rarr;</a></li>
+      <li><a href="/claude-for-small-business">Claude for small business &rarr;</a></li>
+      <li><a href="/claude-training">Workflow-specific Claude training &rarr;</a></li>
+      <li><a href="/claude-fluency">Claude Fluency: team training &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want us to set it up with you?</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment, or book a working session and we will stand up your first Projects and workflows on your real work.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/book-a-call" class="btn-p">Book a working session &rarr;</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+    <p class="body" style="margin-top:1.75rem;">Setting up a whole team? <a href="/claude-fluency">Claude Fluency</a> takes everyone from first login to confident, daily use.</p>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

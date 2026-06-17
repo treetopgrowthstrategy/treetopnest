@@ -37,7 +37,7 @@ EXCLUDE_PREFIXES = (
 )
 
 EXCLUDE_FILES = (
-    "/admin", "/login", "/signup", "/preview",
+    "/admin", "/login", "/signup", "/preview", "/book-a-call",
 )
 
 

@@ -1,0 +1,248 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>How to Use Claude Without Recording Sensitive Meetings | Treetop</title>
+  <meta name="description" content="A practical guide to privilege-safe and confidentiality-safe AI for regulated and legal work. Get the benefit of Claude for meetings without ever recording the sensitive ones." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-without-recording-sensitive-meetings" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-without-recording-sensitive-meetings" />
+  <meta property="og:title" content="How to Use Claude Without Recording Sensitive Meetings" />
+  <meta property="og:description" content="Privilege-safe and confidentiality-safe AI workflows for regulated and legal work." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-without-recording-sensitive-meetings.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-without-recording-sensitive-meetings.png" />
+  <meta name="twitter:title" content="Use Claude Without Recording Sensitive Meetings" />
+  <meta name="twitter:description" content="Privilege-safe AI workflows for regulated work." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to Use Claude Without Recording Sensitive Meetings",
+      "description": "Privilege-safe and confidentiality-safe AI workflows for regulated and legal work.",
+      "url": "https://treetopgrowthstrategy.com/claude-without-recording-sensitive-meetings",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "datePublished": "2026-06-16",
+      "image": "https://treetopgrowthstrategy.com/og-default.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Do I have to record a meeting to use Claude for it?", "acceptedAnswer": {"@type": "Answer", "text": "No. The most common worry comes from always-on AI note-takers that join and transcribe everything. You do not need that. You can use Claude entirely after the fact, from your own notes, which means you decide exactly what is captured and what never leaves the room."}},
+        {"@type": "Question", "name": "What is the risk with AI meeting recorders for sensitive work?", "acceptedAnswer": {"@type": "Answer", "text": "An always-on recorder creates a verbatim record of conversations that may be privileged, confidential, or regulated, often stored on a third-party service. For legal and regulated work, that record can become a liability: a discoverable transcript of something that should never have been captured word for word. Working from your own notes avoids creating that record."}},
+        {"@type": "Question", "name": "How do I summarize a meeting without a transcript?", "acceptedAnswer": {"@type": "Answer", "text": "Take your own notes during or right after the meeting, then paste those notes into Claude and ask for a clean summary, action items, and a follow-up draft. Your notes are already filtered by your judgment, so the AI never touches the raw, sensitive conversation."}},
+        {"@type": "Question", "name": "Is it safe to paste meeting notes into Claude at all?", "acceptedAnswer": {"@type": "Answer", "text": "On a business plan, your conversations are not used to train the model by default, which makes routine notes reasonable. For privileged or regulated matters, go further: remove names and identifying details, summarize rather than quote, and follow your firm's policy. When the content is truly sensitive, keep it out and use Claude only on the sanitized version."}},
+        {"@type": "Question", "name": "Can my firm set a clear policy for this?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and it should. A simple policy names which meetings may never be recorded or transcribed by any tool, requires a business plan, and instructs people to work from their own notes for sensitive matters. Clear rules let your team use AI confidently without putting privilege or confidentiality at risk."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; color: #00C853; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C853; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4.5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 820px; margin: 0 auto; }
+    .hero { min-height: 48vh; display: flex; align-items: center; padding: 7rem 2.5rem 3.5rem; }
+    .hero-inner { max-width: 820px; margin: 0 auto; width: 100%; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.08rem; color: #C0D8C0; line-height: 1.8; max-width: 740px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1.25rem; }
+    .h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: #F0FFF0; font-weight: 400; margin-bottom: 0.5rem; margin-top: 2rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.15rem; }
+    .body em { color: #F0FFF0; font-style: italic; }
+    .body strong { color: #F0FFF0; font-weight: 600; }
+    .body ul { margin: 0 0 1.15rem 1.25rem; color: #C0D8C0; }
+    .body li { margin-bottom: 0.5rem; line-height: 1.7; }
+    .body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .answer { font-size: 1.05rem; color: #F0FFF0; }
+    .notice { background: rgba(0,200,83,0.06); border: 1px solid rgba(0,200,83,0.2); padding: 1.25rem 1.5rem; margin: 1.75rem 0; font-size: 0.97rem; color: #C0D8C0; line-height: 1.75; }
+    .notice strong { color: #00C853; font-weight: 600; }
+    .warn { background: rgba(255,180,60,0.06); border: 1px solid rgba(255,180,60,0.25); padding: 1.25rem 1.5rem; margin: 1.75rem 0; font-size: 0.97rem; color: #C0D8C0; line-height: 1.75; }
+    .warn strong { color: #E8B24A; font-weight: 600; }
+    .faq-q { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: #F0FFF0; font-weight: 400; margin: 1.75rem 0 0.4rem; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.9rem; color: #8FAF8F; margin-top: 0.5rem; max-width: 440px; }
+    .rel-list { list-style: none; padding: 0; font-size: 0.96rem; line-height: 1.9; color: #C0D8C0; }
+    .rel-list a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    @media(max-width:800px){ section{padding:3.5rem 1.5rem} .hide-mob{display:none!important} }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-without-recording-sensitive-meetings","name":"How to Use Claude Without Recording Sensitive Meetings | Treetop","description":"Privilege-safe and confidentiality-safe AI workflows for regulated and legal work.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-h",".hero-sub",".answer"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Without Recording Sensitive Meetings","item":"https://treetopgrowthstrategy.com/claude-without-recording-sensitive-meetings"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Privilege &amp; confidentiality safe</div>
+    <h1 class="hero-h">Use Claude without recording <em style="color:#00C853;font-style:italic;">sensitive meetings.</em></h1>
+    <p class="hero-sub">The fear is reasonable: an always-on AI note-taker that joins every call and transcribes privileged conversations word for word, then stores them somewhere. For legal and regulated work, that is a real risk. The good news is you do not need recording at all to get the benefit. You can use Claude entirely after the meeting, from your own notes, so you decide exactly what is captured and what never leaves the room.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The short answer</span>
+    <h2 class="h2">Skip the recorder, keep the benefit</h2>
+    <p class="body answer">You do not have to record or transcribe a meeting to use AI for it. The privilege and confidentiality risk comes almost entirely from always-on note-taking bots that create a verbatim record of sensitive conversations. Instead, take your own notes, the way you always have, and bring only those notes to Claude afterward for a summary, action items, and a follow-up draft. Your notes are already filtered by your professional judgment, so the raw, sensitive conversation is never captured by any tool. On a business plan, where your data is not used to train the model, that workflow is both useful and safe.</p>
+    <p class="body">In short: keep AI out of the room and put it to work on the sanitized record you choose to create. Here is how to do that in practice.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The risk, named plainly</span>
+    <h2 class="h2">Why always-on recorders are the problem</h2>
+    <p class="body">An AI meeting assistant that auto-joins and transcribes seems convenient, and for low-stakes internal calls it can be. For sensitive work it introduces three specific hazards:</p>
+    <ul class="body">
+      <li><strong>It creates a verbatim record</strong> of conversations that may be privileged or confidential, when no such record needed to exist.</li>
+      <li><strong>That record lives on a third-party service,</strong> outside your direct control and your matter file.</li>
+      <li><strong>A word-for-word transcript can become discoverable,</strong> turning an offhand remark into a liability it never had to be.</li>
+    </ul>
+    <div class="warn"><strong>The rule of thumb:</strong> if a conversation should not exist as a verbatim transcript on someone else's server, do not let any tool create one. Convenience is not worth manufacturing a record you would not have kept yourself.</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The workflows</span>
+    <h2 class="h2">Four privilege-safe ways to use Claude around meetings</h2>
+
+    <h3 class="h3">1. Prepare before, with no sensitive data</h3>
+    <p class="body">Use Claude to build your agenda, your question list, and your talking points before the meeting, working only from non-sensitive inputs. This is pure upside with no exposure, because nothing confidential has been said yet.</p>
+
+    <h3 class="h3">2. Summarize from your own notes, not a transcript</h3>
+    <p class="body">Take notes during the meeting as you normally would. Afterward, paste those notes into Claude and ask for a clean summary, a list of decisions, and clear action items with owners. You captured only what you judged appropriate, so the tool never sees the raw conversation.</p>
+
+    <h3 class="h3">3. Sanitize before you paste</h3>
+    <p class="body">For anything truly sensitive, strip names and identifying details and summarize rather than quote before the notes go anywhere near Claude. "The client" and "the opposing party" carry the meaning you need without carrying the identities you must protect.</p>
+
+    <h3 class="h3">4. Draft the follow-up from the sanitized summary</h3>
+    <p class="body">Once you have a clean, judgment-filtered summary, let Claude draft the follow-up email, the internal memo, or the next-steps note. The drafting happens on material you have already deemed safe to share. For the broader boundaries on what the tool can and cannot touch, see <a href="/is-claude-safe-on-your-work-computer">is Claude safe to use on your work computer</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Make it a policy</span>
+    <h2 class="h2">A simple standard your team can follow</h2>
+    <p class="body">Individual caution is good. A written rule is better, because it lets everyone act without second-guessing. A workable policy is short:</p>
+    <ul class="body">
+      <li><strong>No automatic recording or transcription</strong> of client, privileged, or regulated meetings by any tool, full stop.</li>
+      <li><strong>AI works from human notes,</strong> not raw audio, for any sensitive matter.</li>
+      <li><strong>Use a business plan only,</strong> so conversations are not used to train models and an administrator holds the settings.</li>
+      <li><strong>Sanitize before pasting</strong> anything that touches a confidential matter.</li>
+    </ul>
+    <div class="notice"><strong>Why this works:</strong> it removes the judgment call from the heat of the moment. People know the line, so they use Claude confidently for the safe ninety percent and keep the sensitive ten percent out of any tool. That is the same balance we build into legal and regulated deployments. See <a href="/claude-for-legal">Claude for legal businesses</a> and the <a href="/legal-ai-playbook-2026">Legal AI playbook for 2026</a>.</div>
+    <p class="body">Getting a whole team to apply this instinctively, knowing what to capture, what to sanitize, and what to keep out, is exactly what our <a href="/claude-fluency">Claude Fluency</a> training instills. Confidence and caution are not opposites here. The people who use AI most safely are usually the ones who use it most.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">The other side</span>
+    <h2 class="h2">What about meetings that are fine to record?</h2>
+    <p class="body">Not every meeting is sensitive, and the goal is not to ban a useful tool everywhere. The point is to draw a bright line and respect it. Plenty of meetings, internal standups, project check-ins, training sessions, brainstorms with no confidential content, are perfectly reasonable to record or transcribe if it helps, especially on a business plan where the data is not used for training. The benefit there is real: you stay present in the conversation instead of scribbling notes.</p>
+    <p class="body">The discipline is simply knowing which side of the line a meeting sits on before it starts, not after. A workable habit is to make recording the exception that requires a reason, rather than the default that requires an objection. If anyone in the room would hesitate to see a word-for-word transcript stored on a third-party service, that is your answer, and you work from human notes instead. For privileged, client, or regulated matters, the line is firm: no automatic capture, ever.</p>
+    <p class="body">Handled this way, your team gets the convenience where it is safe and the protection where it counts, without having to relitigate the question every time a calendar invite goes out. That is what a good policy buys you. Not a list of prohibitions, but a clear default that lets people move quickly and safely at the same time, which is exactly the balance regulated work demands.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+
+    <div class="faq-q">Do I have to record a meeting to use Claude for it?</div>
+    <p class="body">No. The worry comes from always-on note-takers that join and transcribe everything. You do not need that. You can use Claude entirely after the fact, from your own notes, which means you decide exactly what is captured and what never leaves the room.</p>
+
+    <div class="faq-q">What is the risk with AI meeting recorders for sensitive work?</div>
+    <p class="body">An always-on recorder creates a verbatim record of conversations that may be privileged, confidential, or regulated, often stored on a third-party service. For legal and regulated work, that record can become a discoverable liability. Working from your own notes avoids creating it.</p>
+
+    <div class="faq-q">How do I summarize a meeting without a transcript?</div>
+    <p class="body">Take your own notes during or right after the meeting, then paste those notes into Claude and ask for a clean summary, action items, and a follow-up draft. Your notes are already filtered by your judgment, so the AI never touches the raw conversation.</p>
+
+    <div class="faq-q">Is it safe to paste meeting notes into Claude at all?</div>
+    <p class="body">On a business plan, your conversations are not used to train the model by default, which makes routine notes reasonable. For privileged or regulated matters, remove names and identifying details, summarize rather than quote, and follow your firm's policy. When content is truly sensitive, keep it out and use Claude only on the sanitized version.</p>
+
+    <div class="faq-q">Can my firm set a clear policy for this?</div>
+    <p class="body">Yes, and it should. A simple policy names which meetings may never be recorded or transcribed by any tool, requires a business plan, and instructs people to work from their own notes for sensitive matters. Clear rules let your team use AI confidently without risking privilege or confidentiality.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep reading</span>
+    <h2 class="h2">Related guides</h2>
+    <ul class="rel-list">
+      <li><a href="/claude-for-legal">Claude for legal businesses &rarr;</a></li>
+      <li><a href="/legal-ai-playbook-2026">The Legal AI playbook for 2026 &rarr;</a></li>
+      <li><a href="/is-claude-safe-on-your-work-computer">Is Claude safe to use on your work computer? &rarr;</a></li>
+      <li><a href="/is-claude-safe-for-business-data">Is Claude safe for business data? &rarr;</a></li>
+      <li><a href="/claude-fluency">Claude Fluency: team training &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want AI rules that protect privilege?</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment, or book a working session and we will set up confidentiality-safe Claude workflows and a clear policy for your team.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/book-a-call" class="btn-p">Book a working session &rarr;</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+    <p class="body" style="margin-top:1.75rem;">Training a regulated team to use AI safely? <a href="/claude-fluency">Claude Fluency</a> builds the judgment, not just the skills.</p>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>
