@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecofit Data Flow & Infrastructure Overview</title>
+<meta name="description" content="A complete walkthrough of how data moves from the Ecofit website through Cloud Functions, email, storage, and CRM. Includes infrastructure ownership and cost guidance.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Work+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:#0b0e11; color:#F2F3F8;
+    font-family:'Work Sans',sans-serif; font-weight:300;
+    -webkit-font-smoothing:antialiased; line-height:1.65;
+  }
+  h1, h2, h3, h4 { font-family:'Raleway',sans-serif; letter-spacing:-0.02em; color:#F2F3F8; font-weight:700; }
+  a { color:#84BC41; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  code, kbd { font-family:'JetBrains Mono',monospace; background:rgba(132,188,65,0.1); border:1px solid rgba(132,188,65,0.2); padding:1px 6px; border-radius:4px; font-size:0.88em; color:#a8db73; }
+  pre {
+    font-family:'JetBrains Mono',monospace;
+    background:#0a0d10; border:1px solid rgba(132,188,65,0.18); border-left:3px solid #84BC41;
+    padding:18px 22px; border-radius:8px; overflow-x:auto;
+    font-size:13px; line-height:1.6; color:#c8cad1;
+    margin:20px 0;
+  }
+  pre code { background:none; border:none; padding:0; color:inherit; }
+
+  /* NAV */
+  .top-bar {
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,14,17,0.95); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(132,188,65,0.12);
+    padding:12px 0;
+  }
+  .top-bar-inner { max-width:1180px; margin:0 auto; padding:0 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand-mark { font-size:14px; font-weight:800; letter-spacing:0.04em; color:#F2F3F8; }
+  .brand-mark span { color:#84BC41; }
+  .doc-meta { font-size:12px; color:#6b6f7a; letter-spacing:0.02em; }
+
+  .page { max-width:1180px; margin:0 auto; padding:48px 32px 96px; }
+
+  .doc-hero { padding-bottom:48px; border-bottom:1px solid rgba(132,188,65,0.18); margin-bottom:56px; }
+  .doc-eyebrow {
+    font-size:11.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+    color:#84BC41; margin-bottom:18px;
+  }
+  .doc-hero h1 {
+    font-size:clamp(2.2rem, 4.5vw, 3.4rem); font-weight:800;
+    line-height:1.05; letter-spacing:-0.035em; margin-bottom:18px;
+  }
+  .doc-hero p {
+    font-size:18px; color:#9699A2; line-height:1.6; max-width:780px;
+  }
+
+  /* TOC */
+  .toc {
+    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+    border-radius:14px; padding:28px 32px; margin-bottom:80px;
+  }
+  .toc-title { font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#84BC41; margin-bottom:18px; }
+  .toc ol { list-style:none; counter-reset:toc; display:grid; grid-template-columns:repeat(2,1fr); gap:12px 32px; }
+  .toc li { counter-increment:toc; font-size:14.5px; color:#c8cad1; }
+  .toc li::before { content:counter(toc, decimal-leading-zero) " · "; color:#84BC41; font-weight:600; }
+  .toc a { color:#c8cad1; }
+  .toc a:hover { color:#84BC41; }
+
+  /* SECTIONS */
+  section { margin-bottom:80px; scroll-margin-top:96px; }
+  .section-num {
+    font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+    color:#84BC41; margin-bottom:14px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  section h2 {
+    font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:18px; line-height:1.15;
+  }
+  section h3 {
+    font-size:1.18rem; margin:36px 0 14px; color:#F2F3F8;
+  }
+  section p { color:#c8cad1; font-size:15.5px; max-width:780px; margin-bottom:14px; }
+  section ul, section ol { color:#c8cad1; font-size:15.5px; margin:14px 0 14px 22px; }
+  section ul li, section ol li { margin-bottom:7px; }
+
+  /* FLOW DIAGRAM */
+  .flow-wrap {
+    background:linear-gradient(180deg, rgba(132,188,65,0.06), rgba(132,188,65,0.02));
+    border:1px solid rgba(132,188,65,0.22); border-radius:18px;
+    padding:36px; margin:30px 0 24px;
+    overflow-x:auto;
+  }
+  .flow-wrap svg { max-width:100%; height:auto; display:block; margin:0 auto; }
+  .flow-caption {
+    font-size:12.5px; color:#6b6f7a; text-align:center; margin-top:14px;
+    font-family:'JetBrains Mono',monospace; letter-spacing:0.04em;
+  }
+
+  /* COMPONENT CARDS */
+  .components { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:24px; }
+  .comp-card {
+    background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07);
+    border-radius:14px; padding:22px 24px;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .comp-card:hover { border-color:rgba(132,188,65,0.35); transform:translateY(-2px); }
+  .comp-card .label {
+    font-size:10.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+    color:#84BC41; margin-bottom:8px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .comp-card h4 { font-size:1.05rem; margin-bottom:10px; }
+  .comp-card p { font-size:14px; color:#9699A2; line-height:1.55; }
+  .comp-card .stat {
+    margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06);
+    font-size:12.5px; color:#6b6f7a;
+  }
+  .comp-card .stat strong { color:#c8cad1; font-weight:500; }
+
+  /* STEP CARDS */
+  .steps { margin-top:18px; }
+  .step {
+    display:grid; grid-template-columns:60px 1fr; gap:24px;
+    padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .step:last-child { border-bottom:none; }
+  .step-marker {
+    font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700;
+    color:#84BC41; line-height:1;
+  }
+  .step-body h4 { font-size:1.05rem; margin-bottom:8px; }
+  .step-body p { font-size:14.5px; color:#9699A2; margin-bottom:10px; }
+  .step-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .step-meta .tag {
+    font-family:'JetBrains Mono',monospace; font-size:11px;
+    background:rgba(132,188,65,0.08); border:1px solid rgba(132,188,65,0.22);
+    color:#a8db73; padding:3px 10px; border-radius:99px;
+  }
+  .step-meta .tag.warn {
+    background:rgba(245,158,11,0.08); border-color:rgba(245,158,11,0.28); color:#f9e9c0;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.28); border-left:3px solid #f59e0b;
+    padding:20px 24px; border-radius:10px; margin:24px 0;
+  }
+  .callout .callout-eyebrow {
+    font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase;
+    color:#f59e0b; margin-bottom:8px;
+  }
+  .callout p { color:#e4d4a8; font-size:14.5px; margin-bottom:0; }
+  .callout p + p { margin-top:10px; }
+  .callout strong { color:#f9e9c0; font-weight:600; }
+
+  .callout.good {
+    background:rgba(132,188,65,0.06); border-color:rgba(132,188,65,0.28); border-left-color:#84BC41;
+  }
+  .callout.good .callout-eyebrow { color:#84BC41; }
+  .callout.good p { color:#c8cad1; }
+  .callout.good strong { color:#a8db73; }
+
+  /* TABLES */
+  table {
+    width:100%; border-collapse:collapse; margin:24px 0;
+    background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07);
+    border-radius:10px; overflow:hidden;
+    font-size:14px;
+  }
+  th, td {
+    padding:14px 18px; text-align:left; vertical-align:top;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  th {
+    background:rgba(132,188,65,0.07); color:#a8db73;
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em;
+  }
+  td { color:#c8cad1; }
+  tr:last-child td { border-bottom:none; }
+  td.numeric { font-family:'JetBrains Mono',monospace; color:#a8db73; }
+
+  /* OPTION CARDS */
+  .options { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:24px 0; }
+  @media (max-width:900px){ .options { grid-template-columns:1fr; } }
+  .option-card {
+    background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px; padding:24px;
+    display:flex; flex-direction:column;
+  }
+  .option-card.recommended { border-color:rgba(132,188,65,0.5); background:rgba(132,188,65,0.05); }
+  .option-card .label {
+    font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    color:#84BC41; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:10px;
+  }
+  .option-card h4 { font-size:1.05rem; margin-bottom:10px; line-height:1.3; }
+  .option-card p { font-size:14px; color:#9699A2; margin-bottom:14px; flex-grow:1; }
+  .option-card .stat { font-size:13px; color:#c8cad1; margin-bottom:6px; }
+  .option-card .stat strong { color:#a8db73; }
+  .option-card .badge {
+    display:inline-block; align-self:flex-start;
+    background:#84BC41; color:#0b0e11; font-size:10px; font-weight:700;
+    letter-spacing:0.08em; padding:4px 10px; border-radius:99px; margin-bottom:12px;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top:80px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.07);
+    font-size:13px; color:#6b6f7a; text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="brand">
+      <div class="brand-mark">eco<span>fit</span> / data flow</div>
+    </div>
+    <div class="doc-meta">Internal handoff overview · Updated June 8, 2026</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="doc-hero">
+    <div class="doc-eyebrow">Technical Handoff Document</div>
+    <h1>How data moves from the website into Ecofit's pipeline.</h1>
+    <p>This page walks through every system that touches a website visitor, from the moment they land on ecofitnetworks.com to the moment that lead lands in your CRM. It also lays out what each piece costs to run, where it lives today, and how to move that ownership to Ecofit.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#overview">The 30-second overview</a></li>
+      <li><a href="#diagram">End-to-end data flow diagram</a></li>
+      <li><a href="#entry">Entry points on the website</a></li>
+      <li><a href="#hosting">Layer 1: Firebase Hosting</a></li>
+      <li><a href="#functions">Layer 2: Cloud Functions</a></li>
+      <li><a href="#fanout">Layer 3: The fan-out (email, storage, CRM)</a></li>
+      <li><a href="#payloads">What each form captures</a></li>
+      <li><a href="#status">Current operational status</a></li>
+      <li><a href="#offload">Moving infrastructure cost to Ecofit</a></li>
+      <li><a href="#actions">Action items before handoff</a></li>
+    </ol>
+  </div>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="overview">
+    <div class="section-num">01</div>
+    <h2>The 30-second overview</h2>
+    <p>The Ecofit website has two lead-capture entry points: the Facility Intelligence Assessment (an 8-question funnel that estimates revenue at risk) and the Request a Demo modal (a short contact form). Both submit to serverless functions running on Google Cloud. Those functions do three things in parallel: send a personalized email back to the lead, send a notification to the team, and write a row to the CRM database. The assessment also generates a custom HTML report and hosts it on a public URL that gets included in the lead's email.</p>
+
+    <div class="callout good">
+      <div class="callout-eyebrow">Live system status</div>
+      <p><strong>Domain:</strong> ecofitnetworks.com is live and serving production traffic from Firebase. SSL is valid. Assessment and demo forms both passed end-to-end tests on June 8, 2026.</p>
+      <p><strong>Notifications:</strong> Verified working. Assessment submit → 2 emails fire (lead autoresponder + team notification) in under 4 seconds plus report generation. Demo submit → 2 emails fire in under 5 seconds.</p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="diagram">
+    <div class="section-num">02</div>
+    <h2>End-to-end data flow diagram</h2>
+    <p>Every box below is a real system in production today. Solid arrows are user-initiated requests. Dashed arrows are server-to-server calls made automatically after the form is submitted.</p>
+
+    <div class="flow-wrap">
+      <svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ecofit data flow diagram">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#84BC41"/>
+          </marker>
+          <marker id="arrow-dash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#6b6f7a"/>
+          </marker>
+          <linearGradient id="g-user" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a2128"/><stop offset="100%" stop-color="#11161c"/>
+          </linearGradient>
+          <linearGradient id="g-fn" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(132,188,65,0.16)"/><stop offset="100%" stop-color="rgba(132,188,65,0.05)"/>
+          </linearGradient>
+        </defs>
+
+        <style><![CDATA[
+          .box { fill:url(#g-user); stroke:rgba(255,255,255,0.12); stroke-width:1.2; rx:10; ry:10; }
+          .box.fn { fill:url(#g-fn); stroke:rgba(132,188,65,0.4); }
+          .box.fanout { fill:rgba(255,255,255,0.04); stroke:rgba(255,255,255,0.14); }
+          .tlabel { fill:#F2F3F8; font-family:'Raleway',sans-serif; font-weight:700; font-size:15px; }
+          .tsub { fill:#9699A2; font-family:'Work Sans',sans-serif; font-size:11.5px; font-weight:400; }
+          .ttiny { fill:#6b6f7a; font-family:'JetBrains Mono',monospace; font-size:10.5px; }
+          .tnum { fill:#84BC41; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; }
+          .line { stroke:#84BC41; stroke-width:1.8; fill:none; marker-end:url(#arrow); }
+          .line.dash { stroke:#6b6f7a; stroke-dasharray:5,5; stroke-width:1.4; marker-end:url(#arrow-dash); }
+        ]]></style>
+
+        <!-- USER -->
+        <g>
+          <rect class="box" x="40" y="40" width="200" height="80"/>
+          <text class="tlabel" x="140" y="68" text-anchor="middle">Website Visitor</text>
+          <text class="tsub" x="140" y="90" text-anchor="middle">Browser on any device</text>
+          <text class="ttiny" x="140" y="108" text-anchor="middle">ecofitnetworks.com</text>
+        </g>
+
+        <!-- HOSTING -->
+        <g>
+          <rect class="box" x="310" y="40" width="220" height="80"/>
+          <text class="tnum" x="320" y="60">01</text>
+          <text class="tlabel" x="420" y="68" text-anchor="middle">Firebase Hosting</text>
+          <text class="tsub" x="420" y="90" text-anchor="middle">Global CDN · 100+ POPs</text>
+          <text class="ttiny" x="420" y="108" text-anchor="middle">Project: ecofit-website</text>
+        </g>
+
+        <!-- FORM SUBMIT -->
+        <g>
+          <rect class="box fn" x="600" y="40" width="240" height="80"/>
+          <text class="tnum" x="610" y="60">02</text>
+          <text class="tlabel" x="720" y="68" text-anchor="middle">Cloud Function</text>
+          <text class="tsub" x="720" y="90" text-anchor="middle">Node 20 · us-central1 · gen2</text>
+          <text class="ttiny" x="720" y="108" text-anchor="middle">/api/ecofit-* endpoints</text>
+        </g>
+
+        <!-- arrows top row -->
+        <path class="line" d="M 240 80 L 310 80"/>
+        <text class="ttiny" x="275" y="72" text-anchor="middle" fill="#9699A2">GET /</text>
+        <path class="line" d="M 530 80 L 600 80"/>
+        <text class="ttiny" x="565" y="72" text-anchor="middle" fill="#9699A2">POST /api/...</text>
+
+        <!-- divider -->
+        <line x1="40" y1="170" x2="1060" y2="170" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text class="ttiny" x="40" y="160" fill="#6b6f7a">Server-side fan-out (after form submit)</text>
+
+        <!-- FAN-OUT BOXES -->
+        <!-- 1. Build report -->
+        <g>
+          <rect class="box fanout" x="40" y="210" width="220" height="100"/>
+          <text class="tnum" x="50" y="232">03a</text>
+          <text class="tlabel" x="150" y="245" text-anchor="middle">Build HTML Report</text>
+          <text class="tsub" x="150" y="266" text-anchor="middle">Custom risk analysis,</text>
+          <text class="tsub" x="150" y="282" text-anchor="middle">benchmarks, action plan</text>
+          <text class="ttiny" x="150" y="300" text-anchor="middle">~11 KB · in-memory</text>
+        </g>
+
+        <!-- 2. Storage -->
+        <g>
+          <rect class="box fanout" x="290" y="210" width="220" height="100"/>
+          <text class="tnum" x="300" y="232">03b</text>
+          <text class="tlabel" x="400" y="245" text-anchor="middle">Firebase Storage</text>
+          <text class="tsub" x="400" y="266" text-anchor="middle">Public, signed URL,</text>
+          <text class="tsub" x="400" y="282" text-anchor="middle">1-year cache</text>
+          <text class="ttiny" x="400" y="300" text-anchor="middle">/reports/{slug}.html</text>
+        </g>
+
+        <!-- 3. Resend -->
+        <g>
+          <rect class="box fanout" x="540" y="210" width="220" height="100"/>
+          <text class="tnum" x="550" y="232">03c</text>
+          <text class="tlabel" x="650" y="245" text-anchor="middle">Resend API</text>
+          <text class="tsub" x="650" y="266" text-anchor="middle">Lead email + team alert</text>
+          <text class="tsub" x="650" y="282" text-anchor="middle">SPF/DKIM verified</text>
+          <text class="ttiny" x="650" y="300" text-anchor="middle">api.resend.com/emails</text>
+        </g>
+
+        <!-- 4. Airtable -->
+        <g>
+          <rect class="box fanout" x="790" y="210" width="220" height="100"/>
+          <text class="tnum" x="800" y="232">03d</text>
+          <text class="tlabel" x="900" y="245" text-anchor="middle">Airtable (today)</text>
+          <text class="tsub" x="900" y="266" text-anchor="middle">Treetop Database base</text>
+          <text class="tsub" x="900" y="282" text-anchor="middle">Replaceable with HubSpot</text>
+          <text class="ttiny" x="900" y="300" text-anchor="middle">Ecofit Assessments table</text>
+        </g>
+
+        <!-- arrows from function to fan-out -->
+        <path class="line dash" d="M 720 120 C 720 160, 150 175, 150 210"/>
+        <path class="line dash" d="M 720 120 C 720 165, 400 175, 400 210"/>
+        <path class="line dash" d="M 720 120 L 650 210"/>
+        <path class="line dash" d="M 720 120 C 720 160, 900 175, 900 210"/>
+
+        <!-- ROW 3: OUTBOUND -->
+        <line x1="40" y1="370" x2="1060" y2="370" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text class="ttiny" x="40" y="360" fill="#6b6f7a">Outbound to humans (after fan-out)</text>
+
+        <g>
+          <rect class="box" x="120" y="410" width="240" height="100"/>
+          <text class="tnum" x="130" y="432">04a</text>
+          <text class="tlabel" x="240" y="448" text-anchor="middle">Lead's Inbox</text>
+          <text class="tsub" x="240" y="468" text-anchor="middle">Personalized email with</text>
+          <text class="tsub" x="240" y="484" text-anchor="middle">link to their report</text>
+          <text class="ttiny" x="240" y="502" text-anchor="middle">~3-5 sec after submit</text>
+        </g>
+
+        <g>
+          <rect class="box" x="430" y="410" width="240" height="100"/>
+          <text class="tnum" x="440" y="432">04b</text>
+          <text class="tlabel" x="550" y="448" text-anchor="middle">Ecofit Team Inbox</text>
+          <text class="tsub" x="550" y="468" text-anchor="middle">"New Assessment Lead"</text>
+          <text class="tsub" x="550" y="484" text-anchor="middle">with full intake data</text>
+          <text class="ttiny" x="550" y="502" text-anchor="middle">Routes to designated address</text>
+        </g>
+
+        <g>
+          <rect class="box" x="740" y="410" width="240" height="100"/>
+          <text class="tnum" x="750" y="432">04c</text>
+          <text class="tlabel" x="860" y="448" text-anchor="middle">CRM Record</text>
+          <text class="tsub" x="860" y="468" text-anchor="middle">Searchable, exportable,</text>
+          <text class="tsub" x="860" y="484" text-anchor="middle">webhook-ready</text>
+          <text class="ttiny" x="860" y="502" text-anchor="middle">Future: HubSpot pipeline</text>
+        </g>
+
+        <!-- arrows fan-out → humans -->
+        <path class="line" d="M 650 310 C 650 360, 240 380, 240 410"/>
+        <path class="line" d="M 650 310 L 550 410"/>
+        <path class="line" d="M 900 310 C 900 360, 860 380, 860 410"/>
+
+        <!-- ROW 4: CRM TARGETS -->
+        <g>
+          <rect class="box fanout" x="290" y="580" width="220" height="100"/>
+          <text class="tnum" x="300" y="602">05a</text>
+          <text class="tlabel" x="400" y="618" text-anchor="middle">Airtable (today)</text>
+          <text class="tsub" x="400" y="638" text-anchor="middle">Quick, low-cost,</text>
+          <text class="tsub" x="400" y="654" text-anchor="middle">team-visible</text>
+          <text class="ttiny" x="400" y="672" text-anchor="middle">app0cpbQjtdZh1sHT</text>
+        </g>
+
+        <g>
+          <rect class="box fanout" x="540" y="580" width="220" height="100"/>
+          <text class="tnum" x="550" y="602">05b</text>
+          <text class="tlabel" x="650" y="618" text-anchor="middle">HubSpot (next)</text>
+          <text class="tsub" x="650" y="638" text-anchor="middle">Contacts + Deals,</text>
+          <text class="tsub" x="650" y="654" text-anchor="middle">sequences, scoring</text>
+          <text class="ttiny" x="650" y="672" text-anchor="middle">api.hubapi.com/crm/v3</text>
+        </g>
+
+        <path class="line" d="M 860 510 C 860 540, 400 555, 400 580"/>
+        <path class="line dash" d="M 860 510 C 860 540, 650 555, 650 580"/>
+
+      </svg>
+      <div class="flow-caption">Solid lines: user actions. Dashed lines: server-side fan-out. All steps complete in under 5 seconds (assessment) or 2 seconds (demo).</div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="entry">
+    <div class="section-num">03</div>
+    <h2>Entry points on the website</h2>
+    <p>Every page on the site can drive someone toward one of two conversions. Each one is a distinct lead type and triggers a distinct downstream flow.</p>
+
+    <div class="components">
+      <div class="comp-card">
+        <div class="label">Entry point 1</div>
+        <h4>Facility Intelligence Assessment</h4>
+        <p>An 8-question funnel at <code>/assessment</code>. The questions feed a risk model that estimates how much revenue and capex the operator is leaving on the table. The lead form sits between the score reveal and a personalized report download.</p>
+        <div class="stat"><strong>Conversion intent:</strong> Educational. Best fit for cold prospects who want to understand their exposure before talking to sales.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="label">Entry point 2</div>
+        <h4>Request a Demo</h4>
+        <p>A modal launched from the "Request a Demo" buttons throughout the site. Captures name, work email, company, locations, and phone, then routes the lead to a Google Calendar booking link.</p>
+        <div class="stat"><strong>Conversion intent:</strong> High. Best fit for sales-qualified visitors who want to see the platform in action.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="hosting">
+    <div class="section-num">04</div>
+    <h2>Layer 1: Firebase Hosting</h2>
+    <p>The website itself is static HTML, CSS, JavaScript, and image assets served from Firebase Hosting, which is a Google-operated global CDN. Every page is cached at the edge in 100+ regions, so a visitor in Sydney gets the same sub-second load time as one in Chicago.</p>
+
+    <h3>What's deployed</h3>
+    <ul>
+      <li>Home page, platform, analytics, integrations, blog</li>
+      <li>The interactive assessment funnel</li>
+      <li>The lead funnel and data flow explainer pages</li>
+      <li>All marketing imagery and the universe-gym hero video</li>
+    </ul>
+
+    <h3>Hosting configuration</h3>
+    <table>
+      <tr><th>Setting</th><th>Value</th></tr>
+      <tr><td>Project</td><td><code>ecofit-website</code> on Firebase / Google Cloud</td></tr>
+      <tr><td>Custom domain</td><td>ecofitnetworks.com (apex)</td></tr>
+      <tr><td>SSL certificate</td><td>Auto-provisioned by Firebase, auto-renews</td></tr>
+      <tr><td>CDN</td><td>Fastly + Google edge, 100+ POPs worldwide</td></tr>
+      <tr><td>Image caching</td><td>1 year, immutable</td></tr>
+      <tr><td>HTML caching</td><td>5 minutes with must-revalidate</td></tr>
+    </table>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="functions">
+    <div class="section-num">05</div>
+    <h2>Layer 2: Cloud Functions (the server side)</h2>
+    <p>Form submissions are processed by serverless functions running on Google Cloud Functions for Firebase. There's no always-on server. When a form posts, Google spins up a Node.js 20 runtime, executes the handler, and shuts down. You only pay for invocations and compute time used.</p>
+
+    <h3>The two endpoints</h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-marker">01</div>
+        <div class="step-body">
+          <h4>ecofitAssessmentSubmit</h4>
+          <p>Receives the assessment payload (name, email, company, title, phone, 8 answers, computed risk range). Builds a personalized HTML facility intelligence report, uploads the report to Firebase Storage, emails the lead with their report link, emails the Ecofit team with intake details, and logs the row to Airtable.</p>
+          <div class="step-meta">
+            <span class="tag">Endpoint: <code>POST /api/ecofit-assessment-submit</code></span>
+            <span class="tag">Avg duration: 3-5 seconds</span>
+            <span class="tag">Memory: 512 MB</span>
+            <span class="tag">Region: us-central1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">02</div>
+        <div class="step-body">
+          <h4>ecofitDemoRequest</h4>
+          <p>Receives the demo modal payload (name, email, company, locations, optional phone). Emails the lead with a Google Calendar booking link, emails the Ecofit team with intake details, and logs the row to Airtable. All three operations run in parallel using <code>Promise.allSettled</code>, so a slow CRM doesn't slow down the user-facing response.</p>
+          <div class="step-meta">
+            <span class="tag">Endpoint: <code>POST /api/ecofit-demo-request</code></span>
+            <span class="tag">Avg duration: 1-2 seconds</span>
+            <span class="tag warn">Today posts to treetopgrowthstrategy.com — fix before handoff</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Environment configuration</h3>
+    <p>The functions read secrets and config from environment variables. None of these are committed to source code. They are managed in the Google Cloud Console or via the Firebase CLI.</p>
+    <pre><code>RESEND_API_KEY            # Sends transactional email
+AIRTABLE_API_KEY          # Writes to CRM rows
+AIRTABLE_BASE_ID          # Defaults to app0cpbQjtdZh1sHT
+BILL_NOTIFY_EMAIL         # Recipient of the team notification
+                          # Currently william.colbert@treetopgrowthstrategy.com
+                          # Change to an Ecofit address for handoff</code></pre>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="fanout">
+    <div class="section-num">06</div>
+    <h2>Layer 3: The fan-out</h2>
+    <p>Once a form submission lands in the function, four things happen in quick succession. Three of them are user-visible (the report, the lead's email, the team's email). The fourth is the CRM write.</p>
+
+    <h3>03a · Build the report</h3>
+    <p>The assessment handler builds a complete HTML document in memory: a personalized title, the lead's risk band, a list of which signals contributed to that band, industry benchmarks, and an accuracy disclaimer. It's roughly 11 KB of HTML, generated in under 200 milliseconds.</p>
+
+    <h3>03b · Push the report to Firebase Storage</h3>
+    <p>The HTML report is uploaded to a public bucket at <code>gs://ecofit-website.firebasestorage.app/reports/{company-slug}-{date}.html</code>. The URL is publicly readable (no auth required) and cacheable for one hour at the CDN edge. This URL is what gets embedded in the lead's email.</p>
+    <pre><code>https://storage.googleapis.com/ecofit-website.firebasestorage.app/
+  reports/ecofit-{slug}-2026-06-08.html</code></pre>
+
+    <h3>03c · Send transactional email via Resend</h3>
+    <p>Resend is a developer-focused email API similar to SendGrid or Postmark, but simpler. Two emails fire in parallel:</p>
+    <ul>
+      <li><strong>The lead email</strong> — Sent from the verified sender address. Includes the lead's risk band, a CTA to view the full report, and a CTA to book a demo.</li>
+      <li><strong>The team notification</strong> — Sent to <code>BILL_NOTIFY_EMAIL</code>. Includes all intake fields and the report URL, so anyone can immediately see what came in.</li>
+    </ul>
+    <p>Resend handles SPF, DKIM, and DMARC alignment automatically. Bounce and complaint webhooks can be wired in later to feed deliverability data back into the CRM.</p>
+
+    <h3>03d · Log to CRM (Airtable today)</h3>
+    <p>Every submission also writes a row to the Treetop Database Airtable base, in the "Ecofit Assessments" table. Columns include name, email, company, title, phone, location count, risk range, computed risk, all 8 answer values, the report URL, and a submitted-at timestamp.</p>
+
+    <div class="callout">
+      <div class="callout-eyebrow">Note on the current setup</div>
+      <p>The Airtable base today is owned by Treetop Growth Strategy. This is convenient for testing but not the right long-term home. The clean handoff path is to either migrate to HubSpot (recommended, since Ecofit already uses it) or stand up a new Ecofit-owned Airtable base. Either is a one-day project. See section 09.</p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="payloads">
+    <div class="section-num">07</div>
+    <h2>What each form actually captures</h2>
+
+    <h3>Assessment payload</h3>
+    <table>
+      <tr><th>Field</th><th>Source</th><th>Example</th></tr>
+      <tr><td>name</td><td>Lead step input</td><td>Sara Henderson</td></tr>
+      <tr><td>email</td><td>Lead step input</td><td>sara@example-fitness.com</td></tr>
+      <tr><td>company</td><td>Lead step input</td><td>Example Fitness Group</td></tr>
+      <tr><td>title</td><td>Lead step input</td><td>VP Operations</td></tr>
+      <tr><td>phone</td><td>Lead step input (optional)</td><td>555-0142</td></tr>
+      <tr><td>answers.locations</td><td>Q1 multiple choice</td><td>16-50</td></tr>
+      <tr><td>answers.equipment</td><td>Q2 multiple choice</td><td>151-300</td></tr>
+      <tr><td>answers.tracking</td><td>Q3 multiple choice</td><td>tickets</td></tr>
+      <tr><td>answers.maintenance</td><td>Q4 multiple choice</td><td>reactive</td></tr>
+      <tr><td>answers.age</td><td>Q5 multiple choice</td><td>6-10</td></tr>
+      <tr><td>answers.recovery</td><td>Q6 multiple choice</td><td>medium</td></tr>
+      <tr><td>answers.impact</td><td>Q7 multiple choice</td><td>frequently</td></tr>
+      <tr><td>answers.data_confidence</td><td>Q8 multiple choice</td><td>low</td></tr>
+      <tr><td>riskLow / riskHigh / riskMid</td><td>Computed client-side, sent for audit</td><td>$450K / $810K / $600K</td></tr>
+      <tr><td>networkLabel</td><td>Computed from locations</td><td>16-50 locations</td></tr>
+    </table>
+
+    <h3>Demo request payload</h3>
+    <table>
+      <tr><th>Field</th><th>Source</th><th>Example</th></tr>
+      <tr><td>name</td><td>Modal input</td><td>Marcus Lee</td></tr>
+      <tr><td>email</td><td>Modal input</td><td>marcus@example-clubs.com</td></tr>
+      <tr><td>company</td><td>Modal input</td><td>Example Athletic Clubs</td></tr>
+      <tr><td>locations</td><td>Modal dropdown</td><td>6-15</td></tr>
+      <tr><td>phone</td><td>Modal input (optional)</td><td>555-0188</td></tr>
+    </table>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="status">
+    <div class="section-num">08</div>
+    <h2>Current operational status</h2>
+    <p>This is what I verified end-to-end on the live domain on June 8, 2026.</p>
+
+    <table>
+      <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+      <tr><td>ecofitnetworks.com apex live</td><td>OK</td><td>200 OK, SSL valid, served from Firebase CDN</td></tr>
+      <tr><td>www.ecofitnetworks.com</td><td>Needs config</td><td>Currently 404. Add www as a second custom domain in Firebase Hosting.</td></tr>
+      <tr><td>Assessment form submit</td><td>OK</td><td>HTTP 200 from /api/ecofit-assessment-submit, full payload accepted</td></tr>
+      <tr><td>Demo form submit</td><td>OK with caveat</td><td>HTTP 200 returned, but the home page posts cross-domain to treetopgrowthstrategy.com. See action item 1.</td></tr>
+      <tr><td>Lead autoresponder email</td><td>OK</td><td>Delivered in under 4 seconds, SPF/DKIM aligned</td></tr>
+      <tr><td>Team notification email</td><td>OK</td><td>Delivered in under 4 seconds, includes full payload</td></tr>
+      <tr><td>Report URL generation</td><td>OK</td><td>HTML report uploaded to Firebase Storage, publicly reachable</td></tr>
+      <tr><td>Report contains accuracy disclaimer</td><td>OK</td><td>Verified in latest generated test report</td></tr>
+      <tr><td>Airtable row write</td><td>OK</td><td>Writes to Treetop Database, Ecofit Assessments table</td></tr>
+    </table>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="offload">
+    <div class="section-num">09</div>
+    <h2>Moving infrastructure cost to Ecofit</h2>
+    <p>Today, every paid service in this stack is on a Treetop Growth Strategy billing account. That made it easy to ship quickly, but the long-term right answer is for Ecofit to own and pay for the infrastructure that runs Ecofit's website and pipeline. Here is the cost picture and three handoff options to pick from.</p>
+
+    <h3>What the stack actually costs to run</h3>
+    <p>The numbers below assume modest production volume: roughly 100 assessment submissions, 100 demo requests, and 50,000 page views per month. Free tiers cover most of this at current scale.</p>
+
+    <table>
+      <tr><th>Service</th><th>What it does</th><th>Free tier</th><th>Estimated monthly cost</th></tr>
+      <tr><td>Firebase Hosting</td><td>Serves the website</td><td>10 GB transfer + 360 MB/day</td><td class="numeric">$0</td></tr>
+      <tr><td>Cloud Functions</td><td>Runs the form endpoints</td><td>2M invocations + 400K GB-sec</td><td class="numeric">$0 to $5</td></tr>
+      <tr><td>Firebase Storage</td><td>Stores generated reports</td><td>5 GB stored, 1 GB egress/day</td><td class="numeric">$0 to $2</td></tr>
+      <tr><td>Resend</td><td>Sends transactional email</td><td>3,000 emails/month</td><td class="numeric">$0 (paid: $20)</td></tr>
+      <tr><td>Airtable (current CRM)</td><td>Stores lead records</td><td>Up to 1,200 records</td><td class="numeric">$0 to $20/seat</td></tr>
+      <tr><td>HubSpot (optional replacement)</td><td>Replaces Airtable, adds sequences/scoring</td><td>Free CRM tier</td><td class="numeric">$0 to $890</td></tr>
+      <tr><td colspan="3" style="text-align:right;font-weight:600;color:#a8db73;">Estimated all-in at current volume:</td><td class="numeric">$0 to $50/mo</td></tr>
+    </table>
+
+    <h3>Three options for offloading cost</h3>
+
+    <div class="options">
+      <div class="option-card recommended">
+        <span class="badge">Recommended</span>
+        <div class="label">Option A</div>
+        <h4>Full handoff</h4>
+        <p>Ecofit creates its own Google Cloud, Resend, and CRM accounts. We migrate the project, the domain config, and the email sender domain. Treetop stays on as a build partner but Ecofit owns and pays for everything in its own name.</p>
+        <div class="stat">Time to complete: <strong>1 to 2 days</strong></div>
+        <div class="stat">Setup cost: <strong>$0</strong></div>
+        <div class="stat">Ongoing cost: <strong>~$0 to $50/mo</strong></div>
+        <div class="stat">Best for: <strong>Long-term clarity, audit trail, vendor independence</strong></div>
+      </div>
+
+      <div class="option-card">
+        <div class="label">Option B</div>
+        <h4>Split billing</h4>
+        <p>The Firebase project stays under Treetop ownership, but the Google Cloud billing account is switched to an Ecofit-owned credit card. Email and CRM accounts get reattached to Ecofit billing. Treetop continues to administer.</p>
+        <div class="stat">Time to complete: <strong>Half a day</strong></div>
+        <div class="stat">Setup cost: <strong>$0</strong></div>
+        <div class="stat">Ongoing cost: <strong>~$0 to $50/mo</strong></div>
+        <div class="stat">Best for: <strong>Speed. Avoids any project migration risk.</strong></div>
+      </div>
+
+      <div class="option-card">
+        <div class="label">Option C</div>
+        <h4>Pass-through invoice</h4>
+        <p>Treetop keeps every account in its own name. Once a month, Treetop pulls a usage report and invoices Ecofit for actual infrastructure costs plus a small management fee. No accounts change hands.</p>
+        <div class="stat">Time to complete: <strong>None (status quo)</strong></div>
+        <div class="stat">Setup cost: <strong>$0</strong></div>
+        <div class="stat">Ongoing cost: <strong>~$50 to $100/mo (infra plus fee)</strong></div>
+        <div class="stat">Best for: <strong>Short-term simplicity if Ecofit is not ready to add vendors.</strong></div>
+      </div>
+    </div>
+
+    <div class="callout good">
+      <div class="callout-eyebrow">Recommendation</div>
+      <p><strong>Option A.</strong> Ecofit ends up owning every account that has its name on it, and the bill goes straight to Ecofit's finance team with no middleman. At current volume the all-in cost is small enough that the bigger value is the clean audit trail.</p>
+      <p>The migration is mostly admin work: provisioning four accounts (Google Cloud, Resend, Airtable or HubSpot, Cloudflare or registrar if domain ownership transfers), pointing the existing Firebase project's billing at the new Google account, and swapping in Ecofit-controlled sender addresses.</p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────── -->
+  <section id="actions">
+    <div class="section-num">10</div>
+    <h2>Action items before a clean handoff</h2>
+    <p>These are the items I would close before transferring full ownership to Ecofit. None of them block leads from flowing today, but each one is a loose end that should be tied up for the long-term setup.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-marker">01</div>
+        <div class="step-body">
+          <h4>Repoint the demo form at the ecofit domain</h4>
+          <p>The demo modal currently posts to <code>https://treetopgrowthstrategy.com/api/ecofit-demo-request</code>. That works today because the function is deployed under both projects, but it means a Treetop outage would break the demo form. Update the home page JS to post to <code>/api/ecofit-demo-request</code> (relative path, same origin) and confirm the function is deployed under <code>ecofit-website</code>.</p>
+          <div class="step-meta"><span class="tag">Estimated effort: 30 minutes</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">02</div>
+        <div class="step-body">
+          <h4>Add www as a Firebase Hosting custom domain</h4>
+          <p><code>www.ecofitnetworks.com</code> currently returns 404. Adding the www domain to Firebase Hosting and redirecting it to the apex is a 10-minute config change.</p>
+          <div class="step-meta"><span class="tag">Estimated effort: 10 minutes</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">03</div>
+        <div class="step-body">
+          <h4>Swap the notification recipient and sender addresses</h4>
+          <p>Today the team notification email goes to a Treetop address. Update the <code>BILL_NOTIFY_EMAIL</code> environment variable to whichever Ecofit address should own inbound leads (a shared inbox like <code>leads@ecofitnetworks.com</code> works well). Verify a sending domain at Resend so the autoresponder shows up as from an Ecofit address rather than a Treetop one.</p>
+          <div class="step-meta"><span class="tag">Estimated effort: 1-2 hours including DNS records</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">04</div>
+        <div class="step-body">
+          <h4>Move the CRM destination to an Ecofit-owned home</h4>
+          <p>Either migrate the Airtable base to an Ecofit Airtable workspace, or replace Airtable with HubSpot. If HubSpot, we add a few lines to the handler that upsert a contact and create a deal in the right pipeline. The lead-funnel doc already walks through the HubSpot integration path in detail.</p>
+          <div class="step-meta"><span class="tag">Estimated effort: 2-4 hours for HubSpot path</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">05</div>
+        <div class="step-body">
+          <h4>Pick a billing path and execute it</h4>
+          <p>Option A, B, or C from section 09. Once chosen, this is mostly a finance-team task: provision the account, run the billing transfer, and confirm the first invoice routes to the right address.</p>
+          <div class="step-meta"><span class="tag">Estimated effort: Half a day to two days depending on option</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Prepared by Treetop Growth Strategy for Ecofit Networks · June 8, 2026 · ecofitnetworks.com/data-flow
+  </footer>
+
+</div>
+
+</body>
+</html>

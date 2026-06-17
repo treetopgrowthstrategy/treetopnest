@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Conversion funnels (/assessment, /resources/insurance-savings) are
+# noindex'd at the HTML level so crawlers can still discover the pages
+# and respect the in-page directive. Not blocked here.
+
+Sitemap: https://ecofitnetworks.com/sitemap.xml
