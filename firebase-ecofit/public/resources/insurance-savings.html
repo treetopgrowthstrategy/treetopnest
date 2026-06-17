@@ -158,12 +158,12 @@
 
   /* ── RESULTS WRAPPER (blur gate) ── */
   .results-wrapper { position: relative; border-radius: 12px; overflow: hidden; }
-  .results-blur { filter: blur(6px); pointer-events: none; user-select: none; transition: filter 0.5s ease; }
+  .results-blur { filter: none; }
   .results-wrapper.unlocked .results-blur { filter: none; pointer-events: auto; user-select: auto; }
 
   /* ── GATE OVERLAY ── */
-  .gate-overlay { position: absolute; inset: 0; background: rgba(20,25,31,0.93); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 10; border-radius: 12px; transition: opacity 0.45s ease; padding: 20px; }
-  .results-wrapper.unlocked .gate-overlay { opacity: 0; pointer-events: none; }
+  .gate-overlay { position: static; display: block; margin-top: 24px; }
+  .results-wrapper.unlocked .gate-overlay { display: none; }
   .gate-card { background: var(--panel-solid); border: 1px solid rgba(132,188,65,0.3); border-radius: 14px; padding: 36px 40px; width: 100%; max-width: 560px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
   .gate-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
   .gate-card h3 { font-family: 'Raleway', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.3; margin-bottom: 8px; }
@@ -377,7 +377,7 @@
 
     <div class="success-bar" id="successBar">
       <div class="checkmark">&#10003;</div>
-      <span>Your savings estimate is unlocked. Here's your full breakdown.</span>
+      <span>Thanks. We'll email you the full Insurer Partnership overview shortly.</span>
     </div>
 
     <div class="results-wrapper" id="resultsWrapper">
@@ -426,9 +426,9 @@
       <!-- Gate Overlay -->
       <div class="gate-overlay" id="gateOverlay">
         <div class="gate-card">
-          <div class="gate-eyebrow">Almost there</div>
-          <h3>Your estimate is ready. Enter your details to unlock it.</h3>
-          <p>We'll also send a copy of the Ecofit Insurer Partnership overview so you can share the full case with your broker.</p>
+          <div class="gate-eyebrow">Optional</div>
+          <h3>Want this emailed to you, with the broker-ready overview?</h3>
+          <p>We'll send a copy of your estimate plus the Ecofit Insurer Partnership overview, so you can share the full case with your broker.</p>
 
           <div class="gate-form-row">
             <div class="gate-field">
@@ -464,7 +464,7 @@
             </div>
           </div>
 
-          <button class="gate-submit" onclick="submitGate()">Unlock My Savings Estimate</button>
+          <button class="gate-submit" onclick="submitGate()">Email Me the Full Overview</button>
 
           <div class="gate-privacy">No spam. Your data is used by Ecofit only to follow up on your estimate.</div>
         </div>
@@ -472,11 +472,11 @@
 
     </div><!-- /results-wrapper -->
 
-    <div class="note-box" id="noteBox" style="display:none;">
+    <div class="note-box" id="noteBox">
       <strong>How to use this with your broker.</strong> Bring this figure to your insurance broker or carrier and ask whether they participate in the Ecofit Insurer Partnership Programme. The reduction is applied to your liability premium at renewal once Ecofit deployment is verified. Actual adjustments are determined by your insurer's own underwriting. Use this as the starting point for that conversation.
     </div>
 
-    <button class="print-btn" id="printBtn" onclick="window.print()">&#x2193;&nbsp; Save or Print This Worksheet</button>
+    <button class="print-btn visible" id="printBtn" onclick="window.print()">&#x2193;&nbsp; Save or Print This Worksheet</button>
 
   </div><!-- /section -->
 
