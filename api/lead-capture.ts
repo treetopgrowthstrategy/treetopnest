@@ -14,6 +14,7 @@ const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treet
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
+const AIRTABLE_LEADS_TABLE = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC'; // "TTGS Website Leads"
 const BOOKING_LINK     = process.env.BOOKING_LINK_BOOK_A_CALL || 'https://calendar.app.google/HhtvptQrmaChgyzt6';
 const SITE             = 'https://treetopgrowthstrategy.com';
 
@@ -386,7 +387,7 @@ export default async function handler(req: any, res: any) {
         ? `Lead magnet: ${asset}\nSource: ${source}`
         : [team_size && `Team size: ${team_size}`, message && `Message: ${message}`].filter(Boolean).join('\n');
 
-      const at = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Contacts`, {
+      const at = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
