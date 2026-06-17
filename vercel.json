@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/EQCC-CRO-Ecom-Growth-Plan",
+      "destination": "/specialty-coffee-ecommerce-growth-plan",
+      "statusCode": 301
+    },
+    {
+      "source": "/EQCC-CRO-Ecom-Growth-Plan.html",
+      "destination": "/specialty-coffee-ecommerce-growth-plan",
+      "statusCode": 301
+    },
+    {
       "source": "/insights/what-is-a-fractional-cmo",
       "destination": "/resources/what-is-a-fractional-cmo",
       "statusCode": 301
