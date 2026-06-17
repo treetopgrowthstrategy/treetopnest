@@ -643,6 +643,34 @@ def ai_for_role_recipe(url: str) -> list[tuple[str, str]]:
     return cands
 
 
+# ---------------------------------------------------------------------------
+# Claude "getting started / fundamentals" cluster (2026).
+# Surfaced into the Claude-related recipes so the cluster earns internal inbound
+# links from the broader Claude content instead of sitting as an island.
+# ---------------------------------------------------------------------------
+CLAUDE_FUNDAMENTALS: list[tuple[str, str]] = [
+    ("/claude-vs-chatgpt-for-knowledge-work", "Claude vs ChatGPT for knowledge work"),
+    ("/how-to-set-up-claude-first-time", "How to set up Claude for the first time"),
+    ("/claude-artifacts-skills-connectors-explained", "Artifacts, Skills &amp; Connectors explained"),
+    ("/claude-for-email-overload", "Use Claude to tame email overload"),
+    ("/word-reports-to-polished-output-with-claude", "Turn Word reports into polished output"),
+    ("/is-claude-safe-on-your-work-computer", "Is Claude safe on your work computer?"),
+    ("/should-non-developers-use-claude-code", "Should non-developers use Claude Code?"),
+    ("/claude-without-recording-sensitive-meetings", "Use Claude without recording meetings"),
+    ("/claude-fluency", "Claude Fluency: team training"),
+]
+
+
+def pick_fundamentals(source_url: str, n: int) -> list[tuple[str, str]]:
+    """Deterministically rotate the fundamentals per source page so inbound
+    links spread evenly across the cluster (and vary page to page)."""
+    if not CLAUDE_FUNDAMENTALS:
+        return []
+    off = sum(ord(c) for c in source_url) % len(CLAUDE_FUNDAMENTALS)
+    rotated = CLAUDE_FUNDAMENTALS[off:] + CLAUDE_FUNDAMENTALS[:off]
+    return [(u, a) for u, a in rotated if u != source_url][:n]
+
+
 def how_to_with_claude_recipe(url: str) -> list[tuple[str, str]]:
     """For /how-to-X-with-claude pages: link to peers and hubs."""
     if not (url.startswith("/how-to-") and url.endswith("-with-claude")):
@@ -704,7 +732,7 @@ def how_to_with_claude_recipe(url: str) -> list[tuple[str, str]]:
             seen.add(u)
         if len(picks) >= 12:
             break
-    return picks
+    return pick_fundamentals(url, 2) + picks
 
 
 def resources_recipe(url: str) -> list[tuple[str, str]]:
@@ -814,7 +842,8 @@ def claude_for_recipe(url: str) -> list[tuple[str, str]]:
         cands.append((p, f"Claude for {label}"))
     cands.append(("/how-to-use-ai-in-your-business", "How to use AI in your business"))
     cands.append(("/services/ai-audit", "Treetop AI Audit"))
-    return cands
+    # Surface 2 getting-started posts so the industry pages feed the cluster.
+    return pick_fundamentals(url, 2) + cands
 
 
 def comparison_recipe(url: str) -> list[tuple[str, str]]:
@@ -835,8 +864,10 @@ def comparison_recipe(url: str) -> list[tuple[str, str]]:
         ("/how-much-does-chatgpt-cost", "How much does ChatGPT cost?"),
         ("/best-ai-tools-for-cmos-2026", "Best AI tools for CMOs (2026)"),
         ("/claude-for-business", "Claude for business"),
+        ("/claude-vs-chatgpt-for-knowledge-work", "Claude vs ChatGPT for knowledge work"),
     ]
-    return [(u, a) for u, a in cands if u != url]
+    # Lead with one getting-started post so comparison readers enter the cluster.
+    return pick_fundamentals(url, 1) + [(u, a) for u, a in cands if u != url]
 
 
 def cost_recipe(url: str) -> list[tuple[str, str]]:
@@ -855,7 +886,60 @@ def cost_recipe(url: str) -> list[tuple[str, str]]:
         ("/how-much-does-an-ai-cmo-cost", "How much an AI CMO costs"),
         ("/fractional-executive-pricing-guide-2026", "Fractional executive pricing (2026)"),
     ]
-    return [(u, a) for u, a in cands if u != url]
+    base = [(u, a) for u, a in cands if u != url]
+    # The Claude/ChatGPT cost pages are part of the Claude cluster; lead with
+    # getting-started posts there (but not on the fractional cost pages).
+    if "claude" in url or "chatgpt" in url:
+        return pick_fundamentals(url, 2) + base
+    return base
+
+
+CLAUDE_HUB_TARGETS: dict[str, list[tuple[str, str]]] = {
+    "/claude-training": [
+        ("/claude-fluency", "Claude Fluency: team training"),
+        ("/how-to-set-up-claude-first-time", "How to set up Claude for the first time"),
+        ("/claude-artifacts-skills-connectors-explained", "Artifacts, Skills &amp; Connectors explained"),
+        ("/claude-for-small-business", "Claude for small business"),
+    ],
+    "/what-is-claude-code": [
+        ("/should-non-developers-use-claude-code", "Should non-developers use Claude Code?"),
+        ("/claude-artifacts-skills-connectors-explained", "Artifacts, Skills &amp; Connectors explained"),
+        ("/how-to-set-up-claude-first-time", "How to set up Claude for the first time"),
+    ],
+    "/what-is-claude-projects": [
+        ("/how-to-set-up-claude-first-time", "How to set up Claude for the first time"),
+        ("/claude-artifacts-skills-connectors-explained", "Artifacts, Skills &amp; Connectors explained"),
+    ],
+    "/how-to-use-claude": [
+        ("/how-to-set-up-claude-first-time", "How to set up Claude for the first time"),
+        ("/claude-artifacts-skills-connectors-explained", "Artifacts, Skills &amp; Connectors explained"),
+        ("/claude-for-email-overload", "Use Claude to tame email overload"),
+        ("/word-reports-to-polished-output-with-claude", "Turn Word reports into polished output"),
+    ],
+    "/is-claude-safe-for-business-data": [
+        ("/is-claude-safe-on-your-work-computer", "Is Claude safe on your work computer?"),
+        ("/claude-without-recording-sensitive-meetings", "Use Claude without recording meetings"),
+        ("/claude-for-legal", "Claude for legal businesses"),
+    ],
+    "/what-is-claude-ai": [
+        ("/claude-vs-chatgpt-for-knowledge-work", "Claude vs ChatGPT for knowledge work"),
+        ("/how-to-set-up-claude-first-time", "How to set up Claude for the first time"),
+        ("/claude-artifacts-skills-connectors-explained", "Artifacts, Skills &amp; Connectors explained"),
+    ],
+}
+
+
+def claude_hub_recipe(url: str) -> list[tuple[str, str]]:
+    """Tailored links from a few high-value Claude hub pages into the cluster."""
+    items = CLAUDE_HUB_TARGETS.get(url)
+    if not items:
+        return []
+    tail = [
+        ("/claude-for-business", "Claude for business"),
+        ("/claude-fluency", "Claude Fluency: team training"),
+        ("/how-to-use-ai-in-your-business", "How to use AI in your business"),
+    ]
+    return items + pick_fundamentals(url, 2) + tail
 
 
 def case_study_recipe(url: str) -> list[tuple[str, str]]:
@@ -1153,6 +1237,7 @@ def default_recipe(url: str) -> list[tuple[str, str]]:
 # Recipe dispatcher
 def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
     for fn in (
+        claude_hub_recipe,
         fractional_city_recipe,
         fractional_canonical_recipe,
         ai_consultant_city_recipe,
@@ -1289,7 +1374,19 @@ def main():
     skipped_missing_targets = 0
     by_target = defaultdict(int)
     skip_urls = {
-        # Don't touch tiny utility/transactional/private pages
+        # Don't touch tiny utility/transactional/private pages.
+        # The new Claude cluster posts already ship a curated "Related guides"
+        # section, so skip the auto-block to avoid a second stacked block.
+        "/claude-vs-chatgpt-for-knowledge-work",
+        "/claude-artifacts-skills-connectors-explained",
+        "/is-claude-safe-on-your-work-computer",
+        "/how-to-set-up-claude-first-time",
+        "/claude-for-email-overload",
+        "/should-non-developers-use-claude-code",
+        "/word-reports-to-polished-output-with-claude",
+        "/claude-without-recording-sensitive-meetings",
+        "/claude-fluency",
+        "/book-a-call",
     }
 
     for path, url, is_astro in work:
