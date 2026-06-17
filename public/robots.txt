@@ -1,7 +1,16 @@
 User-agent: *
 Allow: /
 
+# Internal / non-Treetop / client work — not for public crawling.
 Disallow: /api/
 Disallow: /reports/
+Disallow: /clients/
+Disallow: /proposals/
+Disallow: /mp-group/
+Disallow: /work/
+Disallow: /tools/ecofit/
+Disallow: /ecofit/
+Disallow: /ecofit-assessment
+Disallow: /ecofit-field-guide.html
 
 Sitemap: https://treetopgrowthstrategy.com/sitemap.xml

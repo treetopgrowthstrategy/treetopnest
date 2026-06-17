@@ -27,10 +27,13 @@ BASE = "https://treetopgrowthstrategy.com"
 
 OUTPUT = PUB / "sitemap.xml"
 
-# URL prefixes to exclude from sitemap (client work, drafts, admin)
+# URL prefixes to exclude from sitemap (client work, drafts, admin, non-Treetop).
+# Note: "/ecofit" (no trailing slash) intentionally covers /ecofit/, /ecofit-assessment,
+# and /ecofit-field-guide.html. Ecofit is a separate brand; only Bill's internal
+# Ecofit tools live in the repo, and none of them should be in the public sitemap.
 EXCLUDE_PREFIXES = (
     "/clients/", "/proposals/", "/reports/", "/tools/ecofit/", "/mp-group/",
-    "/work/", "/api/", "/og/", "/_astro/",
+    "/work/", "/api/", "/og/", "/_astro/", "/ecofit",
 )
 
 EXCLUDE_FILES = (
