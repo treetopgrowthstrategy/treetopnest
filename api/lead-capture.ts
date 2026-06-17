@@ -1,19 +1,22 @@
-export const prerender = false;
+// Vercel-native serverless function for lead capture + asset delivery.
+// Moved here (root api/) from src/pages/api/ because Astro's Vercel adapter
+// conflicts with the existing root api/ functions and the Astro /api routes
+// were not being served (they 404'd in production). Matches the pattern of
+// api/quiz-submit.ts, api/calendar.js, etc.
+//
+// Handles three shapes:
+//   - Popup/sticky bar:  { email, asset, source }      -> emails the asset
+//   - Book a call:       { ...contact, source:'book-a-call' } -> emails booking link
+//   - Inline form:       { first_name, last_name, email, company, message/gain, source }
 
-import type { APIRoute } from 'astro';
-
-// ─── Env vars ─────────────────────────────────────────────────────────────
-const RESEND_API_KEY   = import.meta.env.RESEND_API_KEY || import.meta.env.MAILGUN_API_KEY;
-const FROM_EMAIL       = import.meta.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
-const BILL_EMAIL       = import.meta.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
-const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = (import.meta.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
+const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
+const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
+const BOOKING_LINK     = process.env.BOOKING_LINK_BOOK_A_CALL || 'https://calendar.app.google/HhtvptQrmaChgyzt6';
 const SITE             = 'https://treetopgrowthstrategy.com';
 
-// ─── Asset delivery templates ─────────────────────────────────────────────
-// Maps an asset name (matches treetop-lead-capture.js CONFIG.offers) to the
-// user-facing email content. The link goes to a real page on the site for now.
-// Add a /downloads/<slug> page for any asset where the email should ship a PDF.
 type AssetSpec = { subject: string; link: string; intro: string; followup?: string };
 
 const ASSETS: Record<string, AssetSpec> = {
@@ -167,7 +170,6 @@ const ASSETS: Record<string, AssetSpec> = {
     intro: 'The auditor walks you through your current AI stack in 3 minutes and surfaces overlap, gaps, and savings.',
     followup: 'For a written stack audit and roadmap in 5 business days, the $1,500 AI Audit: ' + SITE + '/services/ai-audit',
   },
-  // Existing offers from earlier site work
   '30-60-90 Day Marketing Plan Template': {
     subject: 'The 30-60-90 Day Marketing Plan',
     link: `${SITE}/30-60-90-day-plan-marketing.html`,
@@ -215,7 +217,6 @@ const ASSETS: Record<string, AssetSpec> = {
   },
 };
 
-// Fallback when no asset name matches.
 const DEFAULT_ASSET: AssetSpec = {
   subject: 'Your Treetop download',
   link: `${SITE}/content-library`,
@@ -223,8 +224,7 @@ const DEFAULT_ASSET: AssetSpec = {
   followup: 'Reply if you want a specific recommendation for your situation.',
 };
 
-// ─── Resend helper ────────────────────────────────────────────────────────
-async function sendEmail(to: string, subject: string, html: string, replyTo?: string) {
+async function sendEmail(to: string, subject: string, html: string, replyTo?: string): Promise<boolean> {
   if (!RESEND_API_KEY) {
     console.warn('RESEND_API_KEY not set, skipping email');
     return false;
@@ -246,26 +246,28 @@ async function sendEmail(to: string, subject: string, html: string, replyTo?: st
 
 function escape(s: string): string {
   return String(s).replace(/[&<>"']/g, (c) =>
-    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as Record<string, string>)[c]!);
 }
 
-// ─── Request handler ──────────────────────────────────────────────────────
-export const POST: APIRoute = async ({ request }) => {
-  let body: Record<string, string>;
-  try {
-    body = await request.json();
-  } catch {
-    return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
+export default async function handler(req: any, res: any) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
+
+  let body: Record<string, string> = req.body;
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch { body = {}; }
   }
+  if (!body || typeof body !== 'object') body = {};
 
   const email = body.email?.trim();
   if (!email || !email.includes('@')) {
-    return new Response(JSON.stringify({ error: 'Valid email required' }), { status: 400 });
+    return res.status(400).json({ error: 'Valid email required' });
   }
 
-  // Two shapes:
-  //  - Popup/sticky bar:    { email, asset, source }
-  //  - Inline form:         { first_name, last_name, email, company, team_size, gain, source }
   const isPopup = !!body.asset && !body.first_name;
   const asset = body.asset?.trim() || '';
   const source = body.source?.trim() || '';
@@ -274,12 +276,10 @@ export const POST: APIRoute = async ({ request }) => {
   const last_name = body.last_name?.trim() || '';
   const company = body.company?.trim() || '';
   const team_size = body.team_size?.trim() || '';
-  // The /about contact form sends `message`; older inline forms send `gain`.
-  // Accept either so the prospect's actual words are never dropped.
   const message = body.message?.trim() || body.gain?.trim() || '';
   const name = [first_name, last_name].filter(Boolean).join(' ') || email.split('@')[0];
 
-  // ─── 1. Send the asset email to the user (popup case only) ─────────────
+  // ─── 1. Asset email (popup case) ─────────────────────────────────────────
   if (isPopup && asset) {
     const spec = ASSETS[asset] || DEFAULT_ASSET;
     const userHtml = `
@@ -301,9 +301,6 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // ─── 1b. Book-a-call: email the booking link to the user ───────────────
-  // The /book-a-call form captures the lead first, then we email the live
-  // Google Calendar booking link so they can pick a time.
-  const BOOKING_LINK = 'https://calendar.app.google/HhtvptQrmaChgyzt6';
   if (source === 'book-a-call') {
     const bookHtml = `
       <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff;padding:32px 24px;color:#1a1a1a;line-height:1.6;">
@@ -324,7 +321,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // ─── 2. Notify Bill ─────────────────────────────────────────────────────
-  const ctxRows = isPopup
+  const ctxRows: [string, string][] = isPopup
     ? [
         ['Asset requested', asset || '(none)'],
         ['Source page', source || '(unknown)'],
@@ -335,7 +332,7 @@ export const POST: APIRoute = async ({ request }) => {
         ['Company', company || '—'],
         ['Team size', team_size || '—'],
         ['Source', source || 'website'],
-        ['Type', 'Contact form'],
+        ['Type', source === 'book-a-call' ? 'Book a call' : 'Contact form'],
       ];
 
   const adminHtml = `
@@ -361,9 +358,9 @@ export const POST: APIRoute = async ({ request }) => {
           <div style="font-size:14px;color:#222;line-height:1.6;white-space:pre-wrap;background:#f6f6f6;border:1px solid #e5e5e5;padding:14px 16px;border-radius:4px;">${escape(message)}</div>
         </div>
       ` : ''}
-      ${isPopup ? `
+      ${(isPopup || source === 'book-a-call') ? `
         <p style="margin:14px 0;font-size:13px;color:#666;">
-          The asset email has been automatically sent to the user. No manual delivery needed.
+          ${source === 'book-a-call' ? 'The booking link has been automatically sent to the user.' : 'The asset email has been automatically sent to the user.'} No manual delivery needed.
         </p>
       ` : ''}
       <a href="mailto:${email}?subject=Re: Your ${isPopup ? 'download' : 'inquiry'} from Treetop"
@@ -376,7 +373,7 @@ export const POST: APIRoute = async ({ request }) => {
     BILL_EMAIL,
     isPopup
       ? `Lead magnet: ${asset} → ${email}`
-      : `New lead: ${name}${company ? ` — ${company}` : ''} (${source || 'website'})`,
+      : `${source === 'book-a-call' ? 'Call request' : 'New lead'}: ${name}${company ? ` — ${company}` : ''} (${source || 'website'})`,
     adminHtml,
     email,
   );
@@ -409,12 +406,6 @@ export const POST: APIRoute = async ({ request }) => {
     console.error('Airtable error:', err);
   }
 
-  // The lead is "captured" if it reached Bill (email) OR was logged (Airtable).
-  // If neither worked, tell the client so it can show the direct-email fallback
-  // instead of falsely claiming the message was received.
   const delivered = notifiedBill || loggedAirtable;
-  return new Response(
-    JSON.stringify({ success: true, delivered }),
-    { status: 200 },
-  );
-};
+  return res.status(200).json({ success: true, delivered });
+}
