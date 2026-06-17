@@ -10,6 +10,7 @@
       { "source": "/platform", "destination": "/platform.html" },
       { "source": "/analytics", "destination": "/analytics.html" },
       { "source": "/integrations", "destination": "/integrations.html" },
+      { "source": "/partners", "destination": "/partners/index.html" },
       { "source": "/partners/woodway", "destination": "/partners/woodway.html" },
       { "source": "/blog", "destination": "/blog.html" },
       { "source": "/insurance-savings", "destination": "/resources/insurance-savings.html" },
