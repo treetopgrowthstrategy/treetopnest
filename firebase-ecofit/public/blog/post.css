@@ -1,0 +1,75 @@
+/* ============================================================
+   Ecofit blog post template stylesheet (shared by all posts).
+   Self-contained: nav, article typography, CTA block, footer.
+   To add a post: copy any /blog/<slug>.html, link this file,
+   edit the <head> meta + the <article> body. No redesign needed.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+  background: #14191f;
+  color: #F2F3F8;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+h1, h2, h3 { font-family: 'Raleway', sans-serif; letter-spacing: -0.02em; }
+a { color: inherit; }
+
+/* ── NAV (matches the global site nav) ── */
+.bnav { position: sticky; top: 0; z-index: 100; background: rgba(26,33,48,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.bnav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.bnav-logo img { height: 32px; width: auto; display: block; }
+.bnav-links { display: flex; align-items: center; gap: 28px; }
+.bnav-links a { font-size: 13.5px; font-weight: 500; color: #c8cad1; text-decoration: none; }
+.bnav-links a.current { color: #F2F3F8; font-weight: 600; }
+.bnav-links a:hover { color: #F2F3F8; }
+.bnav-right { display: flex; align-items: center; gap: 12px; }
+.bnav-login { font-size: 13.5px; font-weight: 500; color: #c8cad1; text-decoration: none; padding: 7px 14px; }
+.bnav-cta { font-size: 13.5px; font-weight: 600; background: #84BC41; color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 6px; }
+.bnav-cta:hover { background: #75a838; }
+
+/* ── ARTICLE ── */
+.post { max-width: 760px; margin: 0 auto; padding: 64px 24px 24px; }
+.post-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #84BC41; margin-bottom: 18px; }
+.post-h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.12; color: #F2F3F8; margin-bottom: 20px; }
+.post-byline { font-size: 14px; color: #9699A2; font-weight: 400; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.post-byline strong { color: #F2F3F8; font-weight: 600; }
+.post-body { padding-top: 34px; }
+.post-body > p { font-size: 17px; line-height: 1.78; color: #c8cad1; margin-bottom: 24px; }
+.post-body > h2 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); font-weight: 700; color: #F2F3F8; line-height: 1.28; margin: 46px 0 16px; }
+
+/* ── CTA BLOCK (uses the site primary button style) ── */
+.post-cta { background: #2F3535; border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid #84BC41; border-radius: 12px; padding: 36px 40px; margin: 52px 0 12px; text-align: center; }
+.post-cta-text { font-family: 'Raleway', sans-serif; font-size: 1.3rem; font-weight: 700; color: #F2F3F8; line-height: 1.3; margin-bottom: 22px; }
+.post-cta-btn { display: inline-block; font-size: 15px; font-weight: 600; background: #84BC41; color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 8px; transition: background 0.15s; }
+.post-cta-btn:hover { background: #75a838; }
+
+/* ── BACK LINK ── */
+.post-back { display: inline-block; margin-top: 8px; font-size: 13.5px; font-weight: 500; color: #9699A2; text-decoration: none; }
+.post-back:hover { color: #84BC41; }
+
+/* ── FOOTER (matches the global site footer) ── */
+.bfooter { border-top: 1px solid rgba(255,255,255,0.08); padding: 48px 32px; background: #1a2130; margin-top: 64px; }
+.bfooter-top { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
+.bfooter-brand { font-size: 16px; font-weight: 700; color: #F2F3F8; margin-bottom: 8px; }
+.bfooter-tag { font-size: 13px; color: #6b6f7a; max-width: 260px; line-height: 1.6; }
+.bfooter-cols { display: flex; gap: 64px; flex-wrap: wrap; }
+.bfooter-h { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #F2F3F8; margin-bottom: 14px; }
+.bfooter-col a { display: block; font-size: 13px; color: #9699A2; text-decoration: none; margin-bottom: 8px; }
+.bfooter-col a:hover { color: #c8cad1; }
+.bfooter-bottom { max-width: 1200px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.bfooter-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+.bfooter-legal { display: flex; gap: 20px; }
+.bfooter-legal a { font-size: 12px; color: #6b6f7a; text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .bnav-links { display: none; }
+  .bnav-inner { padding: 0 18px; }
+  .post { padding: 40px 20px 20px; }
+  .post-body > p { font-size: 16px; line-height: 1.75; }
+  .post-cta { padding: 28px 22px; }
+}

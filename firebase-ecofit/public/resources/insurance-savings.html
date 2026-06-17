@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insurance Premium Savings Estimator | Ecofit</title>
+<meta name="description" content="See how much your fitness facility could save on liability insurance premiums with Ecofit equipment intelligence. Free interactive estimate for gym operators.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://ecofitnetworks.com/resources/insurance-savings">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Insurance Premium Savings Estimator | Ecofit">
+<meta property="og:description" content="See how much your fitness facility could save on liability insurance premiums with Ecofit equipment intelligence.">
+<meta property="og:url" content="https://ecofitnetworks.com/resources/insurance-savings">
+<meta property="og:site_name" content="Ecofit Networks">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Live ecofitnetworks.com brand tokens ── */
+  :root {
+    --bg: #14191f;
+    --nav: #1a2130;
+    --card: #111827;
+    --panel: rgba(47,53,53,0.5);
+    --panel-solid: #1a2130;
+    --text: #F2F3F8;
+    --sub: #9699A2;
+    --muted: #6b6f7a;
+    --navlink: #c8cad1;
+    --green: #84BC41;
+    --green-h: #9bd151;
+    --green-h2: #75a838;
+    --rule: rgba(255,255,255,0.08);
+    --green-border: rgba(132,188,65,0.2);
+    --field-bg: rgba(47,53,53,0.7);
+    --field-border: rgba(132,188,65,0.14);
+    --error: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; }
+
+  .grad-text {
+    background: linear-gradient(90deg,#84BC41,#c5e87a,#84BC41,#5a8a2a);
+    background-size: 300%;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: grad-flow 5s ease infinite; display: inline-block; padding-bottom: 0.08em;
+  }
+  @keyframes grad-flow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+
+  /* ── SITE NAV (matches live site) ── */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--nav); border-bottom: 1px solid var(--rule); backdrop-filter: blur(8px); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--navlink); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .btn-ghost { font-size: 13.5px; font-weight: 500; color: var(--navlink); padding: 7px 14px; }
+  .btn-ghost:hover { color: var(--text); }
+  .btn-nav-primary { font-size: 13.5px; font-weight: 600; background: var(--green); color: #fff; padding: 8px 18px; border-radius: 6px; }
+  .btn-nav-primary:hover { background: var(--green-h2); }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--nav);
+    color: var(--text);
+    padding: 48px 56px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    border-bottom: 3px solid var(--green);
+  }
+  .eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 14px;
+  }
+  .header h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--text); max-width: 560px;
+  }
+  .header-right {
+    text-align: right; font-size: 11px; color: rgba(242,243,248,0.4);
+    line-height: 1.9; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 32px 56px;
+    background: rgba(132,188,65,0.04);
+    border-bottom: 1px solid var(--rule);
+    display: flex; gap: 48px; align-items: center;
+  }
+  .intro-text { flex: 1; font-size: 14px; font-weight: 300; color: var(--sub); line-height: 1.75; }
+  .intro-text strong { color: var(--green); font-weight: 600; }
+  .intro-stat {
+    flex-shrink: 0; background: var(--card); border: 1px solid var(--green-border);
+    border-radius: 10px; padding: 24px 30px; text-align: center; width: 220px;
+  }
+  .intro-stat .stat-num { font-family: 'Raleway', sans-serif; font-size: 46px; font-weight: 800; letter-spacing: -0.04em; color: var(--green); display: block; line-height: 1; }
+  .intro-stat .stat-label { font-size: 11px; font-weight: 400; color: var(--sub); line-height: 1.5; margin-top: 10px; display: block; }
+
+  /* ── MAIN ── */
+  .main { padding: 48px 56px; max-width: 980px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 44px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .section-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(132,188,65,0.12); color: var(--green); font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-title { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+
+  /* ── FIELDS ── */
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label.field-label { font-size: 11px; font-weight: 600; color: rgba(242,243,248,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+  .field-hint { font-size: 11px; font-weight: 300; color: var(--muted); margin-top: -2px; }
+
+  input[type="number"], input[type="text"], input[type="email"], input[type="tel"], select {
+    border: 1.5px solid var(--field-border); border-radius: 6px; padding: 11px 14px;
+    font-family: 'Work Sans', sans-serif; font-size: 14px; font-weight: 300;
+    color: var(--text); background: var(--field-bg);
+    transition: border-color 0.15s; outline: none; width: 100%; -webkit-appearance: none;
+  }
+  select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%239699A2' stroke-width='2'><path d='M2 4l4 4 4-4'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 34px; }
+  select option { background: #14191f; color: var(--text); }
+  input:focus, select:focus { border-color: var(--green); }
+  input.error { border-color: var(--error); }
+  input::placeholder { color: rgba(242,243,248,0.22); }
+
+  .prefix-wrap { position: relative; }
+  .prefix-wrap .prefix { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--sub); font-size: 14px; font-weight: 500; pointer-events: none; }
+  .prefix-wrap input { padding-left: 27px; }
+
+  /* ── TOGGLE ITEMS ── */
+  .toggle-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .toggle-item { display: flex; align-items: flex-start; gap: 13px; padding: 16px 18px; border: 1.5px solid var(--field-border); border-radius: 8px; cursor: pointer; transition: border-color 0.15s, background 0.15s; user-select: none; background: rgba(47,53,53,0.6); }
+  .toggle-item:hover { border-color: rgba(132,188,65,0.45); }
+  .toggle-item.checked { border-color: var(--green); background: rgba(132,188,65,0.1); }
+  .toggle-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--green); margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+  .toggle-label { flex: 1; }
+  .toggle-name { font-size: 14px; font-weight: 600; color: var(--text); display: block; }
+  .toggle-desc { font-size: 12.5px; font-weight: 300; color: var(--sub); margin-top: 4px; display: block; line-height: 1.6; }
+  .toggle-badge { font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; background: var(--green); color: #14191f; white-space: nowrap; align-self: center; flex-shrink: 0; }
+  .toggle-badge.optional { background: rgba(255,255,255,0.08); color: var(--sub); }
+
+  /* ── RESULTS WRAPPER (blur gate) ── */
+  .results-wrapper { position: relative; border-radius: 12px; overflow: hidden; }
+  .results-blur { filter: none; }
+  .results-wrapper.unlocked .results-blur { filter: none; pointer-events: auto; user-select: auto; }
+
+  /* ── GATE OVERLAY ── */
+  .gate-overlay { position: static; display: block; margin-top: 24px; }
+  .results-wrapper.unlocked .gate-overlay { display: none; }
+  .gate-card { background: var(--panel-solid); border: 1px solid rgba(132,188,65,0.3); border-radius: 14px; padding: 36px 40px; width: 100%; max-width: 560px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+  .gate-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+  .gate-card h3 { font-family: 'Raleway', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.3; margin-bottom: 8px; }
+  .gate-card > p { font-size: 13px; font-weight: 300; color: var(--sub); margin-bottom: 24px; line-height: 1.6; }
+  .gate-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .gate-form-row.single { grid-template-columns: 1fr; }
+  .gate-field { display: flex; flex-direction: column; gap: 5px; }
+  .gate-label { font-size: 10px; font-weight: 600; color: rgba(242,243,248,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+  .gate-field input { font-size: 13px; padding: 10px 13px; }
+  .error-msg { font-size: 11px; color: var(--error); margin-top: 2px; display: none; }
+  .error-msg.visible { display: block; }
+  .gate-submit { width: 100%; background: var(--green); color: #14191f; font-family: 'Work Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; padding: 14px 20px; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .gate-submit:hover { background: var(--green-h); }
+  .gate-privacy { font-size: 11px; font-weight: 300; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+
+  /* ── RESULTS PANEL ── */
+  .results { background: var(--panel); border: 1px solid var(--green-border); border-radius: 12px; padding: 36px 40px; color: var(--text); }
+  .results-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 22px; }
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  .result-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(132,188,65,0.22); border-radius: 8px; padding: 20px 22px; }
+  .result-card-label { font-size: 10.5px; color: rgba(242,243,248,0.5); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display: block; }
+  .result-card-value { font-family: 'Raleway', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); display: block; line-height: 1.05; }
+  .result-card-value.highlight { color: var(--green); }
+  .result-card-sub { font-size: 11px; font-weight: 300; color: var(--muted); margin-top: 6px; display: block; }
+  .results-breakdown { border-top: 1px solid var(--rule); padding-top: 20px; }
+  .breakdown-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(242,243,248,0.5); margin-bottom: 12px; }
+  .breakdown-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--rule); font-size: 13px; }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-label { color: var(--sub); }
+  .breakdown-value { font-family: 'Raleway', sans-serif; color: var(--green); font-weight: 700; font-size: 14px; white-space: nowrap; }
+  .no-coverage { color: var(--muted); font-style: italic; }
+
+  /* ── SUCCESS STATE ── */
+  .success-bar { display: none; background: rgba(132,188,65,0.1); border: 1.5px solid rgba(132,188,65,0.4); border-radius: 8px; padding: 14px 20px; font-size: 13px; color: #c5e87a; font-weight: 500; margin-bottom: 20px; align-items: center; gap: 10px; }
+  .success-bar.visible { display: flex; }
+  .success-bar .checkmark { width: 20px; height: 20px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; color: #14191f; font-weight: 800; }
+
+  /* ── NOTE BOX ── */
+  .note-box { background: var(--panel); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 18px 22px; margin-top: 24px; font-size: 12.5px; font-weight: 300; color: var(--sub); line-height: 1.7; }
+  .note-box strong { color: var(--text); font-weight: 600; }
+
+  /* ── PRINT BTN ── */
+  .print-btn { display: none; align-items: center; gap: 8px; background: transparent; color: var(--navlink); font-size: 13px; font-weight: 600; padding: 12px 22px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; cursor: pointer; margin-top: 20px; transition: border-color 0.15s, color 0.15s; font-family: 'Work Sans', sans-serif; }
+  .print-btn.visible { display: inline-flex; }
+  .print-btn:hover { border-color: rgba(132,188,65,0.5); color: var(--green); }
+
+  /* ── FOOTER (matches live site) ── */
+  .footer { background: var(--bg); border-top: 1px solid var(--rule); color: var(--muted); padding: 28px 56px; font-size: 11.5px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 48px; }
+  .footer a { color: var(--green); font-weight: 600; }
+
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .header, .intro, .main, .footer { padding-left: 24px; padding-right: 24px; }
+    .header { flex-direction: column; align-items: flex-start; }
+    .header-right { text-align: left; }
+    .intro { flex-direction: column; align-items: stretch; gap: 24px; }
+    .intro-stat { width: 100%; }
+    .field-row, .results-grid, .gate-form-row { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    nav, .footer, .print-btn, .gate-overlay { display: none !important; }
+    .results-blur { filter: none !important; }
+    body { background: #fff; color: #111; font-size: 13px; }
+    .header { background: #fff; padding: 28px 40px; }
+    .header h1, .section-title, .result-card-value, .meta-v { color: #111 !important; }
+    .main { padding: 32px 40px; }
+    .results { background: #f4f7f2; }
+    .result-card-value.highlight, .breakdown-value, .result-card-value { color: #2f5012 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SITE NAV (matches live ecofitnetworks.com) -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/assets/ecofit-logo.png" alt="Ecofit" style="height:32px;width:auto;display:block;"></a>
+    <div class="nav-links">
+      <a href="/platform">Platform</a>
+      <a href="/analytics">Analytics</a>
+      <a href="/integrations">Integrations</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://assets.myecofit.com/" class="btn-ghost">Log in</a>
+      <a href="/assessment" class="btn-nav-primary">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="eyebrow">Ecofit | Insurer Partnership Programme</div>
+    <h1>How much could your facility save on <span class="grad-text">insurance premiums?</span></h1>
+  </div>
+  <div class="header-right">
+    Confidential<br>
+    Prepared by Ecofit<br>
+    2026
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-text">
+    Insurers participating in the Ecofit programme are proposing an <strong>annual liability premium reduction of 1 to 2%</strong> for operators who deploy Ecofit equipment intelligence, because connected, well-maintained equipment means fewer claims and measurably lower risk.<br><br>
+    Fill in your facility details below and we'll build your personalized savings estimate in seconds.
+  </div>
+  <div class="intro-stat">
+    <span class="stat-num">1&ndash;2%</span>
+    <span class="stat-label">Proposed annual premium reduction for Ecofit-equipped operators</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: Facility Profile -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Your Facility Profile</div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Number of Facilities</label>
+        <span class="field-hint">Total sites in your estate</span>
+        <input type="number" id="siteCount" min="1" value="1" inputmode="numeric" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label class="field-label">Facility Type</label>
+        <span class="field-hint">Select the closest match</span>
+        <select id="facilityType" onchange="calculate()">
+          <option value="Traditional staffed gym">Traditional staffed gym</option>
+          <option value="24-hour / low-staff">24-hour / low-staff</option>
+          <option value="Boutique studio">Boutique studio</option>
+          <option value="Multi-use complex">Multi-use complex</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Annual Liability Premium, Per Site</label>
+        <span class="field-hint">Your current annual insurance cost per location</span>
+        <div class="prefix-wrap">
+          <span class="prefix">$</span>
+          <input type="text" id="premium" placeholder="40,000" inputmode="numeric" oninput="calculate()">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Annual Revenue Per Site (approx.)</label>
+        <span class="field-hint">For context only, does not affect the calculation</span>
+        <div class="prefix-wrap">
+          <span class="prefix">$</span>
+          <input type="text" id="revenue" placeholder="1,200,000" inputmode="numeric" oninput="calculate()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Deployment -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Ecofit Deployment</div>
+    </div>
+
+    <p style="font-size:13px; font-weight:300; color:var(--sub); margin-bottom:18px;">Select the Ecofit components your facility would deploy. Each contributes to your qualifying premium reduction.</p>
+
+    <div class="toggle-group">
+
+      <div class="toggle-item checked" id="toggle-core">
+        <input type="checkbox" id="core" checked onchange="syncToggle('core'); calculate();">
+        <div class="toggle-label">
+          <span class="toggle-name">Core Sensor Platform</span>
+          <span class="toggle-desc">Connected sensors and maintenance tracking across every machine, the baseline data layer insurers credit for lower equipment risk.</span>
+        </div>
+        <span class="toggle-badge">Included</span>
+      </div>
+
+      <div class="toggle-item" id="toggle-frontdesk">
+        <input type="checkbox" id="frontdesk" onchange="syncToggle('frontdesk'); calculate();">
+        <div class="toggle-label">
+          <span class="toggle-name">Vision AI: Front Desk Occupancy</span>
+          <span class="toggle-desc">Camera-based occupancy and crowding intelligence at the front desk, documenting safe capacity management for your insurer.</span>
+        </div>
+        <span class="toggle-badge optional">Add-On</span>
+      </div>
+
+      <div class="toggle-item" id="toggle-changing">
+        <input type="checkbox" id="changing" onchange="syncToggle('changing'); calculate();">
+        <div class="toggle-label">
+          <span class="toggle-name">Vision AI: Changing Area Staff Checks</span>
+          <span class="toggle-desc">Privacy-safe staff check verification for changing areas, evidencing the safety routines that reduce liability exposure.</span>
+        </div>
+        <span class="toggle-badge optional">Add-On</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: Results (gated) -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Your Estimated Savings</div>
+    </div>
+
+    <div class="success-bar" id="successBar">
+      <div class="checkmark">&#10003;</div>
+      <span>Thanks. We'll email you the full Insurer Partnership overview shortly.</span>
+    </div>
+
+    <div class="results-wrapper" id="resultsWrapper">
+
+      <!-- Blurred results (always rendered live, blur removed on unlock) -->
+      <div class="results-blur" id="resultsBlur">
+        <div class="results">
+          <div class="results-eyebrow">Estimated Annual Premium Reduction</div>
+
+          <div class="results-grid">
+            <div class="result-card">
+              <span class="result-card-label">Total Annual Premium</span>
+              <span class="result-card-value" id="r-total-premium">--</span>
+              <span class="result-card-sub">Across all sites</span>
+            </div>
+            <div class="result-card">
+              <span class="result-card-label">Reduction Range</span>
+              <span class="result-card-value highlight" id="r-reduction-pct">0.7% to 1.2%</span>
+              <span class="result-card-sub">Based on deployment (capped at 2.0%)</span>
+            </div>
+            <div class="result-card">
+              <span class="result-card-label">Estimated Annual Savings</span>
+              <span class="result-card-value highlight" id="r-savings">--</span>
+              <span class="result-card-sub" id="r-savings-sub">Single site estimate</span>
+            </div>
+          </div>
+
+          <div class="results-breakdown">
+            <div class="breakdown-title">Savings by Component</div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Core Sensor Platform &middot; 0.7% to 1.2%</span>
+              <span class="breakdown-value" id="bd-core">--</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Vision AI: Front Desk Occupancy &middot; 0.2% to 0.4%</span>
+              <span id="bd-frontdesk" class="no-coverage">Not deployed</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Vision AI: Changing Area Staff Checks &middot; 0.2% to 0.4%</span>
+              <span id="bd-changing" class="no-coverage">Not deployed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gate Overlay -->
+      <div class="gate-overlay" id="gateOverlay">
+        <div class="gate-card">
+          <div class="gate-eyebrow">Optional</div>
+          <h3>Want this emailed to you, with the broker-ready overview?</h3>
+          <p>We'll send a copy of your estimate plus the Ecofit Insurer Partnership overview, so you can share the full case with your broker.</p>
+
+          <div class="gate-form-row">
+            <div class="gate-field">
+              <label class="gate-label">First Name</label>
+              <input type="text" id="g-first" placeholder="Jane">
+              <span class="error-msg" id="err-first">Required</span>
+            </div>
+            <div class="gate-field">
+              <label class="gate-label">Last Name</label>
+              <input type="text" id="g-last" placeholder="Smith">
+              <span class="error-msg" id="err-last">Required</span>
+            </div>
+          </div>
+
+          <div class="gate-form-row single">
+            <div class="gate-field">
+              <label class="gate-label">Work Email</label>
+              <input type="email" id="g-email" placeholder="jane@yourclub.com">
+              <span class="error-msg" id="err-email">Please enter a valid work email</span>
+            </div>
+          </div>
+
+          <div class="gate-form-row">
+            <div class="gate-field">
+              <label class="gate-label">Company / Club Name</label>
+              <input type="text" id="g-company" placeholder="Fitness Co.">
+              <span class="error-msg" id="err-company">Required</span>
+            </div>
+            <div class="gate-field">
+              <label class="gate-label">Phone Number</label>
+              <input type="tel" id="g-phone" placeholder="+1 (555) 000-0000">
+              <span class="error-msg" id="err-phone">Required</span>
+            </div>
+          </div>
+
+          <button class="gate-submit" onclick="submitGate()">Email Me the Full Overview</button>
+
+          <div class="gate-privacy">No spam. Your data is used by Ecofit only to follow up on your estimate.</div>
+        </div>
+      </div>
+
+    </div><!-- /results-wrapper -->
+
+    <div class="note-box" id="noteBox">
+      <strong>How to use this with your broker.</strong> Bring this figure to your insurance broker or carrier and ask whether they participate in the Ecofit Insurer Partnership Programme. The reduction is applied to your liability premium at renewal once Ecofit deployment is verified. Actual adjustments are determined by your insurer's own underwriting. Use this as the starting point for that conversation.
+    </div>
+
+    <button class="print-btn visible" id="printBtn" onclick="window.print()">&#x2193;&nbsp; Save or Print This Worksheet</button>
+
+  </div><!-- /section -->
+
+</div><!-- /main -->
+
+<div class="footer">
+  <span>This worksheet is for illustrative purposes only and does not constitute an insurance guarantee or commitment.</span>
+  <span><a href="mailto:dave@myecofit.com">dave@myecofit.com</a></span>
+</div>
+
+<script>
+  /* ============================================================
+     LEAD ENDPOINT
+     Paste your Airtable / HubSpot / Formspree webhook URL between
+     the quotes. While blank, the gate still unlocks (no POST is
+     sent) so the page can be previewed. Once set, the lead JSON
+     is POSTed on every valid submission.
+     ============================================================ */
+  const LEAD_ENDPOINT = ""; // <-- TODO: add your endpoint URL here
+
+  // ── Toggle checkbox style sync ──
+  function syncToggle(id) {
+    const cb = document.getElementById(id);
+    const wrapper = document.getElementById('toggle-' + id);
+    if (cb.checked) wrapper.classList.add('checked');
+    else wrapper.classList.remove('checked');
+  }
+
+  // Click on the wrapper row toggles the checkbox
+  document.querySelectorAll('.toggle-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      if (e.target.tagName === 'INPUT') return;
+      const cb = this.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+      syncToggle(cb.id);
+      calculate();
+    });
+  });
+
+  // ── Helpers ──
+  function num(v) { const n = parseFloat(String(v || "").replace(/[^0-9.]/g, "")); return isNaN(n) ? 0 : n; }
+  function fmt(n) { if (isNaN(n) || n === null) return '--'; return '$' + Math.round(n).toLocaleString('en-US'); }
+  function fmtRange(lo, hi) { return fmt(lo) + ' to ' + fmt(hi); }
+
+  // ── Calculate (live) ──
+  function calculate() {
+    const sites = Math.max(0, Math.round(num(document.getElementById('siteCount').value))) || 0;
+    const premiumPerSite = num(document.getElementById('premium').value);
+    const totalPremium = sites * premiumPerSite;
+
+    const hasCore     = document.getElementById('core').checked;
+    const hasFront    = document.getElementById('frontdesk').checked;
+    const hasChanging = document.getElementById('changing').checked;
+
+    const loCore = hasCore     ? 0.007 : 0, hiCore = hasCore     ? 0.012 : 0;
+    const loFD   = hasFront    ? 0.002 : 0, hiFD   = hasFront    ? 0.004 : 0;
+    const loCh   = hasChanging ? 0.002 : 0, hiCh   = hasChanging ? 0.004 : 0;
+
+    const loTotal = Math.min(loCore + loFD + loCh, 0.02);
+    const hiTotal = Math.min(hiCore + hiFD + hiCh, 0.02);
+
+    const savingsLo = totalPremium * loTotal;
+    const savingsHi = totalPremium * hiTotal;
+
+    const pctLabel = loTotal === 0
+      ? '0%'
+      : (loTotal * 100).toFixed(1) + '% to ' + (hiTotal * 100).toFixed(1) + '%';
+
+    document.getElementById('r-total-premium').textContent = totalPremium > 0 ? fmt(totalPremium) : '--';
+    document.getElementById('r-reduction-pct').textContent = pctLabel;
+    document.getElementById('r-savings').textContent = (totalPremium > 0 && loTotal > 0) ? fmtRange(savingsLo, savingsHi) : '--';
+    document.getElementById('r-savings-sub').textContent = sites > 1 ? ('Across ' + sites + ' sites') : 'Single site estimate';
+
+    document.getElementById('bd-core').innerHTML = hasCore
+      ? (totalPremium > 0 ? fmtRange(totalPremium * loCore, totalPremium * hiCore) : '--')
+      : '<span class="no-coverage">Not deployed</span>';
+    document.getElementById('bd-frontdesk').innerHTML = hasFront
+      ? (totalPremium > 0 ? fmtRange(totalPremium * loFD, totalPremium * hiFD) : '--')
+      : '<span class="no-coverage">Not deployed</span>';
+    document.getElementById('bd-changing').innerHTML = hasChanging
+      ? (totalPremium > 0 ? fmtRange(totalPremium * loCh, totalPremium * hiCh) : '--')
+      : '<span class="no-coverage">Not deployed</span>';
+  }
+
+  // ── Gate validation and unlock ──
+  function submitGate() {
+    let valid = true;
+    const fields = [
+      { id: 'g-first',   err: 'err-first',   validate: v => v.trim().length > 0 },
+      { id: 'g-last',    err: 'err-last',    validate: v => v.trim().length > 0 },
+      { id: 'g-email',   err: 'err-email',   validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id: 'g-company', err: 'err-company', validate: v => v.trim().length > 0 },
+      { id: 'g-phone',   err: 'err-phone',   validate: v => v.trim().length > 0 },
+    ];
+    fields.forEach(f => {
+      const input = document.getElementById(f.id);
+      const errEl = document.getElementById(f.err);
+      if (!f.validate(input.value)) { input.classList.add('error'); errEl.classList.add('visible'); valid = false; }
+      else { input.classList.remove('error'); errEl.classList.remove('visible'); }
+    });
+    if (!valid) return;
+
+    // Lead payload (field names match the brief)
+    const lead = {
+      firstName:        document.getElementById('g-first').value.trim(),
+      lastName:         document.getElementById('g-last').value.trim(),
+      email:            document.getElementById('g-email').value.trim(),
+      company:          document.getElementById('g-company').value.trim(),
+      phone:            document.getElementById('g-phone').value.trim(),
+      siteCount:        Math.max(0, Math.round(num(document.getElementById('siteCount').value))),
+      premiumPerSite:   num(document.getElementById('premium').value),
+      facilityType:     document.getElementById('facilityType').value,
+      coreDeployed:     document.getElementById('core').checked,
+      frontDeskDeployed: document.getElementById('frontdesk').checked,
+      changingDeployed: document.getElementById('changing').checked,
+      timestamp:        new Date().toISOString()
+    };
+
+    if (LEAD_ENDPOINT) {
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead)
+      }).catch(() => {}); // unlock regardless so UX is never blocked
+    } else {
+      console.warn('LEAD_ENDPOINT is not set — lead was not sent.', lead);
+    }
+
+    unlockResults();
+  }
+
+  function unlockResults() {
+    document.getElementById('resultsWrapper').classList.add('unlocked');
+    document.getElementById('successBar').classList.add('visible');
+    document.getElementById('noteBox').style.display = 'block';
+    document.getElementById('printBtn').classList.add('visible');
+    setTimeout(() => {
+      document.getElementById('resultsWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+
+  calculate();
+</script>
+</body>
+</html>
