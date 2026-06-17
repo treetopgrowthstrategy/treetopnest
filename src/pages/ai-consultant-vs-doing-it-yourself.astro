@@ -121,7 +121,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     <h1 class="hero-h">AI Consultant vs DIY:<br/><em style="color:#00C853;font-style:italic;">The Real Cost of Figuring It Out Yourself</em></h1>
     <p class="hero-sub">DIY feels cheaper. It usually isn't. Between the time spent learning, the wrong tools you'll try first, and the revenue you're not capturing while you experiment — the math often flips.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-p">Start with a $1,500 AI Audit →</a>
+      <a href="#contact" class="btn-p">Start with an AI Audit →</a>
       <a href="/claude-for-small-business" class="btn-g">See Claude for SMB</a>
     </div>
   </div>
@@ -372,7 +372,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
         <textarea class="input-field" id="gain" placeholder="Sales outreach, proposals, customer support, internal reporting..." style="min-height:100px;resize:vertical;"></textarea>
       </div>
       <input type="hidden" id="source" value="ai-consultant-vs-diy" />
-      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Start with a $1,500 AI Audit →</button>
+      <button class="btn-p" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm()">Start with an AI Audit →</button>
       <p style="font-size:0.75rem;color:#4A6A4A;margin-top:0.75rem;text-align:center;">We respond within one business day. No sales pressure. Just a straight conversation about what AI can actually do for your business.</p>
     </div>
     <div class="thankyou" id="thankyou">
@@ -439,7 +439,7 @@ async function submitForm() {
     document.getElementById('contact-form').style.display = 'none';
     document.getElementById('thankyou').style.display = 'block';
   } catch(e) {
-    btn.textContent = 'Start with a $1,500 AI Audit →';
+    btn.textContent = 'Start with an AI Audit →';
     btn.disabled = false;
   }
 }
