@@ -1,13 +1,15 @@
-export const prerender = false;
+// Vercel-native serverless function for Ecofit "Request a demo" submissions.
+// Placed in root api/ (not src/pages/api/) because Astro's Vercel adapter
+// conflicts with the existing root api/ functions — Astro routes in
+// src/pages/api/ are shadowed and never served. Matches the pattern of
+// api/ecofit-assessment-submit.ts and api/quiz-submit.ts.
 
-import type { APIRoute } from 'astro';
-
-const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
-const FROM_EMAIL     = 'Ecofit <bill@treetopgrowthstrategy.com>';
-const BILL_EMAIL     = import.meta.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
-const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = import.meta.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT';
-const BOOKING_LINK   = 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
+const RESEND_API_KEY   = process.env.RESEND_API_KEY;
+const FROM_EMAIL       = 'Ecofit <bill@treetopgrowthstrategy.com>';
+const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
+const BOOKING_LINK     = 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
 
 interface DemoPayload {
   name: string;
@@ -25,7 +27,7 @@ async function sendConfirmationEmail(data: DemoPayload) {
     body: JSON.stringify({
       from: FROM_EMAIL,
       to: data.email,
-      subject: `Your Ecofit Demo — Let's Pick a Time`,
+      subject: `Your Ecofit Demo: Let's Pick a Time`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:580px;margin:0 auto;background:#14191f;color:#e8eaf0;border-radius:12px;overflow:hidden;">
           <div style="background:#14191f;padding:40px 40px 0;border-bottom:1px solid rgba(132,188,65,0.15);">
@@ -34,9 +36,9 @@ async function sendConfirmationEmail(data: DemoPayload) {
             <p style="color:#9699A2;font-size:16px;line-height:1.6;margin:0 0 32px;">We've got your request and will be in touch within one business day. In the meantime, feel free to grab a time directly on our calendar.</p>
           </div>
           <div style="padding:32px 40px;">
-            <a href="${BOOKING_LINK}" style="display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:14px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.02em;">Book a Demo →</a>
+            <a href="${BOOKING_LINK}" style="display:inline-block;background:#84BC41;color:#0d1117;font-weight:700;font-size:15px;padding:14px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.02em;">Book a Demo &rarr;</a>
             <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);">
-              <p style="color:#6b6f7a;font-size:13px;margin:0;">Your info: ${data.company} · ${data.locations} location${data.locations === '1' ? '' : 's'} · ${data.email}</p>
+              <p style="color:#6b6f7a;font-size:13px;margin:0;">Your info: ${data.company} &middot; ${data.locations} location${data.locations === '1' ? '' : 's'} &middot; ${data.email}</p>
             </div>
           </div>
         </div>
@@ -53,7 +55,7 @@ async function sendBillNotification(data: DemoPayload) {
     body: JSON.stringify({
       from: FROM_EMAIL,
       to: BILL_EMAIL,
-      subject: `🎯 New Demo Request — ${data.name} @ ${data.company}`,
+      subject: `New Demo Request: ${data.name} @ ${data.company}`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;">
           <h2 style="margin:0 0 24px;">New Demo Request</h2>
@@ -73,7 +75,7 @@ async function sendBillNotification(data: DemoPayload) {
 
 async function logToAirtable(data: DemoPayload) {
   if (!AIRTABLE_API_KEY) return;
-  await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Ecofit%20Assessments`, {
+  const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Ecofit%20Assessments`, {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -88,29 +90,25 @@ async function logToAirtable(data: DemoPayload) {
       }
     })
   });
+  if (!res.ok) console.error('Airtable demo-request write failed:', res.status, await res.text());
 }
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type'
-};
+export default async function handler(req: any, res: any) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-export const OPTIONS: APIRoute = async () => {
-  return new Response(null, {
-    status: 204,
-    headers: CORS_HEADERS
-  });
-};
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
 
-export const POST: APIRoute = async ({ request }) => {
   try {
-    const data: DemoPayload = await request.json();
-    if (!data.name || !data.email || !data.company) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-      });
+    let data: DemoPayload = req.body;
+    if (typeof data === 'string') {
+      try { data = JSON.parse(data); } catch { data = {} as DemoPayload; }
+    }
+
+    if (!data || !data.name || !data.email || !data.company) {
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
     await Promise.allSettled([
@@ -119,15 +117,9 @@ export const POST: APIRoute = async ({ request }) => {
       logToAirtable(data),
     ]);
 
-    return new Response(JSON.stringify({ ok: true, bookingLink: BOOKING_LINK }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-    });
+    return res.status(200).json({ ok: true, bookingLink: BOOKING_LINK });
   } catch (err) {
-    console.error('Demo request error:', err);
-    return new Response(JSON.stringify({ error: 'Server error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-    });
+    console.error('ecofit-demo-request error:', err);
+    return res.status(500).json({ error: 'Server error' });
   }
-};
+}
