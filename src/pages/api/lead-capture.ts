@@ -274,7 +274,9 @@ export const POST: APIRoute = async ({ request }) => {
   const last_name = body.last_name?.trim() || '';
   const company = body.company?.trim() || '';
   const team_size = body.team_size?.trim() || '';
-  const gain = body.gain?.trim() || '';
+  // The /about contact form sends `message`; older inline forms send `gain`.
+  // Accept either so the prospect's actual words are never dropped.
+  const message = body.message?.trim() || body.gain?.trim() || '';
   const name = [first_name, last_name].filter(Boolean).join(' ') || email.split('@')[0];
 
   // ─── 1. Send the asset email to the user (popup case only) ─────────────
@@ -309,9 +311,8 @@ export const POST: APIRoute = async ({ request }) => {
         ['Name', name],
         ['Company', company || '—'],
         ['Team size', team_size || '—'],
-        ['What they want', gain || '—'],
         ['Source', source || 'website'],
-        ['Type', 'Inline form'],
+        ['Type', 'Contact form'],
       ];
 
   const adminHtml = `
@@ -322,7 +323,7 @@ export const POST: APIRoute = async ({ request }) => {
       <table style="width:100%;border-collapse:collapse;margin-bottom:18px;font-size:14px;">
         <tr style="background:#f9f9f9;">
           <td style="padding:9px 12px;font-weight:600;width:160px;border:1px solid #e5e5e5;">Email</td>
-          <td style="padding:9px 12px;color:#444;border:1px solid #e5e5e5;">${escape(email)}</td>
+          <td style="padding:9px 12px;color:#444;border:1px solid #e5e5e5;"><a href="mailto:${escape(email)}" style="color:#00897B;">${escape(email)}</a></td>
         </tr>
         ${ctxRows.map(([k, v], i) => `
           <tr ${i % 2 ? 'style="background:#f9f9f9;"' : ''}>
@@ -331,10 +332,15 @@ export const POST: APIRoute = async ({ request }) => {
           </tr>
         `).join('')}
       </table>
+      ${(!isPopup && message) ? `
+        <div style="margin:0 0 18px;">
+          <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#888;margin-bottom:6px;">Message</div>
+          <div style="font-size:14px;color:#222;line-height:1.6;white-space:pre-wrap;background:#f6f6f6;border:1px solid #e5e5e5;padding:14px 16px;border-radius:4px;">${escape(message)}</div>
+        </div>
+      ` : ''}
       ${isPopup ? `
         <p style="margin:14px 0;font-size:13px;color:#666;">
-          The asset email has been automatically sent to the user.
-          No manual delivery needed.
+          The asset email has been automatically sent to the user. No manual delivery needed.
         </p>
       ` : ''}
       <a href="mailto:${email}?subject=Re: Your ${isPopup ? 'download' : 'inquiry'} from Treetop"
@@ -343,7 +349,7 @@ export const POST: APIRoute = async ({ request }) => {
       </a>
     </div>
   `;
-  await sendEmail(
+  const notifiedBill = await sendEmail(
     BILL_EMAIL,
     isPopup
       ? `Lead magnet: ${asset} → ${email}`
@@ -353,13 +359,14 @@ export const POST: APIRoute = async ({ request }) => {
   );
 
   // ─── 3. Log to Airtable ─────────────────────────────────────────────────
+  let loggedAirtable = false;
   try {
     if (AIRTABLE_API_KEY && AIRTABLE_BASE_ID) {
       const notes = isPopup
         ? `Lead magnet: ${asset}\nSource: ${source}`
-        : [team_size && `Team size: ${team_size}`, gain && `What they'd gain: ${gain}`].filter(Boolean).join('\n');
+        : [team_size && `Team size: ${team_size}`, message && `Message: ${message}`].filter(Boolean).join('\n');
 
-      await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Contacts`, {
+      const at = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Contacts`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -372,10 +379,19 @@ export const POST: APIRoute = async ({ request }) => {
           },
         }),
       });
+      loggedAirtable = at.ok;
+      if (!at.ok) console.error('Airtable error:', at.status, await at.text());
     }
   } catch (err) {
     console.error('Airtable error:', err);
   }
 
-  return new Response(JSON.stringify({ success: true }), { status: 200 });
+  // The lead is "captured" if it reached Bill (email) OR was logged (Airtable).
+  // If neither worked, tell the client so it can show the direct-email fallback
+  // instead of falsely claiming the message was received.
+  const delivered = notifiedBill || loggedAirtable;
+  return new Response(
+    JSON.stringify({ success: true, delivered }),
+    { status: 200 },
+  );
 };

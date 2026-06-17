@@ -364,7 +364,15 @@ export const prerender = true;
         </form>
 
         <div class="success-msg" id="success-msg" style="margin-top:1rem;">
-          <p>Message received. We'll be in touch within one business day.</p>
+          <p>Message received. We'll be in touch within one business day. If you don't hear back, email <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a> directly.</p>
+        </div>
+
+        <div class="error-msg" id="error-msg" style="margin-top:1rem;display:none;background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);padding:1.5rem;">
+          <p style="color:#F0FFF0;font-size:0.9rem;line-height:1.6;margin:0;">
+            We couldn't send that automatically. Please email
+            <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.4);">bill@treetopgrowthstrategy.com</a>
+            directly and we'll respond within a business day. Sorry for the hiccup.
+          </p>
         </div>
       </div>
     </div>
@@ -395,9 +403,14 @@ export const prerender = true;
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const successMsg = document.getElementById('success-msg') as HTMLDivElement;
+  const errorMsg = document.getElementById('error-msg') as HTMLDivElement;
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (errorMsg) errorMsg.style.display = 'none';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
     const data = new FormData(form);
     const body = {
       first_name: data.get('first_name'),
@@ -407,16 +420,27 @@ export const prerender = true;
       message: data.get('message'),
       source: 'about',
     };
+
     try {
-      await fetch('/api/lead-capture', {
+      const res = await fetch('/api/lead-capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      form.style.display = 'none';
-      successMsg.style.display = 'block';
+      const result = await res.json().catch(() => ({} as any));
+      // Only claim success if the server actually captured the lead
+      // (notified Bill or logged it). Otherwise fall back to direct email.
+      if (res.ok && result.delivered !== false) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        throw new Error('not-delivered');
+      }
     } catch {
-      alert('Something went wrong. Please email us directly at bill@treetopgrowthstrategy.com');
+      // Show the inline fallback (no jarring alert), re-enable the button so
+      // they can retry, and surface the direct email address.
+      if (errorMsg) errorMsg.style.display = 'block';
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send message →'; }
     }
   });
 </script>
