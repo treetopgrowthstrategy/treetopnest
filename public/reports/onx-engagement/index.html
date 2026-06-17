@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>ONX Sports Engagement Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark only;
+    --bg: #050D05;
+    --panel: #0A150A;
+    --panel-2: #0E1C0E;
+    --line: rgba(0, 200, 83, 0.14);
+    --line-soft: rgba(244, 255, 244, 0.07);
+    --accent: #00C853;
+    --accent-dim: rgba(0, 200, 83, 0.13);
+    --warn: #FF5C5C;
+    --warn-dim: rgba(255, 92, 92, 0.13);
+    --caution: #FFB020;
+    --text: #EAF3EA;
+    --muted: #7E8C7E;
+    --muted-2: #5C6A5C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 60% 45% at 88% 0%, rgba(0, 200, 83, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 0% 8%, rgba(0, 200, 83, 0.05) 0%, transparent 55%);
+    background-attachment: fixed;
+  }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+
+  a { color: inherit; }
+
+  /* ============ HEADER BAND ============ */
+  header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+  header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  header h1 .accent { color: var(--accent); }
+  .subtitle { color: var(--muted); font-size: 16px; max-width: 640px; margin-bottom: 30px; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .fact { background: var(--panel); padding: 16px 18px; }
+  .fact .k { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 6px; }
+  .fact .v { font-size: 15px; font-weight: 500; line-height: 1.35; }
+  .fact .v small { display: block; color: var(--muted); font-weight: 400; font-size: 12.5px; }
+
+  /* ============ SECTION SHELL ============ */
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+  .sec-head h2 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -0.01em; }
+  .sec-head .hint { color: var(--muted); font-size: 13.5px; }
+
+  /* ============ BUDGET TRACKER ============ */
+  .budget {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 26px 28px;
+  }
+  .budget-top { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-end; justify-content: space-between; margin-bottom: 22px; }
+  .remaining-block .lab { font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .remaining-block .num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 60px; line-height: 0.9; color: var(--accent); transition: color .25s; }
+  .remaining-block .num.over { color: var(--warn); }
+  .remaining-block .unit { font-family: 'DM Sans'; font-style: normal; font-size: 18px; color: var(--muted); font-weight: 400; }
+
+  .budget-stats { display: flex; gap: 26px; flex-wrap: wrap; }
+  .bstat .k { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 3px; }
+  .bstat .v { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bstat .v small { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+  .bar-track {
+    position: relative;
+    height: 16px;
+    border-radius: 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--line-soft);
+    overflow: hidden;
+  }
+  .bar-fill {
+    position: absolute; inset: 0 auto 0 0;
+    width: 0%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgba(0,200,83,0.5), var(--accent));
+    transition: width .35s ease, background .25s;
+  }
+  .bar-fill.over { background: linear-gradient(90deg, rgba(255,92,92,0.5), var(--warn)); }
+  .bar-meta { display: flex; justify-content: space-between; margin-top: 9px; font-size: 12px; color: var(--muted); }
+  .bar-meta b { color: var(--text); font-weight: 600; }
+  .over-flag { color: var(--warn); font-weight: 600; }
+
+  /* ============ TOOLBAR ============ */
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    color: var(--text); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 9px;
+    padding: 9px 15px; cursor: pointer; transition: all .15s;
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .btn:hover { border-color: var(--accent); color: #fff; }
+  .btn.primary { background: var(--accent); color: #042b12; border-color: var(--accent); font-weight: 600; }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--muted); }
+  .btn.ghost:hover { color: var(--warn); border-color: var(--warn); }
+  .spacer { flex: 1 1 auto; }
+  .count-pill { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* ============ DELIVERABLES BOARD ============ */
+  .board { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 20px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--line); }
+  .card.done { opacity: 0.62; }
+  .card.done .card-title { text-decoration: line-through; text-decoration-color: var(--muted-2); }
+
+  .card-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+    padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+  }
+  .chip.tag { background: var(--accent-dim); color: var(--accent); }
+  .chip.week { background: rgba(244,255,244,0.06); color: var(--muted); letter-spacing: 0.1em; }
+  .card-title { font-size: 16.5px; font-weight: 500; line-height: 1.3; }
+
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); }
+  .field .num-input, .field select {
+    font-family: inherit; font-size: 14px; color: var(--text);
+    background: var(--panel-2); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 8px 10px; width: 100%;
+    -webkit-appearance: none; appearance: none;
+  }
+  .field .num-input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+  .field.full { grid-column: 1 / -1; }
+  select.status {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%237E8C7E' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat; background-position: right 11px center; padding-right: 28px;
+  }
+  select.status[data-status="In progress"] { color: var(--caution); border-color: rgba(255,176,32,0.35); }
+  select.status[data-status="Done"] { color: var(--accent); border-color: rgba(0,200,83,0.35); }
+
+  .card-foot { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line-soft); padding-top: 11px; }
+  .card-foot .est-note { font-size: 12px; color: var(--muted); }
+  .card-foot .est-note b { color: var(--text); }
+  .del-task { background: none; border: none; color: var(--muted-2); cursor: pointer; font-size: 12px; padding: 4px; transition: color .15s; }
+  .del-task:hover { color: var(--warn); }
+
+  .empty { color: var(--muted); font-size: 14px; padding: 28px; text-align: center; border: 1px dashed var(--line-soft); border-radius: 14px; }
+
+  /* ============ ADD TASK FORM ============ */
+  .add-form {
+    margin-top: 18px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 20px; display: none;
+  }
+  .add-form.open { display: block; }
+  .add-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px; align-items: end; }
+  .add-grid .field input[type=text], .add-grid .field input[type=number], .add-grid .field select {
+    font-family: inherit; font-size: 14px; color: var(--text);
+    background: var(--panel-2); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 9px 11px; width: 100%; -webkit-appearance: none; appearance: none;
+  }
+  .add-grid .field input:focus, .add-grid .field select:focus { outline: none; border-color: var(--accent); }
+  .add-actions { display: flex; gap: 10px; margin-top: 14px; }
+
+  /* ============ COLLAPSIBLE PANELS ============ */
+  .panel { background: var(--panel); border: 1px solid var(--line-soft); border-radius: 14px; overflow: hidden; }
+  .panel + .panel { margin-top: 14px; }
+  .panel-head {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    padding: 18px 22px; cursor: pointer; background: none; border: none;
+    color: var(--text); font-family: inherit; text-align: left;
+  }
+  .panel-head .ttl { font-size: 17px; font-weight: 600; flex: 1; }
+  .panel-head .ttl small { display: block; font-weight: 400; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .panel-head .caret { color: var(--muted); transition: transform .2s; font-size: 13px; }
+  .panel.collapsed .panel-head .caret { transform: rotate(-90deg); }
+  .panel-body { padding: 0 22px 22px; }
+  .panel.collapsed .panel-body { display: none; }
+
+  .guard-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--warn-dim); border: 1px solid rgba(255,92,92,0.28);
+    border-radius: 10px; padding: 13px 16px; margin-bottom: 18px; font-size: 13.5px; color: #ffd5d5;
+  }
+  .guard-banner svg { flex-shrink: 0; margin-top: 2px; }
+  .scope-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+  .scope-list li {
+    display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: var(--text);
+    background: var(--panel-2); border: 1px solid var(--line-soft); border-radius: 10px; padding: 13px 15px;
+  }
+  .scope-list li::before { content: 'P2'; flex-shrink: 0; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; color: var(--caution); background: rgba(255,176,32,0.12); border-radius: 5px; padding: 3px 6px; margin-top: 1px; }
+  .scope-list li span small { display: block; color: var(--muted); font-size: 12.5px; font-weight: 400; }
+
+  /* ============ PEOPLE ============ */
+  .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .person {
+    background: var(--panel); border: 1px solid var(--line-soft); border-radius: 14px; padding: 20px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .person-top { display: flex; gap: 14px; align-items: center; }
+  .avatar {
+    width: 46px; height: 46px; border-radius: 11px; flex-shrink: 0;
+    background: var(--accent-dim); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; color: var(--accent);
+  }
+  .person-id .name { font-size: 17px; font-weight: 600; line-height: 1.2; }
+  .person-id .role { font-size: 12.5px; color: var(--accent); letter-spacing: 0.02em; }
+  .person .rel { font-size: 13.5px; color: var(--muted); }
+  .person .rel b { color: var(--text); font-weight: 500; }
+  .person textarea {
+    font-family: inherit; font-size: 13.5px; color: var(--text); line-height: 1.5;
+    background: var(--panel-2); border: 1px solid var(--line-soft); border-radius: 9px;
+    padding: 10px 12px; width: 100%; resize: vertical; min-height: 64px;
+  }
+  .person textarea:focus { outline: none; border-color: var(--accent); }
+  .person .note-lab { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); margin-bottom: -7px; }
+
+  footer { padding: 34px 0 60px; color: var(--muted-2); font-size: 12.5px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer .saved { display: inline-flex; align-items: center; gap: 7px; }
+
+  @media (max-width: 680px) {
+    .add-grid { grid-template-columns: 1fr 1fr; }
+    .budget-top { gap: 18px; }
+    .remaining-block .num { font-size: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============ HEADER BAND ============ -->
+  <header>
+    <div class="eyebrow"><span class="dot"></span> Internal Command Center</div>
+    <h1>ONX Sports <span class="accent serif">engagement</span></h1>
+    <p class="subtitle">Focus and budget the 20 hours for month one of Phase 1. Log actuals as you go, stay inside scope, attack the right work first.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="k">Client</div><div class="v">Desmond Garcia<small>ONX Sports</small></div></div>
+      <div class="fact"><div class="k">Phase</div><div class="v">Phase 1<small>Foundation &amp; Prioritization</small></div></div>
+      <div class="fact"><div class="k">Term</div><div class="v">Jun 15 to Aug 14<small>2026</small></div></div>
+      <div class="fact"><div class="k">This month</div><div class="v">20 hours<small>$3,000 ($150 / hr)</small></div></div>
+      <div class="fact"><div class="k">Reporting to</div><div class="v">Desmond Croan<small>Engagement lead</small></div></div>
+      <div class="fact"><div class="k">Point of contact</div><div class="v">Sarah Arango<small>Day to day</small></div></div>
+    </div>
+  </header>
+
+  <!-- ============ BUDGET TRACKER ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>Hours budget</h2>
+      <span class="hint">20.0 hour cap for the month. Logged is the sum of actual hours across the board.</span>
+    </div>
+    <div class="budget">
+      <div class="budget-top">
+        <div class="remaining-block">
+          <div class="lab" id="remLab">Hours remaining</div>
+          <div><span class="num" id="remNum">20.0</span><span class="unit"> hrs</span></div>
+        </div>
+        <div class="budget-stats">
+          <div class="bstat"><div class="k">Logged</div><div class="v"><span id="loggedVal">0.0</span><small> / 20</small></div></div>
+          <div class="bstat"><div class="k">Planned (est)</div><div class="v"><span id="estVal">0.0</span><small> hrs</small></div></div>
+          <div class="bstat"><div class="k">Tasks done</div><div class="v"><span id="doneVal">0</span><small> / <span id="totalVal">0</span></small></div></div>
+        </div>
+      </div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+      <div class="bar-meta">
+        <span><b id="pctVal">0%</b> of cap used</span>
+        <span id="overMsg"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DELIVERABLES BOARD ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>Deliverables board</h2>
+      <span class="hint">Edit estimates and actuals inline. Status drives the budget and Focus view.</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" id="focusBtn">Focus mode</button>
+      <span class="count-pill" id="focusNote"></span>
+      <span class="spacer"></span>
+      <button class="btn primary" id="addBtn">+ Add task</button>
+      <button class="btn ghost" id="resetBtn">Reset board</button>
+    </div>
+
+    <div class="add-form" id="addForm">
+      <div class="add-grid">
+        <div class="field"><label for="ntTitle">Task</label><input type="text" id="ntTitle" placeholder="What needs doing"></div>
+        <div class="field"><label for="ntTag">Workstream</label>
+          <input type="text" id="ntTag" list="tagList" placeholder="e.g. GTM">
+          <datalist id="tagList"></datalist>
+        </div>
+        <div class="field"><label for="ntWeek">Target week</label>
+          <select id="ntWeek">
+            <option>W1</option><option>W2</option><option>W3</option><option>W4</option>
+          </select>
+        </div>
+        <div class="field"><label for="ntEst">Est. hrs</label><input type="number" id="ntEst" min="0" step="0.25" value="1"></div>
+      </div>
+      <div class="add-actions">
+        <button class="btn primary" id="saveTaskBtn">Add to board</button>
+        <button class="btn" id="cancelTaskBtn">Cancel</button>
+      </div>
+    </div>
+
+    <div class="board" id="board"></div>
+  </section>
+
+  <!-- ============ GUARDRAIL ============ -->
+  <section>
+    <div class="sec-head"><h2>Scope guardrail</h2><span class="hint">Reference only. Not tasks.</span></div>
+    <div class="panel" id="guardPanel">
+      <button class="panel-head" data-toggle="guardPanel">
+        <span class="ttl">Phase 2 &amp; out of scope<small>If a request is here and not on the board, confirm scope before spending hours on it.</small></span>
+        <span class="caret">&#9660;</span>
+      </button>
+      <div class="panel-body">
+        <div class="guard-banner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.42 0Z" stroke="#FF5C5C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Month one is foundation and prioritization. The items below are explicitly later phase or out of scope. Protect the 20 hours.</span>
+        </div>
+        <ul class="scope-list">
+          <li><span>Campaign execution &amp; paid media buying<small>Planning is in scope, running and managing spend is not.</small></span></li>
+          <li><span>Creative production &amp; asset design<small>Direction yes, finished design and copy production no.</small></span></li>
+          <li><span>Merch production &amp; vendor sourcing<small>Approach and recommendation only this phase.</small></span></li>
+          <li><span>Build &amp; implementation work<small>Web, email automation, and CRM builds are later phase.</small></span></li>
+          <li><span>Always on account management<small>Ad hoc support beyond the 20 hour cap is out of scope.</small></span></li>
+          <li><span>Recurring reporting dashboards<small>Phase 1 ends in a single findings readout, not ongoing reporting.</small></span></li>
+          <li><span>Sales enablement collateral<small>Decks, one pagers, and battlecards come after foundation.</small></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PEOPLE ============ -->
+  <section style="border-bottom:none;">
+    <div class="sec-head"><h2>People</h2><span class="hint">Who is who, and how to engage. Notes save locally.</span></div>
+    <div class="people" id="people"></div>
+  </section>
+
+  <footer>
+    <span class="saved"><span class="dot"></span> Saved locally to this browser. <span id="savedTime"></span></span>
+    <span>ONX Sports x Treetop Growth Strategy &middot; Phase 1 month 1</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var STORE_KEY = "onx-engagement-v1";
+  var CAP = 20;
+
+  var SEED_TASKS = [
+    { id: "t1", title: "Kickoff and stakeholder alignment with Desmond and Sarah", tag: "Discovery", week: "W1", est: 2,   actual: 0, status: "Not started" },
+    { id: "t2", title: "Audit current GTM motion, channels, and assets",            tag: "Discovery", week: "W1", est: 3,   actual: 0, status: "Not started" },
+    { id: "t3", title: "Review merch approach and current catalog",                 tag: "Brand/Merch", week: "W2", est: 2,   actual: 0, status: "Not started" },
+    { id: "t4", title: "Map ideal customer profile and priority segments",          tag: "GTM",       week: "W2", est: 3,   actual: 0, status: "Not started" },
+    { id: "t5", title: "Establish baseline metrics and confirm data access",        tag: "Analytics", week: "W2", est: 1.5, actual: 0, status: "Not started" },
+    { id: "t6", title: "Build prioritization framework and rank opportunities",     tag: "Strategy",  week: "W3", est: 3,   actual: 0, status: "Not started" },
+    { id: "t7", title: "Draft 90 day roadmap outline",                              tag: "GTM",       week: "W3", est: 2.5, actual: 0, status: "Not started" },
+    { id: "t8", title: "Phase 1 findings and prioritization readout",               tag: "Strategy",  week: "W4", est: 3,   actual: 0, status: "Not started" }
+  ];
+
+  var SEED_PEOPLE = {
+    garcia: { name: "Desmond Garcia", role: "Client, ONX Sports", rel: "The client. Work serves his goals for ONX.", note: "" },
+    croan:  { name: "Desmond Croan",  role: "Reporting line",     rel: "I report to Desmond Croan on this engagement.", note: "" },
+    arango: { name: "Sarah Arango",   role: "Point of contact",   rel: "Day to day POC. Route scheduling and questions here.", note: "" }
+  };
+
+  var STATUSES = ["Not started", "In progress", "Done"];
+
+  // ---- state ----
+  var state = load();
+  var focusMode = false;
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        var p = JSON.parse(raw);
+        return {
+          tasks: Array.isArray(p.tasks) ? p.tasks : clone(SEED_TASKS),
+          people: p.people || clone(SEED_PEOPLE)
+        };
+      }
+    } catch (e) {}
+    return { tasks: clone(SEED_TASKS), people: clone(SEED_PEOPLE) };
+  }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+    stampSaved();
+  }
+  function num(v) { var n = parseFloat(v); return isNaN(n) || n < 0 ? 0 : n; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function uid() { return "t" + Math.floor((performance.now() % 1) * 1e9 + state.tasks.length * 1000) + state.tasks.length; }
+
+  // ---- elements ----
+  var board = document.getElementById("board");
+  var people = document.getElementById("people");
+
+  // ============ BUDGET ============
+  function renderBudget() {
+    var logged = state.tasks.reduce(function (s, t) { return s + num(t.actual); }, 0);
+    var est = state.tasks.reduce(function (s, t) { return s + num(t.est); }, 0);
+    var done = state.tasks.filter(function (t) { return t.status === "Done"; }).length;
+    var remaining = CAP - logged;
+    var over = remaining < 0;
+    var pct = Math.min(100, (logged / CAP) * 100);
+
+    var remNum = document.getElementById("remNum");
+    remNum.textContent = (over ? "+" : "") + Math.abs(remaining).toFixed(1);
+    remNum.classList.toggle("over", over);
+    document.getElementById("remLab").textContent = over ? "Hours over budget" : "Hours remaining";
+
+    document.getElementById("loggedVal").textContent = logged.toFixed(1);
+    document.getElementById("estVal").textContent = est.toFixed(1);
+    document.getElementById("doneVal").textContent = done;
+    document.getElementById("totalVal").textContent = state.tasks.length;
+
+    var fill = document.getElementById("barFill");
+    fill.style.width = pct + "%";
+    fill.classList.toggle("over", over);
+    document.getElementById("pctVal").textContent = Math.round((logged / CAP) * 100) + "%";
+
+    var overMsg = document.getElementById("overMsg");
+    if (over) {
+      overMsg.innerHTML = '<span class="over-flag">Over cap by ' + Math.abs(remaining).toFixed(1) + ' hrs</span>';
+    } else if (est > CAP) {
+      overMsg.innerHTML = '<span style="color:var(--caution)">Planned est is ' + est.toFixed(1) + ' hrs, over the 20 hr cap</span>';
+    } else {
+      overMsg.textContent = "";
+    }
+  }
+
+  // ============ BOARD ============
+  function weekRank(w) { var m = String(w).match(/\d+/); return m ? parseInt(m[0], 10) : 99; }
+
+  function renderBoard() {
+    var list = state.tasks.slice();
+    if (focusMode) {
+      list = list.filter(function (t) { return t.status !== "Done"; })
+                 .sort(function (a, b) { return weekRank(a.week) - weekRank(b.week); });
+    }
+
+    if (!list.length) {
+      board.innerHTML = '<div class="empty">' + (focusMode
+        ? "Nothing open. Every task is marked Done. Turn off Focus mode to see the full board."
+        : "No tasks yet. Use Add task to build your board.") + '</div>';
+    } else {
+      board.innerHTML = list.map(cardHTML).join("");
+    }
+
+    document.getElementById("focusNote").textContent = focusMode
+      ? ("Focus mode on. " + list.length + " open task" + (list.length === 1 ? "" : "s") + " by week.")
+      : "";
+    refreshTagList();
+  }
+
+  function cardHTML(t) {
+    var statusOpts = STATUSES.map(function (s) {
+      return '<option' + (s === t.status ? " selected" : "") + '>' + s + '</option>';
+    }).join("");
+    return '' +
+      '<div class="card ' + (t.status === "Done" ? "done" : "") + '" data-id="' + t.id + '">' +
+        '<div class="card-tags">' +
+          '<span class="chip tag">' + esc(t.tag || "General") + '</span>' +
+          '<span class="chip week">' + esc(t.week || "TBD") + '</span>' +
+        '</div>' +
+        '<div class="card-title">' + esc(t.title) + '</div>' +
+        '<div class="card-grid">' +
+          '<div class="field"><label>Est. hrs</label>' +
+            '<input class="num-input" type="number" min="0" step="0.25" value="' + t.est + '" data-act="est"></div>' +
+          '<div class="field"><label>Actual hrs</label>' +
+            '<input class="num-input" type="number" min="0" step="0.25" value="' + t.actual + '" data-act="actual"></div>' +
+          '<div class="field full"><label>Status</label>' +
+            '<select class="status" data-act="status" data-status="' + esc(t.status) + '">' + statusOpts + '</select></div>' +
+        '</div>' +
+        '<div class="card-foot">' +
+          '<span class="est-note">Actual <b>' + num(t.actual).toFixed(2).replace(/\.00$/, "") + '</b> vs est ' + num(t.est) + ' hrs</span>' +
+          '<button class="del-task" data-act="delete" title="Remove task">Remove</button>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function findTask(id) { for (var i = 0; i < state.tasks.length; i++) { if (state.tasks[i].id === id) return state.tasks[i]; } return null; }
+
+  board.addEventListener("input", function (e) {
+    var el = e.target;
+    var act = el.getAttribute("data-act");
+    if (!act) return;
+    var id = el.closest(".card").getAttribute("data-id");
+    var t = findTask(id);
+    if (!t) return;
+    if (act === "est") { t.est = num(el.value); }
+    else if (act === "actual") { t.actual = num(el.value); }
+    save();
+    renderBudget();
+    // light update of the foot text without full re-render to keep focus
+    var foot = el.closest(".card").querySelector(".est-note");
+    if (foot) foot.innerHTML = "Actual <b>" + num(t.actual).toFixed(2).replace(/\.00$/, "") + "</b> vs est " + num(t.est) + " hrs";
+  });
+
+  board.addEventListener("change", function (e) {
+    var el = e.target;
+    if (el.getAttribute("data-act") !== "status") return;
+    var card = el.closest(".card");
+    var t = findTask(card.getAttribute("data-id"));
+    if (!t) return;
+    t.status = el.value;
+    save();
+    renderBudget();
+    renderBoard();
+  });
+
+  board.addEventListener("click", function (e) {
+    if (e.target.getAttribute("data-act") !== "delete") return;
+    var id = e.target.closest(".card").getAttribute("data-id");
+    state.tasks = state.tasks.filter(function (t) { return t.id !== id; });
+    save();
+    renderBudget();
+    renderBoard();
+  });
+
+  // ============ FOCUS ============
+  var focusBtn = document.getElementById("focusBtn");
+  focusBtn.addEventListener("click", function () {
+    focusMode = !focusMode;
+    focusBtn.classList.toggle("active", focusMode);
+    focusBtn.textContent = focusMode ? "Focus mode: on" : "Focus mode";
+    renderBoard();
+  });
+
+  // ============ ADD TASK ============
+  var addForm = document.getElementById("addForm");
+  document.getElementById("addBtn").addEventListener("click", function () {
+    addForm.classList.toggle("open");
+    if (addForm.classList.contains("open")) document.getElementById("ntTitle").focus();
+  });
+  document.getElementById("cancelTaskBtn").addEventListener("click", function () {
+    addForm.classList.remove("open");
+  });
+  document.getElementById("saveTaskBtn").addEventListener("click", function () {
+    var title = document.getElementById("ntTitle").value.trim();
+    if (!title) { document.getElementById("ntTitle").focus(); return; }
+    state.tasks.push({
+      id: uid(),
+      title: title,
+      tag: document.getElementById("ntTag").value.trim() || "General",
+      week: document.getElementById("ntWeek").value,
+      est: num(document.getElementById("ntEst").value),
+      actual: 0,
+      status: "Not started"
+    });
+    document.getElementById("ntTitle").value = "";
+    document.getElementById("ntTag").value = "";
+    document.getElementById("ntEst").value = "1";
+    addForm.classList.remove("open");
+    save();
+    renderBudget();
+    renderBoard();
+  });
+
+  function refreshTagList() {
+    var tags = {};
+    state.tasks.forEach(function (t) { if (t.tag) tags[t.tag] = 1; });
+    document.getElementById("tagList").innerHTML = Object.keys(tags).map(function (t) {
+      return '<option value="' + esc(t) + '">';
+    }).join("");
+  }
+
+  // ============ RESET ============
+  document.getElementById("resetBtn").addEventListener("click", function () {
+    if (!confirm("Reset the board to the default Phase 1 tasks? Your edits and custom tasks will be cleared. People notes are kept.")) return;
+    state.tasks = clone(SEED_TASKS);
+    save();
+    renderBudget();
+    renderBoard();
+  });
+
+  // ============ COLLAPSIBLE ============
+  document.querySelectorAll("[data-toggle]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.getElementById(btn.getAttribute("data-toggle")).classList.toggle("collapsed");
+    });
+  });
+  document.getElementById("guardPanel").classList.add("collapsed");
+
+  // ============ PEOPLE ============
+  function initials(name) { return name.split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase(); }
+  function renderPeople() {
+    var keys = ["garcia", "croan", "arango"];
+    people.innerHTML = keys.map(function (k) {
+      var p = state.people[k] || SEED_PEOPLE[k];
+      return '' +
+        '<div class="person">' +
+          '<div class="person-top">' +
+            '<div class="avatar">' + initials(p.name) + '</div>' +
+            '<div class="person-id"><div class="name">' + esc(p.name) + '</div><div class="role">' + esc(p.role) + '</div></div>' +
+          '</div>' +
+          '<div class="rel">' + esc(p.rel) + '</div>' +
+          '<div class="note-lab">My notes</div>' +
+          '<textarea data-person="' + k + '" placeholder="Context, preferences, next touchpoint...">' + esc(p.note || "") + '</textarea>' +
+        '</div>';
+    }).join("");
+  }
+  people.addEventListener("input", function (e) {
+    var k = e.target.getAttribute("data-person");
+    if (!k) return;
+    if (!state.people[k]) state.people[k] = clone(SEED_PEOPLE[k]);
+    state.people[k].note = e.target.value;
+    save();
+  });
+
+  // ============ SAVED STAMP ============
+  function stampSaved() {
+    var el = document.getElementById("savedTime");
+    try {
+      var d = new Date();
+      el.textContent = "Last edit " + d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    } catch (e) {}
+  }
+
+  // ============ INIT ============
+  renderBudget();
+  renderBoard();
+  renderPeople();
+})();
+</script>
+</body>
+</html>
