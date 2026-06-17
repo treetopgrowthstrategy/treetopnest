@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Get a Custom Ecofit Quote</title><meta name="description" content="Tell us about your network and we'll put together pricing tailored to your operation. Takes 2 minutes."><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/claude-training.BXgpkJbM.css">
+<link rel="stylesheet" href="/_astro/ecofit-assessment.DL6gwvP4.css">
+<style>
+  .ec-multi-options { display:flex; flex-direction:column; gap:10px; }
+  .ec-multi-opt { display:flex; align-items:center; gap:14px; background:#1a2130; border:1.5px solid rgba(255,255,255,0.08); border-radius:12px; padding:15px 20px; cursor:pointer; transition:border-color .18s, background .18s; font-size:15px; font-weight:400; color:#F2F3F8; text-align:left; width:100%; }
+  .ec-multi-opt:hover { border-color:rgba(132,188,65,0.35); background:#1e2738; }
+  .ec-multi-opt.selected { border-color:#84BC41; background:rgba(132,188,65,0.08); }
+  .ec-multi-check { width:18px; height:18px; border-radius:4px; border:2px solid rgba(255,255,255,0.2); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:border-color .18s, background .18s; }
+  .ec-multi-opt.selected .ec-multi-check { border-color:#84BC41; background:#84BC41; }
+  .ec-multi-check-svg { display:none; }
+  .ec-multi-opt.selected .ec-multi-check-svg { display:block; }
+  .ec-next-btn { margin-top:20px; background:#84BC41; color:#111; font-family:'Raleway',sans-serif; font-size:15px; font-weight:700; border:none; border-radius:10px; padding:14px 32px; cursor:pointer; letter-spacing:.01em; transition:background .18s; }
+  .ec-next-btn:hover { background:#9ace52; }
+  .ec-next-btn:disabled { opacity:.4; cursor:not-allowed; }
+</style>
+</head>
+<body>
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<nav class="ec-nav">
+  <img src="/assets/ecofit-logo-light.png" alt="Ecofit" onerror="this.outerHTML='<span class=&quot;ec-nav-fallback&quot;>ecofit</span>'">
+  <span class="ec-nav-label">Custom Quote</span>
+  <a href="https://assets.myecofit.com/" style="margin-left:auto;font-size:13.5px;font-weight:500;color:#374151;text-decoration:none;padding:7px 14px;" target="_blank">Log in</a>
+</nav>
+
+<!-- INTRO -->
+<div class="ec-step" id="step-0">
+  <div class="ec-inner">
+    <div class="ec-center">
+      <div class="ec-eyebrow">2 Minutes · No Commitment · Personalized Pricing</div>
+      <h1 class="ec-h1">
+        Pricing that fits<br>
+        <em>your operation.</em>
+      </h1>
+      <p class="ec-intro-sub">
+        Ecofit pricing is built around your network — number of locations, equipment volume, and what you're trying to solve. Six quick questions and we'll put together something specific to you.
+      </p>
+      <div class="ec-stats">
+        <div class="ec-stat">
+          <div class="ec-stat-n">6</div>
+          <div class="ec-stat-l">Short questions about your network</div>
+        </div>
+        <div class="ec-stat">
+          <div class="ec-stat-n">1 day</div>
+          <div class="ec-stat-l">Typical response time from our team</div>
+        </div>
+        <div class="ec-stat">
+          <div class="ec-stat-n">0</div>
+          <div class="ec-stat-l">Commitment required to get a quote</div>
+        </div>
+      </div>
+      <div>
+        <button class="ec-btn" onclick="startQuote()">Get My Custom Quote →</button>
+        <span class="ec-btn-note">No sales pressure. Just a number that makes sense for your network.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Q1: Locations -->
+<div class="ec-step hidden" id="step-q0">
+  <div class="ec-inner">
+    <div class="ec-q-meta">
+      <span class="ec-q-num">01 / 06</span>
+      <span class="ec-q-div"></span>
+      <span class="ec-q-cat">Your Network</span>
+    </div>
+    <div class="ec-q-text">How many locations do you currently operate?</div>
+    <div class="ec-q-hint">Include all active locations — owned, managed, or franchised.</div>
+    <div class="ec-options">
+      <button class="ec-opt" type="button" onclick="selectOpt('locations','1',0,this)"><span class="ec-opt-dot"></span><span>1 location</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('locations','2-5',0,this)"><span class="ec-opt-dot"></span><span>2–5 locations</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('locations','6-15',0,this)"><span class="ec-opt-dot"></span><span>6–15 locations</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('locations','16-50',0,this)"><span class="ec-opt-dot"></span><span>16–50 locations</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('locations','51-100',0,this)"><span class="ec-opt-dot"></span><span>51–100 locations</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('locations','100+',0,this)"><span class="ec-opt-dot"></span><span>100+ locations</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- Q2: Equipment per location -->
+<div class="ec-step hidden" id="step-q1">
+  <div class="ec-inner">
+    <div class="ec-q-meta">
+      <span class="ec-q-num">02 / 06</span>
+      <span class="ec-q-div"></span>
+      <span class="ec-q-cat">Your Network</span>
+    </div>
+    <div class="ec-q-text">Roughly how many pieces of equipment does your average location run?</div>
+    <div class="ec-q-hint">Count everything — cardio, strength, functional, specialty. An estimate is fine.</div>
+    <div class="ec-options">
+      <button class="ec-opt" type="button" onclick="selectOpt('equipment','under-30',1,this)"><span class="ec-opt-dot"></span><span>Under 30 pieces</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('equipment','30-75',1,this)"><span class="ec-opt-dot"></span><span>30–75 pieces</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('equipment','76-150',1,this)"><span class="ec-opt-dot"></span><span>76–150 pieces</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('equipment','151-300',1,this)"><span class="ec-opt-dot"></span><span>151–300 pieces</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('equipment','300+',1,this)"><span class="ec-opt-dot"></span><span>300+ pieces</span></button>
+    </div>
+    <button class="ec-back" onclick="prevStep(1)">&#8592; Back</button>
+  </div>
+</div>
+
+<!-- Q3: Equipment brands (multi-select) -->
+<div class="ec-step hidden" id="step-q2">
+  <div class="ec-inner">
+    <div class="ec-q-meta">
+      <span class="ec-q-num">03 / 06</span>
+      <span class="ec-q-div"></span>
+      <span class="ec-q-cat">Equipment Profile</span>
+    </div>
+    <div class="ec-q-text">Which equipment brands are in your network?</div>
+    <div class="ec-q-hint">Select all that apply.</div>
+    <div class="ec-multi-options" id="brands-options">
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','matrix',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Matrix Fitness</span>
+      </button>
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','life-fitness',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Life Fitness</span>
+      </button>
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','precor',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Precor</span>
+      </button>
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','core-hf',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>CORE Health &amp; Fitness (StairMaster, Nautilus, Schwinn, Star Trac)</span>
+      </button>
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','woodway',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Woodway</span>
+      </button>
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','concept2',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Concept2</span>
+      </button>
+      <button class="ec-multi-opt" type="button" onclick="toggleMulti('brands','other',this)">
+        <span class="ec-multi-check"><svg class="ec-multi-check-svg" width="11" height="9" viewBox="0 0 11 9" fill="none"><polyline points="1 4.5 4 7.5 10 1.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Other / Mixed fleet</span>
+      </button>
+    </div>
+    <button class="ec-next-btn" id="brands-next" onclick="advanceFromMulti('brands',2)" disabled>Next &rarr;</button>
+    <button class="ec-back" onclick="prevStep(2)">&#8592; Back</button>
+  </div>
+</div>
+
+<!-- Q4: Biggest knowledge gap -->
+<div class="ec-step hidden" id="step-q3">
+  <div class="ec-inner">
+    <div class="ec-q-meta">
+      <span class="ec-q-num">04 / 06</span>
+      <span class="ec-q-div"></span>
+      <span class="ec-q-cat">Where You Are Today</span>
+    </div>
+    <div class="ec-q-text">What's your biggest gap in equipment knowledge right now?</div>
+    <div class="ec-q-hint">Pick the one that stings the most.</div>
+    <div class="ec-options">
+      <button class="ec-opt" type="button" onclick="selectOpt('gap','usage',3,this)"><span class="ec-opt-dot"></span><span>I don't know which equipment is actually being used</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('gap','failures',3,this)"><span class="ec-opt-dot"></span><span>I can't tell when equipment is about to fail — we find out when members do</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('gap','capex',3,this)"><span class="ec-opt-dot"></span><span>My capex decisions aren't backed by real utilization data</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('gap','visibility',3,this)"><span class="ec-opt-dot"></span><span>I don't have consistent visibility across all my locations</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('gap','all',3,this)"><span class="ec-opt-dot"></span><span>Honestly, all of the above</span></button>
+    </div>
+    <button class="ec-back" onclick="prevStep(3)">&#8592; Back</button>
+  </div>
+</div>
+
+<!-- Q5: Service platform -->
+<div class="ec-step hidden" id="step-q4">
+  <div class="ec-inner">
+    <div class="ec-q-meta">
+      <span class="ec-q-num">05 / 06</span>
+      <span class="ec-q-div"></span>
+      <span class="ec-q-cat">Current Stack</span>
+    </div>
+    <div class="ec-q-text">Are you currently using a service or maintenance management platform?</div>
+    <div class="ec-q-hint">Ecofit layers on top of these — it doesn't replace them.</div>
+    <div class="ec-options">
+      <button class="ec-opt" type="button" onclick="selectOpt('service_platform','woven',4,this)"><span class="ec-opt-dot"></span><span>Yes — Woven</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('service_platform','service-channel',4,this)"><span class="ec-opt-dot"></span><span>Yes — Service Channel</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('service_platform','fitness-ems',4,this)"><span class="ec-opt-dot"></span><span>Yes — Fitness EMS</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('service_platform','other-platform',4,this)"><span class="ec-opt-dot"></span><span>Yes — something else</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('service_platform','none',4,this)"><span class="ec-opt-dot"></span><span>No — we manage it manually or through our equipment vendor</span></button>
+    </div>
+    <button class="ec-back" onclick="prevStep(4)">&#8592; Back</button>
+  </div>
+</div>
+
+<!-- Q6: Timeline -->
+<div class="ec-step hidden" id="step-q5">
+  <div class="ec-inner">
+    <div class="ec-q-meta">
+      <span class="ec-q-num">06 / 06</span>
+      <span class="ec-q-div"></span>
+      <span class="ec-q-cat">Timing</span>
+    </div>
+    <div class="ec-q-text">What's your timeline for getting something in place?</div>
+    <div class="ec-q-hint">No wrong answer — this just helps us prioritize.</div>
+    <div class="ec-options">
+      <button class="ec-opt" type="button" onclick="selectOpt('timeline','asap',5,this)"><span class="ec-opt-dot"></span><span>As soon as possible — this is a priority right now</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('timeline','3-6mo',5,this)"><span class="ec-opt-dot"></span><span>3–6 months — planning ahead for next cycle</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('timeline','6-12mo',5,this)"><span class="ec-opt-dot"></span><span>6–12 months — budgeting for next year</span></button>
+      <button class="ec-opt" type="button" onclick="selectOpt('timeline','exploring',5,this)"><span class="ec-opt-dot"></span><span>Just exploring — no specific timeline yet</span></button>
+    </div>
+    <button class="ec-back" onclick="prevStep(5)">&#8592; Back</button>
+  </div>
+</div>
+
+<!-- LEAD CAPTURE -->
+<div class="ec-step hidden" id="step-lead">
+  <div class="ec-inner">
+    <div class="ec-center">
+      <div class="ec-risk-block">
+        <div class="ec-risk-lbl">You're almost there</div>
+        <span class="ec-risk-amt" style="font-size:1.6rem;line-height:1.2;" id="lead-summary">Let's build your quote.</span>
+        <div class="ec-risk-sub">We'll review your answers and have something specific to you within one business day.</div>
+      </div>
+      <h2 style="font-family:'Raleway',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px;color:#F2F3F8;">Where should we send your quote?</h2>
+      <p style="font-size:14px;color:#9699A2;margin-bottom:22px;line-height:1.75;font-weight:300;">An Ecofit team member will review your network details and follow up with pricing tailored to your operation.</p>
+      <form id="quote-form">
+        <div class="ec-form-grid">
+          <div class="ec-form-field">
+            <label class="ec-form-label" for="f-name">First Name *</label>
+            <input class="ec-form-input" type="text" id="f-name" placeholder="Jordan" required>
+          </div>
+          <div class="ec-form-field">
+            <label class="ec-form-label" for="f-company">Company *</label>
+            <input class="ec-form-input" type="text" id="f-company" placeholder="Apex Fitness" required>
+          </div>
+          <div class="ec-form-field full">
+            <label class="ec-form-label" for="f-email">Work Email *</label>
+            <input class="ec-form-input" type="email" id="f-email" placeholder="jordan@apexfitness.com" required>
+          </div>
+          <div class="ec-form-field">
+            <label class="ec-form-label" for="f-title">Title</label>
+            <input class="ec-form-input" type="text" id="f-title" placeholder="VP Operations, CEO...">
+          </div>
+          <div class="ec-form-field">
+            <label class="ec-form-label" for="f-phone">Phone</label>
+            <input class="ec-form-input" type="tel" id="f-phone" placeholder="(555) 000-0000">
+          </div>
+        </div>
+        <p class="ec-form-note">We don't share your information. Expect a response within one business day.</p>
+        <button class="ec-btn" id="submit-btn" type="submit">Request My Quote →</button>
+        <div id="error-msg">Something went wrong — please try again.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM -->
+<div class="ec-step hidden" id="step-confirm">
+  <div class="ec-inner">
+    <div class="ec-center">
+      <div class="ec-check">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84BC41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2 class="ec-confirm-h">We've got your details.</h2>
+      <p class="ec-confirm-sub">An Ecofit team member will review your network profile and follow up with pricing within one business day. If you'd like to move faster, you can book a call directly below.</p>
+      <div class="ec-confirm-stats">
+        <div class="ec-confirm-stat">
+          <div class="ec-confirm-stat-l">Locations</div>
+          <div class="ec-confirm-stat-v" id="confirm-locations">—</div>
+        </div>
+        <div class="ec-confirm-stat">
+          <div class="ec-confirm-stat-l">Equipment / location</div>
+          <div class="ec-confirm-stat-v" id="confirm-equipment">—</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:#9699A2;line-height:1.8;margin-bottom:26px;max-width:460px;font-weight:300;">Want to talk through your network in detail? A 30-minute call with our team is the fastest way to get a firm number.</p>
+      <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="ec-btn" target="_blank" rel="noopener">Book a Call →</a>
+      <a href="/" class="ec-back-link">&#8592; Back to Ecofit</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var answers = {};
+  var multiAnswers = { brands: [] };
+  var TOTAL_Q = 6;
+
+  function showStep(id) {
+    document.querySelectorAll('.ec-step').forEach(function(s) {
+      if (!s.classList.contains('hidden')) {
+        s.classList.add('exit');
+        setTimeout(function() { s.classList.add('hidden'); s.classList.remove('exit'); }, 260);
+      }
+    });
+    setTimeout(function() {
+      var el = document.getElementById(id);
+      if (el) { el.classList.remove('hidden'); el.scrollTop = 0; }
+    }, 160);
+  }
+
+  function updateProgress(n) {
+    document.getElementById('progress-bar').style.width = Math.round((n / TOTAL_Q) * 100) + '%';
+  }
+
+  function startQuote() {
+    showStep('step-q0');
+    updateProgress(0);
+  }
+
+  function selectOpt(qId, value, stepIdx, el) {
+    el.closest('.ec-options').querySelectorAll('.ec-opt').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    answers[qId] = value;
+    setTimeout(function() {
+      var next = stepIdx + 1;
+      if (next < TOTAL_Q) {
+        showStep('step-q' + next);
+        updateProgress(next);
+      } else {
+        showLeadCapture();
+      }
+    }, 340);
+  }
+
+  function toggleMulti(group, value, el) {
+    el.classList.toggle('selected');
+    var arr = multiAnswers[group];
+    var idx = arr.indexOf(value);
+    if (idx >= 0) { arr.splice(idx, 1); } else { arr.push(value); }
+    var nextBtn = document.getElementById(group + '-next');
+    if (nextBtn) { nextBtn.disabled = arr.length === 0; }
+  }
+
+  function advanceFromMulti(group, stepIdx) {
+    answers[group] = multiAnswers[group].join(',');
+    var next = stepIdx + 1;
+    if (next < TOTAL_Q) {
+      showStep('step-q' + next);
+      updateProgress(next);
+    } else {
+      showLeadCapture();
+    }
+  }
+
+  function prevStep(i) {
+    showStep(i <= 0 ? 'step-0' : 'step-q' + (i - 1));
+    updateProgress(Math.max(0, i - 1));
+  }
+
+  var locLabels = {'1':'1 location','2-5':'2-5 locations','6-15':'6-15 locations','16-50':'16-50 locations','51-100':'51-100 locations','100+':'100+ locations'};
+  var equipLabels = {'under-30':'Under 30 pieces','30-75':'30-75 pieces','76-150':'76-150 pieces','151-300':'151-300 pieces','300+':'300+ pieces'};
+
+  function showLeadCapture() {
+    var loc = locLabels[answers.locations] || '';
+    var eq = equipLabels[answers.equipment] || '';
+    if (loc && eq) {
+      document.getElementById('lead-summary').textContent = loc + ' · ' + eq + ' per location';
+    }
+    showStep('step-lead');
+    updateProgress(TOTAL_Q);
+  }
+
+  document.getElementById('quote-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submit-btn');
+    var errEl = document.getElementById('error-msg');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    errEl.style.display = 'none';
+
+    var payload = {
+      formType:        'quote',
+      name:            document.getElementById('f-name').value.trim(),
+      email:           document.getElementById('f-email').value.trim(),
+      company:         document.getElementById('f-company').value.trim(),
+      title:           document.getElementById('f-title').value.trim(),
+      phone:           document.getElementById('f-phone').value.trim(),
+      answers:         answers,
+      brands:          multiAnswers.brands,
+      locationsLabel:  locLabels[answers.locations] || answers.locations,
+      equipmentLabel:  equipLabels[answers.equipment] || answers.equipment,
+    };
+
+    var submitted = false;
+    try {
+      var res = await fetch('https://treetopgrowthstrategy.com/api/ecofit-quote-submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) submitted = true;
+    } catch(_) {}
+
+    // Show confirmation regardless — data captured, team follows up
+    document.getElementById('confirm-locations').textContent  = locLabels[answers.locations] || '—';
+    document.getElementById('confirm-equipment').textContent  = equipLabels[answers.equipment] || '—';
+    showStep('step-confirm');
+    document.getElementById('progress-bar').style.width = '100%';
+  });
+</script>
+</body>
+</html>
