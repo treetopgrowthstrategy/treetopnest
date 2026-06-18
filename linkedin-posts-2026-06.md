@@ -464,3 +464,114 @@ a clear next step.
 
 Total: 20 posts, all linking to content live on treetopgrowthstrategy.com.
 None reference em-dashes. None use jargon-heavy openings.
+
+---
+
+## CRM cluster: custom CRM, AI-native CRM, build vs buy
+
+7 posts hooking on the new CRM cluster. These route readers to the Treetop
+guides (which earn the search authority) and, where it is the honest payoff,
+to Billy. Same rules: no em dashes, operator voice, specific numbers. Where
+a post mentions Billy, it discloses that Bill builds it. Suggested cadence:
+one CRM week, 5 per week, with 2 held for the following Monday/Tuesday.
+
+### POST 21: Monday (CRM week)
+**Almost nobody who wants a "custom CRM" actually wants to build software.**
+
+Body:
+
+They want a CRM that fits how they sell. That is the whole motivation. Building one from scratch is how that reasonable wish turns into a six-figure project you maintain forever.
+
+Here is the trap. People have four complaints about their CRM: it does not fit, it is too expensive, it creates busywork, and it does not actually do anything. Building solves the first one and makes the other three worse. You get fit, and a bigger bill, more friction, and a tool that still just sits there.
+
+For most teams under fifty people, the real choice in 2026 is not build versus buy. It is build versus AI-native: a CRM that fits how you sell without a build, and that does the selling work a passive record never will.
+
+The full build vs buy vs AI-native decision: https://treetopgrowthstrategy.com/build-a-custom-crm
+
+### POST 22: Tuesday (CRM week)
+**A custom CRM does not cost what the agency quotes you.**
+
+Body:
+
+The quote is the down payment. Here is the five-year math nobody runs before they sign.
+
+Say an agency builds it for $100K. Add maintenance at 18 percent a year, which is conservative. That is another $90K over five years. Add integrations you rebuild, a security review or two, and the staff time to own it, and your $100K build is a $200K commitment by year five.
+
+Now price the alternative. An off-the-shelf tool at $50 a seat for ten people is $30K over five years, with security and updates included. An AI-native CRM can start free.
+
+The build is not a little more expensive. It is often five to ten times the lifetime cost, for a tool that does less.
+
+I built a calculator so you can run your own numbers in about a minute: https://treetopgrowthstrategy.com/crm-build-vs-buy-calculator
+
+### POST 23: Wednesday (CRM week)
+**There is a difference between a CRM with an AI button and a CRM built around AI.**
+
+Body:
+
+Every legacy CRM added an AI assistant in the last two years. It summarizes a call, drafts an email when you ask. Helpful at the edges. The core is still a passive record, and you still drive every action.
+
+An AI-native CRM is the opposite. The AI agent is the engine, not a feature. It finds prospects, sends personalized outreach from your inbox, handles replies, and moves deals along. Turn the AI off and there is no product left.
+
+That distinction is the whole reason "AI-native CRM" is a real category and not a marketing label. The test: does the tool do the work, or just help you log it.
+
+Full disclosure, I build one of these (Billy), so I am not neutral. But the way to tell the real thing from a chatbot stapled onto an old CRM is here: https://treetopgrowthstrategy.com/what-is-an-ai-native-crm
+
+### POST 24: Thursday (CRM week)
+**Your Airtable CRM works great until you become the automation.**
+
+Body:
+
+Building a CRM in Airtable, Notion, or a spreadsheet is genuinely fine to start. It is cheap, flexible, and fits, because you built it. I tell small teams to do exactly this before they buy anything.
+
+Then deal volume grows, and you notice you are the automation. You remember the follow-up. You update the stage. You paste the email in. That is fine at five deals and exhausting at fifty.
+
+Four things break, in order: the automation you have to hand-maintain, reporting you can trust, data entry nobody wants to do, and the big one, it never actually sells. It records. It does not find the next customer.
+
+When you hit that wall, a heavier platform brings back the cost and bloat you avoided. Usually the better landing spot is a tool that removes the work, not one that relocates it. The upgrade path: https://treetopgrowthstrategy.com/building-a-crm-in-airtable-or-notion
+
+### POST 25: Friday (CRM week)
+**Salesforce is an excellent tool aimed at a company ten times your size.**
+
+Body:
+
+If you are a small team, that is the whole problem. The price climbs with add-ons, the setup needs an admin you do not have, and you use a fraction of what you pay for.
+
+There are two honest camps of alternatives. If you just want a simpler, cheaper place to manage deals, look at HubSpot or Pipedrive. They are lighter and friendlier, with real free or low-cost tiers.
+
+But if your actual problem is that prospecting and follow-up are not happening, a simpler database does not fix that. It just gives you a tidier place to log work that is not getting done. That is the case for an AI-native CRM that does the work itself.
+
+Pick the camp that matches your real bottleneck, not the one with the longest feature list. The breakdown: https://treetopgrowthstrategy.com/salesforce-alternatives-for-small-teams
+
+### POST 26: Monday (following week)
+**If no one sends the follow-up, a better place to record the follow-up changes nothing.**
+
+Body:
+
+This is the thing most CRM advice misses about small businesses. It is written for sales teams: reps who prospect, a manager who runs pipeline, a process that needs tracking.
+
+A business where the owner is also the salesperson, marketer, and operator has none of that. The work itself is the gap, not the tracking of it. So you buy a CRM, use it for a month, and quietly abandon it, because it asked you to do more work you did not have time for.
+
+The reframe that fixes it: stop shopping for a better filing cabinet. Shop for the cheapest way to make prospecting and follow-up actually happen. That points you at a different kind of tool entirely.
+
+What to look for, and how to test it in 30 days for almost no money: https://treetopgrowthstrategy.com/crm-for-small-business-without-a-sales-team
+
+### POST 27: Tuesday (following week)
+**I built a calculator that tells you, in about a minute, how much a custom CRM would quietly cost you.**
+
+Body:
+
+Set your team size. Pick how you would build it: freelancer, agency, or in-house. It shows the five-year total for three paths side by side: build it, buy off-the-shelf, or go AI-native.
+
+The number that surprises people is not the build cost. It is the maintenance tail and the staff time, which usually doubles the build over five years.
+
+It is illustrative, not a quote. But the shape of the answer almost never changes: building costs several times what buying does, for a tool that does less.
+
+Run your own numbers: https://treetopgrowthstrategy.com/crm-build-vs-buy-calculator
+
+First comment idea: "The honest exception: build if your selling process is genuinely unique and you have engineers to maintain it forever. That is a small minority. For everyone else the math is brutal."
+
+---
+
+Total with CRM cluster: 27 posts. The CRM set links to content live on
+treetopgrowthstrategy.com and routes to Billy (usebilly.io) where it is the
+honest payoff, with disclosure. No em dashes. Operator voice throughout.

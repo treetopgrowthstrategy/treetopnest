@@ -671,6 +671,41 @@ def pick_fundamentals(source_url: str, n: int) -> list[tuple[str, str]]:
     return [(u, a) for u, a in rotated if u != source_url][:n]
 
 
+# ---------------------------------------------------------------------------
+# Custom CRM / AI-native CRM cluster (2026). Surfaced into revops/GTM/sales
+# pages so the cluster earns internal inbound (and feeds the usebilly.io play).
+# ---------------------------------------------------------------------------
+CRM_FUNDAMENTALS: list[tuple[str, str]] = [
+    ("/build-a-custom-crm", "Should you build a custom CRM?"),
+    ("/what-is-an-ai-native-crm", "What is an AI-native CRM?"),
+    ("/custom-crm-vs-off-the-shelf", "Custom CRM vs off-the-shelf"),
+    ("/how-much-does-it-cost-to-build-a-custom-crm", "Cost to build a custom CRM"),
+    ("/crm-for-small-business-without-a-sales-team", "CRM for a business with no sales team"),
+    ("/salesforce-alternatives-for-small-teams", "Salesforce alternatives for small teams"),
+    ("/crm-build-vs-buy-calculator", "CRM build vs buy calculator"),
+    ("/building-a-crm-in-airtable-or-notion", "Building a CRM in Airtable or Notion"),
+]
+
+# Existing pages where CRM content is genuinely relevant; each gets 2 CRM links
+# prepended. Non-existent source URLs simply never match, so this is safe.
+CRM_SOURCE_ALLOWLIST: set[str] = {
+    "/the-ai-native-gtm-framework", "/what-is-ai-native-gtm", "/how-to-clean-your-crm-with-ai",
+    "/how-to-use-ai-to-research-prospects", "/ai-for-cros", "/ai-for-cmos",
+    "/how-to-use-claude-for-sales", "/how-to-use-claude-for-sales-prospecting",
+    "/claude-prompts-for-sales", "/how-to-use-ai-to-write-proposals",
+    "/how-to-write-cold-emails-with-claude", "/how-to-prep-for-sales-calls-with-claude",
+}
+
+
+def pick_crm(source_url: str, n: int) -> list[tuple[str, str]]:
+    """Rotate CRM targets per source page for even inbound distribution."""
+    if not CRM_FUNDAMENTALS:
+        return []
+    off = sum(ord(c) for c in source_url) % len(CRM_FUNDAMENTALS)
+    rotated = CRM_FUNDAMENTALS[off:] + CRM_FUNDAMENTALS[:off]
+    return [(u, a) for u, a in rotated if u != source_url][:n]
+
+
 def how_to_with_claude_recipe(url: str) -> list[tuple[str, str]]:
     """For /how-to-X-with-claude pages: link to peers and hubs."""
     if not (url.startswith("/how-to-") and url.endswith("-with-claude")):
@@ -980,7 +1015,8 @@ def ai_agents_for_recipe(url: str) -> list[tuple[str, str]]:
         cands.append((p, f"AI agents for {label}"))
     cands.append(("/how-to-use-ai-in-your-business", "How to use AI in your business"))
     cands.append(("/services/ai-audit", "Treetop AI Audit"))
-    return cands
+    # One CRM link: AI-agents readers are revops-adjacent.
+    return pick_crm(url, 1) + cands
 
 
 def ai_cmo_for_recipe(url: str) -> list[tuple[str, str]]:
@@ -1236,6 +1272,14 @@ def default_recipe(url: str) -> list[tuple[str, str]]:
 
 # Recipe dispatcher
 def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
+    base = _dispatch_recipe(url, all_urls)
+    # Prepend CRM links on the curated set of revops/GTM/sales pages.
+    if url in CRM_SOURCE_ALLOWLIST:
+        return pick_crm(url, 2) + base
+    return base
+
+
+def _dispatch_recipe(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
     for fn in (
         claude_hub_recipe,
         fractional_city_recipe,
@@ -1387,6 +1431,15 @@ def main():
         "/claude-without-recording-sensitive-meetings",
         "/claude-fluency",
         "/book-a-call",
+        # CRM cluster: also ships curated related sections.
+        "/build-a-custom-crm",
+        "/how-much-does-it-cost-to-build-a-custom-crm",
+        "/custom-crm-vs-off-the-shelf",
+        "/what-is-an-ai-native-crm",
+        "/building-a-crm-in-airtable-or-notion",
+        "/salesforce-alternatives-for-small-teams",
+        "/crm-for-small-business-without-a-sales-team",
+        "/crm-build-vs-buy-calculator",
     }
 
     for path, url, is_astro in work:
