@@ -706,6 +706,40 @@ def pick_crm(source_url: str, n: int) -> list[tuple[str, str]]:
     return [(u, a) for u, a in rotated if u != source_url][:n]
 
 
+# ---------------------------------------------------------------------------
+# AI consulting "core" cluster (2026). New commercial pages that target the
+# surging "ai consulting / hire an ai consultant / ai consulting rates" queries.
+# Surfaced into the 85 ai-consultant-{city} pages, the AI cost pages, and the
+# existing consulting pillars/decision pages so they earn internal inbound.
+# ---------------------------------------------------------------------------
+AI_CONSULTING_FUNDAMENTALS: list[tuple[str, str]] = [
+    ("/ai-consulting-services", "What AI consulting services cover"),
+    ("/how-to-hire-an-ai-consultant", "How to hire an AI consultant"),
+    ("/ai-consulting-rates", "AI consulting rates and pricing"),
+    ("/ai-consultant-for-small-business", "AI consultant for small business"),
+    ("/fractional-ai-consultant", "What a fractional AI consultant does"),
+]
+
+# Existing consulting pillars and buyer-decision pages where the new core pages
+# are genuinely relevant; each gets 2 prepended. Non-existent URLs never match.
+AI_CONSULTING_SOURCE_ALLOWLIST: set[str] = {
+    "/what-is-ai-consulting", "/ai-strategy-consultant", "/ai-implementation-consultant",
+    "/claude-implementation-consultant", "/revenue-operations-consultant",
+    "/is-it-worth-hiring-an-ai-consultant", "/how-to-evaluate-an-ai-consultant",
+    "/how-to-choose-an-ai-strategy-consultant", "/ai-consultant-vs-doing-it-yourself",
+    "/ai-consultant-cost", "/do-i-need-an-ai-strategy", "/ai-audit-vs-ai-strategy",
+}
+
+
+def pick_ai_consulting(source_url: str, n: int) -> list[tuple[str, str]]:
+    """Rotate AI-consulting core targets per source page for even inbound."""
+    if not AI_CONSULTING_FUNDAMENTALS:
+        return []
+    off = sum(ord(c) for c in source_url) % len(AI_CONSULTING_FUNDAMENTALS)
+    rotated = AI_CONSULTING_FUNDAMENTALS[off:] + AI_CONSULTING_FUNDAMENTALS[:off]
+    return [(u, a) for u, a in rotated if u != source_url][:n]
+
+
 def how_to_with_claude_recipe(url: str) -> list[tuple[str, str]]:
     """For /how-to-X-with-claude pages: link to peers and hubs."""
     if not (url.startswith("/how-to-") and url.endswith("-with-claude")):
@@ -926,6 +960,10 @@ def cost_recipe(url: str) -> list[tuple[str, str]]:
     # getting-started posts there (but not on the fractional cost pages).
     if "claude" in url or "chatgpt" in url:
         return pick_fundamentals(url, 2) + base
+    # AI cost pages (consultant/strategy/implementation/cmo) feed the new core
+    # consulting cluster, especially the rates page.
+    if "-ai-" in url or url.endswith("-ai-consultant-cost"):
+        return [("/ai-consulting-rates", "AI consulting rates and pricing")] + pick_ai_consulting(url, 1) + base
     return base
 
 
@@ -1094,14 +1132,16 @@ def ai_consultant_city_recipe(url: str) -> list[tuple[str, str]]:
     city = m.group(1)
     city_h = humanize_city(city)
     cands: list[tuple[str, str]] = [
+        ("/ai-consulting-services", "What AI consulting services cover"),
+        ("/how-to-hire-an-ai-consultant", "How to hire an AI consultant"),
         ("/ai-implementation-consultant", "AI implementation consultant services"),
         ("/how-much-does-an-ai-consultant-cost", "How much does an AI consultant cost?"),
         ("/services/ai-audit", "Treetop AI Audit"),
-        ("/how-to-use-ai-in-your-business", "How to use AI in your business"),
         ("/the-ai-native-gtm-framework", "The AI-native GTM framework"),
-        ("/ai-for-cmos", "AI for CMOs"),
         ("/claude-for-business", "Claude for business"),
     ]
+    # Rotate in one more new core page per city for even inbound distribution.
+    cands += pick_ai_consulting(url, 1)
     # Nearby cities use the same map as fractional cities
     for nc in nearby_cities(city):
         cands.append((f"/ai-consultant-{nc}", f"AI consultant in {humanize_city(nc)}"))
@@ -1273,10 +1313,15 @@ def default_recipe(url: str) -> list[tuple[str, str]]:
 # Recipe dispatcher
 def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
     base = _dispatch_recipe(url, all_urls)
+    prefix: list[tuple[str, str]] = []
     # Prepend CRM links on the curated set of revops/GTM/sales pages.
     if url in CRM_SOURCE_ALLOWLIST:
-        return pick_crm(url, 2) + base
-    return base
+        prefix += pick_crm(url, 2)
+    # Prepend new AI-consulting core links on the existing consulting pillars
+    # and buyer-decision pages so they funnel equity to the new pages.
+    if url in AI_CONSULTING_SOURCE_ALLOWLIST:
+        prefix += pick_ai_consulting(url, 2)
+    return prefix + base
 
 
 def _dispatch_recipe(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
@@ -1440,6 +1485,13 @@ def main():
         "/salesforce-alternatives-for-small-teams",
         "/crm-for-small-business-without-a-sales-team",
         "/crm-build-vs-buy-calculator",
+        # New AI-consulting core pages: each ships a curated "Related guides"
+        # section, so skip the auto-block to avoid a second stacked block.
+        "/ai-consulting-services",
+        "/how-to-hire-an-ai-consultant",
+        "/ai-consulting-rates",
+        "/ai-consultant-for-small-business",
+        "/fractional-ai-consultant",
     }
 
     for path, url, is_astro in work:
