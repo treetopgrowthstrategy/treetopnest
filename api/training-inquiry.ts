@@ -3,8 +3,8 @@
 // conflicts with the root api/ functions and the Astro /api routes 404 in
 // production. Matches the pattern of api/quiz-submit.ts, api/lead-capture.ts.
 
-const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
-const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const RESEND_API_KEY   = process.env.RESEND_API_KEY;
+const FROM_EMAIL       = process.env.RESEND_FROM || process.env.MAILGUN_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
@@ -75,6 +75,14 @@ export default async function handler(req: any, res: any) {
 
     if (!data.email || !data.name || !data.company) {
       return res.status(400).json({ error: 'Missing required fields' });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.email))) {
+      return res.status(400).json({ error: 'Valid email required' });
+    }
+    // Strip angle brackets (HTML/injection) and cap length on user-supplied
+    // strings before they reach the email bodies or Airtable.
+    for (const k of ['name', 'email', 'company', 'title', 'size', 'format', 'context'] as const) {
+      if (typeof data[k] === 'string') data[k] = data[k].replace(/[<>]/g, '').slice(0, 2000);
     }
 
     // 1. Confirmation email to prospect

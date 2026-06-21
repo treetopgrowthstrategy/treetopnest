@@ -1670,8 +1670,9 @@ function applyCardChanges(cardId, changes) {
   });
 }
 
-// ── API BASE — Vercel serverless functions on the treetopnest project
-const ECOFIT_API_BASE = 'https://treetopnest-williamcolbert-6028s-projects.vercel.app';
+// ── API BASE: same-origin so /api/* calls hit whatever domain serves this page.
+// Was a brittle, expiring Vercel preview URL. Requires OPENAI_API_KEY in prod.
+const ECOFIT_API_BASE = '';
 
 // ── AI APPLY
 async function applyWithAI(cardId, commentIdx) {

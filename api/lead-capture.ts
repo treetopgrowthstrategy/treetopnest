@@ -9,8 +9,8 @@
 //   - Book a call:       { ...contact, source:'book-a-call' } -> emails booking link
 //   - Inline form:       { first_name, last_name, email, company, message/gain, source }
 
-const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
-const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const RESEND_API_KEY   = process.env.RESEND_API_KEY;
+const FROM_EMAIL       = process.env.RESEND_FROM || process.env.MAILGUN_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
@@ -265,7 +265,7 @@ export default async function handler(req: any, res: any) {
   if (!body || typeof body !== 'object') body = {};
 
   const email = body.email?.trim();
-  if (!email || !email.includes('@')) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Valid email required' });
   }
 
@@ -319,6 +319,20 @@ export default async function handler(req: any, res: any) {
       </div>
     `;
     await sendEmail(email, 'Book your call with Treetop', bookHtml, BILL_EMAIL);
+  }
+
+  // ─── 1c. Inline contact form: confirm to the submitter ──────────────────
+  if (!isPopup && source !== 'book-a-call') {
+    const ackHtml = `
+      <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff;padding:32px 24px;color:#1a1a1a;line-height:1.6;">
+        <p style="margin:0 0 18px;font-size:15px;">Hi${first_name ? ' ' + escape(first_name) : ''},</p>
+        <p style="margin:0 0 18px;font-size:15px;">Thanks for reaching out. Your message landed with us, and Bill will get back to you personally, usually within one business day.</p>
+        <p style="margin:0 0 18px;font-size:14px;color:#444;">If it is time-sensitive, just reply to this email and it comes straight to us.</p>
+        <p style="margin:24px 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>
+        <p style="margin:0;font-size:13px;color:#777;">Founder, Treetop Growth Strategy<br/><a href="${SITE}" style="color:#777;">treetopgrowthstrategy.com</a></p>
+      </div>
+    `;
+    await sendEmail(email, 'Thanks for reaching out to Treetop', ackHtml, BILL_EMAIL);
   }
 
   // ─── 2. Notify Bill ─────────────────────────────────────────────────────

@@ -3,8 +3,8 @@
 // conflicts with the existing root api/ functions and the Astro routes weren't
 // being served. Matches the pattern of api/transcript.js, api/voice.js, etc.
 
-const RESEND_API_KEY   = process.env.RESEND_API_KEY || process.env.MAILGUN_API_KEY;
-const FROM_EMAIL       = process.env.MAILGUN_FROM   || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const RESEND_API_KEY   = process.env.RESEND_API_KEY;
+const FROM_EMAIL       = process.env.RESEND_FROM || process.env.MAILGUN_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
@@ -426,6 +426,9 @@ export default async function handler(req: any, res: any) {
 
     if (!data.email || !data.name || !data.company) {
       return res.status(400).json({ error: 'Missing required fields' });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.email))) {
+      return res.status(400).json({ error: 'Valid email required' });
     }
 
     // Sanitize user-supplied strings before they flow into the published report
