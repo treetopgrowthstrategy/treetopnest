@@ -718,6 +718,9 @@ AI_CONSULTING_FUNDAMENTALS: list[tuple[str, str]] = [
     ("/ai-consulting-rates", "AI consulting rates and pricing"),
     ("/ai-consultant-for-small-business", "AI consultant for small business"),
     ("/fractional-ai-consultant", "What a fractional AI consultant does"),
+    ("/enterprise-ai-consulting", "Enterprise AI consulting"),
+    ("/ai-consulting-firm", "How to choose an AI consulting firm"),
+    ("/generative-ai-consulting", "What generative AI consulting is"),
 ]
 
 # Existing consulting pillars and buyer-decision pages where the new core pages
@@ -1492,6 +1495,9 @@ def main():
         "/ai-consulting-rates",
         "/ai-consultant-for-small-business",
         "/fractional-ai-consultant",
+        "/enterprise-ai-consulting",
+        "/ai-consulting-firm",
+        "/generative-ai-consulting",
     }
 
     for path, url, is_astro in work:
