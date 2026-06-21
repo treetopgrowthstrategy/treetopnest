@@ -11,9 +11,11 @@ import Stripe from 'stripe';
 
 const SITE = 'https://treetopgrowthstrategy.com';
 
-// product key (from checkout-session metadata) -> public download path
+// product key (from checkout-session metadata) -> unguessable download path.
+// The file lives under a random token dir and is linked nowhere on the site, so
+// it is only revealed here, after a paid Stripe session is confirmed below.
 const DOWNLOADS: Record<string, string> = {
-  'gym-startup-budget-workbook-pro': '/downloads/gym-startup-budget-workbook-pro-2026-v1.xlsx',
+  'gym-startup-budget-workbook-pro': '/downloads/_dl-630a982a9e840f3fb2e6155863d1c5f5/gym-startup-budget-workbook-pro-2026-v1.xlsx',
 };
 
 export default async function handler(req: any, res: any) {

@@ -23,7 +23,7 @@ const PRODUCTS: Record<string, ProductSpec> = {
     name: 'Gym Startup Budget Workbook — PRO Edition',
     description: 'Interactive editable XLSX. 12 sheets, live formulas, scenario toggles, format presets, capital-stack builder, sensitivity tables.',
     amount: 9900,
-    download: '/downloads/gym-startup-budget-workbook-pro-2026-v1.xlsx',
+    download: '/downloads/_dl-630a982a9e840f3fb2e6155863d1c5f5/gym-startup-budget-workbook-pro-2026-v1.xlsx',
   },
 };
 

@@ -11,7 +11,7 @@ function getStripe(): Stripe {
 }
 
 const DOWNLOAD_PATHS: Record<string, string> = {
-  'gym-startup-budget-workbook-pro': '/downloads/gym-startup-budget-workbook-pro-2026-v1.xlsx',
+  'gym-startup-budget-workbook-pro': '/downloads/_dl-630a982a9e840f3fb2e6155863d1c5f5/gym-startup-budget-workbook-pro-2026-v1.xlsx',
 };
 
 /**

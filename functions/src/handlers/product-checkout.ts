@@ -24,7 +24,7 @@ const PRODUCTS: Record<string, Product> = {
     name: 'Gym Startup Budget Workbook — PRO Edition',
     description: '12-sheet interactive XLSX with live formulas, scenario toggles, format presets, capital-stack builder, and sensitivity tables. Single-user license. By Bill Colbert at Treetop Growth Strategy.',
     amount: 9900, // $99
-    download_path: '/downloads/gym-startup-budget-workbook-pro-2026-v1.xlsx',
+    download_path: '/downloads/_dl-630a982a9e840f3fb2e6155863d1c5f5/gym-startup-budget-workbook-pro-2026-v1.xlsx',
     thank_you_path: '/gym-startup-budget-workbook-pro/thank-you',
   },
 };
