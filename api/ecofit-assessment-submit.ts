@@ -433,6 +433,14 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    // Sanitize user-supplied strings before they flow into the published report
+    // HTML, the outbound emails, or Airtable. Angle brackets never appear in real
+    // names, emails, or companies; stripping them neutralizes HTML/script injection.
+    for (const k of ['name', 'email', 'company', 'title'] as const) {
+      const v = (data as any)[k];
+      if (typeof v === 'string') (data as any)[k] = v.replace(/[<>]/g, '').slice(0, 200);
+    }
+
     const dateStr = new Date().toISOString().slice(0, 10);
     const slug = buildSlug(data.company, dateStr);
 
@@ -440,16 +448,23 @@ export default async function handler(req: any, res: any) {
     let reportUrl: string | null = null;
     try { reportUrl = await pushReportToGitHub(slug, buildReportHTML(data)); } catch (e) { console.error('GitHub push failed:', e); }
 
-    // 2. Email prospect
-    await sendEmail(data.email, `Your Ecofit Facility Intelligence Report, ${data.name.split(' ')[0]}`, buildProspectEmail(data, reportUrl));
+    // 2. Persist the lead to Airtable FIRST so an email failure can never lose it.
+    let airtableError: string | null = null;
+    await logToAirtable(data, reportUrl, slug).catch(e => { airtableError = String(e); console.error('Airtable:', e); });
 
-    // 3. Notify Bill
-    await sendEmail(BILL_EMAIL, `New Ecofit Assessment: ${data.name} at ${data.company} - ${fmt(data.riskLow)}-${fmt(data.riskHigh)} at risk`, buildBillNotifyEmail(data, reportUrl));
+    // 3. Email prospect (best-effort: a bad address must not 500 the request or skip the Bill notify below).
+    let prospectEmailError: string | null = null;
+    try {
+      await sendEmail(data.email, `Your Ecofit Facility Intelligence Report, ${data.name.split(' ')[0]}`, buildProspectEmail(data, reportUrl));
+    } catch (e) { prospectEmailError = String(e); console.error('Prospect email failed:', e); }
 
-    // 4. Log to Airtable
-    await logToAirtable(data, reportUrl, slug).catch(e => console.error('Airtable:', e));
+    // 4. Notify Bill (best-effort).
+    let billEmailError: string | null = null;
+    try {
+      await sendEmail(BILL_EMAIL, `New Ecofit Assessment: ${data.name} at ${data.company} - ${fmt(data.riskLow)}-${fmt(data.riskHigh)} at risk`, buildBillNotifyEmail(data, reportUrl));
+    } catch (e) { billEmailError = String(e); console.error('Bill email failed:', e); }
 
-    return res.status(200).json({ success: true, reportUrl });
+    return res.status(200).json({ success: true, reportUrl, airtableError, prospectEmailError, billEmailError });
 
   } catch (err) {
     console.error('ecofit-assessment-submit error:', err);

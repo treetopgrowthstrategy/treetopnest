@@ -428,6 +428,14 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    // Sanitize user-supplied strings before they flow into the published report
+    // HTML, the outbound emails, or Airtable. Angle brackets never appear in real
+    // names, emails, or companies; stripping them neutralizes HTML/script injection.
+    for (const k of ['name', 'email', 'company', 'title'] as const) {
+      const v = (data as any)[k];
+      if (typeof v === 'string') (data as any)[k] = v.replace(/[<>]/g, '').slice(0, 200);
+    }
+
     const tier = getTierDetails(data.totalScore);
     const firstName = data.name.split(' ')[0];
     const dateStr = new Date().toISOString().slice(0, 10);
@@ -446,22 +454,34 @@ export default async function handler(req: any, res: any) {
       console.error('GitHub push failed:', e);
     }
 
-    // 3. Send prospect email with report URL
-    const prospectEmail = buildProspectEmail(data, reportUrl, tier);
-    await sendEmail(data.email, `Your AI-Native GTM Gap Report, ${firstName}`, prospectEmail);
-
-    // 4. Notify Bill
-    const billEmail = buildBillNotifyEmail(data, tier, reportUrl);
-    await sendEmail(BILL_EMAIL, `🎯 New GTM Quiz Lead: ${data.name} at ${data.company} (${tier.label})`, billEmail);
-
-    // 5. Log to Airtable (typecast:true so the Tier singleSelect auto-creates options)
+    // 3. Persist the lead to Airtable FIRST so an email failure can never lose it.
+    //    (typecast:true so the Tier singleSelect auto-creates options.)
     let airtableError: string | null = null;
     await logToAirtable(data, tier, reportUrl, slug).catch(e => {
       airtableError = String(e);
       console.error('Airtable log failed:', e);
     });
 
-    return res.status(200).json({ success: true, reportUrl, githubError, airtableError });
+    // 4. Send prospect email with report URL. Best-effort: a bad recipient address
+    //    must not 500 the request or skip the Bill notification below.
+    let prospectEmailError: string | null = null;
+    try {
+      await sendEmail(data.email, `Your AI-Native GTM Gap Report, ${firstName}`, buildProspectEmail(data, reportUrl, tier));
+    } catch (e) {
+      prospectEmailError = String(e);
+      console.error('Prospect email failed:', e);
+    }
+
+    // 5. Notify Bill (best-effort).
+    let billEmailError: string | null = null;
+    try {
+      await sendEmail(BILL_EMAIL, `🎯 New GTM Quiz Lead: ${data.name} at ${data.company} (${tier.label})`, buildBillNotifyEmail(data, tier, reportUrl));
+    } catch (e) {
+      billEmailError = String(e);
+      console.error('Bill email failed:', e);
+    }
+
+    return res.status(200).json({ success: true, reportUrl, githubError, airtableError, prospectEmailError, billEmailError });
 
   } catch (err) {
     console.error('quiz-submit error:', err);
