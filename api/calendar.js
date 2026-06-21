@@ -1,6 +1,8 @@
 // GET  /api/calendar          → read all campaigns
 // POST /api/calendar          → update one campaign  { recordId, fields }
+//                               requires header  x-calendar-key === CALENDAR_WRITE_KEY
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
+const CALENDAR_WRITE_KEY = process.env.CALENDAR_WRITE_KEY;
 const BASE      = "appkCLcOtOfpYJkRg";
 const CAMPAIGNS = "tbl4UpGZP6Zr8MWV9";
 
@@ -26,6 +28,13 @@ export default async function handler(req, res){
     }
 
     if (req.method === "POST") {
+      // Writes are gated by a shared secret. Fail closed: if no key is configured
+      // in the environment, all writes are rejected (previously this PATCH path was
+      // open to the public internet and could modify any campaign record).
+      const provided = req.headers["x-calendar-key"];
+      if (!CALENDAR_WRITE_KEY || provided !== CALENDAR_WRITE_KEY) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
       const { recordId, fields } = req.body || {};
       if (!recordId || !fields) return res.status(400).json({ error: "recordId and fields required" });
       const r = await fetch(`https://api.airtable.com/v0/${BASE}/${CAMPAIGNS}/${recordId}`, {
@@ -33,8 +42,9 @@ export default async function handler(req, res){
         headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}`, "Content-Type": "application/json" },
         body: JSON.stringify({ fields })
       });
+      if (!r.ok) { console.error("Airtable PATCH failed:", r.status); return res.status(r.status).json({ error: "Update failed" }); }
       const data = await r.json();
-      return res.status(r.ok ? 200 : r.status).json(data);
+      return res.status(200).json(data);
     }
 
     return res.status(405).json({ error: "Method not allowed" });
