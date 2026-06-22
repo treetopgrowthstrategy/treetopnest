@@ -6,6 +6,9 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      { "source": "/post/**", "destination": "/blog", "type": 301 }
+    ],
     "rewrites": [
       { "source": "/platform", "destination": "/platform.html" },
       { "source": "/analytics", "destination": "/analytics.html" },
