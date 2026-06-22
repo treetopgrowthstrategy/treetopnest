@@ -762,6 +762,7 @@ CLICK_BOOST: list[tuple[str, str]] = [
     ("/otter-vs-fathom", "Otter vs Fathom, compared"),
     ("/best-ai-meeting-assistants-2026", "Best AI meeting assistants (2026)"),
     ("/okara-ai-cmo-review", "Okara AI CMO review"),
+    ("/best-ai-voice-platforms-2026", "Best AI voice platforms (2026)"),
 ]
 
 
@@ -771,6 +772,43 @@ def pick_boost(source_url: str, n: int) -> list[tuple[str, str]]:
         return []
     off = sum(ord(c) for c in source_url) % len(CLICK_BOOST)
     rotated = CLICK_BOOST[off:] + CLICK_BOOST[:off]
+    return [(u, a) for u, a in rotated if u != source_url][:n]
+
+
+# ---------------------------------------------------------------------------
+# AI voice platform / voice agent cluster (2026). Net-new forward bet: the
+# "AI voice platform / AI voice agent" category. The hub ships its own curated
+# related section (and is in skip_urls), so this pool funnels inbound links into
+# the cluster from voice-adjacent GTM/sales/AI-agents/CRM pages. Reviews and
+# comparisons funnel to the AI Audit; the hub is also in CLICK_BOOST.
+# ---------------------------------------------------------------------------
+VOICE_FUNDAMENTALS: list[tuple[str, str]] = [
+    ("/best-ai-voice-platforms-2026", "Best AI voice platforms (2026)"),
+    ("/ai-voice-agents-for-business", "AI voice agents for business"),
+    ("/vapi-vs-retell", "Vapi vs Retell, compared"),
+    ("/synthflow-vs-retell-ai", "Synthflow vs Retell, compared"),
+    ("/gettreetop-ai-review", "gettreetop.ai review"),
+]
+
+# Existing pages where AI voice content is genuinely relevant; each gets 1 voice
+# link prepended so the new cluster earns inbound. Non-existent URLs never match.
+VOICE_SOURCE_ALLOWLIST: set[str] = {
+    "/the-ai-native-gtm-framework", "/what-is-ai-native-gtm",
+    "/ai-agents-for-business", "/ai-agents-for-sales",
+    "/ai-agents-for-customer-service", "/ai-agents-for-startups",
+    "/ai-for-cros", "/ai-for-cmos",
+    "/best-ai-meeting-assistants-2026", "/ai-meeting-summary-for-sales-teams",
+    "/how-to-prep-for-sales-calls-with-claude", "/how-to-analyze-call-recordings-with-claude",
+    "/what-is-an-ai-native-crm", "/crm-for-small-business-without-a-sales-team",
+}
+
+
+def pick_voice(source_url: str, n: int) -> list[tuple[str, str]]:
+    """Rotate AI-voice-cluster targets per source page for even inbound."""
+    if not VOICE_FUNDAMENTALS:
+        return []
+    off = sum(ord(c) for c in source_url) % len(VOICE_FUNDAMENTALS)
+    rotated = VOICE_FUNDAMENTALS[off:] + VOICE_FUNDAMENTALS[:off]
     return [(u, a) for u, a in rotated if u != source_url][:n]
 
 
@@ -1355,6 +1393,10 @@ def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
     # and buyer-decision pages so they funnel equity to the new pages.
     if url in AI_CONSULTING_SOURCE_ALLOWLIST:
         prefix += pick_ai_consulting(url, 2)
+    # Prepend one AI-voice-cluster link on voice-adjacent GTM/sales/agents pages
+    # so the net-new voice cluster earns internal inbound from related content.
+    if url in VOICE_SOURCE_ALLOWLIST:
+        prefix += pick_voice(url, 1)
     # Funnel one inbound link to a high-impression "page 2" winner from every
     # Claude/comparison page, to lift those pages' ranking (impressions->clicks).
     if ("claude" in url or "-vs-" in url) and url not in [u for u, _ in CLICK_BOOST]:
@@ -1534,6 +1576,14 @@ def main():
         "/ai-consulting-firm",
         "/generative-ai-consulting",
         "/best-ai-meeting-assistants-2026",
+        # AI voice platform cluster: hub + reviews/comparisons ship their own
+        # curated "Related guides" sections, so skip the auto-block.
+        "/best-ai-voice-platforms-2026",
+        "/gettreetop-ai-review",
+        "/vapi-vs-retell",
+        "/synthflow-vs-retell-ai",
+        "/ai-voice-agents-for-business",
+        "/treetop-ai",
     }
 
     for path, url, is_astro in work:

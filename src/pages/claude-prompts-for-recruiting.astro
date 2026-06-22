@@ -26,6 +26,7 @@ export const prerender = true;
   "@context": "https://schema.org",
   "@graph": [
     {"@type": "Article", "headline": "13 Claude Prompts for Recruiting (Copy-Paste Ready)", "description": "13 copy-paste Claude prompts for recruiting teams: write job posts, screen resumes, source candidates, draft outreach, structure interviews, and brief hiring managers.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-recruiting", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-21", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-recruiting.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I keep these prompts compliant with EEOC and avoid biased screening?", "acceptedAnswer": {"@type": "Answer", "text": "Treat Claude like a writing and thinking assistant, not a decision-maker. Strip protected-class signals (name, address, photo, age, school graduation year, gender pronouns, country of origin) before pasting a resume in, and ask Claude to assess skills and evidence against the job criteria you wrote down first. Save your prompt, the inputs, and the output so you have a record if a hire is ever challenged. Run a periodic adverse-impact check by comparing pass-through rates by demographic group on candidates Claude scored, and adjust the rubric (not the candidates) if you see drift."}}, {"@type": "Question", "name": "Can Claude work with Greenhouse, Lever, Ashby, or Workday?", "acceptedAnswer": {"@type": "Answer", "text": "Claude does not log into your ATS directly, but it pairs well with all of them. The pattern most recruiters use: export a candidate or req as plain text or CSV from Greenhouse, Lever, Ashby, or Workday, paste it into Claude with one of the prompts on this page, then copy the structured output back into the ATS notes or scorecard field. For teams on Claude for Work, you can also use the API and a small middleware script to push summaries into ATS custom fields, but you do not need that to get value on day one."}}, {"@type": "Question", "name": "Is it safe to paste resumes and candidate PII into Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On Claude for Work (Team and Enterprise plans), your inputs and outputs are not used to train models and are retained only for the period you set in admin controls. That makes it acceptable for most internal recruiting use. Even so, follow a least-data rule: redact Social Security numbers, full dates of birth, bank details, and immigration document numbers before pasting. Anything you would not put in a Slack channel for the hiring team, do not put in a prompt. Document your data-handling rules in your recruiting SOP so the team is consistent."}}, {"@type": "Question", "name": "Do these prompts work for technical roles, or only for non-technical hiring?", "acceptedAnswer": {"@type": "Answer", "text": "Both. For non-technical roles (sales, marketing, ops, finance, customer success), the prompts on this page work as written. For engineering, data, and security roles, add a short skills rubric to the prompt (languages, frameworks, system-design depth, on-call experience) and ask Claude to cite the exact line from the resume that supports each rating. Claude is strong at reading code samples and GitHub READMEs, so for senior IC roles you can paste a candidate work sample alongside the resume and ask for a structured review against your rubric."}}, {"@type": "Question", "name": "Will Claude screen candidates out automatically?", "acceptedAnswer": {"@type": "Answer", "text": "No, and you should not set it up that way. Every prompt on this page is built to surface evidence, draft questions, and rank against criteria you defined, with a human recruiter making the actual advance or reject call. Auto-rejection by an AI tool is a fast path to legal exposure (NYC Local Law 144, EU AI Act, and a growing list of state rules treat fully automated screening as a regulated activity) and it kills your candidate experience. Use Claude to read faster and ask better questions, not to close the door for you."}}, {"@type": "Question", "name": "How do I know the output is accurate and not just confident-sounding?", "acceptedAnswer": {"@type": "Answer", "text": "Always require citations. Add a line to your prompt like 'for every claim about the candidate, quote the exact phrase from the resume or transcript you are basing it on.' If Claude cannot cite, the claim is a guess and you discard it. For interview summaries, paste the raw transcript and ask Claude to mark anything it inferred versus anything the candidate said directly. This one habit catches almost every hallucination before it reaches a hiring manager."}}]},
     {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
   ]
 }
@@ -375,6 +376,35 @@ Do not sugarcoat. If the scorecard is likely too narrow, say so.</pre>
   </div>
 </section>
 
+<div class="sec-inner">
+  <span class="lbl">FAQ</span>
+  <h2 class="h2">Frequently asked questions</h2>
+  <div class="faq-item">
+    <div class="faq-q">How do I keep these prompts compliant with EEOC and avoid biased screening?</div>
+    <div class="faq-a">Treat Claude like a writing and thinking assistant, not a decision-maker. Strip protected-class signals (name, address, photo, age, school graduation year, gender pronouns, country of origin) before pasting a resume in, and ask Claude to assess skills and evidence against the job criteria you wrote down first. Save your prompt, the inputs, and the output so you have a record if a hire is ever challenged. Run a periodic adverse-impact check by comparing pass-through rates by demographic group on candidates Claude scored, and adjust the rubric (not the candidates) if you see drift.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can Claude work with Greenhouse, Lever, Ashby, or Workday?</div>
+    <div class="faq-a">Claude does not log into your ATS directly, but it pairs well with all of them. The pattern most recruiters use: export a candidate or req as plain text or CSV from Greenhouse, Lever, Ashby, or Workday, paste it into Claude with one of the prompts on this page, then copy the structured output back into the ATS notes or scorecard field. For teams on Claude for Work, you can also use the API and a small middleware script to push summaries into ATS custom fields, but you do not need that to get value on day one.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is it safe to paste resumes and candidate PII into Claude?</div>
+    <div class="faq-a">On Claude for Work (Team and Enterprise plans), your inputs and outputs are not used to train models and are retained only for the period you set in admin controls. That makes it acceptable for most internal recruiting use. Even so, follow a least-data rule: redact Social Security numbers, full dates of birth, bank details, and immigration document numbers before pasting. Anything you would not put in a Slack channel for the hiring team, do not put in a prompt. Document your data-handling rules in your recruiting SOP so the team is consistent.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do these prompts work for technical roles, or only for non-technical hiring?</div>
+    <div class="faq-a">Both. For non-technical roles (sales, marketing, ops, finance, customer success), the prompts on this page work as written. For engineering, data, and security roles, add a short skills rubric to the prompt (languages, frameworks, system-design depth, on-call experience) and ask Claude to cite the exact line from the resume that supports each rating. Claude is strong at reading code samples and GitHub READMEs, so for senior IC roles you can paste a candidate work sample alongside the resume and ask for a structured review against your rubric.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Will Claude screen candidates out automatically?</div>
+    <div class="faq-a">No, and you should not set it up that way. Every prompt on this page is built to surface evidence, draft questions, and rank against criteria you defined, with a human recruiter making the actual advance or reject call. Auto-rejection by an AI tool is a fast path to legal exposure (NYC Local Law 144, EU AI Act, and a growing list of state rules treat fully automated screening as a regulated activity) and it kills your candidate experience. Use Claude to read faster and ask better questions, not to close the door for you.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I know the output is accurate and not just confident-sounding?</div>
+    <div class="faq-a">Always require citations. Add a line to your prompt like "for every claim about the candidate, quote the exact phrase from the resume or transcript you are basing it on." If Claude cannot cite, the claim is a guess and you discard it. For interview summaries, paste the raw transcript and ask Claude to mark anything it inferred versus anything the candidate said directly. This one habit catches almost every hallucination before it reaches a hiring manager.</div>
+  </div>
+</div>
+
 <section>
   <div class="sec-inner">
     <span class="lbl">Setup</span>
@@ -418,7 +448,6 @@ Do not sugarcoat. If the scorecard is likely too narrow, say so.</pre>
     <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
     <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
     <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
-    <li><a href="/claude-for-nonprofits" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude for nonprofits (use cases + pricing) &rarr;</a></li>
     <li><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">What a fractional CMO does &rarr;</a></li>
     <li><a href="/ai-for-cmos" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">The AI toolkit for marketing leaders &rarr;</a></li>
     <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's AI-native GTM framework &rarr;</a></li>
@@ -426,6 +455,7 @@ Do not sugarcoat. If the scorecard is likely too narrow, say so.</pre>
     <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
     <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's glossary &rarr;</a></li>
     <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Resource library &rarr;</a></li>
+    <li><a href="/case-studies" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop case studies &rarr;</a></li>
     </ul>
   </div>
 </section>
