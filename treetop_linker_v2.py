@@ -743,6 +743,33 @@ def pick_ai_consulting(source_url: str, n: int) -> list[tuple[str, str]]:
     return [(u, a) for u, a in rotated if u != source_url][:n]
 
 
+# ---------------------------------------------------------------------------
+# Click-boost pool (2026): high-IMPRESSION pages stuck on page 2 in GSC. Every
+# Claude/comparison source page funnels one extra inbound link to a rotating
+# member so their ranking (and thus clicks, not just impressions) climbs.
+# ---------------------------------------------------------------------------
+CLICK_BOOST: list[tuple[str, str]] = [
+    ("/claude-vs-notion-ai", "Claude vs Notion AI, compared"),
+    ("/claude-for-nonprofits", "Claude for nonprofits (use cases + pricing)"),
+    ("/claude-prompts-for-sales", "Claude prompts for sales"),
+    ("/claude-vs-chatgpt-for-sales-operations", "Claude vs ChatGPT for sales ops"),
+    ("/claude-team-vs-claude-enterprise", "Claude Team vs Enterprise"),
+    ("/b2b-ai-vendor-comparison-matrix-2026", "The B2B AI vendor comparison matrix"),
+    ("/best-ai-tools-for-consultants-2026", "Best AI tools for consultants (2026)"),
+    ("/claude-for-real-estate-agents", "Claude for real estate agents"),
+    ("/claude-prompts-for-hr", "Claude prompts for HR"),
+]
+
+
+def pick_boost(source_url: str, n: int) -> list[tuple[str, str]]:
+    """Rotate click-boost targets per source page for even inbound distribution."""
+    if not CLICK_BOOST:
+        return []
+    off = sum(ord(c) for c in source_url) % len(CLICK_BOOST)
+    rotated = CLICK_BOOST[off:] + CLICK_BOOST[:off]
+    return [(u, a) for u, a in rotated if u != source_url][:n]
+
+
 def how_to_with_claude_recipe(url: str) -> list[tuple[str, str]]:
     """For /how-to-X-with-claude pages: link to peers and hubs."""
     if not (url.startswith("/how-to-") and url.endswith("-with-claude")):
@@ -1324,6 +1351,10 @@ def recipe_for(url: str, all_urls: set[str]) -> list[tuple[str, str]]:
     # and buyer-decision pages so they funnel equity to the new pages.
     if url in AI_CONSULTING_SOURCE_ALLOWLIST:
         prefix += pick_ai_consulting(url, 2)
+    # Funnel one inbound link to a high-impression "page 2" winner from every
+    # Claude/comparison page, to lift those pages' ranking (impressions->clicks).
+    if ("claude" in url or "-vs-" in url) and url not in [u for u, _ in CLICK_BOOST]:
+        prefix += pick_boost(url, 1)
     return prefix + base
 
 
