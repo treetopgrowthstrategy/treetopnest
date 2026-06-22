@@ -1,0 +1,421 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>11 Claude Prompts for Customer Success (Copy-Paste Ready) | Treetop</title>
+  <meta name="description" content="11 copy-paste Claude prompts for Customer Success: onboarding, QBRs, health scoring, churn saves, renewals, and account expansion. Built for B2B CS teams." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-customer-success" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-customer-success" />
+  <meta property="og:title" content="11 Claude Prompts for Customer Success (Copy-Paste Ready)" />
+  <meta property="og:description" content="11 copy-paste Claude prompts for Customer Success: onboarding, QBRs, health scoring, churn saves, renewals, and account expansion. Built for B2B CS teams." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-customer-success.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-customer-success.png" />
+  <meta name="twitter:title" content="11 Claude Prompts for Customer Success (Copy-Paste Ready)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "11 Claude Prompts for Customer Success (Copy-Paste Ready)", "description": "11 copy-paste Claude prompts for Customer Success: onboarding, QBRs, health scoring, churn saves, renewals, and account expansion. Built for B2B CS teams.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-customer-success", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-21", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-customer-success.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-customer-success","name":"11 Claude Prompts for Customer Success (Copy-Paste Ready) | Treetop","description":"11 copy-paste Claude prompts for Customer Success: onboarding, QBRs, health scoring, churn saves, renewals, and account expansion. Built for B2B CS teams.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-customer-success.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Prompts For Customer Success","item":"https://treetopgrowthstrategy.com/claude-prompts-for-customer-success"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-customer-success" class="nav-link">Claude for Customer Success</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 11 prompts</div>
+    <h1 class="hero-h">11 Claude prompts <em style="color:#00C853;font-style:italic;">for customer success.</em></h1>
+    <p class="hero-sub">Twelve production-grade Claude prompts for Customer Success professionals at B2B companies. Each one is built around a real CS job, from onboarding plans and QBR decks to health-score triage, churn saves, renewal prep, and expansion plays. Copy a prompt, swap in your account details, and run it.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">ONBOARDING</span>
+    <h2 class="h2">Onboarding and time-to-value</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>30-60-90 onboarding plan from the sales handoff</h3>
+      <div class="when">Use when: a new account moves from Closed Won to your queue and you need a launch plan before the kickoff call</div>
+      <pre>You are my Customer Success co-pilot for a B2B [PRODUCT CATEGORY] platform. Build a 30-60-90 day onboarding plan for a new account.
+
+Here is the sales handoff context:
+- Account: [COMPANY NAME], [INDUSTRY], [HEADCOUNT / ARR]
+- Why they bought (from sales notes): [PASTE NOTES]
+- Their stated success metric: [E.G. CUT TICKET RESOLUTION TIME 20%]
+- Champion: [NAME, ROLE]. Other stakeholders: [LIST]
+- Technical setup required: [INTEGRATIONS / SSO / DATA IMPORT]
+- Known risks or red flags from the deal: [LIST]
+
+Produce:
+1. The single first-value milestone they should hit, and by what date, that proves the purchase decision was right.
+2. A week-by-week plan for days 1-30, then 31-60, then 61-90, with owner for each task (me, the customer, or shared).
+3. The exact data, access, or decisions I need to request from the champion in the kickoff, written as a short numbered ask.
+4. Two leading indicators I should watch in each phase to know if onboarding is on track or stalling.
+
+Flag anything in the handoff that is vague or missing and tell me what to confirm with sales before kickoff.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Kickoff agenda and pre-read</h3>
+      <div class="when">Use when: you have a kickoff scheduled and want a tight agenda plus a one-page pre-read the customer will actually read</div>
+      <pre>Write a 45-minute kickoff agenda and a one-page customer-facing pre-read for this new account.
+
+Context:
+- Product: [PRODUCT], used by [USER PERSONAS]
+- Customer goal: [GOAL]
+- Attendees on their side: [NAMES, ROLES]
+- Attendees on my side: [NAMES, ROLES]
+- What must be true by end of call: [E.G. ADMIN ACCESS GRANTED, SUCCESS METRIC AGREED, NEXT 2 MEETINGS BOOKED]
+
+Agenda rules: time-boxed, outcome per segment, no live demo unless it drives a decision. Reserve the last 10 minutes for mutual commitments and dates.
+
+Pre-read rules: plain language, no internal jargon, under 350 words, structured as Why we are here, What good looks like in 90 days, What we need from you, Who does what. Write in a warm, confident voice. Do not use em dashes.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">HEALTH AND RISK</span>
+    <h2 class="h2">Health scoring and risk triage</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Account health read from mixed signals</h3>
+      <div class="when">Use when: you have usage data, support history, and meeting notes for one account and need a fast, honest health verdict</div>
+      <pre>Act as a skeptical Customer Success analyst. Read the following signals for one account and give me a clear-eyed health assessment.
+
+Usage data: [PASTE: logins, active seats vs licensed, feature adoption, trend over last 90 days]
+Support history: [PASTE: ticket count, severity, sentiment, open issues]
+Relationship notes: [PASTE: last 2-3 meeting summaries, champion status, exec sponsor presence]
+Commercial: [RENEWAL DATE, ARR, contract terms]
+
+Do this:
+1. Give a health rating of Green, Yellow, or Red, and state the single most important reason for it.
+2. Separate real risk signals from noise. Call out where the data looks fine on the surface but worries you, and why.
+3. List the top 3 risks ranked by likelihood times impact on renewal.
+4. Recommend the next 2 concrete actions with owners and timing.
+
+If the signals contradict each other, say so plainly and tell me which signal to trust most for this kind of account.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Churn-risk early-warning scan across the book</h3>
+      <div class="when">Use when: you manage a portfolio and want to spot at-risk accounts before they show up in a renewal forecast</div>
+      <pre>I am going to paste a table of accounts from my book of business. Help me triage churn risk across the portfolio.
+
+Columns: [ACCOUNT, ARR, RENEWAL DATE, ACTIVE SEATS / LICENSED, 90-DAY USAGE TREND, OPEN TICKETS, CHAMPION STATUS, LAST QBR DATE]
+
+Data:
+[PASTE TABLE]
+
+Produce:
+1. A ranked at-risk list, highest risk first, with a one-line reason per account.
+2. The 3 patterns you see repeating across at-risk accounts, since those point to a fixable systemic issue, not just one-off saves.
+3. A suggested triage tier for each: Save now, Watch, or Healthy, with the trigger that would move a Watch account to Save now.
+4. Which 5 accounts I should personally touch this week and the opening line for each outreach.
+
+Be direct. Do not soften a Red just because the ARR is large.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">RENEWALS AND EXPANSION</span>
+    <h2 class="h2">Renewals, QBRs, and expansion</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>QBR deck outline grounded in outcomes</h3>
+      <div class="when">Use when: a quarterly business review is coming up and you want a value-led narrative, not a feature recap</div>
+      <pre>Build the outline for a quarterly business review with [CUSTOMER]. The goal is to prove value and set up the renewal conversation, not to demo features.
+
+Inputs:
+- Their original success metric: [METRIC] and where it stands now: [CURRENT NUMBER]
+- Usage and adoption highlights this quarter: [PASTE]
+- Wins and customer quotes if any: [PASTE]
+- Open issues or unmet expectations: [PASTE]
+- Their business priorities for next quarter: [PASTE]
+
+Produce a slide-by-slide outline with the headline for each slide written as a takeaway, not a topic. Include:
+1. A results slide that ties usage to their business outcome in their language.
+2. An honest slide on what did not go well and how we are fixing it.
+3. A forward plan slide with 2-3 goals for next quarter.
+4. A natural bridge to renewal and one expansion idea, framed around their priorities.
+
+Give me the talk track for the results slide and the renewal bridge. Keep it executive-ready. Do not use em dashes.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Renewal risk brief and negotiation prep</h3>
+      <div class="when">Use when: you are 60-90 days from a renewal and need to walk in knowing the risks and your asks</div>
+      <pre>Prepare me for a renewal conversation with [CUSTOMER], renewing on [DATE] at [CURRENT ARR].
+
+Context:
+- Value delivered this term: [PASTE OUTCOMES, METRICS]
+- Relationship state: [CHAMPION, SPONSOR, ANY TURNOVER]
+- Adoption: [SEATS, FEATURES, TREND]
+- Known headwinds: [BUDGET PRESSURE, COMPETITOR, REORG, ETC.]
+- My goal for this renewal: [FLAT, UPLIFT %, MULTI-YEAR, EXPANSION]
+
+Produce:
+1. A renewal risk brief: likelihood of renewal, the 3 biggest threats, and the proof points that counter each.
+2. The value case I should lead with, stated as their ROI in their terms.
+3. Three likely objections and a crisp response to each, including the one I am least prepared for.
+4. My opening position, target, and walk-away, plus a concession ladder if they push on price.
+5. The one question that will surface their real intent early in the call.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Expansion play from usage patterns</h3>
+      <div class="when">Use when: an account is healthy and you want to identify a credible, customer-first expansion path</div>
+      <pre>Find the strongest expansion opportunity in this healthy account and pressure-test it before I pitch it.
+
+Account context:
+- Current plan and usage: [PASTE: tier, seats, features used vs available]
+- Teams or use cases not yet on the platform: [LIST]
+- Stated goals and roadmap: [PASTE]
+- Budget cycle and decision process: [WHAT I KNOW]
+
+Produce:
+1. The single best expansion play, whether seats, tier, module, or new team, and the usage evidence that makes it credible.
+2. The customer-first framing: how this solves their problem, not how it grows my number.
+3. The internal champion most likely to back it and why.
+4. A 3-step sequence to introduce it without making the relationship feel transactional.
+5. The signal that tells me to hold off because the timing is wrong.
+
+If the data does not support a real expansion, tell me that instead of inventing one.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">CUSTOMER COMMUNICATION</span>
+    <h2 class="h2">Customer-facing communication</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>De-escalation reply to an upset customer</h3>
+      <div class="when">Use when: a customer sends a frustrated or escalating email and you need a reply that holds the relationship</div>
+      <pre>Draft a reply to this upset customer. The relationship matters and I do not want to be defensive or dismissive.
+
+Their message:
+[PASTE EMAIL]
+
+What is actually true on our side:
+[PASTE: what happened, what we can and cannot do, timeline for a fix]
+
+Constraints:
+- Acknowledge the impact before explaining anything.
+- Do not over-apologize or admit fault we do not own, but do not deflect either.
+- Be specific about the next step, owner, and date.
+- Match a calm, senior, human tone. No corporate filler.
+- Keep it under 180 words.
+
+Give me two versions: one warmer, one more direct. Then list the one thing I should confirm internally before I hit send. Do not use em dashes.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Feature-request response that keeps trust</h3>
+      <div class="when">Use when: a customer asks for something that is not on the roadmap or will not ship soon</div>
+      <pre>Help me respond to a customer feature request without damaging trust or over-promising.
+
+The request: [PASTE]
+Why they want it (the underlying job): [WHAT I KNOW OR SUSPECT]
+Reality: [NOT PLANNED / ON ROADMAP FOR Q? / NEEDS MORE DEMAND / WORKAROUND EXISTS]
+Available workaround if any: [DESCRIBE]
+
+Produce:
+1. A reply that restates their underlying need so they feel heard, gives the honest status, and offers the best available path today.
+2. If there is a workaround, clear steps to use it.
+3. A line that keeps the door open and tells them how their input affects prioritization, without promising a ship date.
+4. A short internal note I can log to our product team capturing the request, the account, and the business impact.
+
+Keep the customer reply honest and warm. Do not use em dashes.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">INTERNAL AND VOICE OF CUSTOMER</span>
+    <h2 class="h2">Internal reporting and voice of customer</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Internal account save plan</h3>
+      <div class="when">Use when: an account goes Red and you need a focused recovery plan to align your team and manager</div>
+      <pre>Build an internal save plan for a Red account so my team and manager are aligned on the recovery.
+
+Situation:
+- Account: [NAME, ARR, RENEWAL DATE]
+- Why it went Red: [ROOT CAUSE, NOT JUST SYMPTOMS]
+- What we have tried: [PASTE]
+- Stakeholders and their current sentiment: [LIST]
+- What we can credibly offer: [E.G. EXEC SPONSOR, SERVICES HOURS, ROADMAP COMMITMENT, COMMERCIAL FLEX]
+
+Produce a save plan with:
+1. The root cause stated in one sentence, separating what we caused from what we cannot control.
+2. A 2-week action plan with daily-level owners and a single defined success criterion.
+3. The internal escalation: who I need from product, exec, or leadership, and the exact ask for each.
+4. A realistic probability of save and the trigger point at which we shift from saving to managing a graceful exit.
+
+Be honest about whether this account is savable. Do not give me false hope.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Voice-of-customer synthesis for product and leadership</h3>
+      <div class="when">Use when: you have a pile of customer feedback and need to turn it into themes leadership will act on</div>
+      <pre>Synthesize this raw customer feedback into a voice-of-customer brief for product and leadership.
+
+Sources (mixed): [PASTE: QBR notes, support tickets, churn reasons, survey verbatims, call snippets]
+Segment or filter if relevant: [E.G. ENTERPRISE ONLY, LAST 90 DAYS]
+
+Produce:
+1. The top 5 themes ranked by frequency and by revenue or retention impact, with a representative customer quote for each.
+2. For each theme, separate what is a product gap, a support gap, an onboarding gap, or an expectation-setting gap, since the owner differs.
+3. The 2 themes most tied to churn or stalled expansion, with the evidence.
+4. One slide-ready summary leadership can absorb in 30 seconds.
+5. The single change that, if shipped, would move retention the most, and the confidence level behind that claim.
+
+Do not flatten dissenting feedback into a false consensus. If a theme is loud but low-impact, say so.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your team's context: your processes, your templates, your past work, and the standards you hold. With those inputs, the prompts above produce outputs far better than running them in a blank Claude chat.</p>
+    <p class="body">See <a href="/claude-for-customer-success" style="color:#00C853;text-decoration:none;">Claude for Customer Success</a> for the full picture, or <a href="/services/implementation" style="color:#00C853;text-decoration:none;">have Treetop build the Customer Success Project for your team</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More for Customer Success teams</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-customer-success" style="color:#00C853;text-decoration:none;">Claude for Customer Success &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-customer-service" style="color:#00C853;text-decoration:none;">Claude prompts for Customer Service &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">Claude prompts for Sales &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Claude implementation services &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Turn these prompts into a Customer Success Claude Project</div>
+        <div class="cta-sub">Treetop builds a tuned Claude setup around your accounts, your health model, and your renewal motion, so your CS team runs these plays on real data, not blank prompts. Start with an AI audit or jump straight to implementation.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/claude-prompts-for-hr" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude prompts for HR &rarr;</a></li>
+    <li><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">The fractional CMO playbook &rarr;</a></li>
+    <li><a href="/ai-for-cmos" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI tools every CMO should know &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How AI-native GTM works &rarr;</a></li>
+    <li><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Plain-English: AI-native GTM &rarr;</a></li>
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Full AI and GTM glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">All Treetop resources &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>

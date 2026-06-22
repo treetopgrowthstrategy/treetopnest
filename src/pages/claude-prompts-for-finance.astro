@@ -1,0 +1,457 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>14 Claude Prompts for Finance (Copy-Paste Ready) | Treetop</title>
+  <meta name="description" content="14 copy-paste Claude prompts for finance teams: FP&amp;A, close and reporting, AR and collections, board decks, and FX and risk. Built for B2B finance pros." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-finance" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-finance" />
+  <meta property="og:title" content="14 Claude Prompts for Finance (Copy-Paste Ready)" />
+  <meta property="og:description" content="14 copy-paste Claude prompts for finance teams: FP&amp;A, close and reporting, AR and collections, board decks, and FX and risk. Built for B2B finance pros." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-finance.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-finance.png" />
+  <meta name="twitter:title" content="14 Claude Prompts for Finance (Copy-Paste Ready)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "14 Claude Prompts for Finance (Copy-Paste Ready)", "description": "14 copy-paste Claude prompts for finance teams: FP&A, close and reporting, AR and collections, board decks, and FX and risk. Built for B2B finance pros.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-finance", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-21", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-finance.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-finance","name":"14 Claude Prompts for Finance (Copy-Paste Ready) | Treetop","description":"14 copy-paste Claude prompts for finance teams: FP&A, close and reporting, AR and collections, board decks, and FX and risk. Built for B2B finance pros.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-finance.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Prompts For Finance","item":"https://treetopgrowthstrategy.com/claude-prompts-for-finance"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-finance" class="nav-link">Claude for Finance</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 14 prompts</div>
+    <h1 class="hero-h">14 Claude prompts <em style="color:#00C853;font-style:italic;">for finance.</em></h1>
+    <p class="hero-sub">These 14 prompts cover the work a B2B finance team actually does: variance analysis and forecasts, close and management reporting, AR and collections, board and investor narratives, and risk and treasury. Each one is annotated, uses [PLACEHOLDER] tokens for your numbers, and is ready to paste into Claude. Swap in your data, keep your judgment on the output.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FP&amp;A AND PLANNING</span>
+    <h2 class="h2">FP&amp;A, forecasting, and variance analysis</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>Budget vs. actuals variance brief</h3>
+      <div class="when">Use when: you have a month or quarter closed and need to explain the gaps before the leadership review</div>
+      <pre>You are a senior FP&amp;A analyst. I am going to give you budget vs. actuals for [PERIOD, e.g. Q2 FY26].
+
+Data (paste rows: line item, budget, actual, prior period actual):
+[PASTE P&amp;L OR DEPARTMENT DATA HERE]
+
+Produce a variance brief:
+1. Rank the 5 largest dollar variances and the 5 largest percentage variances separately. Flag any line where dollar and percentage rank disagree.
+2. For each top variance, state whether it is favorable or unfavorable, the size, and a plausible driver based only on the data. Where you are inferring, label it "hypothesis" and tell me what to check to confirm.
+3. Separate timing variances (will reverse) from run-rate variances (structural) where the data lets you, and say which is which.
+4. Flag anything that looks like a coding error or one-time item I should scrub before reporting.
+5. End with 3 questions I should ask the relevant department owner.
+
+Keep numbers exactly as given. Do not round in a way that changes the story. Output as a tight memo, no preamble.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Driver-based revenue forecast builder</h3>
+      <div class="when">Use when: you are rebuilding a forecast and want the logic explicit instead of buried in spreadsheet cells</div>
+      <pre>Help me build a driver-based revenue forecast for [BUSINESS / SEGMENT] over the next [N] months.
+
+Inputs:
+- Revenue model: [e.g. SaaS subscription, usage-based, services]
+- Current baseline (paste): [STARTING ARR/MRR, customer count, ACV, churn rate, expansion rate]
+- Known commitments: [signed deals, ramp schedules, planned price changes]
+- Assumptions I want to test: [e.g. new logo adds per month, gross churn %, net revenue retention]
+
+Do this:
+1. Lay out the forecast as a driver tree (what multiplies into what), not a flat number.
+2. Build three scenarios: conservative, base, stretch. State the specific assumption changes between them in a table.
+3. Show month-by-month revenue and ending ARR/MRR for the base case.
+4. Call out the two or three assumptions the output is most sensitive to, and quantify the swing.
+5. List the assumptions I should pressure-test with Sales and CS before I commit this.
+
+Show your arithmetic so I can audit it. Do not invent inputs I did not give you; ask if something critical is missing.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Headcount and OpEx plan reconciliation</h3>
+      <div class="when">Use when: Finance and the hiring managers disagree on what is actually in the plan</div>
+      <pre>Act as my FP&amp;A partner reconciling a headcount and operating expense plan.
+
+I will give you two things:
+- Approved plan (paste): [ROLE, DEPT, START MONTH, FULLY LOADED COST]
+- Current state or hiring manager ask (paste): [ROLE, DEPT, STATUS, COST]
+
+Reconcile them:
+1. Produce a line-by-line diff: roles added, removed, moved, re-timed, or re-priced versus the approved plan.
+2. Quantify the total annualized cost delta and the in-year (this fiscal year) cost delta separately, since timing matters.
+3. Flag any role that is double-counted, mis-departmented, or missing a fully loaded cost.
+4. Convert each open role's start-month change into a dollar impact on the current quarter and full year.
+5. Summarize in two sentences I can send to the CFO: what changed and what it costs.
+
+Use only the figures provided. Where a fully loaded cost is missing, mark it TBD rather than estimating.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">CLOSE AND REPORTING</span>
+    <h2 class="h2">Month-end close and management reporting</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Management report narrative from the numbers</h3>
+      <div class="when">Use when: the close is done and you need the written commentary that goes around the tables</div>
+      <pre>You are drafting the management commentary for our [MONTH] reporting package. Write for an executive audience that reads the narrative before the numbers.
+
+Financials (paste P&amp;L summary, plus prior month and prior year where available):
+[PASTE SUMMARY P&amp;L AND KEY METRICS]
+
+Context I want reflected: [e.g. closed a large deal, one-time legal cost, headcount ramp]
+
+Write:
+1. A 4 to 6 sentence executive summary: how the period landed against plan and against prior period, in plain language.
+2. Revenue commentary: what moved and why.
+3. Margin and cost commentary: gross margin, OpEx trend, anything off-trend.
+4. Cash and runway note if cash data is provided.
+5. A short "watch list" of 2 to 3 items for next period.
+
+Rules: be specific with numbers, attribute drivers only where the data or my context supports it, and never use em dashes or en dashes. No filler adjectives. If a number contradicts my context, surface the conflict rather than smoothing it over.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Close checklist and reconciliation reviewer</h3>
+      <div class="when">Use when: you want a second set of eyes on the close before sign-off</div>
+      <pre>Act as a controller reviewing a month-end close. I will paste my close checklist and the status of each item.
+
+Close data (paste): [TASK, OWNER, STATUS, NOTES, ANY RECONCILING ITEMS]
+
+Review it for risk:
+1. Identify any task marked complete that has an unexplained reconciling item or a note that contradicts "done."
+2. Flag accounts where the reconciling balance exceeds [MATERIALITY THRESHOLD, e.g. $5,000] and is not explained.
+3. Call out missing standard close steps for a [INDUSTRY / ENTITY TYPE] company (accruals, prepaids, deferred revenue, intercompany, FX revaluation, etc.) that are absent from my list.
+4. Order the open items by what blocks sign-off versus what can trail.
+5. Give me a one-line readiness call: ready to close, close with noted exceptions, or not ready, with the reason.
+
+Do not assume an item is fine because it is marked complete. Treat blank or vague notes as a flag, not a pass.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Cash flow bridge explainer</h3>
+      <div class="when">Use when: net income and cash moved in different directions and someone is going to ask why</div>
+      <pre>Build me a clear cash flow bridge and explanation for [PERIOD].
+
+Data (paste): net income, change in AR, change in AP, change in deferred revenue, change in inventory, capex, financing activity, beginning and ending cash.
+[PASTE FIGURES]
+
+Do this:
+1. Walk from net income to ending cash as a step-by-step bridge, each line labeled as a source or use of cash with the dollar amount.
+2. Explain in plain English why cash and profit diverged this period, naming the 2 to 3 biggest reconciling items.
+3. Flag any working capital swing that looks unsustainable or like a timing artifact that reverses next period.
+4. Give me one sentence I can say to a non-finance executive about what is really happening with cash.
+
+Keep the arithmetic visible so the bridge ties to ending cash exactly. If it does not tie, tell me where the gap is rather than forcing it.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">AR AND COLLECTIONS</span>
+    <h2 class="h2">Accounts receivable, collections, and credit</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Aging-driven collections action plan</h3>
+      <div class="when">Use when: the AR aging report is bloated and you need a prioritized plan, not a guilt spiral</div>
+      <pre>You are my AR analyst. Here is the current accounts receivable aging.
+
+Aging data (paste: customer, invoice, amount, days past due, last contact):
+[PASTE AGING REPORT]
+
+Build a collections action plan:
+1. Segment receivables into current, 1 to 30, 31 to 60, 61 to 90, and 90+ days past due, with totals per bucket.
+2. Rank accounts by collection priority using both dollar size and days outstanding, not just one. Name the top 10.
+3. For each top account, recommend the next action (reminder, call, payment plan, hold, escalate) and the tone.
+4. Estimate the at-risk balance (anything 90+ or with no recent contact) and what an allowance for doubtful accounts conversation should consider.
+5. Flag any customer concentration risk where one account is an outsized share of total AR.
+
+Use only the data provided. Do not assume a customer is delinquent if the days past due is zero or negative.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Collections email that keeps the relationship</h3>
+      <div class="when">Use when: you need to chase payment from an important customer without burning the account</div>
+      <pre>Write a collections email to a customer who is [N] days past due.
+
+Details:
+- Customer: [NAME], relationship: [new / long-standing / strategic]
+- Invoice(s): [NUMBER, AMOUNT, DUE DATE]
+- History: [first reminder / second reminder / previously promised to pay / went silent]
+- Outcome I want: [payment by a date / a payment plan / a reason for the delay]
+
+Draft the email so it is firm but professional, easy to act on, and protects the relationship. Include a clear payment link or instruction placeholder, a specific requested date, and a single clear ask. Keep it under 150 words. Offer a short alternative version that is one notch firmer in case this is the second attempt.
+
+Do not use any em dashes or en dashes. No guilt-tripping, no legal threats unless I explicitly ask for the final-notice version.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Credit limit and terms recommendation</h3>
+      <div class="when">Use when: Sales wants to extend terms to a new or growing customer and you have to make the call</div>
+      <pre>Help me make a credit decision for a customer requesting [TERMS, e.g. net 60 with a $X credit limit].
+
+What I know (paste any of): payment history with us, current balance, days-to-pay average, order size, public financial signals, industry, any credit report data.
+[PASTE WHAT YOU HAVE]
+
+Do this:
+1. Summarize the customer's payment behavior and credit signals from the data, separating fact from inference.
+2. Recommend a credit limit and payment terms, with the reasoning tied to the evidence.
+3. List the conditions or guardrails you would attach (deposit, milestone billing, periodic review, personal guarantee) and when each applies.
+4. Identify what additional information would most change your recommendation, so I know what to request.
+5. Give me a two-sentence rationale I can send to the Sales lead.
+
+Be explicit about uncertainty. If the data is thin, say the recommendation is provisional and name the gap.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">BOARD AND INVESTOR</span>
+    <h2 class="h2">Board, investor, and executive communication</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Board deck financial section outline</h3>
+      <div class="when">Use when: you are building or tightening the finance pages of a board deck</div>
+      <pre>Help me build the financial section of a board deck for [COMPANY], stage [SEED / SERIES A / GROWTH / PROFITABLE].
+
+Inputs (paste): latest P&amp;L summary, cash and runway, key SaaS or unit metrics, plan vs. actual highlights, top wins and misses this period.
+[PASTE INPUTS]
+
+Produce:
+1. A slide-by-slide outline for the finance section: title of each slide, the one message it must land, and the 3 to 5 numbers or charts it shows.
+2. The single headline takeaway the board should leave with about the company's financial position.
+3. For each slide, the likely board question and a one-line answer I should be ready with.
+4. A "do not bury this" list: anything in the data that is bad news the board needs to hear directly.
+
+Match the altitude to the stage: an early-stage board cares about runway and burn, a growth board cares about efficiency and durability. Be direct about risks; boards punish surprises, not bad news.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Investor update financials in plain English</h3>
+      <div class="when">Use when: you are writing the numbers section of a monthly or quarterly investor update</div>
+      <pre>Draft the financial portion of an investor update for [PERIOD].
+
+Data (paste): revenue and growth, gross margin, burn or profit, cash balance, runway in months, and 2 to 3 key metrics for our model.
+[PASTE DATA]
+
+Write:
+1. A short, confident financial summary: where we are on revenue, efficiency, and cash, in language an investor skims in 30 seconds.
+2. A clear statement of runway and the assumptions behind it.
+3. One honest line on the biggest financial risk or watch item.
+4. A specific "how investors can help" line if it relates to finance (intros, hiring, follow-on signaling).
+
+Tone: candid, numerate, no spin. Investors model the numbers themselves, so accuracy beats optimism. Never use em dashes or en dashes. Flag any number you think looks inconsistent with the rest rather than reporting it blindly.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>Tough finance question prep</h3>
+      <div class="when">Use when: you are walking into a board or exec meeting where the numbers invite hard questions</div>
+      <pre>Act as a skeptical board member and CFO coach. Here is the financial picture I am presenting at [MEETING].
+
+What I am showing (paste): the key numbers, the story I plan to tell, and any soft spots I already know about.
+[PASTE]
+
+Do this:
+1. Generate the 10 hardest, most specific questions a sharp board member or investor would ask about these numbers.
+2. For each, give me a strong, honest answer, and flag where my current data does not actually support a clean answer.
+3. Identify the one question I am least prepared for and tell me exactly what to go calculate or confirm before the meeting.
+4. Point out any place where my planned narrative gets ahead of the evidence.
+
+Be adversarial and specific. Do not lob softballs. If a number invites a follow-up I would not want, surface it now.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">RISK AND TREASURY</span>
+    <h2 class="h2">Risk, treasury, and contract finance</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">13</div>
+      <h3>FX and concentration exposure scan</h3>
+      <div class="when">Use when: your revenue or costs span currencies and customers, and you want the exposures named before they bite</div>
+      <pre>Act as a treasury analyst. Scan my exposures for [COMPANY] and flag what matters.
+
+Data (paste any of): revenue by currency, costs by currency, top customers as a share of revenue, top vendors as a share of spend, cash by currency and account, debt and covenant terms.
+[PASTE DATA]
+
+Produce:
+1. Currency exposure: where revenue and costs are mismatched by currency, and a rough sense of which way a [X]% move hurts.
+2. Customer concentration: any customer above [THRESHOLD, e.g. 10%] of revenue, and combined top-3 and top-5 share.
+3. Vendor and supply concentration risk worth noting.
+4. Liquidity risk: cash trapped in the wrong currency or entity, and any covenant headroom concern.
+5. A prioritized list of the 3 exposures I should address first and a sensible first action for each (natural hedge, forward, diversification, covenant conversation).
+
+Use only what I provide. Be clear about which exposures are large versus merely present, and do not recommend a hedge before naming the natural offsets already in the data.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">14</div>
+      <h3>Contract financial terms reviewer</h3>
+      <div class="when">Use when: a customer or vendor contract landed on your desk and you need the money terms pulled out fast</div>
+      <pre>You are a finance reviewer reading a [CUSTOMER / VENDOR] contract. I care about the financial and cash terms, not the legal language.
+
+Contract text (paste the relevant sections):
+[PASTE CONTRACT]
+
+Extract and assess:
+1. Pricing, total contract value, and how it is calculated, including any usage, overage, or escalator clauses.
+2. Payment terms: invoicing timing, net days, late fees, and anything that delays our cash.
+3. Revenue recognition flags: milestones, acceptance criteria, refunds, or termination-for-convenience clauses that affect when and whether we can recognize revenue.
+4. Auto-renewal, price-lock, and termination terms and their cash impact.
+5. Any term that is unusual or off-market for this kind of deal, and the question I should raise.
+
+Quote the exact contract language for each point so I can verify it. If a financially important term is silent or ambiguous, say so explicitly; silence is a risk, not a pass. This is a finance read, not legal advice.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your team's context: your processes, your templates, your past work, and the standards you hold. With those inputs, the prompts above produce outputs far better than running them in a blank Claude chat.</p>
+    <p class="body">See <a href="/claude-for-finance" style="color:#00C853;text-decoration:none;">Claude for Finance</a> for the full picture, or <a href="/services/implementation" style="color:#00C853;text-decoration:none;">have Treetop build the Finance Project for your team</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More for Finance teams</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-finance" style="color:#00C853;text-decoration:none;">Claude for Finance &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-operations" style="color:#00C853;text-decoration:none;">Claude Prompts for Operations &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/resources/claude-system-prompts-library" style="color:#00C853;text-decoration:none;">Claude System Prompts Library &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Claude Implementation Services &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Build a Finance Claude Project that knows your numbers</div>
+        <div class="cta-sub">Treetop turns prompts like these into a configured Claude Project with your chart of accounts, reporting templates, and policies built in. Start with an AI Audit or jump straight to Implementation to stand up your finance workflows.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/claude-for-real-estate-agents" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude for real estate agents &rarr;</a></li>
+    <li><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">What a fractional CMO does &rarr;</a></li>
+    <li><a href="/ai-for-cmos" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">The AI toolkit for marketing leaders &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's AI-native GTM framework &rarr;</a></li>
+    <li><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI-native GTM, defined &rarr;</a></li>
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Resource library &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>

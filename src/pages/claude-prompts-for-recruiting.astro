@@ -1,0 +1,437 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>13 Claude Prompts for Recruiting (Copy-Paste Ready) | Treetop</title>
+  <meta name="description" content="13 copy-paste Claude prompts for recruiting teams: write job posts, screen resumes, source candidates, draft outreach, structure interviews, and brief hiring managers." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-recruiting" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-recruiting" />
+  <meta property="og:title" content="13 Claude Prompts for Recruiting (Copy-Paste Ready)" />
+  <meta property="og:description" content="13 copy-paste Claude prompts for recruiting teams: write job posts, screen resumes, source candidates, draft outreach, structure interviews, and brief hiring managers." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-recruiting.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-recruiting.png" />
+  <meta name="twitter:title" content="13 Claude Prompts for Recruiting (Copy-Paste Ready)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "13 Claude Prompts for Recruiting (Copy-Paste Ready)", "description": "13 copy-paste Claude prompts for recruiting teams: write job posts, screen resumes, source candidates, draft outreach, structure interviews, and brief hiring managers.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-recruiting", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-21", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-recruiting.png"},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-recruiting","name":"13 Claude Prompts for Recruiting (Copy-Paste Ready) | Treetop","description":"13 copy-paste Claude prompts for recruiting teams: write job posts, screen resumes, source candidates, draft outreach, structure interviews, and brief hiring managers.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-recruiting.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Claude Prompts For Recruiting","item":"https://treetopgrowthstrategy.com/claude-prompts-for-recruiting"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-recruiters" class="nav-link">Claude for Recruiting</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 13 prompts</div>
+    <h1 class="hero-h">13 Claude prompts <em style="color:#00C853;font-style:italic;">for recruiting.</em></h1>
+    <p class="hero-sub">Twelve production-grade Claude prompts built for the real recruiting cycle: intake and job descriptions, sourcing and outreach, screening and interviews, candidate experience, and pipeline reporting. Each one is annotated, uses fill-in-the-blank placeholders, and is ready to paste into Claude today.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">INTAKE &amp; JOB DESCRIPTIONS</span>
+    <h2 class="h2">Open the req the right way</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>Run a structured intake from a hiring manager note</h3>
+      <div class="when">Use when: a hiring manager sends you a vague request and you need a real scorecard before you source anyone</div>
+      <pre>You are my recruiting intake partner. I am opening a req for [ROLE TITLE] on the [TEAM/DEPARTMENT] team, reporting to [HIRING MANAGER]. Here is everything the hiring manager has given me so far:
+
+[PASTE THE RAW NOTE, SLACK THREAD, OR EMAIL]
+
+Turn this into a clean intake brief with these sections:
+1. Mission of the role in two sentences (what this person owns and why it exists now)
+2. Top 5 outcomes expected in the first 12 months, written as measurable results
+3. Must-have qualifications vs. nice-to-have, clearly split (push back on anything that looks like a wish list rather than a true requirement)
+4. Likely current titles and companies where this person works today
+5. Compensation and leveling questions I still need answered
+6. 8 sharp questions to ask the hiring manager in our intake call to close the gaps above
+
+Flag any requirement that will shrink the talent pool unnecessarily and suggest a more inclusive alternative. Keep it tight and skimmable.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Write an inclusive, accurate job description</h3>
+      <div class="when">Use when: you have a scorecard and need a posting that attracts the right people and screens out the wrong ones</div>
+      <pre>Write a job description for [ROLE TITLE] at [COMPANY], a [ONE-LINE COMPANY DESCRIPTION]. Use this intake brief as the source of truth:
+
+[PASTE INTAKE BRIEF OR SCORECARD]
+
+Structure: a 3-sentence hook about the role and team, What you will own (5-6 outcome-based bullets, not task lists), What we are looking for (split must-have vs. nice-to-have), and How we work / what we offer.
+
+Rules:
+- Write at a 9th-grade reading level. Cut jargon and internal acronyms.
+- Remove gendered or exclusionary language and any requirement not tied to a real outcome.
+- Do not invent benefits, salary, or facts not in my brief. Mark anything you are unsure of as [CONFIRM].
+- Include a short, specific equal-opportunity line, not boilerplate.
+
+Then give me a separate 5-item checklist of claims in the draft I should verify with the hiring manager before posting.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Calibrate the level and title against the market</h3>
+      <div class="when">Use when: the hiring manager and comp team disagree on level, or the title feels off for what the role actually does</div>
+      <pre>Help me calibrate level and title for this role. Here is the scorecard and the comp band we have approved:
+
+Scorecard: [PASTE]
+Proposed title: [TITLE]
+Proposed level: [LEVEL, e.g. IC4 / Senior]
+Approved band: [RANGE AND LOCATION]
+
+Do three things:
+1. Tell me whether the title, level, and scope are internally consistent. If a candidate at this band reads this scorecard, will the responsibilities feel above, at, or below level? Explain the mismatch.
+2. Suggest 3 alternative titles that candidates actually search for, ranked by likely search volume and clarity.
+3. List the specific scope or ownership signals I should confirm in intake to defend this level to both candidates and finance.
+
+Be direct about where we are likely to lose candidates on title or comp.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">SOURCING &amp; OUTREACH</span>
+    <h2 class="h2">Find and message the right people</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Build a boolean and sourcing strategy</h3>
+      <div class="when">Use when: you are starting a fresh search and want target companies, titles, and search strings instead of guessing</div>
+      <pre>Act as a senior sourcer. I am filling [ROLE TITLE] based in [LOCATION / REMOTE], targeting people who can deliver these outcomes:
+
+[PASTE TOP OUTCOMES AND MUST-HAVES]
+
+Give me a sourcing plan:
+1. 10-15 current job titles this person likely holds today, including adjacent and slightly junior titles for stretch candidates
+2. Three tiers of target companies: direct competitors, talent feeders, and underrated sources most recruiters overlook (explain why each tier fits)
+3. Two boolean strings ready to paste into LinkedIn Recruiter: one tight for exact-match, one broad for discovery
+4. 4 signals that someone is likely open to moving (recent reorg, title stagnation, etc.) and how to spot them
+5. Two diverse-slate sourcing angles (communities, programs, or searches) to widen the pool beyond the obvious pull
+
+Keep boolean strings clean and copy-ready.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Draft a personalized cold outreach message</h3>
+      <div class="when">Use when: you found a strong passive candidate and want a first message that gets a reply, not a templated blast</div>
+      <pre>Write a short cold outreach message to a passive candidate for [ROLE TITLE] at [COMPANY].
+
+Candidate context (from their profile): [PASTE TITLE, COMPANY, A SPECIFIC PROJECT OR DETAIL, ANYTHING NOTABLE]
+Why this role is genuinely interesting: [1-2 REAL HOOKS, e.g. scope, mission, growth, team]
+Channel: [LINKEDIN INMAIL / EMAIL]
+
+Rules:
+- Under 110 words. Lead with one specific, true thing about them, not flattery.
+- One clear value angle for why this could beat their current seat.
+- No buzzwords, no "rockstar / ninja," no fake urgency, no em dashes.
+- End with a low-friction ask (a 15-minute call, not "apply now").
+- Sound like a real human who read their profile.
+
+Give me the message plus two subject lines or opening lines I can A/B test.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Write a 3-touch follow-up sequence</h3>
+      <div class="when">Use when: your first outreach got no reply and you want polite, varied follow-ups that do not feel like nagging</div>
+      <pre>I sent this first message to a passive candidate and got no reply:
+
+[PASTE FIRST MESSAGE]
+
+Write a 3-touch follow-up sequence spaced over [e.g. 10 business days]. Requirements:
+- Each touch adds something new: a different angle on the role, a relevant proof point about the team or product, or a genuinely useful resource. Never just "bumping this."
+- Vary length and tone so the thread feels human, not automated.
+- Touch 3 is a respectful close-the-loop message that leaves the door open without guilt-tripping.
+- All under 90 words each, no em dashes, no false scarcity.
+
+Label each touch with its timing and the strategic purpose of that message.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">SCREENING &amp; INTERVIEWS</span>
+    <h2 class="h2">Evaluate fairly and consistently</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Screen a batch of resumes against the scorecard</h3>
+      <div class="when">Use when: you have a stack of applicants and need a consistent first pass tied to real requirements, not gut feel</div>
+      <pre>You are screening candidates against a defined scorecard. Do not reward keyword stuffing and do not penalize non-traditional paths that still meet the bar.
+
+Scorecard must-haves: [PASTE]
+Nice-to-haves: [PASTE]
+
+For each resume I paste below, return a row with: Candidate name or ID, Match on each must-have (Met / Partial / Not shown), 2-3 specific evidence snippets from their background, an overall recommendation (Advance / Hold / Pass), and the single biggest open question to resolve on a screen call.
+
+Rules:
+- Judge only on must-haves and nice-to-haves. Ignore school prestige, employment gaps, and name signals.
+- If a requirement is simply not stated, mark it "Not shown," do not assume.
+- Be consistent across candidates so I can compare rows directly.
+
+Resumes:
+[PASTE RESUMES, SEPARATED BY ---]</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Build a structured interview kit</h3>
+      <div class="when">Use when: interviewers are winging it and you need a consistent, competency-based loop you can hand to a panel</div>
+      <pre>Build a structured interview kit for [ROLE TITLE] based on these competencies and outcomes:
+
+[PASTE SCORECARD COMPETENCIES]
+
+Produce:
+1. An interview loop plan: assign each competency to a specific stage or interviewer so we are not all testing the same thing
+2. For each competency, 2 behavioral questions ("Tell me about a time...") and 1 situational question, each with the trait we are actually probing
+3. A 4-point rating rubric per competency with concrete "looks like" descriptions for a 1 vs. a 4, so scores mean the same thing across interviewers
+4. 3 follow-up probes interviewers can use to push past rehearsed answers
+5. A short note on questions to avoid for legal and bias reasons
+
+Keep it usable on one page per interviewer.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Turn raw interview notes into a structured scorecard write-up</h3>
+      <div class="when">Use when: an interviewer dumped messy notes and you need a clean, evidence-based submission for the debrief</div>
+      <pre>Convert these raw interview notes into a structured scorecard write-up. Do not inflate or invent anything beyond what the notes support.
+
+Role: [ROLE TITLE]
+Competencies being assessed: [LIST]
+Raw notes: [PASTE]
+
+Return:
+1. A rating (1-4) for each competency, each backed by a direct quote or specific behavior from the notes
+2. Strongest signal and biggest concern, one line each
+3. Any competency the notes did not actually cover (flag as "not assessed," do not guess a score)
+4. A clear overall recommendation: Strong Hire / Hire / No Hire / Strong No Hire, with the one-sentence reason
+5. 2 targeted questions a later interviewer should dig into
+
+If the notes show bias or rely on "culture fit" language, flag it and rewrite that point around an actual competency.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">CANDIDATE EXPERIENCE &amp; OFFERS</span>
+    <h2 class="h2">Keep people warm and close strong</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Write a respectful, specific rejection</h3>
+      <div class="when">Use when: you are closing out a candidate who interviewed and you want to protect the brand and the relationship</div>
+      <pre>Write a rejection email to a candidate who reached [STAGE, e.g. final round] for [ROLE TITLE] at [COMPANY].
+
+Context I can share: [WHAT WENT WELL, AND THE HONEST-BUT-KIND REASON, e.g. another candidate had deeper X]
+Future intent: [WOULD WE WANT THEM BACK FOR OTHER ROLES? YES/NO]
+
+Rules:
+- Warm, human, and specific to them. No copy-paste feel, no em dashes.
+- Give one genuine, usable piece of positive signal so the message has substance.
+- Be honest without creating legal exposure or critiquing protected characteristics. Keep feedback role-related.
+- If we want them back, make a real soft invitation to stay in touch. If not, close cleanly and graciously.
+- Under 150 words.
+
+Also give me a 2-line version for candidates I am rejecting earlier in the funnel.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Prep the verbal offer and pre-empt objections</h3>
+      <div class="when">Use when: you are about to extend and want to deliver it well and handle pushback without scrambling</div>
+      <pre>Help me prep to deliver a verbal offer for [ROLE TITLE] to [CANDIDATE].
+
+Offer details: [BASE, EQUITY, BONUS, START DATE, LEVEL, LOCATION/REMOTE]
+What the candidate cares about most (from our calls): [e.g. growth path, comp, manager, flexibility]
+Known competing situation: [OTHER OFFERS / CURRENT EMPLOYER COUNTER / NONE KNOWN]
+
+Give me:
+1. A tight verbal offer script that leads with enthusiasm and frames the package against what they care about
+2. The 4 most likely objections (comp, title, start date, counteroffer) with a confident, honest response to each, including where I should and should not negotiate
+3. 3 closing questions that surface hesitation early
+4. The exact next steps and timeline to state so we control momentum
+
+Keep my responses sincere, never pushy or manipulative.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">PIPELINE &amp; STAKEHOLDER REPORTING</span>
+    <h2 class="h2">Show the work to hiring managers and leadership</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>Turn pipeline data into a hiring manager update</h3>
+      <div class="when">Use when: your weekly sync is coming up and you want a crisp status that drives decisions, not a data dump</div>
+      <pre>Turn this pipeline data into a weekly update for the hiring manager of [ROLE TITLE]. Be honest about risk.
+
+Data (stage counts, days open, recent activity): [PASTE FROM ATS OR SHEET]
+Target close date: [DATE]
+Known blockers: [e.g. slow feedback, comp band, narrow scorecard]
+
+Write:
+1. A 2-sentence headline: are we on track, at risk, or off track, and why
+2. Funnel snapshot with the one number that matters most this week
+3. The top blocker and the specific decision or action I need from the hiring manager to unblock it
+4. What I am doing next, with dates
+
+Keep it to what a busy manager will read in 60 seconds. Lead with the ask, not the activity.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">13</div>
+      <h3>Diagnose a stalling funnel and recommend fixes</h3>
+      <div class="when">Use when: a req has been open too long and leadership wants to know what is actually broken in the pipeline</div>
+      <pre>Analyze this funnel for [ROLE TITLE], open [NUMBER] days, and tell me where it is breaking. Be specific and quantitative.
+
+Funnel data (sourced, contacted, replied, screened, onsite, offer, accept): [PASTE COUNTS]
+Benchmarks or prior similar roles, if I have them: [PASTE OR WRITE "NONE"]
+
+Return:
+1. Conversion rate at each stage and the single worst drop-off, with the likely root cause (top-of-funnel volume, message reply rate, screen-to-onsite quality, or close rate)
+2. Whether this is a sourcing problem, a calibration problem, a process-speed problem, or a selling problem, and how you can tell from the numbers
+3. The 3 highest-leverage actions to take this week, ranked by expected impact
+4. A one-paragraph summary I can paste into a leadership update that states the diagnosis and the plan
+
+Do not sugarcoat. If the scorecard is likely too narrow, say so.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your team's context: your processes, your templates, your past work, and the standards you hold. With those inputs, the prompts above produce outputs far better than running them in a blank Claude chat.</p>
+    <p class="body">See <a href="/claude-for-recruiters" style="color:#00C853;text-decoration:none;">Claude for Recruiting</a> for the full picture, or <a href="/services/implementation" style="color:#00C853;text-decoration:none;">have Treetop build the Recruiting Project for your team</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More for Recruiting teams</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-for-recruiters" style="color:#00C853;text-decoration:none;">Claude for Recruiters &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-hr" style="color:#00C853;text-decoration:none;">Claude Prompts for HR &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/resources/claude-system-prompts-library" style="color:#00C853;text-decoration:none;">Claude System Prompts Library &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/implementation" style="color:#00C853;text-decoration:none;">Claude Implementation Services &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Build a Claude Project for your recruiting team</div>
+        <div class="cta-sub">Treetop Growth Strategy turns these prompts into a configured Claude Project wired to your scorecards, ATS, and brand voice. Start with an AI Audit or jump straight to Implementation.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/claude-for-real-estate-agents" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude for real estate agents &rarr;</a></li>
+    <li><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">What a fractional CMO does &rarr;</a></li>
+    <li><a href="/ai-for-cmos" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">The AI toolkit for marketing leaders &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's AI-native GTM framework &rarr;</a></li>
+    <li><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI-native GTM, defined &rarr;</a></li>
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Resource library &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>
