@@ -232,6 +232,23 @@
   .sync-dot.off{background:var(--text-muted);}
   #syncStatus{font-size:10.5px;}
 
+  /* STATUS DROPDOWN */
+  .status-dd{position:relative;display:inline-block;}
+  .status-dd .status-pill{padding-right:8px;display:inline-flex;align-items:center;gap:5px;}
+  .status-dd .status-pill .caret{font-size:9px;line-height:1;opacity:0.7;}
+  .status-dd .status-menu{display:none;position:absolute;top:calc(100% + 4px);right:0;z-index:50;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.5);min-width:150px;overflow:hidden;}
+  .status-dd.open .status-menu{display:block;}
+  .status-menu-item{display:block;width:100%;text-align:left;background:transparent;border:none;color:var(--text-sub);font-family:'Work Sans',sans-serif;font-size:12.5px;font-weight:500;padding:9px 14px;cursor:pointer;transition:all 0.12s;letter-spacing:0.02em;}
+  .status-menu-item:hover{background:rgba(132,188,65,0.08);color:var(--green);}
+  .status-menu-item.current{color:var(--green);background:rgba(132,188,65,0.05);}
+  .status-menu-item.danger{color:var(--text-muted);}
+  .status-menu-item.danger:hover{background:rgba(239,68,68,0.06);color:var(--red);}
+  .status-menu-sep{height:1px;background:var(--border);margin:4px 0;}
+  .status-menu-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:7px;vertical-align:middle;}
+  .smd-open{background:var(--text-muted);}
+  .smd-in_progress{background:var(--amber);}
+  .smd-done{background:var(--green);}
+
   /* QUICK ADD + TAGS */
   .quick-add{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 18px;margin-bottom:14px;transition:border-color 0.15s;}
   .quick-add.expanded{border-color:rgba(132,188,65,0.25);background:rgba(132,188,65,0.03);}
@@ -519,7 +536,7 @@ const GATE_TTL_HOURS = 24 * 7; // stay unlocked for one week per browser
   <section class="panel" id="panel-items">
     <div class="panel-header">
       <h2>Active Items</h2>
-      <p>Click any status pill to cycle Open, In Progress, Done. Double-click an item to edit its text. Archive Done items when no longer relevant.</p>
+      <p>Click the status pill to change to Open, In Progress, Done, archive, or delete. Double-click an item to edit its text.</p>
     </div>
 
     <div class="quick-add" id="quickAdd">
@@ -1175,6 +1192,19 @@ function renderItems() {
     const tagHtml = tag ? '<span class="tag-pill ' + tagColorClass(tag) + '">' + escapeHtml(tag) + '</span>' : '';
     const source = i.source || 'call';
     const dateLabel = i.call_date ? fmtShortDate(i.call_date) : (source === 'manual' ? 'Manual' : fmtShortDate(i.created_at));
+    const statusMenu = '<div class="status-dd" data-id="' + i.id + '">'
+      + '<button class="status-pill status-' + i.status + '" data-toggle-status="' + i.id + '" type="button">' + statusLabel + ' <span class="caret">&#9662;</span></button>'
+      + '<div class="status-menu">'
+      +   '<button class="status-menu-item ' + (i.status === 'open' ? 'current' : '') + '" data-set-status="open" data-id="' + i.id + '" type="button"><span class="status-menu-dot smd-open"></span>Open</button>'
+      +   '<button class="status-menu-item ' + (i.status === 'in_progress' ? 'current' : '') + '" data-set-status="in_progress" data-id="' + i.id + '" type="button"><span class="status-menu-dot smd-in_progress"></span>In Progress</button>'
+      +   '<button class="status-menu-item ' + (i.status === 'done' ? 'current' : '') + '" data-set-status="done" data-id="' + i.id + '" type="button"><span class="status-menu-dot smd-done"></span>Done</button>'
+      +   '<div class="status-menu-sep"></div>'
+      +   (i.archived
+            ? '<button class="status-menu-item" data-unarchive-menu="' + i.id + '" type="button">Restore from archive</button>'
+            : '<button class="status-menu-item" data-archive-menu="' + i.id + '" type="button">Archive</button>')
+      +   '<button class="status-menu-item danger" data-delete-item="' + i.id + '" type="button">Delete item</button>'
+      + '</div>'
+      + '</div>';
     return '<div class="item-row status-' + i.status + (i.archived ? ' archived' : '') + '" data-id="' + i.id + '">'
       + '<span class="item-type-tag ' + typeClass(i.type) + '">' + typeLabel(i.type) + '</span>'
       + '<div class="item-text" data-editable="true" data-id="' + i.id + '" title="Double-click to edit">' + escapeHtml(i.text) + '</div>'
@@ -1182,26 +1212,84 @@ function renderItems() {
       +   tagHtml
       +   '<span class="item-call-date">' + escapeHtml(dateLabel) + '</span>'
       +   '<span class="owner-badge ' + ownerClass(i.owner) + '">' + escapeHtml(i.owner) + '</span>'
-      +   '<button class="status-pill status-' + i.status + '" data-cycle="' + i.id + '" type="button">' + statusLabel + '</button>'
-      +   (i.status === 'done' && !i.archived ? '<button class="archive-btn" data-archive="' + i.id + '" title="Archive" type="button">&#10005;</button>' : '')
-      +   (i.archived ? '<button class="archive-btn" data-unarchive="' + i.id + '" title="Restore" type="button">&#8634;</button>' : '')
+      +   statusMenu
       + '</div>'
       + '</div>';
   }).join('');
 
-  list.querySelectorAll('[data-cycle]').forEach(function (btn) {
-    btn.addEventListener('click', function () { cycleStatus(btn.getAttribute('data-cycle')); });
+  list.querySelectorAll('[data-toggle-status]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const dd = btn.closest('.status-dd');
+      const wasOpen = dd.classList.contains('open');
+      // Close all other dropdowns first
+      document.querySelectorAll('.status-dd.open').forEach(function (other) { other.classList.remove('open'); });
+      if (!wasOpen) dd.classList.add('open');
+    });
   });
-  list.querySelectorAll('[data-archive]').forEach(function (btn) {
-    btn.addEventListener('click', function () { archiveItem(btn.getAttribute('data-archive'), true); });
+  list.querySelectorAll('[data-set-status]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setStatus(btn.getAttribute('data-id'), btn.getAttribute('data-set-status'));
+    });
   });
-  list.querySelectorAll('[data-unarchive]').forEach(function (btn) {
-    btn.addEventListener('click', function () { archiveItem(btn.getAttribute('data-unarchive'), false); });
+  list.querySelectorAll('[data-archive-menu]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      archiveItem(btn.getAttribute('data-archive-menu'), true);
+    });
+  });
+  list.querySelectorAll('[data-unarchive-menu]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      archiveItem(btn.getAttribute('data-unarchive-menu'), false);
+    });
+  });
+  list.querySelectorAll('[data-delete-item]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      deleteItem(btn.getAttribute('data-delete-item'));
+    });
   });
   list.querySelectorAll('[data-editable]').forEach(function (el) {
     el.addEventListener('dblclick', function () { startEditItem(el); });
   });
 }
+
+function setStatus(id, newStatus) {
+  const i = state.items.find(function (x) { return x.id === id; });
+  if (!i) return;
+  if (i.status === newStatus) {
+    // Close menu, no change
+    document.querySelectorAll('.status-dd.open').forEach(function (dd) { dd.classList.remove('open'); });
+    return;
+  }
+  i.status = newStatus;
+  i.status_changed_at = new Date().toISOString();
+  if (newStatus !== 'done' && i.archived) i.archived = false;
+  saveState();
+  renderItems();
+  renderAllCounts();
+}
+
+function deleteItem(id) {
+  const i = state.items.find(function (x) { return x.id === id; });
+  if (!i) return;
+  const preview = (i.text || '').slice(0, 60);
+  if (!confirm('Delete this item?\n\n"' + preview + '"\n\nThis is permanent in your local view. The Airtable backup keeps a soft-deleted copy.')) return;
+  state.items = state.items.filter(function (x) { return x.id !== id; });
+  saveState();
+  renderItems();
+  renderAllCounts();
+  showToast('Item deleted');
+}
+
+// Close status menus when clicking outside
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.status-dd')) {
+    document.querySelectorAll('.status-dd.open').forEach(function (dd) { dd.classList.remove('open'); });
+  }
+});
 
 function startEditItem(el) {
   if (el.classList.contains('editing')) return;
