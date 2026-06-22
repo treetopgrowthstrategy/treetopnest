@@ -295,7 +295,7 @@
     <p class="subtitle">Merch and gym strategy is the primary owned workstream. Amazon launch is support. Focus and budget the 20 hours for month one of Phase 1, log actuals, and stay inside scope.</p>
 
     <div class="facts">
-      <div class="fact"><div class="k">Client</div><div class="v">Desmond Garcia<small>ONX Sports brand</small></div></div>
+      <div class="fact"><div class="k">Client</div><div class="v">ONX Sports<small>via Desmond Garcia agency</small></div></div>
       <div class="fact"><div class="k">Phase</div><div class="v">Phase 1<small>Foundation &amp; Prioritization</small></div></div>
       <div class="fact"><div class="k">Term</div><div class="v">Jun 15 to Aug 14<small>2026</small></div></div>
       <div class="fact"><div class="k">This month</div><div class="v">20 hours<small>$3,000 ($150 / hr)</small></div></div>
@@ -382,13 +382,13 @@
           <span>Month one is foundation and prioritization. The items below are explicitly later phase or out of scope. Protect the 20 hours.</span>
         </div>
         <ul class="scope-list">
-          <li><span>Owning Amazon launch execution<small>Bill supports. Megan owns it and Javad PMs it. Do not absorb the PM seat.</small></span></li>
-          <li><span>Fulfillment and FBM ops setup<small>Aaron owns this. Coordinate readiness, do not run the ops.</small></span></li>
-          <li><span>Amazon listing copy and A+ content production<small>Direction and SEO guidance yes. Writing and building the listings is execution.</small></span></li>
-          <li><span>Photography shoot and editing<small>Aligning the shot list is in scope. Producing the photography is not.</small></span></li>
+          <li><span>Building marketing, CRO, retention, and reporting<small>Megan's agency team owns the build (CDP, Triple Whale, first party data). Bill can audit and advise, not build.</small></span></li>
+          <li><span>Pricing and margin strategy<small>Megan owns pricing (raised 45 to 76 percent). Bill informs the merch mix, not the price.</small></span></li>
+          <li><span>Paid media buying<small>The roughly $370k, 8 week media plan sits with the agency.</small></span></li>
+          <li><span>Owning Amazon execution and FBM ops<small>Bill supports. Megan owns the launch and Aaron owns fulfillment.</small></span></li>
+          <li><span>Listing copy and A+ content production<small>Direction and SEO yes. Writing and building the listings is execution.</small></span></li>
+          <li><span>Photography production<small>Aligning the shot list is in scope. Shooting and editing is not.</small></span></li>
           <li><span>Generic merch (hats, shakers, basic tees)<small>Explicitly avoided per strategy. Premium performance only.</small></span></li>
-          <li><span>DTC CRO build and LTV/upsell system<small>Define the approach now. Building it comes after the offer is validated.</small></span></li>
-          <li><span>Email lifecycle build-out<small>Mapping the lifecycle is fine. Building the flows is a later phase.</small></span></li>
         </ul>
       </div>
     </div>
@@ -396,7 +396,7 @@
 
   <!-- ============ PEOPLE ============ -->
   <section style="border-bottom:none;">
-    <div class="sec-head"><h2>People</h2><span class="hint">Who is who, and how to engage. Notes save locally.</span></div>
+    <div class="sec-head"><h2>People</h2><span class="hint">Desmond Garcia is the agency Bill works through. ONX is the client brand. Notes save locally.</span></div>
     <div class="people" id="people"></div>
   </section>
 
@@ -411,37 +411,44 @@
 (function () {
   "use strict";
 
-  var STORE_KEY = "onx-engagement-v2";
+  var STORE_KEY = "onx-engagement-v4";
   var CAP = 20;
 
-  // Seeded from the ONX Merch & Amazon onboarding brief. Priority note:
-  // Bill OWNS merch/gym strategy (primary) and SUPPORTS the Amazon launch.
-  // Hours concentrate on the owned, Desmond-flagged "packages not sellable" work.
+  // Seeded from the ONX onboarding brief plus two kickoff calls (incl. the KPIs
+  // meeting). Desmond Garcia is the AGENCY, ONX is the client brand (founder
+  // Trevor Whitman). Bill is the merch insights lead and client-facing leader.
+  // KPIs run on a 30/60/90 cadence. Megan's team owns the marketing, CRO,
+  // retention, pricing, and reporting BUILD (Bill can still audit and advise).
+  // Milestones: client intro Jun 23, Bill leads the client meeting Jun 30.
   var SEED_TASKS = [
-    { id: "t1",  title: "Kickoff: confirm Phase 1 priorities and what Bill owns vs supports", tag: "Foundation",     week: "W1", est: 1.5, actual: 0, status: "Not started" },
-    { id: "t2",  title: "Define gym and wholesale ICP (multi-location, practitioner gyms)",    tag: "Merch/Gym",      week: "W1", est: 2.5, actual: 0, status: "Not started" },
-    { id: "t3",  title: "Map Amazon Step 5 to 8 into an execution board, lock timeline with Megan", tag: "Amazon",    week: "W1", est: 1.5, actual: 0, status: "Not started" },
-    { id: "t4",  title: "Rebuild the gym package: anchor on premium gear plus co-branded apparel, sharpen the hook", tag: "Merch/Gym", week: "W2", est: 3, actual: 0, status: "Not started" },
-    { id: "t5",  title: "Pin down customization economics so packages are quotable (MOQ ~100, ~30 day lead, blank vs custom)", tag: "Merch/Gym", week: "W2", est: 1.5, actual: 0, status: "Not started" },
-    { id: "t6",  title: "Support Amazon listing quality: SEO, keywords, A+ content direction (not production)", tag: "Amazon", week: "W2", est: 1.5, actual: 0, status: "Not started" },
-    { id: "t7",  title: "Close product spec and photography gaps with David and Terrence, flag PDP needs", tag: "Product", week: "W3", est: 2, actual: 0, status: "Not started" },
-    { id: "t8",  title: "Validate the rebuilt package with 1 to 2 pilot gyms",                  tag: "Merch/Gym",      week: "W3", est: 2.5, actual: 0, status: "Not started" },
-    { id: "t9",  title: "Decide QR insert path (landing vs content page), outline retention approach", tag: "DTC/Retention", week: "W3", est: 1.5, actual: 0, status: "Not started" },
-    { id: "t10", title: "Define a centralized reporting view (channels, inventory and marketing alignment)", tag: "Foundation", week: "W4", est: 1, actual: 0, status: "Not started" },
-    { id: "t11", title: "Phase 1 readout: merch strategy plus Amazon coordination and next-phase plan", tag: "Foundation", week: "W4", est: 1.5, actual: 0, status: "Not started" }
+    { id: "t1",  title: "Review and finalize the 30/60/90 KPI framework with Javad (adjust and add measures)", tag: "Foundation", week: "W1", est: 1, actual: 0, status: "Not started" },
+    { id: "t2",  title: "Confirm Amazon, Shopify, and Triple Whale access (via Megan) and ingest the shared inputs (branding deck, personas/ICPs, SKU sheet plus specs, merch data)", tag: "Foundation", week: "W1", est: 1.5, actual: 0, status: "Not started" },
+    { id: "t3",  title: "Write a short background statement for Desmond to introduce Bill to the client and partners", tag: "Foundation", week: "W1", est: 0.5, actual: 0, status: "Not started" },
+    { id: "t4",  title: "Adapt the personas and ICPs for the gym channel and tier operators (serious operator through celebrity or influencer)", tag: "Merch/Gym", week: "W1", est: 2, actual: 0, status: "Not started" },
+    { id: "t5",  title: "Review the Amazon setup, map Steps 5 to 8 with Megan, recommend how it should function, target launch before Prime Day", tag: "Amazon", week: "W1", est: 1.5, actual: 0, status: "Not started" },
+    { id: "t6",  title: "Rebuild the gym package: anchor on the protect-the-fighter ethos, premium gear plus co-branded apparel, sharpen the hook", tag: "Merch/Gym", week: "W2", est: 3, actual: 0, status: "Not started" },
+    { id: "t7",  title: "Build the sampling and free-product use case tied to contract size and operator tier (Desmond will champion it to the client)", tag: "Merch/Gym", week: "W2", est: 1, actual: 0, status: "Not started" },
+    { id: "t8",  title: "Pin down customization economics so packages are quotable (MOQ ~100, ~30 day lead, blank vs custom)", tag: "Merch/Gym", week: "W2", est: 1, actual: 0, status: "Not started" },
+    { id: "t9",  title: "Run a DTC and Shopify audit once access is confirmed (insights, not build)", tag: "DTC", week: "W2", est: 1, actual: 0, status: "Not started" },
+    { id: "t10", title: "Close spec and photography gaps on the new SKUs with David and Terrence, flag PDP needs to Megan", tag: "Product", week: "W2", est: 1, actual: 0, status: "Not started" },
+    { id: "t11", title: "Support Amazon listing quality for the new SKUs: SEO, keywords, A+ content direction (not production)", tag: "Amazon", week: "W2", est: 1, actual: 0, status: "Not started" },
+    { id: "t12", title: "Validate the gym package with 1 to 2 pilot gyms", tag: "Merch/Gym", week: "W3", est: 2, actual: 0, status: "Not started" },
+    { id: "t13", title: "Lead the first client meeting on June 30 (intro is Jun 23); reshape the weekly client deck and set an async update cadence", tag: "Foundation", week: "W3", est: 2, actual: 0, status: "Not started" },
+    { id: "t14", title: "Phase 1 readout: merch strategy, Amazon, DTC, and next-phase plan", tag: "Foundation", week: "W4", est: 1.5, actual: 0, status: "Not started" }
   ];
 
   // People are constant definitions; only notes persist (keyed by id).
+  // Desmond Garcia is the agency Bill works through; ONX is the client brand.
   var PEOPLE = [
-    { id: "garcia",   name: "Desmond Garcia", role: "Client company",         group: "Client",   rel: "The client company. ONX Sports is its brand. Led by CEO Desmond Croan." },
-    { id: "croan",    name: "Desmond Croan",  role: "CEO, Desmond Garcia",    group: "Client",   rel: "CEO of the client. Bill reports to him, and the packages not sellable feedback is his. Final say on the merch offer." },
-    { id: "arango",   name: "Sarah Arango",   role: "Point of contact",       group: "Client",   rel: "Day to day POC. Route scheduling and questions here." },
-    { id: "megan",    name: "Megan Neal",     role: "Shopify and Amazon owner", group: "ONX team", rel: "Owns the Amazon launch and Shopify. Lock the launch timeline with her." },
-    { id: "javad",    name: "Javad Abdolmaleki", role: "Amazon PM",           group: "ONX team", rel: "Project manager on the Amazon launch." },
-    { id: "aaron",    name: "Aaron",          role: "Ops and fulfillment",    group: "ONX team", rel: "FBM setup, scanners, fulfillment. Coordinate, do not absorb the ops work." },
-    { id: "david",    name: "David",          role: "Product and specs",      group: "ONX team", rel: "Source for closing spec gaps. Confirmed the blanks model is viable." },
-    { id: "terrence", name: "Terrence",       role: "Photography",            group: "ONX team", rel: "Owns photography. Align on PDP and creative shot needs." },
-    { id: "tanner",   name: "Tanner",         role: "SKU confirmation",       group: "ONX team", rel: "Final Amazon SKU count is pending with him and Megan." }
+    { id: "croan",    name: "Desmond Croan",     role: "CEO, Desmond Garcia",          group: "DG agency",          rel: "Agency CEO and Bill's reporting line. Pushes transparent, aggressive client comms. Owns scope and KPI alignment, and is arranging Bill's intros to the client and partners." },
+    { id: "megan",    name: "Megan Neal",        role: "Marketing and ecommerce lead", group: "DG agency",          rel: "Runs ONX marketing, CRO, pricing, Amazon, and the merch rollout. 16 year boxer, now in jiu-jitsu. Says she is available 24/7 and wants to be Bill's biggest ally. Owns the data and the SKU sheet." },
+    { id: "javad",    name: "Javad Abdolmaleki", role: "Project manager",              group: "DG agency",          rel: "Runs the weekly merch meetings (Tue and Thu internal, Tue with client) and the client deck. Sent the KPI and scope doc. Handles Bill's DG email, Slack, and access." },
+    { id: "arango",   name: "Sarah Arango",      role: "Onboarding and access",        group: "DG agency",          rel: "Sets up Bill's DG (Digi) email and access. Day to day admin POC." },
+    { id: "trevor",   name: "Trevor Whitman",    role: "Founder, inventor, head coach", group: "ONX brand",         rel: "Built ONX from scratch, coached 28 world champions, designs every piece around fighter protection. Humble, wants the spotlight on fighters. Investor-owners include Justin Gaethje (headline fighter), Rashad Evans, and Corey Sandhagen." },
+    { id: "david",    name: "David",             role: "Product and specs",            group: "Production and ops", rel: "On the merch design and production side. Source for closing spec gaps. Confirmed the blanks model is viable." },
+    { id: "terrence", name: "Terrence",          role: "Photography",                  group: "Production and ops", rel: "Owns new SKU product photography. Align the shot list and PDP creative needs." },
+    { id: "tanner",   name: "Tanner",            role: "SKU confirmation",             group: "Production and ops", rel: "Confirms the final Amazon SKU count with Megan." },
+    { id: "aaron",    name: "Aaron",             role: "Ops and fulfillment",          group: "Production and ops", rel: "FBM setup and scanners. Coordinate readiness, do not absorb the ops work." }
   ];
 
   var STATUSES = ["Not started", "In progress", "Done"];
