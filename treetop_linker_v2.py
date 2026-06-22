@@ -758,6 +758,10 @@ CLICK_BOOST: list[tuple[str, str]] = [
     ("/best-ai-tools-for-consultants-2026", "Best AI tools for consultants (2026)"),
     ("/claude-for-real-estate-agents", "Claude for real estate agents"),
     ("/claude-prompts-for-hr", "Claude prompts for HR"),
+    ("/gong-vs-chorus", "Gong vs Chorus, compared"),
+    ("/otter-vs-fathom", "Otter vs Fathom, compared"),
+    ("/best-ai-meeting-assistants-2026", "Best AI meeting assistants (2026)"),
+    ("/okara-ai-cmo-review", "Okara AI CMO review"),
 ]
 
 
@@ -1529,6 +1533,7 @@ def main():
         "/enterprise-ai-consulting",
         "/ai-consulting-firm",
         "/generative-ai-consulting",
+        "/best-ai-meeting-assistants-2026",
     }
 
     for path, url, is_astro in work:
