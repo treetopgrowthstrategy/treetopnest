@@ -1,5 +1,5 @@
 ---
-// GlobalFooter.astro — shared across all pages
+// GlobalFooter.astro: shared across all pages
 const currentPath = Astro.url.pathname;
 const lnk = (path: string) => `font-size:0.82rem;text-decoration:none;transition:color 0.2s;color:${currentPath === path ? '#00C853' : '#4A6A4A'};`;
 const lnkExt = "font-size:0.82rem;text-decoration:none;transition:color 0.2s;color:#4A6A4A;";
@@ -10,13 +10,13 @@ const hoverOutExt = "this.style.color='#4A6A4A'";
 <footer style="border-top:1px solid #1A3A1A;background:#050D05;padding:3.5rem 2.5rem 2rem;">
   <div style="max-width:1280px;margin:0 auto;">
 
-    <!-- MAIN FOOTER GRID — 6 columns -->
+    <!-- MAIN FOOTER GRID: 6 columns -->
     <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr 1fr;gap:2rem;margin-bottom:3rem;" class="footer-grid">
 
       <!-- BRAND COLUMN -->
       <div>
         <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.2rem;font-style:italic;color:#F0FFF0;text-decoration:none;display:block;margin-bottom:0.75rem;">Treetop</a>
-        <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.7;margin-bottom:1rem;">AI-native GTM transformation for B2B mid-market ($5M–$50M) and the leading thought-leadership source for AI in the fitness industry.</p>
+        <p style="font-size:0.78rem;color:#4A6A4A;line-height:1.7;margin-bottom:1rem;">AI-native GTM transformation for B2B mid-market ($5M to $50M) and the leading thought-leadership source for AI in the fitness industry.</p>
         <a href="mailto:bill@treetopgrowthstrategy.com" style="font-size:0.78rem;color:#00C853;text-decoration:none;display:block;margin-bottom:0.4rem;">bill@treetopgrowthstrategy.com</a>
         <a href="/press" style="font-size:0.78rem;color:#8FAF8F;text-decoration:none;">Press &amp; media kit →</a>
       </div>
