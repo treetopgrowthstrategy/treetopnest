@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Johnson, ecofit LinkedIn Rewrite Preview | Treetop Growth Strategy</title>
+<meta name="description" content="Draft LinkedIn profile rewrite for David Johnson, Co-Founder and CEO of ecofit Networks, prepared by Treetop Growth Strategy.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --li-blue:#0A66C2;
+    --li-blue-hover:#004182;
+    --page-bg:#F3F2EF;
+    --card-bg:#FFFFFF;
+    --border:#E0DFDC;
+    --text:#000000;
+    --text-sub:#00000099;
+    --text-muted:#666;
+    --green-bg:#E1F5EE;
+    --green-text:#0F6E56;
+    --amber:#F0B429;
+    --amber-bg:#FEF6E0;
+    --tt-green:#84BC41;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--page-bg);
+    color:var(--text);
+    font-family:'Segoe UI', Arial, sans-serif;
+    font-size:13px;
+    line-height:1.65;
+    min-height:100vh;
+  }
+  a{color:var(--li-blue);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Treetop draft notice */
+  .draft-notice{
+    background:var(--amber-bg);
+    border-left:4px solid var(--amber);
+    padding:14px 24px;
+    margin:0;
+    font-size:13px;
+    color:#5C4400;
+  }
+  .draft-notice .label{
+    display:block;
+    font-weight:700;
+    letter-spacing:0.04em;
+    font-size:11px;
+    text-transform:uppercase;
+    color:#7A5A00;
+    margin-bottom:4px;
+  }
+  .draft-notice .body{font-size:13px;line-height:1.55;}
+
+  /* LinkedIn header bar */
+  .li-header{
+    background:var(--li-blue);
+    height:48px;
+    display:flex;
+    align-items:center;
+    padding:0 24px;
+    gap:12px;
+  }
+  .li-logo{
+    width:32px;height:32px;
+    background:#fff;
+    border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:Georgia, serif;
+    font-weight:900;
+    font-style:italic;
+    color:var(--li-blue);
+    font-size:18px;
+    line-height:1;
+  }
+  .li-search{
+    background:#EEF3F8;
+    border-radius:4px;
+    height:34px;
+    width:280px;
+    display:flex;align-items:center;
+    padding:0 12px;
+    font-size:13px;
+    color:#666;
+  }
+  .li-search::before{
+    content:"";
+    width:14px;height:14px;
+    background:#999;
+    -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 21l-5.197-5.197M15.803 15.803A6.5 6.5 0 1 1 6.61 6.611a6.5 6.5 0 0 1 9.192 9.192z' fill='none' stroke='currentColor' stroke-width='2'/></svg>") no-repeat center / contain;
+    mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 21l-5.197-5.197M15.803 15.803A6.5 6.5 0 1 1 6.61 6.611a6.5 6.5 0 0 1 9.192 9.192z' fill='none' stroke='currentColor' stroke-width='2'/></svg>") no-repeat center / contain;
+    margin-right:8px;
+    flex:none;
+  }
+  .li-nav-spacer{flex:1;}
+  .li-nav-icons{display:flex;gap:18px;color:rgba(255,255,255,0.9);font-size:12px;}
+  .li-nav-icons span{opacity:0.85;}
+
+  /* Page layout */
+  .page{
+    max-width:1128px;
+    margin:24px auto;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:1fr 260px;
+    gap:12px;
+    align-items:start;
+  }
+  .main-col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+  .side-col{display:flex;flex-direction:column;gap:12px;}
+
+  .card{
+    background:var(--card-bg);
+    border:0.5px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .card-body{padding:24px;}
+  .card-section + .card-section{border-top:1px solid var(--border);}
+
+  /* Section header */
+  .section-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .section-header h2{
+    font-size:20px;
+    font-weight:600;
+    color:var(--text);
+    letter-spacing:-0.01em;
+  }
+
+  /* Rewritten badge */
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    background:var(--green-bg);
+    color:var(--green-text);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:100px;
+    line-height:1;
+  }
+  .badge::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--green-text);
+  }
+
+  /* Profile header card */
+  .cover{
+    height:96px;
+    background:var(--li-blue);
+    background-image:linear-gradient(120deg, #0A66C2 0%, #1276D8 60%, #5BA3E5 100%);
+  }
+  .profile-head{
+    padding:0 24px 20px;
+    position:relative;
+  }
+  .avatar-wrap{
+    width:152px;height:152px;
+    border-radius:50%;
+    border:4px solid #fff;
+    background:#fff;
+    margin-top:-76px;
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 0.5px var(--border);
+  }
+  .avatar-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+  .avatar-fallback{
+    width:100%;height:100%;
+    background:linear-gradient(135deg,#0A66C2,#5BA3E5);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:48px;font-weight:600;
+    font-family:'Segoe UI', Arial, sans-serif;
+  }
+  .profile-info{margin-top:14px;}
+  .name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .name{font-size:24px;font-weight:600;color:var(--text);}
+  .conn-badge{
+    font-size:11px;
+    color:var(--text-sub);
+    border:1px solid #ccc;
+    border-radius:4px;
+    padding:1px 5px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    vertical-align:middle;
+  }
+  .headline{
+    font-size:14px;
+    color:var(--text);
+    margin-top:4px;
+    line-height:1.5;
+  }
+  .meta-line{
+    font-size:13px;
+    color:var(--text-sub);
+    margin-top:8px;
+  }
+  .meta-line a{color:var(--li-blue);font-weight:600;}
+  .company-line{
+    font-size:13px;
+    color:var(--text);
+    font-weight:600;
+    margin-top:8px;
+  }
+  .btn-row{
+    display:flex;gap:8px;margin-top:16px;
+  }
+  .btn{
+    border-radius:100px;
+    font-size:14px;
+    font-weight:600;
+    padding:6px 16px;
+    cursor:pointer;
+    border:1px solid transparent;
+    font-family:inherit;
+    line-height:1.5;
+  }
+  .btn-primary{background:var(--li-blue);color:#fff;border-color:var(--li-blue);}
+  .btn-primary:hover{background:var(--li-blue-hover);border-color:var(--li-blue-hover);}
+  .btn-outline{background:transparent;color:var(--li-blue);border-color:var(--li-blue);font-weight:600;}
+  .btn-outline:hover{background:#EAF3FC;}
+
+  /* About */
+  .about-body p{margin-bottom:12px;font-size:14px;line-height:1.65;}
+  .about-body p:last-child{margin-bottom:0;}
+
+  /* Experience */
+  .exp-item{display:flex;gap:14px;padding:6px 0;}
+  .exp-item + .exp-item{border-top:1px solid var(--border);padding-top:18px;margin-top:18px;}
+  .exp-logo{
+    flex:none;
+    width:48px;height:48px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:#fff;
+  }
+  .exp-logo.ecofit{background:var(--tt-green);}
+  .exp-logo.wcr{background:#5C6770;}
+  .exp-detail{flex:1;}
+  .exp-title{font-size:16px;font-weight:600;color:var(--text);line-height:1.35;}
+  .exp-company{font-size:13px;color:var(--text);margin-top:2px;}
+  .exp-dates{font-size:12px;color:var(--text-sub);margin-top:2px;}
+  .exp-desc{font-size:13.5px;color:var(--text);margin-top:10px;line-height:1.65;}
+  .exp-desc p{margin-bottom:10px;}
+  .exp-desc p:last-child{margin-bottom:0;}
+
+  /* Skills */
+  .skill-pills{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{
+    background:#EEF3F8;
+    color:#000;
+    font-size:13px;
+    font-weight:500;
+    padding:6px 14px;
+    border-radius:100px;
+    border:1px solid transparent;
+  }
+
+  /* Suggested post card */
+  .post-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .post-avatar{
+    width:48px;height:48px;border-radius:50%;
+    overflow:hidden;flex:none;background:#ddd;
+  }
+  .post-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .post-avatar .avatar-fallback{font-size:18px;}
+  .post-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.2;}
+  .post-sub{font-size:12px;color:var(--text-sub);line-height:1.3;margin-top:2px;}
+  .post-body p{font-size:14px;line-height:1.65;margin-bottom:10px;color:var(--text);}
+  .post-body p:last-child{margin-bottom:0;}
+  .post-frame{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px 18px 16px;
+  }
+  .post-actions{
+    display:flex;gap:24px;
+    border-top:1px solid var(--border);
+    margin-top:14px;
+    padding-top:10px;
+    font-size:13px;
+    color:var(--text-sub);
+    font-weight:600;
+  }
+
+  /* Sidebar */
+  .side-card .card-body{padding:16px 18px;}
+  .side-card h3{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:10px;
+    color:var(--text);
+  }
+  .side-list{display:flex;flex-direction:column;gap:14px;}
+  .side-person{display:flex;gap:10px;align-items:flex-start;}
+  .side-avatar{
+    width:40px;height:40px;border-radius:50%;
+    background:#D5E2EF;
+    color:var(--li-blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:600;
+    flex:none;
+  }
+  .side-person-info .name{font-size:13px;font-weight:600;color:var(--text);line-height:1.3;}
+  .side-person-info .sub{font-size:12px;color:var(--text-sub);line-height:1.4;margin-top:2px;}
+
+  .edu-item{display:flex;gap:10px;align-items:flex-start;}
+  .edu-logo{
+    width:40px;height:40px;border-radius:6px;
+    background:#FFE9D6;
+    color:#A2541F;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;
+    flex:none;
+  }
+  .edu-info .name{font-size:13px;font-weight:600;color:var(--text);}
+  .edu-info .sub{font-size:12px;color:var(--text-sub);margin-top:2px;}
+
+  /* Treetop summary callout */
+  .tt-summary{
+    border:1.5px solid var(--li-blue);
+    border-radius:12px;
+    background:#fff;
+    padding:16px 18px;
+  }
+  .tt-summary .label{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    color:var(--li-blue);
+    margin-bottom:8px;
+  }
+  .tt-summary .body{font-size:13px;color:var(--text);line-height:1.6;}
+
+  @media (max-width:880px){
+    .page{grid-template-columns:1fr;}
+    .li-search{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="draft-notice">
+  <span class="label">Treetop Growth Strategy, draft for Dave's review</span>
+  <span class="body">Rewritten sections marked in green. Structure mirrors the current LinkedIn layout. Green badges flag what changed.</span>
+</div>
+
+<div class="li-header">
+  <div class="li-logo">in</div>
+  <div class="li-search">Search</div>
+  <div class="li-nav-spacer"></div>
+  <div class="li-nav-icons">
+    <span>Home</span><span>My Network</span><span>Jobs</span><span>Messaging</span><span>Notifications</span>
+  </div>
+</div>
+
+<div class="page">
+  <!-- MAIN COLUMN -->
+  <div class="main-col">
+
+    <!-- Profile header -->
+    <div class="card">
+      <div class="cover"></div>
+      <div class="profile-head">
+        <div class="avatar-wrap">
+          <img src="/clients/ecofit/dave-johnson-headshot.jpg"
+               alt="David Johnson, Co-Founder and CEO of ecofit Networks"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display:none;">DJ</div>
+        </div>
+        <div class="profile-info">
+          <div class="name-row">
+            <span class="name">David Johnson</span>
+            <span class="conn-badge">1st</span>
+          </div>
+          <div class="headline">Co-Founder and CEO, ecofit Networks | Club Intelligence for the Fitness Industry | 25+ Years on the Floor</div>
+          <div class="meta-line">Victoria, British Columbia, Canada · <a href="#">500+ connections</a></div>
+          <div class="company-line">ecofit Networks Inc. · Royal Roads University</div>
+          <div class="btn-row">
+            <button class="btn btn-primary">Message</button>
+            <button class="btn btn-outline">More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="card">
+      <div class="card-body">
+        <div class="section-header">
+          <h2>About</h2>
+          <span class="badge">Rewritten</span>
+        </div>
+        <div class="about-body">
+          <p>I've spent 25 years in sport and fitness, and I'll tell you what I keep seeing: operators are making million-dollar equipment decisions on gut feeling and guesswork. They walk the floor once a week, eyeball what looks busy, and hope their next buy is the right one.</p>
+          <p>That's the problem ecofit was built to solve.</p>
+          <p>We give fitness facilities real-time visibility into what's actually happening on the floor. Not what members say they use. Not what the sales rep told you would be popular. What the equipment itself is telling you, every hour of every day. Utilization data. Performance trends. The difference between a cardio section that needs a refresh and one that's quietly running fine.</p>
+          <p>The fitness industry moves fast. New modalities. New brands. Members who upgrade their expectations every time they walk into a competitor's club. Staying on top of that moving target is hard enough without flying blind.</p>
+          <p>ecofit has been adopted by some of the largest gym chains in North America because we give operators something they've never had before: one streamlined view of their entire equipment portfolio. Not a vendor portal. Not a spreadsheet. Actual intelligence, built for the way clubs run.</p>
+          <p>If you're responsible for equipment strategy, facility operations, or member experience at a fitness club, group, or chain, I'd like to connect. I've been in the buildings long enough to know what the data should actually tell you.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="card">
+      <div class="card-body">
+        <div class="section-header">
+          <h2>Experience</h2>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-logo ecofit">ecofit</div>
+          <div class="exp-detail">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <div class="exp-title">Co-Founder and CEO</div>
+              <span class="badge">Rewritten</span>
+            </div>
+            <div class="exp-company">ecofit Networks Inc.</div>
+            <div class="exp-dates">Jun 2010 – Present · 16 yrs</div>
+            <div class="exp-desc">
+              <p>ecofit was built around one question I kept asking after 15 years selling and representing fitness equipment across Canada: why don't operators actually know what's happening on their floor?</p>
+              <p>We developed a proprietary IoT asset management platform that gives fitness facilities real-time utilization data, equipment performance metrics, and the intelligence to make smarter buying and servicing decisions. One system. Every piece of equipment. Actual signal, not noise.</p>
+              <p>Adopted by some of the largest club chains in North America. My focus is national accounts, manufacturer partnerships, and making sure every customer walks away knowing exactly what they're working with.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-logo wcr">WCR</div>
+          <div class="exp-detail">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <div class="exp-title">Executive Director</div>
+              <span class="badge">Rewritten</span>
+            </div>
+            <div class="exp-company">West Coast Recreation</div>
+            <div class="exp-dates">1994 – Present · Advisory</div>
+            <div class="exp-desc">
+              <p>Co-founded West Coast Recreation, one of British Columbia's leading sport and recreation operators. Currently serve in an advisory capacity on the board, supporting competitive and recreational programs for thousands of participants across the province.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="card">
+      <div class="card-body">
+        <div class="section-header">
+          <h2>Skills</h2>
+          <span class="badge">Refreshed</span>
+        </div>
+        <div class="skill-pills">
+          <span class="pill">Club Intelligence</span>
+          <span class="pill">Fitness Technology</span>
+          <span class="pill">IoT Asset Management</span>
+          <span class="pill">Equipment Strategy</span>
+          <span class="pill">National Accounts</span>
+          <span class="pill">Facility Operations</span>
+          <span class="pill">Utilization Analytics</span>
+          <span class="pill">Vendor Relations</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggested post -->
+    <div class="card">
+      <div class="card-body">
+        <div class="section-header">
+          <h2>Suggested first post</h2>
+          <span class="badge">New</span>
+        </div>
+        <div class="post-frame">
+          <div class="post-meta">
+            <div class="post-avatar">
+              <img src="/clients/ecofit/dave-johnson-headshot.jpg"
+                   alt="David Johnson"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="avatar-fallback" style="display:none;">DJ</div>
+            </div>
+            <div>
+              <div class="post-name">David Johnson</div>
+              <div class="post-sub">Co-Founder and CEO, ecofit Networks Inc.</div>
+            </div>
+          </div>
+          <div class="post-body">
+            <p>Most gym operators don't really know what's happening on their floor.</p>
+            <p>They know what they see when they walk through. They know what members complain about. They know which machines are always broken.</p>
+            <p>But here's the gap: none of that is actually data. It's observation. And in a business where a wrong equipment refresh costs $150K and five years of lease payments, observation isn't good enough anymore.</p>
+            <p>The clubs I'm talking to who are ahead of this problem have one thing in common: they've stopped guessing. They're looking at real utilization, real performance trends, real floor-level signal before they make any purchase decision.</p>
+            <p>That's what club intelligence looks like. Curious who else is thinking about this.</p>
+          </div>
+          <div class="post-actions">
+            <span>Like</span><span>Comment</span><span>Repost</span><span>Send</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="side-col">
+
+    <div class="card side-card">
+      <div class="card-body">
+        <h3>People also viewed</h3>
+        <div class="side-list">
+          <div class="side-person">
+            <div class="side-avatar">PR</div>
+            <div class="side-person-info">
+              <div class="name">Philip Rankine</div>
+              <div class="sub">Co-founder and COO at ecofit Networks</div>
+            </div>
+          </div>
+          <div class="side-person">
+            <div class="side-avatar">WR</div>
+            <div class="side-person-info">
+              <div class="name">Will Rankine</div>
+              <div class="sub">Content design, coordination, marketing</div>
+            </div>
+          </div>
+          <div class="side-person">
+            <div class="side-avatar">MG</div>
+            <div class="side-person-info">
+              <div class="name">Matt Goebel</div>
+              <div class="sub">Helping enterprise multi-location organizations scale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card side-card">
+      <div class="card-body">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="edu-logo">RRU</div>
+          <div class="edu-info">
+            <div class="name">Royal Roads University</div>
+            <div class="sub">BCom, Marketing and Strategic Planning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tt-summary">
+      <div class="label">Treetop Growth Strategy</div>
+      <div class="body">Headline, About, Experience, and Skills are all rewritten. The suggested post is a ready-to-publish piece to seed the club intelligence positioning.</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
