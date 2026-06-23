@@ -763,6 +763,7 @@ CLICK_BOOST: list[tuple[str, str]] = [
     ("/best-ai-meeting-assistants-2026", "Best AI meeting assistants (2026)"),
     ("/okara-ai-cmo-review", "Okara AI CMO review"),
     ("/best-ai-voice-platforms-2026", "Best AI voice platforms (2026)"),
+    ("/onsight-review", "OnSight gym analytics review"),
 ]
 
 
@@ -1584,6 +1585,7 @@ def main():
         "/synthflow-vs-retell-ai",
         "/ai-voice-agents-for-business",
         "/treetop-ai",
+        "/onsight-review",
     }
 
     for path, url, is_astro in work:
