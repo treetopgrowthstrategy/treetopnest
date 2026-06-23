@@ -157,9 +157,16 @@
 
   /* Profile header card */
   .cover{
-    height:96px;
+    height:200px;
     background:var(--li-blue);
-    background-image:linear-gradient(120deg, #0A66C2 0%, #1276D8 60%, #5BA3E5 100%);
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%),
+      url("/clients/ecofit/dave-johnson-cover.jpg"),
+      url("/clients/ecofit/dave-johnson-headshot.jpg"),
+      linear-gradient(120deg, #0A66C2 0%, #1276D8 60%, #5BA3E5 100%);
+    background-size:cover, cover, cover, cover;
+    background-position:center, center, center 18%, center;
+    background-repeat:no-repeat;
   }
   .profile-head{
     padding:0 24px 20px;
@@ -169,13 +176,21 @@
     width:152px;height:152px;
     border-radius:50%;
     border:4px solid #fff;
-    background:#fff;
+    background:#fff url("/clients/ecofit/dave-johnson-headshot.jpg") no-repeat;
+    background-size:240%;
+    background-position:82% 18%;
     margin-top:-76px;
     overflow:hidden;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 0 0 0.5px var(--border);
   }
-  .avatar-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+  .avatar-wrap img{display:none;}
+  .post-avatar{
+    background:#ddd url("/clients/ecofit/dave-johnson-headshot.jpg") no-repeat;
+    background-size:240%;
+    background-position:82% 18%;
+  }
+  .post-avatar img{display:none;}
   .avatar-fallback{
     width:100%;height:100%;
     background:linear-gradient(135deg,#0A66C2,#5BA3E5);
