@@ -1,0 +1,451 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Prompts for Consultants (2026) | Treetop</title>
+  <meta name="description" content="Copy-paste Claude prompts for consultants: proposals, SOWs, research synthesis, frameworks, client decks, interview guides, and deliverable drafting." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-consultants" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-consultants" />
+  <meta property="og:title" content="Claude Prompts for Consultants (2026)" />
+  <meta property="og:description" content="Copy-paste Claude prompts for consultants: proposals, SOWs, research synthesis, frameworks, client decks, interview guides, and deliverable drafting." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-consultants.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-consultants.png" />
+  <meta name="twitter:title" content="Claude Prompts for Consultants (2026)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library for management and independent consultants." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "Claude Prompts for Consultants (2026)", "description": "Copy-paste Claude prompts for consultants: proposals, SOWs, research synthesis, frameworks, client decks, interview guides, and deliverable drafting.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-consultants", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-23", "dateModified": "2026-06-23", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-consultants.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What client data should I never paste into Claude, and how do I anonymize the rest?", "acceptedAnswer": {"@type": "Answer", "text": "Start from your engagement letter and NDA, not from the tool. Anything covered by confidentiality, plus named individuals, financials that could move a stock, M&A targets, and personal data, should be scrubbed before it touches any chat. The practical pattern most consultants use: replace the client name with a token like CLIENT, swap real people for roles such as Head of Ops, and convert hard numbers to ranges or indexed figures (set last year to 100) when the exact value is not what you are reasoning about. On Claude Team or Enterprise your prompts are not used to train Anthropic's models and conversations stay in your workspace, which raises the floor, but anonymizing is still the discipline that protects the relationship. When in doubt, ask the client what is acceptable and write a one-page data-handling note for the engagement."}}, {"@type": "Question", "name": "How do I stop Claude from inventing facts, sources, or market data in research?", "acceptedAnswer": {"@type": "Answer", "text": "Treat Claude as an analyst working only from what you give it, not as a database of truth. Three habits do most of the work. First, ground it: paste or attach the transcripts, reports, and data you want synthesized, and tell it to use only those sources and to say I do not have evidence for this when a claim is not supported. Second, when you do ask for outside facts or statistics, require a named, checkable source for each and verify every number and citation yourself before it reaches a client. Assume any unsourced figure or quoted statistic is a hypothesis until you confirm it. Third, ask the model to label what is grounded in your inputs versus what is its own inference. The prompts on this page are written to force that separation."}}, {"@type": "Question", "name": "Which Claude model should consultants use?", "acceptedAnswer": {"@type": "Answer", "text": "For most consulting work the current Sonnet model is the right default. It drafts proposals, synthesizes interviews, builds frameworks, and outlines decks at a speed and price that let you use it all day. Reach for the larger Opus model when the task is deep and multi-document: synthesizing a full research corpus, reasoning across a data room, or pressure-testing the logic of a complex deliverable where depth matters more than speed. Keep Haiku for high-volume narrow tasks like cleaning notes or tagging responses. All the prompts here work across the three, but Sonnet hits the best balance for day-to-day engagement work and you can step up to Opus for the hard synthesis."}}, {"@type": "Question", "name": "Does using Claude replace consulting expertise or just augment it?", "acceptedAnswer": {"@type": "Answer", "text": "It augments. Claude is fast at the production layer: first drafts, structure, synthesis scaffolds, and stress-testing. It does not own the judgment that clients actually pay for, which problem to frame, which insight matters, what to recommend, and how to read the room. The leverage is real because it collapses blank-page time and lets you spend your hours on the thinking that differentiates you. The risk is outsourcing the judgment by accident: shipping a clean Claude draft you did not interrogate. The working rule is simple. Let Claude get you to a strong draft faster, then apply the expertise that is yours alone. The deliverable is yours, and so is responsibility for every claim in it."}}, {"@type": "Question", "name": "How do I integrate Claude into my actual consulting workflow?", "acceptedAnswer": {"@type": "Answer", "text": "Start with one engagement and one Claude Project. Load the Project with reusable context: your methodology, proposal and SOW templates, framework library, deck standards, and a short voice guide so output sounds like you. Then run the prompts from inside that Project so every draft inherits your context instead of starting blank. A natural sequence across an engagement is discovery guide, then research synthesis, then framework and hypothesis tree, then deck outline, then executive summary, then a QA pass before anything ships. Keep a prompt of your own next to each step. After a couple of engagements you will know which three or four prompts you reach for every time, and those become your standard kit."}}, {"@type": "Question", "name": "Should I tell clients when a deliverable was drafted with AI?", "acceptedAnswer": {"@type": "Answer", "text": "Lead with the client's expectations and any contract language first; some MSAs and procurement terms already address AI use, and that governs. Beyond the contract, the honest position is that you are accountable for the work regardless of the tools used, the same way you are for a spreadsheet or a junior's draft. Most clients care less about whether AI touched a document and more about two things: that their confidential data was handled correctly, and that a qualified human stands behind every conclusion. A clean approach is to be transparent that you use AI to accelerate research and drafting, paired with a clear statement of your data-handling practice and your own review. If a client asks you not to use these tools, respect it. Quiet, undisclosed use that would embarrass you if surfaced is the line not to cross."}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-consultants","name":"Claude Prompts for Consultants (2026) | Treetop","description":"Copy-paste Claude prompts for consultants: proposals, SOWs, research synthesis, frameworks, client decks, interview guides, and deliverable drafting.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-consultants.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://treetopgrowthstrategy.com/blog"},{"@type":"ListItem","position":3,"name":"Claude Prompts for Consultants","item":"https://treetopgrowthstrategy.com/claude-prompts-for-consultants"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/best-ai-tools-for-consultants-2026" class="nav-link">AI Tools for Consultants</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 12 prompts</div>
+    <h1 class="hero-h">12 Claude prompts <em style="color:#00C853;font-style:italic;">for consultants.</em></h1>
+    <p class="hero-sub">These 12 prompts cover the work an independent or management consultant actually does: turning a discovery call into a proposal and an SOW, synthesizing research into themes, building frameworks and hypothesis trees, outlining a client deck with a real storyline, drafting executive summaries, and QA-ing a deliverable before it ships. Each one is annotated, uses [PLACEHOLDER] tokens, and is ready to paste into Claude. Anonymize the client data, run the prompt, then keep your judgment on the output. The judgment is still the part clients pay for.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">WINNING THE WORK</span>
+    <h2 class="h2">Proposals, scope, and pricing</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>Proposal draft from a discovery call</h3>
+      <div class="when">Use when: the discovery call is done and you need a proposal on the prospect's desk while the conversation is still warm</div>
+      <pre>You are a senior management consultant drafting a proposal from my discovery call notes. Write to win the work without overpromising.
+
+Discovery notes (paste; anonymize the client first):
+[PASTE NOTES: who I met, their stated problem, what they said success looks like, constraints, budget signals, timeline]
+
+Draft a proposal with these sections:
+1. Situation: restate the client's problem in their own language so they feel understood. Two short paragraphs.
+2. Objectives and success criteria: turn their vague goals into specific, measurable outcomes. Flag any goal that was implied but not stated and mark it as an assumption to confirm.
+3. Approach: the phases of work and what happens in each, at a level a non-expert buyer can follow.
+4. Deliverables: concrete artifacts they receive, tied to the objectives.
+5. Why me: a short, evidence-based fit statement. Do not invent credentials or past clients.
+6. Open questions: what I still need to confirm before this is firm.
+
+Keep it confident and specific, no filler. Use only what is in my notes. Where you infer, label it and tell me what to verify. Do not use em dashes or en dashes.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Scope of work that prevents scope creep</h3>
+      <div class="when">Use when: the proposal is accepted and you need a tight SOW that protects both sides</div>
+      <pre>Act as a consultant writing a scope of work for an engagement. The goal is a document that is clear enough to prevent scope creep and fair to both sides.
+
+Inputs (paste):
+- Engagement summary: [WHAT WE AGREED, FROM THE PROPOSAL]
+- Phases and deliverables: [LIST]
+- Timeline and key dates: [LIST]
+- Commercials: [FEE STRUCTURE, e.g. fixed fee, retainer, T&M]
+- Client responsibilities and dependencies: [DATA ACCESS, SMEs, SIGN-OFFS]
+
+Produce an SOW with:
+1. In-scope work, stated as specific deliverables and activities.
+2. Explicitly out-of-scope items, so the boundary is unambiguous.
+3. Assumptions the scope depends on, and what changes if they break.
+4. A change-control note: how new requests get priced and approved rather than absorbed.
+5. Acceptance criteria for each deliverable, so "done" is defined.
+6. Client dependencies and what happens to the timeline if they slip.
+
+Be precise and balanced, not one-sided. Flag any place where the inputs are too vague to scope, and ask me for the missing detail rather than guessing.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Engagement scoping and pricing helper</h3>
+      <div class="when">Use when: you are deciding how to scope and price a piece of work and want to reason it through, not just guess</div>
+      <pre>Help me scope and price a consulting engagement. Be a thinking partner, not a calculator that invents numbers.
+
+What I know (paste):
+- The problem and desired outcome: [DESCRIPTION]
+- Likely workstreams: [LIST]
+- My rough effort estimate per workstream, if I have one: [HOURS OR DAYS]
+- My rates or target economics: [DAY RATE / TARGET FEE / FLOOR]
+- Client context: [SIZE, URGENCY, BUDGET SIGNALS, COMPLEXITY]
+
+Do this:
+1. Break the work into a clear workstream and phase structure, and for each, list the activities that drive effort.
+2. Where I gave effort estimates, sum them and show the arithmetic. Where I did not, name the estimate I need to supply and give a sensible range to react to, clearly labeled as a placeholder.
+3. Compare pricing models for this engagement (fixed fee, retainer, time and materials, value-based) and say which fits the risk profile and why.
+4. Flag the two or three estimating risks most likely to blow the budget, and how to structure around them (phasing, a paid discovery, a change-control clause).
+5. Give me a one-paragraph pricing rationale I can use to explain the number to the client.
+
+Do not fabricate a rate or a market benchmark. If a figure is mine to decide, ask for it.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">RESEARCH AND ANALYSIS</span>
+    <h2 class="h2">Discovery, research, and synthesis</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Discovery and interview guide</h3>
+      <div class="when">Use when: you are about to interview stakeholders or experts and want a guide that surfaces the real problem</div>
+      <pre>You are a consultant designing a discovery interview guide. The goal is to surface the real problem and decision drivers, not to collect surface answers.
+
+Context:
+- Engagement objective: [WHAT WE ARE TRYING TO LEARN OR DECIDE]
+- Who I am interviewing: [ROLE, e.g. Head of Operations] and what they likely care about
+- Time available: [e.g. 45 minutes]
+- Hypotheses I am holding so far: [LIST, OR "none yet"]
+
+Build the guide:
+1. A short framing I can read at the top to set context and put the person at ease.
+2. 8 to 12 open questions sequenced from broad to specific, written to avoid leading the witness.
+3. For the key questions, a follow-up probe that digs past the first answer to the why behind it.
+4. A few questions specifically designed to disconfirm my hypotheses, not just confirm them.
+5. A closing question that reliably surfaces what I forgot to ask.
+
+Keep questions neutral and non-leading. Tailor the language to this role. Note any question that could be sensitive and suggest a gentler phrasing.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Synthesize interviews and research into themes</h3>
+      <div class="when">Use when: you have a stack of interview notes or research and need the patterns, not a pile of quotes</div>
+      <pre>Act as a research lead synthesizing qualitative inputs into themes. Use only the material I provide. Do not add outside facts.
+
+Inputs (paste or attach; anonymize names first):
+[PASTE INTERVIEW NOTES, SURVEY RESPONSES, OR RESEARCH EXCERPTS]
+
+Synthesize:
+1. Identify the 4 to 7 themes that recur across the inputs. For each, name it crisply and write a one-line description.
+2. Under each theme, cite the specific evidence (which interview, which response) that supports it. If a theme rests on a single source, say so.
+3. Separate strong signals (appear repeatedly, across sources) from weak signals (mentioned once) and label each.
+4. Surface tensions and contradictions where sources disagree, rather than averaging them away.
+5. Note what is conspicuously absent: questions the data does not answer and where I should dig next.
+6. End with the 3 insights most likely to matter to the client decision, each tied back to evidence.
+
+Do not invent quotes or attribute a view to a source that did not express it. If you are inferring rather than quoting, mark it clearly.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Competitive and market scan</h3>
+      <div class="when">Use when: you need a structured read on a market or competitive set and have source material to work from</div>
+      <pre>You are an analyst building a competitive and market scan for a client. Accuracy matters more than completeness, so flag what you cannot verify.
+
+Scope:
+- Client and their position: [DESCRIPTION]
+- The market or competitive set in question: [DEFINE IT]
+- Source material I am giving you: [PASTE OR ATTACH REPORTS, SITES, NOTES]
+- The decision this scan informs: [e.g. whether to enter segment X]
+
+Produce:
+1. A structured profile of each named competitor or option, using a consistent set of dimensions (positioning, target, pricing model, strengths, weaknesses) drawn from the sources.
+2. A comparison table across those dimensions so differences are visible at a glance.
+3. Where the market is heading, based only on the evidence provided, with each claim tied to a source.
+4. Whitespace and threats relevant to the client's decision.
+5. A clearly marked list of the most important things I still need to verify or research, including any number or claim you are unsure about.
+
+Critical: if a fact, statistic, or competitor detail is not supported by the material I gave you, do not state it as fact. Either ask me for a source or label it as an assumption to confirm. Never invent a citation.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FRAMEWORKS AND LOGIC</span>
+    <h2 class="h2">Frameworks, hypotheses, and stakeholders</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Custom framework or 2x2 builder</h3>
+      <div class="when">Use when: a generic framework does not fit and you need one built for this specific client problem</div>
+      <pre>Act as a strategy consultant building a custom framework for a specific problem. Do not reach for a generic off-the-shelf model; build one that fits.
+
+The problem:
+[DESCRIBE THE DECISION OR PROBLEM, AND WHAT THE CLIENT IS TRYING TO SORT, CHOOSE, OR PRIORITIZE]
+
+What I have to work with:
+[PASTE THE OPTIONS, FACTORS, OR ITEMS THE FRAMEWORK NEEDS TO ORGANIZE]
+
+Do this:
+1. Propose the two dimensions (for a 2x2) or the small set of axes or stages that best separate the items in a way that drives a decision. Explain why those dimensions, not others.
+2. Define each quadrant or category in plain language, including the "so what": what the client should do about items that land there.
+3. Place my actual items into the framework based on the data, and flag any that are ambiguous or sit on a line.
+4. Name the framework something memorable and client-ready.
+5. State the framework's limits: what it deliberately ignores and where it could mislead.
+
+The test of a good framework is that it changes a decision. If the dimensions you picked do not, say so and propose better ones.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Hypothesis tree for a client problem</h3>
+      <div class="when">Use when: you are at the start of a problem and want a structured, testable breakdown before you boil the ocean</div>
+      <pre>You are a consultant building a hypothesis tree (issue tree) for a client problem. The goal is a MECE breakdown that tells me what to test, in what order.
+
+The core question:
+[STATE THE CLIENT'S CENTRAL QUESTION AS A SINGLE DECISION, e.g. "How do we grow segment X revenue 20% in 12 months?"]
+
+What I already know:
+[PASTE ANY CONTEXT, DATA, OR CONSTRAINTS]
+
+Build the tree:
+1. Decompose the core question into the key sub-questions or drivers, aiming for mutually exclusive and collectively exhaustive branches. Note where perfect MECE is not realistic and why.
+2. Under each branch, state the specific hypothesis we would test and the analysis or data needed to confirm or kill it.
+3. Prioritize: which branches are highest-impact and fastest to test first, so I sequence the work and avoid analyzing everything.
+4. Flag any branch where I likely lack the data, so I can plan to get it.
+5. Identify the one or two hypotheses that, if true, would most change the answer.
+
+Keep the logic clean and the tree no deeper than it needs to be. Do not assert findings; this is a structure for investigation, not a conclusion.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Stakeholder map and engagement plan</h3>
+      <div class="when">Use when: the engagement will live or die on politics and you need to map who matters and how to work with them</div>
+      <pre>Act as an advisor building a stakeholder map and engagement plan for a consulting engagement. Use only what I tell you about these people; do not invent personalities.
+
+The stakeholders (paste; use roles, not names, if anonymizing):
+[FOR EACH: ROLE, WHAT THEY CARE ABOUT, LIKELY STANCE ON THE WORK, INFLUENCE LEVEL, ANY KNOWN HISTORY]
+
+The engagement and the change it implies:
+[DESCRIBE]
+
+Produce:
+1. A stakeholder map along influence and support: who is a champion, who is a blocker, who is a swing vote, who is along for the ride. Place each person and justify the placement from what I told you.
+2. For each key stakeholder, what they need to hear, what they fear, and the one thing that would move them.
+3. A prioritized engagement plan: who to bring along first, who to never surprise, and where coalitions matter.
+4. The two or three relationship risks most likely to derail the work, and an early move to defuse each.
+5. Questions I should answer about these people before I rely on this map.
+
+Be candid about politics without being cynical. Where my input on a person is thin, mark the read as low-confidence rather than overstating it.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">DELIVERABLES</span>
+    <h2 class="h2">Decks, summaries, and quality control</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Client deck outline with a real storyline</h3>
+      <div class="when">Use when: you have the analysis and need a deck that tells a story, not a slide dump</div>
+      <pre>You are a consultant structuring a client deck. The goal is a storyline that builds to a recommendation, not a stack of disconnected slides.
+
+What I have (paste):
+- The audience and the decision they need to make: [DESCRIBE]
+- My key findings and the recommendation: [PASTE]
+- The evidence behind each: [PASTE OR SUMMARIZE]
+
+Build the deck:
+1. State the single governing thought: the one sentence the whole deck proves. If my inputs do not support a clean one, tell me.
+2. Lay out a slide-by-slide outline. For each slide give the action title (a full-sentence takeaway, not a topic label), the one message it lands, and the evidence or chart it shows.
+3. Sequence the slides as an argument: situation, complication, the question, then the answer and the path to it. Make the logic flow so each slide earns the next.
+4. Mark the few slides that carry the real weight versus supporting detail that could move to an appendix.
+5. Flag any place where the story outruns the evidence I gave you.
+
+Use action titles throughout. Do not pad the deck; a tight 12 slides beats a loose 30. The argument has to hold even if someone reads only the titles.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Findings into an executive summary</h3>
+      <div class="when">Use when: the work is done and you need a one-page summary a busy executive reads first and acts on</div>
+      <pre>Act as a consultant writing the executive summary for a deliverable. Write for a senior leader who will read this page and maybe nothing else.
+
+The material (paste):
+- The question we were engaged to answer: [STATE IT]
+- Key findings: [PASTE]
+- The recommendation and the actions it implies: [PASTE]
+- Risks, costs, or trade-offs: [PASTE]
+
+Write a one-page executive summary:
+1. Open with the answer. State the recommendation and the headline "so what" in the first three sentences. No throat-clearing.
+2. Give the three or four findings that justify it, each in a tight sentence or two, most important first.
+3. State what to do next: the specific actions, owners if known, and rough sequencing.
+4. Be honest about the main risk or trade-off and how to manage it.
+5. Keep it to a page, in plain executive language, with no jargon and no em dashes or en dashes.
+
+Lead with the conclusion, not the journey. Use only what I gave you, and if a claim is not supported by my inputs, leave it out rather than inflating the case.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>QA a deliverable for gaps and logic</h3>
+      <div class="when">Use when: the deliverable is drafted and you want a tough review before the client sees it</div>
+      <pre>Act as a skeptical senior partner reviewing my deliverable before it goes to the client. Be tough. Your job is to find the holes I will get caught on, not to praise it.
+
+The deliverable (paste the draft, or the deck outline and key claims):
+[PASTE]
+
+The audience and what they will scrutinize:
+[DESCRIBE, e.g. a CFO who will challenge every number]
+
+Pressure-test it:
+1. Logic: where does the argument not actually follow? Find leaps where a conclusion outruns its evidence.
+2. Gaps: what obvious question does this fail to answer? What is missing that a sharp client will immediately ask for?
+3. Evidence: which claims rest on thin or unstated support, and which numbers should be double-checked before this ships?
+4. Internal consistency: any place the document contradicts itself or where a number on one page disagrees with another.
+5. The hardest question: the single most dangerous question this invites, and whether the deliverable can withstand it.
+6. The "so what" test: does each section drive to a decision, or is anything just interesting but inert?
+
+Be specific and unsparing. Quote the exact line where each issue lives. Where you flag a number to check, say so plainly; do not silently assume it is right. This is the review that keeps me from getting embarrassed in the room.</pre>
+    </div>
+
+  </div>
+</section>
+
+<span class="lbl">FAQ</span><h2 class="h2">Frequently asked questions</h2><div class="faq-item"><div class="faq-q">What client data should I never paste into Claude, and how do I anonymize the rest?</div><div class="faq-a">Start from your engagement letter and NDA, not from the tool. Anything covered by confidentiality, plus named individuals, financials that could move a stock, M&amp;A targets, and personal data, should be scrubbed before it touches any chat. The practical pattern most consultants use: replace the client name with a token like CLIENT, swap real people for roles such as Head of Ops, and convert hard numbers to ranges or indexed figures (set last year to 100) when the exact value is not what you are reasoning about. On Claude Team or Enterprise your prompts are not used to train Anthropic's models and conversations stay in your workspace, which raises the floor, but anonymizing is still the discipline that protects the relationship. When in doubt, ask the client what is acceptable and write a one-page data-handling note for the engagement.</div></div><div class="faq-item"><div class="faq-q">How do I stop Claude from inventing facts, sources, or market data in research?</div><div class="faq-a">Treat Claude as an analyst working only from what you give it, not as a database of truth. Three habits do most of the work. First, ground it: paste or attach the transcripts, reports, and data you want synthesized, and tell it to use only those sources and to say I do not have evidence for this when a claim is not supported. Second, when you do ask for outside facts or statistics, require a named, checkable source for each and verify every number and citation yourself before it reaches a client. Assume any unsourced figure or quoted statistic is a hypothesis until you confirm it. Third, ask the model to label what is grounded in your inputs versus what is its own inference. The prompts on this page are written to force that separation.</div></div><div class="faq-item"><div class="faq-q">Which Claude model should consultants use?</div><div class="faq-a">For most consulting work the current Sonnet model is the right default. It drafts proposals, synthesizes interviews, builds frameworks, and outlines decks at a speed and price that let you use it all day. Reach for the larger Opus model when the task is deep and multi-document: synthesizing a full research corpus, reasoning across a data room, or pressure-testing the logic of a complex deliverable where depth matters more than speed. Keep Haiku for high-volume narrow tasks like cleaning notes or tagging responses. All the prompts here work across the three, but Sonnet hits the best balance for day-to-day engagement work and you can step up to Opus for the hard synthesis.</div></div><div class="faq-item"><div class="faq-q">Does using Claude replace consulting expertise or just augment it?</div><div class="faq-a">It augments. Claude is fast at the production layer: first drafts, structure, synthesis scaffolds, and stress-testing. It does not own the judgment that clients actually pay for, which problem to frame, which insight matters, what to recommend, and how to read the room. The leverage is real because it collapses blank-page time and lets you spend your hours on the thinking that differentiates you. The risk is outsourcing the judgment by accident: shipping a clean Claude draft you did not interrogate. The working rule is simple. Let Claude get you to a strong draft faster, then apply the expertise that is yours alone. The deliverable is yours, and so is responsibility for every claim in it.</div></div><div class="faq-item"><div class="faq-q">How do I integrate Claude into my actual consulting workflow?</div><div class="faq-a">Start with one engagement and one Claude Project. Load the Project with reusable context: your methodology, proposal and SOW templates, framework library, deck standards, and a short voice guide so output sounds like you. Then run the prompts from inside that Project so every draft inherits your context instead of starting blank. A natural sequence across an engagement is discovery guide, then research synthesis, then framework and hypothesis tree, then deck outline, then executive summary, then a QA pass before anything ships. Keep a prompt of your own next to each step. After a couple of engagements you will know which three or four prompts you reach for every time, and those become your standard kit.</div></div><div class="faq-item"><div class="faq-q">Should I tell clients when a deliverable was drafted with AI?</div><div class="faq-a">Lead with the client's expectations and any contract language first; some MSAs and procurement terms already address AI use, and that governs. Beyond the contract, the honest position is that you are accountable for the work regardless of the tools used, the same way you are for a spreadsheet or a junior's draft. Most clients care less about whether AI touched a document and more about two things: that their confidential data was handled correctly, and that a qualified human stands behind every conclusion. A clean approach is to be transparent that you use AI to accelerate research and drafting, paired with a clear statement of your data-handling practice and your own review. If a client asks you not to use these tools, respect it. Quiet, undisclosed use that would embarrass you if surfaced is the line not to cross.</div></div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your practice's context: your methodology, your proposal and SOW templates, your framework library, your past deliverables, and a short voice guide. With those inputs, the prompts above produce drafts that sound like you and inherit your standards, far better than running them in a blank Claude chat.</p>
+    <p class="body">See <a href="/best-ai-tools-for-consultants-2026" style="color:#00C853;text-decoration:none;">the best AI tools for consultants in 2026</a> for the wider stack, or <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">have Treetop build the Claude Project for your practice</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More prompt libraries and guides</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">Claude Prompts for Sales &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-marketing" style="color:#00C853;text-decoration:none;">Claude Prompts for Marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-product" style="color:#00C853;text-decoration:none;">Claude Prompts for Product &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/best-ai-tools-for-consultants-2026" style="color:#00C853;text-decoration:none;">Best AI Tools for Consultants 2026 &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/blog" style="color:#00C853;text-decoration:none;">The Treetop Blog &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Build a Claude practice that drafts like you</div>
+        <div class="cta-sub">Treetop turns prompts like these into a configured Claude Project with your methodology, templates, and standards built in, so every proposal, deck, and deliverable starts ahead. Take the assessment to find your gaps, start with an AI Audit, or book a call to map it out.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Assessment &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+        <a href="/book-a-call" class="btn-g">Book a Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">What a fractional CMO does &rarr;</a></li>
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's AI-native GTM framework &rarr;</a></li>
+    <li><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI-native GTM, defined &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Resource library &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>

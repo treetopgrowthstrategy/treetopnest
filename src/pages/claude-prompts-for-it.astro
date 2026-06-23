@@ -1,0 +1,437 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Prompts for IT and Sysadmins (2026) | Treetop</title>
+  <meta name="description" content="Copy-paste Claude prompts for IT and sysadmin work: incident write-ups, runbooks, scripting help, ticket triage, policy docs, and vendor evaluations." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-it" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-it" />
+  <meta property="og:title" content="Claude Prompts for IT and Sysadmins (2026)" />
+  <meta property="og:description" content="Copy-paste Claude prompts for IT and sysadmin work: incident write-ups, runbooks, scripting help, ticket triage, policy docs, and vendor evaluations." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-it.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-it.png" />
+  <meta name="twitter:title" content="Claude Prompts for IT and Sysadmins (2026)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library for IT and sysadmin work." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "Claude Prompts for IT and Sysadmins (2026)", "description": "Copy-paste Claude prompts for IT and sysadmin work: incident write-ups, runbooks, scripting help, ticket triage, policy docs, and vendor evaluations.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-it", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-23", "dateModified": "2026-06-23", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-it.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it safe to paste server configs, logs, or credentials into Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Configs and logs are usually fine on Claude Team or Enterprise, where your prompts are not used to train Anthropic's models and conversations stay inside your workspace. Credentials are a different matter: never paste passwords, API keys, private keys, connection strings, or tokens into any chat. Redact them to a placeholder like [REDACTED_API_KEY] before you submit. The prompts on this page are written to ask for sanitized inputs, and most teams add a simple rule before rolling Claude out to IT: scrub secrets, hostnames, and internal IPs that do not need to be there, and route anything covered by a compliance scope through an approved, logged workflow."}}, {"@type": "Question", "name": "How do I stop Claude from inventing commands or flags that do not exist?", "acceptedAnswer": {"@type": "Answer", "text": "Treat Claude as a strong pair, not an oracle. Three habits cover most of the risk. First, tell it your exact environment (OS and version, shell, tool versions) so it does not reach for a flag that only exists on another distro. Second, ask it to explain what each command does and to flag anything destructive before you run it. Third, never paste a generated command straight into production: read it, run it on a test box or with a dry-run flag first, and check any command you do not personally recognize against the official docs. The scripting prompts here build in safety checks, confirmations, and dry-run options for exactly this reason."}}, {"@type": "Question", "name": "Which Claude model should IT and sysadmin teams use?", "acceptedAnswer": {"@type": "Answer", "text": "For day-to-day work, the current Sonnet model is the right default. It handles log analysis, script drafting, runbook writing, and ticket triage at a speed and price that let you run it across the team. Reach for the larger Opus model when the task involves long, multi-document reasoning: a full incident timeline across several log sources, a security architecture review, or a migration plan that spans many systems. Keep Haiku for high-volume narrow tasks like categorizing inbound tickets or summarizing alert noise. Every prompt in this guide works across all three, but Sonnet hits the best balance for most help-desk and infrastructure work."}}, {"@type": "Question", "name": "Can Claude connect to our ticketing or ITSM tools like Jira, ServiceNow, or Zendesk?", "acceptedAnswer": {"@type": "Answer", "text": "Claude does not replace your ITSM platform, and you do not need a native integration to get value. The common pattern is copy and paste: pull the ticket text or a CSV export from Jira, ServiceNow, Zendesk, or Freshservice, drop it into a Claude Project alongside your categories and routing rules, and run the triage and knowledge-base prompts from there. Teams that want a tighter loop use Claude's API to read tickets through a script, or wire exports into a shared drive with a connector like Zapier or Make. Start with paste-and-run, then automate the workflows you repeat every day once you know which ones they are."}}, {"@type": "Question", "name": "What IT work should I not hand to Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Claude is a drafting, analysis, and second-opinion layer, not an operator. Do not let it execute changes against production on its own, approve its own scripts, or be the only reviewer of a security policy that carries real liability. Anything irreversible (deleting data, rotating production keys, changing firewall rules, pushing a schema migration) stays behind a human who reads the change, understands it, and owns the outcome. Use Claude to draft the runbook, generate the script, and stress-test the plan. Keep a person on the keyboard for the part that actually touches the systems."}}, {"@type": "Question", "name": "How does using Claude affect data privacy and compliance for IT teams?", "acceptedAnswer": {"@type": "Answer", "text": "On Claude Team and Enterprise, inputs are not used to train Anthropic's models and stay within your workspace, which is the baseline most IT and security teams need. Beyond that, the controls that matter are yours: a short data-handling policy that says what may and may not be pasted, redaction of secrets and unnecessary personal data, and a record of which prompts touched sensitive systems for audit purposes. If you operate under a specific regime (HIPAA, PCI DSS, SOC 2, GDPR), map Claude usage into your existing control set rather than treating it as an exception, and confirm your plan tier and any signed agreements cover the data you intend to use."}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-it","name":"Claude Prompts for IT and Sysadmins (2026) | Treetop","description":"Copy-paste Claude prompts for IT and sysadmin work: incident write-ups, runbooks, scripting help, ticket triage, policy docs, and vendor evaluations.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-it.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://treetopgrowthstrategy.com/blog"},{"@type":"ListItem","position":3,"name":"Claude Prompts for IT","item":"https://treetopgrowthstrategy.com/claude-prompts-for-it"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services/ai-audit" class="nav-link">AI Audit</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 12 prompts</div>
+    <h1 class="hero-h">12 Claude prompts <em style="color:#00C853;font-style:italic;">for IT and sysadmins.</em></h1>
+    <p class="hero-sub">These 12 prompts cover the work an IT and infrastructure team actually does: incident postmortems, runbooks, scripting with safety checks, log and root-cause analysis, ticket triage, change comms, security policy, vendor evaluations, onboarding and offboarding, infrastructure docs, troubleshooting trees, and knowledge-base articles. Each one is annotated, uses [BRACKET] placeholders for your details, and is ready to paste into Claude. Scrub your secrets, keep your judgment on the output, and never run a generated command you have not read.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">INCIDENTS AND OPERATIONS</span>
+    <h2 class="h2">Incident response, runbooks, and scripting</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>Incident postmortem write-up</h3>
+      <div class="when">Use when: the fire is out and you need a blameless postmortem before the details fade</div>
+      <pre>You are an SRE writing a blameless incident postmortem. I will give you the rough timeline and facts.
+
+Incident facts (paste): what broke, impact, who was paged, key timestamps, what we tried, what fixed it.
+[PASTE INCIDENT NOTES, REDACT ANY SECRETS OR CUSTOMER PII]
+
+Write the postmortem:
+1. A one-paragraph summary a non-technical exec can read: what happened, who was affected, how long, resolved or not.
+2. Impact: systems, users, duration, and severity, stated plainly.
+3. A clean timeline in UTC: detection, escalation, mitigation, resolution, each with the action taken.
+4. Root cause and contributing factors, separating the trigger from the underlying conditions. Where you are inferring, label it "hypothesis" and say what to check to confirm.
+5. What went well and what slowed us down, with no blame on individuals.
+6. Action items as a table: fix, owner placeholder, priority, and whether it prevents recurrence or just reduces impact.
+
+Keep it factual and specific. Do not invent timestamps or causes I did not provide; ask if something critical is missing.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Runbook from a rough procedure</h3>
+      <div class="when">Use when: a task lives only in one engineer's head and you need it written down before they are on PTO</div>
+      <pre>Turn my rough notes into a clear operational runbook that a competent on-call engineer who has never done this task can follow.
+
+Task: [WHAT THE RUNBOOK IS FOR, e.g. failover the primary database]
+Environment: [OS / PLATFORM / TOOL VERSIONS]
+Rough steps (paste, in any order):
+[PASTE YOUR NOTES, COMMANDS, AND GOTCHAS]
+
+Produce the runbook:
+1. Purpose and when to use it (and when not to).
+2. Prerequisites: access, tools, and approvals needed before starting.
+3. Numbered steps with the exact command or action for each, plus the expected result so the engineer can confirm it worked.
+4. A clear "stop and escalate" rule for each risky step.
+5. Verification steps to confirm the system is healthy afterward.
+6. A rollback section: how to undo each major step if it goes wrong.
+
+Flag any step that is destructive or irreversible in bold so it cannot be missed. Where my notes are ambiguous, mark it as a question to resolve rather than guessing.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Script generation with safety checks</h3>
+      <div class="when">Use when: you need a PowerShell or Bash script and want guardrails baked in, not bolted on</div>
+      <pre>Write a [POWERSHELL / BASH] script for the task below. Safety matters more than cleverness.
+
+Goal: [WHAT THE SCRIPT SHOULD DO]
+Environment: [OS AND VERSION, SHELL VERSION, ANY RELEVANT TOOL VERSIONS]
+Inputs and constraints: [PATHS, HOSTS AS PLACEHOLDERS, WHAT IT MUST NOT TOUCH]
+
+Requirements for the script:
+1. Start with a comment block: what it does, assumptions, and what could go wrong.
+2. Validate inputs and fail clearly with a helpful message if something is missing.
+3. Include a dry-run or -WhatIf mode that shows what would change without changing it, and make dry-run the default where possible.
+4. Add a confirmation prompt before any destructive action (delete, overwrite, restart).
+5. Use safe defaults: stop on error, no silent failures, log what it does.
+6. After the code, list every destructive or risky line in plain English and tell me exactly what to test before running it for real.
+
+Target only the environment I named; do not use flags or cmdlets that exist on a different OS or version. If a safer approach exists, recommend it.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">DIAGNOSIS AND TRIAGE</span>
+    <h2 class="h2">Log analysis, ticket triage, and troubleshooting</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Log and error analysis with root-cause hypotheses</h3>
+      <div class="when">Use when: you have a wall of log output and need the signal pulled out of the noise</div>
+      <pre>You are a senior systems engineer analyzing logs to find the likely root cause. I will paste log output.
+
+Context: [WHAT SYSTEM, WHAT SYMPTOM, WHEN IT STARTED, WHAT CHANGED RECENTLY]
+Logs (paste, redact secrets and internal hostnames you do not want shared):
+[PASTE LOG EXCERPT]
+
+Do this:
+1. Summarize what the logs show in plain English: the sequence of events and where it goes wrong.
+2. Identify the first error or anomaly that matters, separating it from downstream noise that is just a symptom.
+3. Give me a ranked list of root-cause hypotheses, most to least likely, each with the evidence in the log that supports it.
+4. For each hypothesis, the one quick check or command that would confirm or rule it out.
+5. Flag anything in the logs that looks like a security event, not just a fault.
+
+Reason only from the evidence provided. If the logs are insufficient to be confident, say so and tell me what additional log source or time window would help.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Ticket triage and categorization</h3>
+      <div class="when">Use when: the queue is full and you need it sorted and routed before standup</div>
+      <pre>Act as a help-desk lead triaging inbound IT tickets. I will paste a batch of tickets.
+
+Our categories: [LIST, e.g. access, hardware, network, software, security, how-to]
+Our priority scale: [DEFINE P1 to P4 OR YOUR SCHEME]
+Tickets (paste: id, requester role, subject, body):
+[PASTE TICKETS, REDACT PERSONAL DATA NOT NEEDED FOR ROUTING]
+
+For each ticket, output a row with:
+1. Suggested category and a suggested priority, with a one-line reason.
+2. The team or queue it should route to.
+3. Whether it looks like a duplicate or part of a wider pattern across the batch.
+4. A flag if it may be a security or compliance issue that needs escalation, not normal triage.
+5. For simple, well-defined ones, a suggested first response the agent can edit and send.
+
+End with a short summary: any spike or pattern across the batch (for example several tickets pointing at the same outage) that suggests a single underlying problem.
+
+Do not guess at priority when the ticket is vague; mark it "needs clarification" and say what to ask.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Troubleshooting decision tree</h3>
+      <div class="when">Use when: the same class of problem keeps landing on the team and you want a repeatable path through it</div>
+      <pre>Build a troubleshooting decision tree for a recurring problem so a tier-1 tech can work it before escalating.
+
+Problem: [DESCRIBE THE SYMPTOM, e.g. user cannot connect to VPN]
+Environment: [PLATFORM, CLIENT, ANY RELEVANT VERSIONS]
+What I already know about common causes: [PASTE WHAT YOU HAVE]
+
+Produce the decision tree:
+1. Start with the fastest, most common checks first (the ones that resolve the most tickets).
+2. Lay it out as branching yes/no questions, each leading to either a fix or the next check.
+3. For each check, the exact thing to look at or command to run and how to read the result.
+4. Clear escalation points: when tier-1 should stop and hand to tier-2 or networking, and what to capture before they do.
+5. A short list of the data to collect up front so escalation is not a back-and-forth.
+
+Keep the early branches simple enough for a new technician. Mark any step that touches a production setting or could disrupt the user, and tell them when to get consent first.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">COMMS AND POLICY</span>
+    <h2 class="h2">Change management, policy, and acceptable use</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Change-management and maintenance-window comms</h3>
+      <div class="when">Use when: you have a planned change and need the notice that goes out before, during, and after</div>
+      <pre>Draft the communications for a planned change and maintenance window.
+
+Change: [WHAT IS CHANGING AND WHY, IN PLAIN TERMS]
+Window: [DATE, START AND END TIME, TIME ZONE]
+Impact: [WHO AND WHAT IS AFFECTED, EXPECTED DOWNTIME, ANY ACTION USERS MUST TAKE]
+Audience: [ALL STAFF / A DEPARTMENT / EXTERNAL CUSTOMERS]
+Rollback plan: [WHAT HAPPENS IF IT GOES WRONG]
+
+Write three short messages:
+1. Advance notice (sent days ahead): what, when, why, the impact, and any action needed, calm and specific.
+2. Start-of-window note: we are beginning, expected duration, where to watch for updates.
+3. Completion note: done, current status, what to do if something still looks off, and who to contact.
+
+Also give me a one-line internal note for the change record and a brief entry for the change-approval board. Keep user-facing copy jargon-light and reassuring without overpromising. Do not use em dashes or en dashes anywhere.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Security policy or acceptable-use draft</h3>
+      <div class="when">Use when: you need a first draft of a policy that people will actually read and follow</div>
+      <pre>Draft a [SECURITY POLICY / ACCEPTABLE USE POLICY] for a [COMPANY SIZE AND INDUSTRY] organization. I will refine it; I need a strong, clear first draft.
+
+Scope and intent: [WHAT THIS POLICY MUST COVER, e.g. acceptable use of company devices and accounts]
+Constraints I care about: [ANY REGULATION, EXISTING TOOLS, OR REALITIES, e.g. BYOD allowed, SSO in place]
+
+Write the policy:
+1. Purpose and scope: who and what it applies to, in one short section.
+2. Clear rules in plain language, grouped logically (accounts and passwords, devices, data handling, acceptable use, reporting incidents).
+3. For each rule, keep it specific and enforceable; avoid vague phrasing nobody can act on.
+4. A short section on consequences and the exception process.
+5. A list of decisions or specifics a human owner still needs to fill in (thresholds, named tools, contacts), so I do not mistake a draft for a finished policy.
+
+Make it readable for non-technical staff, not just IT. This is a starting draft for review by security and legal, not legal advice, and a person must own the final version.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Vendor and tool evaluation matrix</h3>
+      <div class="when">Use when: you are choosing between tools and want a defensible comparison, not a gut call</div>
+      <pre>Help me build a vendor evaluation matrix to compare [N] tools for [USE CASE, e.g. endpoint management].
+
+Candidates: [LIST THE TOOLS]
+What matters to us, roughly weighted: [e.g. security and compliance, integration with our stack, total cost, support, scalability, ease of admin]
+Constraints: [BUDGET RANGE, MUST-HAVE INTEGRATIONS, TEAM SIZE, ANY DEALBREAKERS]
+What I know about each (paste any notes, pricing, or specs you have):
+[PASTE WHAT YOU HAVE]
+
+Produce:
+1. A scoring matrix: criteria as rows, tools as columns, with weights shown. Score only on the evidence I provided and mark cells "unknown" where I have no data rather than guessing.
+2. A short narrative on each tool's clear strengths and real weaknesses for our use case.
+3. The two or three criteria that should actually decide this, given our constraints.
+4. The specific questions I should ask each vendor to close the biggest information gaps before deciding.
+5. A provisional recommendation, stated as provisional, with what would change it.
+
+Be honest about uncertainty and do not let a tool win on a criterion where I gave you no data.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">DOCUMENTATION AND KNOWLEDGE</span>
+    <h2 class="h2">Onboarding, infrastructure docs, and knowledge base</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Onboarding and offboarding checklist</h3>
+      <div class="when">Use when: people join or leave and you need nothing to slip through the cracks, especially access</div>
+      <pre>Build an IT [ONBOARDING / OFFBOARDING] checklist for a [ROLE, e.g. new sales hire] at a [COMPANY SIZE AND INDUSTRY] company.
+
+Our stack (paste): [IDENTITY PROVIDER, EMAIL, CORE APPS, DEVICE TYPE, MDM, VPN, ANY ROLE-SPECIFIC TOOLS]
+Anything special about this role: [ELEVATED ACCESS, SHARED MAILBOXES, HARDWARE NEEDS]
+
+Produce the checklist:
+1. Grouped by phase: before day one, day one, and first week (for onboarding) or immediate, within 24 hours, and within a week (for offboarding).
+2. Each item with the system, the action, and the owner placeholder (IT, manager, security).
+3. For offboarding, put account and access revocation first and call out anything time-sensitive (SSO disable, MFA tokens, privileged access, third-party SaaS not behind SSO, hardware return, data handoff).
+4. A least-privilege note: access this role should get and access it should not.
+5. A final verification step to confirm nothing was missed, with the things most commonly forgotten.
+
+Be thorough on access, especially for offboarding; an orphaned account is a security risk. Mark any step that needs manager or security sign-off.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Infrastructure documentation from notes</h3>
+      <div class="when">Use when: the architecture lives in your head and a whiteboard photo, and it needs to be real documentation</div>
+      <pre>Turn my rough notes into clear infrastructure documentation a new team member or auditor could follow.
+
+System: [WHAT THIS DOCUMENTS, e.g. our production web stack]
+Rough notes (paste: servers, services, networks, dependencies, how data flows, redact anything sensitive you do not want shared):
+[PASTE NOTES]
+
+Produce the documentation:
+1. An overview: what this system does and how the major pieces fit together, in a few sentences.
+2. Components: each server, service, or resource with its role, and the environment or tier it sits in.
+3. Data flow and dependencies: what talks to what, in what direction, and what breaks if a given piece goes down.
+4. Access and ownership: who owns each piece and how it is accessed (described, not actual credentials).
+5. Known risks and single points of failure visible in my notes.
+6. A "to confirm" list of anything ambiguous in my notes that a human should verify before this is trusted as canonical.
+
+Use placeholders for hostnames, IPs, and secrets; never echo a credential even if I accidentally include one. Tell me where my notes are thin so the gaps are visible.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>Knowledge-base article from a resolved ticket</h3>
+      <div class="when">Use when: you just solved something twice and want it to be self-serve the third time</div>
+      <pre>Turn this resolved ticket into a reusable knowledge-base article so the next person can self-serve.
+
+Resolved ticket (paste: the problem as reported, what was actually wrong, the steps that fixed it):
+[PASTE TICKET, REDACT THE REQUESTER'S PERSONAL DATA]
+
+Audience: [END USERS / IT STAFF]
+
+Write the article:
+1. A clear, searchable title phrased the way someone would actually look it up.
+2. Symptoms: how to know this is the article you need, in the user's words.
+3. Cause: a short, plain explanation of what is going on, only if it helps the reader.
+4. Resolution: numbered steps written for the audience, with the exact action for each and what success looks like.
+5. If the fix needs IT or admin rights, say so up front and give the user the self-serve part plus when to open a ticket.
+6. Related issues or follow-up to prevent it recurring.
+
+Keep it concise and free of internal jargon for an end-user audience. Do not include any real names, internal hostnames, or credentials from the source ticket.</pre>
+    </div>
+
+  </div>
+</section>
+
+<span class="lbl">FAQ</span><h2 class="h2">Frequently asked questions</h2><div class="faq-item"><div class="faq-q">Is it safe to paste server configs, logs, or credentials into Claude?</div><div class="faq-a">Configs and logs are usually fine on Claude Team or Enterprise, where your prompts are not used to train Anthropic's models and conversations stay inside your workspace. Credentials are a different matter: never paste passwords, API keys, private keys, connection strings, or tokens into any chat. Redact them to a placeholder like [REDACTED_API_KEY] before you submit. The prompts on this page are written to ask for sanitized inputs, and most teams add a simple rule before rolling Claude out to IT: scrub secrets, hostnames, and internal IPs that do not need to be there, and route anything covered by a compliance scope through an approved, logged workflow.</div></div><div class="faq-item"><div class="faq-q">How do I stop Claude from inventing commands or flags that do not exist?</div><div class="faq-a">Treat Claude as a strong pair, not an oracle. Three habits cover most of the risk. First, tell it your exact environment (OS and version, shell, tool versions) so it does not reach for a flag that only exists on another distro. Second, ask it to explain what each command does and to flag anything destructive before you run it. Third, never paste a generated command straight into production: read it, run it on a test box or with a dry-run flag first, and check any command you do not personally recognize against the official docs. The scripting prompts here build in safety checks, confirmations, and dry-run options for exactly this reason.</div></div><div class="faq-item"><div class="faq-q">Which Claude model should IT and sysadmin teams use?</div><div class="faq-a">For day-to-day work, the current Sonnet model is the right default. It handles log analysis, script drafting, runbook writing, and ticket triage at a speed and price that let you run it across the team. Reach for the larger Opus model when the task involves long, multi-document reasoning: a full incident timeline across several log sources, a security architecture review, or a migration plan that spans many systems. Keep Haiku for high-volume narrow tasks like categorizing inbound tickets or summarizing alert noise. Every prompt in this guide works across all three, but Sonnet hits the best balance for most help-desk and infrastructure work.</div></div><div class="faq-item"><div class="faq-q">Can Claude connect to our ticketing or ITSM tools like Jira, ServiceNow, or Zendesk?</div><div class="faq-a">Claude does not replace your ITSM platform, and you do not need a native integration to get value. The common pattern is copy and paste: pull the ticket text or a CSV export from Jira, ServiceNow, Zendesk, or Freshservice, drop it into a Claude Project alongside your categories and routing rules, and run the triage and knowledge-base prompts from there. Teams that want a tighter loop use Claude's API to read tickets through a script, or wire exports into a shared drive with a connector like Zapier or Make. Start with paste-and-run, then automate the workflows you repeat every day once you know which ones they are.</div></div><div class="faq-item"><div class="faq-q">What IT work should I not hand to Claude?</div><div class="faq-a">Claude is a drafting, analysis, and second-opinion layer, not an operator. Do not let it execute changes against production on its own, approve its own scripts, or be the only reviewer of a security policy that carries real liability. Anything irreversible (deleting data, rotating production keys, changing firewall rules, pushing a schema migration) stays behind a human who reads the change, understands it, and owns the outcome. Use Claude to draft the runbook, generate the script, and stress-test the plan. Keep a person on the keyboard for the part that actually touches the systems.</div></div><div class="faq-item"><div class="faq-q">How does using Claude affect data privacy and compliance for IT teams?</div><div class="faq-a">On Claude Team and Enterprise, inputs are not used to train Anthropic's models and stay within your workspace, which is the baseline most IT and security teams need. Beyond that, the controls that matter are yours: a short data-handling policy that says what may and may not be pasted, redaction of secrets and unnecessary personal data, and a record of which prompts touched sensitive systems for audit purposes. If you operate under a specific regime (HIPAA, PCI DSS, SOC 2, GDPR), map Claude usage into your existing control set rather than treating it as an exception, and confirm your plan tier and any signed agreements cover the data you intend to use.</div></div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your team's context: your environment details, your runbook standards, your ticket categories, your security policies, and examples of past write-ups you were happy with. With those inputs, the prompts above produce outputs far better than running them in a blank Claude chat, because the model already knows your stack, your tone, and your bar.</p>
+    <p class="body">Keep secrets out of that Project too. Load redacted templates and sanitized examples, not live credentials. See <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">an AI Audit</a> to find the IT workflows worth automating first, or <a href="/services/implementation" style="color:#00C853;text-decoration:none;">have Treetop build the IT Project for your team</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More Claude prompt libraries</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">Claude Prompts for Sales &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-finance" style="color:#00C853;text-decoration:none;">Claude Prompts for Finance &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-hr" style="color:#00C853;text-decoration:none;">Claude Prompts for HR &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-marketing" style="color:#00C853;text-decoration:none;">Claude Prompts for Marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/blog" style="color:#00C853;text-decoration:none;">More from the Treetop blog &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Build an IT Claude Project that knows your environment</div>
+        <div class="cta-sub">Treetop turns prompts like these into a configured Claude Project with your stack, runbook standards, and policies built in. Start with the Gap Assessment, run an AI Audit to find the workflows worth automating first, or book a call to map it out.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+        <a href="/book-a-call" class="btn-g">Book a Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's AI-native GTM framework &rarr;</a></li>
+    <li><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI-native GTM, defined &rarr;</a></li>
+    <li><a href="/resources/claude-system-prompts-library" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude system prompts library &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Resource library &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Prompts for Data Analysts (2026) | Treetop</title>
+  <meta name="description" content="Copy-paste Claude prompts for data analysts: SQL drafting and debugging, analysis plans, chart specs, stakeholder summaries, and data documentation." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-data-analysts" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-data-analysts" />
+  <meta property="og:title" content="Claude Prompts for Data Analysts (2026)" />
+  <meta property="og:description" content="Copy-paste Claude prompts for data analysts: SQL drafting and debugging, analysis plans, chart specs, stakeholder summaries, and data documentation." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-data-analysts.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-data-analysts.png" />
+  <meta name="twitter:title" content="Claude Prompts for Data Analysts (2026)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "Claude Prompts for Data Analysts (2026)", "description": "Copy-paste Claude prompts for data analysts: SQL drafting and debugging, analysis plans, chart specs, stakeholder summaries, and data documentation.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-data-analysts", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-23", "dateModified": "2026-06-23", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-data-analysts.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can Claude run my SQL against the data warehouse?", "acceptedAnswer": {"@type": "Answer", "text": "No. Claude drafts and debugs SQL, but it does not connect to your Snowflake, BigQuery, Redshift, or Postgres instance and run it. You copy the query Claude writes, run it in your own editor or BI tool, and bring the result back if you want help interpreting it. That separation is a feature: the model never touches production, so it cannot accidentally lock a table, run an expensive scan, or read data it should not. Treat every query Claude gives you the way you would treat a pull request from a new teammate. Read it, run it on a limited sample or with a LIMIT clause first, and confirm the row counts make sense before you trust the output."}}, {"@type": "Question", "name": "How should I handle PII and sensitive data when prompting Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Never paste raw customer-level data, PII, or regulated records into a prompt. Claude does not need the actual rows to help you. It needs the shape of the data: column names, data types, a few synthetic or masked sample rows, and a plain-English description of what each field means. Give it the schema, not the records. When you do need help interpreting a result, paste aggregated or anonymized output rather than the underlying detail. On Claude Team or Enterprise your conversations are not used to train Anthropic's models, but the safest habit is to keep raw sensitive data out of the chat entirely and let your warehouse remain the only place it lives."}}, {"@type": "Question", "name": "How do I stop Claude from inventing statistics or fabricating numbers?", "acceptedAnswer": {"@type": "Answer", "text": "The single most important rule: Claude cannot see your data unless you give it to you, so it cannot know your actual numbers. If you ask for a conversion rate without providing the data, anything it returns is a guess dressed as a fact. Avoid this by feeding it real query output (aggregated, not raw) and asking it to work only from what you provided. Tell it explicitly to label any figure it infers as an assumption and to flag where the data does not support a clean answer. For statistical work, ask it to state the method, the assumptions, and the formula rather than just the result, so you can verify the math in your own tool."}}, {"@type": "Question", "name": "Which Claude model should a data analyst use?", "acceptedAnswer": {"@type": "Answer", "text": "For day-to-day analysis work, the current Sonnet model is the right default. It writes and debugs SQL, drafts analysis plans, and explains statistical methods well, at a speed and price that let you use it constantly. Reach for the larger Opus model on harder reasoning: untangling a gnarly multi-CTE query, designing an experiment with tricky confounders, or working through a long, multi-table investigation where depth matters more than speed. Keep Haiku for high-volume narrow tasks like renaming columns or generating boilerplate. All of the prompts on this page work across the three, but Sonnet hits the best balance for an analyst's typical day."}}, {"@type": "Question", "name": "Does Claude work with dbt, Looker, Tableau, and other BI tools?", "acceptedAnswer": {"@type": "Answer", "text": "Claude does not plug directly into Looker or Tableau, but it pairs well with them because most BI work is text underneath. Paste a dbt model and ask Claude to review the SQL, add tests, or write the YAML schema documentation. Give it a LookML snippet and have it draft a new dimension or measure. Describe the dashboard you want and let it spec the tiles, the underlying queries, and the layout before you build. The pattern is the same everywhere: Claude drafts the code or the spec, you paste it into the tool, run it, and review. Teams that want a tighter loop use the Claude API inside internal scripts, but the copy-and-paste workflow gets you most of the value with no setup."}}, {"@type": "Question", "name": "Where does an analyst's judgment still matter most?", "acceptedAnswer": {"@type": "Answer", "text": "Everywhere the question meets the business. Claude can write a query, but it cannot know that a metric definition changed in March, that one region logs events differently, or that the stakeholder asking for retention really means revenue retention. It does not know which result is surprising enough to double-check or which caveat will get a decision overturned in a meeting. Use Claude to move faster on the mechanical parts: drafting SQL, structuring an analysis, wording a summary. Keep ownership of the parts that require context: validating the numbers against the source, choosing what to measure, deciding what the result actually means, and standing behind it when leadership pushes back."}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-data-analysts","name":"Claude Prompts for Data Analysts (2026) | Treetop","description":"Copy-paste Claude prompts for data analysts: SQL drafting and debugging, analysis plans, chart specs, stakeholder summaries, and data documentation.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-data-analysts.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://treetopgrowthstrategy.com/blog"},{"@type":"ListItem","position":3,"name":"Claude Prompts for Data Analysts","item":"https://treetopgrowthstrategy.com/claude-prompts-for-data-analysts"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 12 prompts</div>
+    <h1 class="hero-h">12 Claude prompts <em style="color:#00C853;font-style:italic;">for data analysts.</em></h1>
+    <p class="hero-sub">These 12 prompts cover the work an analyst actually does: writing and debugging SQL, scoping an analysis, picking a statistical method, speccing charts and dashboards, turning a result into an executive summary, documenting your data, and prepping for the questions stakeholders will ask. Each one is annotated, uses [BRACKET] tokens for your inputs, and is ready to paste into Claude. Remember that Claude drafts and reasons; it does not run queries against your warehouse, and it cannot see your data unless you give it. Keep your judgment on every output.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">SQL AND QUERYING</span>
+    <h2 class="h2">Writing and debugging SQL</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>SQL query from a plain-English question</h3>
+      <div class="when">Use when: a stakeholder asks a question in words and you need the query that answers it</div>
+      <pre>You are a senior analytics engineer who writes clean, readable [DIALECT, e.g. BigQuery / Snowflake / Postgres] SQL.
+
+The question I need to answer: [PLAIN-ENGLISH QUESTION, e.g. "monthly active accounts by plan tier for the last 6 months"]
+
+Tables available (schema only, no real rows):
+[PASTE: table name, column names, types, and a one-line description of each table and its grain]
+
+Write the query:
+1. Output the SQL with clear CTEs and comments explaining each step.
+2. State the assumptions you made about grain, joins, date boundaries, and how you defined the key metric. List anything ambiguous you had to choose for me.
+3. Note any column you assumed exists or any join that could fan out the row count, and tell me how to sanity-check it.
+4. Suggest a quick validation query (a row count or a spot check) I can run first to confirm the logic before I trust the numbers.
+
+Do not invent table or column names. If something critical is missing from the schema, ask rather than guessing. I will run this myself; you are drafting, not executing.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Debug and optimize a slow query</h3>
+      <div class="when">Use when: a query is wrong, slow, or expensive and you need a second set of eyes</div>
+      <pre>Act as a SQL performance reviewer for [DIALECT]. Here is a query that is [returning wrong results / running slowly / costing too much].
+
+Query:
+[PASTE SQL]
+
+What I expected vs. what happened: [DESCRIBE THE PROBLEM, e.g. "row count doubled" or "scans 4 TB"]
+Relevant schema and rough table sizes: [PASTE COLUMNS, TYPES, APPROX ROW COUNTS, PARTITION OR CLUSTER KEYS]
+
+Do this:
+1. If the results look wrong, find the likely cause: a fan-out join, a missing GROUP BY column, a NULL-handling bug, a date boundary off by one, or a duplicated source row. Explain the bug in one sentence before fixing it.
+2. Rewrite the query correctly and explain each change.
+3. For performance, point to the specific costly steps (full scans, non-sargable filters, unnecessary DISTINCT, exploding joins) and give a faster version that returns the same result.
+4. List what I should check to confirm the rewrite is equivalent (compare row counts and a few aggregates against the original).
+
+Show the before-and-after clearly. Do not change the meaning of the query while optimizing it; correctness first, speed second.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">PLANNING AND METHOD</span>
+    <h2 class="h2">Scoping the analysis and choosing a method</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Exploratory analysis plan</h3>
+      <div class="when">Use when: you have a fuzzy question and a dataset, and want a structured plan before you dive in</div>
+      <pre>You are a staff data analyst helping me scope an exploratory analysis before I write any code.
+
+The question or hypothesis: [WHAT WE WANT TO LEARN, e.g. "why did signups drop in EMEA last quarter"]
+What I have to work with: [DATASETS / TABLES AVAILABLE, KEY COLUMNS, TIME RANGE, GRAIN]
+Decision this feeds: [WHAT SOMEONE WILL DO WITH THE ANSWER]
+
+Produce an analysis plan:
+1. Restate the question sharply, and list the sub-questions I need to answer to address it.
+2. Lay out a step-by-step plan: which slices to look at first, which segments and time windows, and the order that gets to signal fastest.
+3. For each step, name the specific cut of data and what result would confirm or kill the hypothesis.
+4. Call out the data-quality checks I should run before trusting anything (nulls, duplicates, definition changes, sampling).
+5. Flag the traps: confounders, Simpson's paradox risk, seasonality, and any segment that logs differently.
+6. Define "done": what evidence would let me confidently answer the question.
+
+Keep it practical and ordered by leverage. Do not assume facts about my data that I did not give you.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Pick the right statistical method</h3>
+      <div class="when">Use when: you know what you want to learn but are not sure which test or model fits</div>
+      <pre>Act as a pragmatic statistician. Help me choose the right method for this question, then tell me how to apply it correctly.
+
+The question: [WHAT I WANT TO KNOW, e.g. "did the new onboarding change 30-day retention"]
+The data: [OUTCOME VARIABLE AND TYPE (binary / continuous / count), KEY INPUTS, SAMPLE SIZE, HOW IT WAS COLLECTED, ANY PAIRING OR TIME STRUCTURE]
+Constraints: [WHAT I CAN AND CANNOT RUN, TOOLS AVAILABLE]
+
+Do this:
+1. Recommend the most appropriate method (t-test, chi-square, regression, logistic regression, survival analysis, nonparametric alternative, etc.) and explain in plain language why it fits this data and question.
+2. State the assumptions the method makes and how I should check each one against my data.
+3. Name a simpler fallback and a more robust alternative, and when I would switch.
+4. Tell me what the result will and will not let me claim, especially correlation vs. causation.
+5. Write the formula or the code skeleton (in [R / Python / SQL]) so I can run it myself.
+
+Be honest about uncertainty and the limits of the data. Do not produce any specific statistic or p-value, since you cannot see my data; I will compute it and can bring the output back for interpretation.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">VISUALIZATION</span>
+    <h2 class="h2">Charts, dashboards, and visual specs</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Spec a chart for a specific message</h3>
+      <div class="when">Use when: you know what the data says and need the clearest way to show it</div>
+      <pre>You are a data visualization expert. Help me design the right chart for this.
+
+The message the chart must land: [THE ONE TAKEAWAY, e.g. "churn is concentrated in the first 30 days"]
+The data behind it: [COLUMNS, GRAIN, NUMBER OF SERIES OR CATEGORIES, TIME RANGE]
+Audience and medium: [e.g. exec slide / dashboard tile / report PDF]
+Tool I will build it in: [Tableau / Looker / matplotlib / Excel / other]
+
+Spec the chart:
+1. Recommend the chart type that communicates the message most directly, and say why it beats the obvious alternatives for this case.
+2. Specify the encoding: what goes on each axis, color, size, and order; what to sort by; and what to leave off.
+3. Recommend the title (state the takeaway, not the dimensions), axis labels, and any annotation or reference line that makes the point obvious.
+4. Call out the ways this chart could mislead (truncated axis, dual axes, overplotting, misleading aggregation) and how to avoid them.
+5. Give me the build steps or a code skeleton for my tool.
+
+Favor clarity over cleverness. One chart, one message. Do not suggest a chart type that hides the comparison the message depends on.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Spec a dashboard</h3>
+      <div class="when">Use when: someone asks for "a dashboard" and you need to turn that into a real layout before building</div>
+      <pre>Act as an analytics product designer. Help me spec a dashboard before I build it in [Looker / Tableau / Power BI / other].
+
+Who uses it and the decision it supports: [PRIMARY AUDIENCE, THE WEEKLY OR DAILY DECISION THEY MAKE]
+Questions it must answer: [LIST THE 3 TO 7 QUESTIONS]
+Data available: [TABLES, KEY METRICS, GRAIN, REFRESH FREQUENCY]
+
+Produce a dashboard spec:
+1. A short list of the headline metrics that belong at the top, with a one-line definition of each so there is no ambiguity later.
+2. A tile-by-tile layout: for each tile, the question it answers, the chart type, the metric and dimensions, and the underlying query in plain terms.
+3. The filters and date controls the audience actually needs, and sensible defaults.
+4. What to deliberately leave out so the dashboard stays focused on the decision.
+5. Definitions and edge cases to nail down before building (how each metric handles nulls, late data, and timezone).
+
+Design for the decision, not for completeness. Flag any metric whose definition you would confirm with the business before committing it to the dashboard.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">COMMUNICATION</span>
+    <h2 class="h2">Summaries, documentation, and stakeholder prep</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Analysis into an executive summary</h3>
+      <div class="when">Use when: the analysis is done and you need the written readout that leadership will actually read</div>
+      <pre>You are helping me turn a finished analysis into a tight executive summary. The audience reads the summary, not the SQL.
+
+The question I set out to answer: [QUESTION]
+What I found (paste the key results, already aggregated, not raw rows):
+[PASTE FINDINGS, NUMBERS, AND ANY CAVEATS]
+Who reads this and what they decide: [AUDIENCE AND DECISION]
+
+Write:
+1. A 3 to 5 sentence summary that leads with the answer and the "so what," in plain language a busy executive skims in 30 seconds.
+2. The 2 or 3 findings that actually matter, each with the number and one line of why it matters.
+3. The recommendation or decision the data supports, stated plainly, and the confidence level.
+4. The honest caveats: what the data does not tell us and where the analysis could be wrong.
+5. The suggested next step.
+
+Rules: use only the numbers I gave you and do not invent any figures. Lead with the conclusion, not the methodology. Never use em dashes or en dashes. If a finding undercuts the headline, surface it rather than smoothing it over.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Data dictionary and column documentation</h3>
+      <div class="when">Use when: a table is undocumented and the next analyst (or you in six months) will guess wrong without it</div>
+      <pre>Help me write clear documentation for a dataset so the next person uses it correctly.
+
+Table or model: [NAME AND PURPOSE]
+Columns (paste: name, type, and whatever you know about each, even if rough):
+[PASTE COLUMN LIST]
+What I know about how it is built: [SOURCE, GRAIN, REFRESH, KNOWN QUIRKS]
+
+Produce:
+1. A one-paragraph description of the table: what one row represents (the grain), where it comes from, and how often it updates.
+2. A column dictionary: for each column, a plain-English definition, the type, allowed or expected values, and any gotcha (nullable, deprecated, units, timezone, how it is calculated).
+3. A "read this first" section listing the traps an analyst would fall into: columns that look similar but are not, joins that fan out, statuses that are easy to misread.
+4. 2 or 3 example questions this table answers well, and a couple it cannot answer on its own.
+5. Suggested dbt or YAML-style tests worth adding (uniqueness, not-null, accepted values) based on what the grain implies.
+
+Only document what I told you. Where you are inferring a definition, mark it clearly as a guess to confirm rather than stating it as fact.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Stakeholder question prep</h3>
+      <div class="when">Use when: you are about to present results and want to anticipate the questions before they land</div>
+      <pre>Act as a skeptical stakeholder reviewing my analysis. I want to rehearse the hard questions before the meeting.
+
+What I am presenting (paste the key numbers, the story I plan to tell, and any soft spots I already know about):
+[PASTE]
+Audience and the decision on the table: [WHO, AND WHAT THEY WILL DECIDE]
+
+Do this:
+1. Generate the 10 hardest, most specific questions a sharp stakeholder would ask about this analysis: about the data, the method, the definitions, and the conclusion.
+2. For each, give me a strong, honest answer, and flag where my current analysis does not actually support a clean answer.
+3. Name the questions I am least prepared for and tell me exactly what to go check or recompute before the meeting.
+4. Point out any place where my narrative gets ahead of the evidence, or where I am implying causation I have not earned.
+
+Be adversarial and concrete. Do not lob softballs. If a number invites a follow-up I would not want, surface it now so it does not surprise me in the room.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">EXPERIMENTS AND INVESTIGATIONS</span>
+    <h2 class="h2">Experiments, cohorts, and anomalies</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Design an A/B test and read the results</h3>
+      <div class="when">Use when: someone wants to test a change and you own the experiment design and the readout</div>
+      <pre>Act as an experimentation analyst. Help me design an A/B test, then later help me read it out correctly.
+
+The change being tested: [WHAT VARIES BETWEEN CONTROL AND TREATMENT]
+Primary metric and type: [e.g. signup conversion (binary), revenue per user (continuous)]
+Guardrail metrics I must not harm: [LIST]
+Traffic and constraints: [APPROX USERS PER WEEK, HOW LONG IT CAN RUN, UNIT OF RANDOMIZATION]
+
+For design, do this:
+1. State the hypothesis and the primary success metric precisely.
+2. Estimate the sample size and runtime I need for a [e.g. 5%] relative effect at [confidence and power], and show the inputs so I can adjust them.
+3. Flag design risks: novelty effects, contamination between groups, the right randomization unit, and what would break the test.
+4. List the guardrails to watch and the pre-registered decision rule (what result means ship, hold, or kill).
+
+When I come back with results, switch to readout mode: check whether we hit the required sample, interpret the effect and its uncertainty, warn me against peeking and against reading significance into guardrails, and tell me plainly whether the data supports shipping. Do not declare a winner the data does not support. I will provide the actual numbers; you will not invent them.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Frame a cohort and retention analysis</h3>
+      <div class="when">Use when: you need to understand retention or behavior over time and want the cohorts set up right</div>
+      <pre>You are a retention analyst. Help me frame a cohort analysis correctly before I build it.
+
+What I want to understand: [e.g. "whether new-user retention is improving" or "which acquisition channel retains best"]
+The data: [EVENT OR ACTIVITY TABLE, KEY COLUMNS, USER OR ACCOUNT ID, TIMESTAMP, GRAIN]
+How we define an active or retained user: [DEFINITION, OR ASK ME TO DECIDE]
+
+Produce:
+1. Recommend how to define the cohort (signup week or month, first-purchase date, channel) and the activity that counts as "retained," and explain the tradeoffs of each choice.
+2. Lay out the cohort table structure: rows, columns, the metric in each cell, and whether to show counts or percentages.
+3. Specify the SQL approach in plain terms (how to assign each user to a cohort and compute period-N retention) without assuming columns I did not give you.
+4. Call out the traps: survivorship bias, unequal cohort maturity, late-arriving data, and changing definitions across the period.
+5. Tell me what pattern would mean retention is genuinely improving vs. a mix-shift artifact.
+
+Be explicit about every definitional choice, because cohort results are easy to read wrong. Where a choice is mine to make, lay out the options rather than silently picking one.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>Investigate a metric drop or anomaly</h3>
+      <div class="when">Use when: a number moved overnight and someone needs to know whether it is real and why</div>
+      <pre>Act as an analyst running a root-cause investigation on a metric that moved unexpectedly.
+
+The metric and the move: [WHAT METRIC, FROM WHAT TO WHAT, OVER WHAT PERIOD]
+What I know so far: [ANY CONTEXT: releases, marketing, seasonality, known incidents]
+Data I can query: [TABLES AND DIMENSIONS AVAILABLE TO SLICE BY]
+
+Give me an investigation plan, ordered to rule things out fast:
+1. First, the "is it even real" checks: data pipeline lag, a logging or tracking change, a definition change, double-counting, or a broken join upstream. Tell me how to test each.
+2. Then the decomposition: which dimensions to slice by (segment, platform, geo, channel, new vs. returning) to localize the change, and the order that isolates it quickest.
+3. Distinguish a broad-based move from a spike concentrated in one segment, and what each pattern implies about the cause.
+4. A short list of the most likely explanations given my context, ranked, each with the specific query or check that would confirm or rule it out.
+5. How to tell a real change from noise or normal seasonality.
+
+Work from most-likely and cheapest-to-check first. Do not assume a cause; give me the checks that earn the conclusion. I will run the queries and can bring results back.</pre>
+    </div>
+
+  </div>
+</section>
+
+<span class="lbl">FAQ</span><h2 class="h2">Frequently asked questions</h2><div class="faq-item"><div class="faq-q">Can Claude run my SQL against the data warehouse?</div><div class="faq-a">No. Claude drafts and debugs SQL, but it does not connect to your Snowflake, BigQuery, Redshift, or Postgres instance and run it. You copy the query Claude writes, run it in your own editor or BI tool, and bring the result back if you want help interpreting it. That separation is a feature: the model never touches production, so it cannot accidentally lock a table, run an expensive scan, or read data it should not. Treat every query Claude gives you the way you would treat a pull request from a new teammate. Read it, run it on a limited sample or with a LIMIT clause first, and confirm the row counts make sense before you trust the output.</div></div><div class="faq-item"><div class="faq-q">How should I handle PII and sensitive data when prompting Claude?</div><div class="faq-a">Never paste raw customer-level data, PII, or regulated records into a prompt. Claude does not need the actual rows to help you. It needs the shape of the data: column names, data types, a few synthetic or masked sample rows, and a plain-English description of what each field means. Give it the schema, not the records. When you do need help interpreting a result, paste aggregated or anonymized output rather than the underlying detail. On Claude Team or Enterprise your conversations are not used to train Anthropic's models, but the safest habit is to keep raw sensitive data out of the chat entirely and let your warehouse remain the only place it lives.</div></div><div class="faq-item"><div class="faq-q">How do I stop Claude from inventing statistics or fabricating numbers?</div><div class="faq-a">The single most important rule: Claude cannot see your data unless you give it, so it cannot know your actual numbers. If you ask for a conversion rate without providing the data, anything it returns is a guess dressed as a fact. Avoid this by feeding it real query output (aggregated, not raw) and asking it to work only from what you provided. Tell it explicitly to label any figure it infers as an assumption and to flag where the data does not support a clean answer. For statistical work, ask it to state the method, the assumptions, and the formula rather than just the result, so you can verify the math in your own tool.</div></div><div class="faq-item"><div class="faq-q">Which Claude model should a data analyst use?</div><div class="faq-a">For day-to-day analysis work, the current Sonnet model is the right default. It writes and debugs SQL, drafts analysis plans, and explains statistical methods well, at a speed and price that let you use it constantly. Reach for the larger Opus model on harder reasoning: untangling a gnarly multi-CTE query, designing an experiment with tricky confounders, or working through a long, multi-table investigation where depth matters more than speed. Keep Haiku for high-volume narrow tasks like renaming columns or generating boilerplate. All of the prompts on this page work across the three, but Sonnet hits the best balance for an analyst's typical day.</div></div><div class="faq-item"><div class="faq-q">Does Claude work with dbt, Looker, Tableau, and other BI tools?</div><div class="faq-a">Claude does not plug directly into Looker or Tableau, but it pairs well with them because most BI work is text underneath. Paste a dbt model and ask Claude to review the SQL, add tests, or write the YAML schema documentation. Give it a LookML snippet and have it draft a new dimension or measure. Describe the dashboard you want and let it spec the tiles, the underlying queries, and the layout before you build. The pattern is the same everywhere: Claude drafts the code or the spec, you paste it into the tool, run it, and review. Teams that want a tighter loop use the Claude API inside internal scripts, but the copy-and-paste workflow gets you most of the value with no setup.</div></div><div class="faq-item"><div class="faq-q">Where does an analyst's judgment still matter most?</div><div class="faq-a">Everywhere the question meets the business. Claude can write a query, but it cannot know that a metric definition changed in March, that one region logs events differently, or that the stakeholder asking for retention really means revenue retention. It does not know which result is surprising enough to double-check or which caveat will get a decision overturned in a meeting. Use Claude to move faster on the mechanical parts: drafting SQL, structuring an analysis, wording a summary. Keep ownership of the parts that require context: validating the numbers against the source, choosing what to measure, deciding what the result actually means, and standing behind it when leadership pushes back.</div></div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your team's context: your warehouse schema and table descriptions, your metric definitions, your dbt models, your style guide for charts, and examples of analyses you are proud of. With those inputs, the prompts above produce drafts far closer to ready than running them in a blank Claude chat. The model writes better SQL when it can see your column names and better summaries when it knows your audience.</p>
+    <p class="body">Read <a href="/blog" style="color:#00C853;text-decoration:none;">more guides on the Treetop blog</a>, or <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">start with an AI Audit</a> to map where Claude fits your analytics workflow.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More Claude prompt libraries</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-finance" style="color:#00C853;text-decoration:none;">Claude Prompts for Finance &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">Claude Prompts for Sales &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-product" style="color:#00C853;text-decoration:none;">Claude Prompts for Product &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-marketing" style="color:#00C853;text-decoration:none;">Claude Prompts for Marketing &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Build a data Claude Project that knows your warehouse</div>
+        <div class="cta-sub">Treetop turns prompts like these into a configured Claude Project with your schema, metric definitions, and chart standards built in. Take the gap assessment, start with an AI Audit, or book a call to scope your analytics workflows.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+        <a href="/book-a-call" class="btn-g">Book a Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>

@@ -1,0 +1,466 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Prompts for Engineering Teams (2026) | Treetop</title>
+  <meta name="description" content="Copy-paste Claude prompts for software engineers: code review, debugging, test generation, architecture docs, refactors, and incident retrospectives." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-engineering" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-engineering" />
+  <meta property="og:title" content="Claude Prompts for Engineering Teams (2026)" />
+  <meta property="og:description" content="Copy-paste Claude prompts for software engineers: code review, debugging, test generation, architecture docs, refactors, and incident retrospectives." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-engineering.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-engineering.png" />
+  <meta name="twitter:title" content="Claude Prompts for Engineering Teams (2026)" />
+  <meta name="twitter:description" content="Copy-paste Claude prompt library for software engineers." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "Claude Prompts for Engineering Teams (2026)", "description": "Copy-paste Claude prompts for software engineers: code review, debugging, test generation, architecture docs, refactors, and incident retrospectives.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-engineering", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-23", "dateModified": "2026-06-23", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-engineering.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I handle proprietary or confidential code with Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On Claude Team or Enterprise, your prompts and uploads are not used to train Anthropic's models and stay inside your workspace, which makes them appropriate for most internal source code. Set a clear line anyway. Never paste live secrets, customer data, private keys, or credentials, even in a Team plan, and strip them from any file before it goes in. For code under strict regulatory or contractual confidentiality, get sign-off from security first and consider whether a self-hosted or VPC deployment through a cloud provider is required rather than the public app. A simple tiering rule works: ordinary application code is fine in Claude directly, while anything covered by a specific NDA, export control, or data-residency clause goes through review before it leaves your environment."}}, {"@type": "Question", "name": "How carefully should I review AI-suggested code before merging?", "acceptedAnswer": {"@type": "Answer", "text": "Never ship Claude's output unreviewed. Treat every suggestion the way you would a pull request from a fast but unfamiliar contributor: read it line by line, run it, and run the test suite. Claude is strong at structure, edge cases, and boilerplate, but it can introduce subtle logic errors, call APIs that do not exist, or miss a constraint that lives in your codebase rather than the prompt. The reviewer of record is the human who approves the merge, not the model. Use the prompts here to draft and to widen your thinking, then apply the same standard you would to any other change before it lands on a branch that ships."}}, {"@type": "Question", "name": "Which Claude model should engineering teams use for coding?", "acceptedAnswer": {"@type": "Answer", "text": "For most day-to-day coding, the current Sonnet model is the right default. It handles multi-file context, code review, test generation, and refactor planning at a speed and price that let you keep it in the loop all day. Reach for the larger Opus model on harder problems: a gnarly debugging session across many files, a large architectural change, or a migration where reasoning depth matters more than latency. Keep Haiku for high-volume narrow tasks like generating docstrings or summarizing a diff. The prompts on this page work across all three, but Sonnet usually hits the best balance for engineering work."}}, {"@type": "Question", "name": "How does Claude fit into my IDE and CLI workflow?", "acceptedAnswer": {"@type": "Answer", "text": "You have three main entry points. The web app and desktop app are best for planning, writing specs and ADRs, and reasoning over pasted snippets. Claude Code, the official command-line tool, runs in your terminal, reads your repository, and can edit files and run commands, which makes it the right home for the review, refactor, test, and debugging prompts here. There are also editor integrations and the API for building Claude into your own tooling. A practical setup: use Claude Code for anything that touches the working tree, and keep a Claude Project in the app loaded with your architecture docs and conventions for the writing and planning prompts."}}, {"@type": "Question", "name": "When should I not use Claude for an engineering task?", "acceptedAnswer": {"@type": "Answer", "text": "Skip it when the cost of a subtle wrong answer is high and verification is hard. Cryptographic implementations, anything safety-critical, low-level concurrency, and exact financial or tax calculations are places to lean on established libraries and human experts rather than generated code. Do not use it as a system of record or let it make irreversible changes without a human gate. And do not use it to launder a decision you have not actually made: if you cannot evaluate the output, you are not ready to ship it. Claude is a force multiplier on work you can review, not a replacement for understanding the system."}}, {"@type": "Question", "name": "What security and secret-scanning hygiene should I keep?", "acceptedAnswer": {"@type": "Answer", "text": "Build a habit that runs before any code goes into a prompt and before any generated code gets committed. Keep secrets out of prompts entirely: scrub API keys, tokens, connection strings, and customer data from files first, and never paste a .env. On the way back out, run a secret scanner and your normal SAST and dependency checks on generated code before it merges, since a model can echo a credential it saw or suggest a dependency with a known vulnerability. Treat any third-party package Claude proposes as unverified until you have checked it exists, is maintained, and is the one you meant. The goal is simple: the same guardrails you already trust for human-written code, applied to AI-assisted code with no exceptions."}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .why{font-size:0.82rem;color:#8FAF8F;margin-top:0.85rem;line-height:1.6}
+    .why strong{color:#00C853;font-weight:600;}
+    .faq-item{border-top:1px solid #1A3A1A;padding:1.5rem 0;max-width:820px;}
+    .faq-q{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#F0FFF0;margin-bottom:0.6rem;}
+    .faq-a{font-size:0.95rem;color:#C0D8C0;line-height:1.8;}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-engineering","name":"Claude Prompts for Engineering Teams (2026) | Treetop","description":"Copy-paste Claude prompts for software engineers: code review, debugging, test generation, architecture docs, refactors, and incident retrospectives.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-engineering.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://treetopgrowthstrategy.com/blog"},{"@type":"ListItem","position":3,"name":"Claude Prompts for Engineering","item":"https://treetopgrowthstrategy.com/claude-prompts-for-engineering"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services/ai-audit" class="nav-link">AI Audit</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 12 prompts</div>
+    <h1 class="hero-h">12 Claude prompts <em style="color:#00C853;font-style:italic;">for engineering.</em></h1>
+    <p class="hero-sub">These 12 prompts cover the work a software team actually ships: reviewing diffs, debugging errors, writing tests, planning refactors and upgrades, and documenting decisions. Each one is annotated, uses [BRACKET] tokens for your code and context, and is ready to paste into Claude or run in Claude Code. Bring the repo, keep your judgment on the output, and never merge anything you have not read.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">REVIEW AND DEBUG</span>
+    <h2 class="h2">Code review, debugging, and tests</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>Review a diff or PR for bugs and clarity</h3>
+      <div class="when">Use when: a pull request is open and you want a thorough second read before approving</div>
+      <pre>You are a senior engineer reviewing a pull request. Be rigorous and specific, not polite.
+
+Context:
+- What this change is supposed to do: [DESCRIBE INTENT]
+- Language / framework: [e.g. TypeScript, React]
+- Anything I am unsure about: [OPTIONAL]
+
+Diff:
+[PASTE DIFF OR FILES]
+
+Review it:
+1. Correctness: find actual bugs, off-by-one errors, null and undefined handling, race conditions, and unhandled error paths. Quote the exact line.
+2. Edge cases the change does not cover, with a concrete input that would break it.
+3. Clarity and naming: where the intent is hard to follow and how to make it obvious.
+4. Anything that contradicts the stated intent above.
+5. A short list ranked: must-fix before merge, should-fix, and nits.
+
+Do not invent issues to seem thorough. If a section is clean, say so. Show me the line, the problem, and the fix.</pre>
+      <p class="why"><strong>Why it works:</strong> stating the intent and asking for line-level quotes turns a vague "looks good" into specific, checkable findings ranked by what actually blocks the merge.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Debug an error with a ranked hypothesis list</h3>
+      <div class="when">Use when: something is failing and you want a structured root-cause path instead of guesswork</div>
+      <pre>Act as a debugging partner. I have an error and I want hypotheses ranked by likelihood, not a single guess.
+
+Error / stack trace:
+[PASTE ERROR]
+
+Relevant code:
+[PASTE THE FUNCTION OR FILES INVOLVED]
+
+What I have already tried: [OPTIONAL]
+Environment: [language, runtime version, OS, framework]
+
+Do this:
+1. Restate what the error is actually saying in plain English.
+2. List the 5 most likely root causes, ranked, each with the reasoning and a fast way to confirm or rule it out.
+3. Tell me the single cheapest check that would eliminate the most hypotheses first.
+4. For the top hypothesis, give the specific fix and how to verify it worked.
+5. Flag anything in the code that would cause a similar failure elsewhere.
+
+Be honest about uncertainty. If the trace is insufficient, tell me exactly what to log or capture next.</pre>
+      <p class="why"><strong>Why it works:</strong> forcing a ranked hypothesis list with a cheapest-first check mirrors how strong engineers actually debug, and stops the model from committing to one wrong theory.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Generate unit and integration tests for a function</h3>
+      <div class="when">Use when: a function has thin coverage and you want a real test suite, not three happy-path cases</div>
+      <pre>Write tests for the function below. I want coverage of the cases that actually break things.
+
+Function:
+[PASTE FUNCTION]
+
+Test framework: [e.g. Jest, pytest, Go testing]
+Conventions to follow: [naming, mocking style, fixtures, OPTIONAL]
+
+Produce:
+1. A short list of the behaviors and edge cases worth testing, including empty inputs, boundaries, error paths, and any concurrency or ordering concerns.
+2. Unit tests covering each, with clear arrange-act-assert structure and descriptive names.
+3. At least one integration-style test that exercises this function with its real collaborators where that is meaningful, mocking only true external boundaries.
+4. Call out any behavior that is hard to test because of how the code is structured, and the smallest refactor that would fix it.
+
+Do not test trivial getters for the sake of a coverage number. Each test should be able to fail for a real reason.</pre>
+      <p class="why"><strong>Why it works:</strong> asking for the behavior list first, plus honesty about untestable structure, produces tests that catch regressions instead of inflating a coverage metric.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">REFACTOR AND ARCHITECTURE</span>
+    <h2 class="h2">Refactors, decision records, and specs</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Plan a refactor you can land safely</h3>
+      <div class="when">Use when: a module needs restructuring and you want a staged plan, not a risky big-bang rewrite</div>
+      <pre>Help me plan a safe refactor. The goal is to improve the code without changing behavior, in steps I can ship and verify.
+
+Current code:
+[PASTE THE MODULE OR DESCRIBE IT]
+
+What I want to improve: [e.g. testability, coupling, naming, performance]
+Constraints: [public API I cannot break, deadlines, test coverage I have today]
+
+Produce:
+1. The target shape and why it is better, in a few sentences.
+2. A sequence of small, independently shippable steps, each one behavior-preserving, with the safety check after each (tests, a characterization test, a feature flag).
+3. The riskiest step and how to de-risk it.
+4. What to write a characterization test around before touching anything, if coverage is thin.
+5. A rollback plan if a step goes wrong in production.
+
+Prefer many small reversible steps over one large change. If a true rewrite is genuinely safer than incremental work, say so and justify it.</pre>
+      <p class="why"><strong>Why it works:</strong> demanding independently shippable, behavior-preserving steps plus a rollback plan keeps the refactor reversible and reviewable instead of a long-lived risky branch.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Draft an Architecture Decision Record</h3>
+      <div class="when">Use when: you made or are about to make a real architectural choice and want it documented for the next engineer</div>
+      <pre>Draft an Architecture Decision Record (ADR) for a decision my team is making.
+
+Decision: [WHAT WE ARE DECIDING, e.g. message queue choice, auth approach]
+Context and forces: [the problem, constraints, scale, team skills, deadlines]
+Options considered: [OPTION A, OPTION B, OPTION C with what you know about each]
+Leaning toward: [OPTIONAL]
+
+Write the ADR with these sections:
+1. Title and status (proposed / accepted).
+2. Context: the problem and the forces at play, neutrally stated.
+3. Options: each one with honest pros, cons, and the cost or risk it carries.
+4. Decision: what we chose and the specific reasoning that made it win.
+5. Consequences: what becomes easier, what becomes harder, and what we are now committed to.
+6. What would make us revisit this later.
+
+Be even-handed about the options we did not pick; an ADR that strawmans the alternatives is useless to the next reader. Keep it tight.</pre>
+      <p class="why"><strong>Why it works:</strong> the fixed ADR sections and the explicit "do not strawman the alternatives" rule capture the reasoning future engineers need, not just the conclusion.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Draft a technical spec or RFC</h3>
+      <div class="when">Use when: a feature is big enough that the team should align on the design before anyone writes code</div>
+      <pre>Help me write a technical spec / RFC for a feature so the team can review the design before implementation.
+
+Feature: [WHAT WE ARE BUILDING AND WHY]
+Users and use cases: [WHO, AND THE JOBS THEY NEED DONE]
+Known constraints: [systems it must integrate with, scale, latency, compliance]
+Open questions I have: [OPTIONAL]
+
+Produce a spec with:
+1. Problem statement and goals, plus explicit non-goals.
+2. Proposed design: the main components, data flow, and key interfaces or schemas.
+3. Alternatives considered and why the proposal wins.
+4. Data model and API surface changes, with backward-compatibility notes.
+5. Failure modes, rollout plan, and how we measure success.
+6. Open questions and the decisions reviewers need to make.
+
+Write it for reviewers who will push back. Surface the weak points yourself rather than hiding them; the goal is a better design, not approval.</pre>
+      <p class="why"><strong>Why it works:</strong> non-goals, named failure modes, and self-surfaced weak points make the RFC a real design review instead of a pitch, which is what gets useful pushback early.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">DOCS AND COMMUNICATION</span>
+    <h2 class="h2">API docs, PR descriptions, and explanation</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Write or improve API documentation</h3>
+      <div class="when">Use when: an endpoint or library exists but the docs are missing, stale, or unusable</div>
+      <pre>You are writing developer-facing documentation for the API below. Write for an engineer who has never seen it and needs to integrate today.
+
+Code / endpoint definition:
+[PASTE THE HANDLER, FUNCTION SIGNATURES, OR SCHEMA]
+
+Existing docs, if any: [PASTE OR SAY NONE]
+
+Produce:
+1. A one-line summary of what this does and when to use it.
+2. Each parameter or field: name, type, required or optional, constraints, and a real example value.
+3. A complete request and response example with realistic data, including an error response.
+4. Edge cases and gotchas a caller will hit (pagination, rate limits, auth, idempotency).
+5. A copy-paste "quickstart" call that works end to end.
+
+Document only what the code actually does; if behavior is ambiguous from the code, mark it as "verify" rather than guessing. Do not describe parameters that do not exist.</pre>
+      <p class="why"><strong>Why it works:</strong> anchoring to the actual signature and flagging ambiguous behavior as "verify" prevents the confident, wrong API docs that erode trust faster than no docs at all.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Write a clear PR description from a diff</h3>
+      <div class="when">Use when: the code is ready but the description is "wip" and your reviewer deserves better</div>
+      <pre>Write a pull request description from this diff so a reviewer can understand it quickly.
+
+Diff:
+[PASTE DIFF]
+
+Linked issue or context: [OPTIONAL]
+
+Produce:
+1. A one-sentence summary of what changed and why.
+2. A short "what and why" section: the problem, the approach, and any decision a reviewer might question.
+3. A bullet list of the notable changes by area, so the reviewer knows where to focus.
+4. How it was tested, and anything the reviewer should verify manually.
+5. Risk and rollout notes: migrations, feature flags, config, or anything that needs care on deploy.
+
+Be accurate to the diff; do not claim changes that are not there. Keep it skimmable. Flag the parts of the diff that most deserve careful review.</pre>
+      <p class="why"><strong>Why it works:</strong> pointing the reviewer at the parts that deserve scrutiny, grounded strictly in the diff, gets you faster and better reviews than a wall of generated prose.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Explain unfamiliar code</h3>
+      <div class="when">Use when: you inherited a file or are reading a dependency and need to understand it fast</div>
+      <pre>Explain this code to me like I am a competent engineer who is new to this specific codebase. I want understanding, not a line-by-line paraphrase.
+
+Code:
+[PASTE THE FILE OR FUNCTION]
+
+Anything I already know about the context: [OPTIONAL]
+
+Do this:
+1. State what this code is responsible for and where it likely sits in the larger system.
+2. Walk through the control flow at the level of intent: what happens, in what order, and why.
+3. Call out the non-obvious parts: clever bits, implicit assumptions, side effects, and anything that would surprise a reader.
+4. Flag likely bugs, smells, or dead code you notice while reading.
+5. List the questions I should ask the original author or go verify, and what I would test to confirm my understanding.
+
+Be clear about what you are inferring versus what the code states. If something is genuinely unclear, say so instead of inventing a rationale.</pre>
+      <p class="why"><strong>Why it works:</strong> asking for intent and explicit assumptions, with inference separated from fact, builds a real mental model and surfaces the questions worth taking back to the author.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">OPERATE AND MAINTAIN</span>
+    <h2 class="h2">Incidents, upgrades, and code comments</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Write a blameless incident retrospective</h3>
+      <div class="when">Use when: an incident is resolved and you need a postmortem that drives fixes, not finger-pointing</div>
+      <pre>Help me write a blameless incident retrospective. The goal is to learn and prevent recurrence, not to assign blame.
+
+What happened (paste timeline, alerts, what we did):
+[PASTE INCIDENT NOTES AND TIMELINE]
+
+Impact: [who and what was affected, duration, severity]
+Root cause as I understand it: [OPTIONAL]
+
+Produce:
+1. A clear summary: what happened, the impact, and the timeline in plain language.
+2. Root cause and contributing factors, focused on systems and conditions rather than individuals. Use the language of "the system allowed" not "the person failed."
+3. What went well in the response, honestly.
+4. Action items to prevent recurrence and to detect or mitigate faster next time, each with an owner placeholder and a rough priority.
+5. The deeper "why" behind the proximate cause, so we fix the class of problem, not just this instance.
+
+Keep it blameless and specific. Do not name individuals as causes. If the notes are thin on a phase, flag the gap rather than filling it with assumptions.</pre>
+      <p class="why"><strong>Why it works:</strong> the "system allowed, not person failed" framing plus a push to the deeper why produces action items that fix the class of failure, which is the whole point of a postmortem.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Plan a dependency or framework upgrade</h3>
+      <div class="when">Use when: a major version bump or framework migration is looming and you want a plan before you touch it</div>
+      <pre>Help me plan an upgrade safely. I want the breaking changes mapped and a staged path before I start.
+
+Upgrade: [FROM VERSION] to [TO VERSION] of [DEPENDENCY / FRAMEWORK]
+How we use it: [the main features, patterns, and integration points in our code]
+Our test coverage and CI: [what safety net I have today]
+
+Do this:
+1. Summarize the breaking changes and notable deprecations between these versions that are likely to affect how we use it.
+2. Map each breaking change to where it probably touches our usage, and rank by risk and effort.
+3. Lay out a staged upgrade path: what to do first, what can be done incrementally, and where a hard cutover is unavoidable.
+4. Tell me what to put under test or behind a flag before starting, and how to verify after each stage.
+5. Give a rollback plan and the signals that should make me roll back.
+
+Base the breaking-change list on what is well established for these versions; where you are not sure a change applies, say so and tell me to check the changelog. Do not assume APIs that may have moved.</pre>
+      <p class="why"><strong>Why it works:</strong> mapping breaking changes to your actual usage and staging the cutover turns a scary migration into ranked, verifiable steps, with an honest nudge to confirm specifics against the changelog.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>Generate docstrings and meaningful comments</h3>
+      <div class="when">Use when: working code needs documentation that explains the why, not comments that restate the code</div>
+      <pre>Add docstrings and comments to this code. I want documentation that helps a future reader, not noise that restates the obvious.
+
+Code:
+[PASTE CODE]
+
+Language and docstring style: [e.g. Python with Google-style, JSDoc, Go doc comments]
+
+Do this:
+1. Write a docstring for each public function, class, or module: what it does, parameters, return value, raised errors or exceptions, and any important side effects.
+2. Add inline comments only where intent is non-obvious: why this approach, why this edge case is handled, why a tempting simpler version would be wrong.
+3. Do not add comments that merely repeat the code (no "increment i by one").
+4. Flag any place where the code is confusing enough that a comment is a band-aid and a rename or small refactor would be the real fix.
+
+Keep the code itself unchanged except for comments and docstrings. Match the existing style. Where behavior is ambiguous, write the docstring as "verify" rather than asserting something the code may not do.</pre>
+      <p class="why"><strong>Why it works:</strong> documenting the why and explicitly banning code-restating comments yields docstrings that pay off on the tenth read, while flagging where a rename beats a comment.</p>
+    </div>
+
+  </div>
+</section>
+
+<span class="lbl">FAQ</span><h2 class="h2">Frequently asked questions</h2><div class="faq-item"><div class="faq-q">How do I handle proprietary or confidential code with Claude?</div><div class="faq-a">On Claude Team or Enterprise, your prompts and uploads are not used to train Anthropic's models and stay inside your workspace, which makes them appropriate for most internal source code. Set a clear line anyway. Never paste live secrets, customer data, private keys, or credentials, even in a Team plan, and strip them from any file before it goes in. For code under strict regulatory or contractual confidentiality, get sign-off from security first and consider whether a self-hosted or VPC deployment through a cloud provider is required rather than the public app. A simple tiering rule works: ordinary application code is fine in Claude directly, while anything covered by a specific NDA, export control, or data-residency clause goes through review before it leaves your environment.</div></div><div class="faq-item"><div class="faq-q">How carefully should I review AI-suggested code before merging?</div><div class="faq-a">Never ship Claude's output unreviewed. Treat every suggestion the way you would a pull request from a fast but unfamiliar contributor: read it line by line, run it, and run the test suite. Claude is strong at structure, edge cases, and boilerplate, but it can introduce subtle logic errors, call APIs that do not exist, or miss a constraint that lives in your codebase rather than the prompt. The reviewer of record is the human who approves the merge, not the model. Use the prompts here to draft and to widen your thinking, then apply the same standard you would to any other change before it lands on a branch that ships.</div></div><div class="faq-item"><div class="faq-q">Which Claude model should engineering teams use for coding?</div><div class="faq-a">For most day-to-day coding, the current Sonnet model is the right default. It handles multi-file context, code review, test generation, and refactor planning at a speed and price that let you keep it in the loop all day. Reach for the larger Opus model on harder problems: a gnarly debugging session across many files, a large architectural change, or a migration where reasoning depth matters more than latency. Keep Haiku for high-volume narrow tasks like generating docstrings or summarizing a diff. The prompts on this page work across all three, but Sonnet usually hits the best balance for engineering work.</div></div><div class="faq-item"><div class="faq-q">How does Claude fit into my IDE and CLI workflow?</div><div class="faq-a">You have three main entry points. The web app and desktop app are best for planning, writing specs and ADRs, and reasoning over pasted snippets. Claude Code, the official command-line tool, runs in your terminal, reads your repository, and can edit files and run commands, which makes it the right home for the review, refactor, test, and debugging prompts here. There are also editor integrations and the API for building Claude into your own tooling. A practical setup: use Claude Code for anything that touches the working tree, and keep a Claude Project in the app loaded with your architecture docs and conventions for the writing and planning prompts.</div></div><div class="faq-item"><div class="faq-q">When should I not use Claude for an engineering task?</div><div class="faq-a">Skip it when the cost of a subtle wrong answer is high and verification is hard. Cryptographic implementations, anything safety-critical, low-level concurrency, and exact financial or tax calculations are places to lean on established libraries and human experts rather than generated code. Do not use it as a system of record or let it make irreversible changes without a human gate. And do not use it to launder a decision you have not actually made: if you cannot evaluate the output, you are not ready to ship it. Claude is a force multiplier on work you can review, not a replacement for understanding the system.</div></div><div class="faq-item"><div class="faq-q">What security and secret-scanning hygiene should I keep?</div><div class="faq-a">Build a habit that runs before any code goes into a prompt and before any generated code gets committed. Keep secrets out of prompts entirely: scrub API keys, tokens, connection strings, and customer data from files first, and never paste a .env. On the way back out, run a secret scanner and your normal SAST and dependency checks on generated code before it merges, since a model can echo a credential it saw or suggest a dependency with a known vulnerability. Treat any third-party package Claude proposes as unverified until you have checked it exists, is maintained, and is the one you meant. The goal is simple: the same guardrails you already trust for human-written code, applied to AI-assisted code with no exceptions.</div></div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Run the review, debug, refactor, and test prompts in Claude Code so the model can read your repository, edit files, and run your test suite in the loop. Keep the spec, ADR, and documentation prompts in a Claude Project loaded with your architecture docs, coding conventions, and past decisions. With that context, the prompts above produce output far better than running them in a blank chat.</p>
+    <p class="body">Want this wired into how your team actually builds? <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Start with an AI Audit</a> to find the highest-leverage workflows, then have Treetop stand them up.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">More Claude prompt libraries</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-product" style="color:#00C853;text-decoration:none;">Claude Prompts for Product &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-it" style="color:#00C853;text-decoration:none;">Claude Prompts for IT &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-data-analysts" style="color:#00C853;text-decoration:none;">Claude Prompts for Data Analysts &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/claude-prompts-for-sales" style="color:#00C853;text-decoration:none;">Claude Prompts for Sales &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/blog" style="color:#00C853;text-decoration:none;">Treetop blog &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">AI Audit &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Wire Claude into how your team ships code</div>
+        <div class="cta-sub">Treetop turns prompts like these into a configured Claude setup with your conventions, architecture docs, and review standards built in. Take the assessment, start with an AI Audit, or book a call to map the highest-leverage workflows for your engineering team.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the assessment &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>
+        <a href="/book-a-call" class="btn-g">Book a call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to use AI in your business &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's AI-native GTM framework &rarr;</a></li>
+    <li><a href="/resources/claude-system-prompts-library" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Claude System Prompts Library &rarr;</a></li>
+    <li><a href="/services" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop services &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop's glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Resource library &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>
