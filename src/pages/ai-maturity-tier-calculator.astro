@@ -1,0 +1,504 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>AI Maturity Tier Calculator (2026): Where Is Your Team? | Treetop</title>
+  <meta name="description" content="Free interactive self-diagnostic. Answer 8 questions about your team's AI behavior and get a tier verdict, plus three specific next steps." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/ai-maturity-tier-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/ai-maturity-tier-calculator" />
+  <meta property="og:title" content="AI Maturity Tier Calculator (2026): Where Is Your Team?" />
+  <meta property="og:description" content="Free interactive self-diagnostic. Answer 8 questions about your team's AI behavior and get a tier verdict, plus three specific next steps." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-maturity-tier-calculator.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-maturity-tier-calculator.png" />
+  <meta name="twitter:title" content="AI Maturity Tier Calculator (2026)" />
+  <meta name="twitter:description" content="Answer 8 questions. Get your AI maturity tier and three next steps." />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "AI Maturity Tier Calculator (2026): Where Is Your Team?",
+      "description": "Free interactive self-diagnostic. Answer 8 questions about your team's AI behavior and get a tier verdict, plus three specific next steps.",
+      "datePublished": "2026-06-23",
+      "dateModified": "2026-06-23",
+      "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"},
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://treetopgrowthstrategy.com/ai-maturity-tier-calculator"},
+      "image": "https://treetopgrowthstrategy.com/og/ai-maturity-tier-calculator.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is AI maturity?", "acceptedAnswer": {"@type": "Answer", "text": "AI maturity is how deeply AI is woven into how a team actually works. Not how many tools you own, not how many demos you've watched. The signal is behavior change: whether real workflows have been rebuilt, whether new hires inherit AI patterns, and whether you've deleted work because AI made it unnecessary."}},
+        {"@type": "Question", "name": "Why these 8 questions?", "acceptedAnswer": {"@type": "Answer", "text": "Each question maps to a leading indicator we see correlate with real AI-native operating behavior in the 2026 State of AI-Native GTM dataset. CEO usage, a named AI lead with protected time, workflows in production, documentation, training, tool consolidation, productivity measurement, and workflow deletion. Teams that score high on these eight tend to compound. Teams that score low tend to plateau."}},
+        {"@type": "Question", "name": "How accurate is this for my team?", "acceptedAnswer": {"@type": "Answer", "text": "It's a directional self-diagnostic, not a paid audit. Eight questions cannot capture every nuance. But the tier you land in is almost always the tier a deeper assessment would also place you in. If you score on a boundary (3 vs 4 points, or 6 vs 7), you're transitioning, and the lower tier's next steps still apply."}},
+        {"@type": "Question", "name": "What if I get a tier I don't like?", "acceptedAnswer": {"@type": "Answer", "text": "Tier 1 and Tier 2 are where most mid-market teams sit in 2026. That's not a verdict, it's a starting line. The recommendations are specific actions, in order, that move teams up one tier within a quarter. Pick the first one and start. Don't try to jump two tiers at once."}},
+        {"@type": "Question", "name": "How is this different from the Treetop Gap Assessment?", "acceptedAnswer": {"@type": "Answer", "text": "This calculator gives you a tier in 60 seconds. The Treetop Gap Assessment is a deeper 15 minute diagnostic that maps your specific workflows, scores each function (sales, marketing, customer success, ops), and produces a 90 day rollout plan. Use this calculator first. If the tier surprises you, take the Gap Assessment to understand why."}}
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://treetopgrowthstrategy.com/#organization",
+      "name": "Treetop Growth Strategy",
+      "url": "https://treetopgrowthstrategy.com"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://treetopgrowthstrategy.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://treetopgrowthstrategy.com/resources"},
+        {"@type": "ListItem", "position": 3, "name": "AI Maturity Tier Calculator", "item": "https://treetopgrowthstrategy.com/ai-maturity-tier-calculator"}
+      ]
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/ai-maturity-tier-calculator","name":"AI Maturity Tier Calculator (2026): Where Is Your Team? | Treetop","description":"Free interactive self-diagnostic. Answer 8 questions about your team's AI behavior and get a tier verdict, plus three specific next steps.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US"}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}.btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A;cursor:pointer;font-family:'DM Sans',sans-serif}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1100px;margin:0 auto}
+    .hero{min-height:45vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .byline{font-size:0.82rem;color:#8FAF8F;margin-top:1.5rem}
+    .byline a{color:#00C853;text-decoration:none}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}.body em{color:#F0FFF0;font-style:italic}
+
+    .calc-inputs{background:#0A1A0A;border:1px solid #1A3A1A;padding:2rem;margin-bottom:2rem}
+    .question{padding:1.5rem 0;border-bottom:1px solid #1A3A1A}
+    .question:last-child{border-bottom:none}
+    .question .qnum{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.4rem;display:block}
+    .question .qtext{font-size:1rem;color:#F0FFF0;line-height:1.55;margin-bottom:1rem;font-weight:400}
+    .answer-row{display:flex;gap:0.75rem}
+    .ans-btn{flex:0 0 auto;background:transparent;color:#C0D8C0;padding:0.6rem 1.5rem;font-size:0.85rem;font-weight:500;border:1px solid #1A3A1A;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+    .ans-btn:hover{border-color:#00C853;color:#F0FFF0}
+    .ans-btn.selected{background:rgba(0,200,83,0.12);border-color:#00C853;color:#00C853}
+    .progress{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #1A3A1A}
+    .progress-text{font-size:0.82rem;color:#8FAF8F}
+    .progress-bar{flex:1;height:4px;background:#1A3A1A;margin:0 1rem;position:relative}
+    .progress-fill{position:absolute;top:0;left:0;height:100%;background:#00C853;transition:width 0.25s}
+
+    .result-card{background:#0A1A0A;border:1px solid #1A3A1A;padding:2.5rem;margin-top:2rem;display:none}
+    .result-card.shown{display:block}
+    .tier-tag{display:inline-block;padding:0.4rem 0.9rem;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.25rem}
+    .tier-tag.t1{background:rgba(255,82,82,0.12);color:#FF5252;border:1px solid rgba(255,82,82,0.4)}
+    .tier-tag.t2{background:rgba(255,152,0,0.12);color:#FF9800;border:1px solid rgba(255,152,0,0.4)}
+    .tier-tag.t3{background:rgba(255,193,7,0.12);color:#FFC107;border:1px solid rgba(255,193,7,0.4)}
+    .tier-tag.t4{background:rgba(0,200,83,0.12);color:#00C853;border:1px solid rgba(0,200,83,0.4)}
+    .tier-head{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:400;color:#F0FFF0;margin-bottom:0.4rem;line-height:1.15}
+    .tier-score{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.1rem;color:#8FAF8F;margin-bottom:1.5rem}
+    .tier-verdict{font-size:1rem;color:#C0D8C0;line-height:1.8;margin-bottom:2rem;max-width:780px}
+    .rec-head{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#00C853;margin-bottom:1rem;display:block}
+    .rec-list{list-style:none;padding:0}
+    .rec-list li{padding:1rem 0;border-bottom:1px solid #1A3A1A;color:#F0FFF0;font-size:0.95rem;line-height:1.65;display:flex;gap:1rem;align-items:flex-start}
+    .rec-list li:last-child{border-bottom:none}
+    .rec-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.3rem;color:#00C853;flex:0 0 auto;line-height:1.2}
+    .rec-actions{display:flex;gap:0.75rem;margin-top:1.75rem;flex-wrap:wrap}
+
+    .verdict{background:rgba(0,200,83,0.06);border-left:3px solid #00C853;padding:1.5rem 1.75rem;margin-top:2rem;max-width:780px}
+    .verdict h3{font-family:'Instrument Serif',serif;color:#F0FFF0;font-size:1.3rem;font-weight:400;margin-bottom:0.5rem}
+    .verdict p{color:#C0D8C0;font-size:0.92rem;line-height:1.7;margin:0}
+
+    .faq-item{padding:1.5rem 0;border-bottom:1px solid #1A3A1A}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-family:'Instrument Serif',serif;font-size:1.25rem;color:#F0FFF0;margin-bottom:0.6rem;font-weight:400}
+    .faq-a{font-size:0.95rem;color:#C0D8C0;line-height:1.75;max-width:780px}
+
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}.cta-box{padding:2rem}.calc-inputs{padding:1.5rem}.result-card{padding:1.75rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Free self-diagnostic &middot; 60 seconds &middot; 8 questions</div>
+    <h1 class="hero-h">AI maturity tier <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
+    <p class="hero-sub">
+      Answer 8 yes or no questions about how your team actually behaves around AI. Get your tier (Exploring, Piloting, Operationalizing, or Compounding), a short verdict on what that means, and three specific next steps you can take this quarter.
+    </p>
+    <p class="byline">By <a href="/about">Bill Colbert</a>, Founder, Treetop Growth Strategy.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <div class="calc-inputs">
+      <span class="lbl">Answer all 8 to see your tier</span>
+
+      <div class="question" data-q="1">
+        <span class="qnum">Question 1 of 8</span>
+        <p class="qtext">Does your CEO personally use AI tools (Claude, ChatGPT, or similar) on a daily basis?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="1">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="1">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="2">
+        <span class="qnum">Question 2 of 8</span>
+        <p class="qtext">Do you have a named AI lead with 8 or more protected hours per week for workflow design?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="2">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="2">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="3">
+        <span class="qnum">Question 3 of 8</span>
+        <p class="qtext">Are at least three major workflows (across any function) running on AI in production today?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="3">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="3">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="4">
+        <span class="qnum">Question 4 of 8</span>
+        <p class="qtext">Are your AI workflows documented, indexed, and used by people other than the original author?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="4">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="4">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="5">
+        <span class="qnum">Question 5 of 8</span>
+        <p class="qtext">Do new hires get trained on your team's specific AI prompt patterns in their first two weeks?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="5">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="5">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="6">
+        <span class="qnum">Question 6 of 8</span>
+        <p class="qtext">Have you consolidated to fewer than four primary AI/LLM platforms across the company?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="6">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="6">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="7">
+        <span class="qnum">Question 7 of 8</span>
+        <p class="qtext">Do you measure AI productivity gains (hours saved, throughput per worker) as a real metric, not a vague line item?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="7">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="7">No</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="8">
+        <span class="qnum">Question 8 of 8</span>
+        <p class="qtext">Have you deleted at least one full workflow (not just accelerated one) because AI made it unnecessary?</p>
+        <div class="answer-row">
+          <button class="ans-btn" data-answer="yes" data-q="8">Yes</button>
+          <button class="ans-btn" data-answer="no" data-q="8">No</button>
+        </div>
+      </div>
+
+      <div class="progress">
+        <span class="progress-text" id="progress-text">0 of 8 answered</span>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <button class="btn-g" id="reset-btn" style="padding:0.5rem 1rem;font-size:0.78rem;">Reset</button>
+      </div>
+    </div>
+
+    <div class="result-card" id="result-card">
+      <span class="tier-tag" id="tier-tag"></span>
+      <h2 class="tier-head" id="tier-head"></h2>
+      <p class="tier-score" id="tier-score"></p>
+      <p class="tier-verdict" id="tier-verdict"></p>
+      <span class="rec-head">Your three next steps</span>
+      <ul class="rec-list" id="rec-list"></ul>
+      <div class="rec-actions">
+        <a href="/quiz" class="btn-p">Take the deeper Gap Assessment &rarr;</a>
+        <button class="btn-g" id="share-btn">Share these results</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">About the methodology</span>
+    <h2 class="h2">Where these 8 questions come from</h2>
+    <p class="body">The four tier names (Exploring, Piloting, Operationalizing, Compounding) come from the framework we used in the <a href="/state-of-ai-native-gtm-2026" style="color:#00C853;text-decoration:none;">2026 State of AI-Native GTM</a> report. The eight questions are the leading indicators that most consistently separated tier from tier in the underlying data.</p>
+    <p class="body">For the deeper mid-market view, including median scores by company size, see the <a href="/mid-market-ai-maturity-benchmark-2026" style="color:#00C853;text-decoration:none;">Mid-Market AI Maturity Benchmark 2026</a>. For the full operating model the tiers describe, see <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">the AI-native GTM framework</a>.</p>
+    <p class="body">Each "yes" is worth 1 point. 0 to 2 points is Tier 1 (Exploring). 3 to 4 is Tier 2 (Piloting). 5 to 6 is Tier 3 (Operationalizing). 7 to 8 is Tier 4 (Compounding). The tier maps directly to a specific set of next moves, not a generic readiness score.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+
+    <div class="faq-item">
+      <h3 class="faq-q">What is "AI maturity"?</h3>
+      <p class="faq-a">AI maturity is how deeply AI is woven into how a team actually works. Not how many tools you own, not how many demos you've watched. The signal is behavior change: whether real workflows have been rebuilt, whether new hires inherit AI patterns, and whether you've deleted work because AI made it unnecessary.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-q">Why these 8 questions?</h3>
+      <p class="faq-a">Each question maps to a leading indicator we see correlate with real AI-native operating behavior in the 2026 State of AI-Native GTM dataset. CEO usage, a named AI lead with protected time, workflows in production, documentation, training, tool consolidation, productivity measurement, and workflow deletion. Teams that score high on these eight tend to compound. Teams that score low tend to plateau.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-q">How accurate is this for my team?</h3>
+      <p class="faq-a">It's a directional self-diagnostic, not a paid audit. Eight questions cannot capture every nuance. But the tier you land in is almost always the tier a deeper assessment would also place you in. If you score on a boundary (3 vs 4 points, or 6 vs 7), you're transitioning, and the lower tier's next steps still apply.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-q">What if I get a tier I don't like?</h3>
+      <p class="faq-a">Tier 1 and Tier 2 are where most mid-market teams sit in 2026. That's not a verdict, it's a starting line. The recommendations are specific actions, in order, that move teams up one tier within a quarter. Pick the first one and start. Don't try to jump two tiers at once.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-q">How is this different from the Treetop Gap Assessment?</h3>
+      <p class="faq-a">This calculator gives you a tier in 60 seconds. The Treetop Gap Assessment is a deeper 15 minute diagnostic that maps your specific workflows, scores each function (sales, marketing, customer success, ops), and produces a 90 day rollout plan. Use this calculator first. If the tier surprises you, take the Gap Assessment to understand why.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Related</span>
+    <h2 class="h2">Related guides</h2>
+    <ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/state-of-ai-native-gtm-2026" style="color:#00C853;text-decoration:none;">2026 State of AI-Native GTM (flagship report) &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/mid-market-ai-maturity-benchmark-2026" style="color:#00C853;text-decoration:none;">Mid-Market AI Maturity Benchmark 2026 &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">The AI-native GTM framework &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/best-ai-tools-for-consultants-2026" style="color:#00C853;text-decoration:none;">Best AI tools for consultants (2026) &rarr;</a></li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">Treetop AI Audit service &rarr;</a></li>
+      <li style="padding:0.5rem 0;"><a href="/quiz" style="color:#00C853;text-decoration:none;">Treetop Gap Assessment (deeper diagnostic) &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Ready to move up a tier?</div>
+        <div class="cta-sub">Take the deeper Gap Assessment, book a paid AI Audit, or talk to Bill directly about what your tier should do next.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/quiz" class="btn-p">Take the Gap Assessment &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">See the AI Audit</a>
+        <a href="/book-a-call" class="btn-g">Book a call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+  (function() {
+    var answers = {};
+    var totalQuestions = 8;
+
+    var tierData = {
+      1: {
+        name: 'Tier 1: Exploring',
+        tagClass: 't1',
+        tagText: 'Exploring',
+        verdict: "You're early. AI is something a few people on your team are trying in their personal flow, but it hasn't reached the operating model yet. Most of the perceived productivity is from one or two power users. Nothing has been rebuilt at the workflow level, and nothing has been documented for others to inherit. This is by far the most common tier for mid-market teams in 2026, so you're not behind, you're at a starting line. The good news: the gap from Tier 1 to Tier 2 is the easiest jump and the highest leverage.",
+        recs: [
+          "Name an AI lead. One person, with a real title or at least a real protected calendar block (4 to 8 hours per week). Without an owner, nothing moves out of personal experiments and into team workflows.",
+          "Pick three workflows worth rebuilding (not accelerating). Look for repetitive, high volume, low judgment work: weekly reporting, inbound qualification, first draft content, meeting notes. Rebuild those three end to end on AI, not just speed them up.",
+          "Get the Treetop Gap Assessment to map which functions to start with. The free 15 minute diagnostic identifies your top 3 workflows by ROI and gives you a sequenced 90 day plan. That's the bridge to Tier 2."
+        ]
+      },
+      2: {
+        name: 'Tier 2: Piloting',
+        tagClass: 't2',
+        tagText: 'Piloting',
+        verdict: "You're past curiosity. There are real workflows running on AI, real people getting real lift, and at least one named owner. But the pilots are still owner dependent. If the AI lead left tomorrow, the patterns would leave with them. The work hasn't been codified, new hires aren't inheriting it, and the tooling sprawl is starting to cost you. The jump from Tier 2 to Tier 3 is mostly about institutionalization: making AI part of how your team works, not just what a few people do.",
+        recs: [
+          "Protect the AI lead's calendar. 8 to 12 hours per week, on the calendar, defended like a sales pipeline meeting. Pilot owners get pulled into urgent work and progress stalls. Make the time non negotiable.",
+          "Document the patterns you already have. Every successful pilot has 3 to 5 prompts or workflows behind it. Write them down in a shared doc (Notion, Coda, or a real wiki). The act of writing surfaces the assumptions that need to be made explicit before anyone else can run them.",
+          "Ship the next workflow to a different function. If your wins are all in marketing, your next pilot belongs in sales, customer success, or ops. Cross functional reach is the signal that separates Tier 2 from Tier 3."
+        ]
+      },
+      3: {
+        name: 'Tier 3: Operationalizing',
+        tagClass: 't3',
+        tagText: 'Operationalizing',
+        verdict: "You're operating, not piloting. AI is in production across multiple functions, the patterns are documented, and the team treats them as real infrastructure. You're in the top 15% of mid-market teams in 2026. The jump from Tier 3 to Tier 4 is the hardest one because it's not about adding more AI, it's about cutting drag. Tool sprawl, redundant workflows, and untrained new hires are the three things that prevent compounding. Fix those and the leverage starts to stack.",
+        recs: [
+          "Invest in tool consolidation. Audit every AI/LLM tool in use. Most Tier 3 teams have 6 to 9 tools where 2 to 3 would serve the same purpose better. Consolidate to your strongest two platforms, retire the rest, and reallocate the budget to seats and training.",
+          "Train new hires on patterns in their first week, not their first quarter. The single biggest predictor of Tier 4 is that AI patterns are part of onboarding, not optional. Build a 90 minute onboarding session that walks new hires through your top 5 workflows on day 3.",
+          "Measure productivity gains as a real KPI. Hours saved, throughput per worker, time to first draft. Pick two metrics, put them on the team dashboard, and review monthly. What gets measured gets defended in the budget cycle."
+        ]
+      },
+      4: {
+        name: 'Tier 4: Compounding',
+        tagClass: 't4',
+        tagText: 'Compounding',
+        verdict: "You're in the rarest tier. Less than 5% of mid-market teams are here in 2026. AI is not a project, it's how your team works. CEO is in daily, workflows have been rebuilt and some have been deleted, new hires inherit the patterns, and you measure the gain. From here the work isn't about getting AI to stick, it's about extending the model to the parts of your business that have lagged and making your maturity legible to the market. Compounding teams are the ones competitors and acquirers study.",
+        recs: [
+          "Extend AI native to roles that have lagged. Legal review, finance ops, board reporting, vendor management. These functions get skipped because they're judgment heavy, but the same patterns apply with the right prompting. Pick one, rebuild it this quarter.",
+          "Build the prompt pattern library publicly. Publish 5 to 10 of your best internal prompts as a public resource. This does two things: it forces your team to write them properly, and it builds the brand of an AI native operator (which compounds in hiring, sales, and PR).",
+          "Mentor your peer set. The fastest way to lock in your tier is to teach it. Run a quarterly office hours for 5 to 8 peer companies, share what didn't work, and invite reciprocity. Teaching at the edge of your competence is how Tier 4 teams stay there."
+        ]
+      }
+    };
+
+    function getTier(score) {
+      if (score <= 2) return 1;
+      if (score <= 4) return 2;
+      if (score <= 6) return 3;
+      return 4;
+    }
+
+    function updateProgress() {
+      var answered = Object.keys(answers).length;
+      document.getElementById('progress-text').textContent = answered + ' of ' + totalQuestions + ' answered';
+      document.getElementById('progress-fill').style.width = ((answered / totalQuestions) * 100) + '%';
+
+      if (answered === totalQuestions) {
+        renderResult();
+      } else {
+        document.getElementById('result-card').classList.remove('shown');
+      }
+    }
+
+    function renderResult() {
+      var score = 0;
+      for (var k in answers) {
+        if (answers[k] === 'yes') score++;
+      }
+      var tier = getTier(score);
+      var data = tierData[tier];
+
+      var tag = document.getElementById('tier-tag');
+      tag.className = 'tier-tag ' + data.tagClass;
+      tag.textContent = data.tagText;
+      document.getElementById('tier-head').textContent = data.name;
+      document.getElementById('tier-score').textContent = 'You scored ' + score + ' of 8.';
+      document.getElementById('tier-verdict').textContent = data.verdict;
+
+      var list = document.getElementById('rec-list');
+      list.innerHTML = '';
+      for (var i = 0; i < data.recs.length; i++) {
+        var li = document.createElement('li');
+        var num = document.createElement('span');
+        num.className = 'rec-num';
+        num.textContent = (i + 1) + '.';
+        var txt = document.createElement('span');
+        txt.textContent = data.recs[i];
+        li.appendChild(num);
+        li.appendChild(txt);
+        list.appendChild(li);
+      }
+
+      var card = document.getElementById('result-card');
+      card.classList.add('shown');
+      card.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    function reset() {
+      answers = {};
+      var buttons = document.querySelectorAll('.ans-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('selected');
+      }
+      updateProgress();
+      document.querySelector('.calc-inputs').scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    // Wire up the answer buttons
+    var allButtons = document.querySelectorAll('.ans-btn');
+    for (var i = 0; i < allButtons.length; i++) {
+      allButtons[i].addEventListener('click', function(e) {
+        var btn = e.currentTarget;
+        var q = btn.getAttribute('data-q');
+        var a = btn.getAttribute('data-answer');
+        answers[q] = a;
+        // Clear siblings, set this one
+        var siblings = document.querySelectorAll('.ans-btn[data-q="' + q + '"]');
+        for (var j = 0; j < siblings.length; j++) {
+          siblings[j].classList.remove('selected');
+        }
+        btn.classList.add('selected');
+        updateProgress();
+      });
+    }
+
+    document.getElementById('reset-btn').addEventListener('click', reset);
+
+    document.getElementById('share-btn').addEventListener('click', function() {
+      var url = 'https://treetopgrowthstrategy.com/ai-maturity-tier-calculator';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function() {
+          var btn = document.getElementById('share-btn');
+          var original = btn.textContent;
+          btn.textContent = 'Link copied!';
+          setTimeout(function() { btn.textContent = original; }, 2000);
+        });
+      } else {
+        // Fallback for older browsers
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        var btn = document.getElementById('share-btn');
+        var original = btn.textContent;
+        btn.textContent = 'Link copied!';
+        setTimeout(function() { btn.textContent = original; }, 2000);
+      }
+    });
+
+    updateProgress();
+  })();
+</script>
+
+</body>
+</html>

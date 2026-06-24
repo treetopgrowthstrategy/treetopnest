@@ -769,6 +769,9 @@ CLICK_BOOST: list[tuple[str, str]] = [
     ("/clay-review", "Clay review"),
     ("/claude-prompts-for-engineering", "Claude prompts for engineering teams"),
     ("/ai-for-gym-member-retention", "AI for gym member retention"),
+    ("/state-of-ai-native-gtm-2026", "2026 State of AI-Native GTM"),
+    ("/ai-maturity-tier-calculator", "AI Maturity Tier Calculator"),
+    ("/best-ai-sdr-tools-2026", "Best AI SDR tools (2026)"),
 ]
 
 
@@ -1600,6 +1603,12 @@ def main():
         "/claude-prompts-for-engineering",
         "/claude-prompts-for-consultants",
         "/ai-for-gym-member-retention",
+        "/11x-review",
+        "/lindy-review",
+        "/relevance-ai-review",
+        "/apollo-ai-review",
+        "/state-of-ai-native-gtm-2026",
+        "/ai-maturity-tier-calculator",
     }
 
     for path, url, is_astro in work:
