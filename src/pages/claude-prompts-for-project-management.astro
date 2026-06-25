@@ -1,0 +1,566 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Claude Prompts for Project Management (2026) | Treetop</title>
+  <meta name="description" content="12 copy-paste Claude prompts for project managers: status updates, risk logs, stakeholder briefs, retros, meeting notes, and scope change analysis." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/claude-prompts-for-project-management" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/claude-prompts-for-project-management" />
+  <meta property="og:title" content="Claude Prompts for Project Management (2026)" />
+  <meta property="og:description" content="12 copy-paste Claude prompts for project managers: status updates, risk logs, stakeholder briefs, retros, meeting notes, and scope change analysis." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-project-management.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/claude-prompts-for-project-management.png" />
+  <meta name="twitter:title" content="Claude Prompts for Project Management (2026)" />
+  <meta name="twitter:description" content="12 copy-paste Claude prompts for project managers: status updates, risk logs, stakeholder briefs, retros, meeting notes, and scope change analysis." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Article", "headline": "Claude Prompts for Project Management (2026)", "description": "12 copy-paste Claude prompts for project managers: status updates, risk logs, stakeholder briefs, retros, meeting notes, and scope change analysis.", "url": "https://treetopgrowthstrategy.com/claude-prompts-for-project-management", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-06-25", "dateModified": "2026-06-25", "image": "https://treetopgrowthstrategy.com/og/claude-prompts-for-project-management.png"},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can Claude handle confidential project data?", "acceptedAnswer": {"@type": "Answer", "text": "Treat any project data the same way you would a shared document. Remove or anonymize anything covered by an NDA or that identifies individuals, finances, or decisions not yet communicated. Replace client or stakeholder names with role tokens (Sponsor, Head of Engineering) when the name itself is not what you are reasoning about. On Claude Team or Enterprise your conversations are not used for model training, which raises the floor, but anonymizing is still the correct discipline regardless of plan."}}, {"@type": "Question", "name": "How do I stop Claude from inventing deadlines or estimates?", "acceptedAnswer": {"@type": "Answer", "text": "You supply the numbers. Claude drafts the structure around what you give it. If you ask Claude to estimate without grounding it in your actual project data, you will get generic placeholders, not real estimates. Treat every draft as a starting point: verify every date, number, and name before the output goes to a stakeholder. A useful habit is to include a note like 'use only the data I have provided; flag anything you cannot support from my inputs.'"}}, {"@type": "Question", "name": "Should I use a Claude Project for PM work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A Claude Project lets you load reusable context: your project charter, status template, risk log format, and stakeholder list. Every prompt you run from inside that Project inherits that context rather than starting blank. The practical result is that status updates and escalations require less setup per session and produce more consistent output across a long-running project."}}, {"@type": "Question", "name": "Which Claude model works best for PM prompts?", "acceptedAnswer": {"@type": "Answer", "text": "The current Sonnet model handles the full range of PM work: status updates, risk analysis, meeting notes, and escalation memos. Reach for Opus when you need deep synthesis across a large document set, such as synthesizing a full project archive for a lessons learned review. Haiku is useful for quick, narrow tasks like rewriting a single bullet point."}}, {"@type": "Question", "name": "Can these prompts replace a PM?", "acceptedAnswer": {"@type": "Answer", "text": "No. Claude handles the production layer: first drafts, structure, and synthesis scaffolding. The judgment that makes PM work valuable, reading stakeholder dynamics, making trade-off calls, navigating conflict, knowing which risk actually matters this week, is yours. The leverage is real because it collapses blank-page time and lets you spend your hours on the thinking that differentiates good PMs from average ones."}}, {"@type": "Question", "name": "How do I use these prompts in a real project?", "acceptedAnswer": {"@type": "Answer", "text": "Pick one prompt per meeting, deliverable, or document type and run it from a Claude Project loaded with your current project context. After the first two or three sessions you will know which three or four prompts you reach for every week. Those become your standard kit. The others are available when you hit that deliverable type for the first time."}}]},
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+    .nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+    .btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}
+    .btn-p:hover{opacity:0.88}
+    .btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+    section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:1000px;margin:0 auto}
+    .hero{min-height:42vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:1000px;margin:0 auto;width:100%}
+    .hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+    .hero-sub{font-size:1rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+    .h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+    .body{font-size:0.98rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1rem}
+    .prompt{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem;margin-bottom:1.5rem}
+    .prompt-num{font-family:'Instrument Serif',serif;font-style:italic;color:#00C853;font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .prompt h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:#F0FFF0;font-weight:400;margin-bottom:0.5rem}
+    .prompt .when{font-size:0.78rem;color:#8FAF8F;font-style:italic;margin-bottom:1rem}
+    pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Courier New',monospace;font-size:0.82rem;color:#C0D8C0;line-height:1.65;overflow-x:auto;margin:0;white-space:pre-wrap}
+    .cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}
+    .cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+    .intro-note{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.25rem 1.5rem;margin-top:2rem;max-width:760px;font-size:0.88rem;color:#8FAF8F;line-height:1.7}
+    .faq-item{border-top:1px solid #1A3A1A;padding:1.5rem 0}
+    .faq-q{font-family:'Instrument Serif',serif;font-size:1.1rem;color:#F0FFF0;font-weight:400;margin-bottom:0.6rem}
+    .faq-a{font-size:0.93rem;color:#C0D8C0;line-height:1.8;max-width:760px}
+    @media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}}
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/claude-prompts-for-project-management","name":"Claude Prompts for Project Management (2026) | Treetop","description":"12 copy-paste Claude prompts for project managers: status updates, risk logs, stakeholder briefs, retros, meeting notes, and scope change analysis.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og/claude-prompts-for-project-management.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://treetopgrowthstrategy.com/resources"},{"@type":"ListItem","position":3,"name":"Claude Prompts for Project Management","item":"https://treetopgrowthstrategy.com/claude-prompts-for-project-management"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-prompts-for-consultants" class="nav-link">Prompts for Consultants</a>
+      <a href="/resources/claude-system-prompts-library" class="nav-link">Prompt Library</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>PM Prompt Library · 12 prompts</div>
+    <h1 class="hero-h">Claude prompts for <em style="color:#00C853;font-style:italic;">project management.</em></h1>
+    <p class="hero-sub">PMs spend hours on status updates, risk documentation, stakeholder comms, and meeting prep, work that is structured and repeatable. These 12 prompts cut that production time so you can focus on the coordination and decision-making that only you can do.</p>
+    <div class="intro-note">
+      <strong style="color:#F0FFF0;">Before you run these:</strong> Use Claude Team or Enterprise when your prompts contain real project data, since those plans do not use your conversations for model training. For highly sensitive information, replace stakeholder names with role tokens and replace exact financials with ranges. Always review Claude's output before it goes to any stakeholder. These prompts produce strong drafts, not final deliverables.
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">PROJECT KICKOFF AND PLANNING</span>
+    <h2 class="h2">Kickoff and planning prompts</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">01</div>
+      <h3>Project charter draft</h3>
+      <div class="when">Use when: a new project is approved and you need a one-page charter to get sponsor sign-off and alignment</div>
+      <pre>You are a project manager at [COMPANY].
+
+Project name: [NAME]
+Sponsor: [NAME, TITLE]
+Business objective: [WHAT PROBLEM THIS SOLVES OR OPPORTUNITY THIS CAPTURES]
+Scope (what is in): [BULLET POINTS]
+Scope (what is out of scope): [BULLET POINTS]
+Key stakeholders: [NAMES, ROLES]
+Target completion: [DATE]
+Budget range: [AMOUNT]
+Known risks: [BULLET POINTS]
+
+Draft a one-page project charter:
+1. Executive summary (2-3 sentences: the business case)
+2. Objectives and success criteria (3-5 SMART goals)
+3. Scope and exclusions
+4. Key milestones and target dates
+5. Stakeholders and their roles (RACI sketch)
+6. Risks and initial mitigations
+7. Budget overview
+
+Tone: direct and professional. This goes to the sponsor for approval.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">02</div>
+      <h3>Work breakdown structure</h3>
+      <div class="when">Use when: the charter is approved and you need to break the project into actionable tasks with owners and estimates</div>
+      <pre>I am managing a project to [PROJECT GOAL].
+
+High-level deliverables:
+[LIST THE MAJOR DELIVERABLES]
+
+Constraints:
+- Timeline: [X weeks/months]
+- Team: [TEAM SIZE AND ROLES]
+- Dependencies: [KEY DEPENDENCIES]
+
+Build a work breakdown structure (WBS):
+1. Break each deliverable into tasks and subtasks
+2. For each task: estimated effort (hours or days), owner role, dependencies, and risk level (Low/Medium/High)
+3. Identify the critical path
+4. Flag any tasks where the estimate is uncertain and explain why
+
+Return as a structured list, not a paragraph.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">03</div>
+      <h3>Risk log for a new project</h3>
+      <div class="when">Use when: you are building a risk register at the start of a project and want to catch what you have not thought of yet</div>
+      <pre>I am managing [PROJECT NAME], a [BRIEF DESCRIPTION] project.
+
+Known risks I have identified:
+[PASTE YOUR LIST]
+
+Project context:
+- Team: [SIZE, KEY ROLES]
+- Timeline: [DURATION]
+- Stakeholders: [KEY STAKEHOLDERS]
+- Constraints: [BUDGET, TECH, REGULATORY, ETC]
+
+For each known risk, and any additional risks you identify:
+1. Risk description (one sentence)
+2. Category (schedule / budget / resource / technical / stakeholder / external)
+3. Likelihood (Low / Medium / High)
+4. Impact if it materializes (Low / Medium / High)
+5. Risk score (Likelihood x Impact)
+6. Mitigation actions (2-3 specific steps)
+7. Owner (role)
+
+Add 3-5 risks I may not have listed based on the project type and context.
+Format as a table.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">STATUS AND COMMUNICATION</span>
+    <h2 class="h2">Status reports and stakeholder comms</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">04</div>
+      <h3>Weekly status report</h3>
+      <div class="when">Use when: it is end of week and you need a clean status update from your raw notes</div>
+      <pre>I am the PM on [PROJECT NAME].
+
+Week ending: [DATE]
+Status (overall): [Green / Yellow / Red]
+
+Accomplishments this week:
+[PASTE RAW NOTES OR BULLET POINTS]
+
+Planned for next week:
+[PASTE RAW NOTES OR BULLET POINTS]
+
+Issues and blockers:
+[PASTE]
+
+Key decisions needed:
+[PASTE]
+
+Schedule: [On track / X days ahead / X days behind]
+Budget: [On budget / X% over / under]
+
+Write a clean weekly status report for stakeholders:
+1. One-paragraph executive summary (status, main accomplishment, top risk this week)
+2. Accomplishments (bullet points, specific and measurable where possible)
+3. Next week plan (bullet points)
+4. Issues and blockers (each with owner and target resolution date)
+5. Decisions needed (each with deadline and decision-maker)
+
+Tone: direct and factual. Eliminate filler phrases like "the team worked hard" or "we made great progress." Report what happened.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">05</div>
+      <h3>Escalation memo to senior stakeholder</h3>
+      <div class="when">Use when: an issue is beyond your authority to resolve and you need to put it to a senior stakeholder clearly and without alarm</div>
+      <pre>I need to escalate [ISSUE DESCRIPTION] on [PROJECT NAME].
+
+Background:
+[1-2 sentences on project context]
+
+What happened:
+[DESCRIBE THE ISSUE: when it surfaced, what caused it, what the impact is]
+
+What we have tried:
+[LIST ACTIONS TAKEN SO FAR]
+
+What I need from you:
+[SPECIFIC ASK: a decision, a resource, an intervention]
+
+Timeline: [DATE BY WHICH A DECISION IS NEEDED]
+
+Write a concise escalation memo (max one page):
+1. Issue in one sentence
+2. Impact on scope, schedule, or budget
+3. What we have done to resolve it
+4. The decision or action I need, with the date required
+5. Recommended path forward
+
+Tone: professional, not alarming. Respect the reader's time. Avoid jargon.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">06</div>
+      <h3>Steering committee or executive update</h3>
+      <div class="when">Use when: you are preparing a steering committee packet and need to give executives the signal without the noise</div>
+      <pre>I am preparing a steering committee update for [PROJECT NAME].
+
+Project phase: [PHASE NAME]
+Overall status: [Green / Yellow / Red]
+
+Decisions made since last update:
+[PASTE]
+
+Milestones hit this period:
+[PASTE]
+
+Upcoming milestones and dates:
+[PASTE]
+
+Risks and issues requiring committee awareness:
+[PASTE]
+
+Budget status: [SUMMARY]
+
+Items requiring committee decision or approval:
+[PASTE]
+
+Draft a steering committee update presentation structure (5-7 slides):
+1. Slide title and headline message for each slide
+2. 3-5 bullet points per slide (what the committee needs to know, not operational detail)
+3. For the decision slide: the options, the recommendation, and what you need from them
+
+Audience: senior executives who are not in the project day to day. Lead with status and the ask, not process detail.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">TEAM AND DELIVERY</span>
+    <h2 class="h2">Meeting, retro, and scope prompts</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">07</div>
+      <h3>Meeting agenda and follow-up notes</h3>
+      <div class="when">Use when: you need to prep an agenda before a meeting, or clean up notes and action items after one</div>
+      <pre>Meeting type: [e.g., project kickoff / sprint review / lessons learned / design review]
+Date: [DATE]
+Attendees: [LIST ROLES OR NAMES]
+Duration: [LENGTH]
+
+Meeting objective (what we need to accomplish):
+[DESCRIBE THE GOAL]
+
+Topics to cover:
+[LIST THE TOPICS]
+
+For kickoff or planning meetings, also provide:
+- Pre-read materials attendees should review
+- Decision questions that need resolution in the meeting
+
+If these are raw notes from a meeting that just ended:
+[PASTE YOUR RAW NOTES HERE]
+
+If post-meeting: format the notes as:
+1. Decisions made (each with owner and date)
+2. Action items (each: task, owner, due date)
+3. Key discussion points summary (3-5 bullets)
+4. Parking lot items (things raised but not resolved)
+
+If pre-meeting: build a timed agenda.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">08</div>
+      <h3>Sprint or project retrospective</h3>
+      <div class="when">Use when: you are facilitating a retro and want a guide that surfaces honest feedback and generates real action items</div>
+      <pre>I am facilitating a [sprint / phase / project-end] retrospective for [PROJECT OR TEAM NAME].
+
+Context:
+- Team size: [NUMBER] people
+- What we delivered: [BRIEF DESCRIPTION]
+- Duration of period: [X weeks/months]
+
+Known tensions or issues I want the retro to surface:
+[DESCRIBE ANYTHING: delivery pressure, process friction, communication gaps, team dynamics]
+
+Things that went well that I want the team to recognize:
+[DESCRIBE]
+
+Build a retrospective facilitation guide:
+1. Framing statement to open the session (set the tone: honest, forward-looking, blameless)
+2. Four reflection questions (What went well? What did not? What was puzzling or unclear? What do we want to do differently?)
+3. For each: 3 specific follow-up probes to draw out honest answers
+4. Prioritization exercise to select 2-3 action items the team will actually commit to
+5. Closing: how to wrap up and ensure actions are owned
+
+Tone: psychologically safe. Frame everything around the system and the work, not the people.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">09</div>
+      <h3>Scope change request analysis</h3>
+      <div class="when">Use when: a stakeholder wants to add something and you need a clean one-pager to take to the sponsor for a decision</div>
+      <pre>I am evaluating a scope change request on [PROJECT NAME].
+
+Change requested: [DESCRIBE WHAT IS BEING ADDED OR CHANGED]
+Requested by: [STAKEHOLDER NAME / ROLE]
+Stated reason: [WHY THEY WANT IT]
+
+Current project baseline:
+- Schedule: [CURRENT END DATE]
+- Budget: [CURRENT APPROVED BUDGET]
+- In-scope features / deliverables: [BRIEF LIST]
+
+Analyze this scope change request:
+1. Description: what exactly is being added or changed
+2. Impact on schedule (best case / expected / worst case)
+3. Impact on budget (estimate or range)
+4. Impact on other in-flight work (dependencies, resource conflicts)
+5. Risk if we add this now vs. after go-live
+6. Recommendation: approve now / defer to next phase / decline, with reasoning
+7. What I need from the sponsor to proceed
+
+Format as a one-page change request document I can share with the sponsor.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">REPORTING AND CLOSURE</span>
+    <h2 class="h2">Health reports, lessons learned, and launch</h2>
+
+    <div class="prompt">
+      <div class="prompt-num">10</div>
+      <h3>Project health narrative for a dashboard or report</h3>
+      <div class="when">Use when: you need to write the narrative section of a project health report that goes above a metrics dashboard</div>
+      <pre>I am writing the narrative section of a [WEEKLY / MONTHLY / PHASE-END] project health report.
+
+Project: [NAME]
+Period: [DATE RANGE]
+
+Metrics this period:
+- Schedule variance: [ON TRACK / X DAYS AHEAD OR BEHIND]
+- Budget: [AMOUNT SPENT] of [TOTAL BUDGET] ([PERCENTAGE]%)
+- Milestones hit: [NUMBER] of [NUMBER PLANNED]
+- Open risks: [NUMBER], [NUMBER] elevated this period
+- Open issues: [NUMBER], [NUMBER] resolved this period
+
+Key events this period:
+[PASTE RAW NOTES]
+
+Write the narrative section of the health report (300-400 words):
+1. Overall status summary (one paragraph: where we are, what happened)
+2. Schedule and budget call-out (honest read, do not soften bad news)
+3. Risk and issue summary (what is being watched and why)
+4. Next period focus (2-3 priorities)
+
+Write for an audience that reads dozens of these reports. Lead with the signal, not the noise.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">11</div>
+      <h3>Lessons learned after project close</h3>
+      <div class="when">Use when: the project is closed and you need a structured document that future PMs will actually use</div>
+      <pre>I am writing the lessons learned document for [PROJECT NAME], which [DELIVERED / ENDED] on [DATE].
+
+Project outcome summary:
+[BRIEF: what we set out to do, what we actually delivered, final status vs. baseline]
+
+What went well (your notes):
+[PASTE]
+
+What did not go well (your notes):
+[PASTE]
+
+Surprises (things you did not anticipate):
+[PASTE]
+
+Write a structured lessons learned document:
+1. Executive summary (2 paragraphs: what the project delivered and the top 3 lessons)
+2. What worked well (5-7 items, each with a specific example and a recommendation for future projects)
+3. What to do differently (5-7 items, each with root cause and a concrete recommendation)
+4. Process improvements recommended (3-5 specific changes to templates, tools, or practices)
+5. Things to watch for on similar projects (2-3 early warning signals)
+
+Write with specificity. "Communication could be better" is not a lesson. "Escalation of scope changes took 12 days on average because approval authority was unclear at the start" is a lesson.</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-num">12</div>
+      <h3>Post-launch or post-go-live summary</h3>
+      <div class="when">Use when: you just went live and need to communicate clearly to stakeholders what happened, what is working, and what is not</div>
+      <pre>We just launched [PRODUCT / SYSTEM / INITIATIVE NAME] on [DATE].
+
+What we launched:
+[DESCRIBE WHAT WENT LIVE]
+
+Launch day notes:
+[PASTE: what happened, any issues, what was resolved]
+
+First 48-72 hours:
+- Issues raised: [NUMBER AND DESCRIPTION]
+- Issues resolved: [NUMBER]
+- User or stakeholder feedback received: [PASTE]
+- Key metrics if available: [PASTE]
+
+What is still outstanding:
+[PASTE]
+
+Write a post-launch summary for stakeholders:
+1. Launch headline (2-3 sentences: what went live, how it went)
+2. What is working as expected
+3. Issues raised and their resolution status (table format: issue / severity / status / owner)
+4. Outstanding items with owners and target resolution dates
+5. Next check-in date and what we will report then
+
+Tone: confident and factual. Address issues directly without minimizing them.</pre>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Can Claude handle confidential project data?</div>
+      <div class="faq-a">Treat any project data the same way you would a shared document. Remove or anonymize anything covered by an NDA or that identifies individuals, finances, or decisions not yet communicated. Replace client or stakeholder names with role tokens (Sponsor, Head of Engineering) when the name itself is not what you are reasoning about. On Claude Team or Enterprise your conversations are not used for model training, which raises the floor, but anonymizing is still the correct discipline regardless of plan.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I stop Claude from inventing deadlines or estimates?</div>
+      <div class="faq-a">You supply the numbers. Claude drafts the structure around what you give it. If you ask Claude to estimate without grounding it in your actual project data, you will get generic placeholders, not real estimates. Treat every draft as a starting point: verify every date, number, and name before the output goes to a stakeholder. A useful habit is to include a note like "use only the data I have provided; flag anything you cannot support from my inputs."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Should I use a Claude Project for PM work?</div>
+      <div class="faq-a">Yes. A Claude Project lets you load reusable context: your project charter, status template, risk log format, and stakeholder list. Every prompt you run from inside that Project inherits that context rather than starting blank. The practical result is that status updates and escalations require less setup per session and produce more consistent output across a long-running project.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Which Claude model works best for PM prompts?</div>
+      <div class="faq-a">The current Sonnet model handles the full range of PM work: status updates, risk analysis, meeting notes, and escalation memos. Reach for Opus when you need deep synthesis across a large document set, such as synthesizing a full project archive for a lessons learned review. Haiku is useful for quick, narrow tasks like rewriting a single bullet point.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can these prompts replace a PM?</div>
+      <div class="faq-a">No. Claude handles the production layer: first drafts, structure, and synthesis scaffolding. The judgment that makes PM work valuable, reading stakeholder dynamics, making trade-off calls, navigating conflict, knowing which risk actually matters this week, is yours. The leverage is real because it collapses blank-page time and lets you spend your hours on the thinking that differentiates good PMs from average ones.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I use these prompts in a real project?</div>
+      <div class="faq-a">Pick one prompt per meeting, deliverable, or document type and run it from a Claude Project loaded with your current project context. After the first two or three sessions you will know which three or four prompts you reach for every week. Those become your standard kit. The others are available when you hit that deliverable type for the first time.</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Setup</span>
+    <h2 class="h2">Making these prompts compound</h2>
+    <p class="body">Drop these into a Claude Project loaded with your project's context: the charter, your status template, the risk register, stakeholder bios, and a short note on your communication style. With that grounding, the prompts above produce drafts that inherit your project's specifics rather than starting from scratch every session.</p>
+    <p class="body">See <a href="/claude-for-project-management" style="color:#00C853;text-decoration:none;">how to use Claude for project management</a> for the broader setup guide, or <a href="/services/ai-audit" style="color:#00C853;text-decoration:none;">have Treetop configure Claude for your PM team</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Want Claude integrated into your PM workflow?</div>
+        <div class="cta-sub">Treetop runs AI implementation engagements for ops and PM teams.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/services/implementation" class="btn-p">See Implementation &rarr;</a>
+        <a href="/services/ai-audit" class="btn-g">Book the AI Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- treetop-linker-related-START -->
+<section style="padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A;background:#050D05;">
+  <div style="max-width:780px;margin:0 auto;">
+    <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Related</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
+    <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
+    <li><a href="/b2b-ai-vendor-comparison-matrix-2026" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">The B2B AI vendor comparison matrix &rarr;</a></li>
+    <li><a href="/fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Hire a fractional Chief Marketing Officer &rarr;</a></li>
+    <li><a href="/ai-for-cmos" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI for CMOs &rarr;</a></li>
+    <li><a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">The AI-native GTM framework &rarr;</a></li>
+    <li><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">What is AI-native GTM? &rarr;</a></li>
+    <li><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Getting started with AI in your business &rarr;</a></li>
+    <li><a href="/glossary" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">AI &amp; GTM glossary &rarr;</a></li>
+    <li><a href="/resources" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop resources &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+<!-- treetop-linker-related-END -->
+
+<GlobalFooter />
+
+</body>
+</html>
