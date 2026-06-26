@@ -18,6 +18,7 @@ interface QuizPayload {
   email: string;
   company: string;
   title: string;
+  hp?: string;
   answers: number[];
   pillarScores: { icp: number; outbound: number; pipeline: number; team: number };
   totalScore: number;
@@ -411,9 +412,12 @@ async function logToAirtable(data: QuizPayload, tier: ReturnType<typeof getTierD
 }
 
 function isBotSubmission(data: QuizPayload): boolean {
-  // A single word with 12+ chars and 3+ inner uppercase letters is a random string.
-  // Real names ("Bill Colbert") and real brand names ("Acme Corp") never look like
-  // "CCNFSFQBEqLwGNCagYqWPJeq". Single-word long names with scattered caps = bot.
+  // 1. Honeypot: real users never see or fill this field; any value means bot.
+  if (data.hp && data.hp.trim().length > 0) return true;
+
+  // 2. Random-string fields: a single word 12+ chars with 3+ inner uppercase
+  //    letters is programmatically generated (e.g. "CCNFSFQBEqLwGNCagYqWPJeq").
+  //    Real names, companies, and job titles don't look like this.
   function randomString(s: string): boolean {
     if (typeof s !== 'string') return false;
     const trimmed = s.trim();
@@ -424,10 +428,9 @@ function isBotSubmission(data: QuizPayload): boolean {
 
   if (randomString(data.name))    return true;
   if (randomString(data.company)) return true;
+  if (randomString(data.title))   return true;
 
-  // A genuine quiz-taker who answered every question 0/6 across all four pillars
-  // is essentially impossible — that would require clicking the lowest option on
-  // every single question. Bot submissions default to 0.
+  // 3. All-zero scores: no real quiz-taker clicks the minimum on all 4 pillars.
   const ps = data.pillarScores || { icp: 0, outbound: 0, pipeline: 0, team: 0 };
   if (data.totalScore === 0 && ps.icp === 0 && ps.outbound === 0 && ps.pipeline === 0 && ps.team === 0) {
     return true;

@@ -563,6 +563,11 @@ export const prerender = true;
     </p>
 
     <form id="lead-form">
+      <!-- Honeypot: hidden from real users, bots fill it in -->
+      <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+        <label for="f-hp">Leave this empty</label>
+        <input type="text" id="f-hp" name="hp" tabindex="-1" autocomplete="off" />
+      </div>
       <div class="form-grid">
         <div class="form-field">
           <label class="form-label" for="f-name">First Name</label>
@@ -832,6 +837,7 @@ export const prerender = true;
       email: document.getElementById('f-email').value.trim(),
       company: document.getElementById('f-company').value.trim(),
       title: document.getElementById('f-title').value.trim(),
+      hp: document.getElementById('f-hp').value,
       answers,
       pillarScores: getPillarScores(),
       totalScore,
