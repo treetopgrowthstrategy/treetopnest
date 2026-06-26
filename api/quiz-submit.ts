@@ -410,6 +410,32 @@ async function logToAirtable(data: QuizPayload, tier: ReturnType<typeof getTierD
   }
 }
 
+function isBotSubmission(data: QuizPayload): boolean {
+  // A single word with 12+ chars and 3+ inner uppercase letters is a random string.
+  // Real names ("Bill Colbert") and real brand names ("Acme Corp") never look like
+  // "CCNFSFQBEqLwGNCagYqWPJeq". Single-word long names with scattered caps = bot.
+  function randomString(s: string): boolean {
+    if (typeof s !== 'string') return false;
+    const trimmed = s.trim();
+    if (trimmed.length < 12 || trimmed.includes(' ')) return false;
+    const innerUpper = (trimmed.slice(1).match(/[A-Z]/g) || []).length;
+    return innerUpper >= 3;
+  }
+
+  if (randomString(data.name))    return true;
+  if (randomString(data.company)) return true;
+
+  // A genuine quiz-taker who answered every question 0/6 across all four pillars
+  // is essentially impossible — that would require clicking the lowest option on
+  // every single question. Bot submissions default to 0.
+  const ps = data.pillarScores || { icp: 0, outbound: 0, pipeline: 0, team: 0 };
+  if (data.totalScore === 0 && ps.icp === 0 && ps.outbound === 0 && ps.pipeline === 0 && ps.team === 0) {
+    return true;
+  }
+
+  return false;
+}
+
 export default async function handler(req: any, res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -429,6 +455,15 @@ export default async function handler(req: any, res: any) {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.email))) {
       return res.status(400).json({ error: 'Valid email required' });
+    }
+
+    // Bot filter: silently drop spam submissions without revealing the check.
+    // Signals: (1) random-string name/company — no spaces, 12+ chars, 3+ inner
+    // uppercase letters (real names/brands don't look like "CCNFSFQBEqLwGNCagYq");
+    // (2) all-zero pillar scores — no genuine quiz-taker answers 0 on all 4 pillars.
+    if (isBotSubmission(data)) {
+      console.warn('Bot submission dropped:', data.email, data.name, data.company);
+      return res.status(200).json({ success: true });
     }
 
     // Sanitize user-supplied strings before they flow into the published report
