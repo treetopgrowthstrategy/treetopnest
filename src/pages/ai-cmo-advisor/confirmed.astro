@@ -45,6 +45,12 @@ export const prerender = true;
     .btn-p:disabled { opacity: 0.5; cursor: not-allowed; }
     .cancel-email { font-size: 0.75rem; color: #4A6A4A; margin-top: 0.6rem; }
 
+    .upgrade-nudge { background: linear-gradient(135deg, rgba(0,200,83,0.04), rgba(0,200,83,0.01)); border: 1px solid rgba(0,200,83,0.18); padding: 1.4rem 1.6rem; margin-bottom: 2rem; }
+    .upgrade-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.6rem; }
+    .upgrade-body { font-size: 0.85rem; color: #8FAF8F; line-height: 1.65; margin-bottom: 0.9rem; }
+    .upgrade-cta { font-size: 0.82rem; color: #00C853; text-decoration: none; font-weight: 500; }
+    .upgrade-cta:hover { opacity: 0.8; }
+
     @media (max-width: 600px) { .main { padding: 7rem 1.5rem 3rem; } }
   </style>
 </head>
@@ -71,6 +77,13 @@ export const prerender = true;
       <div class="tl-item"><div class="tl-num">4</div>Your report arrives by email within 24 hours. Most come in same-day.</div>
     </div>
     <p class="notice">If you want to add anything before we start, reply to the confirmation email you received after completing your intake. It comes straight to us.</p>
+
+    <div class="upgrade-nudge">
+      <div class="upgrade-label">After your report arrives</div>
+      <p class="upgrade-body">Most clients want to keep going. AI CMO Monthly gives you a live competitive refresh every month, a priority strategic question answered by Bill directly, and a quarterly strategy reset. $599/mo, cancel any time.</p>
+      <a href="/ai-cmo-advisor/upgrade" class="upgrade-cta">See what Monthly includes &rarr;</a>
+    </div>
+
     <a href="/" class="back-link">Back to Treetop &rarr;</a>
   </div>
 

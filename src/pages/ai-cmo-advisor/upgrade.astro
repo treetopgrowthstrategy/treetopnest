@@ -1,0 +1,193 @@
+---
+import GlobalFooter from '../../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>AI CMO Monthly | Treetop Growth Strategy</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .main { flex: 1; padding: 8rem 2rem 5rem; max-width: 680px; margin: 0 auto; width: 100%; }
+
+    .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #00C853; border: 1px solid rgba(0,200,83,0.3); padding: 4px 10px; margin-bottom: 1.5rem; }
+    .h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; color: #F0FFF0; line-height: 1.1; margin-bottom: 1rem; }
+    .h1 em { color: #00C853; font-style: italic; }
+    .sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; margin-bottom: 3rem; max-width: 540px; }
+
+    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2.5rem; }
+    .price-num { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: #00C853; line-height: 1; }
+    .price-meta { font-size: 0.85rem; color: #4A6A4A; }
+
+    .features { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.75rem; margin-bottom: 2.5rem; }
+    .feat-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1.25rem; }
+    .feat { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 1rem; font-size: 0.9rem; color: #C0D8C0; line-height: 1.6; }
+    .feat:last-child { margin-bottom: 0; }
+    .feat-icon { color: #00C853; font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .feat strong { color: #F0FFF0; font-weight: 500; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.78rem; font-weight: 500; color: #8FAF8F; margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .form-input { width: 100%; background: #0A1A0A; border: 1px solid #1A3A1A; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.15s; }
+    .form-input:focus { border-color: rgba(0,200,83,0.5); }
+    .form-input::placeholder { color: #2A4A2A; }
+
+    .btn-p { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #00C853; color: #050D05; padding: 1rem 1.75rem; font-size: 0.92rem; font-weight: 600; font-family: 'DM Sans', sans-serif; border: none; cursor: pointer; transition: opacity 0.15s; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-p:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .sub-note { font-size: 0.75rem; color: #4A6A4A; margin-top: 0.75rem; line-height: 1.6; }
+    .err { font-size: 0.78rem; color: #E0A0A0; margin-top: 0.6rem; display: none; }
+
+    .success-icon { width: 56px; height: 56px; background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.75rem; }
+    .success-icon svg { width: 24px; height: 24px; stroke: #00C853; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .divider { border: none; border-top: 1px solid #1A3A1A; margin: 2.5rem 0; }
+    .back-link { font-size: 0.82rem; color: #4A6A4A; text-decoration: none; }
+    .back-link:hover { color: #8FAF8F; }
+
+    @media (max-width: 600px) { .main { padding: 7rem 1.5rem 4rem; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- Success state (shown after subscription checkout completes) -->
+  <div id="success-state" style="display:none;">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h1 class="h1">You're in. <em>Monthly starts now.</em></h1>
+    <p class="sub">Welcome to AI CMO Monthly. Your first competitive refresh and strategic priority brief will arrive within 48 hours. Direct email access to Bill is open now: <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a></p>
+    <a href="/" class="back-link">Back to Treetop &rarr;</a>
+  </div>
+
+  <!-- Default upgrade offer -->
+  <div id="upgrade-state">
+    <div class="badge">AI CMO Monthly</div>
+    <h1 class="h1">Your competitive edge, <em>every month.</em></h1>
+    <p class="sub">The $99 report is a snapshot. Monthly gives you a live signal: what's shifting in your competitive landscape, what to do about it, and a strategist who answers your questions directly.</p>
+
+    <div class="price-row">
+      <span class="price-num">$599</span>
+      <span class="price-meta">/ month<br/>cancel anytime</span>
+    </div>
+
+    <div class="features">
+      <div class="feat-label">What you get every month</div>
+      <div class="feat">
+        <span class="feat-icon">&#10003;</span>
+        <span><strong>Monthly competitive refresh.</strong> Updated Ahrefs data on your domain and up to 3 competitors: what shifted in rankings, traffic, and keyword footprint since last month.</span>
+      </div>
+      <div class="feat">
+        <span class="feat-icon">&#10003;</span>
+        <span><strong>Priority strategic question.</strong> Submit one marketing question each month. Get a direct, researched answer from Bill within 48 hours.</span>
+      </div>
+      <div class="feat">
+        <span class="feat-icon">&#10003;</span>
+        <span><strong>What-changed memo.</strong> A concise brief on what moved in your competitive landscape and what it means for your plan.</span>
+      </div>
+      <div class="feat">
+        <span class="feat-icon">&#10003;</span>
+        <span><strong>Quarterly full strategy refresh.</strong> Every three months: a full updated report with revised 90-day roadmap based on what actually happened vs. the prior plan.</span>
+      </div>
+      <div class="feat">
+        <span class="feat-icon">&#10003;</span>
+        <span><strong>Direct email access.</strong> Reply to any report or email directly. Bill reads and responds.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email-input" class="form-label">Your email</label>
+      <input id="email-input" type="email" class="form-input" placeholder="you@company.com" autocomplete="email" />
+    </div>
+    <button class="btn-p" id="subscribe-btn" onclick="startSubscription()">
+      Start AI CMO Monthly &rarr;
+    </button>
+    <p class="sub-note">You will be taken to Stripe to complete your subscription. Cancel any time from your Stripe customer portal. No contracts.</p>
+    <div id="sub-err" class="err"></div>
+
+    <hr class="divider" />
+    <a href="/ai-cmo-advisor" class="back-link">Not ready yet. Back to the overview &rarr;</a>
+  </div>
+
+</div>
+
+<GlobalFooter />
+
+<script is:inline>
+(function init() {
+  var params = new URLSearchParams(window.location.search);
+  var success = params.get('success') === '1';
+  var eParam  = params.get('e') || '';
+
+  if (success) {
+    document.getElementById('upgrade-state').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+    return;
+  }
+
+  if (eParam) {
+    try {
+      var decoded = atob(eParam.replace(/-/g, '+').replace(/_/g, '/'));
+      var input = document.getElementById('email-input');
+      if (input && decoded) input.value = decoded;
+    } catch(e) { /* ignore bad base64 */ }
+  }
+})();
+
+async function startSubscription() {
+  var btn   = document.getElementById('subscribe-btn');
+  var err   = document.getElementById('sub-err');
+  var email = (document.getElementById('email-input').value || '').trim();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.textContent = 'Please enter a valid email address.';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled    = true;
+  btn.textContent = 'Redirecting to Stripe...';
+  err.style.display = 'none';
+
+  try {
+    var res = await fetch('/api/cmo-subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+    var data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Checkout failed');
+    }
+  } catch(e) {
+    btn.disabled    = false;
+    btn.textContent = 'Start AI CMO Monthly →';
+    err.textContent = e.message || 'Something went wrong. Email bill@treetopgrowthstrategy.com to proceed.';
+    err.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
