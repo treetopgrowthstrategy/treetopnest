@@ -272,8 +272,23 @@ export default async function handler(req: any, res: any) {
   const hp = (body.hp as string | undefined)?.trim() ?? '';
   const loadTime = Number(body._t) || 0;
   const elapsed = loadTime ? Date.now() - loadTime : Infinity;
-  if (hp.length > 0 || (loadTime > 0 && elapsed < 3000)) {
-    console.warn('Bot submission dropped:', email, { hp: hp.length, elapsed });
+
+  function looksRandom(s: string): boolean {
+    const t = (s || '').trim();
+    if (t.length < 10 || t.includes(' ')) return false;
+    return ((t.slice(1).match(/[A-Z]/g) || []).length) >= 3;
+  }
+
+  const isBot =
+    hp.length > 0 ||
+    (loadTime > 0 && elapsed < 3000) ||
+    looksRandom(body.first_name || '') ||
+    looksRandom(body.last_name || '') ||
+    looksRandom(body.company || '') ||
+    looksRandom(body.message || body.gain || '');
+
+  if (isBot) {
+    console.warn('Bot submission dropped:', email, { hp: hp.length, elapsed, first_name: body.first_name });
     return res.status(200).json({ success: true });
   }
 
