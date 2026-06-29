@@ -89,6 +89,10 @@ export const prerender = true;
       <span>This is a working session, not a sales call. Most people leave with one or two Claude workflows they can use the same week.</span>
     </div>
     <div id="contact-form">
+      <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+        <label for="f-hp">Leave this empty</label>
+        <input type="text" id="f-hp" name="hp" tabindex="-1" autocomplete="off" />
+      </div>
       <div class="form-grid">
         <div>
           <label class="form-label">First Name</label>
@@ -126,6 +130,7 @@ export const prerender = true;
 <GlobalFooter />
 
 <script is:inline>
+window._formLoadTime = Date.now();
 async function submitForm() {
   var btn = document.getElementById('submit-btn');
   var email = document.getElementById('email').value.trim();
@@ -147,7 +152,9 @@ async function submitForm() {
         email: email,
         company: document.getElementById('company').value,
         gain: document.getElementById('gain').value,
-        source: 'book-a-call'
+        source: 'book-a-call',
+        hp: document.getElementById('f-hp').value,
+        _t: window._formLoadTime
       })
     });
     var data = await res.json().catch(function(){ return {}; });

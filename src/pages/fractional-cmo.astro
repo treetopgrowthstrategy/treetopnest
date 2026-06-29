@@ -5,8 +5,8 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 ---
 
 <Layout
-  title="Fractional CMO Services for B2B SaaS | Treetop"
-  description="Strategic fractional CMO leadership for B2B companies. From GTM architecture to AI-powered revenue operations. We design the strategy and empower your team to execute."
+  title="Fractional CMO for B2B SaaS Startups | Treetop"
+  description="Expert fractional CMO for B2B companies: GTM strategy, team leadership, and AI-native revenue ops. Senior-level results at 40-60% less cost."
   canonicalUrl="https://treetopgrowthstrategy.com/fractional-cmo"
   pageType="service"
 >
@@ -32,55 +32,12 @@ import GlobalFooter from '../components/GlobalFooter.astro';
         "description": "Fractional CMO engagement with GTM strategy, team leadership, and AI implementation",
         "url": "https://calendar.app.google/GS5H5y8U3PrN8u4A8"
       }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://treetopgrowthstrategy.com/fractional-cmo#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What does a fractional CMO do?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A fractional CMO provides strategic marketing leadership without the full-time salary cost. We develop GTM strategy, lead revenue operations, oversee team alignment, and execute campaigns, working alongside your internal team to accelerate growth."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is a fractional CMO different from a consultant?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Fractional CMOs take ownership of outcomes and provide ongoing strategic direction. We're invested in execution and results, not just analysis. We work embedded with your team, providing real-time leadership and accountability."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the typical engagement model?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We offer flexible engagements from 3 months to 12+ months, typically 8 to 20 hours per week. The scope adjusts based on your revenue stage, team size, and growth objectives. Most clients see traction within 60 days."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you approach AI-native GTM?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We architect GTM around AI-powered tools (Claude, custom agents) for lead intelligence, sales enablement, and campaign optimization. This reduces manual work, accelerates cycles, and improves conversion rates at scale."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What companies are the best fit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "B2B companies at $5M to $50M revenue with product-market fit and a clear GTM gap. If you have product, customers, and a revenue target but lack marketing strategy or execution discipline, we're the right partner."
-          }
-        }
-      ]
     }
   ]
 }
+</script>
+<script type="application/ld+json" slot="head">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a fractional CMO cost per month?","acceptedAnswer":{"@type":"Answer","text":"Fractional CMO retainers typically range from $5,000 to $15,000 per month depending on hours, company stage, and scope. At 8-10 hours per week, expect $5,000-$8,000/month. At 15-20 hours per week for a more intensive engagement, budgets of $10,000-$15,000 are common. This compares to a full-time CMO salary of $180,000-$300,000 plus benefits and equity."}},{"@type":"Question","name":"What is the difference between a fractional CMO and a marketing consultant?","acceptedAnswer":{"@type":"Answer","text":"A marketing consultant delivers a one-time project or recommendation. A fractional CMO joins your leadership team on an ongoing basis, owns outcomes, runs weekly syncs, manages your marketing staff, and is accountable for pipeline and revenue metrics. The fractional CMO is embedded, not advisory."}},{"@type":"Question","name":"How many hours per week does a fractional CMO work?","acceptedAnswer":{"@type":"Answer","text":"Most fractional CMO engagements run 8 to 20 hours per week. Early-stage companies typically start at 8-10 hours per week for strategy and oversight. Companies with active campaigns or a team to manage often need 15-20 hours per week. Hours can scale up during product launches and scale back once systems are running."}},{"@type":"Question","name":"When should a startup hire a fractional CMO instead of a full-time CMO?","acceptedAnswer":{"@type":"Answer","text":"Hire a fractional CMO when you have product-market fit and paying customers but lack CMO-level marketing strategy. This is typically the $2M-$20M revenue range. If you cannot yet justify a $200,000+ CMO salary but need executive-level GTM leadership, fractional is the right model. Once you pass $25M-$30M ARR and marketing is your primary growth lever, a full-time hire usually makes sense."}},{"@type":"Question","name":"What does a fractional CMO do in the first 90 days?","acceptedAnswer":{"@type":"Answer","text":"In the first 90 days a fractional CMO typically conducts a GTM audit (positioning, ICP, competitive landscape, current funnel metrics), identifies the top 2-3 growth levers, restructures or hires the marketing team as needed, launches 1-2 priority campaigns, and establishes KPI dashboards. Most clients see measurable pipeline impact within 60-90 days."}},{"@type":"Question","name":"Can a fractional CMO manage my marketing team?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fractional CMOs typically serve as the direct manager or dotted-line leader for content, demand generation, and product marketing staff. They run weekly team syncs, set OKRs, provide copy and creative direction, and handle performance conversations. This is a key difference from a consultant who does not manage people."}},{"@type":"Question","name":"What industries do fractional CMOs specialize in?","acceptedAnswer":{"@type":"Answer","text":"Fractional CMOs most commonly serve B2B SaaS, professional services, fintech, healthtech, and industrial/manufacturing companies. The model works best in industries with longer sales cycles where GTM strategy and content-driven pipeline generation matter more than paid media volume."}},{"@type":"Question","name":"How do I know if my company is ready for a fractional CMO?","acceptedAnswer":{"@type":"Answer","text":"Your company is ready for a fractional CMO if you have at least $2M in revenue or strong ARR growth, a defined sales process, and a clear growth target but no senior marketing leader driving strategy. Other signals: marketing is an afterthought in leadership meetings, you are spending on ads without a documented GTM strategy, or you have recently lost a VP Marketing and need interim leadership while you search."}}]}
 </script>
 
 <style>
@@ -116,9 +73,30 @@ import GlobalFooter from '../components/GlobalFooter.astro';
   .step-row:last-child { border-bottom:none; }
   .step-bar { width:3px; min-height:60px; background:rgba(0,200,83,0.4); flex-shrink:0; align-self:stretch; }
 
+  .pricing-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+  .pricing-table th { text-align:left; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FAF8F; padding:0.75rem 1rem; border-bottom:1px solid #1A3A1A; }
+  .pricing-table td { font-size:0.92rem; color:#C0D8C0; padding:1rem; border-bottom:1px solid #1A3A1A; line-height:1.5; vertical-align:top; }
+  .pricing-table tr:last-child td { border-bottom:none; }
+  .pricing-table tr:hover td { background:rgba(0,200,83,0.03); }
+  .tier-name { font-weight:600; color:#F0FFF0; white-space:nowrap; }
+  .tier-price { color:#00C853; font-weight:600; white-space:nowrap; }
+
+  .compare-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+  .compare-table th { text-align:left; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FAF8F; padding:0.75rem 1rem; border-bottom:2px solid #1A3A1A; }
+  .compare-table th:not(:first-child) { text-align:center; }
+  .compare-table td { font-size:0.88rem; color:#C0D8C0; padding:0.9rem 1rem; border-bottom:1px solid #1A3A1A; }
+  .compare-table td:not(:first-child) { text-align:center; }
+  .compare-table tr:last-child td { border-bottom:none; }
+  .check { color:#00C853; font-weight:700; }
+  .cross { color:#4A6A4A; }
+  .partial { color:#8FAF8F; }
+
   @media(max-width:768px){
     .mob-col { flex-direction:column !important; }
     .hide-mob { display:none !important; }
+    .pricing-table, .compare-table { font-size:0.82rem; }
+    .pricing-table th, .pricing-table td,
+    .compare-table th, .compare-table td { padding:0.6rem 0.5rem; }
   }
 </style>
 
@@ -164,24 +142,156 @@ import GlobalFooter from '../components/GlobalFooter.astro';
       <div class="step-row anim d3">
         <div class="step-bar"></div>
         <div>
-          <h3 style="font-size:1.1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">GTM Architecture & Strategy</h3>
-          <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">We audit your current positioning, competitive landscape, and revenue model. Then design a scalable, AI-native GTM framework aligned to your business goals.</p>
+          <h3 style="font-size:1.1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">GTM Architecture and Strategy</h3>
+          <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">We audit your current positioning, competitive landscape, and revenue model. Then design a scalable, AI-native GTM framework aligned to your business goals. This includes ICP definition, channel prioritization, messaging hierarchy, and a 90-day execution roadmap your team can run from day one.</p>
         </div>
       </div>
       <div class="step-row anim d4">
         <div class="step-bar"></div>
         <div>
-          <h3 style="font-size:1.1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Team Leadership & Alignment</h3>
-          <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">We work embedded with your marketing, sales, and product teams. We set KPIs, run weekly syncs, and keep everyone aligned to the plan.</p>
+          <h3 style="font-size:1.1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Team Leadership and Alignment</h3>
+          <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">We work embedded with your marketing, sales, and product teams. We set KPIs, run weekly syncs, and keep everyone aligned to the plan. For teams without a dedicated marketing director, we serve as the direct manager for content, demand gen, and product marketing staff, handling hiring briefs, performance reviews, and agency oversight.</p>
         </div>
       </div>
       <div class="step-row anim d5">
         <div class="step-bar"></div>
         <div>
-          <h3 style="font-size:1.1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Campaign Execution & Optimization</h3>
-          <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">We oversee campaign launches, track conversion metrics, optimize based on data, and iterate. You see traction within weeks, not quarters.</p>
+          <h3 style="font-size:1.1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Campaign Execution and Optimization</h3>
+          <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">We oversee campaign launches, track conversion metrics, optimize based on data, and iterate. You see traction within weeks, not quarters. Typical deliverables include a live ABM campaign, SEO content calendar, email nurture sequence, and paid channel testing framework, all built in the first 60 days.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TABLE -->
+<section id="pricing" style="padding:6rem 2.5rem;background:#050D05;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="lbl anim d1">Rates and Scope</span>
+    <h2 class="anim d2" style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;line-height:1.15;color:#F0FFF0;max-width:680px;margin-bottom:1rem;">
+      Fractional CMO Pricing: What to Expect
+    </h2>
+    <p class="anim d3" style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;max-width:680px;margin-bottom:0.5rem;">
+      Fractional CMO retainers are priced by hours per week and engagement depth. Most B2B companies at the $5M to $30M stage land in the Advisory or Embedded tiers. All engagements start with a 90-day minimum to ensure meaningful traction. See the <a href="/fractional-executive-pricing-guide-2026" style="color:#00C853;">2026 fractional pricing guide</a> for a full industry comparison.
+    </p>
+    <div class="anim d4" style="overflow-x:auto;">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Hours / Week</th>
+            <th>Monthly Retainer</th>
+            <th>Best Fit</th>
+            <th>Typical Deliverables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tier-name">Strategy Sprint</span></td>
+            <td>4 hrs</td>
+            <td><span class="tier-price">$3,500/mo</span></td>
+            <td>Pre-revenue or early traction; need a GTM foundation before hiring</td>
+            <td>ICP definition, positioning brief, channel roadmap, monthly review call</td>
+          </tr>
+          <tr>
+            <td><span class="tier-name">Advisory</span></td>
+            <td>8 hrs</td>
+            <td><span class="tier-price">$5,500/mo</span></td>
+            <td>$2M to $10M ARR; existing marketing team needs senior strategic direction</td>
+            <td>Weekly syncs, campaign direction, funnel audit, hiring briefs, board-level marketing narrative</td>
+          </tr>
+          <tr>
+            <td><span class="tier-name">Embedded</span></td>
+            <td>15 hrs</td>
+            <td><span class="tier-price">$9,500/mo</span></td>
+            <td>$10M to $30M ARR; fractional CMO serves as de facto marketing lead</td>
+            <td>Team management, full GTM ownership, ABM campaigns, AI tooling rollout, pipeline reporting</td>
+          </tr>
+          <tr>
+            <td><span class="tier-name">Full-Coverage</span></td>
+            <td>20+ hrs</td>
+            <td><span class="tier-price">$14,000/mo</span></td>
+            <td>Post-Series A or Series B; interim CMO while full-time search is running</td>
+            <td>Everything in Embedded plus board presentations, agency management, VP-level hiring, M&A marketing diligence</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="anim d5" style="font-size:0.82rem;color:#4A6A4A;margin-top:1rem;line-height:1.6;">Rates shown are representative ranges for 2026. Final pricing depends on company stage, team size, and scope complexity. A full-time CMO at the same level costs $180,000 to $300,000 per year in salary alone, before benefits, equity, and recruiting fees.</p>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section style="padding:6rem 2.5rem;background:#0A1A0A;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="lbl anim d1">How It Compares</span>
+    <h2 class="anim d2" style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;line-height:1.15;color:#F0FFF0;max-width:680px;margin-bottom:1rem;">
+      Fractional CMO vs. Full-Time vs. Agency
+    </h2>
+    <p class="anim d3" style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;max-width:680px;margin-bottom:0.5rem;">
+      Three common options for B2B marketing leadership. Each has a place, but fractional CMO closes the gap between underpowered agency retainers and the cost and timeline of a full-time hire.
+    </p>
+    <div class="anim d4" style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Fractional CMO</th>
+            <th>Full-Time CMO</th>
+            <th>Marketing Agency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Annual cost</td>
+            <td><span class="check">$42K to $168K</span></td>
+            <td><span class="cross">$200K to $350K+</span></td>
+            <td><span class="partial">$60K to $180K</span></td>
+          </tr>
+          <tr>
+            <td>Time to start</td>
+            <td><span class="check">1 to 2 weeks</span></td>
+            <td><span class="cross">3 to 6 months (search + notice)</span></td>
+            <td><span class="check">2 to 4 weeks</span></td>
+          </tr>
+          <tr>
+            <td>Strategic ownership</td>
+            <td><span class="check">Full ownership</span></td>
+            <td><span class="check">Full ownership</span></td>
+            <td><span class="cross">Executes, does not own strategy</span></td>
+          </tr>
+          <tr>
+            <td>Manages your team</td>
+            <td><span class="check">Yes</span></td>
+            <td><span class="check">Yes</span></td>
+            <td><span class="cross">No</span></td>
+          </tr>
+          <tr>
+            <td>GTM architecture</td>
+            <td><span class="check">Core deliverable</span></td>
+            <td><span class="partial">Depends on background</span></td>
+            <td><span class="cross">Rarely included</span></td>
+          </tr>
+          <tr>
+            <td>AI-native tooling</td>
+            <td><span class="check">Built in</span></td>
+            <td><span class="partial">Varies by hire</span></td>
+            <td><span class="partial">Varies by agency</span></td>
+          </tr>
+          <tr>
+            <td>Equity / benefits cost</td>
+            <td><span class="check">None</span></td>
+            <td><span class="cross">0.25% to 1.5% equity + full benefits</span></td>
+            <td><span class="check">None</span></td>
+          </tr>
+          <tr>
+            <td>Flexibility to scale hours</td>
+            <td><span class="check">Yes, month to month</span></td>
+            <td><span class="cross">Fixed salary regardless of need</span></td>
+            <td><span class="partial">Scope change process required</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -242,7 +352,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
       AI-Powered Marketing at Scale
     </h2>
     <p class="anim d3" style="font-size:1rem;color:#8FAF8F;line-height:1.8;max-width:720px;margin-bottom:3rem;">
-      We architect your GTM around AI tooling, Claude for content, lead scoring, sales playbooks. This reduces campaign cycle time, improves targeting precision, and scales your team's output without adding headcount.
+      We architect your GTM around AI tooling: Claude for content, lead scoring, and sales playbooks. This reduces campaign cycle time, improves targeting precision, and scales your team's output without adding headcount.
     </p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
       <div class="card-mid anim d4">
@@ -307,7 +417,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
       </a>
       <a href="/claude-for-small-business" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
         <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Claude for Small Business</div>
-        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Overview & Packages</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Overview and Packages</div>
         <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Everything we do to get Claude working for your team.</div>
       </a>
     </div>
@@ -353,13 +463,13 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:400;line-height:1.2;color:#F0FFF0;margin-bottom:1.5rem;">Explore more from Treetop</h2>
     <ul style="list-style:none;padding:0;font-size:0.96rem;line-height:1.9;color:#C0D8C0;">
     <li><a href="/hire-fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Treetop fractional CMO engagement &rarr;</a></li>
-    <li><a href="/fractional-executive-pricing-guide-2026" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Fractional executive pricing (2026) &rarr;</a></li>
     <li><a href="/how-to-hire-a-fractional-cmo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">How to hire a fractional CMO &rarr;</a></li>
     <li><a href="/what-is-a-fractional-executive" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">What is a fractional executive? &rarr;</a></li>
     <li><a href="/fractional-cro" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Fractional CRO services &rarr;</a></li>
     <li><a href="/fractional-cfo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Fractional CFO services &rarr;</a></li>
     <li><a href="/fractional-coo" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Fractional COO services &rarr;</a></li>
     <li><a href="/fractional-chro" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Fractional CHRO services &rarr;</a></li>
+    <li><a href="/fractional-cto" style="color:#00C853;text-decoration:none;border-bottom:1px solid rgba(0,200,83,0.3);">Fractional CTO services &rarr;</a></li>
     </ul>
   </div>
 </section>

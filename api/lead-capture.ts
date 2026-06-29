@@ -269,6 +269,14 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ error: 'Valid email required' });
   }
 
+  const hp = (body.hp as string | undefined)?.trim() ?? '';
+  const loadTime = Number(body._t) || 0;
+  const elapsed = loadTime ? Date.now() - loadTime : Infinity;
+  if (hp.length > 0 || (loadTime > 0 && elapsed < 3000)) {
+    console.warn('Bot submission dropped:', email, { hp: hp.length, elapsed });
+    return res.status(200).json({ success: true });
+  }
+
   const isPopup = !!body.asset && !body.first_name;
   const asset = body.asset?.trim() || '';
   const source = body.source?.trim() || '';
