@@ -35,12 +35,53 @@ export default async function handler(req, res){
       if (!CALENDAR_WRITE_KEY || provided !== CALENDAR_WRITE_KEY) {
         return res.status(401).json({ error: "Unauthorized" });
       }
-      const { recordId, fields } = req.body || {};
+      const body = req.body || {};
+      const authHeaders = { Authorization: `Bearer ${AIRTABLE_TOKEN}`, "Content-Type": "application/json" };
+      const tableUrl = `https://api.airtable.com/v0/${BASE}/${CAMPAIGNS}`;
+
+      // ── CREATE one record  { create: { fields } }
+      // Used by the planner's "New Campaign" button. typecast lets us pass single-select
+      // option names (Planner Month, Audience, Pillar) as plain strings.
+      if (body.create && body.create.fields) {
+        const r = await fetch(tableUrl, {
+          method: "POST",
+          headers: authHeaders,
+          body: JSON.stringify({ records: [{ fields: body.create.fields }], typecast: true })
+        });
+        const data = await r.json();
+        if (!r.ok) { console.error("Airtable CREATE failed:", r.status, data); return res.status(r.status).json({ error: "Create failed" }); }
+        return res.status(200).json(data.records ? data.records[0] : data);
+      }
+
+      // ── BATCH update  { records: [{ recordId|id, fields }, ...] }
+      // One drag reshuffle = one request. Airtable caps batch PATCH at 10, so we chunk.
+      if (Array.isArray(body.records)) {
+        const recs = body.records
+          .map(rc => ({ id: rc.id || rc.recordId, fields: rc.fields }))
+          .filter(rc => rc.id && rc.fields);
+        if (!recs.length) return res.status(400).json({ error: "records must contain {recordId, fields}" });
+        const out = [];
+        for (let i = 0; i < recs.length; i += 10) {
+          const chunk = recs.slice(i, i + 10);
+          const r = await fetch(tableUrl, {
+            method: "PATCH",
+            headers: authHeaders,
+            body: JSON.stringify({ records: chunk, typecast: true })
+          });
+          const data = await r.json();
+          if (!r.ok) { console.error("Airtable batch PATCH failed:", r.status, data); return res.status(r.status).json({ error: "Update failed" }); }
+          out.push(...(data.records || []));
+        }
+        return res.status(200).json({ records: out });
+      }
+
+      // ── SINGLE update  { recordId, fields }  (original contract, unchanged)
+      const { recordId, fields } = body;
       if (!recordId || !fields) return res.status(400).json({ error: "recordId and fields required" });
-      const r = await fetch(`https://api.airtable.com/v0/${BASE}/${CAMPAIGNS}/${recordId}`, {
+      const r = await fetch(`${tableUrl}/${recordId}`, {
         method: "PATCH",
-        headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ fields })
+        headers: authHeaders,
+        body: JSON.stringify({ fields, typecast: true })
       });
       if (!r.ok) { console.error("Airtable PATCH failed:", r.status); return res.status(r.status).json({ error: "Update failed" }); }
       const data = await r.json();

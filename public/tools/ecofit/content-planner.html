@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ecofit Content Planner</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<style>
+  :root {
+    --bg:#14191f; --bg-dark:#0d1117; --surface:#1a2130; --surface2:#2F3535;
+    --border:rgba(255,255,255,0.08); --border-h:rgba(132,188,65,0.3);
+    --green:#84BC41; --green-dk:#6aa130; --green-glow:rgba(132,188,65,0.08); --green-glow2:rgba(132,188,65,0.14);
+    --teal:#58BCC5; --amber:#f59e0b; --red:#ef4444; --purple:#c084fc;
+    --text:#F2F3F8; --text-sub:#9699A2; --text-muted:#6b6f7a; --text-dim:#c8cad1;
+    --r:12px; --r-lg:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Work Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh;padding-bottom:120px;}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;letter-spacing:-0.02em;}
+  button{font-family:'Work Sans',sans-serif;}
+  a{color:var(--green-dk);text-decoration:none;}
+  a:hover{color:var(--green);}
+
+  /* NAV */
+  nav{border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:50;}
+  .nav-logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:18px;color:var(--green);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:10px;}
+  .nav-logo img{height:24px;width:auto;display:block;}
+  .nav-div{color:var(--text-sub);font-weight:400;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif;padding-left:12px;border-left:1px solid var(--border);}
+  .nav-right{display:flex;align-items:center;gap:14px;}
+  .key-chip{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--text-sub);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;transition:all 0.15s;}
+  .key-chip:hover{border-color:var(--border-h);color:var(--green);}
+  .key-chip .kdot{width:7px;height:7px;border-radius:50%;background:var(--text-muted);flex-shrink:0;}
+  .key-chip.unlocked .kdot{background:var(--green);}
+
+  /* HERO */
+  .hero{padding:36px 28px 20px;max-width:920px;margin:0 auto;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+  .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;line-height:1.12;letter-spacing:-0.03em;}
+  .hero h1 em{color:var(--green);font-style:italic;}
+  .hero p{margin-top:10px;font-size:13.5px;color:var(--text-sub);font-weight:300;max-width:620px;line-height:1.6;}
+
+  /* FILTER BAR */
+  .toolbar{max-width:920px;margin:0 auto;padding:8px 28px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .tb-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-right:2px;}
+  .filter-btn{background:transparent;border:1px solid var(--border);color:var(--text-sub);font-size:12px;font-weight:500;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all 0.15s;}
+  .filter-btn:hover{border-color:var(--border-h);color:var(--green);background:var(--green-glow);}
+  .filter-btn.active{border-color:var(--green);color:var(--green);background:var(--green-glow2);}
+
+  /* COLUMN */
+  .column{max-width:920px;margin:0 auto;padding:18px 28px 40px;display:flex;flex-direction:column;gap:18px;}
+
+  /* MONTH CARD */
+  .month{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:0 1px 3px rgba(0,0,0,0.4),0 0 0 1px rgba(132,188,65,0.04);}
+  .month.backlog{background:rgba(255,255,255,0.015);}
+  .month.unplaced{background:rgba(245,158,11,0.04);border-color:rgba(245,158,11,0.22);}
+  .month-head{position:sticky;top:60px;z-index:20;background:linear-gradient(180deg,var(--surface) 70%,rgba(26,33,48,0.92));backdrop-filter:blur(6px);border-bottom:1px solid var(--border);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .month.backlog .month-head{background:linear-gradient(180deg,#1a2028 70%,rgba(26,32,40,0.92));}
+  .month.unplaced .month-head{background:linear-gradient(180deg,#1f2128 70%,rgba(31,33,40,0.92));}
+  .month-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.01em;}
+  .month-sub{font-size:11px;color:var(--text-muted);}
+  .month-count{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:3px 9px;}
+  .aud-mix{display:flex;align-items:center;gap:8px;margin-left:auto;flex-wrap:wrap;}
+  .aud-pill{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--text-sub);}
+  .aud-pill .adot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .add-btn{font-size:11px;font-weight:600;color:var(--green);background:var(--green-glow);border:1px solid var(--border-h);border-radius:20px;padding:5px 12px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+  .add-btn:hover{background:var(--green-glow2);border-color:var(--green);}
+
+  /* CARD LIST */
+  .card-list{padding:12px;display:flex;flex-direction:column;gap:10px;min-height:54px;}
+  .card-list.empty-hint{position:relative;}
+  .card-list.empty-hint::after{content:attr(data-empty);position:absolute;inset:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);border:1px dashed var(--border);border-radius:10px;pointer-events:none;}
+  .card-list.empty-hint > .camp-card ~ ::after,
+  .card-list:not(:empty).empty-hint::after{display:none;}
+
+  /* CAMPAIGN CARD */
+  .camp-card{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px 13px 36px;position:relative;cursor:pointer;transition:border-color 0.15s,background 0.15s,box-shadow 0.15s;}
+  .camp-card:hover{border-color:var(--border-h);background:rgba(132,188,65,0.04);}
+  .camp-card.sortable-ghost{opacity:0.35;border-style:dashed;}
+  .camp-card.sortable-chosen{box-shadow:0 8px 24px rgba(0,0,0,0.4),0 0 0 1px rgba(132,188,65,0.3);}
+  .drag-handle{position:absolute;top:0;left:0;bottom:0;width:30px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);cursor:grab;border-right:1px solid rgba(255,255,255,0.04);font-size:13px;line-height:1;}
+  .drag-handle:hover{color:var(--green);background:rgba(132,188,65,0.05);}
+  .drag-handle:active{cursor:grabbing;}
+  .cc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .cc-title{font-family:'Raleway',sans-serif;font-weight:700;font-size:13.5px;line-height:1.32;letter-spacing:-0.01em;color:var(--text);}
+  .cc-check{flex-shrink:0;width:18px;height:18px;border-radius:5px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;transition:all 0.15s;margin-top:1px;}
+  .cc-check:hover{border-color:var(--border-h);}
+  .cc-check.on{background:var(--green);border-color:var(--green);color:#0d1117;}
+  .cc-tags{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px;}
+  .pillar-badge{font-size:8.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;white-space:nowrap;}
+  .pb-thought{color:#84BC41;background:rgba(132,188,65,0.12);}
+  .pb-operator{color:#58BCC5;background:rgba(88,188,197,0.12);}
+  .pb-metric{color:#f59e0b;background:rgba(245,158,11,0.12);}
+  .pb-partner{color:#c084fc;background:rgba(192,132,252,0.12);}
+  .pb-none{color:var(--text-muted);background:rgba(255,255,255,0.05);}
+  .aud-tag{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:600;color:var(--text-sub);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:2px 8px;white-space:nowrap;}
+  .aud-tag .adot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+  .cc-desc{font-size:11.5px;color:var(--text-muted);line-height:1.5;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .cc-meta{font-size:9.5px;color:var(--text-muted);margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;}
+  .cc-meta .k{color:var(--text-sub);}
+
+  /* ACTION BAR */
+  .action-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:12px;z-index:100;flex-wrap:wrap;}
+  .ab-inner{max-width:920px;margin:0 auto;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .ab-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+  .ab-count{font-size:12px;font-weight:600;color:var(--green);}
+  .ab-input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Work Sans',sans-serif;font-size:12.5px;padding:8px 12px;outline:none;min-width:200px;flex:1;transition:border-color 0.15s;}
+  .ab-input:focus{border-color:var(--border-h);}
+  .ab-select{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-family:'Work Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none;cursor:pointer;}
+  .btn-primary{font-size:12.5px;font-weight:600;padding:9px 18px;border-radius:8px;cursor:pointer;border:none;background:var(--green);color:#0d1117;transition:all 0.2s;white-space:nowrap;}
+  .btn-primary:hover{background:#a8d96b;transform:translateY(-1px);box-shadow:0 6px 18px rgba(132,188,65,0.3);}
+  .btn-primary:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none;}
+  .btn-ghost{font-size:12px;font-weight:500;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-sub);transition:all 0.15s;white-space:nowrap;}
+  .btn-ghost:hover{border-color:var(--border-h);color:var(--green);}
+
+  /* MODAL */
+  .modal-bg{position:fixed;inset:0;background:rgba(5,8,12,0.72);backdrop-filter:blur(4px);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:48px 20px;overflow-y:auto;}
+  .modal-bg.open{display:flex;}
+  .modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);width:100%;max-width:560px;box-shadow:0 24px 60px rgba(0,0,0,0.6);}
+  .modal-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .modal-head h3{font-size:15px;font-weight:700;}
+  .modal-close{background:transparent;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;line-height:1;padding:4px;}
+  .modal-close:hover{color:var(--red);}
+  .modal-body{padding:18px 22px;display:flex;flex-direction:column;gap:14px;}
+  .field label{display:block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Work Sans',sans-serif;font-size:13px;line-height:1.55;padding:9px 12px;outline:none;transition:border-color 0.15s;}
+  .field textarea{resize:vertical;min-height:84px;}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--border-h);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .modal-foot{padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .danger-link{font-size:11.5px;font-weight:500;color:var(--text-muted);background:transparent;border:none;cursor:pointer;}
+  .danger-link:hover{color:var(--amber);}
+
+  /* MARKDOWN EXPORT MODAL */
+  .md-pre{background:var(--bg-dark);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;line-height:1.6;color:var(--text-dim);white-space:pre-wrap;max-height:340px;overflow-y:auto;}
+  .md-note{font-size:11.5px;color:var(--text-muted);line-height:1.5;}
+
+  /* TOAST */
+  .toasts{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;}
+  .toast{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:12.5px;color:var(--text-dim);box-shadow:0 8px 24px rgba(0,0,0,0.4);display:flex;align-items:center;gap:8px;animation:tin 0.2s ease;}
+  .toast .tdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .toast.ok .tdot{background:var(--green);}
+  .toast.err .tdot{background:var(--red);}
+  @keyframes tin{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  .loading{max-width:920px;margin:60px auto;text-align:center;color:var(--text-muted);font-size:13px;}
+
+  @media(max-width:640px){
+    nav,.hero,.toolbar,.column,.action-bar{padding-left:16px;padding-right:16px;}
+    .month-head{top:60px;}
+    .field-row{grid-template-columns:1fr;}
+    .ab-input{min-width:140px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/tools/ecofit/content-calendar" class="nav-logo">
+    <img src="https://ecofit-website.web.app/assets/ecofit-logo-light.png" alt="ecofit" onerror="this.style.display='none'">
+    <span class="nav-div">Content Planner</span>
+  </a>
+  <div class="nav-right">
+    <div class="key-chip" id="keyChip" onclick="setKey()" title="Set or clear your write key">
+      <span class="kdot"></span><span id="keyLabel">Read only</span>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="section-tag"><span class="section-tag-dot"></span>Plan · Drag · Push to Gamma</div>
+  <h1>Build the next <em>nine months</em> of ecofit.</h1>
+  <p>One column, one month at a time. Drag campaigns between months and the backlog, edit inline, add new ideas, then push any selection into a Gamma deck. Every change writes straight back to Airtable.</p>
+</div>
+
+<div class="toolbar">
+  <span class="tb-label">Pillar</span>
+  <button class="filter-btn active" data-pillar="all" onclick="setFilter('all',this)">All</button>
+  <button class="filter-btn" data-pillar="Thought Leadership" onclick="setFilter('Thought Leadership',this)">Thought Leadership</button>
+  <button class="filter-btn" data-pillar="Partner Deep Dive" onclick="setFilter('Partner Deep Dive',this)">Partner</button>
+  <button class="filter-btn" data-pillar="Operator Story" onclick="setFilter('Operator Story',this)">Operator</button>
+  <button class="filter-btn" data-pillar="Key Metric" onclick="setFilter('Key Metric',this)">Key Metric</button>
+</div>
+
+<div id="column" class="column">
+  <div class="loading" id="loading">Loading campaigns from Airtable...</div>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+  <div class="ab-inner">
+    <span class="ab-label">Gamma deck</span>
+    <span class="ab-count"><span id="selCount">0</span> selected</span>
+    <input class="ab-input" id="deckTitle" placeholder="Deck title (e.g. ecofit Content Plan, H2 2026)">
+    <select class="ab-select" id="deckScope">
+      <option value="selected">Selected cards</option>
+      <option value="all">Whole plan</option>
+    </select>
+    <button class="btn-ghost" onclick="clearSelection()">Clear</button>
+    <button class="btn-primary" id="buildBtn" onclick="buildDeck()">Build Deck</button>
+  </div>
+</div>
+
+<!-- EDIT / CREATE MODAL -->
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Edit campaign</h3>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Title</label><input id="fTitle" placeholder="Campaign title"></div>
+      <div class="field-row">
+        <div class="field"><label>Pillar</label>
+          <select id="fPillar">
+            <option>Thought Leadership</option><option>Partner Deep Dive</option>
+            <option>Operator Story</option><option>Key Metric</option>
+          </select>
+        </div>
+        <div class="field"><label>Audience</label>
+          <select id="fAudience">
+            <option value="">None</option>
+            <option>Manufacturers</option><option>Franchise Groups</option>
+            <option>Operators</option><option>Market</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Description / Notes</label><textarea id="fNotes" placeholder="What this campaign is, the angle, the source."></textarea></div>
+      <div class="field"><label>Agent Query <span style="text-transform:none;letter-spacing:0;color:var(--text-muted);">(optional, for the ecofit insights agent)</span></label><textarea id="fAgent" placeholder="The natural-language query you would run to produce this campaign's data." style="min-height:60px;"></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="danger-link" id="toBacklogBtn" onclick="moveToBacklog()">Move to Backlog</button>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" id="saveBtn" onclick="saveModal()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARKDOWN EXPORT MODAL -->
+<div class="modal-bg" id="mdModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Deck outline</h3>
+      <button class="modal-close" onclick="document.getElementById('mdModal').classList.remove('open')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="md-note" id="mdNote">Copy this, then paste into Gamma's "Create with AI &rarr; Paste in text" flow.</p>
+      <pre class="md-pre" id="mdContent"></pre>
+    </div>
+    <div class="modal-foot">
+      <span class="md-note" id="mdStatus"></span>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-ghost" onclick="downloadMd()">Download .md</button>
+        <button class="btn-primary" onclick="copyMd()">Copy to clipboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+// ───────────────────────── CONFIG
+const API = "/api/calendar";
+const GAMMA_API = "/api/gamma-generate";
+const MONTHS = ["Jul 2026","Aug 2026","Sep 2026","Oct 2026","Nov 2026","Dec 2026","Jan 2027","Feb 2027","Mar 2027"];
+const PILLAR_CLASS = {
+  "Thought Leadership":"pb-thought","Partner Deep Dive":"pb-partner",
+  "Operator Story":"pb-operator","Key Metric":"pb-metric"
+};
+const AUD_COLOR = {
+  "Manufacturers":"#c084fc","Franchise Groups":"#58BCC5",
+  "Operators":"#84BC41","Market":"#f59e0b"
+};
+const AUD_LIST = ["Manufacturers","Franchise Groups","Operators","Market"];
+
+// ───────────────────────── STATE
+let CAMPAIGNS = [];          // [{recordId, title, pillar, audience, notes, agentQuery, month, sort, key, stage1, review}]
+let byId = {};
+let filter = "all";
+let selected = new Set();
+let editingId = null;        // recordId or null (create mode)
+let createMonth = null;
+
+// ───────────────────────── WRITE KEY (entered once, localStorage)
+function getKey(){ return localStorage.getItem("ecofit_planner_key") || ""; }
+function reflectKey(){
+  const chip = document.getElementById("keyChip");
+  const label = document.getElementById("keyLabel");
+  if(getKey()){ chip.classList.add("unlocked"); label.textContent = "Write enabled"; }
+  else { chip.classList.remove("unlocked"); label.textContent = "Read only"; }
+}
+function setKey(){
+  const cur = getKey();
+  if(cur){
+    if(confirm("Clear the saved write key? You will be read only until you enter it again.")){
+      localStorage.removeItem("ecofit_planner_key"); reflectKey(); toast("Write key cleared","ok");
+    }
+    return;
+  }
+  const k = prompt("Enter the planner write key (CALENDAR_WRITE_KEY). Stored on this device only.");
+  if(k && k.trim()){ localStorage.setItem("ecofit_planner_key", k.trim()); reflectKey(); toast("Write enabled","ok"); }
+}
+function ensureKey(){
+  if(getKey()) return true;
+  setKey();
+  return !!getKey();
+}
+
+// ───────────────────────── API
+async function apiGet(){
+  const r = await fetch(API);
+  if(!r.ok) throw new Error("GET failed "+r.status);
+  const d = await r.json();
+  return d.campaigns || [];
+}
+async function apiWrite(body){
+  const r = await fetch(API, {
+    method:"POST",
+    headers:{ "Content-Type":"application/json", "x-calendar-key":getKey() },
+    body: JSON.stringify(body)
+  });
+  if(r.status === 401){ localStorage.removeItem("ecofit_planner_key"); reflectKey(); throw new Error("unauthorized"); }
+  if(!r.ok) throw new Error("write failed "+r.status);
+  return r.json();
+}
+const fieldsOf = c => ({
+  "Title":c.title, "Pillar":c.pillar, "Audience":c.audience||null,
+  "Notes":c.notes||"", "Agent Query":c.agentQuery||"",
+  "Planner Month":c.month||null, "Sort Order":c.sort
+});
+
+// ───────────────────────── NORMALISE
+function normalise(raw){
+  return raw.map(c => ({
+    recordId: c.recordId,
+    key: c["Campaign Key"] || "",
+    title: c["Title"] || "(untitled)",
+    pillar: c["Pillar"] || "",
+    audience: c["Audience"] || "",
+    notes: c["Notes"] || "",
+    agentQuery: c["Agent Query"] || "",
+    month: c["Planner Month"] || "",
+    sort: typeof c["Sort Order"] === "number" ? c["Sort Order"] : 0,
+    stage1: c["Stage1 Status"] || "Draft",
+    review: c["Review Status"] || "Pending"
+  }));
+}
+
+// ───────────────────────── RENDER
+function bucketKeys(){
+  const hasUnplaced = CAMPAIGNS.some(c => !c.month);
+  return [...MONTHS, ...(hasUnplaced ? ["Unplaced"] : []), "Backlog"];
+}
+function inBucket(c, bucket){
+  if(bucket === "Backlog") return c.month === "Backlog";
+  if(bucket === "Unplaced") return !c.month;
+  return c.month === bucket;
+}
+function subFor(bucket){
+  if(bucket === "Backlog") return "Unscheduled ideas. Drag up into a month when ready.";
+  if(bucket === "Unplaced") return "Not yet placed. Drag into a month or the backlog.";
+  return "One major campaign. Three posts: Dave, a brand partner, an industry voice.";
+}
+
+function render(){
+  const col = document.getElementById("column");
+  col.innerHTML = "";
+  bucketKeys().forEach(bucket => {
+    const list = CAMPAIGNS
+      .filter(c => inBucket(c, bucket))
+      .sort((a,b) => a.sort - b.sort);
+
+    const sec = document.createElement("section");
+    sec.className = "month" + (bucket==="Backlog"?" backlog":"") + (bucket==="Unplaced"?" unplaced":"");
+
+    // audience mix
+    const mix = {};
+    list.forEach(c => { if(c.audience) mix[c.audience] = (mix[c.audience]||0)+1; });
+    const mixHtml = AUD_LIST.filter(a=>mix[a]).map(a =>
+      `<span class="aud-pill"><span class="adot" style="background:${AUD_COLOR[a]}"></span>${mix[a]}</span>`
+    ).join("");
+
+    const addBtn = (bucket==="Unplaced") ? "" :
+      `<button class="add-btn" onclick="openCreate('${bucket}')">+ New</button>`;
+
+    sec.innerHTML = `
+      <div class="month-head">
+        <div>
+          <div class="month-name">${bucket}</div>
+          <div class="month-sub">${subFor(bucket)}</div>
+        </div>
+        <span class="month-count">${list.length} campaign${list.length===1?"":"s"}</span>
+        <div class="aud-mix">${mixHtml}${addBtn}</div>
+      </div>
+      <div class="card-list empty-hint" data-month="${bucket==='Unplaced'?'':bucket}" data-empty="Drop a campaign here" id="list-${cssId(bucket)}"></div>`;
+    col.appendChild(sec);
+
+    const listEl = sec.querySelector(".card-list");
+    list.forEach(c => listEl.appendChild(cardEl(c)));
+  });
+  initSortables();
+  applyFilter();
+  updateSelCount();
+}
+
+function cssId(s){ return s.replace(/\s+/g,"_"); }
+
+function cardEl(c){
+  const el = document.createElement("div");
+  el.className = "camp-card";
+  el.dataset.id = c.recordId;
+  el.dataset.pillar = c.pillar;
+  const pclass = PILLAR_CLASS[c.pillar] || "pb-none";
+  const audTag = c.audience
+    ? `<span class="aud-tag"><span class="adot" style="background:${AUD_COLOR[c.audience]}"></span>${c.audience}</span>` : "";
+  const checked = selected.has(c.recordId) ? "on" : "";
+  el.innerHTML = `
+    <div class="drag-handle" title="Drag to move">&#8942;&#8942;</div>
+    <div class="cc-top">
+      <div class="cc-title">${esc(c.title)}</div>
+      <button class="cc-check ${checked}" title="Include in Gamma deck" data-check="${c.recordId}">&#10003;</button>
+    </div>
+    <div class="cc-tags">
+      <span class="pillar-badge ${pclass}">${c.pillar||"No pillar"}</span>
+      ${audTag}
+    </div>
+    ${c.notes ? `<div class="cc-desc">${esc(c.notes)}</div>` : ""}
+    <div class="cc-meta"><span><span class="k">Stage:</span> ${c.stage1}</span><span><span class="k">Review:</span> ${c.review}</span></div>`;
+
+  el.addEventListener("click", (e) => {
+    if(e.target.closest(".drag-handle")) return;
+    if(e.target.closest(".cc-check")){
+      e.stopPropagation(); toggleSelect(c.recordId, e.target.closest(".cc-check")); return;
+    }
+    openEdit(c.recordId);
+  });
+  return el;
+}
+function esc(s){ return (s||"").replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+// ───────────────────────── SORTABLE
+let sortables = [];
+function initSortables(){
+  sortables.forEach(s => s.destroy()); sortables = [];
+  document.querySelectorAll(".card-list").forEach(list => {
+    sortables.push(new Sortable(list, {
+      group:"campaigns", handle:".drag-handle", animation:160,
+      ghostClass:"sortable-ghost", chosenClass:"sortable-chosen",
+      onEnd: onDragEnd
+    }));
+  });
+}
+
+async function onDragEnd(evt){
+  const toList = evt.to, fromList = evt.from;
+  const lists = toList === fromList ? [toList] : [toList, fromList];
+  const affected = [];
+  lists.forEach(list => {
+    const month = list.dataset.month; // "" for unplaced, month name, or "Backlog"
+    [...list.querySelectorAll(".camp-card")].forEach((el,i) => {
+      const c = byId[el.dataset.id];
+      if(!c) return;
+      c.month = month; c.sort = i;
+      affected.push({ recordId:c.recordId, fields:{ "Planner Month": month||null, "Sort Order": i } });
+    });
+  });
+  // refresh headers (counts + mix) without full re-render so the drag feels instant
+  refreshHeaders();
+
+  if(!affected.length) return;
+  if(!ensureKey()){ toast("Read only. Set a write key to save moves.","err"); render(); return; }
+  try{
+    await apiWrite({ records: affected });
+    toast("Moved · saved","ok");
+  }catch(err){
+    toast(err.message==="unauthorized" ? "Wrong key. Try again." : "Save failed, reverting.","err");
+    await reload();
+  }
+}
+
+function refreshHeaders(){
+  document.querySelectorAll(".month").forEach(sec => {
+    const list = sec.querySelector(".card-list");
+    const cards = [...list.querySelectorAll(".camp-card")];
+    const countEl = sec.querySelector(".month-count");
+    countEl.textContent = cards.length + " campaign" + (cards.length===1?"":"s");
+    const mix = {};
+    cards.forEach(el => { const c = byId[el.dataset.id]; if(c && c.audience) mix[c.audience]=(mix[c.audience]||0)+1; });
+    const addBtn = sec.querySelector(".add-btn");
+    const mixHtml = AUD_LIST.filter(a=>mix[a]).map(a =>
+      `<span class="aud-pill"><span class="adot" style="background:${AUD_COLOR[a]}"></span>${mix[a]}</span>`).join("");
+    const mixWrap = sec.querySelector(".aud-mix");
+    mixWrap.innerHTML = mixHtml + (addBtn ? addBtn.outerHTML : "");
+  });
+}
+
+// ───────────────────────── FILTER
+function setFilter(p, btn){
+  filter = p;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  applyFilter();
+}
+function applyFilter(){
+  document.querySelectorAll(".camp-card").forEach(el => {
+    el.style.display = (filter==="all" || el.dataset.pillar===filter) ? "" : "none";
+  });
+}
+
+// ───────────────────────── SELECT (for Gamma)
+function toggleSelect(id, btn){
+  if(selected.has(id)){ selected.delete(id); btn.classList.remove("on"); }
+  else { selected.add(id); btn.classList.add("on"); }
+  updateSelCount();
+}
+function clearSelection(){
+  selected.clear();
+  document.querySelectorAll(".cc-check").forEach(b=>b.classList.remove("on"));
+  updateSelCount();
+}
+function updateSelCount(){ document.getElementById("selCount").textContent = selected.size; }
+
+// ───────────────────────── EDIT / CREATE
+function openEdit(id){
+  const c = byId[id]; if(!c) return;
+  editingId = id; createMonth = null;
+  document.getElementById("modalTitle").textContent = "Edit campaign";
+  document.getElementById("fTitle").value = c.title==="(untitled)"?"":c.title;
+  document.getElementById("fPillar").value = c.pillar || "Thought Leadership";
+  document.getElementById("fAudience").value = c.audience || "";
+  document.getElementById("fNotes").value = c.notes || "";
+  document.getElementById("fAgent").value = c.agentQuery || "";
+  document.getElementById("toBacklogBtn").style.display = (c.month==="Backlog") ? "none" : "";
+  document.getElementById("editModal").classList.add("open");
+}
+function openCreate(month){
+  editingId = null; createMonth = month;
+  document.getElementById("modalTitle").textContent = "New campaign · " + month;
+  document.getElementById("fTitle").value = "";
+  document.getElementById("fPillar").value = "Thought Leadership";
+  document.getElementById("fAudience").value = "";
+  document.getElementById("fNotes").value = "";
+  document.getElementById("fAgent").value = "";
+  document.getElementById("toBacklogBtn").style.display = "none";
+  document.getElementById("editModal").classList.add("open");
+}
+function closeModal(){ document.getElementById("editModal").classList.remove("open"); editingId=null; createMonth=null; }
+
+function slugify(t){
+  const base = (t||"campaign").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40) || "campaign";
+  return base + "-" + Math.random().toString(36).slice(2,6);
+}
+
+async function saveModal(){
+  const title = document.getElementById("fTitle").value.trim();
+  if(!title){ toast("Title is required","err"); return; }
+  if(!ensureKey()){ toast("Set a write key to save.","err"); return; }
+  const pillar = document.getElementById("fPillar").value;
+  const audience = document.getElementById("fAudience").value;
+  const notes = document.getElementById("fNotes").value.trim();
+  const agentQuery = document.getElementById("fAgent").value.trim();
+  const saveBtn = document.getElementById("saveBtn");
+  saveBtn.disabled = true; saveBtn.textContent = "Saving...";
+  try{
+    if(editingId){
+      const c = byId[editingId];
+      Object.assign(c, { title, pillar, audience, notes, agentQuery });
+      await apiWrite({ recordId: editingId, fields: {
+        "Title":title,"Pillar":pillar,"Audience":audience||null,"Notes":notes,"Agent Query":agentQuery
+      }});
+    } else {
+      const month = createMonth;
+      const maxSort = Math.max(-1, ...CAMPAIGNS.filter(c=>inBucket(c,month)).map(c=>c.sort));
+      const fields = {
+        "Campaign Key":slugify(title),"Title":title,"Pillar":pillar,"Audience":audience||null,
+        "Notes":notes,"Agent Query":agentQuery,"Planner Month":month,
+        "Stage1 Status":"Draft","Review Status":"Pending","Sort Order":maxSort+1
+      };
+      const rec = await apiWrite({ create:{ fields } });
+      const created = normalise([{ recordId:rec.id, ...rec.fields }])[0];
+      CAMPAIGNS.push(created); byId[created.recordId]=created;
+    }
+    closeModal(); render(); toast("Saved","ok");
+  }catch(err){
+    toast(err.message==="unauthorized" ? "Wrong key. Try again." : "Save failed.","err");
+  }finally{
+    saveBtn.disabled=false; saveBtn.textContent="Save";
+  }
+}
+
+async function moveToBacklog(){
+  if(!editingId) return;
+  if(!ensureKey()){ toast("Set a write key to save.","err"); return; }
+  const c = byId[editingId];
+  c.month = "Backlog";
+  try{
+    await apiWrite({ recordId: editingId, fields:{ "Planner Month":"Backlog" } });
+    closeModal(); render(); toast("Moved to Backlog","ok");
+  }catch(err){ toast("Move failed.","err"); await reload(); }
+}
+
+// ───────────────────────── GAMMA EXPORT
+function selectedCampaigns(scope){
+  let list;
+  if(scope === "all"){
+    list = CAMPAIGNS.filter(c => MONTHS.includes(c.month)); // scheduled months only
+  } else {
+    list = CAMPAIGNS.filter(c => selected.has(c.recordId));
+  }
+  // order by month then sort
+  const order = m => { const i = MONTHS.indexOf(m); return i===-1 ? 99 : i; };
+  return list.sort((a,b) => order(a.month)-order(b.month) || a.sort-b.sort);
+}
+function buildOutline(title, list){
+  const groups = {};
+  list.forEach(c => { const m = c.month || "Unscheduled"; (groups[m] = groups[m]||[]).push(c); });
+  const ordered = [...MONTHS, "Backlog", "Unscheduled"].filter(m => groups[m]);
+  let md = `# ${title}\n\nA campaign plan for ecofit. ${list.length} campaigns.\n`;
+  ordered.forEach(m => {
+    md += `\n## ${m}\n`;
+    groups[m].forEach(c => {
+      md += `\n### ${c.title}\n`;
+      md += `Pillar: ${c.pillar||"n/a"}. Audience: ${c.audience||"n/a"}.\n`;
+      if(c.notes) md += `\n${c.notes}\n`;
+    });
+  });
+  return md;
+}
+let currentMd = "", currentTitle = "";
+async function buildDeck(){
+  const scope = document.getElementById("deckScope").value;
+  const title = (document.getElementById("deckTitle").value.trim()) || "ecofit Content Plan";
+  const list = selectedCampaigns(scope);
+  if(!list.length){ toast(scope==="selected" ? "Select some cards first." : "No campaigns to include.","err"); return; }
+  currentMd = buildOutline(title, list); currentTitle = title;
+  const btn = document.getElementById("buildBtn");
+  btn.disabled = true; btn.textContent = "Building...";
+
+  // Always prepare the Markdown fallback. Then try the API if a key exists.
+  let usedApi = false;
+  try{
+    const probe = await fetch(GAMMA_API + "?probe=1").then(r=>r.json()).catch(()=>({enabled:false}));
+    if(probe.enabled){
+      usedApi = true;
+      showMd("Generating in Gamma. The link appears below when it is ready.");
+      const res = await fetch(GAMMA_API, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ title, inputText: currentMd })
+      });
+      const data = await res.json();
+      if(res.ok && data.gammaUrl){ gammaReady(data.gammaUrl); }
+      else if(res.ok && data.generationId){ pollGamma(data.generationId); }
+      else { document.getElementById("mdStatus").textContent = "Gamma API unavailable. Use Copy or Download below."; }
+    }
+  }catch(err){ /* fall through to markdown */ }
+
+  if(!usedApi){ showMd('Gamma API key not set. Copy this outline, then paste into Gamma: Create with AI, then "Paste in text".'); }
+  btn.disabled=false; btn.textContent="Build Deck";
+}
+function showMd(note){
+  document.getElementById("mdNote").textContent = note || "";
+  document.getElementById("mdStatus").textContent = "";
+  document.getElementById("mdContent").textContent = currentMd;
+  document.getElementById("mdModal").classList.add("open");
+}
+function gammaReady(url){
+  document.getElementById("mdStatus").innerHTML = `Deck ready: <a href="${url}" target="_blank">open in Gamma &rarr;</a>`;
+}
+async function pollGamma(id){
+  for(let i=0;i<20;i++){
+    await new Promise(r=>setTimeout(r,3000));
+    try{
+      const d = await fetch(GAMMA_API + "?id=" + encodeURIComponent(id)).then(r=>r.json());
+      if(d.status==="completed" && d.gammaUrl){ gammaReady(d.gammaUrl); return; }
+      if(d.status==="failed"){ document.getElementById("mdStatus").textContent="Gamma generation failed. Use the Markdown below."; return; }
+    }catch(e){}
+  }
+  document.getElementById("mdStatus").textContent="Still generating in Gamma. Check your Gamma account, or use the Markdown below.";
+}
+function copyMd(){
+  navigator.clipboard.writeText(currentMd).then(
+    ()=>toast("Outline copied","ok"), ()=>toast("Copy failed","err"));
+}
+function downloadMd(){
+  const blob = new Blob([currentMd], {type:"text/markdown"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = (currentTitle||"ecofit-deck").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"") + ".md";
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+// ───────────────────────── TOASTS
+function toast(msg, kind){
+  const t = document.createElement("div");
+  t.className = "toast " + (kind||"ok");
+  t.innerHTML = `<span class="tdot"></span>${esc(msg)}`;
+  document.getElementById("toasts").appendChild(t);
+  setTimeout(()=>{ t.style.opacity="0"; t.style.transition="opacity .3s"; setTimeout(()=>t.remove(),300); }, 2600);
+}
+
+// ───────────────────────── LOAD
+async function reload(){
+  CAMPAIGNS = normalise(await apiGet());
+  byId = {}; CAMPAIGNS.forEach(c => byId[c.recordId]=c);
+  render();
+}
+async function init(){
+  reflectKey();
+  try{
+    await reload();
+    document.getElementById("loading")?.remove();
+  }catch(err){
+    document.getElementById("loading").textContent = "Could not load campaigns. Reload the page.";
+    toast("Load failed: "+err.message,"err");
+  }
+}
+document.getElementById("editModal").addEventListener("click", e => { if(e.target.id==="editModal") closeModal(); });
+document.getElementById("mdModal").addEventListener("click", e => { if(e.target.id==="mdModal") e.currentTarget.classList.remove("open"); });
+document.addEventListener("keydown", e => { if(e.key==="Escape"){ closeModal(); document.getElementById("mdModal").classList.remove("open"); } });
+init();
+</script>
+</body>
+</html>
