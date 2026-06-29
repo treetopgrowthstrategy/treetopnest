@@ -36,14 +36,7 @@ export default async function handler(req: any, res: any) {
       customer_email: email,
       line_items: [
         {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'AI CMO Starter Report',
-              description: 'Competitive analysis and 90-day marketing roadmap built on live Ahrefs data and real CMO judgment. Delivered within 24 hours.',
-            },
-            unit_amount: 9900, // $99.00
-          },
+          price: 'price_1TnlllC5d0nZeO3cVFZwIVhw',
           quantity: 1,
         },
       ],
