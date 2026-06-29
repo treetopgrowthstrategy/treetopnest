@@ -433,6 +433,27 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    // Bot protection (mirrors api/lead-capture.ts): honeypot, time trap, random-string heuristic.
+    const body: any = data;
+    function looksRandom(s: string): boolean {
+      const t = (s || '').trim();
+      if (t.length < 10 || t.includes(' ')) return false;
+      return ((t.slice(1).match(/[A-Z]/g) || []).length) >= 3;
+    }
+    const hp = (body.hp as string | undefined)?.trim() ?? '';
+    const loadTime = Number(body._t) || 0;
+    const elapsed = loadTime ? Date.now() - loadTime : Infinity;
+    const isBot =
+      hp.length > 0 ||
+      (loadTime > 0 && elapsed < 3000) ||
+      looksRandom(body.first_name || body.name || '') ||
+      looksRandom(body.last_name || '') ||
+      looksRandom(body.company || '');
+    if (isBot) {
+      console.warn('Bot submission dropped:', body.email);
+      return res.status(200).json({ success: true });
+    }
+
     // Sanitize user-supplied strings before they flow into the published report
     // HTML, the outbound emails, or Airtable. Angle brackets never appear in real
     // names, emails, or companies; stripping them neutralizes HTML/script injection.
