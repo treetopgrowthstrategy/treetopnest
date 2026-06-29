@@ -1,0 +1,155 @@
+---
+import GlobalFooter from '../../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Report Confirmed | AI CMO Advisor</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 4rem; }
+    .card { max-width: 600px; width: 100%; }
+
+    .icon-wrap { width: 64px; height: 64px; background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+    .icon-wrap svg { width: 28px; height: 28px; stroke: #00C853; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; color: #F0FFF0; margin-bottom: 0.75rem; line-height: 1.1; }
+    .sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; margin-bottom: 2.5rem; max-width: 480px; }
+
+    .timeline { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.5rem 1.75rem; margin-bottom: 2rem; }
+    .tl-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #4A6A4A; margin-bottom: 1rem; }
+    .tl-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 0.85rem; font-size: 0.88rem; color: #C0D8C0; line-height: 1.6; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-num { color: #00C853; font-weight: 700; font-size: 0.75rem; margin-top: 1px; flex-shrink: 0; width: 14px; }
+
+    .notice { font-size: 0.82rem; color: #4A6A4A; line-height: 1.65; margin-bottom: 2rem; border-left: 2px solid #1A3A1A; padding-left: 1rem; }
+    .back-link { font-size: 0.82rem; color: #4A6A4A; text-decoration: none; }
+    .back-link:hover { color: #8FAF8F; }
+
+    /* Cancel state (shown when ?cancelled=1) */
+    .cancel-icon-wrap { width: 64px; height: 64px; background: rgba(240,200,0,0.06); border: 1px solid rgba(240,200,0,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+    .cancel-icon-wrap svg { width: 26px; height: 26px; stroke: #D4A800; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.9rem 1.75rem; font-size: 0.88rem; font-weight: 600; border: none; cursor: pointer; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-p:disabled { opacity: 0.5; cursor: not-allowed; }
+    .cancel-email { font-size: 0.75rem; color: #4A6A4A; margin-top: 0.6rem; }
+
+    @media (max-width: 600px) { .main { padding: 7rem 1.5rem 3rem; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="card" id="confirmed-state" style="display:none;">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h1 class="h1">Payment received.<br/>Report on its way.</h1>
+    <p class="sub">Your $99 is in. We are pulling the competitive data now. Your AI CMO report will be in your inbox within 24 hours.</p>
+    <div class="timeline">
+      <div class="tl-label">What happens next</div>
+      <div class="tl-item"><div class="tl-num">1</div>We pull live Ahrefs data on the competitors you named in your intake.</div>
+      <div class="tl-item"><div class="tl-num">2</div>We run the full competitive analysis: keyword gaps, content positioning, authority comparison.</div>
+      <div class="tl-item"><div class="tl-num">3</div>We write the 90-day roadmap and "what I would do next" section for your specific situation.</div>
+      <div class="tl-item"><div class="tl-num">4</div>Your report arrives by email within 24 hours. Most come in same-day.</div>
+    </div>
+    <p class="notice">If you want to add anything before we start, reply to the confirmation email you received after completing your intake. It comes straight to us.</p>
+    <a href="/" class="back-link">Back to Treetop &rarr;</a>
+  </div>
+
+  <div class="card" id="cancelled-state" style="display:none;">
+    <div class="cancel-icon-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+    </div>
+    <h1 class="h1" style="font-size:clamp(1.8rem,3.5vw,2.4rem);">No problem. Your intake is still saved.</h1>
+    <p class="sub">Your 7 onboarding answers are on file. When you are ready, click below to pay $99 and receive your report.</p>
+    <button class="btn-p" id="pay-btn" onclick="startCheckout()">Pay $99 and get my report &rarr;</button>
+    <p class="cancel-email" id="cancel-email-note"></p>
+    <div id="pay-err" style="font-size:0.78rem;color:#E0A0A0;margin-top:0.75rem;display:none;"></div>
+    <p style="margin-top:1.75rem;"><a href="/" class="back-link">Not now, back to Treetop &rarr;</a></p>
+  </div>
+
+  <div class="card" id="loading-state">
+    <p style="color:#4A6A4A;font-size:0.88rem;">Loading...</p>
+  </div>
+</div>
+
+<GlobalFooter />
+
+<script is:inline>
+(function init() {
+  var params = new URLSearchParams(window.location.search);
+  var cancelled = params.get('cancelled') === '1';
+  var sessionId = params.get('session_id');
+
+  document.getElementById('loading-state').style.display = 'none';
+
+  if (cancelled) {
+    var storedEmail = localStorage.getItem('cmo_email') || '';
+    if (storedEmail) {
+      var note = document.getElementById('cancel-email-note');
+      if (note) note.textContent = 'Report will be delivered to: ' + storedEmail;
+    }
+    document.getElementById('cancelled-state').style.display = 'block';
+  } else if (sessionId) {
+    // Successful payment
+    localStorage.removeItem('cmo_email');
+    localStorage.removeItem('cmo_onboarded');
+    document.getElementById('confirmed-state').style.display = 'block';
+  } else {
+    // Direct navigation with no params — show confirmed state as default
+    document.getElementById('confirmed-state').style.display = 'block';
+  }
+})();
+
+async function startCheckout() {
+  var btn = document.getElementById('pay-btn');
+  var err = document.getElementById('pay-err');
+  var email = localStorage.getItem('cmo_email') || '';
+  if (!email) {
+    err.textContent = 'Could not find your email. Please go back to the AI CMO Advisor and sign up again.';
+    err.style.display = 'block';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Redirecting to payment...';
+  err.style.display = 'none';
+  try {
+    var res = await fetch('/api/cmo-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+    var data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Checkout failed');
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Pay $99 and get my report →';
+    err.textContent = e.message || 'Something went wrong. Email bill@treetopgrowthstrategy.com to proceed.';
+    err.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>

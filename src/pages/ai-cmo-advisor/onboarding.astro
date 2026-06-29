@@ -1,0 +1,422 @@
+---
+import GlobalFooter from '../../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>AI CMO Onboarding | Treetop Growth Strategy</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-step { font-size: 0.75rem; color: #4A6A4A; letter-spacing: 0.04em; }
+    .main { flex: 1; padding: 9rem 2.5rem 5rem; }
+    .card { max-width: 640px; margin: 0 auto; }
+
+    /* Progress */
+    .progress-bar { display: flex; gap: 6px; margin-bottom: 3rem; align-items: center; }
+    .progress-dot { width: 28px; height: 4px; background: #1A3A1A; border-radius: 2px; transition: background 0.3s; }
+    .progress-dot.done { background: #00C853; }
+    .progress-dot.active { background: rgba(0,200,83,0.5); }
+    .progress-label { font-size: 0.72rem; color: #4A6A4A; margin-left: 10px; letter-spacing: 0.04em; }
+
+    /* Email banner */
+    .email-banner { font-size: 0.75rem; color: #4A6A4A; margin-bottom: 2rem; display: flex; align-items: center; gap: 6px; }
+    .email-banner span { color: #00C853; }
+
+    /* Step */
+    .step { display: none; }
+    .step.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .step-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; }
+    .step-q { font-family: 'Instrument Serif', serif; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 400; line-height: 1.2; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .step-hint { font-size: 0.84rem; color: #8FAF8F; line-height: 1.6; margin-bottom: 1.75rem; }
+
+    /* Inputs */
+    .input-field { width: 100%; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; padding: 0.9rem 1.1rem; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+    .input-field:focus { border-color: rgba(0,200,83,0.45); }
+    .input-field::placeholder { color: #4A6A4A; }
+    textarea.input-field { min-height: 120px; }
+
+    /* Radio/checkbox grid */
+    .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .option-item { background: rgba(240,255,240,0.03); border: 1px solid #1A3A1A; padding: 0.85rem 1rem; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s, background 0.2s; font-size: 0.88rem; color: #C0D8C0; }
+    .option-item:hover { border-color: rgba(0,200,83,0.3); background: rgba(0,200,83,0.04); }
+    .option-item.selected { border-color: #00C853; background: rgba(0,200,83,0.07); color: #F0FFF0; }
+    .option-dot { width: 14px; height: 14px; border: 1px solid #2A4A2A; border-radius: 50%; flex-shrink: 0; transition: all 0.2s; }
+    .option-item.selected .option-dot { background: #00C853; border-color: #00C853; }
+    .option-check { width: 14px; height: 14px; border: 1px solid #2A4A2A; flex-shrink: 0; transition: all 0.2s; }
+    .option-item.selected .option-check { background: #00C853; border-color: #00C853; }
+
+    /* Navigation */
+    .nav-btns { display: flex; gap: 12px; margin-top: 2rem; align-items: center; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.9rem 1.75rem; font-size: 0.88rem; font-weight: 600; border: none; cursor: pointer; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-p:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-back { background: transparent; border: 1px solid #1A3A1A; color: rgba(240,255,240,0.45); padding: 0.9rem 1.25rem; font-size: 0.82rem; cursor: pointer; transition: color 0.2s; }
+    .btn-back:hover { color: #F0FFF0; }
+    .req-note { font-size: 0.75rem; color: #4A6A4A; margin-left: auto; }
+    .err-msg { font-size: 0.78rem; color: #E0A0A0; margin-top: 0.5rem; display: none; }
+
+    /* Success */
+    .success-card { text-align: center; padding: 3rem 2rem; }
+    .success-icon { font-size: 2.5rem; color: #00C853; margin-bottom: 1.25rem; }
+    .success-h { font-family: 'Instrument Serif', serif; font-size: 2.2rem; color: #F0FFF0; margin-bottom: 0.75rem; }
+    .success-p { font-size: 0.95rem; color: #C0D8C0; line-height: 1.75; max-width: 480px; margin: 0 auto 2rem; }
+    .success-timeline { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 1.5rem 1.75rem; text-align: left; margin-bottom: 2rem; }
+    .timeline-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 0.85rem; font-size: 0.88rem; color: #C0D8C0; line-height: 1.55; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-num { color: #00C853; font-weight: 700; font-size: 0.75rem; margin-top: 1px; flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      .main { padding: 7.5rem 1.5rem 3rem; }
+      .option-grid { grid-template-columns: 1fr; }
+      .nav-btns { flex-wrap: wrap; }
+      .req-note { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <span class="nav-step" id="nav-step-label">Step 1 of 7</span>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="card">
+
+    <!-- Progress -->
+    <div class="progress-bar" id="progress-bar">
+      <div class="progress-dot active" id="dot-0"></div>
+      <div class="progress-dot" id="dot-1"></div>
+      <div class="progress-dot" id="dot-2"></div>
+      <div class="progress-dot" id="dot-3"></div>
+      <div class="progress-dot" id="dot-4"></div>
+      <div class="progress-dot" id="dot-5"></div>
+      <div class="progress-dot" id="dot-6"></div>
+      <span class="progress-label" id="progress-label">Getting started</span>
+    </div>
+
+    <!-- Email banner -->
+    <div class="email-banner" id="email-banner">
+      <span>&#10003;</span> <span id="verified-email"></span>
+    </div>
+
+    <!-- Invalid access -->
+    <div class="step active" id="step-invalid" style="display:none;">
+      <div class="step-label">Access required</div>
+      <div class="step-q">Please verify your email first.</div>
+      <div class="step-hint">This page requires a verified email address. Head back to the AI CMO Advisor page and enter your email to get started.</div>
+      <div class="nav-btns">
+        <a href="/ai-cmo-advisor" class="btn-p">Go to AI CMO Advisor &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Step 1: Business description -->
+    <div class="step" id="step-0">
+      <div class="step-label">Question 1 of 7</div>
+      <div class="step-q">What does your company do, and who are your customers?</div>
+      <div class="step-hint">Describe your product or service and the type of customer you sell to. A sentence or two is fine. The more specific, the better the report.</div>
+      <textarea class="input-field" id="q1" placeholder="We sell [product/service] to [customer type]. Our customers are typically [description]."></textarea>
+      <div class="err-msg" id="err-0">Please describe your business before continuing.</div>
+      <div class="nav-btns">
+        <button class="btn-p" onclick="goNext(0)">Continue &rarr;</button>
+        <span class="req-note">Required</span>
+      </div>
+    </div>
+
+    <!-- Step 2: Revenue range -->
+    <div class="step" id="step-1">
+      <div class="step-label">Question 2 of 7</div>
+      <div class="step-q">What is your current monthly revenue range?</div>
+      <div class="step-hint">Approximate is fine. This helps calibrate the roadmap recommendations to your stage.</div>
+      <div class="option-grid" id="q2-options">
+        <div class="option-item" onclick="selectRadio('q2-options', this, 'Under $50k/mo')"><div class="option-dot"></div>Under $50k/month</div>
+        <div class="option-item" onclick="selectRadio('q2-options', this, '$50k-$200k/mo')"><div class="option-dot"></div>$50k to $200k/month</div>
+        <div class="option-item" onclick="selectRadio('q2-options', this, '$200k-$500k/mo')"><div class="option-dot"></div>$200k to $500k/month</div>
+        <div class="option-item" onclick="selectRadio('q2-options', this, 'Over $500k/mo')"><div class="option-dot"></div>Over $500k/month</div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goBack(1)">Back</button>
+        <button class="btn-p" onclick="goNext(1)">Continue &rarr;</button>
+        <span class="req-note">Skip if you prefer</span>
+      </div>
+    </div>
+
+    <!-- Step 3: Competitors -->
+    <div class="step" id="step-2">
+      <div class="step-label">Question 3 of 7</div>
+      <div class="step-q">Who are your 2-3 main competitors?</div>
+      <div class="step-hint">List the company names or website URLs. These are the companies we pull live Ahrefs data on for your report. Be specific: the more direct the competitor, the more useful the comparison.</div>
+      <textarea class="input-field" id="q3" placeholder="1. Competitor Name (competitor.com)&#10;2. Competitor Name&#10;3. Competitor Name"></textarea>
+      <div class="err-msg" id="err-2">Please name at least one competitor.</div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goBack(2)">Back</button>
+        <button class="btn-p" onclick="goNext(2)">Continue &rarr;</button>
+        <span class="req-note">Required</span>
+      </div>
+    </div>
+
+    <!-- Step 4: Channels -->
+    <div class="step" id="step-3">
+      <div class="step-label">Question 4 of 7</div>
+      <div class="step-q">What marketing channels are you currently using?</div>
+      <div class="step-hint">Select everything you are actively using, even if the results are not great.</div>
+      <div class="option-grid" id="q4-options" style="margin-bottom:0.75rem;">
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>SEO and blog content</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>Paid search (Google/Bing)</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>LinkedIn</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>Email marketing</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>Cold outreach</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>Partnerships or referrals</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>Social media (other)</div>
+        <div class="option-item" onclick="toggleCheck('q4-options', this)"><div class="option-check"></div>Events or sponsorships</div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goBack(3)">Back</button>
+        <button class="btn-p" onclick="goNext(3)">Continue &rarr;</button>
+        <span class="req-note">Select all that apply</span>
+      </div>
+    </div>
+
+    <!-- Step 5: Growth goals -->
+    <div class="step" id="step-4">
+      <div class="step-label">Question 5 of 7</div>
+      <div class="step-q">What are your top 2-3 growth goals for the next 6 to 12 months?</div>
+      <div class="step-hint">Be specific. "Grow revenue" is less useful than "double our inbound pipeline" or "expand into the mid-market segment." The clearer the goal, the more useful the roadmap.</div>
+      <textarea class="input-field" id="q5" placeholder="1. [Goal]&#10;2. [Goal]&#10;3. [Goal]"></textarea>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goBack(4)">Back</button>
+        <button class="btn-p" onclick="goNext(4)">Continue &rarr;</button>
+        <span class="req-note">Skip if you prefer</span>
+      </div>
+    </div>
+
+    <!-- Step 6: Biggest challenge -->
+    <div class="step" id="step-5">
+      <div class="step-label">Question 6 of 7</div>
+      <div class="step-q">What is your biggest marketing challenge right now?</div>
+      <div class="step-hint">This is often the most useful question. What specifically is not working, and what have you already tried? There are no wrong answers here.</div>
+      <textarea class="input-field" id="q6" placeholder="The biggest thing holding us back is..."></textarea>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goBack(5)">Back</button>
+        <button class="btn-p" onclick="goNext(5)">Continue &rarr;</button>
+        <span class="req-note">Skip if you prefer</span>
+      </div>
+    </div>
+
+    <!-- Step 7: Budget -->
+    <div class="step" id="step-6">
+      <div class="step-label">Question 7 of 7</div>
+      <div class="step-q">What is your current monthly marketing budget?</div>
+      <div class="step-hint">Include agency fees, ad spend, tools, and contractor costs. This helps calibrate the recommendations to what is actually executable for you.</div>
+      <div class="option-grid" id="q7-options" style="margin-bottom:0.75rem;">
+        <div class="option-item" onclick="selectRadio('q7-options', this, 'Under $5k/mo')"><div class="option-dot"></div>Under $5k/month</div>
+        <div class="option-item" onclick="selectRadio('q7-options', this, '$5k-$15k/mo')"><div class="option-dot"></div>$5k to $15k/month</div>
+        <div class="option-item" onclick="selectRadio('q7-options', this, '$15k-$50k/mo')"><div class="option-dot"></div>$15k to $50k/month</div>
+        <div class="option-item" onclick="selectRadio('q7-options', this, 'Over $50k/mo')"><div class="option-dot"></div>Over $50k/month</div>
+      </div>
+      <div class="err-msg" id="err-submit"></div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goBack(6)">Back</button>
+        <button class="btn-p" id="submit-btn" onclick="submitOnboarding()">Submit and get my report &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div class="step" id="step-success">
+      <div class="success-card">
+        <div class="success-icon">&#10003;</div>
+        <div class="success-h">Your intake is complete.</div>
+        <p class="success-p">We have everything we need to build your AI CMO report. Here is what happens next.</p>
+        <div class="success-timeline">
+          <div class="timeline-item"><div class="timeline-num">1</div>We pull live Ahrefs data on the competitors you named. This is the raw competitive intelligence that goes into your report.</div>
+          <div class="timeline-item"><div class="timeline-num">2</div>We run the full analysis: keyword gaps, content positioning, organic authority comparison, and your top growth levers.</div>
+          <div class="timeline-item"><div class="timeline-num">3</div>We write and review the 90-day roadmap and "what I would do next" section based on your specific situation.</div>
+          <div class="timeline-item"><div class="timeline-num">4</div>Your report lands in your inbox within 24 hours. Most come in same-day.</div>
+        </div>
+        <p style="font-size:0.84rem;color:#8FAF8F;line-height:1.65;max-width:480px;margin:0 auto 1.5rem;">One last step: pay $99 to unlock your report. We will not start generating it until payment is received.</p>
+        <button class="btn-p" id="pay-btn" onclick="startCheckout()" style="width:100%;max-width:400px;justify-content:center;margin-bottom:1rem;">Pay $99 and get my report &rarr;</button>
+        <div id="pay-err" style="font-size:0.78rem;color:#E0A0A0;margin-bottom:1rem;display:none;"></div>
+        <p style="font-size:0.75rem;color:#4A6A4A;">You will be taken to a secure Stripe checkout page. Your report arrives within 24 hours of payment.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<GlobalFooter />
+
+<script is:inline>
+var currentStep = 0;
+var totalSteps  = 7;
+var verifiedEmail = '';
+var radioValues  = {};
+var checkValues  = {};
+
+var stepLabels = [
+  'Your business',
+  'Revenue stage',
+  'Competitors',
+  'Channels',
+  'Growth goals',
+  'Challenges',
+  'Budget',
+];
+
+// Read email from query param on load
+(function init() {
+  var params = new URLSearchParams(window.location.search);
+  var e = params.get('e');
+  if (!e) {
+    document.getElementById('step-invalid').style.display = 'block';
+    document.getElementById('progress-bar').style.display = 'none';
+    document.getElementById('email-banner').style.display = 'none';
+    return;
+  }
+  try {
+    verifiedEmail = atob(e.replace(/-/g,'+').replace(/_/g,'/'));
+  } catch(ex) {
+    document.getElementById('step-invalid').style.display = 'block';
+    document.getElementById('progress-bar').style.display = 'none';
+    document.getElementById('email-banner').style.display = 'none';
+    return;
+  }
+  document.getElementById('verified-email').textContent = verifiedEmail;
+  showStep(0);
+})();
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  var el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+  // Progress dots
+  for (var i = 0; i < totalSteps; i++) {
+    var dot = document.getElementById('dot-' + i);
+    if (!dot) continue;
+    dot.classList.remove('done', 'active');
+    if (i < n) dot.classList.add('done');
+    else if (i === n) dot.classList.add('active');
+  }
+  document.getElementById('nav-step-label').textContent = 'Step ' + (n + 1) + ' of ' + totalSteps;
+  document.getElementById('progress-label').textContent = stepLabels[n] || '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goNext(from) {
+  if (from === 0) {
+    var val = document.getElementById('q1').value.trim();
+    if (!val) { document.getElementById('err-0').style.display = 'block'; return; }
+    document.getElementById('err-0').style.display = 'none';
+  }
+  if (from === 2) {
+    var val3 = document.getElementById('q3').value.trim();
+    if (!val3) { document.getElementById('err-2').style.display = 'block'; return; }
+    document.getElementById('err-2').style.display = 'none';
+  }
+  currentStep = from + 1;
+  showStep(currentStep);
+}
+
+function goBack(from) {
+  currentStep = from - 1;
+  showStep(currentStep);
+}
+
+function selectRadio(groupId, el, value) {
+  document.querySelectorAll('#' + groupId + ' .option-item').forEach(function(item) { item.classList.remove('selected'); });
+  el.classList.add('selected');
+  radioValues[groupId] = value;
+}
+
+function toggleCheck(groupId, el) {
+  el.classList.toggle('selected');
+  var selected = [];
+  document.querySelectorAll('#' + groupId + ' .option-item.selected').forEach(function(item) {
+    selected.push(item.textContent.trim());
+  });
+  checkValues[groupId] = selected.join(', ');
+}
+
+async function submitOnboarding() {
+  var btn = document.getElementById('submit-btn');
+  var err = document.getElementById('err-submit');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  err.style.display = 'none';
+  try {
+    var res = await fetch('/api/cmo-onboard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: verifiedEmail,
+        q1: document.getElementById('q1').value.trim(),
+        q2: radioValues['q2-options'] || '',
+        q3: document.getElementById('q3').value.trim(),
+        q4: checkValues['q4-options'] || '',
+        q5: document.getElementById('q5').value.trim(),
+        q6: document.getElementById('q6').value.trim(),
+        q7: radioValues['q7-options'] || '',
+      })
+    });
+    if (!res.ok) throw new Error('Server error');
+    // Persist email for the payment step (survives Stripe cancel redirect)
+    localStorage.setItem('cmo_email', verifiedEmail);
+    localStorage.setItem('cmo_onboarded', '1');
+    // Show success
+    document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('step-success').classList.add('active');
+    document.getElementById('progress-bar').style.display = 'none';
+    document.getElementById('email-banner').style.display = 'none';
+    document.getElementById('nav-step-label').textContent = 'Almost done';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Submit and get my report →';
+    err.textContent = 'Something went wrong. Email bill@treetopgrowthstrategy.com and we will sort it out.';
+    err.style.display = 'block';
+  }
+}
+
+async function startCheckout() {
+  var btn = document.getElementById('pay-btn');
+  var err = document.getElementById('pay-err');
+  btn.disabled = true;
+  btn.textContent = 'Redirecting to payment...';
+  err.style.display = 'none';
+  try {
+    var res = await fetch('/api/cmo-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: verifiedEmail })
+    });
+    var data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Checkout failed');
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Pay $99 and get my report →';
+    err.textContent = e.message || 'Something went wrong. Email bill@treetopgrowthstrategy.com to proceed.';
+    err.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
