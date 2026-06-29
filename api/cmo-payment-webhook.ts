@@ -9,7 +9,7 @@ export const config = { api: { bodyParser: false } };
 const STRIPE_SECRET_KEY    = process.env.STRIPE_SECRET_KEY    || '';
 const CMO_WEBHOOK_SECRET   = process.env.CMO_WEBHOOK_SECRET   || '';
 const RESEND_API_KEY       = process.env.RESEND_API_KEY       || '';
-const ANTHROPIC_API_KEY    = process.env.ANTHROPIC_API_KEY    || '';
+const OPENAI_API_KEY       = process.env.OPENAI_API_KEY       || '';
 const AIRTABLE_API_KEY     = process.env.AIRTABLE_API_KEY     || '';
 const AIRTABLE_BASE_ID     = (process.env.AIRTABLE_BASE_ID    || 'app0cpbQjtdZh1sHT').split('/')[0];
 const AIRTABLE_TABLE       = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
@@ -37,7 +37,7 @@ async function fetchOnboardingNotes(email: string): Promise<string> {
 }
 
 async function generateReport(email: string, notes: string): Promise<string> {
-  if (!ANTHROPIC_API_KEY) return '<p>Report generation not configured.</p>';
+  if (!OPENAI_API_KEY) return '<p>Report generation not configured.</p>';
 
   const prompt = `You are Bill Colbert, founder of Treetop Growth Strategy and a fractional CMO. A client just paid $99 for an AI CMO Starter Report. Write their complete report based on the onboarding answers below.
 
@@ -71,15 +71,14 @@ HARD CONSTRAINTS:
 - NO generic marketing advice that could apply to any business
 - Reference the client's actual answers, competitors, and goals throughout every section`;
 
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
+  const r = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
-      'x-api-key': ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
+      'Authorization': `Bearer ${OPENAI_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
+      model: 'gpt-4o',
       max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
@@ -87,12 +86,12 @@ HARD CONSTRAINTS:
 
   if (!r.ok) {
     const err = await r.text();
-    console.error('Anthropic API error:', r.status, err);
+    console.error('OpenAI API error:', r.status, err);
     return '<p>Report generation failed. Bill will follow up manually within 24 hours.</p>';
   }
 
   const result: any = await r.json();
-  return result.content?.[0]?.text || '<p>Report could not be generated. Bill will follow up manually.</p>';
+  return result.choices?.[0]?.message?.content || '<p>Report could not be generated. Bill will follow up manually.</p>';
 }
 
 async function sendEmail(to: string, subject: string, html: string, replyTo?: string): Promise<void> {
