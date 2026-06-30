@@ -1,12 +1,23 @@
 // GET  /api/calendar          → read all campaigns
 // POST /api/calendar          → update one campaign  { recordId, fields }
-//                               requires header  x-calendar-key === CALENDAR_WRITE_KEY
+//                               allowed from the planner's own origin (or an
+//                               optional x-calendar-key === CALENDAR_WRITE_KEY)
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
-// Shared write token. Falls back to a baked default so the planner works
-// without extra Vercel setup; set CALENDAR_WRITE_KEY in the env to override.
-// This is a speed bump against anonymous writes, not a real secret: the
-// planner is a public noindex page and carries the same token client side.
-const CALENDAR_WRITE_KEY = process.env.CALENDAR_WRITE_KEY || "ecofit-plan-3f9a2c7e";
+const CALENDAR_WRITE_KEY = process.env.CALENDAR_WRITE_KEY;
+
+// Writes are allowed from the planner's own site (no secret needed in the
+// public page) or with the optional CALENDAR_WRITE_KEY header. The origin
+// check is a speed bump against anonymous bots, not a hard lock.
+const ALLOWED_HOSTS = ["treetopgrowthstrategy.com", "localhost", "127.0.0.1"];
+function writeAllowed(req) {
+  const provided = req.headers["x-calendar-key"];
+  if (CALENDAR_WRITE_KEY && provided === CALENDAR_WRITE_KEY) return true;
+  const origin = req.headers.origin || req.headers.referer || "";
+  try {
+    const h = new URL(origin).hostname.toLowerCase();
+    return ALLOWED_HOSTS.includes(h) || h.endsWith(".treetopgrowthstrategy.com") || h.endsWith(".vercel.app");
+  } catch (e) { return false; }
+}
 const BASE      = "appkCLcOtOfpYJkRg";
 const CAMPAIGNS = "tbl4UpGZP6Zr8MWV9";
 
@@ -32,11 +43,9 @@ export default async function handler(req, res){
     }
 
     if (req.method === "POST") {
-      // Writes are gated by a shared secret. Fail closed: if no key is configured
-      // in the environment, all writes are rejected (previously this PATCH path was
-      // open to the public internet and could modify any campaign record).
-      const provided = req.headers["x-calendar-key"];
-      if (!CALENDAR_WRITE_KEY || provided !== CALENDAR_WRITE_KEY) {
+      // Writes must come from the planner's own origin (or carry the optional
+      // CALENDAR_WRITE_KEY header). No secret lives in the public page.
+      if (!writeAllowed(req)) {
         return res.status(401).json({ error: "Unauthorized" });
       }
       const body = req.body || {};

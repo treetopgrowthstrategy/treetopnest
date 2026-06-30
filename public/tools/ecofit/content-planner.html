@@ -287,11 +287,9 @@ let selected = new Set();
 let editingId = null;        // recordId or null (create mode)
 let createMonth = null;
 
-// ───────────────────────── WRITE TOKEN (sent automatically, no prompt)
-// The planner is a noindex internal tool, so edits are gated by a shared
-// token rather than a login. It is sent on every write so editing never
-// interrupts you. Kept in sync with CALENDAR_WRITE_KEY on the server.
-const WRITE_TOKEN = "ecofit-plan-3f9a2c7e";
+// ───────────────────────── WRITES (no prompt, no token in the page)
+// The save endpoint accepts requests from the planner's own origin, so
+// editing just works in the browser with nothing to enter.
 
 // ───────────────────────── API
 async function apiGet(){
@@ -303,7 +301,7 @@ async function apiGet(){
 async function apiWrite(body){
   const r = await fetch(API, {
     method:"POST",
-    headers:{ "Content-Type":"application/json", "x-calendar-key":WRITE_TOKEN },
+    headers:{ "Content-Type":"application/json" },
     body: JSON.stringify(body)
   });
   if(!r.ok) throw new Error("write failed "+r.status);
