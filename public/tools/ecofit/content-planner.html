@@ -36,7 +36,7 @@
   .key-chip.unlocked .kdot{background:var(--green);}
 
   /* HERO */
-  .hero{padding:36px 28px 20px;max-width:920px;margin:0 auto;}
+  .hero{padding:36px 28px 20px;max-width:1280px;margin:0 auto;}
   .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
   .section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
   .hero h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;line-height:1.12;letter-spacing:-0.03em;}
@@ -44,14 +44,17 @@
   .hero p{margin-top:10px;font-size:13.5px;color:var(--text-sub);font-weight:300;max-width:620px;line-height:1.6;}
 
   /* FILTER BAR */
-  .toolbar{max-width:920px;margin:0 auto;padding:8px 28px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toolbar{max-width:1280px;margin:0 auto;padding:8px 28px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .tb-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-right:2px;}
   .filter-btn{background:transparent;border:1px solid var(--border);color:var(--text-sub);font-size:12px;font-weight:500;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all 0.15s;}
   .filter-btn:hover{border-color:var(--border-h);color:var(--green);background:var(--green-glow);}
   .filter-btn.active{border-color:var(--green);color:var(--green);background:var(--green-glow2);}
 
-  /* COLUMN */
-  .column{max-width:920px;margin:0 auto;padding:18px 28px 40px;display:flex;flex-direction:column;gap:18px;}
+  /* LAYOUT: scrolling month column + sticky backlog sidebar */
+  .layout{max-width:1280px;margin:0 auto;padding:0 28px;display:flex;gap:24px;align-items:flex-start;}
+  .column{flex:1;min-width:0;padding:18px 0 40px;display:flex;flex-direction:column;gap:18px;}
+  .sidebar{width:340px;flex-shrink:0;position:sticky;top:72px;max-height:calc(100vh - 150px);overflow-y:auto;padding:18px 0 40px;display:flex;flex-direction:column;gap:18px;}
+  .sidebar .month-head{top:0;}
 
   /* MONTH CARD */
   .month{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:0 1px 3px rgba(0,0,0,0.4),0 0 0 1px rgba(132,188,65,0.04);}
@@ -104,7 +107,7 @@
 
   /* ACTION BAR */
   .action-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:12px;z-index:100;flex-wrap:wrap;}
-  .ab-inner{max-width:920px;margin:0 auto;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .ab-inner{max-width:1280px;margin:0 auto;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
   .ab-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
   .ab-count{font-size:12px;font-weight:600;color:var(--green);}
   .ab-input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Work Sans',sans-serif;font-size:12.5px;padding:8px 12px;outline:none;min-width:200px;flex:1;transition:border-color 0.15s;}
@@ -148,8 +151,13 @@
 
   .loading{max-width:920px;margin:60px auto;text-align:center;color:var(--text-muted);font-size:13px;}
 
+  @media(max-width:900px){
+    .layout{flex-direction:column;padding-left:16px;padding-right:16px;}
+    .sidebar{width:auto;position:static;max-height:none;overflow:visible;padding-top:0;}
+    .sidebar .month-head{top:60px;}
+  }
   @media(max-width:640px){
-    nav,.hero,.toolbar,.column,.action-bar{padding-left:16px;padding-right:16px;}
+    nav,.hero,.toolbar,.action-bar{padding-left:16px;padding-right:16px;}
     .month-head{top:60px;}
     .field-row{grid-template-columns:1fr;}
     .ab-input{min-width:140px;}
@@ -173,7 +181,7 @@
 <div class="hero">
   <div class="section-tag"><span class="section-tag-dot"></span>Plan · Drag · Push to Gamma</div>
   <h1>Build the next <em>nine months</em> of ecofit.</h1>
-  <p>One column, one month at a time. Drag campaigns between months and the backlog, edit inline, add new ideas, then push any selection into a Gamma deck. Every change writes straight back to Airtable.</p>
+  <p>Scroll the months on the left, keep the backlog pinned on the right. Drag campaigns between months and the backlog, edit inline, add new ideas, then push any selection into a Gamma deck. Every change writes straight back to Airtable.</p>
 </div>
 
 <div class="toolbar">
@@ -185,8 +193,11 @@
   <button class="filter-btn" data-pillar="Key Metric" onclick="setFilter('Key Metric',this)">Key Metric</button>
 </div>
 
-<div id="column" class="column">
-  <div class="loading" id="loading">Loading campaigns from Airtable...</div>
+<div class="layout">
+  <div id="column" class="column">
+    <div class="loading" id="loading">Loading campaigns from Airtable...</div>
+  </div>
+  <aside id="sidebar" class="sidebar"></aside>
 </div>
 
 <!-- ACTION BAR -->
@@ -348,7 +359,8 @@ function subFor(bucket){
 
 function render(){
   const col = document.getElementById("column");
-  col.innerHTML = "";
+  const side = document.getElementById("sidebar");
+  col.innerHTML = ""; side.innerHTML = "";
   bucketKeys().forEach(bucket => {
     const list = CAMPAIGNS
       .filter(c => inBucket(c, bucket))
@@ -377,7 +389,7 @@ function render(){
         <div class="aud-mix">${mixHtml}${addBtn}</div>
       </div>
       <div class="card-list empty-hint" data-month="${bucket==='Unplaced'?'':bucket}" data-empty="Drop a campaign here" id="list-${cssId(bucket)}"></div>`;
-    col.appendChild(sec);
+    ((bucket === "Backlog" || bucket === "Unplaced") ? side : col).appendChild(sec);
 
     const listEl = sec.querySelector(".card-list");
     list.forEach(c => listEl.appendChild(cardEl(c)));
