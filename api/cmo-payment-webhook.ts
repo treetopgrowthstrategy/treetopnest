@@ -196,10 +196,11 @@ HARD CONSTRAINTS:
 
 // ─── Email helpers ────────────────────────────────────────────────────────────
 
-async function sendEmail(to: string, subject: string, html: string, replyTo?: string): Promise<void> {
+async function sendEmail(to: string, subject: string, html: string, replyTo?: string, scheduledAt?: string): Promise<void> {
   if (!RESEND_API_KEY) { console.warn('RESEND_API_KEY not set'); return; }
   const payload: Record<string, any> = { from: FROM_EMAIL, to: [to], subject, html };
-  if (replyTo) payload.reply_to = [replyTo];
+  if (replyTo)     payload.reply_to    = [replyTo];
+  if (scheduledAt) payload.scheduled_at = scheduledAt;
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
@@ -295,11 +296,15 @@ export default async function handler(req: any, res: any) {
 
     const reportBody = await generateReport(email, notes, ahrefsBlock);
 
+    // Schedule delivery 15 minutes out so the report doesn't arrive instantly
+    const deliverAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+
     await sendEmail(
       email,
       'Your AI CMO Starter Report is ready',
       reportEmailHtml(reportBody, email),
       BILL_EMAIL,
+      deliverAt,
     );
 
     // Bill gets a copy with full context
