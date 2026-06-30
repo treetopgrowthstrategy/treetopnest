@@ -2,7 +2,11 @@
 // POST /api/calendar          → update one campaign  { recordId, fields }
 //                               requires header  x-calendar-key === CALENDAR_WRITE_KEY
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
-const CALENDAR_WRITE_KEY = process.env.CALENDAR_WRITE_KEY;
+// Shared write token. Falls back to a baked default so the planner works
+// without extra Vercel setup; set CALENDAR_WRITE_KEY in the env to override.
+// This is a speed bump against anonymous writes, not a real secret: the
+// planner is a public noindex page and carries the same token client side.
+const CALENDAR_WRITE_KEY = process.env.CALENDAR_WRITE_KEY || "ecofit-plan-3f9a2c7e";
 const BASE      = "appkCLcOtOfpYJkRg";
 const CAMPAIGNS = "tbl4UpGZP6Zr8MWV9";
 

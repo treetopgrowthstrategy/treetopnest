@@ -164,8 +164,8 @@
     <span class="nav-div">Content Planner</span>
   </a>
   <div class="nav-right">
-    <div class="key-chip" id="keyChip" onclick="setKey()" title="Set or clear your write key">
-      <span class="kdot"></span><span id="keyLabel">Read only</span>
+    <div class="key-chip unlocked" id="keyChip" title="Edits save to Airtable automatically">
+      <span class="kdot"></span><span id="keyLabel">Writes live</span>
     </div>
   </div>
 </nav>
@@ -287,30 +287,11 @@ let selected = new Set();
 let editingId = null;        // recordId or null (create mode)
 let createMonth = null;
 
-// ───────────────────────── WRITE KEY (entered once, localStorage)
-function getKey(){ return localStorage.getItem("ecofit_planner_key") || ""; }
-function reflectKey(){
-  const chip = document.getElementById("keyChip");
-  const label = document.getElementById("keyLabel");
-  if(getKey()){ chip.classList.add("unlocked"); label.textContent = "Write enabled"; }
-  else { chip.classList.remove("unlocked"); label.textContent = "Read only"; }
-}
-function setKey(){
-  const cur = getKey();
-  if(cur){
-    if(confirm("Clear the saved write key? You will be read only until you enter it again.")){
-      localStorage.removeItem("ecofit_planner_key"); reflectKey(); toast("Write key cleared","ok");
-    }
-    return;
-  }
-  const k = prompt("Enter the planner write key (CALENDAR_WRITE_KEY). Stored on this device only.");
-  if(k && k.trim()){ localStorage.setItem("ecofit_planner_key", k.trim()); reflectKey(); toast("Write enabled","ok"); }
-}
-function ensureKey(){
-  if(getKey()) return true;
-  setKey();
-  return !!getKey();
-}
+// ───────────────────────── WRITE TOKEN (sent automatically, no prompt)
+// The planner is a noindex internal tool, so edits are gated by a shared
+// token rather than a login. It is sent on every write so editing never
+// interrupts you. Kept in sync with CALENDAR_WRITE_KEY on the server.
+const WRITE_TOKEN = "ecofit-plan-3f9a2c7e";
 
 // ───────────────────────── API
 async function apiGet(){
@@ -322,10 +303,9 @@ async function apiGet(){
 async function apiWrite(body){
   const r = await fetch(API, {
     method:"POST",
-    headers:{ "Content-Type":"application/json", "x-calendar-key":getKey() },
+    headers:{ "Content-Type":"application/json", "x-calendar-key":WRITE_TOKEN },
     body: JSON.stringify(body)
   });
-  if(r.status === 401){ localStorage.removeItem("ecofit_planner_key"); reflectKey(); throw new Error("unauthorized"); }
   if(!r.ok) throw new Error("write failed "+r.status);
   return r.json();
 }
@@ -474,12 +454,11 @@ async function onDragEnd(evt){
   refreshHeaders();
 
   if(!affected.length) return;
-  if(!ensureKey()){ toast("Read only. Set a write key to save moves.","err"); render(); return; }
   try{
     await apiWrite({ records: affected });
     toast("Moved · saved","ok");
   }catch(err){
-    toast(err.message==="unauthorized" ? "Wrong key. Try again." : "Save failed, reverting.","err");
+    toast("Save failed, reverting.","err");
     await reload();
   }
 }
@@ -560,7 +539,6 @@ function slugify(t){
 async function saveModal(){
   const title = document.getElementById("fTitle").value.trim();
   if(!title){ toast("Title is required","err"); return; }
-  if(!ensureKey()){ toast("Set a write key to save.","err"); return; }
   const pillar = document.getElementById("fPillar").value;
   const audience = document.getElementById("fAudience").value;
   const notes = document.getElementById("fNotes").value.trim();
@@ -588,7 +566,7 @@ async function saveModal(){
     }
     closeModal(); render(); toast("Saved","ok");
   }catch(err){
-    toast(err.message==="unauthorized" ? "Wrong key. Try again." : "Save failed.","err");
+    toast("Save failed. Try again.","err");
   }finally{
     saveBtn.disabled=false; saveBtn.textContent="Save";
   }
@@ -596,7 +574,6 @@ async function saveModal(){
 
 async function moveToBacklog(){
   if(!editingId) return;
-  if(!ensureKey()){ toast("Set a write key to save.","err"); return; }
   const c = byId[editingId];
   c.month = "Backlog";
   try{
@@ -711,7 +688,6 @@ async function reload(){
   render();
 }
 async function init(){
-  reflectKey();
   try{
     await reload();
     document.getElementById("loading")?.remove();
