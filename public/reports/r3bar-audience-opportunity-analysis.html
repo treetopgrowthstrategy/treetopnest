@@ -40,11 +40,11 @@
     --navy-soft:  #1e3252;
     --steel:      #5a6b82;
     --steel-soft: #8595a8;
-    --rust:       #b4502a;
-    --rust-deep:  #93401f;
-    --win:        #1f7a4d;
+    --rust:       #c8472b;
+    --rust-deep:  #a33a20;
+    --win:        #2e7d32;
     --win-bg:     #e4f1ea;
-    --lose:       #b03030;
+    --lose:       #b23b2e;
     --lose-bg:    #f7e6e4;
     --neutral:    #8a6a20;
     --neutral-bg: #f5ecd6;
@@ -399,7 +399,7 @@
   .mid  { color: var(--neutral); background: var(--neutral-bg); }
   td.win-c  { color: var(--win);  font-weight: 700; }
   td.lose-c { color: var(--lose); font-weight: 700; }
-  td.mid-c  { color: var(--neutral); font-weight: 700; }
+  td.rust-c { color: var(--rust); font-weight: 700; }
 
   .legend {
     display: flex;
@@ -517,7 +517,7 @@
       <div><span class="k">Prepared for</span><span class="v">R3BAR Training</span></div>
       <div><span class="k">Prepared by</span><span class="v">Treetop Growth Strategy</span></div>
       <div><span class="k">Date</span><span class="v">June 2026</span></div>
-      <div><span class="k">Scope</span><span class="v">Keyword demand, market sizing, audience strategy</span></div>
+      <div><span class="k">Scope</span><span class="v">Keyword demand analysis, market sizing, and audience strategy for the upcoming direct-to-consumer commercial</span></div>
     </div>
   </div>
 </header>
@@ -571,9 +571,8 @@
     <p>Keyword search volume measures how many people actively type a phrase into Google each month in the United States. It is the closest thing to a real-time poll of demand. Below, the two strategic categories are placed side by side.</p>
 
     <div class="legend">
-      <span><i class="dot g"></i> Winning position</span>
-      <span><i class="dot m"></i> Contested / mixed</span>
-      <span><i class="dot r"></i> Losing position</span>
+      <span><i class="dot g"></i> Winning position (low difficulty / premium value)</span>
+      <span><i class="dot r"></i> Losing position (high difficulty)</span>
     </div>
 
     <h3>1A. General home-fitness keywords (the broad audience)</h3>
@@ -589,12 +588,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="kw" data-label="Keyword">home gym</td><td class="num" data-label="Volume/mo">45,000</td><td class="num lose-c" data-label="CPC">$0.60</td><td class="num lose-c" data-label="Difficulty">33</td><td data-label="Intent">Commercial</td></tr>
-          <tr><td class="kw" data-label="Keyword">home gym equipment</td><td class="num" data-label="Volume/mo">27,000</td><td class="num lose-c" data-label="CPC">$0.45</td><td class="num lose-c" data-label="Difficulty">38</td><td data-label="Intent">Commercial</td></tr>
-          <tr><td class="kw" data-label="Keyword">home workout equipment</td><td class="num" data-label="Volume/mo">6,100</td><td class="num lose-c" data-label="CPC">$0.35</td><td class="num mid-c" data-label="Difficulty">18</td><td data-label="Intent">Transactional</td></tr>
+          <tr><td class="kw" data-label="Keyword">home gym</td><td class="num" data-label="Volume/mo">45,000</td><td class="num" data-label="CPC">$0.60</td><td class="num lose-c" data-label="Difficulty">33</td><td data-label="Intent">Commercial</td></tr>
+          <tr><td class="kw" data-label="Keyword">home gym equipment</td><td class="num" data-label="Volume/mo">27,000</td><td class="num" data-label="CPC">$0.45</td><td class="num lose-c" data-label="Difficulty">38</td><td data-label="Intent">Commercial</td></tr>
+          <tr><td class="kw" data-label="Keyword">home workout equipment</td><td class="num" data-label="Volume/mo">6,100</td><td class="num" data-label="CPC">$0.35</td><td class="num" data-label="Difficulty">18</td><td data-label="Intent">Transactional</td></tr>
           <tr><td class="kw" data-label="Keyword">home fitness equipment</td><td class="num" data-label="Volume/mo">1,900</td><td class="num" data-label="CPC">$0.70</td><td class="num lose-c" data-label="Difficulty">44</td><td data-label="Intent">Transactional</td></tr>
-          <tr><td class="kw" data-label="Keyword">resistance bands training</td><td class="num" data-label="Volume/mo">150</td><td class="num lose-c" data-label="CPC">$0.10</td><td class="num lose-c" data-label="Difficulty">42</td><td data-label="Intent">Informational</td></tr>
-          <tr class="total"><td data-label="Keyword">Category total (lead terms)</td><td class="num" data-label="Volume/mo">~80,000</td><td class="num" data-label="CPC">Low</td><td class="num" data-label="Difficulty">High</td><td data-label="Intent">Mixed</td></tr>
+          <tr><td class="kw" data-label="Keyword">resistance bands training</td><td class="num" data-label="Volume/mo">150</td><td class="num" data-label="CPC">$0.10</td><td class="num lose-c" data-label="Difficulty">42</td><td data-label="Intent">Informational</td></tr>
+          <tr class="total"><td data-label="Keyword">Category total (lead terms)</td><td class="num" data-label="Volume/mo">~80,000</td><td class="num" data-label="CPC">Low</td><td class="num lose-c" data-label="Difficulty">High</td><td data-label="Intent">Mixed</td></tr>
         </tbody>
       </table>
     </div></div>
@@ -609,19 +608,20 @@
             <th class="num">US Volume / mo</th>
             <th class="num">CPC</th>
             <th class="num">SEO Difficulty</th>
+            <th>Buyer Intent</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="kw" data-label="Keyword">soccer training equipment</td><td class="num" data-label="Volume/mo">2,900</td><td class="num mid-c" data-label="CPC">$0.35</td><td class="num lose-c" data-label="Difficulty">43</td></tr>
-          <tr><td class="kw" data-label="Keyword">baseball training equipment</td><td class="num" data-label="Volume/mo">2,300</td><td class="num mid-c" data-label="CPC">$0.35</td><td class="num win-c" data-label="Difficulty">1</td></tr>
-          <tr><td class="kw" data-label="Keyword">basketball training equipment</td><td class="num" data-label="Volume/mo">1,500</td><td class="num mid-c" data-label="CPC">$0.30</td><td class="num win-c" data-label="Difficulty">2</td></tr>
-          <tr><td class="kw" data-label="Keyword">athletic performance training</td><td class="num" data-label="Volume/mo">600</td><td class="num win-c" data-label="CPC">$1.50</td><td class="num mid-c" data-label="Difficulty">17</td></tr>
-          <tr><td class="kw" data-label="Keyword">youth sports training</td><td class="num" data-label="Volume/mo">400</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num win-c" data-label="Difficulty">3</td></tr>
-          <tr><td class="kw" data-label="Keyword">strength training for athletes</td><td class="num" data-label="Volume/mo">300</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num mid-c" data-label="Difficulty">26</td></tr>
-          <tr><td class="kw" data-label="Keyword">youth athlete training</td><td class="num" data-label="Volume/mo">150</td><td class="num win-c" data-label="CPC">$1.30</td><td class="num win-c" data-label="Difficulty">0</td></tr>
-          <tr><td class="kw" data-label="Keyword">youth strength training</td><td class="num" data-label="Volume/mo">150</td><td class="num win-c" data-label="CPC">$0.70</td><td class="num win-c" data-label="Difficulty">5</td></tr>
-          <tr><td class="kw" data-label="Keyword">sports performance equipment</td><td class="num" data-label="Volume/mo">70</td><td class="num win-c" data-label="CPC">$0.90</td><td class="num win-c" data-label="Difficulty">0</td></tr>
-          <tr class="total"><td data-label="Keyword">Category total (lead terms)</td><td class="num" data-label="Volume/mo">~8,400</td><td class="num" data-label="CPC">High</td><td class="num" data-label="Difficulty">Low</td></tr>
+          <tr><td class="kw" data-label="Keyword">soccer training equipment</td><td class="num" data-label="Volume/mo">2,900</td><td class="num" data-label="CPC">$0.35</td><td class="num" data-label="Difficulty">43</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">baseball training equipment</td><td class="num" data-label="Volume/mo">2,300</td><td class="num" data-label="CPC">$0.35</td><td class="num win-c" data-label="Difficulty">1</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">basketball training equipment</td><td class="num" data-label="Volume/mo">1,500</td><td class="num" data-label="CPC">$0.30</td><td class="num win-c" data-label="Difficulty">2</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">athletic performance training</td><td class="num" data-label="Volume/mo">600</td><td class="num win-c" data-label="CPC">$1.50</td><td class="num" data-label="Difficulty">17</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">youth sports training</td><td class="num" data-label="Volume/mo">400</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num win-c" data-label="Difficulty">3</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">strength training for athletes</td><td class="num" data-label="Volume/mo">300</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num" data-label="Difficulty">26</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">youth athlete training</td><td class="num" data-label="Volume/mo">150</td><td class="num win-c" data-label="CPC">$1.30</td><td class="num win-c" data-label="Difficulty">0</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">youth strength training</td><td class="num" data-label="Volume/mo">150</td><td class="num" data-label="CPC">$0.70</td><td class="num win-c" data-label="Difficulty">5</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">sports performance equipment</td><td class="num" data-label="Volume/mo">70</td><td class="num win-c" data-label="CPC">$0.90</td><td class="num win-c" data-label="Difficulty">0</td><td data-label="Intent">Buy</td></tr>
+          <tr class="total"><td data-label="Keyword">Category total (lead terms)</td><td class="num" data-label="Volume/mo">~8,400</td><td class="num win-c" data-label="CPC">High</td><td class="num win-c" data-label="Difficulty">Low</td><td data-label="Intent">Buy</td></tr>
         </tbody>
       </table>
     </div></div>
@@ -649,8 +649,8 @@
           <tr><td class="kw" data-label="Term">youth athlete training</td><td class="num win-c" data-label="CPC">$1.30</td><td data-label="Value"><span class="pill win">Premium</span></td></tr>
           <tr><td class="kw" data-label="Term">athletic performance training</td><td class="num win-c" data-label="CPC">$1.50</td><td data-label="Value"><span class="pill win">Premium</span></td></tr>
           <tr><td class="kw" data-label="Term">strength training for athletes</td><td class="num win-c" data-label="CPC">$1.10</td><td data-label="Value"><span class="pill win">Premium</span></td></tr>
-          <tr><td class="kw" data-label="Term">home gym</td><td class="num lose-c" data-label="CPC">$0.60</td><td data-label="Value"><span class="pill lose">Commodity</span></td></tr>
-          <tr><td class="kw" data-label="Term">home gym equipment</td><td class="num lose-c" data-label="CPC">$0.45</td><td data-label="Value"><span class="pill lose">Commodity</span></td></tr>
+          <tr><td class="kw" data-label="Term">home gym</td><td class="num" data-label="CPC">$0.60</td><td data-label="Value"><span class="pill lose">Commodity</span></td></tr>
+          <tr><td class="kw" data-label="Term">home gym equipment</td><td class="num" data-label="CPC">$0.45</td><td data-label="Value"><span class="pill lose">Commodity</span></td></tr>
           <tr><td class="kw" data-label="Term">resistance bands training</td><td class="num lose-c" data-label="CPC">$0.10</td><td data-label="Value"><span class="pill lose">Bargain-bin</span></td></tr>
         </tbody>
       </table>
@@ -699,13 +699,13 @@
           <tr><th>Market fact</th><th class="num">Figure</th></tr>
         </thead>
         <tbody>
-          <tr><td data-label="Market fact">Annual U.S. parent spending on youth sports</td><td class="num win-c" data-label="Figure">$40+ billion</td></tr>
-          <tr><td data-label="Market fact">Growth in family youth-sports spending (2019 to 2024)</td><td class="num win-c" data-label="Figure">+46%</td></tr>
-          <tr><td data-label="Market fact">Average spend on a child's primary sport, per year</td><td class="num win-c" data-label="Figure">$1,016</td></tr>
+          <tr><td data-label="Market fact">Annual U.S. parent spending on youth sports</td><td class="num rust-c" data-label="Figure">$40+ billion</td></tr>
+          <tr><td data-label="Market fact">Growth in family youth-sports spending (2019 to 2024)</td><td class="num" data-label="Figure">+46%</td></tr>
+          <tr><td data-label="Market fact">Average spend on a child's primary sport, per year</td><td class="num" data-label="Figure">$1,016</td></tr>
           <tr><td data-label="Market fact">U.S. kids (6 to 17) playing organized sports</td><td class="num" data-label="Figure">27 million</td></tr>
           <tr><td data-label="Market fact">Share of that age group playing organized sports</td><td class="num" data-label="Figure">~55%</td></tr>
           <tr><td data-label="Market fact">Families in travel / club sports (highest spenders)</td><td class="num" data-label="Figure">~17%</td></tr>
-          <tr><td data-label="Market fact">What high-income families ($150k+) spend extra on travel vs. under-$50k</td><td class="num win-c" data-label="Figure">+83%</td></tr>
+          <tr><td data-label="Market fact">What high-income families ($150k+) spend extra on travel vs. under-$50k</td><td class="num" data-label="Figure">+83%</td></tr>
           <tr><td data-label="Market fact">Youth-sports equipment as share of category spend</td><td class="num" data-label="Figure">~33%</td></tr>
         </tbody>
       </table>
