@@ -33,29 +33,33 @@
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --navy:       #14243f;
-    --navy-deep:  #0e1a2e;
-    --navy-soft:  #1e3252;
-    --steel:      #5a6b82;
-    --steel-soft: #8595a8;
-    --rust:       #c8472b;
-    --rust-deep:  #a33a20;
-    --win:        #2e7d32;
-    --win-bg:     #e4f1ea;
-    --lose:       #b23b2e;
-    --lose-bg:    #f7e6e4;
-    --neutral:    #8a6a20;
-    --neutral-bg: #f5ecd6;
-    --paper:      #faf8f3;
-    --paper-2:    #f3efe6;
-    --ink:        #20262e;
-    --ink-soft:   #4a525c;
-    --line:       #ded7c9;
-    --shadow:     0 1px 2px rgba(20,36,63,.06), 0 8px 30px rgba(20,36,63,.07);
-    --serif:      Georgia, 'Times New Roman', serif;
-    --sans:       -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mint:      #f0fff0;   /* body background (deck content pages) */
+    --forest:    #1a3a1a;   /* dark hero, callouts, table headers, ink */
+    --forest-2:  #0a1a0a;   /* deepest green */
+    --green:     #00c853;   /* bright signal green accent */
+    --green-deep:#0e7a3a;   /* readable green on mint (data win) */
+    --ink:       #1a3a1a;   /* headings on mint */
+    --body:      #3f5c3f;   /* body copy on mint */
+    --body-soft: #4a6a4a;   /* secondary copy */
+    --sage:      #8faf8f;   /* subheads, on-dark secondary */
+    --on-dark:   #f0fff0;   /* text on forest */
+    --border:    #d0e6d0;   /* subtle card border on mint */
+    --border-mid:#bcd8bc;
+    --rule:      #1a3a1a;    /* strong rules */
+    --lose:      #b23b2e;   /* data: losing position */
+    --lose-bg:   #f7e7e4;
+    --win-bg:    #e2f4e8;
+    --rust:      #c8472b;   /* $40B accent */
+    --card:      #ffffff;
+    --card-2:    #eaf6ea;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -64,490 +68,211 @@
 
   body {
     margin: 0;
-    font-family: var(--serif);
-    color: var(--ink);
-    background: var(--paper);
-    line-height: 1.65;
+    background: var(--mint);
+    color: var(--body);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.62;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
-
-  /* ---------- Hero ---------- */
-  .hero {
-    background:
-      radial-gradient(1100px 600px at 80% -10%, rgba(180,80,42,.20), transparent 60%),
-      linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-soft) 100%);
-    color: #eef2f7;
-    padding: 70px 0 58px;
-    border-bottom: 4px solid var(--rust);
-  }
-  .eyebrow {
-    font-family: var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .22em;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--rust);
-    margin: 0 0 18px;
-  }
-  .eyebrow .org { color: var(--steel-soft); }
-  .hero h1 {
-    font-family: var(--sans);
-    font-weight: 800;
-    font-size: clamp(30px, 5vw, 50px);
-    line-height: 1.06;
-    letter-spacing: -.01em;
-    margin: 0 0 16px;
-    color: #fff;
-  }
-  .hero .sub {
-    font-size: clamp(17px, 2.4vw, 21px);
-    color: #c5cfdc;
-    max-width: 720px;
-    margin: 0 0 30px;
-    font-style: italic;
-  }
-  .meta-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    font-family: var(--sans);
-    font-size: 13.5px;
-    border-top: 1px solid rgba(255,255,255,.16);
-    padding-top: 22px;
-  }
-  .meta-bar div {
-    padding-right: 34px;
-    margin-right: 34px;
-    border-right: 1px solid rgba(255,255,255,.14);
-  }
-  .meta-bar div:last-child { border-right: 0; }
-  .meta-bar .k {
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: .12em;
-    font-size: 10.5px;
-    color: var(--steel-soft);
-    margin-bottom: 4px;
-  }
-  .meta-bar .v { color: #e7edf4; font-weight: 600; }
+  .topbar { height: 5px; background: linear-gradient(90deg, var(--green) 0%, #26e06a 45%, var(--forest) 100%); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 26px; }
 
   /* ---------- Sticky nav ---------- */
-  nav.toc {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: rgba(250,248,243,.94);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav.toc .inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 28px;
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  nav.toc .inner::-webkit-scrollbar { display: none; }
-  nav.toc a {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--steel);
-    text-decoration: none;
-    padding: 14px 12px;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color .15s, border-color .15s;
-  }
-  nav.toc a:hover { color: var(--navy); border-bottom-color: var(--rust); }
+  nav.toc { position: sticky; top: 0; z-index: 30; background: rgba(240,255,240,.93); backdrop-filter: blur(9px); border-bottom: 1px solid var(--border-mid); }
+  nav.toc .inner { max-width: 960px; margin: 0 auto; padding: 0 26px; display: flex; align-items: center; gap: 10px; height: 52px; }
+  nav.toc .mark { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--forest); display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+  nav.toc .mark .sq { width: 9px; height: 9px; border-radius: 2px; background: var(--green); box-shadow: 0 0 9px rgba(0,200,83,.55); }
+  nav.toc .links { display: flex; gap: 2px; margin-left: auto; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  nav.toc .links::-webkit-scrollbar { display: none; }
+  nav.toc .links a { font-size: .78rem; font-weight: 600; color: var(--body-soft); text-decoration: none; padding: 8px 10px; border-radius: 7px; white-space: nowrap; }
+  nav.toc .links a:hover { color: var(--forest); background: rgba(0,200,83,.10); }
+
+  /* ---------- Eyebrow ---------- */
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--green-deep); margin: 0 0 16px; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--green); }
+  .eyebrow.on-dark { color: var(--green); }
+
+  /* ---------- Hero (dark forest, deck cover) ---------- */
+  .hero { background: var(--forest); color: var(--on-dark); position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; top: -140px; right: -120px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(0,200,83,.16), transparent 68%); pointer-events: none; }
+  .hero .inner { max-width: 960px; margin: 0 auto; padding: 30px 26px 46px; position: relative; }
+  .hero .toprow { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; padding-bottom: 60px; }
+  .hero .org { font-family: var(--sans); font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sage); display: flex; align-items: center; gap: 9px; }
+  .hero .org .sq { width: 12px; height: 12px; border-radius: 3px; background: var(--green); }
+  .hero .client { font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--sage); }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 8vw, 5.6rem); line-height: .96; letter-spacing: -.01em; margin: 0 0 14px; color: var(--on-dark); }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero .q { font-family: var(--serif); font-style: italic; font-size: clamp(1.25rem, 3vw, 1.7rem); color: var(--sage); margin: 0 0 26px; max-width: 720px; }
+  .hero .intro { color: #cfe6cf; max-width: 730px; font-size: 1.05rem; margin: 0; }
+  .hero .meta { display: flex; flex-wrap: wrap; gap: 0; margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.14); }
+  .hero .meta div { padding-right: 30px; margin-right: 30px; border-right: 1px solid rgba(255,255,255,.13); }
+  .hero .meta div:last-child { border-right: 0; margin-right: 0; }
+  .hero .meta .k { display: block; font-size: .66rem; text-transform: uppercase; letter-spacing: .14em; color: var(--sage); margin-bottom: 5px; }
+  .hero .meta .v { font-size: .9rem; color: var(--on-dark); font-weight: 500; }
 
   /* ---------- Sections ---------- */
-  main { padding: 14px 0 40px; }
-  section { padding: 46px 0 8px; scroll-margin-top: 64px; }
-  section + section { border-top: 1px solid var(--line); }
+  main { padding: 8px 0 0; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--border-mid); scroll-margin-top: 62px; }
+  h2.sec { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.02; letter-spacing: -.01em; color: var(--ink); margin: 0 0 12px; }
+  h2.sec em { font-style: italic; color: var(--green-deep); }
+  h3 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; color: var(--ink); margin: 34px 0 8px; letter-spacing: -.01em; }
+  p { margin: 0 0 17px; }
+  .lede { font-size: 1.16rem; color: var(--body); }
+  strong { color: var(--ink); font-weight: 600; }
 
-  .sec-num {
-    font-family: var(--sans);
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: .14em;
-    color: var(--rust);
-    text-transform: uppercase;
-    margin: 0 0 6px;
-  }
-  h2.sec-title {
-    font-family: var(--sans);
-    font-weight: 800;
-    font-size: clamp(24px, 3.4vw, 33px);
-    line-height: 1.12;
-    letter-spacing: -.01em;
-    color: var(--navy);
-    margin: 0 0 22px;
-  }
-  h3 {
-    font-family: var(--sans);
-    font-weight: 700;
-    font-size: 19px;
-    color: var(--navy-soft);
-    margin: 34px 0 10px;
-  }
-  p { margin: 0 0 18px; font-size: 17.5px; }
-  .lede { font-size: 19px; color: var(--ink-soft); }
+  .read { font-size: .98rem; color: var(--body-soft); background: var(--card-2); border-left: 3px solid var(--green); padding: 15px 20px; margin: 0 0 22px; border-radius: 0 8px 8px 0; }
+  .read strong { color: var(--ink); }
 
-  .read {
-    font-family: var(--sans);
-    font-size: 15.5px;
-    color: var(--ink-soft);
-    background: var(--paper-2);
-    border-left: 3px solid var(--steel);
-    padding: 14px 20px;
-    margin: 0 0 24px;
-    border-radius: 0 6px 6px 0;
-  }
-  .read strong { color: var(--navy); }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 22px; }
+  ul.clean li { position: relative; padding-left: 28px; margin-bottom: 15px; font-size: 1.02rem; color: var(--body); }
+  ul.clean li::before { content: ""; position: absolute; left: 3px; top: 11px; width: 8px; height: 8px; background: var(--green); border-radius: 2px; transform: rotate(45deg); }
+  ul.clean li strong { color: var(--ink); }
 
-  ul.clean { list-style: none; padding: 0; margin: 0 0 24px; }
-  ul.clean li {
-    position: relative;
-    padding: 0 0 0 30px;
-    margin-bottom: 16px;
-    font-size: 17.5px;
-  }
-  ul.clean li::before {
-    content: "";
-    position: absolute;
-    left: 4px; top: 11px;
-    width: 9px; height: 9px;
-    background: var(--rust);
-    border-radius: 2px;
-    transform: rotate(45deg);
-  }
-  ul.clean li strong { color: var(--navy); }
-
-  /* ---------- Callouts ---------- */
-  .callout {
-    background: linear-gradient(155deg, var(--navy) 0%, var(--navy-soft) 100%);
-    color: #eef2f7;
-    border-radius: 12px;
-    padding: 30px 34px;
-    margin: 8px 0 30px;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-  }
-  .callout::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 5px;
-    background: var(--rust);
-  }
-  .callout .label {
-    font-family: var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--rust);
-    margin: 0 0 10px;
-  }
-  .callout p { margin: 0; font-size: 19px; color: #f1f5fa; line-height: 1.55; }
+  /* ---------- Callouts (dark forest) ---------- */
+  .callout { background: var(--forest); color: var(--on-dark); border-radius: 14px; padding: 28px 32px; margin: 8px 0 26px; position: relative; overflow: hidden; }
+  .callout::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--green); }
+  .callout .label { font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin: 0 0 10px; }
+  .callout p { margin: 0; font-size: 1.18rem; color: #eafaea; line-height: 1.5; }
   .callout strong { color: #fff; }
+  .callout em { color: var(--green); font-style: italic; }
 
-  /* Thesis callout — flagship, top of page */
-  .thesis {
-    background:
-      radial-gradient(600px 300px at 100% 0%, rgba(180,80,42,.22), transparent 70%),
-      linear-gradient(155deg, var(--navy-deep), var(--navy-soft));
-    border-radius: 14px;
-    padding: 34px 38px;
-    margin: -34px 0 8px;
-    position: relative;
-    z-index: 5;
-    box-shadow: 0 16px 50px rgba(14,26,46,.28);
-    color: #fff;
-  }
-  .thesis .label {
-    font-family: var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    font-size: 11.5px;
-    font-weight: 800;
-    color: var(--rust);
-    margin: 0 0 12px;
-  }
-  .thesis p {
-    margin: 0;
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: clamp(19px, 2.7vw, 25px);
-    line-height: 1.4;
-    color: #fff;
-  }
-  .thesis .hi { color: #f0a886; }
+  .thesis { background: linear-gradient(150deg, var(--forest-2), var(--forest)); border-radius: 16px; padding: 34px 36px; margin: -34px 0 6px; position: relative; z-index: 5; box-shadow: 0 20px 50px rgba(10,26,10,.30); }
+  .thesis .label { font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--green); margin: 0 0 12px; }
+  .thesis p { margin: 0; font-family: var(--serif); font-size: clamp(1.5rem, 3.2vw, 2.1rem); line-height: 1.28; color: var(--on-dark); }
+  .thesis .hi { color: var(--green); font-style: italic; }
 
-  .insight {
-    background: var(--paper-2);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 22px 26px;
-    margin: 6px 0 28px;
-    box-shadow: var(--shadow);
-  }
-  .insight .label {
-    font-family: var(--sans);
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--rust);
-    margin: 0 0 8px;
-  }
-  .insight p { margin: 0; font-size: 17px; }
-  .insight strong { color: var(--navy); }
+  .insight { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; margin: 6px 0 26px; box-shadow: 0 8px 26px rgba(26,58,26,.05); }
+  .insight .label { font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--green-deep); margin: 0 0 8px; }
+  .insight p { margin: 0; font-size: 1.05rem; color: var(--body); }
+  .insight strong { color: var(--ink); }
 
-  /* ---------- Stat grid ---------- */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin: 4px 0 30px;
-  }
-  .stat {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 20px 18px;
-    box-shadow: var(--shadow);
-  }
-  .stat .big {
-    font-family: var(--sans);
-    font-weight: 800;
-    font-size: 28px;
-    color: var(--rust-deep);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .stat .cap {
-    font-family: var(--sans);
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    line-height: 1.35;
-  }
+  /* ---------- Stat cards ---------- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 6px 0 26px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 12px; padding: 20px 18px; }
+  .stat .big { font-family: var(--serif); font-size: 2.4rem; color: var(--green-deep); line-height: 1; margin-bottom: 8px; }
+  .stat .cap { font-size: .84rem; color: var(--body-soft); line-height: 1.4; }
 
   /* ---------- Tables ---------- */
-  .table-card {
-    margin: 8px 0 14px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    background: #fff;
-  }
+  .table-card { margin: 8px 0 14px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 26px rgba(26,58,26,.05); background: var(--card); }
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-family: var(--sans);
-    font-size: 15px;
-    min-width: 520px;
-  }
-  thead th {
-    background: var(--navy);
-    color: #eaf0f7;
-    text-align: left;
-    padding: 13px 16px;
-    font-size: 12.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    white-space: nowrap;
-  }
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; min-width: 520px; }
+  thead th { background: var(--forest); color: var(--on-dark); text-align: left; padding: 13px 16px; font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
   thead th.num { text-align: right; }
-  tbody td {
-    padding: 12px 16px;
-    border-top: 1px solid var(--line);
-    color: var(--ink);
-  }
+  tbody td { padding: 12px 16px; border-top: 1px solid var(--border); color: var(--body); }
   tbody td.num { text-align: right; font-variant-numeric: tabular-nums; }
-  tbody tr:nth-child(even) td { background: #fbfaf6; }
-  tbody tr.total td {
-    background: var(--paper-2);
-    font-weight: 700;
-    color: var(--navy);
-    border-top: 2px solid var(--steel);
-  }
-  .kw { font-weight: 600; }
-
-  .pill {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 12.5px;
-    font-weight: 700;
-    line-height: 1.5;
-    white-space: nowrap;
-  }
-  .win  { color: var(--win);  background: var(--win-bg); }
-  .lose { color: var(--lose); background: var(--lose-bg); }
-  .mid  { color: var(--neutral); background: var(--neutral-bg); }
-  td.win-c  { color: var(--win);  font-weight: 700; }
+  tbody tr:nth-child(even) td { background: #f6fcf6; }
+  tbody tr.total td { background: var(--card-2); font-weight: 700; color: var(--ink); border-top: 2px solid var(--green); }
+  .kw { font-weight: 600; color: var(--ink); }
+  td.win-c { color: var(--green-deep); font-weight: 700; }
   td.lose-c { color: var(--lose); font-weight: 700; }
   td.rust-c { color: var(--rust); font-weight: 700; }
 
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--ink-soft);
-    margin: 0 0 26px;
-    padding-left: 2px;
-  }
-  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: .72rem; font-weight: 700; line-height: 1.5; white-space: nowrap; text-transform: uppercase; letter-spacing: .04em; }
+  .pill.win { color: var(--green-deep); background: var(--win-bg); }
+  .pill.lose { color: var(--lose); background: var(--lose-bg); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 20px; font-size: .85rem; color: var(--body-soft); margin: 0 0 24px; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
   .dot { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
-  .dot.g { background: var(--win); }
+  .dot.g { background: var(--green-deep); }
   .dot.r { background: var(--lose); }
-  .dot.m { background: var(--neutral); }
 
-  .caption {
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--steel);
-    margin: 0 0 26px;
-    padding-left: 2px;
-  }
-
-  /* ---------- Tier table emphasis ---------- */
-  .tier-1 td:first-child { border-left: 4px solid var(--win); }
-  .tier-2 td:first-child { border-left: 4px solid var(--neutral); }
-  .tier-3 td:first-child { border-left: 4px solid var(--steel-soft); }
+  /* ---------- Tier table ---------- */
+  .tier-1 td:first-child { border-left: 4px solid var(--green); }
+  .tier-2 td:first-child { border-left: 4px solid var(--sage); }
+  .tier-3 td:first-child { border-left: 4px solid var(--border-mid); }
 
   /* ---------- Sources ---------- */
-  .sources {
-    background: var(--navy-deep);
-    color: #c2cdda;
-    margin-top: 40px;
-    padding: 44px 0 50px;
-    border-top: 4px solid var(--rust);
-  }
-  .sources h2 {
-    font-family: var(--sans);
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    color: var(--rust);
-    margin: 0 0 16px;
-  }
-  .sources p { font-size: 15px; line-height: 1.7; color: #b3c0d0; margin: 0 0 14px; }
-  .sources .sig {
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--steel-soft);
-    border-top: 1px solid rgba(255,255,255,.12);
-    padding-top: 20px;
-    margin-top: 8px;
-  }
-  .sources .sig strong { color: #e7edf4; }
+  .sources { background: var(--forest); color: #b9d3b9; padding: 46px 0 52px; }
+  .sources h2 { font-family: var(--sans); font-size: .78rem; text-transform: uppercase; letter-spacing: .18em; color: var(--green); margin: 0 0 16px; font-weight: 700; }
+  .sources p { font-size: .95rem; line-height: 1.72; color: #b9d3b9; margin: 0 0 14px; }
+  .sources .sig { font-size: .82rem; color: var(--sage); border-top: 1px solid rgba(255,255,255,.13); padding-top: 20px; margin-top: 6px; display: flex; align-items: center; gap: 10px; }
+  .sources .sig .mark { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--on-dark); }
+  .sources .sig .sq { width: 10px; height: 10px; border-radius: 2px; background: var(--green); display: inline-block; }
 
-  /* ---------- Responsive: stacked cards ---------- */
+  /* ---------- Responsive ---------- */
   @media (max-width: 720px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
-    .meta-bar div { border-right: 0; margin-right: 0; padding-right: 0; flex-basis: 50%; margin-bottom: 14px; }
-
-    /* Stack data tables into cards on narrow screens */
+    .hero .meta div { border-right: 0; margin-right: 0; padding-right: 0; flex-basis: 48%; margin-bottom: 14px; }
     table.stack { min-width: 0; }
     table.stack thead { position: absolute; left: -9999px; }
     table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; width: 100%; }
-    table.stack tr {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      margin: 0 12px 12px;
-      overflow: hidden;
-      background: #fff;
-    }
+    table.stack tr { border: 1px solid var(--border); border-radius: 10px; margin: 0 12px 12px; overflow: hidden; background: var(--card); }
     table.stack tbody tr:nth-child(even) td { background: transparent; }
-    table.stack tr.total { background: var(--paper-2); }
-    table.stack td {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      text-align: right;
-      padding: 10px 16px;
-      border-top: 1px solid var(--line);
-    }
+    table.stack tr.total { background: var(--card-2); }
+    table.stack td { display: flex; justify-content: space-between; align-items: center; gap: 14px; text-align: right; padding: 10px 15px; border-top: 1px solid var(--border); }
     table.stack td:first-child { border-top: 0; }
-    table.stack td.num { text-align: right; }
-    table.stack td::before {
-      content: attr(data-label);
-      font-weight: 700;
-      color: var(--steel);
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: .04em;
-      text-align: left;
-      flex: 1;
-    }
+    table.stack td::before { content: attr(data-label); font-weight: 700; color: var(--body-soft); text-transform: uppercase; font-size: .66rem; letter-spacing: .05em; text-align: left; flex: 1; }
     .table-card { box-shadow: none; border: 0; background: transparent; }
     .table-scroll { overflow: visible; }
   }
+  @media (max-width: 460px) { .stats { grid-template-columns: 1fr; } }
 
-  @media (max-width: 460px) {
-    .stats { grid-template-columns: 1fr; }
+  /* ---------- Print ---------- */
+  @media print {
+    nav.toc { position: static; }
+    body { background: #fff; }
+    .hero, .callout, .thesis, .sources { background: var(--forest) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .table-card, .stat, .insight { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
+<div class="topbar"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="toc" aria-label="Section navigation">
+  <div class="inner">
+    <span class="mark"><span class="sq"></span>Treetop</span>
+    <div class="links">
+      <a href="#summary">Summary</a>
+      <a href="#demand">1. Demand</a>
+      <a href="#signals">2. Signals</a>
+      <a href="#economy">3. Parent Economy</a>
+      <a href="#fit">4. Product Fit</a>
+      <a href="#recommendation">5. Recommendation</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
 <header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Market Positioning &amp; Audience Opportunity Analysis <span class="org">&nbsp;·&nbsp; Treetop Growth Strategy</span></p>
-    <h1>R3BAR Training</h1>
-    <p class="sub">Should the home-fitness commercial target general consumers, or youth and serious athletes?</p>
-    <div class="meta-bar">
+  <div class="inner">
+    <div class="toprow">
+      <span class="org"><span class="sq"></span>Treetop Growth Strategy</span>
+      <span class="client">Client: R3BAR Training &nbsp;·&nbsp; June 2026</span>
+    </div>
+    <p class="eyebrow on-dark">Market Positioning &amp; Audience Opportunity Analysis</p>
+    <h1>R3BAR <em>Training.</em></h1>
+    <p class="q">Should the home-fitness commercial target general consumers, or youth and serious athletes?</p>
+    <p class="intro">R3BAR is a $249 portable neuromuscular training tool with a fifteen-year track record among Division I, professional, and Olympic-level athletes. This analysis weighs the two audiences the new commercial could speak to, and makes the case for the one the product was built to win.</p>
+    <div class="meta">
       <div><span class="k">Prepared for</span><span class="v">R3BAR Training</span></div>
-      <div><span class="k">Prepared by</span><span class="v">Treetop Growth Strategy</span></div>
+      <div><span class="k">Prepared by</span><span class="v">Bill Colbert, Treetop Growth Strategy</span></div>
       <div><span class="k">Date</span><span class="v">June 2026</span></div>
-      <div><span class="k">Scope</span><span class="v">Keyword demand analysis, market sizing, and audience strategy for the upcoming direct-to-consumer commercial</span></div>
+      <div><span class="k">Scope</span><span class="v">Keyword demand, market sizing, audience strategy</span></div>
     </div>
   </div>
 </header>
 
-<!-- ============ STICKY NAV ============ -->
-<nav class="toc" aria-label="Section navigation">
-  <div class="inner">
-    <a href="#summary">Executive Summary</a>
-    <a href="#demand">1. Keyword Demand</a>
-    <a href="#signals">2. Three Signals</a>
-    <a href="#economy">3. The $40B Parent Economy</a>
-    <a href="#fit">4. Product Fit</a>
-    <a href="#recommendation">5. Recommendation</a>
-  </div>
-</nav>
-
 <main>
 <div class="wrap">
 
-  <!-- ============ THESIS CALLOUT ============ -->
+  <!-- ===== THESIS ===== -->
   <div class="thesis">
     <p class="label">The thesis in one line</p>
     <p>R3BAR should <span class="hi">own the high-value athlete-development lane</span> it was built for, not chase the larger but unwinnable home-fitness category.</p>
   </div>
 
-  <!-- ============ EXECUTIVE SUMMARY ============ -->
+  <!-- ===== EXECUTIVE SUMMARY ===== -->
   <section id="summary">
-    <p class="sec-num">Executive Summary</p>
-    <h2 class="sec-title">The smaller audience is the bigger opportunity</h2>
-    <p class="lede">R3BAR is a $249 portable neuromuscular training tool with a fifteen-year track record among Division I, professional, and Olympic-level athletes. The question on the table is who the new home-fitness commercial should speak to: the broad general-consumer home-fitness shopper, or the narrower but higher-value world of youth and serious athletes and the parents who fund them.</p>
+    <p class="eyebrow">Executive Summary</p>
+    <h2 class="sec">The smaller audience is the <em>bigger opportunity.</em></h2>
+    <p class="lede">The question on the table is who the new home-fitness commercial should speak to: the broad general-consumer home-fitness shopper, or the narrower but higher-value world of youth and serious athletes and the parents who fund them.</p>
     <p>The instinct to chase the largest possible audience is understandable, but the data points the other way. The general home-fitness category is enormous in raw search demand, yet it is a commodity knife-fight that a specialized $249 tool is structurally positioned to lose. The youth and competitive-athlete category is smaller in raw search volume, but it is higher-intent, dramatically higher-value, far less competitive, and sits on top of a $40 billion-a-year parent-spending economy that is actively looking for an edge.</p>
 
     <div class="callout">
@@ -560,14 +285,14 @@
       <div class="stat"><div class="big">2x to 4x</div><div class="cap">Value signal: advertisers pay more per click for athlete-intent terms than general home-fitness terms. The market is telling you where the money is.</div></div>
       <div class="stat"><div class="big">0 to 5</div><div class="cap">Competition signal: athlete and sport-specific keywords sit at near-zero SEO difficulty versus 33 to 44 for home-fitness. The lane is open.</div></div>
       <div class="stat"><div class="big">$40B</div><div class="cap">Market signal: U.S. parents spend more than $40 billion a year on youth sports, up 46% in five years. 27 million kids play.</div></div>
-      <div class="stat"><div class="big">Built&nbsp;for&nbsp;it</div><div class="cap">Product fit: R3BAR's DNA is performance, coordination, and injury prevention. That is an athlete-development message, not weight-loss.</div></div>
+      <div class="stat"><div class="big">Built for it</div><div class="cap">Product fit: R3BAR's DNA is performance, coordination, and injury prevention. That is an athlete-development message, not weight-loss.</div></div>
     </div>
   </section>
 
-  <!-- ============ 1. KEYWORD DEMAND ============ -->
+  <!-- ===== 1. DEMAND ===== -->
   <section id="demand">
-    <p class="sec-num">Section 1</p>
-    <h2 class="sec-title">Keyword Demand: Where Is the Search Behavior?</h2>
+    <p class="eyebrow">Section 1</p>
+    <h2 class="sec">Keyword demand: where is the <em>search behavior?</em></h2>
     <p>Keyword search volume measures how many people actively type a phrase into Google each month in the United States. It is the closest thing to a real-time poll of demand. Below, the two strategic categories are placed side by side.</p>
 
     <div class="legend">
@@ -579,13 +304,7 @@
     <div class="table-card"><div class="table-scroll">
       <table class="stack">
         <thead>
-          <tr>
-            <th>Keyword</th>
-            <th class="num">US Volume / mo</th>
-            <th class="num">CPC</th>
-            <th class="num">SEO Difficulty</th>
-            <th>Buyer Intent</th>
-          </tr>
+          <tr><th>Keyword</th><th class="num">US Volume / mo</th><th class="num">CPC</th><th class="num">SEO Difficulty</th><th>Buyer Intent</th></tr>
         </thead>
         <tbody>
           <tr><td class="kw" data-label="Keyword">home gym</td><td class="num" data-label="Volume/mo">45,000</td><td class="num" data-label="CPC">$0.60</td><td class="num lose-c" data-label="Difficulty">33</td><td data-label="Intent">Commercial</td></tr>
@@ -603,25 +322,19 @@
     <div class="table-card"><div class="table-scroll">
       <table class="stack">
         <thead>
-          <tr>
-            <th>Keyword</th>
-            <th class="num">US Volume / mo</th>
-            <th class="num">CPC</th>
-            <th class="num">SEO Difficulty</th>
-            <th>Buyer Intent</th>
-          </tr>
+          <tr><th>Keyword</th><th class="num">US Volume / mo</th><th class="num">CPC</th><th class="num">SEO Difficulty</th></tr>
         </thead>
         <tbody>
-          <tr><td class="kw" data-label="Keyword">soccer training equipment</td><td class="num" data-label="Volume/mo">2,900</td><td class="num" data-label="CPC">$0.35</td><td class="num" data-label="Difficulty">43</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">baseball training equipment</td><td class="num" data-label="Volume/mo">2,300</td><td class="num" data-label="CPC">$0.35</td><td class="num win-c" data-label="Difficulty">1</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">basketball training equipment</td><td class="num" data-label="Volume/mo">1,500</td><td class="num" data-label="CPC">$0.30</td><td class="num win-c" data-label="Difficulty">2</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">athletic performance training</td><td class="num" data-label="Volume/mo">600</td><td class="num win-c" data-label="CPC">$1.50</td><td class="num" data-label="Difficulty">17</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">youth sports training</td><td class="num" data-label="Volume/mo">400</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num win-c" data-label="Difficulty">3</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">strength training for athletes</td><td class="num" data-label="Volume/mo">300</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num" data-label="Difficulty">26</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">youth athlete training</td><td class="num" data-label="Volume/mo">150</td><td class="num win-c" data-label="CPC">$1.30</td><td class="num win-c" data-label="Difficulty">0</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">youth strength training</td><td class="num" data-label="Volume/mo">150</td><td class="num" data-label="CPC">$0.70</td><td class="num win-c" data-label="Difficulty">5</td><td data-label="Intent">Buy</td></tr>
-          <tr><td class="kw" data-label="Keyword">sports performance equipment</td><td class="num" data-label="Volume/mo">70</td><td class="num win-c" data-label="CPC">$0.90</td><td class="num win-c" data-label="Difficulty">0</td><td data-label="Intent">Buy</td></tr>
-          <tr class="total"><td data-label="Keyword">Category total (lead terms)</td><td class="num" data-label="Volume/mo">~8,400</td><td class="num win-c" data-label="CPC">High</td><td class="num win-c" data-label="Difficulty">Low</td><td data-label="Intent">Buy</td></tr>
+          <tr><td class="kw" data-label="Keyword">soccer training equipment</td><td class="num" data-label="Volume/mo">2,900</td><td class="num" data-label="CPC">$0.35</td><td class="num" data-label="Difficulty">43</td></tr>
+          <tr><td class="kw" data-label="Keyword">baseball training equipment</td><td class="num" data-label="Volume/mo">2,300</td><td class="num" data-label="CPC">$0.35</td><td class="num win-c" data-label="Difficulty">1</td></tr>
+          <tr><td class="kw" data-label="Keyword">basketball training equipment</td><td class="num" data-label="Volume/mo">1,500</td><td class="num" data-label="CPC">$0.30</td><td class="num win-c" data-label="Difficulty">2</td></tr>
+          <tr><td class="kw" data-label="Keyword">athletic performance training</td><td class="num" data-label="Volume/mo">600</td><td class="num win-c" data-label="CPC">$1.50</td><td class="num" data-label="Difficulty">17</td></tr>
+          <tr><td class="kw" data-label="Keyword">youth sports training</td><td class="num" data-label="Volume/mo">400</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num win-c" data-label="Difficulty">3</td></tr>
+          <tr><td class="kw" data-label="Keyword">strength training for athletes</td><td class="num" data-label="Volume/mo">300</td><td class="num win-c" data-label="CPC">$1.10</td><td class="num" data-label="Difficulty">26</td></tr>
+          <tr><td class="kw" data-label="Keyword">youth athlete training</td><td class="num" data-label="Volume/mo">150</td><td class="num win-c" data-label="CPC">$1.30</td><td class="num win-c" data-label="Difficulty">0</td></tr>
+          <tr><td class="kw" data-label="Keyword">youth strength training</td><td class="num" data-label="Volume/mo">150</td><td class="num" data-label="CPC">$0.70</td><td class="num win-c" data-label="Difficulty">5</td></tr>
+          <tr><td class="kw" data-label="Keyword">sports performance equipment</td><td class="num" data-label="Volume/mo">70</td><td class="num win-c" data-label="CPC">$0.90</td><td class="num win-c" data-label="Difficulty">0</td></tr>
+          <tr class="total"><td data-label="Keyword">Category total (lead terms)</td><td class="num" data-label="Volume/mo">~8,400</td><td class="num win-c" data-label="CPC">High</td><td class="num win-c" data-label="Difficulty">Low</td></tr>
         </tbody>
       </table>
     </div></div>
@@ -632,19 +345,17 @@
     </div>
   </section>
 
-  <!-- ============ 2. THREE SIGNALS ============ -->
+  <!-- ===== 2. SIGNALS ===== -->
   <section id="signals">
-    <p class="sec-num">Section 2</p>
-    <h2 class="sec-title">Why Smaller Volume Wins Here: The Three Signals</h2>
+    <p class="eyebrow">Section 2</p>
+    <h2 class="sec">Why smaller volume wins here: the <em>three signals.</em></h2>
     <p>A keyword strategy is not decided on volume alone. Three other dimensions decide whether you can actually capture and monetize that demand. On all three, the athlete audience wins.</p>
 
     <h3>Signal 1: Value per click (CPC)</h3>
     <p>Cost-per-click is what advertisers willingly pay Google for one visitor on that term. It is a live auction, so it is the purest market signal of how much a lead is worth.</p>
     <div class="table-card"><div class="table-scroll">
       <table class="stack">
-        <thead>
-          <tr><th>Term</th><th class="num">CPC</th><th>Relative value</th></tr>
-        </thead>
+        <thead><tr><th>Term</th><th class="num">CPC</th><th>Relative value</th></tr></thead>
         <tbody>
           <tr><td class="kw" data-label="Term">youth athlete training</td><td class="num win-c" data-label="CPC">$1.30</td><td data-label="Value"><span class="pill win">Premium</span></td></tr>
           <tr><td class="kw" data-label="Term">athletic performance training</td><td class="num win-c" data-label="CPC">$1.50</td><td data-label="Value"><span class="pill win">Premium</span></td></tr>
@@ -672,9 +383,7 @@
     <p>Parents and young athletes rarely search for gear by name. They search for the result they want. That behavior is large, cheap to reach, and perfectly suited to R3BAR's story.</p>
     <div class="table-card"><div class="table-scroll">
       <table class="stack">
-        <thead>
-          <tr><th>"Outcome" search</th><th class="num">US Volume / mo</th><th class="num">SEO Difficulty</th></tr>
-        </thead>
+        <thead><tr><th>"Outcome" search</th><th class="num">US Volume / mo</th><th class="num">SEO Difficulty</th></tr></thead>
         <tbody>
           <tr><td class="kw" data-label="Search">how to jump higher</td><td class="num" data-label="Volume/mo">6,100</td><td class="num win-c" data-label="Difficulty">4</td></tr>
           <tr><td class="kw" data-label="Search">how to get faster</td><td class="num" data-label="Volume/mo">4,500</td><td class="num win-c" data-label="Difficulty">11</td></tr>
@@ -688,16 +397,14 @@
     <p>Two openings hide here. First, "how to jump higher / get faster / throw harder" is exactly the promise R3BAR makes, at 11,000+ monthly searches and near-zero difficulty. Second, the "gifts for [sport] players" cluster is the parent in buying mode, looking for exactly the kind of present R3BAR already gets reviewed as.</p>
   </section>
 
-  <!-- ============ 3. PARENT ECONOMY ============ -->
+  <!-- ===== 3. PARENT ECONOMY ===== -->
   <section id="economy">
-    <p class="sec-num">Section 3</p>
-    <h2 class="sec-title">The Buyer Behind the Athlete: A $40 Billion Parent Economy</h2>
+    <p class="eyebrow">Section 3</p>
+    <h2 class="sec">The buyer behind the athlete: a <em>$40 billion parent economy.</em></h2>
     <p>The strategic heart of the argument is not the young athlete. It is the parent who pays. This buyer is already conditioned to spend on performance, is value-insensitive relative to the result, and exists in enormous numbers.</p>
     <div class="table-card"><div class="table-scroll">
       <table class="stack">
-        <thead>
-          <tr><th>Market fact</th><th class="num">Figure</th></tr>
-        </thead>
+        <thead><tr><th>Market fact</th><th class="num">Figure</th></tr></thead>
         <tbody>
           <tr><td data-label="Market fact">Annual U.S. parent spending on youth sports</td><td class="num rust-c" data-label="Figure">$40+ billion</td></tr>
           <tr><td data-label="Market fact">Growth in family youth-sports spending (2019 to 2024)</td><td class="num" data-label="Figure">+46%</td></tr>
@@ -720,14 +427,14 @@
 
     <div class="callout">
       <p class="label">The mechanism, stated plainly</p>
-      <p>You do not sell a 14-year-old a $249 training bar. You sell their parent a faster, stronger, more injury-resistant athlete, using the same tool the pros use, for less than they already spend on a single tournament weekend.</p>
+      <p>You do not sell a 14-year-old a $249 training bar. You sell their parent a <em>faster, stronger, more injury-resistant athlete</em>, using the same tool the pros use, for less than they already spend on a single tournament weekend.</p>
     </div>
   </section>
 
-  <!-- ============ 4. PRODUCT FIT ============ -->
+  <!-- ===== 4. PRODUCT FIT ===== -->
   <section id="fit">
-    <p class="sec-num">Section 4</p>
-    <h2 class="sec-title">Product Fit: R3BAR Was Already Built for This</h2>
+    <p class="eyebrow">Section 4</p>
+    <h2 class="sec">Product fit: R3BAR was <em>already built for this.</em></h2>
     <p>This is not a repositioning that fights the product. It is a repositioning that finally matches it. R3BAR's own marketing language, and its real-world endorsements, are athlete-development through and through.</p>
     <ul class="clean">
       <li><strong>Stated purpose:</strong> athletic performance enhancement, coordination, kinetic-chain stability, and injury prevention ("pre-habilitation"). That is the exact vocabulary of youth athletic development.</li>
@@ -738,25 +445,23 @@
 
     <div class="callout">
       <p class="label">Same product, opposite perception</p>
-      <p>Positioned as home fitness, $249 looks expensive. Positioned as athlete development, $249 looks like a bargain. Same product, same price, opposite perception. The audience choice is what flips it.</p>
+      <p>Positioned as home fitness, $249 looks expensive. Positioned as athlete development, $249 looks like a bargain. Same product, same price, opposite perception. <em>The audience choice is what flips it.</em></p>
     </div>
 
     <h3>The honest counterargument</h3>
     <p>To be straight with the client: the home-fitness category is genuinely 10x larger in raw search demand, and that is real. A niche strategy means deliberately ignoring most of the market. The case for doing so rests on a simple trade: R3BAR cannot win a 10x-larger market it is structurally built to lose, but it can win a smaller market it is built to dominate, where each customer is worth two to three times as much and the competition is asleep. A small share of an open, high-value market beats a rounding-error share of a saturated, low-value one.</p>
   </section>
 
-  <!-- ============ 5. RECOMMENDATION ============ -->
+  <!-- ===== 5. RECOMMENDATION ===== -->
   <section id="recommendation">
-    <p class="sec-num">Section 5</p>
-    <h2 class="sec-title">Recommendation &amp; Commercial Direction</h2>
+    <p class="eyebrow">Section 5</p>
+    <h2 class="sec">Recommendation &amp; <em>commercial direction.</em></h2>
     <p>Build the commercial around youth and serious athletes aged 13 to 22, sold to the parent, with the elite-athlete heritage as proof. Treat general home fitness as a secondary, organic-traffic catch, not the headline message.</p>
 
     <h3>Targeting priority</h3>
     <div class="table-card"><div class="table-scroll">
       <table class="stack">
-        <thead>
-          <tr><th>Tier</th><th>Audience</th><th>Message angle</th></tr>
-        </thead>
+        <thead><tr><th>Tier</th><th>Audience</th><th>Message angle</th></tr></thead>
         <tbody>
           <tr class="tier-1"><td class="num" data-label="Tier"><strong>1</strong></td><td data-label="Audience">Parents of 13 to 22 travel / club / HS athletes</td><td data-label="Message angle">"The edge the pros use. Faster, stronger, more durable, $249."</td></tr>
           <tr class="tier-2"><td class="num" data-label="Tier"><strong>2</strong></td><td data-label="Audience">Serious adult &amp; collegiate athletes (self-buy)</td><td data-label="Message angle">"Train movement, not just muscle. The tool D1 and pro athletes train with."</td></tr>
@@ -776,39 +481,37 @@
     <h3>The numerical story, in one paragraph</h3>
     <div class="callout">
       <p class="label">The smaller number is the bigger opportunity</p>
-      <p>R3BAR can chase 80,000 monthly searches in a category where it ranks against billion-dollar brands, clicks are worth pennies, and a $249 tool reads as overpriced. Or it can own roughly 20,000 monthly athlete and outcome searches where competition is near zero, each click is worth two to four times as much, and it sells into a $40 billion parent economy that spends $1,016 per child per year and is growing 46% every five years. The smaller number is the bigger opportunity.</p>
+      <p>R3BAR can chase 80,000 monthly searches in a category where it ranks against billion-dollar brands, clicks are worth pennies, and a $249 tool reads as overpriced. Or it can own roughly 20,000 monthly athlete and outcome searches where competition is near zero, each click is worth two to four times as much, and it sells into a $40 billion parent economy that spends $1,016 per child per year and is growing 46% every five years. <em>The smaller number is the bigger opportunity.</em></p>
     </div>
   </section>
 
 </div>
 </main>
 
-<!-- ============ SOURCES ============ -->
+<!-- ===== SOURCES ===== -->
 <footer class="sources">
   <div class="wrap">
     <h2>Sources &amp; Methodology</h2>
     <p>Search volume, cost-per-click, and SEO difficulty data: Ahrefs Keywords Explorer (United States), June 2026. Youth-sports market and parent-spending figures: Aspen Institute Project Play 2025 National Youth Sports Parent Survey (in partnership with Utah State University and Louisiana Tech University), SFIA 2024, and Empower / Youth Sports Business Report syntheses of the same. Product detail and endorsements: R3BAR published materials and retail listings. CPC reflects advertiser bids and is used as a proxy for commercial lead value; keyword difficulty is a 0 to 100 estimate of organic ranking competition.</p>
-    <p class="sig"><strong>Treetop Growth Strategy</strong> &nbsp;·&nbsp; Market Positioning &amp; Audience Opportunity Analysis &nbsp;·&nbsp; Prepared for R3BAR Training &nbsp;·&nbsp; June 2026</p>
+    <p class="sig"><span class="sq"></span><span class="mark">Treetop Growth Strategy</span> &nbsp;·&nbsp; Prepared for R3BAR Training &nbsp;·&nbsp; June 2026</p>
   </div>
 </footer>
 
 <script>
-  /* Progressive enhancement: highlight the active section in the sticky nav.
-     Core content and navigation work with no JS via native anchor links + CSS smooth-scroll. */
+  /* Progressive enhancement: highlight the active section in the sticky nav. */
   (function () {
     if (!('IntersectionObserver' in window)) return;
-    var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var links = {};
+    document.querySelectorAll('nav.toc .links a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
-          links.forEach(function (a) { a.style.color = ''; a.style.borderBottomColor = 'transparent'; });
-          var active = map[e.target.id];
-          if (active) { active.style.color = '#14243f'; active.style.borderBottomColor = '#b4502a'; }
+          Object.values(links).forEach(function (a) { a.style.color = ''; a.style.background = ''; });
+          var act = links[e.target.id];
+          if (act) { act.style.color = 'var(--forest)'; act.style.background = 'rgba(0,200,83,.12)'; }
         }
       });
-    }, { rootMargin: '-20% 0px -75% 0px' });
+    }, { rootMargin: '-15% 0px -80% 0px' });
     document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
   })();
 </script>
