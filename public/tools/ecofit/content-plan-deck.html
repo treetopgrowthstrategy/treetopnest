@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ecofit Content Plan · Treetop Growth Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tt-dark:#1A3A1A;
+    --tt-darker:#0A1A0A;
+    --tt-deepest:#050D05;
+    --tt-green:#00C853;
+    --tt-mid:#4A6A4A;
+    --tt-muted:#8FAF8F;
+    --tt-soft:#C0D8C0;
+    --tt-cream:#F0FFF0;
+    --tt-line:rgba(26,58,26,0.12);
+    --tt-line-strong:rgba(26,58,26,0.28);
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:#e5ede5; }
+  body {
+    font-family:'DM Sans',system-ui,sans-serif;
+    color:var(--tt-darker);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    padding:36px 24px 80px;
+  }
+  h1,h2,h3,h4 { font-family:'Instrument Serif',Georgia,serif; font-weight:400; letter-spacing:-0.01em; color:var(--tt-dark); }
+  em { font-style:italic; }
+
+  /* Screen: each slide sits like a page in a stack */
+  .deck { max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:32px; }
+  .slide {
+    background:var(--tt-cream);
+    color:var(--tt-darker);
+    border:1px solid var(--tt-line);
+    border-radius:14px;
+    box-shadow:0 4px 24px rgba(10,26,10,0.10);
+    width:100%;
+    aspect-ratio: 11 / 8.5; /* landscape letter */
+    padding:56px 64px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .slide::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--tt-green) 0%, var(--tt-dark) 100%);
+  }
+
+  /* Header row on each slide */
+  .s-head { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px; }
+  .brand { display:flex; align-items:center; gap:10px; font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--tt-mid); }
+  .brand-mark { width:10px; height:10px; border-radius:2px; background:var(--tt-green); box-shadow:inset 0 0 0 2px var(--tt-dark); }
+  .s-meta { font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--tt-mid); }
+  .s-num { color:var(--tt-mid); }
+
+  /* Slide titles */
+  .s-eyebrow { font-family:'DM Sans',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--tt-green); margin-bottom:10px; }
+  .s-title { font-size:clamp(28px,3.4vw,44px); line-height:1.06; margin-bottom:6px; }
+  .s-title em { color:var(--tt-mid); }
+  .s-sub { font-family:'Instrument Serif',serif; font-style:italic; font-size:20px; color:var(--tt-mid); margin-top:2px; }
+  .s-lede { max-width:640px; font-size:15.5px; line-height:1.6; color:var(--tt-darker); margin-top:14px; }
+
+  /* Body wrap */
+  .s-body { flex:1; display:flex; flex-direction:column; justify-content:flex-start; padding-top:6px; }
+
+  /* Cover */
+  .cover { background:linear-gradient(160deg, var(--tt-dark) 0%, var(--tt-darker) 60%, #000 100%); color:var(--tt-cream); border-color:var(--tt-darker); }
+  .cover::before { background:linear-gradient(90deg, var(--tt-green) 0%, transparent 100%); height:6px; }
+  .cover .brand, .cover .s-meta { color:var(--tt-soft); }
+  .cover .brand-mark { background:var(--tt-green); box-shadow:inset 0 0 0 2px var(--tt-cream); }
+  .cover .s-title { color:var(--tt-cream); font-size:clamp(40px,5vw,64px); letter-spacing:-0.02em; }
+  .cover .s-title em { color:var(--tt-green); }
+  .cover .s-sub { color:var(--tt-muted); font-size:22px; }
+  .cover .s-lede { color:rgba(240,255,240,0.86); }
+  .cover .cover-footer { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.14); font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--tt-soft); }
+  .cover-footer strong { color:var(--tt-cream); font-weight:500; }
+
+  /* Concept list */
+  .concepts { display:flex; flex-direction:column; gap:12px; margin-top:10px; }
+  .concept { position:relative; padding:14px 16px 14px 22px; border-left:3px solid var(--tt-green); background:rgba(0,200,83,0.05); border-radius:0 8px 8px 0; }
+  .concept.blocked { border-left-color:#c9700a; background:rgba(201,112,10,0.06); }
+  .concept.ready { border-left-color:var(--tt-dark); background:rgba(26,58,26,0.05); }
+  .c-top { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px; }
+  .c-title { font-family:'DM Sans',sans-serif; font-weight:600; font-size:14.5px; letter-spacing:-0.005em; color:var(--tt-dark); }
+  .c-tag { font-size:9px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:2px 7px; border-radius:20px; color:var(--tt-mid); background:rgba(26,58,26,0.08); border:1px solid var(--tt-line-strong); white-space:nowrap; }
+  .c-tag.pillar { color:var(--tt-dark); background:rgba(0,200,83,0.16); border-color:rgba(0,200,83,0.35); }
+  .c-tag.blocked { color:#8a4d05; background:rgba(201,112,10,0.14); border-color:rgba(201,112,10,0.4); }
+  .c-tag.ready { color:var(--tt-cream); background:var(--tt-dark); border-color:var(--tt-dark); }
+  .c-teaser { font-size:12.5px; line-height:1.55; color:var(--tt-mid); }
+
+  /* Compact concept lists on dense months (5+ concepts) */
+  .slide.dense .concept { padding:10px 14px 10px 18px; }
+  .slide.dense .c-title { font-size:13.5px; }
+  .slide.dense .c-teaser { font-size:11.5px; line-height:1.5; }
+  .slide.dense .concepts { gap:8px; }
+
+  /* Section-header slides */
+  .section .s-title { font-size:clamp(44px,5vw,58px); }
+  .section-line { width:64px; height:3px; background:var(--tt-green); margin:22px 0; }
+  .section .s-lede { font-size:17px; max-width:640px; }
+  .section-count { font-family:'Instrument Serif',serif; font-style:italic; font-size:78px; line-height:1; color:var(--tt-soft); position:absolute; right:64px; bottom:52px; }
+
+  /* Two-column info */
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:12px; }
+  .col h3 { font-family:'Instrument Serif',serif; font-size:22px; margin-bottom:8px; color:var(--tt-dark); }
+  .col p, .col li { font-size:13px; line-height:1.6; color:var(--tt-darker); }
+  .col ul { margin-left:16px; margin-top:6px; }
+  .col li { margin-bottom:4px; }
+  .col strong { color:var(--tt-dark); font-weight:600; }
+
+  /* Foot on all slides */
+  .s-foot { margin-top:auto; padding-top:16px; border-top:1px solid var(--tt-line); display:flex; align-items:center; justify-content:space-between; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--tt-muted); }
+  .s-foot a { color:var(--tt-mid); text-decoration:none; }
+
+  /* Screen-only controls */
+  .toolbar { position:fixed; top:16px; right:16px; z-index:100; display:flex; gap:8px; }
+  .btn { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; padding:8px 14px; border-radius:8px; background:var(--tt-dark); color:var(--tt-cream); border:none; cursor:pointer; box-shadow:0 4px 12px rgba(10,26,10,0.2); }
+  .btn:hover { background:var(--tt-darker); }
+  .btn.ghost { background:var(--tt-cream); color:var(--tt-dark); border:1px solid var(--tt-line-strong); }
+
+  @media print {
+    html, body { background:#fff; padding:0; }
+    .toolbar { display:none !important; }
+    .deck { max-width:none; margin:0; gap:0; }
+    .slide {
+      aspect-ratio:auto;
+      height:100vh;                  /* fallback */
+      width:100%;
+      border-radius:0;
+      border:none;
+      box-shadow:none;
+      padding:0.5in 0.6in;
+      break-after:page;
+      page-break-after:always;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+    .slide:last-child { break-after:auto; page-break-after:auto; }
+    .cover { color:var(--tt-cream) !important; }
+    /* Force full-bleed dark for cover */
+    .cover { background:var(--tt-dark) !important; }
+    @page { size: letter landscape; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="btn ghost" onclick="location.href='/tools/ecofit/content-planner'">Open planner</button>
+  <button class="btn" onclick="window.print()">Download as PDF</button>
+</div>
+
+<div class="deck">
+
+  <!-- ═══════════════════ COVER ═══════════════════ -->
+  <section class="slide cover">
+    <div class="s-head">
+      <div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div>
+      <div class="s-meta">Client: ecofit · July 2026</div>
+    </div>
+    <div class="s-body" style="justify-content:center;">
+      <div class="s-eyebrow" style="color:var(--tt-green);">Content Marketing Plan</div>
+      <h1 class="s-title">The ecofit <em>Content Calendar.</em></h1>
+      <div class="s-sub">Every concept, month by month.</div>
+      <p class="s-lede">Forty-six campaign concepts across a twelve-month calendar plus a working backlog. Every card has a headline and a teaser. Nothing publishes until Will reviews and approves. The live planner is where placement, edits, and drag-and-drop happen. This deck is the readable snapshot.</p>
+    </div>
+    <div class="cover-footer">
+      <div>Prepared by <strong>Bill Colbert</strong>, Treetop Growth Strategy</div>
+      <div>treetopgrowthstrategy.com</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ INTRO ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div>
+      <div class="s-meta">How to read this</div>
+    </div>
+    <div class="s-body">
+      <div class="s-eyebrow">Orientation</div>
+      <h2 class="s-title">One plan, one enemy, one <em>through line.</em></h2>
+      <p class="s-lede">The plan runs on a single category (equipment intelligence) and a single enemy (guesswork). Every month blends three things on purpose: a manufacturer feature every other month, a thought-leadership piece, and a data or operator story. Two recurring segments run in the background: Anonymous Operator Tells All, and the ecofit Floor Index and State of the Gym Floor as the data franchise.</p>
+      <div class="cols">
+        <div class="col">
+          <h3>How to use it</h3>
+          <p><strong>Live planner:</strong> the interactive tool where you drag concepts into months, edit teasers, and leave feedback right on the cards.</p>
+          <p style="margin-top:8px;"><strong>This deck:</strong> the static, readable snapshot for circulation to Dave, Tim, and Phil.</p>
+        </div>
+        <div class="col">
+          <h3>Legend on the cards</h3>
+          <ul>
+            <li><strong>Pillar</strong> chip: Thought Leadership, Operator Story, Partner Deep Dive, or Key Metric.</li>
+            <li><strong>Ready</strong> chip: a Dave-voice draft is written and linked on the card in the planner.</li>
+            <li><strong>Blocked</strong> chip: waiting on data traceability, consent, or a partner sign-off.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>ecofit content plan · Treetop Growth Strategy</span><span class="s-num">02</span></div>
+  </section>
+
+  <!-- ═══════════════════ JUL 2026 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 1 · 3 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Jul 2026</div>
+      <h2 class="s-title">Plant the flag. <em>Name the category.</em></h2>
+      <div class="concepts">
+        <div class="concept ready">
+          <div class="c-top"><span class="c-title">Equipment Intelligence Is a Category Now. Guesswork Is the Competition.</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag ready">Draft ready</span></div>
+          <div class="c-teaser">Name the enemy. For decades, equipment decisions ran on instinct and the loudest opinion in the room. That era is ending, and the operators who stopped guessing are quietly pulling away.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">ecofit Floor Index: The Most-Used Strength Machine, Every Quarter.</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">Ask ten operators for the most-used strength machine and you get ten confident guesses. Only one is right. A recurring data drop competitors cannot fake and the press can cite.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">The Best Treadmill in the World Now Runs on ecofit Data.</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">Woodway</span></div>
+          <div class="c-teaser">The treadmill your members line up for just started talking. Woodway's best now reports who used it, how hard, and when it is about to fail. Your maintenance log never told you any of that.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Jul 2026</span><span class="s-num">03</span></div>
+  </section>
+
+  <!-- ═══════════════════ AUG 2026 ═══════════════════ -->
+  <section class="slide dense">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 2 · 5 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Aug 2026</div>
+      <h2 class="s-title">The partner reveal and the <em>camera reframe.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">True Fitness Put a Sensor in Every Console. Here Is the First Thing the Data Said.</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">True Fitness</span></div>
+          <div class="c-teaser">Anyone can announce a partnership. Almost no one shows what the product caught in its first week. The floor immediately said something the sales team did not expect.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Your Security Cameras Have Been Watching the Wrong Thing.</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag">Vision AI</span></div>
+          <div class="c-teaser">For years your cameras recorded everything and told you nothing. Vision AI rewrites the job. The same footage that watched for theft can tell you which equipment to buy, without ever identifying a face.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Anonymous Operator Tells All: I Almost Stocked My Fourth Club From Memory.</span><span class="c-tag pillar">Operator Story</span><span class="c-tag">Series</span></div>
+          <div class="c-teaser">Club four was going to look just like my first three, because that is how I had always done it. The data from those three clubs said do not.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Usage by Facility Type: What Changes Across Verticals.</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">A hotel gym, a YMCA, and a campus rec are not the same building, yet most get the same equipment. Business travelers alone use treadmills about 10 percent more. Vertical changes everything.</div>
+        </div>
+        <div class="concept blocked">
+          <div class="c-top"><span class="c-title">Joint Customer Case Study (Woven x ecofit).</span><span class="c-tag pillar">Operator Story</span><span class="c-tag blocked">Blocked</span></div>
+          <div class="c-teaser">One real multi-unit operator, the integration running live, and the numbers to prove it. Pending named customer and Woven sign-off.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Aug 2026</span><span class="s-num">04</span></div>
+  </section>
+
+  <!-- ═══════════════════ SEP 2026 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 3 · 4 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Sep 2026</div>
+      <h2 class="s-title">Launch <em>Anonymous Operator</em>, and let the floor decide.</h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Anonymous Operator Tells All: I Almost Spent Six Figures on a Hunch.</span><span class="c-tag pillar">Operator Story</span><span class="c-tag">Series launch</span></div>
+          <div class="c-teaser">First in the segment. An operator six weeks from signing a six-figure equipment order built on gut and a rep's pitch. Then they studied the floor. Names withheld, numbers real.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Climb Mills vs Ellipticals: Let the Floor Decide the Ratio.</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">Three climb mills and two ellipticals, or four and one? Every planner has an opinion. The floor has an answer. Stop negotiating the ratio and let the usage settle it.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Rebalancing in Real Time: One Facility, 60 Days of Data.</span><span class="c-tag pillar">Operator Story</span></div>
+          <div class="c-teaser">Sixty days of data. One real floor. The overworked machines, the dead zones, and the exact swaps to fix them. Watch a facility rebalance itself, then go look at your own.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Beyond Active: Pre-Event Campaign.</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag">Event</span></div>
+          <div class="c-teaser">When the whole industry is in one place, you say the thing they cannot ignore. A pre-event play that puts ecofit in the room before the room even sits down.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Sep 2026</span><span class="s-num">05</span></div>
+  </section>
+
+  <!-- ═══════════════════ OCT 2026 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 4 · 3 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Oct 2026</div>
+      <h2 class="s-title">Nashville, Clemson, <em>and the GLP-1 story.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">FISA Knows What Was Sold. ecofit Knows What Gets Used.</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag">FISA event</span></div>
+          <div class="c-teaser">Everyone knows what sold last year. Almost no one knows what members actually touched. Only one of those numbers signs your next check. Nashville is where you find out which.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">The Clemson Story: How a D1 Athletic Dept Uses ecofit.</span><span class="c-tag pillar">Operator Story</span></div>
+          <div class="c-teaser">Clemson's athletic director will stand in front of a room of buyers and admit he stopped guessing. Universities copy each other, NIL money is moving fast, and the schools reading their floors are pulling away.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">GLP-1 and the Strength Floor: A Usage Shift in Real Time.</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">The biggest story in fitness is rewriting your floor right now. GLP-1 members are chasing the weights to hold muscle, and the shift shows up in the data long before it shows up in your plan.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Oct 2026</span><span class="s-num">06</span></div>
+  </section>
+
+  <!-- ═══════════════════ NOV 2026 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 5 · 3 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Nov 2026</div>
+      <h2 class="s-title">The <em>living organism</em> thesis.</h2>
+      <div class="concepts">
+        <div class="concept ready">
+          <div class="c-top"><span class="c-title">Your Gym Is a Living Organism.</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag ready">Draft ready</span></div>
+          <div class="c-teaser">Your watch reads your body in real time. Your club deserves the same. Check-ins and the parking lot are not a pulse. Here is what a gym looks like when it finally has one.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Matrix: You May Already Have ecofit.</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">Matrix</span></div>
+          <div class="c-teaser">You may already own this and not know it. Thousands of connected Matrix machines are one switch away from telling you everything. The operator down the road already flipped it.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Anonymous Operator Tells All: The Architect's Plan Would Have Cost Me a Year of Growth.</span><span class="c-tag pillar">Operator Story</span><span class="c-tag">Series</span></div>
+          <div class="c-teaser">The blueprint looked perfect, so I almost signed it. The floor data said it would cost me a full year of growth, and I caught it with weeks to spare.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Nov 2026</span><span class="s-num">07</span></div>
+  </section>
+
+  <!-- ═══════════════════ DEC 2026 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 6 · 3 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Dec 2026</div>
+      <h2 class="s-title">The perception check, and the <em>annual flagship.</em></h2>
+      <div class="concepts">
+        <div class="concept ready">
+          <div class="c-top"><span class="c-title">Perception vs Reality: What the Floor Actually Says.</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag ready">Draft ready</span></div>
+          <div class="c-teaser">Most layout calls rest on a gut feeling dressed up as experience. The floor keeps the receipts. This is the gap between what you are sure of and what your members actually do.</div>
+        </div>
+        <div class="concept blocked">
+          <div class="c-top"><span class="c-title">The State of the Gym Floor: ecofit's Annual Equipment Intelligence Report.</span><span class="c-tag pillar">Key Metric</span><span class="c-tag blocked">Data pipeline</span></div>
+          <div class="c-teaser">The report the industry cites all year. Dependency: the anonymization pipeline (Will, Sergey, Peter's insights agent). Do not schedule to publish until that pipeline is confirmed.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Podcast Reaction: Where Equipment Intelligence Goes Next.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">You think you know which technology is worth buying. Most of it fails one simple test. Dave reveals the filter that kills the pitches stacked on your desk.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Dec 2026</span><span class="s-num">08</span></div>
+  </section>
+
+  <!-- ═══════════════════ JAN 2027 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 7 · 2 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Jan 2027</div>
+      <h2 class="s-title">Kill the static report. <em>Ask the floor.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Ask Your Floor a Question: From Static Reports to Conversational Data.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">You used to wait two weeks for a report that was stale on arrival. Now you ask your floor a question and it answers in the room. The static report just died. Most operators have not heard yet.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Anonymous Operator Tells All: I Almost Replaced Equipment That Was Perfectly Fine.</span><span class="c-tag pillar">Operator Story</span><span class="c-tag">Series</span></div>
+          <div class="c-teaser">I had the check written to replace it. The floor proved the gear was fine and the real bottleneck was three feet away. Certainty got expensive the moment it was wrong.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Jan 2027</span><span class="s-num">09</span></div>
+  </section>
+
+  <!-- ═══════════════════ FEB 2027 ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 8 · 2 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Feb 2027</div>
+      <h2 class="s-title">Campus rec, and the <em>CORE announcement.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Where Habits Form: Campus Rec as the Industry's Leading Indicator.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">Students build the habits they will bring to your club for the next forty years. Campus rec is the leading indicator for the whole market, and the operators reading it now are skating to where the puck is going.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">CORE Health &amp; Fitness Partnership Announcement.</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">CORE</span></div>
+          <div class="c-teaser">StairMaster, Star Trac, and the brands on half the floors in America just picked a side. This is the announcement operators will read twice.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Feb 2027</span><span class="s-num">10</span></div>
+  </section>
+
+  <!-- ═══════════════════ MAR 2027 ═══════════════════ -->
+  <section class="slide dense">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Month 9 · 4 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Mar 2027</div>
+      <h2 class="s-title">Vision AI with Matrix. The <em>whole floor,</em> at last.</h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Vision AI with Matrix: Seeing the Whole Floor.</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">Matrix</span></div>
+          <div class="c-teaser">Connected cardio was only ever half the story. Vision AI reads the free weights, the plate-loaded, the turf, everything the sensors miss. The first time you can see the entire floor at once.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">When Your AI Talks to Our Data: ecofit via MCP.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">Soon your AI will ask our data its own questions, with no analyst in the middle. The operators wiring this up now will look like they can see the future. They can.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Dwell Time: What Your Squat Racks Are Really Telling You.</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">One club went from two squat racks to eight, and peak is still maxed out. Dwell time is the number you have never measured and can no longer afford to ignore.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Customer FAQ Series: How Do I Work With You?</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">The five questions every operator asks before they buy, answered in the open, no sales call required. By the last one you will wonder why you waited this long to ask.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Mar 2027</span><span class="s-num">11</span></div>
+  </section>
+
+  <!-- ═══════════════════ APR/MAY/JUN 2027 (OPEN) ═══════════════════ -->
+  <section class="slide section">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Months 10 · 11 · 12</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Apr, May, Jun 2027</div>
+      <h2 class="s-title">Currently <em>open.</em></h2>
+      <div class="section-line"></div>
+      <p class="s-lede">Reserved for the second half of the Woven cluster, the Vision AI pillar, and new work that comes out of client and partner calls between now and then. As the calendar fills, the manufacturer cadence stays every other month and the anonymous operator series continues on quarterly intervals.</p>
+    </div>
+    <div class="section-count">03</div>
+    <div class="s-foot"><span>Q2 2027 · open</span><span class="s-num">12</span></div>
+  </section>
+
+  <!-- ═══════════════════ BACKLOG: Vision AI + SEO ═══════════════════ -->
+  <section class="slide dense">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Backlog · 6 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Backlog: Vision AI &amp; Search</div>
+      <h2 class="s-title">Own the domain. <em>Own the answer engine.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Vision AI Product Page (Beta).</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag">Priority</span></div>
+          <div class="c-teaser">A page that explains what Vision AI actually is. Kept broad and marked beta while the feature set is still being hammered out. Also the front door for non-fitness verticals.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Own the Stack: Why a Dashboard Is Not a Data Company.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">The strongest differentiator from the wave of lookalikes. Most competitors claiming analytics are data brokers with no hardware behind them. ecofit owns the whole stack.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Plain-Language System FAQ (Built for AI Answers).</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">A crawlable FAQ that answers the literal questions operators type into Google and AI search. Built to be cited by LLM search. Aligns with Will's FAQ template.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">ecofit, Fitness's Proprietary Data Company (Authority Placements).</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag">PR / placement</span></div>
+          <div class="c-teaser">Position ecofit as the proprietary-data company for fitness. Profiles and brand mentions on Athletech, Fit Insider, G2, and Reddit, plus a Club Solutions media buy.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Category SEO: Ranking for the Terms Operators Actually Search.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">The category itself has thin search volume. Rank on the plain-language terms operators do search, then funnel to Vision AI and equipment intelligence.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Vision AI Beyond Fitness: New Verticals (Exploration).</span><span class="c-tag pillar">Thought Leadership</span><span class="c-tag">Back burner</span></div>
+          <div class="c-teaser">Cracks the door to non-fitness entities like multifamily housing. Real upside, but those markets have real competition. Explore carefully.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Backlog · Vision AI &amp; Search</span><span class="s-num">13</span></div>
+  </section>
+
+  <!-- ═══════════════════ BACKLOG: Woven ═══════════════════ -->
+  <section class="slide dense">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Backlog · 7 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Backlog: Woven x ecofit cluster</div>
+      <h2 class="s-title">Reactive to preventative to <em>predictive.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Woven x ecofit: Equipment Health Webinar (On-Demand, Gated).</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">Anchor</span></div>
+          <div class="c-teaser">The full Matt and Dave conversation, on demand and gated. The anchor asset for the whole partnership, and the lead capture that feeds everything after it.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">The Hidden Cost of Out of Order Signs.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">An out of order sign is a tiny piece of paper that quietly costs you members. Every day a unit sits dark is gap time no system is measuring.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Stop Touching Every Treadmill: Usage-Based Servicing.</span><span class="c-tag pillar">Key Metric</span></div>
+          <div class="c-teaser">Servicing all thirty treadmills on the same schedule is how you waste a technician's day. Service by usage, not by habit.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Predictive Failure Is Coming. Your Data Has to Be Ready.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">Predictive maintenance is not a someday promise anymore. Error codes and amperage draws already tell you a machine is failing before a member ever feels it.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">The $0 Integration: Why This Partnership Is Complimentary.</span><span class="c-tag pillar">Partner Deep Dive</span></div>
+          <div class="c-teaser">The first question every skeptic asks is what this costs them. The answer is nothing. Independent platforms that happen to make each other better.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Short-Form Clip Library (4 to 6 Clips from the Webinar).</span><span class="c-tag pillar">Partner Deep Dive</span></div>
+          <div class="c-teaser">Four to six short clips cut from the webinar, built for the feed. Ready to produce after the webinar publishes.</div>
+        </div>
+        <div class="concept blocked">
+          <div class="c-top"><span class="c-title">Equipment Health ROI Calculator.</span><span class="c-tag pillar">Key Metric</span><span class="c-tag blocked">Blocked</span></div>
+          <div class="c-teaser">A gated calculator that turns a vague promise into a number an operator can take to the CFO. Blocked pending verified figures. Loop candidate.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Backlog · Woven x ecofit</span><span class="s-num">14</span></div>
+  </section>
+
+  <!-- ═══════════════════ BACKLOG: Other ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Backlog · 4 concepts</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Backlog: Other</div>
+      <h2 class="s-title">Held for the right <em>moment or partner.</em></h2>
+      <div class="concepts">
+        <div class="concept">
+          <div class="c-top"><span class="c-title">EoS Is Opening Its 350th Club. ecofit Is in Every One.</span><span class="c-tag pillar">Operator Story</span></div>
+          <div class="c-teaser">The fastest-growing chain in the country does not guess its equipment mix. It reads it. 350 clubs, zero hunches.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Woodway Just Went Into 100+ D1 Training Locations.</span><span class="c-tag pillar">Partner Deep Dive</span><span class="c-tag">Woodway</span></div>
+          <div class="c-teaser">More than 100 Division I programs just standardized on connected Woodway. The athletes you want to recruit already train on intelligence.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Dave on the Lifts Podcast with Mo Iqbal.</span><span class="c-tag pillar">Thought Leadership</span></div>
+          <div class="c-teaser">The conversation the industry will be quoting for months. Dave and Mo skip the buzzwords and name the one thing operators keep getting wrong about their own floors.</div>
+        </div>
+        <div class="concept">
+          <div class="c-top"><span class="c-title">Manufacturer Co-Marketing Data Reports (Anonymized Category and Vertical).</span><span class="c-tag pillar">Partner Deep Dive</span></div>
+          <div class="c-teaser">Public and co-marketing reports use anonymized category or vertical data only, never customer-identifiable, never cross-brand. Brand-specific reports stay private, on request, through Will and Sergey.</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Backlog · Other</span><span class="s-num">15</span></div>
+  </section>
+
+  <!-- ═══════════════════ GUARDRAILS ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">Working principles</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Guardrails</div>
+      <h2 class="s-title">The rules that <em>keep this safe.</em></h2>
+      <div class="cols">
+        <div class="col">
+          <h3>Data</h3>
+          <p>Anonymized and verticalized data only, in anything public. No customer-identifiable data, ever. No cross-brand comparisons. Real-data reports run through Will and Sergey. The Floor Index and State of the Gym Floor depend on the anonymization pipeline; nothing scheduled to publish until that is confirmed.</p>
+        </div>
+        <div class="col">
+          <h3>Voice and review</h3>
+          <p>Dave's voice on thought leadership, graded before publish. No em dashes in published copy, use periods, commas, colons, or parentheses. Nothing publishes without Will's review. Bill fills the hopper, filters, and serves drafts through the planner for approval.</p>
+        </div>
+        <div class="col">
+          <h3>Partners</h3>
+          <p>Co-branded pieces need partner sign-off before publish. Manufacturer reports are anonymized public reports or private brand-specific reports on request; never cross-brand comparisons. Woven is a messaging partner: we send data to Woven, we do not consume it.</p>
+        </div>
+        <div class="col">
+          <h3>Vision AI</h3>
+          <p>Product page kept broad and clearly marked beta while the feature set is in flux. Non-fitness verticals are a careful, later exploration; those markets have real competition unlike fitness.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Guardrails</span><span class="s-num">16</span></div>
+  </section>
+
+  <!-- ═══════════════════ NEXT STEPS ═══════════════════ -->
+  <section class="slide">
+    <div class="s-head"><div class="brand"><span class="brand-mark"></span>Treetop Growth Strategy</div><div class="s-meta">What is next</div></div>
+    <div class="s-body">
+      <div class="s-eyebrow">Next steps</div>
+      <h2 class="s-title">The short list, from <em>this week onward.</em></h2>
+      <div class="cols">
+        <div class="col">
+          <h3>Now</h3>
+          <ul>
+            <li>Drag concepts into months and leave feedback right on the cards in the live planner.</li>
+            <li>Share the FAQ template and point to the existing industry report so both can be folded in.</li>
+            <li>Confirm Dave's title (EVP or Co-Founder / CEO) for anything that names him.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Cadence</h3>
+          <ul>
+            <li>Biweekly Thursday check-ins from the week of July 14 once Will is back from PTO.</li>
+            <li>First drafts served through the planner. Approve, edit, or send back with notes.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Priority builds</h3>
+          <ul>
+            <li>Vision AI product page (broad, beta-marked).</li>
+            <li>Plain-language system FAQ, built for AI answers.</li>
+            <li>Own the Stack, the differentiation piece.</li>
+            <li>The rest of the equipment-intelligence thought-leadership pillar.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Live planner</h3>
+          <p><strong>treetopgrowthstrategy.com/tools/ecofit/content-planner</strong></p>
+          <p style="margin-top:8px;">Drag any card between months and the backlog. Every change writes straight back to Airtable.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span>Prepared by Bill Colbert · Treetop Growth Strategy</span><span class="s-num">17</span></div>
+  </section>
+
+</div>
+
+</body>
+</html>
