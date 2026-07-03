@@ -17,6 +17,7 @@ const AIRTABLE_TABLE       = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafC
 const AHREFS_API_KEY       = process.env.AHREFS_API_KEY       || '';
 const FROM_EMAIL           = process.env.RESEND_FROM          || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL           = process.env.BILL_NOTIFY_EMAIL    || 'william.colbert@treetopgrowthstrategy.com';
+const REPLY_TO_ADDRESS     = process.env.CMO_REPLY_TO_EMAIL   || 'bill@reports.treetopgrowthstrategy.com';
 const SITE                 = 'https://treetopgrowthstrategy.com';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -43,14 +44,27 @@ function rawBody(req: any): Promise<Buffer> {
 
 // ─── Airtable ─────────────────────────────────────────────────────────────────
 
-async function fetchOnboardingNotes(email: string): Promise<string> {
-  if (!AIRTABLE_API_KEY) return '';
+async function fetchOnboardingRecord(email: string): Promise<{ recordId: string; notes: string } | null> {
+  if (!AIRTABLE_API_KEY) return null;
   const formula = encodeURIComponent(`AND({Email}="${email}",{Source}="cmo-onboarding")`);
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`;
   const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
-  if (!r.ok) { console.error('Airtable lookup failed', r.status); return ''; }
+  if (!r.ok) { console.error('Airtable lookup failed', r.status); return null; }
   const data: any = await r.json();
-  return data.records?.[0]?.fields?.Notes || '';
+  const record = data.records?.[0];
+  if (!record) return null;
+  return { recordId: record.id, notes: record.fields?.Notes || '' };
+}
+
+async function saveLastReport(recordId: string, reportHtml: string): Promise<void> {
+  if (!AIRTABLE_API_KEY || !recordId) return;
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}/${recordId}`;
+  const r = await fetch(url, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { 'Last Report': reportHtml } }),
+  });
+  if (!r.ok) console.error('Failed to save Last Report to Airtable:', r.status, await r.text());
 }
 
 // ─── Ahrefs ───────────────────────────────────────────────────────────────────
@@ -275,7 +289,8 @@ export default async function handler(req: any, res: any) {
     const todayDate = new Date().toISOString().slice(0, 10);
 
     // Fetch onboarding answers first — needed to extract competitor domains
-    const notes = await fetchOnboardingNotes(email);
+    const onboarding = await fetchOnboardingRecord(email);
+    const notes = onboarding?.notes || '';
 
     // Resolve domains: user's own + up to 3 competitors from onboarding
     const competitorDomains = parseCompetitorDomains(notes);
@@ -296,6 +311,11 @@ export default async function handler(req: any, res: any) {
 
     const reportBody = await generateReport(email, notes, ahrefsBlock);
 
+    // Persist the report so a reply to it can be answered with real context
+    if (onboarding?.recordId) {
+      await saveLastReport(onboarding.recordId, reportBody);
+    }
+
     // Schedule delivery 15 minutes out so the report doesn't arrive instantly
     const deliverAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
 
@@ -303,7 +323,7 @@ export default async function handler(req: any, res: any) {
       email,
       'Your AI CMO Starter Report is ready',
       reportEmailHtml(reportBody, email),
-      BILL_EMAIL,
+      REPLY_TO_ADDRESS,
       deliverAt,
     );
 
