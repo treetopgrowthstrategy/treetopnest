@@ -1,0 +1,41 @@
+---
+// HubLinks.astro — renders the full list of variant pages for a programmatic
+// cluster so every hub links to ALL of its children (internal-linking / crawl fix).
+// Data comes from src/data/hubLinks.json (regenerate via scripts/gen-hub-links.mjs).
+import hubLinks from '../data/hubLinks.json';
+
+interface Props {
+  cluster: keyof typeof hubLinks | string;
+  heading: string;
+  blurb?: string;
+  bg?: string; // section background, defaults to the base dark
+}
+const { cluster, heading, blurb, bg = '#050D05' } = Astro.props;
+const items = (hubLinks as Record<string, { href: string; label: string }[]>)[cluster] ?? [];
+---
+{items.length > 0 && (
+  <section class="hublinks" style={`background:${bg};`}>
+    <div class="hublinks-inner">
+      <span class="hublinks-lbl">Browse all {items.length}</span>
+      <h2 class="hublinks-h">{heading}</h2>
+      {blurb && <p class="hublinks-sub">{blurb}</p>}
+      <ul class="hublinks-grid">
+        {items.map((it) => (
+          <li><a href={it.href}>{it.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .hublinks { padding: 5rem 2.5rem; border-top: 1px solid #1A3A1A; }
+  .hublinks-inner { max-width: 1200px; margin: 0 auto; }
+  .hublinks-lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+  .hublinks-h { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 400; line-height: 1.12; color: #F0FFF0; margin-bottom: 1rem; }
+  .hublinks-sub { font-size: 1rem; color: #8FAF8F; line-height: 1.75; max-width: 640px; margin-bottom: 2.5rem; }
+  .hublinks-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.4rem 2rem; }
+  .hublinks-grid a { display: block; font-size: 0.9rem; color: #C0D8C0; text-decoration: none; padding: 0.35rem 0; border-bottom: 1px solid transparent; transition: color 0.15s, border-color 0.15s; }
+  .hublinks-grid a:hover { color: #00C853; border-bottom-color: rgba(0,200,83,0.35); }
+  @media (max-width: 768px) { .hublinks { padding: 3.5rem 1.5rem; } }
+</style>

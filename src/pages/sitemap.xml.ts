@@ -9,20 +9,25 @@ const BASE = 'https://treetopgrowthstrategy.com';
 // Resolve to the actual src/pages directory at build time
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// Try multiple candidate locations
+// Try multiple candidate locations. cwd/src/pages FIRST: during `astro build`
+// (local and Vercel) the working directory is the project root, so this always
+// resolves to the live source. Previously __dirname was tried first and, in the
+// bundled build, resolved to a stale backup copy under audit_output/, silently
+// dropping recently added pages from the sitemap.
 const CANDIDATES = [
+  resolve(process.cwd(), 'src/pages'),                // reliable during build (cwd = project root)
   __dirname,                                          // when running from src/pages directly
   resolve(__dirname, '../../../src/pages'),           // when bundled into dist
-  resolve(process.cwd(), 'src/pages'),                // fallback to cwd
 ];
 function findPagesDir(): string {
   for (const c of CANDIDATES) {
     try {
       const files = readdirSync(c);
-      if (files.some(f => f === 'index.astro' || f === 'about.astro')) return c;
+      // Require BOTH sentinels so a partial/stale backup dir can't win.
+      if (files.includes('index.astro') && files.includes('about.astro')) return c;
     } catch {}
   }
-  return CANDIDATES[CANDIDATES.length - 1];
+  return CANDIDATES[0];
 }
 const PAGES_DIR = findPagesDir();
 
@@ -115,6 +120,7 @@ export const GET: APIRoute = () => {
     // Skip the sitemap source itself
     if (f.endsWith('sitemap.xml.ts')) continue;
     const url = fileToUrl(f);
+    if (/\s/.test(url)) continue; // skip stray "copy 2"/"copy 3" duplicate files → invalid URLs
     if (shouldExclude(url)) continue;
     if (isNoindex(f)) continue;
     if (seen.has(url)) continue;

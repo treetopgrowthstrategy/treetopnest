@@ -10,16 +10,109 @@
       "destination": "/specialty-coffee-ecommerce-growth-plan",
       "statusCode": 301
     },
+
     {
       "source": "/insights/what-is-a-fractional-cmo",
-      "destination": "/resources/what-is-a-fractional-cmo",
+      "destination": "/what-does-a-fractional-cmo-do",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/what-does-a-fractional-cmo-do",
+      "destination": "/what-does-a-fractional-cmo-do",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/fractional-cmo-cost",
+      "destination": "/how-much-does-a-fractional-cmo-cost",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/fractional-cmo-vs-full-time-cmo",
+      "destination": "/fractional-cmo-vs-full-time-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/fractional-cmo-vs-marketing-agency",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/fractional-cmo-job-description",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/when-to-hire-a-fractional-cmo",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/cmo-vs-vp-of-marketing",
+      "destination": "/fractional-cmo",
       "statusCode": 301
     },
     {
       "source": "/insights/:slug*",
-      "destination": "/resources/:slug*",
+      "destination": "/resources",
       "statusCode": 301
     },
+    {
+      "source": "/insights",
+      "destination": "/resources",
+      "statusCode": 301
+    },
+
+    {
+      "source": "/home",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hr",
+      "destination": "/claude-for-hr",
+      "statusCode": 301
+    },
+    {
+      "source": "/40",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/results",
+      "destination": "/case-studies",
+      "statusCode": 301
+    },
+    {
+      "source": "/growth-operator",
+      "destination": "/services",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-services",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/facebook-advertising-agency",
+      "destination": "/services",
+      "statusCode": 301
+    },
+    {
+      "source": "/customer-acquisition-strategy-case-study-increase-conversion-rate",
+      "destination": "/case-studies",
+      "statusCode": 301
+    },
+    {
+      "source": "/quiz/cmo",
+      "destination": "/ai-cmo-advisor",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "/",
+      "statusCode": 301
+    },
+
     {
       "source": "/fractional-cmo-austin-tx",
       "destination": "/fractional-cmo-austin",
