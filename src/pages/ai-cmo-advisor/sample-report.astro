@@ -1,0 +1,156 @@
+---
+import GlobalFooter from '../../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Sample AI CMO Report | Treetop Growth Strategy</title>
+  <meta name="description" content="A full example of the $99 AI CMO Starter Report: competitive snapshot, keyword gap analysis, content positioning, growth levers, and a 90-day roadmap, for a fictional field service software company." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/ai-cmo-advisor/sample-report" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/ai-cmo-advisor/sample-report" />
+  <meta property="og:title" content="Sample AI CMO Report | Treetop" />
+  <meta property="og:description" content="See exactly what the $99 report looks like before you buy." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sample AI CMO Report | Treetop" />
+  <meta name="twitter:description" content="A full example of the $99 report, section by section." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    .hero { padding: 8.5rem 2.5rem 3rem; }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1rem; }
+    .hero-h em { font-style: italic; color: #00C853; }
+    .hero-sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; max-width: 640px; margin-bottom: 1.5rem; }
+    .disclaimer { font-size: 0.8rem; color: #4A6A4A; border-left: 2px solid #1A3A1A; padding-left: 1rem; max-width: 640px; line-height: 1.7; }
+
+    .report-shell { max-width: 780px; margin: 0 auto; padding: 3rem 2.5rem 5rem; }
+    .report-frame { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem 2.75rem 3rem; }
+    .report-brand { font-family: 'Instrument Serif', serif; font-size: 1.1rem; font-style: italic; color: #F0FFF0; margin-bottom: 0.25rem; }
+    .report-meta { font-size: 0.78rem; color: #4A6A4A; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #1A3A1A; }
+    .report-h2 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-weight: 400; color: #00C853; margin: 2.5rem 0 1rem; }
+    .report-h2:first-of-type { margin-top: 0; }
+    .report-p { font-size: 0.95rem; color: #C0D8C0; line-height: 1.8; margin-bottom: 1rem; }
+    .report-p strong { color: #F0FFF0; font-weight: 600; }
+    .report-ul { color: #C0D8C0; font-size: 0.92rem; line-height: 1.8; padding-left: 1.25rem; margin-bottom: 1rem; }
+    .report-ul li { margin-bottom: 0.5rem; }
+    .report-ul li::marker { color: #00C853; }
+    .kpi-row { display: flex; gap: 1px; background: #1A3A1A; border: 1px solid #1A3A1A; margin: 1.25rem 0 1.5rem; }
+    .kpi { background: #050D05; padding: 1rem 1.25rem; flex: 1; }
+    .kpi-n { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; line-height: 1; }
+    .kpi-n.you { color: #00C853; }
+    .kpi-l { font-size: 0.68rem; color: #4A6A4A; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.35rem; }
+
+    .cta-box { background: #0A1A0A; border: 1px solid rgba(0,200,83,0.2); padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; max-width: 780px; margin: 0 auto 5rem; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.88rem; color: #8FAF8F; margin-top: 0.5rem; }
+
+    @media(max-width:768px){
+      .hero { padding: 7rem 1.5rem 2.5rem; }
+      .report-shell { padding: 2rem 1.25rem 3rem; }
+      .report-frame { padding: 1.75rem 1.5rem 2.25rem; }
+      .kpi-row { flex-direction: column; }
+      .hide-mob { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/ai-cmo-advisor" class="nav-link">AI CMO Advisor</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/ai-cmo-advisor" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Get my report &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="lbl">Sample report</span>
+    <h1 class="hero-h">This is what <em>$99 actually gets you.</em></h1>
+    <p class="hero-sub">The full report below is a real example of the format, depth, and tone every AI CMO Starter Report ships with. Nothing is abbreviated. This is exactly what lands in your inbox, built for your business instead.</p>
+    <p class="disclaimer">The company below, "Fieldline," is fictional, built to illustrate the report format. Your real report uses live Ahrefs data pulled for your actual domain and the competitors you name.</p>
+  </div>
+</div>
+
+<div class="report-shell">
+  <div class="report-frame">
+    <div class="report-brand">Treetop Growth Strategy</div>
+    <div class="report-meta">AI CMO Starter Report &middot; Prepared for Fieldline (fictional example) &middot; Competitors named: DispatchPro, RouteWorks</div>
+
+    <h2 class="report-h2">1. Competitive Snapshot</h2>
+    <p class="report-p">Fieldline sits well behind both named competitors on organic authority. DispatchPro has the strongest position: a Domain Rating of 41 built almost entirely on integration documentation and a widely-linked "field service glossary" that ranks for dozens of definitional terms. RouteWorks is weaker on authority (DR 33) but wins on volume, publishing 4 to 6 blog posts a week, mostly thin, templated city-and-trade combinations ("HVAC dispatch software in Austin").</p>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-n you">24</div><div class="kpi-l">Fieldline DR</div></div>
+      <div class="kpi"><div class="kpi-n">41</div><div class="kpi-l">DispatchPro DR</div></div>
+      <div class="kpi"><div class="kpi-n">33</div><div class="kpi-l">RouteWorks DR</div></div>
+    </div>
+    <p class="report-p">Neither competitor has a strong answer for mid-size contractors specifically. DispatchPro's content skews enterprise (500+ technician fleets). RouteWorks skews solo-operator. <strong>The 10 to 40 technician range is uncontested by either.</strong> That is your opening, and it matches who you told me you actually sell to.</p>
+
+    <h2 class="report-h2">2. Keyword Gap</h2>
+    <p class="report-p">Five terms worth building toward this quarter, ranked by how winnable they are right now:</p>
+    <ul class="report-ul">
+      <li><strong>"field service scheduling software for small business"</strong>: 720 searches/mo, neither competitor has a dedicated page. Wide open.</li>
+      <li><strong>"HVAC dispatch software"</strong>: 1,300 searches/mo, RouteWorks ranks position 6 with a thin page. Beatable with a genuinely useful comparison page.</li>
+      <li><strong>"route optimization for contractors"</strong>: 480 searches/mo, low competition, high buyer intent.</li>
+      <li><strong>"field service software integrations"</strong>: 890 searches/mo, currently owned by DispatchPro's glossary. Longer play, but valuable.</li>
+      <li><strong>"how to reduce technician drive time"</strong>: 210 searches/mo, low volume but this is exactly the problem Fieldline solves. Strong conversion page candidate.</li>
+    </ul>
+
+    <h2 class="report-h2">3. Content Positioning</h2>
+    <p class="report-p">Right now Fieldline's site reads like a feature list. Neither competitor has claimed the "built for the contractor who's outgrown a whiteboard and a group chat, but isn't ready for enterprise software" position, and that is exactly the gap in the market the data shows. Lead with operator language, not category language: fewer "AI-powered dispatch optimization," more "stop double-booking your Tuesday."</p>
+    <p class="report-p">Stop competing on integration count. DispatchPro will always win that argument since they have three more years of partnerships. Compete on time-to-value instead: how fast a 15-person crew is fully running on Fieldline, start to finish.</p>
+
+    <h2 class="report-h2">4. Top 3 Growth Levers</h2>
+    <ul class="report-ul">
+      <li><strong>Build the mid-size contractor hub.</strong> A cluster of 6 to 8 pages targeting the 10-40 technician range specifically. Highest ROI, 60 to 90 days to first rankings.</li>
+      <li><strong>Ship one real comparison page against RouteWorks.</strong> Not a takedown, an honest breakdown of who each tool actually fits. This is winnable within 30 days and captures existing RouteWorks search traffic.</li>
+      <li><strong>Turn 3 existing customers into named case studies.</strong> Right now there is no proof on the site. This is the single fastest trust fix available and costs nothing but a few customer calls.</li>
+    </ul>
+
+    <h2 class="report-h2">5. 90-Day Roadmap</h2>
+    <p class="report-p"><strong>Month 1:</strong> Ship the mid-size contractor landing page and the RouteWorks comparison page. Start outreach for the 3 customer case studies.</p>
+    <p class="report-p"><strong>Month 2:</strong> Publish 4 supporting pages in the contractor hub cluster. Get at least 1 case study live. Start building the "drive time" conversion page.</p>
+    <p class="report-p"><strong>Month 3:</strong> Push the hub toward page-one rankings with internal linking and outreach. Add the second and third case studies. Reassess keyword position and adjust the next quarter's targets based on what actually moved.</p>
+
+    <h2 class="report-h2">6. What I Would Do First</h2>
+    <p class="report-p">If I were sitting across the table from you this week, I would tell you to stop writing more feature pages and go get one real customer on the phone for a case study. You have no third-party proof anywhere on the site right now, and that is a bigger conversion problem than any keyword gap. Do that this week. Start the contractor hub pages next week, once the case study is in motion.</p>
+  </div>
+</div>
+
+<div class="cta-box">
+  <div>
+    <div class="cta-text">Want this built for your actual business?</div>
+    <div class="cta-sub">Same six sections, same depth, built on your real competitors and your real numbers. $99, delivered same day.</div>
+  </div>
+  <a href="/ai-cmo-advisor" class="btn-p">Get my report &rarr;</a>
+</div>
+
+<GlobalFooter />
+
+</body>
+</html>
