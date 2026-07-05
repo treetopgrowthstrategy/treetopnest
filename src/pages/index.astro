@@ -6,7 +6,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 
 <Layout
   title="AI CMO Advisor: $99 Competitive Analysis & 90-Day Roadmap | Treetop"
-  description="Get a competitive analysis and 90-day marketing roadmap built on real CMO judgment for $99. Live Ahrefs data, delivered same day. Ratchet up to Monthly, or a full fractional CMO engagement, whenever you're ready."
+  description="Get a competitive analysis and 90-day marketing roadmap built on real CMO judgment for $99. Live Ahrefs data, delivered same day. Climb to Monitor, Guided, Embedded, or a custom Enterprise engagement whenever you're ready."
   canonicalUrl="https://treetopgrowthstrategy.com/"
 >
 <script type="application/ld+json" slot="schema">
@@ -19,8 +19,10 @@ import GlobalFooter from '../components/GlobalFooter.astro';
   "brand": { "@type": "Brand", "name": "Treetop Growth Strategy" },
   "offers": [
     { "@type": "Offer", "price": "99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Starter Report: one-time competitive analysis and 90-day roadmap", "url": "https://treetopgrowthstrategy.com/ai-cmo-advisor" },
-    { "@type": "Offer", "price": "599", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "AI CMO Monthly: ongoing competitive monitoring and strategic access", "url": "https://treetopgrowthstrategy.com/ai-cmo-advisor/upgrade" },
-    { "@type": "Offer", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Fractional CMO engagement: custom-scoped, hands-on GTM leadership", "url": "https://treetopgrowthstrategy.com/fractional-cmo" }
+    { "@type": "Offer", "price": "249", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Monitor: monthly competitive refresh and what-changed memo", "url": "https://treetopgrowthstrategy.com/pricing" },
+    { "@type": "Offer", "price": "999", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Guided: monthly working call, deeper analysis, we shape your assets", "url": "https://treetopgrowthstrategy.com/pricing" },
+    { "@type": "Offer", "price": "2500", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Embedded: part-time CMO who produces the work with you", "url": "https://treetopgrowthstrategy.com/pricing" },
+    { "@type": "Offer", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Enterprise: custom-scoped AI-native GTM transformation", "url": "https://treetopgrowthstrategy.com/fractional-cmo" }
   ]
 }
 </script>
@@ -62,23 +64,20 @@ import GlobalFooter from '../components/GlobalFooter.astro';
   .quiz-box { border:1px solid rgba(0,200,83,0.25); background:#0A1A0A; padding:2.5rem; display:flex; flex-direction:column; gap:1rem; align-items:flex-start; }
 
   /* Ladder */
-  .ladder { display:flex; gap:1.25px; background:#1A3A1A; border:1px solid #1A3A1A; }
-  .rung { background:#050D05; padding:2.25rem 2rem; flex:1; min-width:0; display:flex; flex-direction:column; position:relative; }
-  .rung.mid { background:#071407; }
-  .rung.top { background:#0A1A0A; }
-  .rung-step { font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4A6A4A; margin-bottom:1rem; }
+  .ladder { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:#1A3A1A; border:1px solid #1A3A1A; }
+  .rung { background:#050D05; padding:1.6rem 1.4rem; display:flex; flex-direction:column; position:relative; }
+  .rung.featured { background:#071407; }
+  .rung-step { font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#4A6A4A; margin-bottom:0.75rem; }
   .rung-step em { color:#00C853; font-style:normal; }
-  .rung-name { font-family:'Instrument Serif',serif; font-size:1.4rem; color:#F0FFF0; font-weight:400; margin-bottom:0.4rem; }
-  .rung-price { font-family:'Instrument Serif',serif; font-size:2.2rem; color:#00C853; line-height:1; margin-bottom:0.75rem; }
-  .rung-price small { font-family:'DM Sans',sans-serif; font-size:0.72rem; color:#4A6A4A; font-weight:400; }
-  .rung-desc { font-size:0.85rem; color:#8FAF8F; line-height:1.65; margin-bottom:1.5rem; flex:1; }
-  .rung-arrow { position:absolute; right:-13px; top:50%; transform:translateY(-50%); color:#2A4A2A; font-size:1.4rem; z-index:2; }
+  .rung-name { font-family:'Instrument Serif',serif; font-size:1.15rem; color:#F0FFF0; font-weight:400; margin-bottom:0.3rem; }
+  .rung-price { font-family:'Instrument Serif',serif; font-size:1.7rem; color:#00C853; line-height:1; margin-bottom:0.6rem; }
+  .rung-price small { font-family:'DM Sans',sans-serif; font-size:0.66rem; color:#4A6A4A; font-weight:400; }
+  .rung-desc { font-size:0.8rem; color:#8FAF8F; line-height:1.55; flex:1; }
 
   @media(max-width:768px){
     .mob-col { flex-direction:column !important; }
     .hide-mob { display:none !important; }
-    .ladder { flex-direction:column; }
-    .rung-arrow { display:none; }
+    .ladder { grid-template-columns:1fr; }
   }
 </style>
 
@@ -104,7 +103,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
       A fractional CMO's read<br/>on your <span style="font-style:italic;color:#00C853;">competitors,</span><br/>for $99.
     </h1>
     <p class="anim d3" style="font-size:1.05rem;font-weight:300;color:#8FAF8F;max-width:620px;line-height:1.8;margin-bottom:2.5rem;">
-      Live Ahrefs data on the companies you're actually competing with, a keyword gap analysis, and a 90-day roadmap. Delivered same day. Most people start here. Some upgrade to Monthly. If you ever want us to actually run it with you, that's on the table too.
+      Live Ahrefs data on the companies you're actually competing with, a keyword gap analysis, and a 90-day roadmap. Delivered same day. Most people start here. Some climb to a monthly plan. If you ever want us to actually run it with you, that's on the table too.
     </p>
     <div class="anim d4 mob-col" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;">
       <a href="/ai-cmo-advisor" class="btn-p">Get my report &rarr;</a>
@@ -153,33 +152,45 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 <section style="padding:5rem 2.5rem;background:#050D05;">
   <div style="max-width:1200px;margin:0 auto;">
     <span class="lbl">How this works</span>
-    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:#F0FFF0;line-height:1.2;max-width:640px;margin-bottom:1rem;">Start small. Go as deep as you actually need.</h2>
-    <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.8;max-width:640px;margin-bottom:2.5rem;">No discovery call required to get started. Pay $99, see the thinking, and decide from there. Most people never need to go further than the report. Some want it ongoing. A few want a CMO actually in the seat.</p>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;color:#F0FFF0;line-height:1.2;max-width:640px;margin-bottom:1rem;">Start at $99. Climb only as far as you need.</h2>
+    <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.8;max-width:640px;margin-bottom:2.5rem;">Five steps, and each one does more of the work for you. The axis is simple: the higher you climb, the more we do instead of you. Most people never leave the first step, and no step locks you into the next.</p>
 
     <div class="ladder">
       <div class="rung">
-        <div class="rung-step">Step <em>01</em></div>
+        <div class="rung-step">Step <em>01</em> &middot; Diagnose</div>
         <div class="rung-name">Starter Report</div>
-        <div class="rung-price">$99</div>
-        <div class="rung-desc">One-time. Competitive snapshot, keyword gaps, and a 90-day roadmap, delivered same day. The lowest-friction way to see real thinking about your situation.</div>
-        <a href="/ai-cmo-advisor" class="btn-g" style="justify-content:center;">Get the report &rarr;</a>
-        <div class="rung-arrow hide-mob">&rarr;</div>
+        <div class="rung-price">$99<small> once</small></div>
+        <div class="rung-desc">Live competitive data, keyword gaps, and a 90-day roadmap. Same day.</div>
       </div>
-      <div class="rung mid">
-        <div class="rung-step">Step <em>02</em></div>
-        <div class="rung-name">AI CMO Monthly</div>
-        <div class="rung-price">$599<small>/mo</small></div>
-        <div class="rung-desc">For when the landscape keeps moving. Monthly competitive refresh, a priority question answered directly, and a quarterly strategy reset. Cancel any time.</div>
-        <a href="/ai-cmo-advisor/upgrade" class="btn-g" style="justify-content:center;">See Monthly &rarr;</a>
-        <div class="rung-arrow hide-mob">&rarr;</div>
+      <div class="rung">
+        <div class="rung-step">Step <em>02</em> &middot; Monitor</div>
+        <div class="rung-name">Monitor</div>
+        <div class="rung-price">$249<small>/mo</small></div>
+        <div class="rung-desc">The report kept current every month, with a what-changed memo.</div>
       </div>
-      <div class="rung top">
-        <div class="rung-step">Step <em>03</em></div>
-        <div class="rung-name">Fractional CMO</div>
+      <div class="rung featured">
+        <div class="rung-step">Step <em>03</em> &middot; Guide</div>
+        <div class="rung-name">Guided</div>
+        <div class="rung-price">$999<small>/mo</small></div>
+        <div class="rung-desc">A monthly working call and a strategist who shapes your assets.</div>
+      </div>
+      <div class="rung">
+        <div class="rung-step">Step <em>04</em> &middot; Embed</div>
+        <div class="rung-name">Embedded</div>
+        <div class="rung-price">$2,500<small>/mo</small></div>
+        <div class="rung-desc">A part-time CMO who produces the work with you, not just advice.</div>
+      </div>
+      <div class="rung">
+        <div class="rung-step">Step <em>05</em> &middot; Transform</div>
+        <div class="rung-name">Enterprise</div>
         <div class="rung-price">Custom</div>
-        <div class="rung-desc">For when you want someone actually in the seat, not just advising. Hands-on GTM leadership, scoped to your business, quoted as a flat monthly fee.</div>
-        <a href="/fractional-cmo" class="btn-p" style="justify-content:center;">Talk about fractional &rarr;</a>
+        <div class="rung-desc">The whole revenue motion rebuilt around AI. Custom-scoped.</div>
       </div>
+    </div>
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;align-items:center;">
+      <a href="/ai-cmo-advisor" class="btn-p">Get my report &rarr;</a>
+      <a href="/pricing" class="btn-g">Compare all five steps &rarr;</a>
     </div>
   </div>
 </section>
@@ -232,7 +243,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     <span class="lbl" style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block;">Free tools &amp; resources</span>
     <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.75rem);font-weight:400;line-height:1.12;color:#F0FFF0;margin-bottom:1rem;">Open-source thinking, <em style="color:#00C853;font-style:italic;">free.</em></h2>
     <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.75;max-width:680px;margin-bottom:2.5rem;">
-      250+ resources — calculators, playbooks, prompt libraries, frameworks, composite case studies, industry-specific AI playbooks — that we use with clients. Free. No email gates. Use them whether you ever hire us or not.
+      250+ resources: calculators, playbooks, prompt libraries, frameworks, composite case studies, and industry-specific AI playbooks that we use with clients. Free. No email gates. Use them whether you ever hire us or not.
     </p>
 
     <!-- 3-column tier showcase -->
@@ -319,7 +330,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
       <div style="flex:1.4;min-width:260px;background:#050D05;border:1px solid #1A3A1A;padding:2rem;">
         <blockquote style="border-left:3px solid rgba(0,200,83,0.3);padding-left:1.25rem;">
           <p style="font-size:0.95rem;color:#F0FFF0;line-height:1.8;margin-bottom:0.75rem;font-style:italic;">"I built the $99 report to be the thing I'd actually want if I were in your seat: not more content to post, but a straight answer on where you stand and what to do about it. If you want it ongoing, or you want me actually running it with you, that's there too. Start with what you need right now."</p>
-          <cite style="font-size:0.75rem;color:#4A6A4A;font-style:normal;">— Bill Colbert, Founder, Treetop Growth Strategy</cite>
+          <cite style="font-size:0.75rem;color:#4A6A4A;font-style:normal;">Bill Colbert, Founder, Treetop Growth Strategy</cite>
         </blockquote>
       </div>
     </div>

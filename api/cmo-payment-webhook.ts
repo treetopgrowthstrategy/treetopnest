@@ -224,7 +224,7 @@ async function sendEmail(to: string, subject: string, html: string, replyTo?: st
 }
 
 function reportEmailHtml(reportBody: string, customerEmail: string): string {
-  const upgradeUrl = `${SITE}/ai-cmo-advisor/upgrade?e=${Buffer.from(customerEmail).toString('base64url')}`;
+  const upgradeUrl = `${SITE}/ai-cmo-advisor/upgrade?tier=monitor&e=${Buffer.from(customerEmail).toString('base64url')}`;
   return `
 <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;background:#fff;color:#1a1a1a;line-height:1.65;">
   <div style="background:#050D05;padding:28px 32px;">
@@ -238,7 +238,7 @@ function reportEmailHtml(reportBody: string, customerEmail: string): string {
       <p style="margin:0 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>
       <p style="margin:0 0 16px;font-size:13px;color:#888;">Founder, Treetop Growth Strategy &bull; <a href="${SITE}" style="color:#00897B;">treetopgrowthstrategy.com</a></p>
       <p style="margin:0 0 12px;font-size:13px;color:#888;">Questions? Reply to this email.</p>
-      <p style="margin:0;font-size:13px;color:#555;">Want a monthly competitive refresh, priority answers to your top strategic questions, and direct access? <a href="${upgradeUrl}" style="color:#00897B;font-weight:600;">Upgrade to AI CMO Monthly ($599/mo) &rarr;</a></p>
+      <p style="margin:0;font-size:13px;color:#555;">Want this kept current every month, with a what-changed memo and your questions answered? <a href="${upgradeUrl}" style="color:#00897B;font-weight:600;">Continue with Monitor ($249/mo) &rarr;</a></p>
     </div>
   </div>
 </div>`;
