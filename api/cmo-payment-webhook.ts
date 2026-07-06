@@ -62,7 +62,7 @@ async function saveLastReport(recordId: string, reportHtml: string): Promise<voi
   const r = await fetch(url, {
     method: 'PATCH',
     headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields: { 'Last Report': reportHtml, 'Stage': 'report_delivered' } }),
+    body: JSON.stringify({ fields: { 'Last Report': reportHtml, 'Stage': 'report_delivered', 'StageSince': new Date().toISOString().slice(0, 10) } }),
   });
   if (!r.ok) console.error('Failed to save Last Report to Airtable:', r.status, await r.text());
 }
@@ -78,9 +78,9 @@ async function setLeadStage(email: string, stage: string): Promise<void> {
     const data: any = r.ok ? await r.json() : { records: [] };
     const rec = data.records?.[0];
     if (rec) {
-      await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: stage } }) });
+      await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: stage, StageSince: new Date().toISOString().slice(0, 10) } }) });
     } else {
-      await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', Stage: stage } }) });
+      await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', Stage: stage, StageSince: new Date().toISOString().slice(0, 10) } }) });
     }
   } catch (err) { console.error('setLeadStage error:', err); }
 }

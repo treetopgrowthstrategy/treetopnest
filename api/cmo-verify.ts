@@ -63,10 +63,10 @@ export default async function handler(req: any, res: any) {
       if (rec) {
         const cur = rec.fields?.Stage;
         if (!cur || cur === 'unverified') {
-          await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: 'verified' } }) });
+          await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: 'verified', StageSince: new Date().toISOString().slice(0, 10) } }) });
         }
       } else {
-        await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Name: lower.split('@')[0], Email: lower, Source: 'cmo-verify', Stage: 'verified' } }) });
+        await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Name: lower.split('@')[0], Email: lower, Source: 'cmo-verify', Stage: 'verified', StageSince: new Date().toISOString().slice(0, 10) } }) });
       }
     }
   } catch (err) { console.error('verify stage update error:', err); }

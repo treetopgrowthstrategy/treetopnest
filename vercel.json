@@ -130,5 +130,8 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "crons": [
+    { "path": "/api/cron-cmo-nurture", "schedule": "0 14 * * *" }
+  ]
 }

@@ -111,10 +111,10 @@ export default async function handler(req: any, res: any) {
       const fd: any = fr.ok ? await fr.json() : { records: [] };
       const rec = fd.records?.[0];
       if (rec) {
-        await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: 'onboarded', Notes: notes } }) });
+        await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: 'onboarded', StageSince: new Date().toISOString().slice(0, 10), Notes: notes } }) });
       } else {
         await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: {
-          Name: email.split('@')[0], Email: email, Source: 'cmo-onboarding', Stage: 'onboarded', Notes: notes,
+          Name: email.split('@')[0], Email: email, Source: 'cmo-onboarding', Stage: 'onboarded', StageSince: new Date().toISOString().slice(0, 10), Notes: notes,
         } }) });
       }
     }

@@ -118,6 +118,7 @@ export default async function handler(req: any, res: any) {
             Email: email,
             Source: 'cmo-signup',
             Stage: 'unverified',
+            StageSince: new Date().toISOString().slice(0, 10),
             ...(websiteUrl ? { WebsiteURL: websiteUrl } : {}),
             Notes: 'AI CMO Advisor signup. Verification email sent.',
           } }),
