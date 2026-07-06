@@ -148,7 +148,7 @@ function formatAhrefsBlock(items: (AhrefsData | null)[]): string {
   const valid = items.filter(Boolean) as AhrefsData[];
   if (!valid.length) return '';
 
-  let block = '\n\nLIVE AHREFS COMPETITIVE DATA (ground your analysis in these numbers — cite specifics):\n';
+  let block = '\n\nLIVE AHREFS COMPETITIVE DATA (ground your analysis in these numbers, cite specifics):\n';
   for (const d of valid) {
     block += `\n${d.domain}:\n`;
     if (d.domainRating !== null) block += `  Domain Rating: ${d.domainRating}\n`;
@@ -250,7 +250,8 @@ function reportEmailHtml(reportBody: string, customerEmail: string): string {
   </div>
   <div style="padding:36px 32px;">
     <h1 style="margin:0 0 6px;font-size:24px;font-weight:600;color:#050D05;">Your AI CMO Starter Report</h1>
-    <p style="margin:0 0 32px;font-size:13px;color:#888;">Prepared by Bill Colbert, with live Ahrefs data</p>
+    <p style="margin:0 0 24px;font-size:13px;color:#888;">Prepared by Bill Colbert, with live Ahrefs data</p>
+    <p style="margin:0 0 28px;font-size:15px;color:#333;line-height:1.65;">Here is your report. I pulled the live data on the competitors you named and wrote up what I would actually do about it. The section most people read first is the last one, "What I would do first." If anything here raises a question, just reply to this email. It comes straight to me.</p>
     ${reportBody}
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #eaeaea;">
       <p style="margin:0 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>

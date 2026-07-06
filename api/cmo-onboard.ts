@@ -91,7 +91,7 @@ export default async function handler(req: any, res: any) {
     <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;background:#fff;padding:36px 28px;color:#1a1a1a;line-height:1.65;">
       <p style="margin:0 0 20px;font-size:15px;">Hi,</p>
       <p style="margin:0 0 20px;font-size:15px;">Your onboarding is complete. We have everything we need to build your AI CMO report.</p>
-      <p style="margin:0 0 20px;font-size:15px;">Here is what happens next: we will pull live competitive data on the companies you named, run the full analysis, and deliver your report to this email address within 24 hours.</p>
+      <p style="margin:0 0 20px;font-size:15px;">Here is what happens next: the last step is the $99 so we can pull your live competitive data and write the report. Once that is in, it lands in this inbox the same day, usually within the hour.</p>
       <p style="margin:0 0 20px;font-size:15px;">If you have questions or want to add anything before we start, reply to this email and it comes straight to us.</p>
       <p style="margin:24px 0 4px;font-size:14px;color:#1a1a1a;border-top:1px solid #eaeaea;padding-top:20px;">Bill Colbert</p>
       <p style="margin:0;font-size:13px;color:#888;">Founder, Treetop Growth Strategy<br/><a href="${SITE}" style="color:#888;">treetopgrowthstrategy.com</a></p>
