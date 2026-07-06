@@ -40,7 +40,7 @@ function looksLikeAutoReply(headers: Record<string, string> | undefined, fromAdd
 
 async function fetchCustomerContext(email: string): Promise<{ notes: string; lastReport: string } | null> {
   if (!AIRTABLE_API_KEY) return null;
-  const formula = encodeURIComponent(`AND({Email}="${email}",{Source}="cmo-onboarding")`);
+  const formula = encodeURIComponent(`LOWER({Email})="${String(email).toLowerCase()}"`);
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`;
   const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
   if (!r.ok) { console.error('Airtable lookup failed', r.status); return null; }

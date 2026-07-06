@@ -182,6 +182,7 @@ export const prerender = true;
         <input class="email-input" type="email" id="hero-email" placeholder="you@yourcompany.com" autocomplete="email" />
         <button class="btn-p" id="hero-btn" onclick="submitHero()" style="white-space:nowrap;">Get my CMO report &rarr;</button>
       </div>
+      <input class="email-input" type="text" id="hero-website" placeholder="yourcompany.com (optional, helps us research you)" autocomplete="url" style="margin-top:0.5rem;border-right:1px solid #2A4A2A;width:100%;max-width:520px;display:block;" />
       <p id="err-msg" style="display:none;"></p>
       <p class="trust-note"><span>&#10003;</span> No credit card. We verify your email before spending any AI on your situation.</p>
     </div>
@@ -421,11 +422,11 @@ export const prerender = true;
 <script is:inline>
 window._cmoFormLoadTime = Date.now();
 
-async function callSignup(email, hp) {
+async function callSignup(email, hp, website) {
   return fetch('/api/cmo-signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, hp, _t: window._cmoFormLoadTime })
+    body: JSON.stringify({ email, hp, website: website || '', _t: window._cmoFormLoadTime })
   });
 }
 
@@ -434,6 +435,7 @@ async function submitHero() {
   var email = document.getElementById('hero-email').value.trim();
   var err = document.getElementById('err-msg');
   var hp = document.getElementById('hp-hero').value;
+  var website = document.getElementById('hero-website').value.trim();
   if (!email || email.indexOf('@') === -1) {
     err.textContent = 'Please enter a valid work email.';
     err.style.display = 'block';
@@ -442,7 +444,7 @@ async function submitHero() {
   err.style.display = 'none';
   btn.textContent = 'Sending...'; btn.disabled = true;
   try {
-    await callSignup(email, hp);
+    await callSignup(email, hp, website);
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('sent-to').textContent = email;
     document.getElementById('signup-success').style.display = 'block';
@@ -466,7 +468,7 @@ async function submitCta() {
   err.style.display = 'none';
   btn.textContent = 'Sending...'; btn.disabled = true;
   try {
-    await callSignup(email, hp);
+    await callSignup(email, hp, '');
     document.getElementById('cta-form').style.display = 'none';
     document.getElementById('cta-sent-to').textContent = email;
     document.getElementById('cta-success').style.display = 'block';

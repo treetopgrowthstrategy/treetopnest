@@ -99,25 +99,27 @@ export default async function handler(req: any, res: any) {
   `;
   await sendEmail(email, 'Your AI CMO onboarding is complete', confirmHtml, BILL_EMAIL);
 
-  // Log to Airtable
+  // Upsert to Airtable: update the existing lead record (one record per email),
+  // advancing Stage to 'onboarded' and storing the intake answers.
   try {
     if (AIRTABLE_API_KEY && AIRTABLE_BASE_ID) {
       const notes = rows.map(([k, v]) => `${k}: ${v}`).join('\n\n');
-      await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fields: {
-            Name: email.split('@')[0],
-            Email: email,
-            Source: 'cmo-onboarding',
-            Notes: notes,
-          },
-        }),
-      });
+      const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`;
+      const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
+      const q = encodeURIComponent(`LOWER({Email})="${email}"`);
+      const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+      const fd: any = fr.ok ? await fr.json() : { records: [] };
+      const rec = fd.records?.[0];
+      if (rec) {
+        await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: 'onboarded', Notes: notes } }) });
+      } else {
+        await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: {
+          Name: email.split('@')[0], Email: email, Source: 'cmo-onboarding', Stage: 'onboarded', Notes: notes,
+        } }) });
+      }
     }
   } catch (err) {
-    console.error('Airtable log error:', err);
+    console.error('Airtable upsert error:', err);
   }
 
   return res.status(200).json({ success: true });

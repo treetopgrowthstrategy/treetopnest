@@ -9,6 +9,13 @@ const AIRTABLE_LEADS_TABLE = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafC
 const SITE             = 'https://treetopgrowthstrategy.com';
 const TOKEN_SECRET     = process.env.CMO_TOKEN_SECRET || 'cmo-dev-secret-change-me';
 
+// Free email providers: their domain is not a company website, so we do not
+// auto-derive a WebsiteURL from these (the lead can still supply one explicitly).
+const FREE_PROVIDERS = new Set([
+  'gmail.com','yahoo.com','outlook.com','hotmail.com','icloud.com','aol.com',
+  'proton.me','protonmail.com','gmx.com','live.com','msn.com','me.com','ymail.com',
+]);
+
 function makeToken(email: string, ts: number): string {
   return crypto.createHmac('sha256', TOKEN_SECRET).update(`${email}:${ts}`).digest('hex');
 }
@@ -56,6 +63,17 @@ export default async function handler(req: any, res: any) {
     return res.status(200).json({ success: true }); // silent bot drop
   }
 
+  // Capture company website (optional) so even non-onboarders are researchable.
+  // Fall back to the email domain when it is not a free provider.
+  const website     = (body.website || '').toString().trim();
+  const emailDomain = email.split('@')[1] || '';
+  let websiteUrl = '';
+  if (website) {
+    websiteUrl = /^https?:\/\//i.test(website) ? website : 'https://' + website.replace(/^\/+/, '');
+  } else if (emailDomain && !FREE_PROVIDERS.has(emailDomain)) {
+    websiteUrl = 'https://' + emailDomain;
+  }
+
   const ts       = Date.now();
   const token    = makeToken(email, ts);
   const encoded  = Buffer.from(email).toString('base64url');
@@ -80,21 +98,34 @@ export default async function handler(req: any, res: any) {
 
   try {
     if (AIRTABLE_API_KEY && AIRTABLE_BASE_ID) {
-      await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fields: {
+      const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`;
+      const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
+      const q = encodeURIComponent(`LOWER({Email})="${email}"`);
+      const findRes = await fetch(`${base}?filterByFormula=${q}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+      const found: any = findRes.ok ? await findRes.json() : { records: [] };
+      const rec = found.records?.[0];
+      if (rec) {
+        // Existing lead re-signing up: fill in the website if we now have one; never downgrade Stage.
+        if (websiteUrl && !rec.fields?.WebsiteURL) {
+          await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { WebsiteURL: websiteUrl } }) });
+        }
+      } else {
+        await fetch(base, {
+          method: 'POST',
+          headers: auth,
+          body: JSON.stringify({ fields: {
             Name: email.split('@')[0],
             Email: email,
             Source: 'cmo-signup',
+            Stage: 'unverified',
+            ...(websiteUrl ? { WebsiteURL: websiteUrl } : {}),
             Notes: 'AI CMO Advisor signup. Verification email sent.',
-          },
-        }),
-      });
+          } }),
+        });
+      }
     }
   } catch (err) {
-    console.error('Airtable log error:', err);
+    console.error('Airtable upsert error:', err);
   }
 
   await sendEmail(

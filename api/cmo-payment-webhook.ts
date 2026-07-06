@@ -46,7 +46,7 @@ function rawBody(req: any): Promise<Buffer> {
 
 async function fetchOnboardingRecord(email: string): Promise<{ recordId: string; notes: string } | null> {
   if (!AIRTABLE_API_KEY) return null;
-  const formula = encodeURIComponent(`AND({Email}="${email}",{Source}="cmo-onboarding")`);
+  const formula = encodeURIComponent(`LOWER({Email})="${email}"`);
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`;
   const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
   if (!r.ok) { console.error('Airtable lookup failed', r.status); return null; }
@@ -62,9 +62,27 @@ async function saveLastReport(recordId: string, reportHtml: string): Promise<voi
   const r = await fetch(url, {
     method: 'PATCH',
     headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields: { 'Last Report': reportHtml } }),
+    body: JSON.stringify({ fields: { 'Last Report': reportHtml, 'Stage': 'report_delivered' } }),
   });
   if (!r.ok) console.error('Failed to save Last Report to Airtable:', r.status, await r.text());
+}
+
+// Advance a lead's Stage by email (used for subscription tier purchases). Upserts.
+async function setLeadStage(email: string, stage: string): Promise<void> {
+  if (!AIRTABLE_API_KEY) return;
+  const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`;
+  const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
+  try {
+    const formula = encodeURIComponent(`LOWER({Email})="${email}"`);
+    const r = await fetch(`${base}?filterByFormula=${formula}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+    const data: any = r.ok ? await r.json() : { records: [] };
+    const rec = data.records?.[0];
+    if (rec) {
+      await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: stage } }) });
+    } else {
+      await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', Stage: stage } }) });
+    }
+  } catch (err) { console.error('setLeadStage error:', err); }
 }
 
 // ─── Ahrefs ───────────────────────────────────────────────────────────────────
@@ -271,6 +289,15 @@ export default async function handler(req: any, res: any) {
   }
 
   const session = event.data.object;
+
+  // Subscription tier purchases: advance the lead's Stage to that tier. No report to generate.
+  const prod = session.metadata?.product || '';
+  if (prod === 'cmo-monitor' || prod === 'cmo-guided' || prod === 'cmo-embedded') {
+    const subEmail = (session.customer_email || session.metadata?.email || '').toLowerCase().trim();
+    const tier = (session.metadata?.tier || prod.replace('cmo-', '')).toString();
+    if (subEmail) { await setLeadStage(subEmail, tier).catch(() => {}); }
+    return res.status(200).json({ received: true });
+  }
 
   if (session.metadata?.product !== 'cmo-starter-report') {
     return res.status(200).json({ received: true });
