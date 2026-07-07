@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://www.treetopgrowthstrategy.com',
+  site: 'https://treetopgrowthstrategy.com',
   integrations: [tailwind()],
   output: 'static',
   adapter: vercel(),
