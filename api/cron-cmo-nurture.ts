@@ -287,6 +287,7 @@ async function fetchQualifiedLeads(): Promise<any[]> {
     out.push(...(data.records || []));
     if (!data.offset) break;
     offset = data.offset;
+    if (page === 14) console.warn('cron-cmo-nurture: lead list truncated at 1500; some leads skipped this run');
   }
   return out;
 }
@@ -297,11 +298,13 @@ async function buildFreeQueue(today: string): Promise<FreeTask[]> {
   for (const lead of leads) {
     const f = lead.fields || {};
     if (!f.Email) continue;
-    let step = Number(f.NurtureStep) || 0;
+    if ((f.Stage || '').toString().trim()) continue;   // the paid funnel owns any lead that has a Stage
+    const nsRaw = Number(f.NurtureStep);
+    let step = Number.isFinite(nsRaw) ? nsRaw : 0;
     if ((f.NurtureStage || '') !== 'free') step = 0;   // starting the free drip
     if (step >= FREE_DAYS.length) continue;
-    if ((f.LastNurtureSentAt || '') === today) continue;
-    const anchor = f.StageSince || (lead.createdTime ? lead.createdTime.slice(0, 10) : today);
+    if ((f.LastNurtureSentAt || '').toString().slice(0, 10) === today) continue;
+    const anchor = (f.StageSince || lead.createdTime || today).toString().slice(0, 10);
     if (daysBetween(anchor, today) < FREE_DAYS[step]) continue;
     tasks.push({
       to: f.Email.toString(),
@@ -349,6 +352,7 @@ async function fetchNurturableLeads(): Promise<any[]> {
     out.push(...(data.records || []));
     if (!data.offset) break;
     offset = data.offset;
+    if (page === 14) console.warn('cron-cmo-nurture: lead list truncated at 1500; some leads skipped this run');
   }
   return out;
 }
@@ -375,6 +379,12 @@ export default async function handler(req: any, res: any) {
     }
   }
 
+  // Refuse LIVE runs without a configured secret (a live run spends money and emails real leads).
+  if (NURTURE_ENABLED && !CRON_SECRET) {
+    console.error('cron-cmo-nurture: refusing live run because CRON_SECRET is not set');
+    return res.status(401).json({ error: 'CRON_SECRET required for live nurture sends' });
+  }
+
   const today = todayISO();
   const leads = await fetchNurturableLeads();
 
@@ -387,14 +397,15 @@ export default async function handler(req: any, res: any) {
     if (!seq || !f.Email) continue;
 
     // Reset the counter when the lead has moved to a new stage since we last nurtured.
-    let step = Number(f.NurtureStep) || 0;
+    const nsRaw = Number(f.NurtureStep);
+    let step = Number.isFinite(nsRaw) ? nsRaw : 0;
     if ((f.NurtureStage || '') !== stage) step = 0;
     if (step >= seq.length) continue;
 
-    // Do not send more than one nurture per lead per day.
-    if ((f.LastNurtureSentAt || '') === today) continue;
+    // Do not send more than one nurture per lead per day (slice guards a dateTime field).
+    if ((f.LastNurtureSentAt || '').toString().slice(0, 10) === today) continue;
 
-    const anchor = (f.StageSince || (lead.createdTime ? lead.createdTime.slice(0, 10) : today));
+    const anchor = (f.StageSince || lead.createdTime || today).toString().slice(0, 10);
     const age = daysBetween(anchor, today);
     const due = seq[step];
     if (age < due.day) continue;
@@ -410,7 +421,9 @@ export default async function handler(req: any, res: any) {
   }
 
   // Free-motion drip for qualified leads (parallel to the Stage-driven paid sequences).
-  const freeTasks = await buildFreeQueue(today);
+  // Dedupe against the paid pass as a safety net so no lead is ever emailed twice in one run.
+  const paidIds = new Set(queued.map(q => q.recordId));
+  const freeTasks = (await buildFreeQueue(today)).filter(t => !paidIds.has(t.recordId));
 
   const previews = [
     ...queued.map(q => ({ label: `${q.stage} step ${q.step + 1}`, to: q.to, subject: q.subject, html: q.html })),
@@ -451,8 +464,10 @@ export default async function handler(req: any, res: any) {
   // Live: free-motion drip, with capped Ahrefs+OpenAI research on the first step.
   let freeSent = 0, researched = 0;
   for (const q of freeTasks) {
+    // Hold research-step leads for a day with budget so they still get the real insight later.
+    if (q.needsResearch && researched >= MAX_FREE_RESEARCH_PER_RUN) continue;
     let html = q.templated;
-    if (q.needsResearch && researched < MAX_FREE_RESEARCH_PER_RUN) {
+    if (q.needsResearch) {
       researched++;
       const insight = await buildInsight(q.domain);
       html = freeBody(q.lead, q.step, insight);

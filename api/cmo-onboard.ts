@@ -107,7 +107,7 @@ export default async function handler(req: any, res: any) {
       const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`;
       const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
       const q = encodeURIComponent(`LOWER({Email})="${email}"`);
-      const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+      const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
       const fd: any = fr.ok ? await fr.json() : { records: [] };
       const rec = fd.records?.[0];
       if (rec) {

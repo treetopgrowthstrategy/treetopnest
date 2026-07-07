@@ -19,7 +19,7 @@ const BILL_EMAIL     = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetop
 
 // ICP rule (tunable). Apollo seniority buckets.
 const QUALIFIED_SENIORITY = new Set(['owner', 'founder', 'c_suite', 'partner', 'vp', 'head', 'director']);
-const JUNK_SENIORITY      = new Set(['intern', 'entry', 'training', 'student']);
+const JUNK_SENIORITY      = new Set(['intern', 'entry', 'training', 'unpaid']);
 
 interface Enrichment { title: string; seniority: string; companySize: string; companyDomain: string; matched: boolean; }
 
@@ -27,10 +27,11 @@ async function apolloEnrich(email: string, linkedin: string): Promise<Enrichment
   const empty: Enrichment = { title: '', seniority: '', companySize: '', companyDomain: '', matched: false };
   if (!APOLLO_API_KEY) return empty;
   try {
-    const r = await fetch('https://api.apollo.io/v1/people/match', {
+    // Apollo people/match: params go in the query string; correct path includes /api/.
+    const params = new URLSearchParams({ email, linkedin_url: linkedin, reveal_personal_emails: 'false' });
+    const r = await fetch(`https://api.apollo.io/api/v1/people/match?${params.toString()}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache', 'X-Api-Key': APOLLO_API_KEY },
-      body: JSON.stringify({ email, linkedin_url: linkedin, reveal_personal_emails: false }),
     });
     if (!r.ok) { console.error('Apollo match failed', r.status); return empty; }
     const data: any = await r.json();
@@ -96,22 +97,25 @@ export default async function handler(req: any, res: any) {
       const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`;
       const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
       const q = encodeURIComponent(`LOWER({Email})="${email}"`);
-      const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+      const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
       const fd: any = fr.ok ? await fr.json() : { records: [] };
       const rec = fd.records?.[0];
       const fields: Record<string, any> = {
         LinkedInURL: linkedinUrl,
         QualifiedStatus: status,
-        StageSince: new Date().toISOString().slice(0, 10), // anchor for the free-motion drip
       };
       if (enrichment.title)       fields.Title = enrichment.title;
       if (enrichment.seniority)   fields.Seniority = enrichment.seniority;
       if (enrichment.companySize) fields.CompanySize = enrichment.companySize;
       if (rec) {
+        // Only anchor the free-motion drip when this lead is NOT already in the paid funnel;
+        // never reset a paid lead's StageSince (it drives their recovery/ladder-climb cadence).
+        if (!(rec.fields?.Stage || '').toString().trim()) fields.StageSince = new Date().toISOString().slice(0, 10);
         // Backfill a company website from Apollo when we do not have one (covers personal-email signups).
         if (enrichment.companyDomain && !rec.fields?.WebsiteURL) fields.WebsiteURL = 'https://' + enrichment.companyDomain;
         await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields }) });
       } else {
+        fields.StageSince = new Date().toISOString().slice(0, 10);
         fields.Name = email.split('@')[0];
         fields.Email = email;
         fields.Source = 'cmo-free';
