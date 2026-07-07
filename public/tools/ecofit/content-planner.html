@@ -98,6 +98,7 @@
   .cc-check:hover{border-color:var(--border-h);}
   .cc-check.on{background:var(--green);border-color:var(--green);color:#0d1117;}
   .cc-tags{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px;}
+  .partner-tag{font-size:8.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border-radius:20px;color:var(--text-sub);background:rgba(255,255,255,0.05);border:1px solid var(--border);white-space:nowrap;}
   .pillar-badge{font-size:8.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;white-space:nowrap;}
   .pb-thought{color:#84BC41;background:rgba(132,188,65,0.12);}
   .pb-operator{color:#58BCC5;background:rgba(88,188,197,0.12);}
@@ -259,6 +260,13 @@
             <option>Operators</option><option>Market</option>
           </select>
         </div>
+        <div class="field"><label>Partner Brand</label>
+          <select id="fPartner">
+            <option value="">None</option>
+            <option>Matrix Fitness</option><option>True Fitness</option><option>Woven</option>
+            <option>CORE Health &amp; Fitness</option><option>ABS Company</option><option>FitBench</option>
+          </select>
+        </div>
       </div>
       <div class="field"><label>Description / Notes</label><textarea id="fNotes" placeholder="What this campaign is, the angle, the source."></textarea></div>
       <div class="field"><label>Target Date <span style="text-transform:none;letter-spacing:0;color:var(--text-muted);">(the specific publish date)</span></label><input type="date" id="fDate"></div>
@@ -344,7 +352,7 @@ async function apiWrite(body){
 const fieldsOf = c => ({
   "Title":c.title, "Pillar":c.pillar, "Audience":c.audience||null,
   "Notes":c.notes||"", "Agent Query":c.agentQuery||"",
-  "Planner Month":c.month||null, "Sort Order":c.sort, "Target Date":c.date||null
+  "Planner Month":c.month||null, "Sort Order":c.sort, "Target Date":c.date||null, "Partner Brand":c.partner||null
 });
 
 // ───────────────────────── NORMALISE
@@ -359,6 +367,7 @@ function normalise(raw){
     agentQuery: c["Agent Query"] || "",
     month: c["Planner Month"] || "",
     date: c["Target Date"] || "",
+    partner: c["Partner Brand"] || "",
     sort: typeof c["Sort Order"] === "number" ? c["Sort Order"] : 0,
     stage1: c["Stage1 Status"] || "Draft",
     review: c["Review Status"] || "Pending"
@@ -448,6 +457,7 @@ function cardEl(c){
     <div class="cc-tags">
       <span class="pillar-badge ${pclass}">${c.pillar||"No pillar"}</span>
       ${audTag}
+      ${c.partner?`<span class="partner-tag">${esc(c.partner)}</span>`:""}
     </div>
     ${c.notes ? `<div class="cc-desc">${esc(c.notes)}</div>` : ""}
     <div class="cc-meta">${c.date?`<span class="cc-date"><span class="k">Date:</span> ${fmtDate(c.date)}</span>`:""}<span><span class="k">Stage:</span> ${c.stage1}</span><span><span class="k">Review:</span> ${c.review}</span></div>`;
@@ -570,6 +580,7 @@ function openEdit(id){
   document.getElementById("fNotes").value = c.notes || "";
   document.getElementById("fAgent").value = c.agentQuery || "";
   document.getElementById("fDate").value = (c.date||"").slice(0,10);
+  document.getElementById("fPartner").value = c.partner || "";
   document.getElementById("toBacklogBtn").style.display = (c.month==="Backlog") ? "none" : "";
   document.getElementById("editModal").classList.add("open");
 }
@@ -582,6 +593,7 @@ function openCreate(month, isEvent){
   document.getElementById("fNotes").value = "";
   document.getElementById("fAgent").value = "";
   document.getElementById("fDate").value = "";
+  document.getElementById("fPartner").value = "";
   document.getElementById("fEvent").checked = !!isEvent;
   toggleEventUI(!!isEvent);
   document.getElementById("toBacklogBtn").style.display = "none";
@@ -607,21 +619,22 @@ async function saveModal(){
   const notes = document.getElementById("fNotes").value.trim();
   const agentQuery = document.getElementById("fAgent").value.trim();
   const date = document.getElementById("fDate").value || null;
+  const partner = document.getElementById("fPartner").value || null;
   const saveBtn = document.getElementById("saveBtn");
   saveBtn.disabled = true; saveBtn.textContent = "Saving...";
   try{
     if(editingId){
       const c = byId[editingId];
-      Object.assign(c, { title, pillar, audience, notes, agentQuery, date: date||"" });
+      Object.assign(c, { title, pillar, audience, notes, agentQuery, date: date||"", partner: partner||"" });
       await apiWrite({ recordId: editingId, fields: {
-        "Title":title,"Pillar":pillar,"Audience":audience||null,"Notes":notes,"Agent Query":agentQuery,"Target Date":date
+        "Title":title,"Pillar":pillar,"Audience":audience||null,"Notes":notes,"Agent Query":agentQuery,"Target Date":date,"Partner Brand":partner
       }});
     } else {
       const month = createMonth;
       const maxSort = Math.max(-1, ...CAMPAIGNS.filter(c=>inBucket(c,month)).map(c=>c.sort));
       const fields = {
         "Campaign Key":slugify(title),"Title":title,"Pillar":pillar,"Audience":audience||null,
-        "Notes":notes,"Agent Query":agentQuery,"Planner Month":month,"Target Date":date,
+        "Notes":notes,"Agent Query":agentQuery,"Planner Month":month,"Target Date":date,"Partner Brand":partner,
         "Stage1 Status":"Draft","Review Status":"Pending","Sort Order":maxSort+1
       };
       const rec = await apiWrite({ create:{ fields } });
