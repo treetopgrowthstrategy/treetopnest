@@ -80,7 +80,7 @@ export default async function handler(req: any, res: any) {
 
   const email = (body.email || '').toString().trim().toLowerCase();
   const linkedin = (body.linkedin || '').toString().trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
     return res.status(400).json({ error: 'Valid email required' });
   }
   if (!linkedin || !/linkedin\.com/i.test(linkedin)) {

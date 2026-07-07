@@ -13,7 +13,7 @@ export default async function handler(req: any, res: any) {
   let email = '';
   try { email = Buffer.from(e, 'base64url').toString('utf-8').toLowerCase().trim(); } catch { email = ''; }
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
     return res.redirect(302, `${SITE}/ai-cmo-advisor`);
   }
   if (!process.env.STRIPE_SECRET_KEY) {

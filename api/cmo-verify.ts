@@ -27,7 +27,7 @@ export default async function handler(req: any, res: any) {
     return res.redirect(302, `${SITE}/ai-cmo-advisor?err=invalid-link`);
   }
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
     return res.redirect(302, `${SITE}/ai-cmo-advisor?err=invalid-link`);
   }
 

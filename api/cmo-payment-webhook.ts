@@ -46,7 +46,7 @@ function rawBody(req: any): Promise<Buffer> {
 
 async function fetchOnboardingRecord(email: string): Promise<{ recordId: string; notes: string } | null> {
   if (!AIRTABLE_API_KEY) return null;
-  const formula = encodeURIComponent(`LOWER({Email})="${email}"`);
+  const formula = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1`;
   const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
   if (!r.ok) { console.error('Airtable lookup failed', r.status); return null; }
@@ -73,7 +73,7 @@ async function setLeadStage(email: string, stage: string): Promise<void> {
   const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`;
   const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
   try {
-    const formula = encodeURIComponent(`LOWER({Email})="${email}"`);
+    const formula = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
     const r = await fetch(`${base}?filterByFormula=${formula}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
     const data: any = r.ok ? await r.json() : { records: [] };
     const rec = data.records?.[0];
