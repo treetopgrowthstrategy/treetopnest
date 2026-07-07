@@ -194,7 +194,7 @@
   <span class="tb-label">Pillar</span>
   <button class="filter-btn active" data-pillar="all" onclick="setFilter('all',this)">All</button>
   <button class="filter-btn" data-pillar="Thought Leadership" onclick="setFilter('Thought Leadership',this)">Thought Leadership</button>
-  <button class="filter-btn" data-pillar="Partner Deep Dive" onclick="setFilter('Partner Deep Dive',this)">Partner</button>
+  <button class="filter-btn" data-pillar="Partner" onclick="setFilter('Partner',this)">Partner</button>
   <button class="filter-btn" data-pillar="Operator Story" onclick="setFilter('Operator Story',this)">Operator</button>
   <button class="filter-btn" data-pillar="Key Metric" onclick="setFilter('Key Metric',this)">Key Metric</button>
 </div>
@@ -234,7 +234,7 @@
       <div class="field-row">
         <div class="field"><label>Pillar</label>
           <select id="fPillar">
-            <option>Thought Leadership</option><option>Partner Deep Dive</option>
+            <option>Thought Leadership</option><option>Partner</option>
             <option>Operator Story</option><option>Key Metric</option>
           </select>
         </div>
@@ -288,7 +288,7 @@ const API = "/api/calendar";
 const GAMMA_API = "/api/gamma-generate";
 const MONTHS = ["Jul 2026","Aug 2026","Sep 2026","Oct 2026","Nov 2026","Dec 2026","Jan 2027","Feb 2027","Mar 2027","Apr 2027","May 2027","Jun 2027"];
 const PILLAR_CLASS = {
-  "Thought Leadership":"pb-thought","Partner Deep Dive":"pb-partner",
+  "Thought Leadership":"pb-thought","Partner":"pb-partner",
   "Operator Story":"pb-operator","Key Metric":"pb-metric"
 };
 const AUD_COLOR = {
