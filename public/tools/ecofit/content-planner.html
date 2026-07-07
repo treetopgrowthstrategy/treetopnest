@@ -105,6 +105,16 @@
   .pb-partner{color:#c084fc;background:rgba(192,132,252,0.12);}
   .pb-website{color:#3b82f6;background:rgba(59,130,246,0.12);}
   .pb-none{color:var(--text-muted);background:rgba(255,255,255,0.05);}
+  /* locked industry events */
+  .event-strip{padding:12px 12px 0;display:flex;flex-direction:column;gap:8px;}
+  .event-banner{display:flex;align-items:center;gap:9px;background:linear-gradient(90deg,rgba(240,180,65,0.15),rgba(240,180,65,0.04));border:1px solid rgba(240,180,65,0.32);border-left:3px solid #f0b429;border-radius:10px;padding:9px 12px;cursor:pointer;transition:background .12s;}
+  .event-banner:hover{background:linear-gradient(90deg,rgba(240,180,65,0.22),rgba(240,180,65,0.06));}
+  .event-banner .ev-name{font-weight:700;font-size:12.5px;color:var(--text);line-height:1.3;}
+  .event-banner .ev-tag{margin-left:auto;font-size:8.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f0b429;background:rgba(240,180,65,0.14);padding:3px 8px;border-radius:20px;white-space:nowrap;}
+  .add-btn.ev{border-color:rgba(240,180,65,0.4);color:#f0b429;}
+  .ev-check{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;color:var(--text);text-transform:none;letter-spacing:0;}
+  .ev-check input{width:15px;height:15px;accent-color:#f0b429;cursor:pointer;flex:none;}
+  .ev-check .hint{color:var(--text-muted);font-size:11px;}
   .aud-tag{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:600;color:var(--text-sub);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:2px 8px;white-space:nowrap;}
   .aud-tag .adot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
   .cc-desc{font-size:11.5px;color:var(--text-muted);line-height:1.5;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -233,7 +243,8 @@
     </div>
     <div class="modal-body">
       <div class="field"><label>Title</label><input id="fTitle" placeholder="Campaign title"></div>
-      <div class="field-row">
+      <div class="field"><label class="ev-check"><input type="checkbox" id="fEvent" onchange="toggleEventUI(this.checked)"> Lock as industry event <span class="hint">pins to the top of the month, not draggable</span></label></div>
+      <div class="field-row" id="pillarRow">
         <div class="field"><label>Pillar</label>
           <select id="fPillar">
             <option>Thought Leadership</option><option>Partner</option>
@@ -372,22 +383,26 @@ function render(){
   const side = document.getElementById("sidebar");
   col.innerHTML = ""; side.innerHTML = "";
   bucketKeys().forEach(bucket => {
-    const list = CAMPAIGNS
+    const all = CAMPAIGNS
       .filter(c => inBucket(c, bucket))
       .sort((a,b) => a.sort - b.sort);
+    const events = all.filter(c => c.pillar === "Event");
+    const list = all.filter(c => c.pillar !== "Event");
 
     const sec = document.createElement("section");
     sec.className = "month" + (bucket==="Backlog"?" backlog":"") + (bucket==="Unplaced"?" unplaced":"");
 
-    // audience mix
+    // audience mix (content cards only)
     const mix = {};
     list.forEach(c => { if(c.audience) mix[c.audience] = (mix[c.audience]||0)+1; });
     const mixHtml = AUD_LIST.filter(a=>mix[a]).map(a =>
       `<span class="aud-pill"><span class="adot" style="background:${AUD_COLOR[a]}"></span>${mix[a]}</span>`
     ).join("");
 
+    const isMonthCol = bucket!=="Backlog" && bucket!=="Unplaced";
     const addBtn = (bucket==="Unplaced") ? "" :
-      `<button class="add-btn" onclick="openCreate('${bucket}')">+ New</button>`;
+      `<button class="add-btn" onclick="openCreate('${bucket}')">+ New</button>` +
+      (isMonthCol ? `<button class="add-btn ev" onclick="openCreate('${bucket}',true)">+ Event</button>` : "");
 
     sec.innerHTML = `
       <div class="month-head">
@@ -398,6 +413,7 @@ function render(){
         <span class="month-count">${list.length} campaign${list.length===1?"":"s"}</span>
         <div class="aud-mix">${mixHtml}${addBtn}</div>
       </div>
+      ${events.length ? `<div class="event-strip">${events.map(evBanner).join("")}</div>` : ""}
       <div class="card-list empty-hint" data-month="${bucket==='Unplaced'?'':bucket}" data-empty="Drop a campaign here" id="list-${cssId(bucket)}"></div>`;
     ((bucket === "Backlog" || bucket === "Unplaced") ? side : col).appendChild(sec);
 
@@ -443,6 +459,12 @@ function cardEl(c){
   return el;
 }
 function esc(s){ return (s||"").replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+function evBanner(c){
+  return `<div class="event-banner" onclick="openEdit('${c.recordId}')" title="Locked industry event. Click to edit.">`
+    + `<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="#f0b429" stroke-width="1.5"><rect x="3.3" y="7" width="9.4" height="6.4" rx="1.3"/><path d="M5.4 7V5.1a2.6 2.6 0 0 1 5.2 0V7"/></svg>`
+    + `<span class="ev-name">${esc(c.title)}</span><span class="ev-tag">Event</span></div>`;
+}
 
 // ───────────────────────── SORTABLE
 let sortables = [];
@@ -531,25 +553,35 @@ function openEdit(id){
   editingId = id; createMonth = null;
   document.getElementById("modalTitle").textContent = "Edit campaign";
   document.getElementById("fTitle").value = c.title==="(untitled)"?"":c.title;
-  document.getElementById("fPillar").value = c.pillar || "Thought Leadership";
+  const isEv = c.pillar === "Event";
+  document.getElementById("fPillar").value = isEv ? "Thought Leadership" : (c.pillar || "Thought Leadership");
+  document.getElementById("fEvent").checked = isEv;
+  document.getElementById("modalTitle").textContent = isEv ? "Edit event" : "Edit campaign";
+  toggleEventUI(isEv);
   document.getElementById("fAudience").value = c.audience || "";
   document.getElementById("fNotes").value = c.notes || "";
   document.getElementById("fAgent").value = c.agentQuery || "";
   document.getElementById("toBacklogBtn").style.display = (c.month==="Backlog") ? "none" : "";
   document.getElementById("editModal").classList.add("open");
 }
-function openCreate(month){
+function openCreate(month, isEvent){
   editingId = null; createMonth = month;
-  document.getElementById("modalTitle").textContent = "New campaign · " + month;
+  document.getElementById("modalTitle").textContent = (isEvent ? "New event · " : "New campaign · ") + month;
   document.getElementById("fTitle").value = "";
   document.getElementById("fPillar").value = "Thought Leadership";
   document.getElementById("fAudience").value = "";
   document.getElementById("fNotes").value = "";
   document.getElementById("fAgent").value = "";
+  document.getElementById("fEvent").checked = !!isEvent;
+  toggleEventUI(!!isEvent);
   document.getElementById("toBacklogBtn").style.display = "none";
   document.getElementById("editModal").classList.add("open");
 }
 function closeModal(){ document.getElementById("editModal").classList.remove("open"); editingId=null; createMonth=null; }
+function toggleEventUI(on){
+  const pr = document.getElementById("pillarRow");
+  if(pr) pr.style.display = on ? "none" : "";
+}
 
 function slugify(t){
   const base = (t||"campaign").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40) || "campaign";
@@ -559,7 +591,8 @@ function slugify(t){
 async function saveModal(){
   const title = document.getElementById("fTitle").value.trim();
   if(!title){ toast("Title is required","err"); return; }
-  const pillar = document.getElementById("fPillar").value;
+  const isEvent = document.getElementById("fEvent").checked;
+  const pillar = isEvent ? "Event" : document.getElementById("fPillar").value;
   const audience = document.getElementById("fAudience").value;
   const notes = document.getElementById("fNotes").value.trim();
   const agentQuery = document.getElementById("fAgent").value.trim();
