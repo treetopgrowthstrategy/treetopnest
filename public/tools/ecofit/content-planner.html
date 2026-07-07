@@ -120,6 +120,7 @@
   .cc-desc{font-size:11.5px;color:var(--text-muted);line-height:1.5;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .cc-meta{font-size:9.5px;color:var(--text-muted);margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;}
   .cc-meta .k{color:var(--text-sub);}
+  .cc-date{color:#84BC41;font-weight:700;}
 
   /* ACTION BAR */
   .action-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:12px;z-index:100;flex-wrap:wrap;}
@@ -260,6 +261,7 @@
         </div>
       </div>
       <div class="field"><label>Description / Notes</label><textarea id="fNotes" placeholder="What this campaign is, the angle, the source."></textarea></div>
+      <div class="field"><label>Target Date <span style="text-transform:none;letter-spacing:0;color:var(--text-muted);">(the specific publish date)</span></label><input type="date" id="fDate"></div>
       <div class="field"><label>Agent Query <span style="text-transform:none;letter-spacing:0;color:var(--text-muted);">(optional, for the ecofit insights agent)</span></label><textarea id="fAgent" placeholder="The natural-language query you would run to produce this campaign's data." style="min-height:60px;"></textarea></div>
     </div>
     <div class="modal-foot">
@@ -342,7 +344,7 @@ async function apiWrite(body){
 const fieldsOf = c => ({
   "Title":c.title, "Pillar":c.pillar, "Audience":c.audience||null,
   "Notes":c.notes||"", "Agent Query":c.agentQuery||"",
-  "Planner Month":c.month||null, "Sort Order":c.sort
+  "Planner Month":c.month||null, "Sort Order":c.sort, "Target Date":c.date||null
 });
 
 // ───────────────────────── NORMALISE
@@ -356,6 +358,7 @@ function normalise(raw){
     notes: c["Notes"] || "",
     agentQuery: c["Agent Query"] || "",
     month: c["Planner Month"] || "",
+    date: c["Target Date"] || "",
     sort: typeof c["Sort Order"] === "number" ? c["Sort Order"] : 0,
     stage1: c["Stage1 Status"] || "Draft",
     review: c["Review Status"] || "Pending"
@@ -385,7 +388,7 @@ function render(){
   bucketKeys().forEach(bucket => {
     const all = CAMPAIGNS
       .filter(c => inBucket(c, bucket))
-      .sort((a,b) => a.sort - b.sort);
+      .sort((a,b) => ((a.date||"9999-99-99").localeCompare(b.date||"9999-99-99")) || (a.sort - b.sort));
     const events = all.filter(c => c.pillar === "Event");
     const list = all.filter(c => c.pillar !== "Event");
 
@@ -447,7 +450,7 @@ function cardEl(c){
       ${audTag}
     </div>
     ${c.notes ? `<div class="cc-desc">${esc(c.notes)}</div>` : ""}
-    <div class="cc-meta"><span><span class="k">Stage:</span> ${c.stage1}</span><span><span class="k">Review:</span> ${c.review}</span></div>`;
+    <div class="cc-meta">${c.date?`<span class="cc-date"><span class="k">Date:</span> ${fmtDate(c.date)}</span>`:""}<span><span class="k">Stage:</span> ${c.stage1}</span><span><span class="k">Review:</span> ${c.review}</span></div>`;
 
   el.addEventListener("click", (e) => {
     if(e.target.closest(".drag-handle")) return;
@@ -459,6 +462,9 @@ function cardEl(c){
   return el;
 }
 function esc(s){ return (s||"").replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+const MON3=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function fmtDate(iso){ if(!iso) return ""; const p=String(iso).slice(0,10).split("-").map(Number); return MON3[p[1]-1]+" "+p[2]; }
+function dateMonthKey(iso){ if(!iso) return ""; const p=String(iso).slice(0,10).split("-").map(Number); return MON3[p[1]-1]+" "+p[0]; }
 
 function evBanner(c){
   return `<div class="event-banner" onclick="openEdit('${c.recordId}')" title="Locked industry event. Click to edit.">`
@@ -489,7 +495,9 @@ async function onDragEnd(evt){
       const c = byId[el.dataset.id];
       if(!c) return;
       c.month = month; c.sort = i;
-      affected.push({ recordId:c.recordId, fields:{ "Planner Month": month||null, "Sort Order": i } });
+      const f = { "Planner Month": month||null, "Sort Order": i };
+      if(c.date && dateMonthKey(c.date) !== month){ c.date = ""; f["Target Date"] = null; }
+      affected.push({ recordId:c.recordId, fields: f });
     });
   });
   // refresh headers (counts + mix) without full re-render so the drag feels instant
@@ -561,6 +569,7 @@ function openEdit(id){
   document.getElementById("fAudience").value = c.audience || "";
   document.getElementById("fNotes").value = c.notes || "";
   document.getElementById("fAgent").value = c.agentQuery || "";
+  document.getElementById("fDate").value = (c.date||"").slice(0,10);
   document.getElementById("toBacklogBtn").style.display = (c.month==="Backlog") ? "none" : "";
   document.getElementById("editModal").classList.add("open");
 }
@@ -572,6 +581,7 @@ function openCreate(month, isEvent){
   document.getElementById("fAudience").value = "";
   document.getElementById("fNotes").value = "";
   document.getElementById("fAgent").value = "";
+  document.getElementById("fDate").value = "";
   document.getElementById("fEvent").checked = !!isEvent;
   toggleEventUI(!!isEvent);
   document.getElementById("toBacklogBtn").style.display = "none";
@@ -596,21 +606,22 @@ async function saveModal(){
   const audience = document.getElementById("fAudience").value;
   const notes = document.getElementById("fNotes").value.trim();
   const agentQuery = document.getElementById("fAgent").value.trim();
+  const date = document.getElementById("fDate").value || null;
   const saveBtn = document.getElementById("saveBtn");
   saveBtn.disabled = true; saveBtn.textContent = "Saving...";
   try{
     if(editingId){
       const c = byId[editingId];
-      Object.assign(c, { title, pillar, audience, notes, agentQuery });
+      Object.assign(c, { title, pillar, audience, notes, agentQuery, date: date||"" });
       await apiWrite({ recordId: editingId, fields: {
-        "Title":title,"Pillar":pillar,"Audience":audience||null,"Notes":notes,"Agent Query":agentQuery
+        "Title":title,"Pillar":pillar,"Audience":audience||null,"Notes":notes,"Agent Query":agentQuery,"Target Date":date
       }});
     } else {
       const month = createMonth;
       const maxSort = Math.max(-1, ...CAMPAIGNS.filter(c=>inBucket(c,month)).map(c=>c.sort));
       const fields = {
         "Campaign Key":slugify(title),"Title":title,"Pillar":pillar,"Audience":audience||null,
-        "Notes":notes,"Agent Query":agentQuery,"Planner Month":month,
+        "Notes":notes,"Agent Query":agentQuery,"Planner Month":month,"Target Date":date,
         "Stage1 Status":"Draft","Review Status":"Pending","Sort Order":maxSort+1
       };
       const rec = await apiWrite({ create:{ fields } });
