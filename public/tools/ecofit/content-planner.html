@@ -103,6 +103,7 @@
   .pb-operator{color:#58BCC5;background:rgba(88,188,197,0.12);}
   .pb-metric{color:#f59e0b;background:rgba(245,158,11,0.12);}
   .pb-partner{color:#c084fc;background:rgba(192,132,252,0.12);}
+  .pb-website{color:#3b82f6;background:rgba(59,130,246,0.12);}
   .pb-none{color:var(--text-muted);background:rgba(255,255,255,0.05);}
   .aud-tag{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:600;color:var(--text-sub);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:2px 8px;white-space:nowrap;}
   .aud-tag .adot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
@@ -197,6 +198,7 @@
   <button class="filter-btn" data-pillar="Partner" onclick="setFilter('Partner',this)">Partner</button>
   <button class="filter-btn" data-pillar="Operator Story" onclick="setFilter('Operator Story',this)">Operator</button>
   <button class="filter-btn" data-pillar="Key Metric" onclick="setFilter('Key Metric',this)">Key Metric</button>
+  <button class="filter-btn" data-pillar="Website / Product Page" onclick="setFilter('Website / Product Page',this)">Website</button>
 </div>
 
 <div class="layout">
@@ -235,7 +237,7 @@
         <div class="field"><label>Pillar</label>
           <select id="fPillar">
             <option>Thought Leadership</option><option>Partner</option>
-            <option>Operator Story</option><option>Key Metric</option>
+            <option>Operator Story</option><option>Key Metric</option><option>Website / Product Page</option>
           </select>
         </div>
         <div class="field"><label>Audience</label>
@@ -289,7 +291,8 @@ const GAMMA_API = "/api/gamma-generate";
 const MONTHS = ["Jul 2026","Aug 2026","Sep 2026","Oct 2026","Nov 2026","Dec 2026","Jan 2027","Feb 2027","Mar 2027","Apr 2027","May 2027","Jun 2027"];
 const PILLAR_CLASS = {
   "Thought Leadership":"pb-thought","Partner":"pb-partner",
-  "Operator Story":"pb-operator","Key Metric":"pb-metric"
+  "Operator Story":"pb-operator","Key Metric":"pb-metric",
+  "Website / Product Page":"pb-website"
 };
 const AUD_COLOR = {
   "Manufacturers":"#c084fc","Franchise Groups":"#58BCC5",
