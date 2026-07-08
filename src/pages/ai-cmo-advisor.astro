@@ -1,4 +1,5 @@
 ---
+import GlobalNav from '../components/GlobalNav.astro';
 import GlobalFooter from '../components/GlobalFooter.astro';
 export const prerender = true;
 ---
@@ -153,23 +154,19 @@ export const prerender = true;
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">Treetop</a>
-    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
-      <a href="/ai-cmo-advisor" class="nav-link">AI CMO Advisor</a>
-      <a href="/pricing" class="nav-link">Pricing</a>
-      <a href="/resources" class="nav-link">Resources</a>
-      <a href="/about" class="nav-link">About</a>
-    </div>
-    <a href="#pricing" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">See pricing &rarr;</a>
-  </div>
-</nav>
+<GlobalNav active="" />
 
 <!-- Hero -->
 <div class="hero">
   <div class="hero-inner">
-    <span class="lbl">AI CMO Advisor</span>
+    <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:1.25rem;">
+      <a href="/pricing" style="font-size:0.8rem;color:#4A6A4A;text-decoration:none;">Pricing</a>
+      <span style="color:#1A3A1A;font-size:0.8rem;">/</span>
+      <a href="/pricing#diagnose" style="font-size:0.8rem;color:#4A6A4A;text-decoration:none;">Diagnose</a>
+      <span style="color:#1A3A1A;font-size:0.8rem;">/</span>
+      <span style="font-size:0.8rem;color:#8FAF8F;">AI CMO Advisor</span>
+    </div>
+    <span class="lbl">AI CMO Advisor &middot; $99 Starter Report + productized subscriptions</span>
     <h1 class="hero-h">The AI CMO built on<br/><em>a real CMO's judgment.</em></h1>
     <p class="hero-sub">Most AI marketing tools draft content for you to post. This diagnoses your marketing strategy. Submit your email, answer 7 questions about your business, and get a competitive analysis and 90-day priority roadmap the same day.</p>
 
