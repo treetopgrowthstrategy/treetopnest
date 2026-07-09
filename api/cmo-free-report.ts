@@ -119,12 +119,18 @@ async function fetchOwnMetrics(domain: string, date: string): Promise<DomainMetr
     ]);
     const dr: any = drRes.ok ? await drRes.json() : null;
     const m: any  = mRes.ok  ? await mRes.json()  : null;
-    return {
+    if (!drRes.ok) console.warn(`Ahrefs domain-rating ${domain}: HTTP ${drRes.status}`);
+    if (!mRes.ok)  console.warn(`Ahrefs metrics ${domain}: HTTP ${mRes.status}`);
+    const result = {
       domain,
-      domainRating: dr?.domain_rating?.domain_rating ?? null,
+      domainRating: dr?.domain_rating?.domain_rating ?? dr?.domain_rating ?? null,
       orgTraffic:   m?.metrics?.org_traffic ?? null,
       orgKeywords:  m?.metrics?.org_keywords ?? null,
     };
+    if (result.domainRating == null && result.orgTraffic == null) {
+      console.warn(`Ahrefs returned no usable metrics for ${domain}. DR response keys: ${dr ? Object.keys(dr).join(',') : 'null'}. Metrics response keys: ${m ? Object.keys(m).join(',') : 'null'}`);
+    }
+    return result;
   } catch (err) {
     console.error('fetchOwnMetrics failed:', err);
     return null;
@@ -154,7 +160,8 @@ async function fetchCompetitors(domain: string, date: string, limit = 3): Promis
     const r = await fetch(url, { headers: { Authorization: `Bearer ${AHREFS_API_KEY}` } });
     if (!r.ok) return [];
     const data: any = await r.json();
-    const rows: Array<{ competitor_domain?: string; domain?: string }> = data?.competitors || data?.results || [];
+    const rows: Array<{ competitor_domain?: string; domain?: string }> = data?.competitors || data?.organic_competitors || data?.results || [];
+    if (!rows.length) console.warn(`Ahrefs organic-competitors for ${domain}: 0 results. Response keys: ${Object.keys(data || {}).join(',')}`);
     return rows
       .map(x => (x.competitor_domain || x.domain || '').toString().replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].toLowerCase())
       .filter(Boolean)
@@ -196,22 +203,24 @@ async function writeTeasers(data: ReportData): Promise<{
     .join(', ') || '(no keyword data)';
   const own = data.own;
 
-  const prompt = `You are Bill Colbert, a fractional CMO. Write short, specific teaser copy for a FREE competitive snapshot email. The visitor's own site is ${data.ownDomain}${own ? ` (DR ${own.domainRating ?? 'n/a'}, ~${own.orgTraffic?.toLocaleString() ?? 'n/a'} monthly organic visits, ${own.orgKeywords?.toLocaleString() ?? 'n/a'} ranking keywords)` : ''}.
+  const prompt = `You are Bill Colbert, a fractional CMO who has just analyzed a prospect's organic search data. Write teaser copy for a FREE competitive snapshot email that proves you have done real analysis, not generic marketing. Every sentence should reference a specific data point, competitor name, keyword, or metric from the data below. The reader should finish each teaser thinking "this person actually looked at my business."
+
+The visitor's own site is ${data.ownDomain}${own ? ` (DR ${own.domainRating ?? 'n/a'}, ~${own.orgTraffic?.toLocaleString() ?? 'n/a'} monthly organic visits, ${own.orgKeywords?.toLocaleString() ?? 'n/a'} ranking keywords)` : ''}.
 
 Ahrefs found these as their top organic competitors: ${competitorList}.
 Their current top-traffic keywords: ${kwSample}.
 
 Return STRICT JSON with this shape (no markdown fences, no prose outside JSON):
 {
-  "competitiveLine": "one sentence, 20-35 words, that names how the competitor lineup shapes their position. Reference at least one competitor by name.",
-  "keywordCallout": { "keyword": "one keyword from the list above worth chasing OR a clear adjacent one they should own", "why": "one sentence, 15-25 words, on why this is the right first move." },
+  "competitiveLine": "one sentence, 20-35 words, that names how the competitor lineup shapes their position. Reference at least one competitor by name and a specific metric gap.",
+  "keywordCallout": { "keyword": "one keyword from the list above worth chasing OR a clear adjacent one they should own", "why": "one sentence, 15-25 words, on why this is the right first move. Reference volume or position data." },
   "lockedHints": {
-    "snapshot":    "6-10 words teasing the full competitive snapshot section.",
-    "keywordGap":  "6-10 words teasing the full keyword gap section.",
-    "positioning": "6-10 words teasing the content positioning section.",
-    "levers":      "6-10 words teasing the top-3 growth levers section.",
-    "roadmap":     "6-10 words teasing the 90-day roadmap section.",
-    "firstMove":   "6-10 words teasing the 'what I would do first' section."
+    "snapshot":    "1-2 sentences, 20-35 words. Reference a specific data point from the competitive analysis above (a DR gap, a traffic ratio, a competitor name) to prove you did real work.",
+    "keywordGap":  "1-2 sentences, 20-35 words. Name one or two keyword themes from the data and hint at the size of the opportunity (volume, gap, or position delta).",
+    "positioning": "1-2 sentences, 20-35 words. Reference a specific angle or content category from the keyword data that the brand could own.",
+    "levers":      "1-2 sentences, 20-35 words. Name one concrete lever visible from the data (e.g. link authority, content depth, a specific topic cluster).",
+    "roadmap":     "1-2 sentences, 20-35 words. Reference a realistic timeline milestone and what changes in month 1 vs month 3 based on the current state.",
+    "firstMove":   "1-2 sentences, 20-35 words. Name the single most obvious next move visible from the data and why it is the right starting point."
   }
 }
 
@@ -250,12 +259,12 @@ function fallbackTeasers(data: ReportData) {
       ? { keyword: kw, why: 'You are already showing up here. The next move is turning that presence into pipeline before a competitor closes the gap.' }
       : null,
     lockedHints: {
-      snapshot:    'The full competitive breakdown, side by side.',
-      keywordGap:  'The keywords they win that you should be chasing.',
-      positioning: 'The angle that plays to your strengths.',
-      levers:      'The three highest-ROI moves right now.',
-      roadmap:     'Month 1, Month 2, Month 3 milestones.',
-      firstMove:   'The one thing to do this week, ranked.',
+      snapshot:    `Your competitors are pulling organic traffic you could be capturing. The full breakdown shows exactly where each one outranks you and where you already have the edge.`,
+      keywordGap:  `There are keyword clusters your competitors rank for that you have not touched yet. The gap analysis sizes the opportunity and ranks each one by effort to close.`,
+      positioning: `Your current content covers the same ground as everyone else. This section identifies the angle that differentiates you and the content categories worth owning first.`,
+      levers:      `Not all growth moves are equal. Based on your domain authority and traffic profile, three specific levers would move the needle fastest in the next 90 days.`,
+      roadmap:     `Month 1 focuses on the quick wins already visible in your data. By month 3, the compounding work starts showing up in rankings. This section lays out the sequence.`,
+      firstMove:   `One move stands out as the obvious starting point based on where your traffic and authority sit today. This section names it and explains why it comes first.`,
     },
   };
 }
@@ -301,7 +310,7 @@ function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnTy
 
   const compTable = data.competitors.length
     ? `<table style="border-collapse:collapse;width:100%;margin:0 0 18px;">${data.competitors.map(renderCompetitorRow).join('')}</table>`
-    : `<p style="font-size:14px;color:#666;line-height:1.7;margin:0 0 18px;">Ahrefs did not surface distinct organic competitors for ${data.ownDomain}. That is either a positioning story or a data-coverage story, and the full report untangles which. </p>`;
+    : `<p style="font-size:14px;color:#666;line-height:1.7;margin:0 0 18px;">Ahrefs did not surface direct organic competitors for ${data.ownDomain} yet. That usually means the domain is early enough that the organic footprint has not overlapped significantly with established players. The full report identifies the competitors you will be running into as you scale, and sizes the gap between where you are and where they sit.</p>`;
 
   return `
 <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;background:#fff;color:#1a1a1a;line-height:1.65;">
@@ -312,20 +321,23 @@ function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnTy
   <div style="padding:32px 32px 28px;">
     <p style="margin:0 0 8px;font-size:14px;color:#555;">Hi ${fn},</p>
     <h1 style="margin:0 0 6px;font-size:22px;font-weight:600;color:#050D05;line-height:1.3;">Here is your free snapshot for ${data.ownDomain}.</h1>
-    <p style="margin:0 0 22px;font-size:14px;color:#666;">Pulled live from Ahrefs and written by your AI CMO. Two sections are open. Four are locked, they are the ones that turn a snapshot into a plan.</p>
+    <p style="margin:0 0 22px;font-size:14px;color:#666;">I pulled this from Ahrefs a few minutes ago and ran it through my analysis. Three sections are open so you can see the kind of work I do. Six more are locked. Those are the ones that turn data into a plan.</p>
 
     <!-- OPEN SECTION 1: YOUR OWN METRICS -->
     <h2 style="margin:0 0 10px;font-size:15px;font-weight:600;color:#050D05;text-transform:uppercase;letter-spacing:0.06em;">01 &middot; Where you stand</h2>
-    <table style="border-collapse:collapse;width:100%;margin:0 0 14px;border:1px solid #eaeaea;">
+    ${(own?.domainRating != null || own?.orgTraffic != null || own?.orgKeywords != null)
+      ? `<table style="border-collapse:collapse;width:100%;margin:0 0 14px;border:1px solid #eaeaea;">
       <tr>
-        ${renderMetricStat('Domain Rating', own?.domainRating)}
-        ${renderMetricStat('Monthly Organic Visits', own?.orgTraffic)}
-        <td style="padding:14px 16px;background:#fafafa;">
+        ${own?.domainRating != null ? renderMetricStat('Domain Rating', own.domainRating) : ''}
+        ${own?.orgTraffic != null ? renderMetricStat('Monthly Organic Visits', own.orgTraffic) : ''}
+        ${own?.orgKeywords != null ? `<td style="padding:14px 16px;background:#fafafa;">
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-bottom:4px;">Ranking Keywords</div>
-          <div style="font-size:18px;font-weight:600;color:#050D05;">${own?.orgKeywords?.toLocaleString() ?? 'n/a'}</div>
-        </td>
+          <div style="font-size:18px;font-weight:600;color:#050D05;">${own.orgKeywords.toLocaleString()}</div>
+        </td>` : ''}
       </tr>
-    </table>
+    </table>`
+      : `<p style="margin:0 0 14px;font-size:14px;color:#555;line-height:1.7;">Ahrefs does not have enough indexed data for ${data.ownDomain} to show headline numbers yet. That is actually useful information: it tells us the organic foundation is early-stage, which changes which growth levers matter most. The full report covers what to do when you are starting from a low base.</p>`
+    }
     <p style="margin:0 0 26px;font-size:14px;color:#555;line-height:1.7;">${teasers.competitiveLine}</p>
 
     <!-- OPEN SECTION 2: NAMED COMPETITORS -->
@@ -343,8 +355,8 @@ function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnTy
 
     <!-- LOCKED SECTIONS -->
     <div style="margin:32px 0 8px;">
-      <p style="margin:0 0 4px;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.1em;">The rest is in the full report</p>
-      <p style="margin:0 0 16px;font-size:13px;color:#888;">Same live data, four more sections, delivered same day.</p>
+      <p style="margin:0 0 4px;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.1em;">I have more to show you</p>
+      <p style="margin:0 0 16px;font-size:13px;color:#888;">Six sections I have already drafted from your data. Each one moves you closer to a plan you can actually execute.</p>
     </div>
     ${renderLockedSection('04 &middot; The full competitive snapshot', teasers.lockedHints.snapshot, payUrl)}
     ${renderLockedSection('05 &middot; Keyword gap (5 to 8 opportunities)', teasers.lockedHints.keywordGap, payUrl)}
