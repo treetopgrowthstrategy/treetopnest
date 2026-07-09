@@ -23,7 +23,7 @@ export default async function handler(req: any, res: any) {
   if (!body || typeof body !== 'object') body = {};
 
   const email = (body.email || '').toString().trim().toLowerCase();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
     return res.status(400).json({ error: 'Valid email required' });
   }
 

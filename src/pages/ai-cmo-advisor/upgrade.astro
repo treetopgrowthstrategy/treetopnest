@@ -8,7 +8,7 @@ export const prerender = true;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <title>AI CMO Monthly | Treetop Growth Strategy</title>
+  <title>Start your AI CMO plan | Treetop Growth Strategy</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +24,12 @@ export const prerender = true;
     .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #00C853; border: 1px solid rgba(0,200,83,0.3); padding: 4px 10px; margin-bottom: 1.5rem; }
     .h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; color: #F0FFF0; line-height: 1.1; margin-bottom: 1rem; }
     .h1 em { color: #00C853; font-style: italic; }
-    .sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; margin-bottom: 3rem; max-width: 540px; }
+    .sub { font-size: 1rem; color: #C0D8C0; line-height: 1.75; margin-bottom: 2.5rem; max-width: 540px; }
+
+    .tier-switch { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .tier-pill { font-size: 0.78rem; color: #8FAF8F; text-decoration: none; padding: 0.5rem 0.9rem; border: 1px solid #1A3A1A; transition: border-color 0.15s, color 0.15s; }
+    .tier-pill:hover { color: #F0FFF0; border-color: rgba(0,200,83,0.4); }
+    .tier-pill.active { color: #00C853; border-color: rgba(0,200,83,0.5); background: rgba(0,200,83,0.06); }
 
     .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2.5rem; }
     .price-num { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: #00C853; line-height: 1; }
@@ -75,44 +80,31 @@ export const prerender = true;
     <div class="success-icon">
       <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
     </div>
-    <h1 class="h1">You're in. <em>Monthly starts now.</em></h1>
-    <p class="sub">Welcome to AI CMO Monthly. Your first competitive refresh and strategic priority brief will arrive within 48 hours. Direct email access to Bill is open now: <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a></p>
+    <h1 class="h1">You're in. <em>Let's get to work.</em></h1>
+    <p class="sub" id="success-sub">Your plan is active. Direct email access to Bill is open now: <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a></p>
     <a href="/" class="back-link">Back to Treetop &rarr;</a>
   </div>
 
-  <!-- Default upgrade offer -->
+  <!-- Upgrade offer (populated by JS from the selected tier) -->
   <div id="upgrade-state">
-    <div class="badge">AI CMO Monthly</div>
-    <h1 class="h1">Your competitive edge, <em>every month.</em></h1>
-    <p class="sub">The $99 report is a snapshot. Monthly gives you a live signal: what's shifting in your competitive landscape, what to do about it, and a strategist who answers your questions directly.</p>
+    <div class="badge" id="tier-badge">AI CMO Monitor</div>
+    <h1 class="h1" id="tier-h1">Stay current, <em>every month.</em></h1>
+    <p class="sub" id="tier-sub"></p>
+
+    <div class="tier-switch">
+      <a href="/ai-cmo-advisor/upgrade?tier=monitor" class="tier-pill" data-tier="monitor">Monitor &middot; $249</a>
+      <a href="/ai-cmo-advisor/upgrade?tier=guided" class="tier-pill" data-tier="guided">Guided &middot; $999</a>
+      <a href="/ai-cmo-advisor/upgrade?tier=embedded" class="tier-pill" data-tier="embedded">Embedded &middot; $2,500</a>
+    </div>
 
     <div class="price-row">
-      <span class="price-num">$599</span>
-      <span class="price-meta">/ month<br/>cancel anytime</span>
+      <span class="price-num" id="tier-price">$249</span>
+      <span class="price-meta" id="tier-cadence">/ month<br/>cancel anytime</span>
     </div>
 
     <div class="features">
-      <div class="feat-label">What you get every month</div>
-      <div class="feat">
-        <span class="feat-icon">&#10003;</span>
-        <span><strong>Monthly competitive refresh.</strong> Updated Ahrefs data on your domain and up to 3 competitors: what shifted in rankings, traffic, and keyword footprint since last month.</span>
-      </div>
-      <div class="feat">
-        <span class="feat-icon">&#10003;</span>
-        <span><strong>Priority strategic question.</strong> Submit one marketing question each month. Get a direct, researched answer from Bill within 48 hours.</span>
-      </div>
-      <div class="feat">
-        <span class="feat-icon">&#10003;</span>
-        <span><strong>What-changed memo.</strong> A concise brief on what moved in your competitive landscape and what it means for your plan.</span>
-      </div>
-      <div class="feat">
-        <span class="feat-icon">&#10003;</span>
-        <span><strong>Quarterly full strategy refresh.</strong> Every three months: a full updated report with revised 90-day roadmap based on what actually happened vs. the prior plan.</span>
-      </div>
-      <div class="feat">
-        <span class="feat-icon">&#10003;</span>
-        <span><strong>Direct email access.</strong> Reply to any report or email directly. Bill reads and responds.</span>
-      </div>
+      <div class="feat-label">What you get</div>
+      <div id="tier-features"></div>
     </div>
 
     <div class="form-group">
@@ -120,13 +112,13 @@ export const prerender = true;
       <input id="email-input" type="email" class="form-input" placeholder="you@company.com" autocomplete="email" />
     </div>
     <button class="btn-p" id="subscribe-btn" onclick="startSubscription()">
-      Start AI CMO Monthly &rarr;
+      Start Monitor &rarr;
     </button>
     <p class="sub-note">You will be taken to Stripe to complete your subscription. Cancel any time from your Stripe customer portal. No contracts.</p>
     <div id="sub-err" class="err"></div>
 
     <hr class="divider" />
-    <a href="/ai-cmo-advisor" class="back-link">Not ready yet. Back to the overview &rarr;</a>
+    <a href="/pricing" class="back-link">Compare all five steps &rarr;</a>
   </div>
 
 </div>
@@ -134,16 +126,89 @@ export const prerender = true;
 <GlobalFooter />
 
 <script is:inline>
+var TIERS = {
+  monitor: {
+    badge: 'AI CMO Monitor',
+    h1: 'Stay current, <em>every month.</em>',
+    sub: 'The $99 report is a snapshot. Monitor keeps it live: your competitive data refreshed every month, with a memo on what moved and what to do about it.',
+    price: '$249', cadence: '/ month<br/>cancel anytime', btn: 'Start Monitor',
+    features: [
+      ['Monthly competitive refresh.', 'Updated Ahrefs data on your domain and up to 3 competitors: what shifted in rankings, traffic, and keyword footprint since last month.'],
+      ['What-changed memo.', 'A concise brief on what moved in your competitive landscape and what it means for your plan.'],
+      ['One priority question a month.', 'Submit one marketing question each month and get a direct, researched answer from Bill by email.'],
+      ['You execute, we keep you aimed.', 'The lightest way to keep a strategist pointed at your numbers without hiring one.']
+    ],
+    success: 'Welcome to AI CMO Monitor. Your first monthly refresh and what-changed memo will arrive within 48 hours.'
+  },
+  guided: {
+    badge: 'AI CMO Guided',
+    h1: 'A plan, plus a strategist <em>on call.</em>',
+    sub: 'Everything in Monitor, plus a monthly working call, a deeper competitive picture, and a strategist who helps shape the work instead of just pointing at it.',
+    price: '$999', cadence: '/ month<br/>cancel anytime', btn: 'Start Guided',
+    features: [
+      ['Everything in Monitor.', 'Monthly refresh, what-changed memo, and priority questions, all included.'],
+      ['Monthly 45-minute working call.', 'Talk through your priorities with Bill and leave with clear next moves.'],
+      ['Up to 6 competitors tracked.', 'A wider competitive picture and a deeper keyword and content analysis.'],
+      ['We draft or review your priority assets.', 'Bring your key pages or campaigns and we shape them with you.'],
+      ['Async Q&A.', 'Reply any time and get real answers, not a ticket queue.']
+    ],
+    success: 'Welcome to AI CMO Guided. We will reach out to schedule your first working call, and your monthly refresh starts now.'
+  },
+  embedded: {
+    badge: 'AI CMO Embedded',
+    h1: 'A part-time CMO who <em>does the work.</em>',
+    sub: 'Everything in Guided, plus a hand actually producing the deliverables and tracking execution with you. The closest thing to a CMO in the seat, at a flat monthly fee.',
+    price: '$2,500', cadence: '/ month<br/>cancel anytime', btn: 'Start Embedded',
+    features: [
+      ['Everything in Guided.', 'All the analysis, calls, and asset support, included.'],
+      ['Biweekly working sessions.', 'Regular time with Bill to drive the plan forward, not just review it.'],
+      ['We produce the deliverables.', 'Content briefs, positioning, campaign plans: made for you, not just recommended.'],
+      ['Execution tracked with you.', 'The roadmap becomes a shared, moving plan we hold together.'],
+      ['Direct access.', 'Reach Bill directly between sessions.']
+    ],
+    success: 'Welcome to AI CMO Embedded. We will reach out to set up your first session and kick off the work.'
+  }
+};
+
+var currentTier = 'monitor';
+
+function renderTier(tierKey) {
+  var t = TIERS[tierKey] || TIERS.monitor;
+  currentTier = TIERS[tierKey] ? tierKey : 'monitor';
+  document.getElementById('tier-badge').textContent = t.badge;
+  document.getElementById('tier-h1').innerHTML = t.h1;
+  document.getElementById('tier-sub').textContent = t.sub;
+  document.getElementById('tier-price').textContent = t.price;
+  document.getElementById('tier-cadence').innerHTML = t.cadence;
+  document.getElementById('subscribe-btn').innerHTML = t.btn + ' &rarr;';
+
+  var feats = t.features.map(function(f) {
+    return '<div class="feat"><span class="feat-icon">&#10003;</span><span><strong>' + f[0] + '</strong> ' + f[1] + '</span></div>';
+  }).join('');
+  document.getElementById('tier-features').innerHTML = feats;
+
+  var pills = document.querySelectorAll('.tier-pill');
+  for (var i = 0; i < pills.length; i++) {
+    pills[i].classList.toggle('active', pills[i].getAttribute('data-tier') === currentTier);
+  }
+}
+
 (function init() {
   var params = new URLSearchParams(window.location.search);
   var success = params.get('success') === '1';
   var eParam  = params.get('e') || '';
+  var tier    = (params.get('tier') || 'monitor').toLowerCase();
 
   if (success) {
+    var t = TIERS[tier] || TIERS.monitor;
     document.getElementById('upgrade-state').style.display = 'none';
+    var subEl = document.getElementById('success-sub');
+    subEl.innerHTML = t.success + ' Direct email access to Bill is open now: <a href="mailto:bill@treetopgrowthstrategy.com" style="color:#00C853;">bill@treetopgrowthstrategy.com</a>';
     document.getElementById('success-state').style.display = 'block';
     return;
   }
+
+  renderTier(tier);
 
   if (eParam) {
     try {
@@ -173,7 +238,7 @@ async function startSubscription() {
     var res = await fetch('/api/cmo-subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify({ email: email, tier: currentTier })
     });
     var data = await res.json();
     if (data.url) {
@@ -183,7 +248,8 @@ async function startSubscription() {
     }
   } catch(e) {
     btn.disabled    = false;
-    btn.textContent = 'Start AI CMO Monthly →';
+    var t = TIERS[currentTier] || TIERS.monitor;
+    btn.innerHTML = t.btn + ' →';
     err.textContent = e.message || 'Something went wrong. Email bill@treetopgrowthstrategy.com to proceed.';
     err.style.display = 'block';
   }

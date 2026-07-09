@@ -46,8 +46,8 @@ function rawBody(req: any): Promise<Buffer> {
 
 async function fetchOnboardingRecord(email: string): Promise<{ recordId: string; notes: string } | null> {
   if (!AIRTABLE_API_KEY) return null;
-  const formula = encodeURIComponent(`AND({Email}="${email}",{Source}="cmo-onboarding")`);
-  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1&sort[0][field]=Created&sort[0][direction]=desc`;
+  const formula = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1`;
   const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
   if (!r.ok) { console.error('Airtable lookup failed', r.status); return null; }
   const data: any = await r.json();
@@ -62,9 +62,27 @@ async function saveLastReport(recordId: string, reportHtml: string): Promise<voi
   const r = await fetch(url, {
     method: 'PATCH',
     headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields: { 'Last Report': reportHtml } }),
+    body: JSON.stringify({ fields: { 'Last Report': reportHtml, 'Stage': 'report_delivered', 'StageSince': new Date().toISOString().slice(0, 10) } }),
   });
   if (!r.ok) console.error('Failed to save Last Report to Airtable:', r.status, await r.text());
+}
+
+// Advance a lead's Stage by email (used for subscription tier purchases). Upserts.
+async function setLeadStage(email: string, stage: string): Promise<void> {
+  if (!AIRTABLE_API_KEY) return;
+  const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`;
+  const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
+  try {
+    const formula = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
+    const r = await fetch(`${base}?filterByFormula=${formula}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+    const data: any = r.ok ? await r.json() : { records: [] };
+    const rec = data.records?.[0];
+    if (rec) {
+      await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: stage, StageSince: new Date().toISOString().slice(0, 10) } }) });
+    } else {
+      await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', Stage: stage, StageSince: new Date().toISOString().slice(0, 10) } }) });
+    }
+  } catch (err) { console.error('setLeadStage error:', err); }
 }
 
 // ─── Ahrefs ───────────────────────────────────────────────────────────────────
@@ -130,7 +148,7 @@ function formatAhrefsBlock(items: (AhrefsData | null)[]): string {
   const valid = items.filter(Boolean) as AhrefsData[];
   if (!valid.length) return '';
 
-  let block = '\n\nLIVE AHREFS COMPETITIVE DATA (ground your analysis in these numbers — cite specifics):\n';
+  let block = '\n\nLIVE AHREFS COMPETITIVE DATA (ground your analysis in these numbers, cite specifics):\n';
   for (const d of valid) {
     block += `\n${d.domain}:\n`;
     if (d.domainRating !== null) block += `  Domain Rating: ${d.domainRating}\n`;
@@ -224,7 +242,7 @@ async function sendEmail(to: string, subject: string, html: string, replyTo?: st
 }
 
 function reportEmailHtml(reportBody: string, customerEmail: string): string {
-  const upgradeUrl = `${SITE}/ai-cmo-advisor/upgrade?e=${Buffer.from(customerEmail).toString('base64url')}`;
+  const upgradeUrl = `${SITE}/ai-cmo-advisor/upgrade?tier=monitor&e=${Buffer.from(customerEmail).toString('base64url')}`;
   return `
 <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;background:#fff;color:#1a1a1a;line-height:1.65;">
   <div style="background:#050D05;padding:28px 32px;">
@@ -232,13 +250,14 @@ function reportEmailHtml(reportBody: string, customerEmail: string): string {
   </div>
   <div style="padding:36px 32px;">
     <h1 style="margin:0 0 6px;font-size:24px;font-weight:600;color:#050D05;">Your AI CMO Starter Report</h1>
-    <p style="margin:0 0 32px;font-size:13px;color:#888;">Prepared by Bill Colbert, with live Ahrefs data</p>
+    <p style="margin:0 0 24px;font-size:13px;color:#888;">Prepared by Bill Colbert, with live Ahrefs data</p>
+    <p style="margin:0 0 28px;font-size:15px;color:#333;line-height:1.65;">Here is your report. I pulled the live data on the competitors you named and wrote up what I would actually do about it. The section most people read first is the last one, "What I would do first." If anything here raises a question, just reply to this email. It comes straight to me.</p>
     ${reportBody}
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #eaeaea;">
       <p style="margin:0 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>
       <p style="margin:0 0 16px;font-size:13px;color:#888;">Founder, Treetop Growth Strategy &bull; <a href="${SITE}" style="color:#00897B;">treetopgrowthstrategy.com</a></p>
       <p style="margin:0 0 12px;font-size:13px;color:#888;">Questions? Reply to this email.</p>
-      <p style="margin:0;font-size:13px;color:#555;">Want a monthly competitive refresh, priority answers to your top strategic questions, and direct access? <a href="${upgradeUrl}" style="color:#00897B;font-weight:600;">Upgrade to AI CMO Monthly ($599/mo) &rarr;</a></p>
+      <p style="margin:0;font-size:13px;color:#555;">Want this kept current every month, with a what-changed memo and your questions answered? <a href="${upgradeUrl}" style="color:#00897B;font-weight:600;">Continue with Monitor ($249/mo) &rarr;</a></p>
     </div>
   </div>
 </div>`;
@@ -271,6 +290,15 @@ export default async function handler(req: any, res: any) {
   }
 
   const session = event.data.object;
+
+  // Subscription tier purchases: advance the lead's Stage to that tier. No report to generate.
+  const prod = session.metadata?.product || '';
+  if (prod === 'cmo-monitor' || prod === 'cmo-guided' || prod === 'cmo-embedded') {
+    const subEmail = (session.customer_email || session.metadata?.email || '').toLowerCase().trim();
+    const tier = (session.metadata?.tier || prod.replace('cmo-', '')).toString();
+    if (subEmail) { await setLeadStage(subEmail, tier).catch(() => {}); }
+    return res.status(200).json({ received: true });
+  }
 
   if (session.metadata?.product !== 'cmo-starter-report') {
     return res.status(200).json({ received: true });

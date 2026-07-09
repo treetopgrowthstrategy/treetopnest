@@ -37,7 +37,7 @@ export default async function handler(req: any, res: any) {
   if (!body || typeof body !== 'object') body = {};
 
   const email = (body.email || '').toString().trim().toLowerCase();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
     return res.status(400).json({ error: 'Valid email required' });
   }
 
@@ -91,7 +91,7 @@ export default async function handler(req: any, res: any) {
     <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;background:#fff;padding:36px 28px;color:#1a1a1a;line-height:1.65;">
       <p style="margin:0 0 20px;font-size:15px;">Hi,</p>
       <p style="margin:0 0 20px;font-size:15px;">Your onboarding is complete. We have everything we need to build your AI CMO report.</p>
-      <p style="margin:0 0 20px;font-size:15px;">Here is what happens next: we will pull live competitive data on the companies you named, run the full analysis, and deliver your report to this email address within 24 hours.</p>
+      <p style="margin:0 0 20px;font-size:15px;">Here is what happens next: the last step is the $99 so we can pull your live competitive data and write the report. Once that is in, it lands in this inbox the same day, usually within the hour.</p>
       <p style="margin:0 0 20px;font-size:15px;">If you have questions or want to add anything before we start, reply to this email and it comes straight to us.</p>
       <p style="margin:24px 0 4px;font-size:14px;color:#1a1a1a;border-top:1px solid #eaeaea;padding-top:20px;">Bill Colbert</p>
       <p style="margin:0;font-size:13px;color:#888;">Founder, Treetop Growth Strategy<br/><a href="${SITE}" style="color:#888;">treetopgrowthstrategy.com</a></p>
@@ -99,25 +99,27 @@ export default async function handler(req: any, res: any) {
   `;
   await sendEmail(email, 'Your AI CMO onboarding is complete', confirmHtml, BILL_EMAIL);
 
-  // Log to Airtable
+  // Upsert to Airtable: update the existing lead record (one record per email),
+  // advancing Stage to 'onboarded' and storing the intake answers.
   try {
     if (AIRTABLE_API_KEY && AIRTABLE_BASE_ID) {
       const notes = rows.map(([k, v]) => `${k}: ${v}`).join('\n\n');
-      await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fields: {
-            Name: email.split('@')[0],
-            Email: email,
-            Source: 'cmo-onboarding',
-            Notes: notes,
-          },
-        }),
-      });
+      const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_LEADS_TABLE}`;
+      const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
+      const q = encodeURIComponent(`LOWER({Email})="${email}"`);
+      const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+      const fd: any = fr.ok ? await fr.json() : { records: [] };
+      const rec = fd.records?.[0];
+      if (rec) {
+        await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields: { Stage: 'onboarded', StageSince: new Date().toISOString().slice(0, 10), Notes: notes } }) });
+      } else {
+        await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: {
+          Name: email.split('@')[0], Email: email, Source: 'cmo-onboarding', Stage: 'onboarded', StageSince: new Date().toISOString().slice(0, 10), Notes: notes,
+        } }) });
+      }
     }
   } catch (err) {
-    console.error('Airtable log error:', err);
+    console.error('Airtable upsert error:', err);
   }
 
   return res.status(200).json({ success: true });

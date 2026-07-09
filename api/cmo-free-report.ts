@@ -1,0 +1,478 @@
+// Free-motion report generator + sender.
+//
+// Produces a compelling-but-limited AI CMO snapshot: two REVEALED sections
+// (user's own metrics + three competitors we inferred from Ahrefs + one
+// named keyword opportunity) and four LOCKED sections that tease the paid
+// $99 report. Delivered via Resend within seconds of qualification, not
+// tomorrow morning's cron drift.
+//
+// Exports:
+//   generateAndSendFreeReport({ email, website?, lead? }) -> { sent, mode, reason? }
+//     Called inline from cmo-free-qualify.ts after the ICP classification.
+//
+// Default POST handler is a manual re-run endpoint for a specific email
+// (useful for retrying failed sends and for CLI-style testing).
+//   POST /api/cmo-free-report { email, website? } -> { sent, mode, reason? }
+
+const AIRTABLE_API_KEY   = process.env.AIRTABLE_API_KEY || '';
+const AIRTABLE_BASE_ID   = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
+const AIRTABLE_TABLE     = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
+const AHREFS_API_KEY     = process.env.AHREFS_API_KEY || '';
+const OPENAI_API_KEY     = process.env.OPENAI_API_KEY || '';
+const RESEND_API_KEY     = process.env.RESEND_API_KEY || '';
+const FROM_EMAIL         = process.env.RESEND_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
+const BILL_EMAIL         = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
+const REPLY_TO_ADDRESS   = process.env.CMO_REPLY_TO_EMAIL || 'bill@reports.treetopgrowthstrategy.com';
+const SITE               = 'https://treetopgrowthstrategy.com';
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface DomainMetrics {
+  domain: string;
+  domainRating: number | null;
+  orgTraffic: number | null;
+  orgKeywords: number | null;
+}
+
+interface CompetitorRow {
+  domain: string;
+  domainRating: number | null;
+  orgTraffic: number | null;
+}
+
+interface KeywordRow {
+  keyword: string;
+  volume: number;
+  best_position: number;
+  sum_traffic: number;
+  cpc?: number | null;
+}
+
+interface ReportData {
+  ownDomain: string;
+  own: DomainMetrics | null;
+  competitors: CompetitorRow[];
+  topKeywords: KeywordRow[];
+}
+
+// ─── Utility ──────────────────────────────────────────────────────────────────
+
+function todayISO(): string { return new Date().toISOString().slice(0, 10); }
+
+function firstName(rec: any): string {
+  const n = (rec?.fields?.Name || '').toString().trim();
+  if (n && !n.includes('@')) return n.split(/[\s._-]+/)[0].replace(/^\w/, (c: string) => c.toUpperCase());
+  const local = (rec?.fields?.Email || '').toString().split('@')[0].split(/[._-]+/)[0];
+  return local ? local.replace(/^\w/, (c: string) => c.toUpperCase()) : 'there';
+}
+
+function pickDomain(email: string, website?: string, existingWebsite?: string): string {
+  const candidates = [website, existingWebsite]
+    .filter(Boolean)
+    .map(w => w!.toString().trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0].toLowerCase());
+  if (candidates[0]) return candidates[0];
+  const dom = email.split('@')[1] || '';
+  const FREE = new Set(['gmail.com','yahoo.com','outlook.com','hotmail.com','icloud.com','aol.com','proton.me','protonmail.com','gmx.com','live.com','msn.com','me.com','ymail.com']);
+  return FREE.has(dom) ? '' : dom;
+}
+
+function enc(email: string): string { return Buffer.from(email).toString('base64url'); }
+
+// ─── Airtable ─────────────────────────────────────────────────────────────────
+
+async function findLead(email: string): Promise<any | null> {
+  if (!AIRTABLE_API_KEY) return null;
+  const q = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${q}&maxRecords=1`;
+  const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+  if (!r.ok) return null;
+  const data: any = await r.json();
+  return data.records?.[0] || null;
+}
+
+async function patchLead(recordId: string, fields: Record<string, any>): Promise<void> {
+  if (!AIRTABLE_API_KEY || !recordId) return;
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}/${recordId}`;
+  const r = await fetch(url, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields }),
+  });
+  if (!r.ok) console.error('cmo-free-report patchLead failed', r.status, await r.text());
+}
+
+// ─── Ahrefs ───────────────────────────────────────────────────────────────────
+
+async function fetchOwnMetrics(domain: string, date: string): Promise<DomainMetrics | null> {
+  if (!AHREFS_API_KEY || !domain) return null;
+  const base = 'https://api.ahrefs.com/v3/site-explorer';
+  const h = { Authorization: `Bearer ${AHREFS_API_KEY}` };
+  try {
+    const [drRes, mRes] = await Promise.all([
+      fetch(`${base}/domain-rating?target=${domain}&date=${date}&output=json`, { headers: h }),
+      fetch(`${base}/metrics?target=${domain}&date=${date}&mode=subdomains&output=json`, { headers: h }),
+    ]);
+    const dr: any = drRes.ok ? await drRes.json() : null;
+    const m: any  = mRes.ok  ? await mRes.json()  : null;
+    return {
+      domain,
+      domainRating: dr?.domain_rating?.domain_rating ?? null,
+      orgTraffic:   m?.metrics?.org_traffic ?? null,
+      orgKeywords:  m?.metrics?.org_keywords ?? null,
+    };
+  } catch (err) {
+    console.error('fetchOwnMetrics failed:', err);
+    return null;
+  }
+}
+
+async function fetchTopKeywords(domain: string, date: string, limit = 20): Promise<KeywordRow[]> {
+  if (!AHREFS_API_KEY || !domain) return [];
+  const base = 'https://api.ahrefs.com/v3/site-explorer';
+  const url = `${base}/organic-keywords?target=${domain}&date=${date}&mode=subdomains&select=keyword,volume,best_position,sum_traffic,cpc&order_by=sum_traffic:desc&limit=${limit}&output=json`;
+  try {
+    const r = await fetch(url, { headers: { Authorization: `Bearer ${AHREFS_API_KEY}` } });
+    if (!r.ok) return [];
+    const data: any = await r.json();
+    return (data?.keywords || []) as KeywordRow[];
+  } catch (err) {
+    console.error('fetchTopKeywords failed:', err);
+    return [];
+  }
+}
+
+async function fetchCompetitors(domain: string, date: string, limit = 3): Promise<string[]> {
+  if (!AHREFS_API_KEY || !domain) return [];
+  const base = 'https://api.ahrefs.com/v3/site-explorer';
+  const url = `${base}/organic-competitors?target=${domain}&date=${date}&mode=subdomains&select=competitor_domain,intersecting_keywords&order_by=intersecting_keywords:desc&limit=${limit}&output=json`;
+  try {
+    const r = await fetch(url, { headers: { Authorization: `Bearer ${AHREFS_API_KEY}` } });
+    if (!r.ok) return [];
+    const data: any = await r.json();
+    const rows: Array<{ competitor_domain?: string; domain?: string }> = data?.competitors || data?.results || [];
+    return rows
+      .map(x => (x.competitor_domain || x.domain || '').toString().replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].toLowerCase())
+      .filter(Boolean)
+      .filter(d => d !== domain)
+      .slice(0, limit);
+  } catch (err) {
+    console.error('fetchCompetitors failed:', err);
+    return [];
+  }
+}
+
+async function enrichCompetitors(domains: string[], date: string): Promise<CompetitorRow[]> {
+  if (!domains.length) return [];
+  const rows = await Promise.all(domains.map(async d => {
+    const m = await fetchOwnMetrics(d, date);
+    return {
+      domain: d,
+      domainRating: m?.domainRating ?? null,
+      orgTraffic:   m?.orgTraffic ?? null,
+    };
+  }));
+  return rows;
+}
+
+// ─── OpenAI teaser copy ───────────────────────────────────────────────────────
+
+async function writeTeasers(data: ReportData): Promise<{
+  competitiveLine: string;
+  keywordCallout: { keyword: string; why: string } | null;
+  lockedHints: { snapshot: string; keywordGap: string; positioning: string; levers: string; roadmap: string; firstMove: string };
+} | null> {
+  if (!OPENAI_API_KEY) return null;
+
+  const competitorList = data.competitors.length
+    ? data.competitors.map(c => `${c.domain} (DR ${c.domainRating ?? 'n/a'}, ~${c.orgTraffic?.toLocaleString() ?? 'n/a'} monthly visits)`).join('; ')
+    : '(no clear competitors identified)';
+  const kwSample = data.topKeywords.slice(0, 12)
+    .map(k => `"${k.keyword}" (vol ${k.volume}, pos ${k.best_position})`)
+    .join(', ') || '(no keyword data)';
+  const own = data.own;
+
+  const prompt = `You are Bill Colbert, a fractional CMO. Write short, specific teaser copy for a FREE competitive snapshot email. The visitor's own site is ${data.ownDomain}${own ? ` (DR ${own.domainRating ?? 'n/a'}, ~${own.orgTraffic?.toLocaleString() ?? 'n/a'} monthly organic visits, ${own.orgKeywords?.toLocaleString() ?? 'n/a'} ranking keywords)` : ''}.
+
+Ahrefs found these as their top organic competitors: ${competitorList}.
+Their current top-traffic keywords: ${kwSample}.
+
+Return STRICT JSON with this shape (no markdown fences, no prose outside JSON):
+{
+  "competitiveLine": "one sentence, 20-35 words, that names how the competitor lineup shapes their position. Reference at least one competitor by name.",
+  "keywordCallout": { "keyword": "one keyword from the list above worth chasing OR a clear adjacent one they should own", "why": "one sentence, 15-25 words, on why this is the right first move." },
+  "lockedHints": {
+    "snapshot":    "6-10 words teasing the full competitive snapshot section.",
+    "keywordGap":  "6-10 words teasing the full keyword gap section.",
+    "positioning": "6-10 words teasing the content positioning section.",
+    "levers":      "6-10 words teasing the top-3 growth levers section.",
+    "roadmap":     "6-10 words teasing the 90-day roadmap section.",
+    "firstMove":   "6-10 words teasing the 'what I would do first' section."
+  }
+}
+
+HARD RULES: no em dashes anywhere, no en dashes used as em dashes, plain prose only, no marketing platitudes.`;
+
+  try {
+    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${OPENAI_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'gpt-4o',
+        max_tokens: 900,
+        response_format: { type: 'json_object' },
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+    if (!r.ok) { console.error('OpenAI teaser call failed', r.status, await r.text()); return null; }
+    const j: any = await r.json();
+    const txt = j.choices?.[0]?.message?.content || '';
+    const parsed = JSON.parse(txt);
+    return parsed;
+  } catch (err) {
+    console.error('writeTeasers failed:', err);
+    return null;
+  }
+}
+
+// ─── Fallback copy ────────────────────────────────────────────────────────────
+
+function fallbackTeasers(data: ReportData) {
+  const namedCompetitor = data.competitors[0]?.domain || 'the current market leaders';
+  const kw = data.topKeywords[0]?.keyword;
+  return {
+    competitiveLine: `Your top-competing domains include ${namedCompetitor}, which shapes where the search traffic actually sits and where the honest gaps are.`,
+    keywordCallout: kw
+      ? { keyword: kw, why: 'You are already showing up here. The next move is turning that presence into pipeline before a competitor closes the gap.' }
+      : null,
+    lockedHints: {
+      snapshot:    'The full competitive breakdown, side by side.',
+      keywordGap:  'The keywords they win that you should be chasing.',
+      positioning: 'The angle that plays to your strengths.',
+      levers:      'The three highest-ROI moves right now.',
+      roadmap:     'Month 1, Month 2, Month 3 milestones.',
+      firstMove:   'The one thing to do this week, ranked.',
+    },
+  };
+}
+
+// ─── HTML email ───────────────────────────────────────────────────────────────
+
+function renderMetricStat(label: string, value: string | number | null | undefined): string {
+  const shown = (value === null || value === undefined || value === '') ? '—' : (typeof value === 'number' ? value.toLocaleString() : value);
+  return `
+    <td style="padding:14px 16px;background:#fafafa;border-right:1px solid #eaeaea;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-bottom:4px;">${label}</div>
+      <div style="font-size:18px;font-weight:600;color:#050D05;">${shown}</div>
+    </td>`;
+}
+
+function renderCompetitorRow(c: CompetitorRow, i: number): string {
+  return `
+    <tr>
+      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:14px;color:#050D05;font-weight:600;width:36px;">${i + 1}</td>
+      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:14px;color:#050D05;font-weight:500;">${c.domain}</td>
+      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:13px;color:#555;">DR ${c.domainRating ?? '—'}</td>
+      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:13px;color:#555;">${c.orgTraffic ? '~' + c.orgTraffic.toLocaleString() + ' visits/mo' : '—'}</td>
+    </tr>`;
+}
+
+function renderLockedSection(title: string, hint: string, payUrl: string): string {
+  return `
+    <div style="border:1px solid #eaeaea;background:#fafafa;padding:18px 20px;margin:10px 0;border-radius:4px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="display:inline-block;width:18px;height:18px;background:#00897B;color:#fff;text-align:center;line-height:18px;font-size:11px;border-radius:2px;">&#128274;</span>
+        <span style="font-size:15px;font-weight:600;color:#050D05;">${title}</span>
+      </div>
+      <p style="margin:0 0 10px;font-size:13px;color:#666;line-height:1.6;">${hint}</p>
+      <a href="${payUrl}" style="font-size:13px;color:#00897B;text-decoration:none;font-weight:600;">Unlock the full report for $99 &rarr;</a>
+    </div>`;
+}
+
+function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnType<typeof writeTeasers>>>, email: string, fn: string): string {
+  const payUrl = `${SITE}/api/cmo-pay?e=${enc(email)}`;
+  const upgradeAll = `${SITE}/ai-cmo-advisor/upgrade?tier=monitor&e=${enc(email)}`;
+  const own = data.own;
+  const kwCallout = teasers.keywordCallout;
+
+  const compTable = data.competitors.length
+    ? `<table style="border-collapse:collapse;width:100%;margin:0 0 18px;">${data.competitors.map(renderCompetitorRow).join('')}</table>`
+    : `<p style="font-size:14px;color:#666;line-height:1.7;margin:0 0 18px;">Ahrefs did not surface distinct organic competitors for ${data.ownDomain}. That is either a positioning story or a data-coverage story, and the full report untangles which. </p>`;
+
+  return `
+<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;background:#fff;color:#1a1a1a;line-height:1.65;">
+  <div style="background:#050D05;padding:26px 32px;">
+    <p style="margin:0;font-family:Georgia,serif;font-size:19px;font-style:italic;color:#F0FFF0;">Treetop Growth Strategy</p>
+    <p style="margin:6px 0 0;font-size:12px;color:#8FAF8F;letter-spacing:0.08em;text-transform:uppercase;">Your free AI CMO snapshot</p>
+  </div>
+  <div style="padding:32px 32px 28px;">
+    <p style="margin:0 0 8px;font-size:14px;color:#555;">Hi ${fn},</p>
+    <h1 style="margin:0 0 6px;font-size:22px;font-weight:600;color:#050D05;line-height:1.3;">Here is your free snapshot for ${data.ownDomain}.</h1>
+    <p style="margin:0 0 22px;font-size:14px;color:#666;">Pulled live from Ahrefs and written by your AI CMO. Two sections are open. Four are locked, they are the ones that turn a snapshot into a plan.</p>
+
+    <!-- OPEN SECTION 1: YOUR OWN METRICS -->
+    <h2 style="margin:0 0 10px;font-size:15px;font-weight:600;color:#050D05;text-transform:uppercase;letter-spacing:0.06em;">01 &middot; Where you stand</h2>
+    <table style="border-collapse:collapse;width:100%;margin:0 0 14px;border:1px solid #eaeaea;">
+      <tr>
+        ${renderMetricStat('Domain Rating', own?.domainRating)}
+        ${renderMetricStat('Monthly Organic Visits', own?.orgTraffic)}
+        <td style="padding:14px 16px;background:#fafafa;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-bottom:4px;">Ranking Keywords</div>
+          <div style="font-size:18px;font-weight:600;color:#050D05;">${own?.orgKeywords?.toLocaleString() ?? '—'}</div>
+        </td>
+      </tr>
+    </table>
+    <p style="margin:0 0 26px;font-size:14px;color:#555;line-height:1.7;">${teasers.competitiveLine}</p>
+
+    <!-- OPEN SECTION 2: NAMED COMPETITORS -->
+    <h2 style="margin:0 0 10px;font-size:15px;font-weight:600;color:#050D05;text-transform:uppercase;letter-spacing:0.06em;">02 &middot; Who you are actually competing with</h2>
+    ${compTable}
+
+    <!-- OPEN SECTION 3: ONE KEYWORD -->
+    ${kwCallout ? `
+    <h2 style="margin:22px 0 10px;font-size:15px;font-weight:600;color:#050D05;text-transform:uppercase;letter-spacing:0.06em;">03 &middot; One keyword worth chasing first</h2>
+    <div style="border-left:3px solid #00897B;padding:2px 0 2px 16px;margin:0 0 8px;">
+      <p style="margin:0 0 4px;font-size:16px;font-weight:600;color:#050D05;">${kwCallout.keyword}</p>
+      <p style="margin:0;font-size:14px;color:#555;line-height:1.6;">${kwCallout.why}</p>
+    </div>
+    ` : ''}
+
+    <!-- LOCKED SECTIONS -->
+    <div style="margin:32px 0 8px;">
+      <p style="margin:0 0 4px;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.1em;">The rest is in the full report</p>
+      <p style="margin:0 0 16px;font-size:13px;color:#888;">Same live data, four more sections, delivered same day.</p>
+    </div>
+    ${renderLockedSection('04 &middot; The full competitive snapshot', teasers.lockedHints.snapshot, payUrl)}
+    ${renderLockedSection('05 &middot; Keyword gap (5 to 8 opportunities)', teasers.lockedHints.keywordGap, payUrl)}
+    ${renderLockedSection('06 &middot; Content positioning', teasers.lockedHints.positioning, payUrl)}
+    ${renderLockedSection('07 &middot; Top 3 growth levers', teasers.lockedHints.levers, payUrl)}
+    ${renderLockedSection('08 &middot; 90-day roadmap', teasers.lockedHints.roadmap, payUrl)}
+    ${renderLockedSection('09 &middot; What I would do first', teasers.lockedHints.firstMove, payUrl)}
+
+    <!-- BIG CTA -->
+    <div style="margin:34px 0 22px;padding:22px;background:#050D05;text-align:center;">
+      <p style="margin:0 0 12px;font-family:Georgia,serif;font-size:19px;color:#F0FFF0;">Ready for the full plan?</p>
+      <p style="margin:0 0 18px;font-size:13px;color:#8FAF8F;">Delivered same day. Written by your AI CMO. Includes everything above plus the four locked sections.</p>
+      <a href="${payUrl}" style="display:inline-block;background:#00C853;color:#050D05;padding:13px 28px;font-size:15px;font-weight:600;text-decoration:none;border-radius:4px;">Unlock the full report for $99 &rarr;</a>
+    </div>
+
+    <div style="border-top:1px solid #eaeaea;padding-top:20px;margin-top:24px;">
+      <p style="margin:0 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>
+      <p style="margin:0 0 12px;font-size:13px;color:#888;">Founder, Treetop Growth Strategy &middot; <a href="${SITE}" style="color:#00897B;">treetopgrowthstrategy.com</a></p>
+      <p style="margin:0 0 8px;font-size:13px;color:#888;">Questions? Just reply. Your AI CMO reads every one, and I look at the ones worth answering myself.</p>
+      <p style="margin:0;font-size:12px;color:#aaa;">Want ongoing? <a href="${upgradeAll}" style="color:#00897B;">Monitor keeps this current every month for $249 &rarr;</a></p>
+    </div>
+  </div>
+</div>`;
+}
+
+// ─── Resend ───────────────────────────────────────────────────────────────────
+
+async function sendEmail(to: string, subject: string, html: string): Promise<boolean> {
+  if (!RESEND_API_KEY) { console.warn('RESEND_API_KEY not set'); return false; }
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: FROM_EMAIL, to: [to], subject, html, reply_to: [REPLY_TO_ADDRESS], bcc: [BILL_EMAIL] }),
+  });
+  if (!r.ok) { console.error('cmo-free-report send failed', r.status, await r.text()); return false; }
+  return true;
+}
+
+// ─── Public API ───────────────────────────────────────────────────────────────
+
+export interface GenerateOpts {
+  email: string;
+  website?: string;
+  lead?: any;
+  force?: boolean;
+}
+
+export interface GenerateResult {
+  sent: boolean;
+  mode: 'sent' | 'dry-run' | 'skipped';
+  reason?: string;
+  domain?: string;
+  competitors?: string[];
+}
+
+/**
+ * Generate a limited free report and send it via Resend.
+ * Called inline from cmo-free-qualify.ts after ICP classification, and
+ * also exposed as a POST endpoint for manual re-sends.
+ *
+ * Idempotency: if the lead's LastNurtureSentAt is today, we skip (unless
+ * `force: true`), so a resubmission does not double-send.
+ */
+export async function generateAndSendFreeReport(opts: GenerateOpts): Promise<GenerateResult> {
+  const email = opts.email.trim().toLowerCase();
+  if (!email) return { sent: false, mode: 'skipped', reason: 'no email' };
+
+  const lead = opts.lead || await findLead(email);
+  const existingWebsite = lead?.fields?.WebsiteURL || '';
+  const domain = pickDomain(email, opts.website, existingWebsite);
+  if (!domain) return { sent: false, mode: 'skipped', reason: 'no company domain' };
+
+  const today = todayISO();
+  if (!opts.force && lead) {
+    const lastSent = (lead.fields?.LastNurtureSentAt || '').toString().slice(0, 10);
+    if (lastSent === today) return { sent: false, mode: 'skipped', reason: 'already sent today' };
+  }
+
+  if (!AHREFS_API_KEY || !OPENAI_API_KEY || !RESEND_API_KEY) {
+    return { sent: false, mode: 'skipped', reason: 'missing env keys (ahrefs/openai/resend)' };
+  }
+
+  const date = today;
+  const [own, competitorDomains, topKeywords] = await Promise.all([
+    fetchOwnMetrics(domain, date),
+    fetchCompetitors(domain, date, 3),
+    fetchTopKeywords(domain, date, 20),
+  ]);
+  const competitors = await enrichCompetitors(competitorDomains, date);
+  const data: ReportData = { ownDomain: domain, own, competitors, topKeywords };
+
+  const teasers = (await writeTeasers(data)) || fallbackTeasers(data);
+
+  const fn = firstName(lead);
+  const html = buildReportHtml(data, teasers, email, fn);
+  const subject = `Your free AI CMO snapshot for ${domain}`;
+
+  const ok = await sendEmail(email, subject, html);
+  if (!ok) return { sent: false, mode: 'skipped', reason: 'resend failure', domain, competitors: competitorDomains };
+
+  if (lead?.id) {
+    await patchLead(lead.id, {
+      NurtureStep: 1,
+      NurtureStage: 'free',
+      LastNurtureSentAt: today,
+      'Last Report': html,
+      ResearchEligible: true,
+    });
+  }
+
+  return { sent: true, mode: 'sent', domain, competitors: competitorDomains };
+}
+
+// ─── HTTP handler (manual re-run / test) ─────────────────────────────────────
+
+export default async function handler(req: any, res: any) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
+
+  let body = req.body;
+  if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
+  if (!body || typeof body !== 'object') body = {};
+
+  const email   = (body.email || '').toString().trim().toLowerCase();
+  const website = (body.website || '').toString().trim();
+  const force   = !!body.force;
+  if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
+    return res.status(400).json({ error: 'Valid email required' });
+  }
+
+  const result = await generateAndSendFreeReport({ email, website, force });
+  return res.status(200).json(result);
+}

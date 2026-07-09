@@ -1,0 +1,20 @@
+---
+const { active = '' } = Astro.props as { active?: string };
+const isActive = (key: string) => active === key;
+const linkColor = (key: string) => isActive(key) ? '#F0FFF0' : 'rgba(240,255,240,0.5)';
+---
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none;">Treetop</a>
+    <div class="nav-hide-mob" style="display:flex;gap:2.5rem;align-items:center;">
+      <a href="/methodology" style={`font-size:0.82rem;font-weight:400;color:${linkColor('methodology')};text-decoration:none;transition:color 0.2s;`}>Methodology</a>
+      <a href="/pricing" style={`font-size:0.82rem;font-weight:400;color:${linkColor('pricing')};text-decoration:none;transition:color 0.2s;`}>Pricing</a>
+      <a href="/resources" style={`font-size:0.82rem;font-weight:400;color:${linkColor('resources')};text-decoration:none;transition:color 0.2s;`}>Resources</a>
+      <a href="/about" style={`font-size:0.82rem;font-weight:400;color:${linkColor('about')};text-decoration:none;transition:color 0.2s;`}>About</a>
+    </div>
+    <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" style="display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.6rem 1.25rem;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;text-decoration:none;border:none;transition:opacity 0.2s;white-space:nowrap;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Book a call &rarr;</a>
+  </div>
+  <style>
+    @media(max-width:768px){ .nav-hide-mob { display:none !important; } }
+  </style>
+</nav>

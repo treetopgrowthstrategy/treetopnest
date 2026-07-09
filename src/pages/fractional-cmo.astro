@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
+import GlobalNav from '../components/GlobalNav.astro';
 import GlobalFooter from '../components/GlobalFooter.astro';
 import HubLinks from '../components/HubLinks.astro';
 ---
@@ -38,7 +39,7 @@ import HubLinks from '../components/HubLinks.astro';
 }
 </script>
 <script type="application/ld+json" slot="head">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a fractional CMO cost per month?","acceptedAnswer":{"@type":"Answer","text":"Fractional CMO retainers typically range from $5,000 to $15,000 per month depending on hours, company stage, and scope. At 8-10 hours per week, expect $5,000-$8,000/month. At 15-20 hours per week for a more intensive engagement, budgets of $10,000-$15,000 are common. This compares to a full-time CMO salary of $180,000-$300,000 plus benefits and equity."}},{"@type":"Question","name":"What is the difference between a fractional CMO and a marketing consultant?","acceptedAnswer":{"@type":"Answer","text":"A marketing consultant delivers a one-time project or recommendation. A fractional CMO joins your leadership team on an ongoing basis, owns outcomes, runs weekly syncs, manages your marketing staff, and is accountable for pipeline and revenue metrics. The fractional CMO is embedded, not advisory."}},{"@type":"Question","name":"How many hours per week does a fractional CMO work?","acceptedAnswer":{"@type":"Answer","text":"Most fractional CMO engagements run 8 to 20 hours per week. Early-stage companies typically start at 8-10 hours per week for strategy and oversight. Companies with active campaigns or a team to manage often need 15-20 hours per week. Hours can scale up during product launches and scale back once systems are running."}},{"@type":"Question","name":"When should a startup hire a fractional CMO instead of a full-time CMO?","acceptedAnswer":{"@type":"Answer","text":"Hire a fractional CMO when you have product-market fit and paying customers but lack CMO-level marketing strategy. This is typically the $2M-$20M revenue range. If you cannot yet justify a $200,000+ CMO salary but need executive-level GTM leadership, fractional is the right model. Once you pass $25M-$30M ARR and marketing is your primary growth lever, a full-time hire usually makes sense."}},{"@type":"Question","name":"What does a fractional CMO do in the first 90 days?","acceptedAnswer":{"@type":"Answer","text":"In the first 90 days a fractional CMO typically conducts a GTM audit (positioning, ICP, competitive landscape, current funnel metrics), identifies the top 2-3 growth levers, restructures or hires the marketing team as needed, launches 1-2 priority campaigns, and establishes KPI dashboards. Most clients see measurable pipeline impact within 60-90 days."}},{"@type":"Question","name":"Can a fractional CMO manage my marketing team?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fractional CMOs typically serve as the direct manager or dotted-line leader for content, demand generation, and product marketing staff. They run weekly team syncs, set OKRs, provide copy and creative direction, and handle performance conversations. This is a key difference from a consultant who does not manage people."}},{"@type":"Question","name":"What industries do fractional CMOs specialize in?","acceptedAnswer":{"@type":"Answer","text":"Fractional CMOs most commonly serve B2B SaaS, professional services, fintech, healthtech, and industrial/manufacturing companies. The model works best in industries with longer sales cycles where GTM strategy and content-driven pipeline generation matter more than paid media volume."}},{"@type":"Question","name":"How do I know if my company is ready for a fractional CMO?","acceptedAnswer":{"@type":"Answer","text":"Your company is ready for a fractional CMO if you have at least $2M in revenue or strong ARR growth, a defined sales process, and a clear growth target but no senior marketing leader driving strategy. Other signals: marketing is an afterthought in leadership meetings, you are spending on ads without a documented GTM strategy, or you have recently lost a VP Marketing and need interim leadership while you search."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a fractional CMO from Treetop cost?","acceptedAnswer":{"@type":"Answer","text":"Retainer, custom scope. Every engagement is scoped on a strategy call and quoted as a flat monthly fee tied to hours per week and outcomes owned. There is no public rate card because the range from a light advisory to a full interim CMO is too wide to price with one number. Anchor: most engagements land between what the Embedded productized subscription costs and what a full-time CMO would cost."}},{"@type":"Question","name":"What is the difference between a fractional CMO and a marketing consultant?","acceptedAnswer":{"@type":"Answer","text":"A marketing consultant delivers a one-time project or recommendation. A fractional CMO joins your leadership team on an ongoing basis, owns outcomes, runs weekly syncs, manages your marketing staff, and is accountable for pipeline and revenue metrics. The fractional CMO is embedded, not advisory."}},{"@type":"Question","name":"How many hours per week does a fractional CMO work?","acceptedAnswer":{"@type":"Answer","text":"Most fractional CMO engagements run 8 to 20 hours per week. Early-stage companies typically start at 8-10 hours per week for strategy and oversight. Companies with active campaigns or a team to manage often need 15-20 hours per week. Hours can scale up during product launches and scale back once systems are running."}},{"@type":"Question","name":"When should a startup hire a fractional CMO instead of a full-time CMO?","acceptedAnswer":{"@type":"Answer","text":"Hire a fractional CMO when you have product-market fit and paying customers but lack CMO-level marketing strategy. This is typically the $2M-$20M revenue range. If you cannot yet justify a full-time CMO salary but need executive-level GTM leadership, fractional is the right model. Once you pass $25M-$30M ARR and marketing is your primary growth lever, a full-time hire usually makes sense."}},{"@type":"Question","name":"What does a fractional CMO do in the first 90 days?","acceptedAnswer":{"@type":"Answer","text":"In the first 90 days a fractional CMO typically conducts a GTM audit (positioning, ICP, competitive landscape, current funnel metrics), identifies the top 2-3 growth levers, restructures or hires the marketing team as needed, launches 1-2 priority campaigns, and establishes KPI dashboards. Most clients see measurable pipeline impact within 60-90 days."}},{"@type":"Question","name":"Can a fractional CMO manage my marketing team?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fractional CMOs typically serve as the direct manager or dotted-line leader for content, demand generation, and product marketing staff. They run weekly team syncs, set OKRs, provide copy and creative direction, and handle performance conversations. This is a key difference from a consultant who does not manage people."}},{"@type":"Question","name":"What industries do fractional CMOs specialize in?","acceptedAnswer":{"@type":"Answer","text":"Fractional CMOs most commonly serve B2B SaaS, professional services, fintech, healthtech, and industrial/manufacturing companies. The model works best in industries with longer sales cycles where GTM strategy and content-driven pipeline generation matter more than paid media volume."}},{"@type":"Question","name":"How do I know if my company is ready for a fractional CMO?","acceptedAnswer":{"@type":"Answer","text":"Your company is ready for a fractional CMO if you have at least $2M in revenue or strong ARR growth, a defined sales process, and a clear growth target but no senior marketing leader driving strategy. Other signals: marketing is an afterthought in leadership meetings, you are spending on ads without a documented GTM strategy, or you have recently lost a VP Marketing and need interim leadership while you search."}}]}
 </script>
 
 <style>
@@ -101,18 +102,7 @@ import HubLinks from '../components/HubLinks.astro';
   }
 </style>
 
-<!-- NAV -->
-<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A;">
-  <div style="max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;">
-    <a href="/" style="font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none;">Treetop</a>
-    <div class="hide-mob" style="display:flex;gap:2.5rem;align-items:center;">
-      <a href="/services" class="nav-link">All Services</a>
-      <a href="/claude-for-small-business" class="nav-link">Claude for SMB</a>
-      <a href="/about" class="nav-link">About</a>
-    </div>
-    <a href="#contact" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Start the Conversation</a>
-  </div>
-</nav>
+<GlobalNav active="" />
 
 <!-- HERO -->
 <section style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 2.5rem 5rem;background:#050D05;">
@@ -165,60 +155,32 @@ import HubLinks from '../components/HubLinks.astro';
   </div>
 </section>
 
-<!-- PRICING TABLE -->
+<!-- PRICING -->
 <section id="pricing" style="padding:6rem 2.5rem;background:#050D05;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <span class="lbl anim d1">Rates and Scope</span>
-    <h2 class="anim d2" style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;line-height:1.15;color:#F0FFF0;max-width:680px;margin-bottom:1rem;">
-      Fractional CMO Pricing: What to Expect
+  <div style="max-width:1000px;margin:0 auto;">
+    <span class="lbl anim d1">Scope and pricing</span>
+    <h2 class="anim d2" style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;line-height:1.15;color:#F0FFF0;max-width:720px;margin-bottom:1.25rem;">
+      Retainer, scoped to fit.
     </h2>
-    <p class="anim d3" style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;max-width:680px;margin-bottom:0.5rem;">
-      Fractional CMO retainers are priced by hours per week and engagement depth. Most B2B companies at the $5M to $30M stage land in the Advisory or Embedded tiers. All engagements start with a 90-day minimum to ensure meaningful traction. See the <a href="/fractional-executive-pricing-guide-2026" style="color:#00C853;">2026 fractional pricing guide</a> for a full industry comparison.
+    <p class="anim d3" style="font-size:1rem;color:#C0D8C0;line-height:1.8;max-width:720px;margin-bottom:1.25rem;">
+      The Fractional CMO engagement is priced as a flat monthly retainer with a 90-day minimum. There is no public rate card, because the range from a light advisory relationship to a full interim CMO is too wide to price with one number. Every engagement is scoped on a 30-minute strategy call and quoted before you commit to anything.
     </p>
-    <div class="anim d4" style="overflow-x:auto;">
-      <table class="pricing-table">
-        <thead>
-          <tr>
-            <th>Tier</th>
-            <th>Hours / Week</th>
-            <th>Monthly Retainer</th>
-            <th>Best Fit</th>
-            <th>Typical Deliverables</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="tier-name">Strategy Sprint</span></td>
-            <td>4 hrs</td>
-            <td><span class="tier-price">$3,500/mo</span></td>
-            <td>Pre-revenue or early traction; need a GTM foundation before hiring</td>
-            <td>ICP definition, positioning brief, channel roadmap, monthly review call</td>
-          </tr>
-          <tr>
-            <td><span class="tier-name">Advisory</span></td>
-            <td>8 hrs</td>
-            <td><span class="tier-price">$5,500/mo</span></td>
-            <td>$2M to $10M ARR; existing marketing team needs senior strategic direction</td>
-            <td>Weekly syncs, campaign direction, funnel audit, hiring briefs, board-level marketing narrative</td>
-          </tr>
-          <tr>
-            <td><span class="tier-name">Embedded</span></td>
-            <td>15 hrs</td>
-            <td><span class="tier-price">$9,500/mo</span></td>
-            <td>$10M to $30M ARR; fractional CMO serves as de facto marketing lead</td>
-            <td>Team management, full GTM ownership, ABM campaigns, AI tooling rollout, pipeline reporting</td>
-          </tr>
-          <tr>
-            <td><span class="tier-name">Full-Coverage</span></td>
-            <td>20+ hrs</td>
-            <td><span class="tier-price">$14,000/mo</span></td>
-            <td>Post-Series A or Series B; interim CMO while full-time search is running</td>
-            <td>Everything in Embedded plus board presentations, agency management, VP-level hiring, M&A marketing diligence</td>
-          </tr>
-        </tbody>
-      </table>
+    <p class="anim d3" style="font-size:1rem;color:#8FAF8F;line-height:1.8;max-width:720px;margin-bottom:1.5rem;">
+      Anchor: most engagements land between what the <a href="/pricing#run" style="color:#00C853;">Embedded subscription</a> costs and what a full-time CMO would cost. The retainer covers Bill's time, the tooling that runs the engine, and management of any doers on your team.
+    </p>
+    <div class="anim d4" style="border:1px solid #1A3A1A;background:#0A1A0A;padding:1.75rem 2rem;margin:1.75rem 0 1.5rem;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.6rem;">What shapes the retainer</div>
+      <ul style="list-style:none;padding:0;margin:0;font-size:0.94rem;color:#C0D8C0;line-height:1.9;">
+        <li><span style="color:#00C853;margin-right:0.5rem;">&middot;</span> Hours per week of Bill's time (typical: 8 to 20)</li>
+        <li><span style="color:#00C853;margin-right:0.5rem;">&middot;</span> Whether we lead an existing team or build a new one</li>
+        <li><span style="color:#00C853;margin-right:0.5rem;">&middot;</span> Whether execution is done by your team, our team, or a mix</li>
+        <li><span style="color:#00C853;margin-right:0.5rem;">&middot;</span> Reporting and board-level cadence you need us to own</li>
+      </ul>
     </div>
-    <p class="anim d5" style="font-size:0.82rem;color:#4A6A4A;margin-top:1rem;line-height:1.6;">Rates shown are representative ranges for 2026. Final pricing depends on company stage, team size, and scope complexity. A full-time CMO at the same level costs $180,000 to $300,000 per year in salary alone, before benefits, equity, and recruiting fees.</p>
+    <div class="anim d5" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+      <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p">Book a strategy call &rarr;</a>
+      <a href="/pricing" class="btn-g">See the full ladder &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -244,10 +206,10 @@ import HubLinks from '../components/HubLinks.astro';
         </thead>
         <tbody>
           <tr>
-            <td>Annual cost</td>
-            <td><span class="check">$42K to $168K</span></td>
-            <td><span class="cross">$200K to $350K+</span></td>
-            <td><span class="partial">$60K to $180K</span></td>
+            <td>Cost model</td>
+            <td><span class="check">Custom monthly retainer</span></td>
+            <td><span class="cross">Full salary + equity + benefits</span></td>
+            <td><span class="partial">Monthly retainer, project fees</span></td>
           </tr>
           <tr>
             <td>Time to start</td>
@@ -306,8 +268,8 @@ import HubLinks from '../components/HubLinks.astro';
     </h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
       <div class="card-mid anim d3">
-        <h3 style="font-size:1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Cost Efficiency</h3>
-        <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">Full CMO salary is $180K to $300K+. Fractional costs 40 to 60% less while you get someone with a proven track record.</p>
+        <h3 style="font-size:1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Senior leadership, custom fit</h3>
+        <p style="font-size:0.95rem;color:#8FAF8F;line-height:1.7;">A proven CMO on your terms. Retainer scoped to the hours and outcomes you actually need. No salary and equity commitment for a role you may not need at full-time in a year.</p>
       </div>
       <div class="card-mid anim d4">
         <h3 style="font-size:1rem;font-weight:500;color:#F0FFF0;margin-bottom:0.75rem;">Expert Strategy</h3>
@@ -406,20 +368,20 @@ import HubLinks from '../components/HubLinks.astro';
   <div style="max-width:1200px;margin:0 auto;">
     <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8FAF8F;margin-bottom:1.5rem;">More from Treetop</div>
     <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
-      <a href="/services/implementation" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
-        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Claude Implementation</div>
-        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">From $3,500</div>
-        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">AI deployed across your full business in 4 weeks.</div>
+      <a href="/pricing" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">The full ladder</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Diagnose, Run, Lead</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Every way to work with Treetop, grouped by the phase of the engine it installs.</div>
       </a>
-      <a href="/ai-cmo-advisor" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
-        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">AI Audit</div>
-        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">$1,500</div>
-        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Workflow analysis + custom Claude implementation plan.</div>
+      <a href="/services/ai-audit" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Revenue Engine Audit</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">$1,500 &middot; 5 days</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Written diagnosis of your current engine, credited toward the retainer.</div>
       </a>
-      <a href="/claude-for-small-business" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
-        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">Claude for Small Business</div>
-        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Overview and Packages</div>
-        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">Everything we do to get Claude working for your team.</div>
+      <a href="/methodology" style="flex:1;min-width:200px;background:#0A1A0A;border:1px solid #1A3A1A;padding:1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(0,200,83,0.35)'" onmouseout="this.style.borderColor='#1A3A1A'">
+        <div style="font-size:0.78rem;font-weight:600;color:#00C853;margin-bottom:0.4rem;">The Revenue Engine Method</div>
+        <div style="font-size:0.85rem;color:#F0FFF0;font-weight:500;margin-bottom:0.25rem;">Memory, Intelligence, Motion</div>
+        <div style="font-size:0.78rem;color:#8FAF8F;line-height:1.6;">The three phases every engagement runs through, in this order.</div>
       </a>
     </div>
   </div>
