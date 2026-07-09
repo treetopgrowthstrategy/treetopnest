@@ -15,6 +15,10 @@
 
 import { generateAndSendFreeReport } from './cmo-free-report';
 
+// Vercel: give this function up to 60s so the background report generation
+// (Ahrefs + OpenAI + Resend) has room to finish after the response is flushed.
+export const config = { maxDuration: 60 };
+
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const AIRTABLE_LEADS_TABLE = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
@@ -146,9 +150,17 @@ export default async function handler(req: any, res: any) {
     );
   }
 
-  // Fire the compelling-but-limited report inline for qualified and review leads
-  // (rejected leads get no research spend). We await so any failure is logged,
-  // but we swallow errors so the user still gets the friendly success response.
+  // Flush the friendly success response FIRST so the user never waits on the
+  // Ahrefs + OpenAI + Resend work. Vercel keeps the function alive after
+  // res.json() (up to maxDuration) so the background await still completes.
+  // Same message regardless of status, so nothing leaks about qualification.
+  res.status(200).json({
+    success: true,
+    message: 'You are all set. Your competitive snapshot is on its way. It should land in your inbox in a couple minutes. Reply to it any time to talk to your AI CMO.',
+  });
+
+  // Background work. Rejected leads get no research spend. All errors are
+  // logged and swallowed since the user already has their success response.
   if (status !== 'rejected') {
     try {
       const result = await generateAndSendFreeReport({ email });
@@ -157,10 +169,4 @@ export default async function handler(req: any, res: any) {
       console.error('cmo-free-qualify: report trigger failed:', err);
     }
   }
-
-  // Same friendly response regardless of status (no status leaking).
-  return res.status(200).json({
-    success: true,
-    message: 'You are all set. Your competitive snapshot is on its way. It should land in your inbox in a couple minutes. Reply to it any time to talk to your AI CMO.',
-  });
 }

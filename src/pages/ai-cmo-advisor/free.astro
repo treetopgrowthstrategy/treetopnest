@@ -143,13 +143,24 @@ async function submitStep2() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: freeEmail, linkedin: linkedin })
     });
-    var data = await res.json();
-    if (data && data.message) document.getElementById('done-msg').textContent = data.message;
+    // Parse defensively. A Vercel timeout returns an HTML gateway page, not JSON;
+    // catching that separately lets us tell the user something more useful than
+    // a generic 'something went wrong'.
+    var data = null;
+    try { data = await res.json(); } catch (parseErr) { data = null; }
+    if (!res.ok || !data || data.success !== true) {
+      var detail = (data && data.error) ? data.error : ('HTTP ' + res.status);
+      btn.disabled = false; btn.textContent = 'Unlock my snapshot →';
+      showErr('s2-err', 'We could not finish setting you up (' + detail + '). Email bill@treetopgrowthstrategy.com and we will sort it out.');
+      return;
+    }
+    if (data.message) document.getElementById('done-msg').textContent = data.message;
     document.getElementById('step-2').style.display = 'none';
     document.getElementById('step-done').style.display = 'block';
   } catch (e) {
     btn.disabled = false; btn.textContent = 'Unlock my snapshot →';
-    showErr('s2-err', 'Something went wrong. Email bill@treetopgrowthstrategy.com and we will sort it out.');
+    var msg = (e && e.message) ? e.message : 'network error';
+    showErr('s2-err', 'We could not reach the server (' + msg + '). Email bill@treetopgrowthstrategy.com and we will sort it out.');
   }
 }
 </script>

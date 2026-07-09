@@ -14,6 +14,11 @@
 // (useful for retrying failed sends and for CLI-style testing).
 //   POST /api/cmo-free-report { email, website? } -> { sent, mode, reason? }
 
+// Vercel: give this function up to 60s. Ahrefs (3 parallel) + OpenAI GPT-4o
+// with JSON output + Resend typically finishes in 10-20s, but Ahrefs can
+// occasionally spike. The default 10-15s is not enough.
+export const config = { maxDuration: 60 };
+
 const AIRTABLE_API_KEY   = process.env.AIRTABLE_API_KEY || '';
 const AIRTABLE_BASE_ID   = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const AIRTABLE_TABLE     = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
@@ -258,7 +263,7 @@ function fallbackTeasers(data: ReportData) {
 // ─── HTML email ───────────────────────────────────────────────────────────────
 
 function renderMetricStat(label: string, value: string | number | null | undefined): string {
-  const shown = (value === null || value === undefined || value === '') ? '—' : (typeof value === 'number' ? value.toLocaleString() : value);
+  const shown = (value === null || value === undefined || value === '') ? 'n/a' : (typeof value === 'number' ? value.toLocaleString() : value);
   return `
     <td style="padding:14px 16px;background:#fafafa;border-right:1px solid #eaeaea;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-bottom:4px;">${label}</div>
@@ -271,8 +276,8 @@ function renderCompetitorRow(c: CompetitorRow, i: number): string {
     <tr>
       <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:14px;color:#050D05;font-weight:600;width:36px;">${i + 1}</td>
       <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:14px;color:#050D05;font-weight:500;">${c.domain}</td>
-      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:13px;color:#555;">DR ${c.domainRating ?? '—'}</td>
-      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:13px;color:#555;">${c.orgTraffic ? '~' + c.orgTraffic.toLocaleString() + ' visits/mo' : '—'}</td>
+      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:13px;color:#555;">DR ${c.domainRating ?? 'n/a'}</td>
+      <td style="padding:11px 14px;border-bottom:1px solid #eaeaea;font-size:13px;color:#555;">${c.orgTraffic ? '~' + c.orgTraffic.toLocaleString() + ' visits/mo' : 'n/a'}</td>
     </tr>`;
 }
 
@@ -317,7 +322,7 @@ function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnTy
         ${renderMetricStat('Monthly Organic Visits', own?.orgTraffic)}
         <td style="padding:14px 16px;background:#fafafa;">
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-bottom:4px;">Ranking Keywords</div>
-          <div style="font-size:18px;font-weight:600;color:#050D05;">${own?.orgKeywords?.toLocaleString() ?? '—'}</div>
+          <div style="font-size:18px;font-weight:600;color:#050D05;">${own?.orgKeywords?.toLocaleString() ?? 'n/a'}</div>
         </td>
       </tr>
     </table>
