@@ -6,8 +6,14 @@
 //   ambiguous  -> QualifiedStatus 'review'     (emailed to Bill for a quick look)
 // No Apollo key, or no match, defaults to 'review' so nothing is auto-approved for spend.
 //
+// On 'qualified' or 'review' we also trigger cmo-free-report inline, so the
+// visitor's compelling-but-limited snapshot lands within a minute of signup
+// instead of waiting on the next daily cron run.
+//
 // The response never reveals qualification status to the user (no leaking / no gaming).
 // POST { email, linkedin } -> { success: true, message }
+
+import { generateAndSendFreeReport } from './cmo-free-report';
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
@@ -135,13 +141,26 @@ export default async function handler(req: any, res: any) {
        <p><strong>Email:</strong> ${email}<br/><strong>LinkedIn:</strong> <a href="${linkedinUrl}">${linkedinUrl}</a><br/>
        <strong>Title:</strong> ${enrichment.title || 'n/a'}<br/><strong>Seniority:</strong> ${enrichment.seniority || 'n/a'}<br/>
        <strong>Company size:</strong> ${enrichment.companySize || 'n/a'}</p>
-       <p>Set QualifiedStatus to 'qualified' in Airtable to release the free research, or leave as-is to hold.</p></div>`,
+       <p>Set QualifiedStatus to 'qualified' in Airtable to release the free research, or leave as-is to hold.</p>
+       <p>Note: the limited snapshot fires for qualified and review leads. Rejected leads get nothing.</p></div>`,
     );
+  }
+
+  // Fire the compelling-but-limited report inline for qualified and review leads
+  // (rejected leads get no research spend). We await so any failure is logged,
+  // but we swallow errors so the user still gets the friendly success response.
+  if (status !== 'rejected') {
+    try {
+      const result = await generateAndSendFreeReport({ email });
+      if (!result.sent) console.log('cmo-free-qualify: report not sent,', result.reason);
+    } catch (err) {
+      console.error('cmo-free-qualify: report trigger failed:', err);
+    }
   }
 
   // Same friendly response regardless of status (no status leaking).
   return res.status(200).json({
     success: true,
-    message: 'You are all set. Your competitive snapshot is being put together and will land in your inbox. Reply to it any time to talk to your AI CMO.',
+    message: 'You are all set. Your competitive snapshot is on its way. It should land in your inbox in a couple minutes. Reply to it any time to talk to your AI CMO.',
   });
 }
