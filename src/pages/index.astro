@@ -6,8 +6,8 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 ---
 
 <Layout
-  title="Treetop Growth Strategy: A Fractional CMO and the AI-Native Revenue Engine You Build With Him"
-  description="Growing companies get a fractional CMO plus an AI-native revenue engine that compounds. Diagnose where you stand, run the engine every month, or hand a leader the number. Book a strategy call to see the fit."
+  title="Treetop Growth Strategy: Fractional CMO Leadership and an AI-Native Revenue Engine"
+  description="A real fractional CMO plus the AI-native revenue engine we build in-house, installed in your company. Try the AI CMO free, or book a strategy call to see the fit."
   canonicalUrl="https://treetopgrowthstrategy.com/"
 >
 <script type="application/ld+json" slot="schema">
@@ -82,6 +82,62 @@ import GlobalFooter from '../components/GlobalFooter.astro';
   .m-name { font-family:'Instrument Serif',serif; font-size:1.35rem; color:#F0FFF0; font-weight:400; margin-bottom:0.5rem; }
   .m-body { font-size:0.86rem; color:#8FAF8F; line-height:1.7; }
 
+  /* Proof strip */
+  .proof-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#1A3A1A; margin-top:1.5rem; }
+  .proof-cell { background:#050D05; padding:1.5rem 1.25rem; text-align:center; }
+  .proof-mark { font-family:'Instrument Serif',serif; font-size:1.05rem; color:#F0FFF0; font-weight:400; font-style:italic; margin-bottom:0.35rem; line-height:1.25; }
+  .proof-sub { font-size:0.72rem; color:#8FAF8F; letter-spacing:0.03em; line-height:1.5; }
+
+  /* AI-native vs AI-decorated comparison */
+  .compare { display:grid; grid-template-columns:180px 1fr 1fr; gap:1px; background:#1A3A1A; margin-top:1.75rem; }
+  .compare-cell { background:#050D05; padding:1.1rem 1.25rem; font-size:0.88rem; line-height:1.55; }
+  .compare-head { background:#0A1A0A; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4A6A4A; padding:0.9rem 1.25rem; }
+  .compare-head.decorated { color:#8FAF8F; }
+  .compare-head.native { color:#00C853; }
+  .compare-key { color:#F0FFF0; font-weight:500; }
+  .compare-neg { color:#8FAF8F; }
+  .compare-pos { color:#C0D8C0; }
+
+  /* Cost anchor */
+  .cost-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#1A3A1A; margin-top:1.75rem; }
+  .cost-col { background:#050D05; padding:1.75rem 1.5rem; display:flex; flex-direction:column; gap:0.6rem; }
+  .cost-col.featured { background:#071407; border-top:2px solid #00C853; }
+  .cost-name { font-family:'Instrument Serif',serif; font-size:1.2rem; color:#F0FFF0; font-weight:400; }
+  .cost-price { font-family:'Instrument Serif',serif; font-size:1.5rem; color:#00C853; line-height:1.1; }
+  .cost-price.gray { color:#8FAF8F; }
+  .cost-line { font-size:0.85rem; color:#8FAF8F; line-height:1.6; }
+  .cost-line strong { color:#F0FFF0; font-weight:500; }
+
+  /* Deliverable preview */
+  .memo { background:#0A1A0A; border:1px solid #1A3A1A; margin-top:1.75rem; overflow:hidden; }
+  .memo-head { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid #1A3A1A; background:#050D05; flex-wrap:wrap; gap:0.75rem; }
+  .memo-title { font-family:'Instrument Serif',serif; font-size:1.15rem; color:#F0FFF0; font-style:italic; }
+  .memo-meta { font-size:0.72rem; color:#4A6A4A; letter-spacing:0.06em; }
+  .memo-body { padding:1.75rem; display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem 2rem; }
+  .memo-block { }
+  .memo-block-label { font-size:0.62rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#00C853; margin-bottom:0.5rem; }
+  .memo-block-body { font-size:0.88rem; color:#C0D8C0; line-height:1.65; }
+  .memo-block-body em { font-style:italic; color:#F0FFF0; }
+
+  /* Fit filter */
+  .fit-row { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:1.75rem; }
+  .fit-col { background:#050D05; border:1px solid #1A3A1A; padding:2rem 1.75rem; }
+  .fit-col.yes { border-color:rgba(0,200,83,0.35); }
+  .fit-head { font-family:'Instrument Serif',serif; font-size:1.3rem; color:#F0FFF0; font-weight:400; margin-bottom:1.25rem; }
+  .fit-head.yes { color:#00C853; }
+  .fit-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.65rem; }
+  .fit-list li { font-size:0.92rem; color:#C0D8C0; line-height:1.6; padding-left:1.5rem; position:relative; }
+  .fit-list li::before { content:''; position:absolute; left:0; top:0.55rem; width:8px; height:8px; border-radius:50%; }
+  .fit-list.yes li::before { background:#00C853; }
+  .fit-list.no li::before { background:#4A6A4A; }
+
+  /* FAQ */
+  .faq { border-top:1px solid #1A3A1A; margin-top:1.75rem; }
+  .faq-item { border-bottom:1px solid #1A3A1A; padding:1.5rem 0; }
+  .faq-q { font-family:'Instrument Serif',serif; font-size:1.15rem; color:#F0FFF0; font-weight:400; margin-bottom:0.75rem; line-height:1.35; }
+  .faq-a { font-size:0.94rem; color:#8FAF8F; line-height:1.75; }
+  .faq-a a { color:#00C853; text-decoration:none; border-bottom:1px solid rgba(0,200,83,0.3); }
+
   /* Ladder (three grouped rows) */
   .lgroup { border:1px solid #1A3A1A; margin-bottom:1rem; }
   .lgroup-head { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:1.1rem 1.5rem; background:#0A1A0A; border-bottom:1px solid #1A3A1A; flex-wrap:wrap; }
@@ -101,19 +157,24 @@ import GlobalFooter from '../components/GlobalFooter.astro';
   .lgroup.two-cols .lgroup-rungs { grid-template-columns:repeat(2,1fr); }
   .lgroup.floor .lgroup-rungs { grid-template-columns:repeat(2,1fr); }
 
-  .quiz-box { border:1px solid rgba(0,200,83,0.25); background:#0A1A0A; padding:2.5rem; display:flex; flex-direction:column; gap:1rem; align-items:flex-start; }
-
   @media(max-width:900px){
     .tiles { grid-template-columns:repeat(2,1fr); }
     .plan { grid-template-columns:1fr; }
     .method-row { grid-template-columns:1fr; }
     .lgroup-rungs, .lgroup.two-cols .lgroup-rungs, .lgroup.floor .lgroup-rungs { grid-template-columns:1fr !important; }
+    .proof-row { grid-template-columns:repeat(2,1fr); }
+    .cost-row { grid-template-columns:1fr; }
+    .compare { grid-template-columns:1fr; }
+    .compare-cell.compare-key { background:#0A1A0A; }
+    .memo-body { grid-template-columns:1fr; }
+    .fit-row { grid-template-columns:1fr; }
   }
   @media(max-width:768px){
     .mob-col { flex-direction:column !important; }
   }
   @media(max-width:520px){
     .tiles { grid-template-columns:1fr; }
+    .proof-row { grid-template-columns:1fr; }
   }
 </style>
 
@@ -131,9 +192,84 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     </p>
     <div class="anim d4 mob-col" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;">
       <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p">Book a strategy call &rarr;</a>
-      <a href="/quiz" class="btn-g">Or take the free Revenue Engine Scorecard &rarr;</a>
+      <a href="/ai-cmo-advisor/free" class="btn-g">Or try the AI CMO free &rarr;</a>
     </div>
     <p class="anim d5" style="font-size:0.75rem;color:rgba(240,255,240,0.4);letter-spacing:0.04em;">30-minute call &middot; no deck, no pitch &middot; you leave with a read on where to start</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PROOF STRIP -->
+<section style="padding:3rem 2.5rem;background:#0A1A0A;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+      <span class="lbl" style="margin-bottom:0;">Operator track record</span>
+      <a href="/about" style="font-size:0.78rem;color:#00C853;text-decoration:none;">Read the full story &rarr;</a>
+    </div>
+    <div class="proof-row">
+      <div class="proof-cell">
+        <div class="proof-mark">Factor_</div>
+        <div class="proof-sub">Former CMO. Acquired by HelloFresh. INC 5000 two years running.</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-mark">amSTATZ</div>
+        <div class="proof-sub">Former VP Sales &amp; Marketing. Acquired by NASM.</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-mark">HubSpot Partner</div>
+        <div class="proof-sub">12+ years running a HubSpot partner agency.</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-mark">Billy &amp; Fitagentic</div>
+        <div class="proof-sub">AI-native revenue products we build in-house, in production today.</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#4A6A4A;line-height:1.7;margin-top:1.25rem;max-width:820px;">
+      Named client stories and Clutch reviews land here as the current cohort agrees to be featured. Every engagement is under NDA by default; nothing goes on the page without written sign-off.
+    </p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- AI-NATIVE VS AI-DECORATED CALLOUT -->
+<section style="padding:5rem 2.5rem;background:#050D05;">
+  <div style="max-width:1080px;margin:0 auto;">
+    <span class="lbl">Why this is different</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1rem;max-width:820px;">
+      AI-native is a build order. AI-decorated is a coat of paint.
+    </h2>
+    <p style="font-size:0.98rem;color:#8FAF8F;line-height:1.8;max-width:720px;">
+      Every agency now claims AI. Here is the difference between building the engine that way and bolting a chatbot onto the old one.
+    </p>
+
+    <div class="compare">
+      <div class="compare-cell compare-head">Dimension</div>
+      <div class="compare-cell compare-head decorated">AI-decorated agency</div>
+      <div class="compare-cell compare-head native">AI-native Treetop</div>
+
+      <div class="compare-cell compare-key">Memory</div>
+      <div class="compare-cell compare-neg">Slack threads, ad-hoc notes, whatever the current strategist remembers.</div>
+      <div class="compare-cell compare-pos">Persistent competitor, ICP, and revenue memory the system keeps current on its own.</div>
+
+      <div class="compare-cell compare-key">Learning</div>
+      <div class="compare-cell compare-neg">Humans re-brief the tool every campaign.</div>
+      <div class="compare-cell compare-pos">The system retrains on your data every month. What worked in October informs November on its own.</div>
+
+      <div class="compare-cell compare-key">Method</div>
+      <div class="compare-cell compare-neg">The old playbook plus a GPT wrapper in the sales flow.</div>
+      <div class="compare-cell compare-pos">Engine designed around AI as a first-class team member, not a bolt-on.</div>
+
+      <div class="compare-cell compare-key">What you get</div>
+      <div class="compare-cell compare-neg">Slide decks, tactic lists, and a monthly status call.</div>
+      <div class="compare-cell compare-pos">A priority move for the month, shipped assets, and a system you own.</div>
+    </div>
+
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+      <a href="/ai-cmo-advisor/free" class="btn-p">Try the AI CMO free &rarr;</a>
+      <span style="font-size:0.8rem;color:#4A6A4A;">See what the engine actually produces before you talk to anyone.</span>
+    </div>
   </div>
 </section>
 
@@ -193,8 +329,47 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 
 <div class="rule"></div>
 
-<!-- THE GUIDE + METHODOLOGY -->
+<!-- COST ANCHOR -->
 <section style="padding:5rem 2.5rem;background:#0A1A0A;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="lbl">How the math actually breaks down</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1rem;max-width:820px;">
+      Senior marketing leadership without the seven-figure bet.
+    </h2>
+    <p style="font-size:0.98rem;color:#8FAF8F;line-height:1.8;max-width:720px;">
+      Three ways to get a CMO on the number. Only one lets you start next week and change your mind next month.
+    </p>
+
+    <div class="cost-row">
+      <div class="cost-col">
+        <div class="cost-name">Full-time CMO hire</div>
+        <div class="cost-price gray">$180K to $300K+ / year</div>
+        <div class="cost-line"><strong>Ramp:</strong> 6 months to real output.</div>
+        <div class="cost-line"><strong>Risk:</strong> one hire, one bet, plus benefits, equity, and severance if it does not work.</div>
+        <div class="cost-line"><strong>Exit:</strong> months of transition and a rehire cycle.</div>
+      </div>
+      <div class="cost-col">
+        <div class="cost-name">Agency retainer</div>
+        <div class="cost-price gray">$5K to $15K / month</div>
+        <div class="cost-line"><strong>Ramp:</strong> 60 to 90 days to see a plan.</div>
+        <div class="cost-line"><strong>Risk:</strong> junior-led execution, opaque priorities, senior name on the pitch you rarely see again.</div>
+        <div class="cost-line"><strong>Exit:</strong> 60 to 90-day notice, and the playbook leaves with them.</div>
+      </div>
+      <div class="cost-col featured">
+        <div class="cost-name">Treetop</div>
+        <div class="cost-price">Retainer, custom scope</div>
+        <div class="cost-line"><strong>Ramp:</strong> days. The engine is prebuilt; we install it on your data.</div>
+        <div class="cost-line"><strong>Risk:</strong> senior operator plus a system you own. Bill on the call.</div>
+        <div class="cost-line"><strong>Exit:</strong> any month. You keep the memory, the intelligence, and the assets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- THE GUIDE + METHODOLOGY -->
+<section style="padding:5rem 2.5rem;background:#050D05;">
   <div style="max-width:1200px;margin:0 auto;">
     <span class="lbl">The Operator behind Treetop</span>
     <div class="mob-col" style="display:flex;gap:3.5rem;align-items:flex-start;margin-bottom:3rem;">
@@ -235,6 +410,51 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 
 <div class="rule"></div>
 
+<!-- DELIVERABLE PREVIEW -->
+<section style="padding:5rem 2.5rem;background:#0A1A0A;">
+  <div style="max-width:1080px;margin:0 auto;">
+    <span class="lbl">What actually lands in your inbox</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1rem;max-width:820px;">
+      Not a slide deck. A monthly move you can ship.
+    </h2>
+    <p style="font-size:0.98rem;color:#8FAF8F;line-height:1.8;max-width:720px;">
+      A preview of the Guided tier memo. Every rung above Starter Report gets a version of this every month, shaped to how much you want us doing the work.
+    </p>
+
+    <div class="memo">
+      <div class="memo-head">
+        <div>
+          <div class="memo-title">Revenue Engine memo &middot; October</div>
+        </div>
+        <div class="memo-meta">From: your AI CMO &middot; Read time 6 min</div>
+      </div>
+      <div class="memo-body">
+        <div class="memo-block">
+          <div class="memo-block-label">01 &middot; What changed</div>
+          <div class="memo-block-body">Three competitor moves detected. <em>CompetitorB</em> shifted messaging around integrations. Your top 8 keywords moved an average of 2.3 spots. Two of them opened.</div>
+        </div>
+        <div class="memo-block">
+          <div class="memo-block-label">02 &middot; The priority move</div>
+          <div class="memo-block-body">Publish the integrations comparison page before the end of the month. Estimated 200 to 400 monthly visits at intent, 3 to 5 qualified conversations.</div>
+        </div>
+        <div class="memo-block">
+          <div class="memo-block-label">03 &middot; Assets included</div>
+          <div class="memo-block-body">First-draft of the integrations page, comparison table, and 4-email nurture. Ready for your CMS.</div>
+        </div>
+        <div class="memo-block">
+          <div class="memo-block-label">04 &middot; One question for Bill</div>
+          <div class="memo-block-body">Reply with the vertical you want to lead the messaging with. Bill answers by end of the next business day.</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#4A6A4A;margin-top:1rem;line-height:1.6;">
+      Sample content for illustration. Your memo runs on your data, your competitors, and your team's priorities.
+    </p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
 <!-- THE 3-STEP PLAN -->
 <section style="padding:5rem 2.5rem;background:#050D05;">
   <div style="max-width:1200px;margin:0 auto;">
@@ -262,26 +482,27 @@ import GlobalFooter from '../components/GlobalFooter.astro';
       </div>
     </div>
 
-    <div style="margin-top:2.5rem;">
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
       <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p">Book the call &rarr;</a>
+      <a href="/ai-cmo-advisor/free" class="btn-g">Or try the AI CMO free first &rarr;</a>
     </div>
   </div>
 </section>
 
 <div class="rule"></div>
 
-<!-- EXPLANATORY: AI-NATIVE VS AI-DECORATED -->
+<!-- EXPLANATORY: AI-NATIVE VS AI-DECORATED (AEO body) -->
 <section style="padding:5rem 2.5rem;background:#0A1A0A;">
   <div style="max-width:900px;margin:0 auto;">
-    <span class="lbl">Why this is different</span>
+    <span class="lbl">The longer read</span>
     <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1.75rem;">
-      AI-native is a build order, not a marketing claim.
+      Why random acts of marketing keep failing the same way.
     </h2>
     <p style="font-size:1.02rem;color:#C0D8C0;line-height:1.85;margin-bottom:1.25rem;">
-      Almost every marketing agency will now tell you they are AI-native. Look under the hood and you will usually find the old playbook with a GPT wrapper on top: same campaigns, same funnels, same monthly retainer, now with a chatbot in the sales flow. That is AI-decorated. It looks modern in a pitch, then fails the same way the old playbook did.
+      Most companies below $50M in revenue do not have a marketing leader. They have a marketing function that grew by accretion: a freelancer here, an agency there, a tool that a former hire signed up for. Nobody owns the number. Nobody remembers what worked in Q2 by the time Q4 lands. Every quarter is a fresh set of bets on tactics that never compound.
     </p>
     <p style="font-size:1.02rem;color:#C0D8C0;line-height:1.85;margin-bottom:1.25rem;">
-      AI-native is different. It starts with the assumption that a small team plus the right AI system can outperform a bigger team on the old playbook, and that the whole engine has to be designed around that. The competitive intelligence updates itself. The pipeline diagnoses itself. The CMO gets to spend their time on the two or three moves that actually matter this month, because everything else is watching the shop.
+      The fix used to be a $300K CMO hire, a 6-month ramp, and hoping the bet paid off. Now the fix is an AI-native engine plus a senior operator running it. The operator owns the number and installs a system that keeps its own memory, updates its own intelligence, and puts a priority move on your desk every month. That is the shift.
     </p>
     <p style="font-size:1.02rem;color:#F0FFF0;line-height:1.85;font-weight:500;">
       Treetop does not sell AI-native as a description. We ship it, and we run it in our own companies first. When you hire us, you get the same engine, installed and led by the person who built it.
@@ -291,8 +512,46 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 
 <div class="rule"></div>
 
-<!-- THE OFFERS: UNIFIED 3-GROUP LADDER -->
+<!-- FIT FILTER -->
 <section style="padding:5rem 2.5rem;background:#050D05;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="lbl">Is Treetop a fit</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1rem;max-width:820px;">
+      We are picky about who we work with. You should be too.
+    </h2>
+    <p style="font-size:0.98rem;color:#8FAF8F;line-height:1.8;max-width:720px;">
+      If you are the wrong fit, we will tell you on the call. This saves everybody a quarter.
+    </p>
+
+    <div class="fit-row">
+      <div class="fit-col yes">
+        <div class="fit-head yes">You are a fit if</div>
+        <ul class="fit-list yes">
+          <li>Revenue is $2M to $50M and you have real product-market fit.</li>
+          <li>Marketing has grown by accretion. Nobody owns the number.</li>
+          <li>You want a system installed, not a stack of tactics executed.</li>
+          <li>You want Bill on the calls, not a junior with a senior name on the pitch.</li>
+          <li>You are willing to try the AI CMO free before you commit.</li>
+        </ul>
+      </div>
+      <div class="fit-col">
+        <div class="fit-head">You are not a fit if</div>
+        <ul class="fit-list no">
+          <li>You are pre-revenue or pre-product-market fit.</li>
+          <li>You want the cheapest option in the category.</li>
+          <li>You need a single-channel specialist (paid social, PR, SEO only).</li>
+          <li>You want your CMO to grind out execution rather than lead the number.</li>
+          <li>You need someone to nod along with a strategy already set.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- THE OFFERS: UNIFIED 3-GROUP LADDER -->
+<section style="padding:5rem 2.5rem;background:#0A1A0A;">
   <div style="max-width:1200px;margin:0 auto;">
     <span class="lbl">The offers</span>
     <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1rem;max-width:820px;">
@@ -306,7 +565,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     <div class="lgroup floor" id="diagnose">
       <div class="lgroup-head">
         <div class="lgroup-title">Diagnose your engine <em>(Memory)</em></div>
-        <div class="lgroup-tag">Where you stand, in writing</div>
+        <div class="lgroup-tag">Not ready to talk yet? Start here.</div>
       </div>
       <div class="lgroup-rungs">
         <div class="lrung">
@@ -383,21 +642,56 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 
 <div class="rule"></div>
 
-<!-- SCORECARD (transitional CTA) -->
-<section style="padding:4rem 2.5rem;background:#0A1A0A;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="quiz-box">
-      <div class="badge"><span class="badge-dot"></span>3-minute scorecard &middot; Free</div>
-      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:#F0FFF0;line-height:1.2;max-width:640px;">
-        Not sure whether you need to Diagnose, Run, or Lead first?
-      </h2>
-      <p style="font-size:0.94rem;color:#8FAF8F;line-height:1.75;max-width:620px;">
-        Take the Revenue Engine Scorecard. 8 questions across Memory, Intelligence, Motion, and Ownership. A personalized read on where your engine breaks down, and which rung of the ladder to start on, delivered to your inbox in minutes.
-      </p>
-      <div style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;">
-        <a href="/quiz" class="btn-p">Take the Scorecard &rarr;</a>
-        <span style="font-size:0.75rem;color:#4A6A4A;">No account required &middot; results in your inbox</span>
+<!-- FAQ -->
+<section style="padding:5rem 2.5rem;background:#050D05;">
+  <div style="max-width:900px;margin:0 auto;">
+    <span class="lbl">Common questions</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;color:#F0FFF0;line-height:1.15;margin-bottom:1rem;">
+      The eight questions everyone actually asks.
+    </h2>
+    <p style="font-size:0.98rem;color:#8FAF8F;line-height:1.8;">
+      If yours is not here, ask on the strategy call. That is the point.
+    </p>
+
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">What does Bill do vs. the AI?</div>
+        <div class="faq-a">Bill leads strategy, owns the number, runs the calls, and makes the judgment calls the system cannot. The AI keeps the memory current, drafts the assets, watches your competitors and pipeline, and puts a priority move on your desk every month. Neither works without the other.</div>
       </div>
+      <div class="faq-item">
+        <div class="faq-q">How many hours am I actually getting?</div>
+        <div class="faq-a">Fractional CMO retainers are scoped by outcome, not hours. A typical engagement runs 20 to 40 hours a month of Bill's time plus the always-on system. Monitor, Guided, and Embedded are productized, so the deliverables are the contract, not a timesheet.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the ramp?</div>
+        <div class="faq-a">Days, not months. The engine is prebuilt. Week 1 is data hookup and first competitor read. Week 2 is your first priority move on your desk. Week 4 is the first shipped asset. A traditional CMO hire is 6 months to comparable output.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens if it is not working?</div>
+        <div class="faq-a">You leave. Retainers are month-to-month. Productized rungs cancel any month. You keep the memory, the intelligence, and every asset we shipped. No 60-day notice, no severance, no rehire cycle.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who owns the assets if we stop working together?</div>
+        <div class="faq-a">You do. Every draft, every doc, every dashboard. The Memory layer exports on request. If you replace us with an in-house CMO or another partner, they inherit a running system, not a starting point.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does the $99 report fit?</div>
+        <div class="faq-a">It is the floor of the ladder. The lowest-risk way to see how Treetop thinks before you talk to anyone. Same-day delivery, real competitive data. If you climb, you climb.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How is this different from a fractional CMO marketplace or a firm like Chief Outsiders?</div>
+        <div class="faq-a">Marketplaces are a rolodex. Firms like Chief Outsiders match you with one of a hundred generalists on their bench. Treetop is one senior operator (Bill) plus an AI-native engine his team builds and runs in-house. What you get in month one is not a random rolodex match on a checklist. It is the same engine we run inside Billy and Fitagentic.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens on the strategy call?</div>
+        <div class="faq-a">30 minutes with Bill. Where you are, where the gap is, whether it is a Memory, Intelligence, or Motion problem first, and whether Treetop is even the right partner. No deck. No pitch. If we are not a fit, we say so.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+      <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p">Book a strategy call &rarr;</a>
+      <a href="/ai-cmo-advisor/free" class="btn-g">Try the AI CMO free &rarr;</a>
+      <a href="/quiz" style="font-size:0.82rem;color:#8FAF8F;text-decoration:none;border-bottom:1px solid #1A3A1A;padding-bottom:1px;">Or take the 3-minute Revenue Engine Scorecard &rarr;</a>
     </div>
   </div>
 </section>
@@ -416,7 +710,7 @@ import GlobalFooter from '../components/GlobalFooter.astro';
     </p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
       <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="btn-p" style="font-size:0.9rem;padding:1rem 2rem;">Book a strategy call &rarr;</a>
-      <a href="/quiz" class="btn-g" style="font-size:0.9rem;padding:1rem 2rem;">Or take the Scorecard first</a>
+      <a href="/ai-cmo-advisor/free" class="btn-g" style="font-size:0.9rem;padding:1rem 2rem;">Or try the AI CMO free</a>
     </div>
     <p style="font-size:0.75rem;color:#4A6A4A;letter-spacing:0.04em;">Free 30-minute call &middot; no deck, no pitch &middot; growth is a system, not a series of bets</p>
   </div>
