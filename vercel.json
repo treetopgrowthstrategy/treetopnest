@@ -127,6 +127,16 @@
       "source": "/how-it-works",
       "destination": "/services",
       "statusCode": 301
+    },
+    {
+      "source": "/notion-ai-vs-claude",
+      "destination": "/claude-vs-notion-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/claude-vs-chatgpt-small-business",
+      "destination": "/claude-ai-vs-chatgpt-small-business",
+      "statusCode": 301
     }
   ],
   "cleanUrls": true,
