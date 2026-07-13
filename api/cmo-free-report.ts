@@ -14,7 +14,7 @@
 // (useful for retrying failed sends and for CLI-style testing).
 //   POST /api/cmo-free-report { email, website? } -> { sent, mode, reason? }
 
-import { killSwitchOn, budgetAvailable, consumeBudget, adminAuthorized, alertOps } from './_cmo-guards';
+import { killSwitchOn, budgetAvailable, consumeBudget, adminAuthorized, alertOps } from './cmo-guards.js';
 
 // Vercel: give this function up to 60s. Ahrefs (3 parallel) + OpenAI GPT-4o
 // with JSON output + Resend typically finishes in 10-20s, but Ahrefs can

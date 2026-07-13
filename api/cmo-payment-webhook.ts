@@ -4,7 +4,7 @@
 // 5. Delivers via Resend
 
 import Stripe from 'stripe';
-import { wasProcessed, markProcessed } from './_cmo-guards';
+import { wasProcessed, markProcessed } from './cmo-guards.js';
 
 export const config = { api: { bodyParser: false }, maxDuration: 60 };
 
