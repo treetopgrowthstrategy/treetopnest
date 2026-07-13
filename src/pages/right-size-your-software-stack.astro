@@ -1,0 +1,135 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Most SMBs Overpay for Software They Half-Use | Treetop</title>
+<meta name="description" content="A large share of SMBs pay enterprise prices for complexity they never touch. As AI-native build tooling matures, the line between buy and build just moved. Here is how to tell which side you are on." />
+<link rel="canonical" href="https://treetopgrowthstrategy.com/right-size-your-software-stack" />
+<meta property="og:type" content="article" /><meta property="og:url" content="https://treetopgrowthstrategy.com/right-size-your-software-stack" />
+<meta property="og:title" content="Most SMBs Are Paying Enterprise Prices for Software They Half-Use" /><meta property="og:description" content="A large share of SMBs pay enterprise prices for complexity they never touch. As AI-native build tooling matures, the line between buy and build just moved." />
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+<meta property="og:site_name" content="Treetop Growth Strategy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og-default.png" /><meta name="twitter:title" content="Most SMBs Are Paying Enterprise Prices for Software They Half-Use" />
+<meta name="twitter:description" content="A large share of SMBs pay enterprise prices for complexity they never touch. The line between buy and build just moved." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Most SMBs Are Paying Enterprise Prices for Software They Half-Use","description":"A large share of SMBs pay enterprise prices for complexity they never touch. As AI-native build tooling matures, the line between buy and build just moved.","url":"https://treetopgrowthstrategy.com/right-size-your-software-stack","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-07-11","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050D05;color:#F0FFF0;font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,13,5,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A3A1A}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:#F0FFF0;text-decoration:none}
+.nav-link{font-size:0.82rem;color:rgba(240,255,240,0.5);text-decoration:none}.nav-link:hover{color:#F0FFF0}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:#00C853;color:#050D05;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none}.btn-p:hover{opacity:0.88}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#F0FFF0;padding:0.875rem 1.75rem;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid #1A3A1A}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:500;color:#00C853;letter-spacing:0.06em;margin-bottom:1.5rem}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#00C853;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#00C853;margin-bottom:0.75rem;display:block}
+section{padding:5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:920px;margin:0 auto}
+.hero{min-height:48vh;display:flex;align-items:center;padding:7rem 2.5rem 4rem}.hero-inner{max-width:920px;margin:0 auto;width:100%}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:400;line-height:1.1;color:#F0FFF0;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:#C0D8C0;line-height:1.75;max-width:720px}
+.h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;line-height:1.15;color:#F0FFF0;margin-bottom:1.25rem}
+.body{font-size:1rem;color:#C0D8C0;line-height:1.85;max-width:760px;margin-bottom:1.25rem}.body em{color:#F0FFF0;font-style:italic}.body strong{color:#F0FFF0}
+.pull{font-family:'Instrument Serif',serif;font-size:clamp(1.4rem,2.6vw,1.9rem);font-style:italic;color:#F0FFF0;line-height:1.4;max-width:760px;margin:2rem 0;padding-left:1.5rem;border-left:3px solid rgba(0,200,83,0.4)}
+.callout{background:#0A1A0A;border:1px solid #1A3A1A;padding:1.75rem 2rem;max-width:760px;margin:2rem 0}
+.callout .lbl{margin-bottom:1rem}
+.callout .body{margin-bottom:0.75rem}
+.callout .note{font-size:0.82rem;color:#8FAF8F;font-style:italic;margin-top:1rem}
+.checklist{list-style:none;padding:0;max-width:760px;margin:1.5rem 0}
+.checklist li{font-size:1rem;color:#C0D8C0;line-height:1.7;padding:0.6rem 0 0.6rem 1.75rem;position:relative;border-bottom:1px solid #1A3A1A}
+.checklist li::before{content:'';position:absolute;left:0;top:1.05rem;width:8px;height:8px;border-radius:50%;background:#00C853}
+.checklist li strong{color:#F0FFF0}
+.cta-box{background:#0A1A0A;border:1px solid #1A3A1A;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-text{font-family:'Instrument Serif',serif;font-size:1.5rem;color:#F0FFF0}.cta-sub{font-size:0.88rem;color:#8FAF8F;margin-top:0.5rem}
+@media(max-width:900px){section{padding:3.5rem 1.5rem}.hide-mob{display:none!important}.cta-box{padding:2rem}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://treetopgrowthstrategy.com/right-size-your-software-stack","name":"Most SMBs Overpay for Software They Half-Use | Treetop","description":"A large share of SMBs pay enterprise prices for complexity they never touch. As AI-native build tooling matures, the line between buy and build just moved.","isPartOf":{"@type":"WebSite","url":"https://treetopgrowthstrategy.com/","name":"Treetop Growth Strategy"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://treetopgrowthstrategy.com/og-default.png"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"Right Size Your Software Stack","item":"https://treetopgrowthstrategy.com/right-size-your-software-stack"}]}</script>
+</head><body>
+<nav><div class="nav-inner"><a href="/" class="nav-logo">Treetop</a>
+<div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+<a href="/services" class="nav-link">Services</a>
+<a href="/resources" class="nav-link">Resources</a>
+<a href="/pricing" class="nav-link">Pricing</a>
+<a href="/about" class="nav-link">About</a>
+</div>
+<a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div class="badge"><span class="badge-dot"></span>Essay - 6 min read</div>
+<h1 class="hero-h">The software you bought was built for a company <em style="color:#00C853;font-style:italic;">ten times your size.</em></h1>
+<p class="hero-sub">A large share of small and midsize businesses pay enterprise prices for complexity they never touch. As AI-native build tooling matures, the line between buying software and owning it just moved. Here is how to tell which side of that line you are on.</p>
+</div></div>
+
+<section><div class="sec-inner">
+<span class="lbl">The quiet tax</span>
+<h2 class="h2">Count what you actually use</h2>
+<p class="body">Open the tool you pay the most for every month. Walk it screen by screen. Count the fields you fill in, the modules you open, the automations that actually run, the seats that log in. For most small teams, the honest tally is a fraction of what the invoice covers. You are renting a machine built for an org with governance layers, approval chains, and a compliance department, and you are a team of nine.</p>
+<p class="body">This is not a knock on the software. The complexity is real, and for the buyer it was priced for, it is worth every dollar. The mismatch is on your side of the table. You inherited an enterprise tool because it was the safe default, and the safe default carries an enterprise price and an enterprise learning curve you pay for in time as well as cash.</p>
+<div class="pull">You did not choose complex software. You chose the safe default, and the safe default was built for someone else.</div>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">Why the price looks like that</span>
+<h2 class="h2">Seat-based pricing is a tax on your growth, not your usage</h2>
+<p class="body">Enterprise SaaS is priced per seat because it is sold to organizations where every new hire is a new license and governance is the point. That model rewards the vendor as you grow, whether or not the new seats touch the deep features. For a large enterprise with genuine security, integration, and org-complexity needs, that trade is fair. For a small business running straightforward workflows, you are on a pricing curve designed for a company shaped nothing like yours.</p>
+<p class="body">The result is a category of buyer who is quietly overpaying: too small to need the governance, too locked in to question the renewal. For years there was no real alternative, so the overpayment was just the cost of doing business.</p>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">What moved</span>
+<h2 class="h2">The line between buy and build shifted under everyone</h2>
+<p class="body">Building custom internal software used to require a developer, a budget, and a maintenance plan. That put it out of reach for most SMBs, so buying an over-featured tool was the rational choice. AI-native build tooling changed the inputs. The cost and the skill floor to stand up a right-sized system, one that does exactly what your workflow needs and nothing it does not, keeps dropping.</p>
+<p class="body">That does not make custom the answer for everyone. It means the calculation you settled years ago is worth reopening, because one of its main assumptions is no longer true. When the build option gets cheap enough, buying complexity you never use stops being the safe choice and starts being the expensive one.</p>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">The real dividing line</span>
+<h2 class="h2">When to buy, and when to right-size</h2>
+<p class="body">This is not a case for ripping out every tool. It is a case for putting each one on the correct side of one line. The line is org complexity, not company size.</p>
+<p class="body"><strong>Buy the enterprise tool when</strong> you have real security or compliance obligations, many teams that need controlled access to the same data, or integrations deep enough that the platform ecosystem is the actual value. If governance is the job, pay for governance.</p>
+<p class="body"><strong>Right-size when</strong> your workflow is straightforward, most of the platform sits dark, and the recurring cost is buying you optionality you never exercise. A system that holds your context and does your five real jobs can be lighter, cheaper, and a better fit than the platform you are renting.</p>
+<p class="body">This is the Memory layer of a revenue engine, put plainly. Your systems should hold your business context and hand it back to you on demand, not rent it back to you every month at a price set for a company you are not.</p>
+</div></section>
+
+<section><div class="sec-inner">
+<span class="lbl">Before your next renewal</span>
+<h2 class="h2">A five-minute audit</h2>
+<p class="body">Run your biggest tool through five questions before you auto-renew. If the answers point one direction, you have your decision.</p>
+<ul class="checklist">
+<li><strong>Usage.</strong> What share of the features and seats do you actually touch in a normal month?</li>
+<li><strong>Governance.</strong> Do you have a real security, compliance, or access-control reason for this tier, or did it come with the box?</li>
+<li><strong>Lock-in.</strong> How much of the price is the tool, and how much is the cost of leaving?</li>
+<li><strong>Fit.</strong> If you listed the five jobs you need done, how many does this tool do well versus get in the way of?</li>
+<li><strong>Alternative.</strong> What would a system built for exactly those five jobs cost to stand up and run now?</li>
+</ul>
+<p class="body">You may finish the audit and keep the tool, and that is a fine outcome. The point is to make the choice on purpose, with today's costs, instead of paying an enterprise price by default.</p>
+</div></section>
+
+<section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related reading</h2>
+<ul style="list-style:none;padding:0;color:#C0D8C0;font-size:0.95rem;line-height:1.85;">
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/ai-build-vs-buy-framework" style="color:#00C853;text-decoration:none;">The AI build vs buy framework &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/how-to-use-ai-in-your-business" style="color:#00C853;text-decoration:none;">How to use AI in your business &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/what-is-ai-native-gtm" style="color:#00C853;text-decoration:none;">AI-native GTM, defined &rarr;</a></li>
+<li style="padding:0.5rem 0;border-bottom:1px solid #1A3A1A;"><a href="/resources" style="color:#00C853;text-decoration:none;">Resource library &rarr;</a></li>
+</ul></div></section>
+
+<section><div class="sec-inner"><div class="cta-box">
+<div><div class="cta-text">Not sure which tools are earning their price?</div><div class="cta-sub">The Revenue Engine Audit maps your stack against what you actually use.</div></div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="/services/ai-audit" class="btn-p">See the Audit &rarr;</a>
+<a href="/ai-cmo-advisor" class="btn-g">Try the AI CMO</a>
+</div></div></div></section>
+
+<GlobalFooter />
+</body></html>
