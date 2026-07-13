@@ -113,7 +113,7 @@ function isNoindex(filepath: string): boolean {
 
 export const GET: APIRoute = () => {
   const files = walk(PAGES_DIR);
-  const pages: { url: string; priority: string; changefreq: string }[] = [];
+  const pages: { url: string; priority: string; changefreq: string; lastmod: string }[] = [];
   const seen = new Set<string>();
 
   for (const f of files) {
@@ -125,17 +125,17 @@ export const GET: APIRoute = () => {
     if (isNoindex(f)) continue;
     if (seen.has(url)) continue;
     seen.add(url);
-    pages.push({ url, priority: priorityFor(url), changefreq: changefreqFor(url) });
+    const lastmod = statSync(f).mtime.toISOString().split('T')[0];
+    pages.push({ url, priority: priorityFor(url), changefreq: changefreqFor(url), lastmod });
   }
 
   pages.sort((a, b) => a.url.localeCompare(b.url));
 
-  const today = new Date().toISOString().split('T')[0];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(p => `  <url>
     <loc>${BASE}${p.url}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${p.lastmod}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
   </url>`).join('\n')}

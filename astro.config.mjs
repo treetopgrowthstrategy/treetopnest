@@ -7,5 +7,5 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'static',
   adapter: vercel(),
-  trailingSlash: 'ignore',
+  trailingSlash: 'never',
 });

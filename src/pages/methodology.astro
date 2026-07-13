@@ -13,12 +13,17 @@ import GlobalFooter from '../components/GlobalFooter.astro';
 <script type="application/ld+json" slot="schema">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "The Revenue Engine Method",
+  "@type": "HowTo",
+  "name": "The Revenue Engine Method",
   "description": "The three phases Treetop uses to install a revenue engine that compounds: Memory, Intelligence, Motion.",
   "author": { "@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about" },
   "publisher": { "@type": "Organization", "name": "Treetop Growth Strategy" },
-  "mainEntityOfPage": "https://treetopgrowthstrategy.com/methodology"
+  "mainEntityOfPage": "https://treetopgrowthstrategy.com/methodology",
+  "step": [
+    { "@type": "HowToStep", "name": "Memory", "text": "Consolidate what your growth system already knows. Customer records, CRM data, past campaigns, positioning, ICP, competitors. Build the shared context the rest of the engine reasons over." },
+    { "@type": "HowToStep", "name": "Intelligence", "text": "Set up how the system thinks. AI models with your context, decision rules, prompt libraries, evaluation loops. The reasoning layer that turns Memory into judgment." },
+    { "@type": "HowToStep", "name": "Motion", "text": "Ship what the system does about it. Lead outreach, content, nurture, retention, reporting. Automated where safe, human-reviewed where it matters, always tied back to Memory and Intelligence." }
+  ]
 }
 </script>
 
