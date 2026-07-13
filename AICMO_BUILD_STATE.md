@@ -98,3 +98,13 @@ Two funnels that both end in a competitive SEO/marketing report, plus a subscrip
 ## Slice log
 
 - **Slice 0 (2026-07-11):** This document created. Branch `phase0-hardening` off main.
+- **Slice 1 (2026-07-11):** `api/_cmo-guards.ts` shared module (kill switch, per-IP/per-email rate limits, global daily budget, disposable blocklist, email-vs-website plausibility, admin-key gate, throttled ops alert; Upstash-backed, no-op without `UPSTASH_*`). Wired into `cmo-free-start`, `cmo-free-qualify`, `cmo-free-report`. Public `force` removed; manual report HTTP handler now requires `CMO_ADMIN_KEY`; wildcard CORS dropped.
+- **Slice 2 (2026-07-11):** `cmo-payment-webhook` idempotency (Upstash marker + `LastPaidSessionId` Airtable fallback), 3x retry with configurable backoff, never-silence (customer holding note + Bill dead-letter + `ReportStatus=failed` marker). Signature verification was already cryptographic; left as-is. Test harness extended: `test-guards.mjs` + `test-webhook.mjs`; full suite green.
+
+### Phase 0 go-live dependencies (Bill, before merge/deploy)
+
+- Provision Upstash Redis (or Vercel KV) and set `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`. Until then, rate limits and the budget cap are no-ops (kill switch, disposable, plausibility, admin gate, and idempotency-via-Airtable-field still work).
+- Set `CMO_ADMIN_KEY` (any strong secret) so the manual `cmo-free-report` re-run path is usable.
+- Add two Airtable fields to `tbl7PEKkdYKafCEdC`: `LastPaidSessionId` (single line text), `ReportStatus` (single line text or single select).
+- Tune caps if desired: `CMO_RATE_PER_IP_DAY` (3), `CMO_RATE_PER_EMAIL_DAY` (2), `CMO_DAILY_BUDGET` (100).
+- `CMO_KILL_SWITCH` left unset (off). Set to `true` to pause all spend in an incident.
