@@ -1,0 +1,329 @@
+---
+import GlobalNav from '../../components/GlobalNav.astro';
+import GlobalFooter from '../../components/GlobalFooter.astro';
+export const prerender = true;
+const CAL = 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>AI CMO Pricing | Treetop Growth Strategy</title>
+  <meta name="description" content="Start free, scale to a playbook. The AI CMO watches your search presence, competitors, and content, and tells you what changed and what to do next. Snapshot free, full report $99, Monitor from $249/mo." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/ai-cmo-advisor/pricing" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/ai-cmo-advisor/pricing" />
+  <meta property="og:title" content="AI CMO Pricing | Treetop Growth Strategy" />
+  <meta property="og:description" content="Your marketing, measured. Your next move, decided. Start free in under two minutes." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/ai-cmo-advisor.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/ai-cmo-advisor.png" />
+  <meta name="twitter:title" content="AI CMO Pricing | Treetop Growth Strategy" />
+  <meta name="twitter:description" content="Your marketing, measured. Your next move, decided." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "AI CMO Advisor",
+        "image": "https://treetopgrowthstrategy.com/og/ai-cmo-advisor.png",
+        "description": "The AI CMO watches your search presence, competitors, and content the way a full-time CMO would, and tells you what changed, why it matters, and what to do about it.",
+        "url": "https://treetopgrowthstrategy.com/ai-cmo-advisor/pricing",
+        "brand": { "@type": "Brand", "name": "Treetop Growth Strategy" },
+        "offers": [
+          { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Free Snapshot: your core metrics, top 3 competitors, and one keyword opportunity" },
+          { "@type": "Offer", "price": "99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Full Report: competitive snapshot, keyword gap, positioning, top 3 levers, and a 90-day roadmap" },
+          { "@type": "Offer", "price": "249", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Monitor: monthly what-changed memo, alerts, and a living roadmap checklist" },
+          { "@type": "Offer", "price": "999", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Guided: Monitor plus a monthly strategy call and a personal video walkthrough" },
+          { "@type": "Offer", "price": "2500", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "Embedded: weekly cadence and two deliverables a month, produced with you" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What happens after I buy the $99 report?", "acceptedAnswer": { "@type": "Answer", "text": "Your report generates automatically and lands in your inbox within about 15 minutes, with a hosted link you can share. It is a point-in-time diagnostic, accurate as of the day it runs." } },
+          { "@type": "Question", "name": "What is in the monthly Monitor memo?", "acceptedAnswer": { "@type": "Answer", "text": "Fresh data on your domain and competitors, a plain-language readout of what moved since last month, a score against your 90-Day Roadmap, and a short what I would do this month section. Between memos, alerts fire only when something meaningful changes. No noise." } },
+          { "@type": "Question", "name": "Can I cancel anytime?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Monthly plans cancel at the end of the current billing period. If you cancel, you keep every report and memo already delivered." } },
+          { "@type": "Question", "name": "Do you work with agencies or multiple brands?", "acceptedAnswer": { "@type": "Answer", "text": "Guided includes 2 domains and Embedded includes 5. If you are an agency interested in reselling, get in touch directly." } },
+          { "@type": "Question", "name": "What if my company is bigger than this?", "acceptedAnswer": { "@type": "Answer", "text": "If you need a marketing leader in the room, not just on the dashboard, that is our fractional CMO practice. Embedded clients who outgrow the container move there. You can also start the conversation directly at /fractional-cmo." } },
+          { "@type": "Question", "name": "Will prices change?", "acceptedAnswer": { "@type": "Answer", "text": "We reserve the right to change pricing for new subscribers. Your price is locked as long as your subscription stays active." } }
+        ]
+      }
+    ]
+  })} />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .btn-p { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.85rem 1.6rem; font-size: 0.9rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.15s; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.85rem 1.6rem; font-size: 0.9rem; font-weight: 500; text-decoration: none; border: 1px solid #1A3A1A; cursor: pointer; transition: border-color 0.15s; }
+    .btn-g:hover { border-color: #00C853; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.9rem; display: block; }
+
+    /* Hero */
+    .hero { padding: 10rem 0 4rem; text-align: center; }
+    .hero h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.4rem; }
+    .hero h1 em { font-style: italic; color: #00C853; }
+    .hero p { font-size: 1.08rem; color: #C0D8C0; line-height: 1.75; max-width: 640px; margin: 0 auto 2.2rem; }
+    .hero-cta { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+
+    /* Ladder intro */
+    .intro { padding: 3.5rem 0 1rem; text-align: center; }
+    .intro h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15; margin-bottom: 1.2rem; }
+    .intro p { font-size: 1rem; color: #A8C4A8; line-height: 1.8; max-width: 700px; margin: 0 auto 1rem; }
+    .intro .kicker { color: #F0FFF0; font-weight: 400; }
+
+    /* Tier cards */
+    .tiers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding: 3rem 0 1rem; }
+    .card { position: relative; border: 1px solid #1A3A1A; background: #08140A; padding: 2rem 1.75rem; display: flex; flex-direction: column; }
+    .card.feature { border-color: rgba(0,200,83,0.5); background: #0A1A0C; }
+    .card .badge { position: absolute; top: -11px; left: 1.75rem; background: #00C853; color: #050D05; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; }
+    .card h3 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 1.5rem; color: #F0FFF0; margin-bottom: 0.35rem; }
+    .card .price { font-size: 1.5rem; font-weight: 500; color: #F0FFF0; margin-bottom: 0.15rem; }
+    .card .price span { font-size: 0.9rem; color: #7FA087; font-weight: 300; }
+    .card .promise { font-size: 0.82rem; color: #00C853; font-weight: 500; margin-bottom: 1.25rem; }
+    .card ul { list-style: none; margin: 0 0 1.5rem; padding: 0; flex: 1; }
+    .card li { position: relative; padding: 0.5rem 0 0.5rem 1.5rem; font-size: 0.9rem; color: #C6DCC6; line-height: 1.55; border-bottom: 1px solid rgba(26,58,26,0.5); }
+    .card li:last-child { border-bottom: none; }
+    .card li::before { content: ""; position: absolute; left: 0; top: 0.85rem; width: 7px; height: 7px; background: #00C853; border-radius: 50%; }
+    .card .anchor { font-size: 0.82rem; color: #7FA087; line-height: 1.6; margin-top: 0.9rem; font-style: italic; }
+    .card .finep { font-size: 0.75rem; color: #5E7A62; margin-top: 0.6rem; }
+
+    /* Bridge */
+    .bridge { padding: 4rem 0; margin: 2rem 0; border-top: 1px solid #1A3A1A; border-bottom: 1px solid #1A3A1A; text-align: center; }
+    .bridge h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 1.2rem; }
+    .bridge p { font-size: 1.02rem; color: #B4CEB4; line-height: 1.8; max-width: 700px; margin: 0 auto; }
+
+    /* Comparison */
+    .compare { padding: 3.5rem 0; }
+    .compare h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.7rem; text-align: center; margin-bottom: 2rem; }
+    .table-scroll { overflow-x: auto; }
+    table.cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
+    table.cmp th, table.cmp td { padding: 0.85rem 0.9rem; text-align: center; font-size: 0.85rem; border-bottom: 1px solid #1A3A1A; }
+    table.cmp th { color: #F0FFF0; font-weight: 500; }
+    table.cmp td:first-child, table.cmp th:first-child { text-align: left; color: #8FAF8F; font-weight: 400; }
+    table.cmp td { color: #C6DCC6; font-weight: 300; }
+    table.cmp .yes { color: #00C853; }
+
+    /* FAQ */
+    .faq { padding: 3.5rem 0; }
+    .faq h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.9rem; text-align: center; margin-bottom: 2.2rem; }
+    .qa { max-width: 760px; margin: 0 auto; }
+    .qa details { border-bottom: 1px solid #1A3A1A; padding: 1.15rem 0; }
+    .qa summary { font-size: 1rem; color: #F0FFF0; font-weight: 400; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+    .qa summary::-webkit-details-marker { display: none; }
+    .qa summary::after { content: "+"; color: #00C853; font-size: 1.2rem; line-height: 1; }
+    .qa details[open] summary::after { content: "\2212"; }
+    .qa p { font-size: 0.92rem; color: #A8C4A8; line-height: 1.75; margin-top: 0.9rem; }
+    .qa a { color: #00C853; text-decoration: none; }
+
+    /* Closing */
+    .closing { text-align: center; padding: 4.5rem 0 5.5rem; }
+    .closing h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.2rem; }
+    .closing p { font-size: 1.05rem; color: #B4CEB4; line-height: 1.75; max-width: 620px; margin: 0 auto 2rem; }
+
+    @media (max-width: 760px) {
+      .tiers { grid-template-columns: 1fr; }
+      .hero { padding: 8rem 0 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<GlobalNav active="pricing" />
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="lbl">AI CMO</span>
+    <h1>Your marketing, measured.<br /><em>Your next move, decided.</em></h1>
+    <p>The AI CMO watches your search presence, your competitors, and your content the way a full-time CMO would. It tells you what changed, why it matters, and what to do about it. You start free in under two minutes.</p>
+    <div class="hero-cta">
+      <a href="/ai-cmo-advisor/free" class="btn-p">See where you stand free &rarr;</a>
+      <a href="/ai-cmo-advisor/sample-report" class="btn-g">View a sample report</a>
+    </div>
+  </div>
+</section>
+
+<!-- LADDER INTRO -->
+<section class="intro">
+  <div class="wrap">
+    <h2>Start with the scoreboard. Scale to the playbook.</h2>
+    <p>Every tier answers a bigger question than the last. The free snapshot shows you where you stand. The full report tells you what to do. Monitor keeps that plan alive month after month. Guided puts a real CMO's judgment on top of the data. And when you want the work done, not just directed, Embedded puts us inside your business.</p>
+    <p class="kicker">You never pay for a tier whose question you are not asking yet.</p>
+  </div>
+</section>
+
+<!-- TIER CARDS -->
+<section class="wrap">
+  <div class="tiers">
+
+    <div class="card">
+      <h3>Free Snapshot</h3>
+      <div class="price">Free</div>
+      <div class="promise">Where do I stand?</div>
+      <ul>
+        <li>Your domain's core metrics, pulled live</li>
+        <li>Your top 3 competitors, identified automatically</li>
+        <li>One keyword opportunity worth chasing now</li>
+        <li>A follow-up a week later showing what already changed</li>
+      </ul>
+      <a href="/ai-cmo-advisor/free" class="btn-p">Get my free snapshot &rarr;</a>
+      <div class="finep">No credit card. Takes two minutes.</div>
+    </div>
+
+    <div class="card">
+      <h3>Full Report</h3>
+      <div class="price">$99 <span>one time</span></div>
+      <div class="promise">What should I do?</div>
+      <ul>
+        <li>Everything in the snapshot, unlocked and expanded</li>
+        <li>Competitive Snapshot, Keyword Gap, and Content Positioning analysis</li>
+        <li>Your Top 3 Growth Levers, ranked by impact</li>
+        <li>A 90-Day Roadmap with a "What I Would Do First" brief</li>
+        <li>Hosted report link you can share with your team</li>
+        <li>One follow-up question answered by reply</li>
+      </ul>
+      <a href="/ai-cmo-advisor" class="btn-p">Get my full report &rarr;</a>
+      <div class="anchor">Less than one hour of consulting. Delivered in 15 minutes.</div>
+    </div>
+
+    <div class="card feature">
+      <div class="badge">Most popular</div>
+      <h3>Monitor</h3>
+      <div class="price">$249<span>/month</span></div>
+      <div class="promise">What changed, and is it working?</div>
+      <ul>
+        <li>A monthly What Changed memo: fresh data, movement versus last month, and what to do next</li>
+        <li>Real-time alerts between memos when a keyword slips, your authority drops, or a competitor makes a move</li>
+        <li>A watchlist on your top 3 competitors</li>
+        <li>Your 90-Day Roadmap becomes a living checklist, scored every month</li>
+        <li>1 domain included, add more for $99/mo each</li>
+      </ul>
+      <a href="/ai-cmo-advisor/upgrade?tier=monitor" class="btn-p">Start monitoring &rarr;</a>
+      <div class="anchor">A point-in-time report goes stale the day it ships. Monitor is your report, alive.</div>
+    </div>
+
+    <div class="card">
+      <h3>Guided</h3>
+      <div class="price">$999<span>/month</span></div>
+      <div class="promise">Am I doing this right?</div>
+      <ul>
+        <li>Everything in Monitor, watchlist expanded to 5 competitors</li>
+        <li>A monthly 45-minute strategy call, agenda built from your data</li>
+        <li>A personal video walkthrough of every monthly memo</li>
+        <li>Async access: questions answered within one business day</li>
+        <li>A full strategy re-derivation every quarter, not just tracking</li>
+        <li>2 domains included</li>
+      </ul>
+      <a href="/ai-cmo-advisor/upgrade?tier=guided" class="btn-p">Get guided &rarr;</a>
+      <div class="anchor">A fractional CMO typically starts around $10,000 a month. Guided gives you the judgment layer for a tenth of it.</div>
+    </div>
+
+    <div class="card">
+      <h3>Embedded</h3>
+      <div class="price">$2,500<span>/month</span></div>
+      <div class="promise">Can you just run it?</div>
+      <ul>
+        <li>Everything in Guided, watchlist and tracking uncapped, up to 5 domains</li>
+        <li>Weekly cadence: mini-memos every week, calls every two weeks</li>
+        <li>We execute from your roadmap: 2 deliverables a month, from content briefs to landing page specs to campaign plans</li>
+        <li>A shared Slack channel with direct access</li>
+      </ul>
+      <a href={CAL} class="btn-g">Talk to us about Embedded</a>
+      <div class="anchor">This is the top of self-serve. Beyond it lives our fractional CMO practice.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section class="bridge">
+  <div class="wrap">
+    <h2>Data tells you what. Judgment tells you how.</h2>
+    <p>Monitor will faithfully report that a competitor is outranking you on a keyword you care about. It will not know that your sales team hates that lead source, or that your best customers come from somewhere your analytics undercounts. That is what the call is for. Guided is Monitor plus a marketer who has run growth at companies like HelloFresh reading your numbers every month and telling you what he would actually do.</p>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare">
+  <div class="wrap">
+    <h2>Compare the ladder</h2>
+    <div class="table-scroll">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th></th><th>Snapshot</th><th>Report</th><th>Monitor</th><th>Guided</th><th>Embedded</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Price</td><td>Free</td><td>$99 once</td><td>$249/mo</td><td>$999/mo</td><td>$2,500/mo</td></tr>
+          <tr><td>Live data</td><td>Once</td><td>Once</td><td>Monthly + alerts</td><td>Monthly + alerts</td><td>Weekly + alerts</td></tr>
+          <tr><td>Competitors tracked</td><td>3 shown</td><td>3 analyzed</td><td>3 watched</td><td>5 watched</td><td>Uncapped</td></tr>
+          <tr><td>Human judgment</td><td></td><td></td><td></td><td class="yes">Monthly call + video</td><td class="yes">Biweekly calls</td></tr>
+          <tr><td>Execution</td><td></td><td></td><td></td><td></td><td class="yes">2 deliverables/mo</td></tr>
+          <tr><td>Domains</td><td>1</td><td>1</td><td>1</td><td>2</td><td>5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="qa">
+      <details>
+        <summary>What happens after I buy the $99 report?</summary>
+        <p>Your report generates automatically and lands in your inbox within about 15 minutes, with a hosted link you can share. It is a point-in-time diagnostic, accurate as of the day it runs.</p>
+      </details>
+      <details>
+        <summary>What is in the monthly Monitor memo?</summary>
+        <p>Fresh data on your domain and competitors, a plain-language readout of what moved since last month, a score against your 90-Day Roadmap, and a short "what I would do this month" section. Between memos, alerts fire only when something meaningful changes. No noise.</p>
+      </details>
+      <details>
+        <summary>Can I cancel anytime?</summary>
+        <p>Yes. Monthly plans cancel at the end of the current billing period. If you cancel, you keep every report and memo already delivered.</p>
+      </details>
+      <details>
+        <summary>Do you work with agencies or multiple brands?</summary>
+        <p>Each additional domain on Monitor is $99/mo. Guided includes 2 domains and Embedded includes 5. If you are an agency interested in reselling, get in touch directly.</p>
+      </details>
+      <details>
+        <summary>What if my company is bigger than this?</summary>
+        <p>If you need a marketing leader in the room, not just on the dashboard, that is our fractional CMO practice. Embedded clients who outgrow the container move there. You can also start the conversation directly at <a href="/fractional-cmo">/fractional-cmo</a>.</p>
+      </details>
+      <details>
+        <summary>Will prices change?</summary>
+        <p>We reserve the right to change pricing for new subscribers. Your price is locked as long as your subscription stays active.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <h2>The scoreboard is free.</h2>
+    <p>Two minutes from now you can know exactly where you stand against the three companies taking your customers. What you do about it is up to you. But you should at least see the scoreboard.</p>
+    <a href="/ai-cmo-advisor/free" class="btn-p">Get my free snapshot &rarr;</a>
+  </div>
+</section>
+
+<GlobalFooter />
+
+</body>
+</html>
