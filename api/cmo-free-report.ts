@@ -14,6 +14,8 @@
 // (useful for retrying failed sends and for CLI-style testing).
 //   POST /api/cmo-free-report { email, website? } -> { sent, mode, reason? }
 
+import { killSwitchOn, budgetAvailable, consumeBudget, adminAuthorized, alertOps } from './_cmo-guards';
+
 // Vercel: give this function up to 60s. Ahrefs (3 parallel) + OpenAI GPT-4o
 // with JSON output + Resend typically finishes in 10-20s, but Ahrefs can
 // occasionally spike. The default 10-15s is not enough.
@@ -439,6 +441,25 @@ export async function generateAndSendFreeReport(opts: GenerateOpts): Promise<Gen
     return { sent: false, mode: 'skipped', reason: 'missing env keys (ahrefs/openai/resend)' };
   }
 
+  // Spend guards. Every path into report generation passes through here, so
+  // the kill switch and the global daily budget protect the inline qualify
+  // trigger and the admin re-run alike.
+  if (killSwitchOn()) {
+    return { sent: false, mode: 'skipped', reason: 'kill-switch-on', domain };
+  }
+  const budget = await budgetAvailable();
+  if (!budget.ok) {
+    await alertOps(
+      'budget',
+      'AI CMO daily budget cap hit',
+      `<p style="font-family:sans-serif;">The free-report daily budget cap was reached (${budget.count}/${budget.cap}). Further free reports are paused until tomorrow. Raise CMO_DAILY_BUDGET or investigate a possible flood.</p>`,
+    );
+    return { sent: false, mode: 'skipped', reason: 'daily-budget-exceeded', domain };
+  }
+  // Consume budget BEFORE the spend so a later failure still counts against the
+  // cap and cannot be retried indefinitely for free.
+  await consumeBudget();
+
   const date = today;
   const [own, competitorDomains, topKeywords] = await Promise.all([
     fetchOwnMetrics(domain, date),
@@ -472,12 +493,17 @@ export async function generateAndSendFreeReport(opts: GenerateOpts): Promise<Gen
 
 // ─── HTTP handler (manual re-run / test) ─────────────────────────────────────
 
+// Admin-only manual re-run / test path. The public free-report flow does NOT
+// go through here: cmo-free-qualify imports generateAndSendFreeReport and calls
+// it server-side. This HTTP handler exists only for manual re-sends, so it is
+// gated behind CMO_ADMIN_KEY and does not advertise CORS to browsers. This
+// closes the unauthenticated-spend and public-`force` abuse paths.
 export default async function handler(req: any, res: any) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  if (!adminAuthorized(req)) {
+    return res.status(403).json({ error: 'Not authorized' });
+  }
 
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
@@ -485,7 +511,7 @@ export default async function handler(req: any, res: any) {
 
   const email   = (body.email || '').toString().trim().toLowerCase();
   const website = (body.website || '').toString().trim();
-  const force   = !!body.force;
+  const force   = !!body.force; // only reachable by an authorized admin
   if (!email || !/^[^\s@"]+@[^\s@"]+\.[^\s@"]+$/.test(email)) {
     return res.status(400).json({ error: 'Valid email required' });
   }
