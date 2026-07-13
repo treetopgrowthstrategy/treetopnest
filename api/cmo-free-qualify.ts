@@ -13,8 +13,8 @@
 // The response never reveals qualification status to the user (no leaking / no gaming).
 // POST { email, linkedin } -> { success: true, message }
 
-import { generateAndSendFreeReport } from './cmo-free-report';
-import { clientIp, rateLimitSubmission, isDisposableEmail, emailMatchesWebsite, killSwitchOn, alertOps } from './cmo-guards';
+import { generateAndSendFreeReport } from './cmo-free-report.js';
+import { clientIp, rateLimitSubmission, isDisposableEmail, emailMatchesWebsite, killSwitchOn, alertOps } from './cmo-guards.js';
 
 // Vercel: give this function up to 60s so the background report generation
 // (Ahrefs + OpenAI + Resend) has room to finish after the response is flushed.

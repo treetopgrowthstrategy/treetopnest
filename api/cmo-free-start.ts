@@ -3,7 +3,7 @@
 // complete step 2 (the LinkedIn unlock). No research spend happens here.
 // POST { email, website, hp, _t } -> { success: true }
 
-import { clientIp, rateLimitSubmission, isDisposableEmail } from './cmo-guards';
+import { clientIp, rateLimitSubmission, isDisposableEmail } from './cmo-guards.js';
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
