@@ -4,9 +4,11 @@ The real Treetop design system, extracted from the canonical repo. Any post rend
 
 ## Where finished HTML goes
 
-`PUBLIC_CONTENT_PATH = public/insights/`
+`PUBLIC_CONTENT_PATH = src/pages/` (root-slug Astro routes)
 
-Rendered posts are static HTML placed in `public/insights/` in the canonical tree (`~/Documents/GitHub/treetopnest/treetopnest`). Astro serves files in `public/` verbatim, so a file at `public/insights/my-post.html` is live at `https://treetopgrowthstrategy.com/insights/my-post.html` after a push to `main`. Use human-readable file names.
+Rendered posts are self-contained Astro pages at `src/pages/<human-readable-slug>.astro` in the canonical tree (`~/Documents/GitHub/treetopnest/treetopnest`), the same convention every ranking Treetop essay uses. A file at `src/pages/my-post.astro` is live at `https://treetopgrowthstrategy.com/my-post` after a push to `main`, is included in the sitemap, and gets picked up by the hub linker.
+
+Do NOT use `public/insights/`. That path is wildcard-redirected to `/resources` in `vercel.json` (`/insights/:slug*` returns a 301), so any post placed there is unreachable. The earlier draft of this doc named `public/insights/`; that was superseded once the redirect was found. Root-slug `src/pages/*.astro` is the correct, ranking-optimal home. Use human-readable file names.
 
 ## Source of truth for the design language
 

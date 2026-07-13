@@ -6,7 +6,8 @@
 //   - maxIters: safety cap on the build→test loop (default 2)
 //
 // Per-URL it scores HTTP, internal links, SEO/meta, JSON-LD, house style (no em/en
-// dashes), content quality, accessibility, mobile, and performance. Findings are
+// dashes), content quality, humanness (AI tells / does it sound like Bill),
+// accessibility, mobile, and performance. Findings are
 // adversarially verified before being acted on. Auto-fixes are mechanical only
 // (dash strip, alt text, canonical, missing meta); never content rewrites.
 
@@ -14,7 +15,7 @@ export const meta = {
   name: 'page-qa-loop',
   description: 'Multi-dimensional A+ QA audit + optional auto-fix loop for treetop pages',
   phases: [
-    { title: 'Probe', detail: 'parallel per-URL audit across 9 dimensions' },
+    { title: 'Probe', detail: 'parallel per-URL audit across 10 dimensions' },
     { title: 'Verify', detail: 'adversarially confirm each finding is real' },
     { title: 'Fix', detail: 'mechanical auto-fixes only (mode=fix)' },
     { title: 'Re-probe', detail: 're-audit just the pages we touched' },
@@ -55,7 +56,7 @@ const FINDING_SCHEMA = {
         type: 'object',
         additionalProperties: false,
         properties: {
-          dimension: { type: 'string', enum: ['http', 'links', 'seo', 'jsonld', 'house-style', 'content', 'accessibility', 'mobile', 'performance'] },
+          dimension: { type: 'string', enum: ['http', 'links', 'seo', 'jsonld', 'house-style', 'content', 'humanness', 'accessibility', 'mobile', 'performance'] },
           severity: { type: 'string', enum: ['blocker', 'major', 'minor', 'cosmetic'] },
           description: { type: 'string' },
           evidence: { type: 'string', description: 'concrete evidence: the URL, the offending string, the broken link, the exact dash position, etc.' },
@@ -145,6 +146,8 @@ Run ALL of these checks and report findings:
 8. Mobile — viewport meta exists; the page has responsive @media rules. Spot check by reading the CSS for max-width media queries.
 
 9. Performance — page HTML weight under 500KB (this is the HTML response, not assets). Note if any inline data: URI is over 100KB.
+
+10. Humanness (does it sound like Bill, not like AI) — run the deterministic checker first: node ${REPO}/content-engine/tools/humanness-check.mjs ${REPO}/src/pages${u}.astro (or pipe the stripped prose via --stdin). It grades A+..F and flags AI filler ("unlock", "delve", "in today's evolving landscape", "seamless", "elevate", "empower"), banned constructions from content-engine/VOICE.md (BANNED = auto-fail), low sentence-length variance, and hedging. Then read the prose yourself and judge: does it lead with Bill's own discovery, show a bad first draft, use concrete specifics, and vary its rhythm, or does it read generic and uniform? A humanness grade below B is a MAJOR. Any banned construction or dash is a BLOCKER (overlaps house-style). Quote the offending lines. See content-engine/HUMANNESS.md for the full rubric. Humanness content findings are NEVER autoFixable (prose is a human rewrite, route to needsHuman).
 
 Source-file inspection: read src/pages${u}.astro (use Read). Confirm the page has the standard nav + <GlobalFooter /> + treetop-linker-related block (or a curated related section if linker-skipped). Cross-reference any finding to file:line.
 

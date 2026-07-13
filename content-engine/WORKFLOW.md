@@ -14,7 +14,9 @@ Open `CONTENT_STATE.md` first. Then read `VOICE.md` and `DESIGN.md`. Do not skip
 
 3. **Refine through conversation.** This is where the real work happens, not the first pass. Iterate with Bill until the piece earns its place. Keep the working draft in `drafts/`.
 
-4. **Render only after the template is locked.** The first content session prototypes and locks ONE post template built against `DESIGN.md`, with Bill's sign-off. Once (and only once) that template is locked, render the approved draft to branded HTML against `DESIGN.md` and output it to the confirmed `PUBLIC_CONTENT_PATH` (`public/insights/`). Every later post renders against the same locked template. Set Status to `Rendered`.
+3.5. **Grade for humanness (hard gate).** Before anything renders, run the humanness gate (see `HUMANNESS.md`): the deterministic checker `node content-engine/tools/humanness-check.mjs <draft>` plus the adversarial Claude judge. The draft must earn grade **B or better with zero auto-fails** (em or en dashes, banned constructions). Below that it does not render and does not publish. Revise the flagged passages and re-grade until it clears. Record the final grade next to the post's Status in `CONTENT_STATE.md`.
+
+4. **Render only after the template is locked and the gate is cleared.** The locked template is the self-contained article format the launch posts use (full head, Article and Breadcrumb schema, the brand CSS, related links, CTA, `<GlobalFooter />`). Render the approved draft to `src/pages/<human-readable-slug>.astro`, which publishes at `https://treetopgrowthstrategy.com/<slug>`. Do NOT publish under `/insights/`: that path is wildcard-redirected to `/resources` and any post there is unreachable. Set Status to `Rendered`.
 
 5. **Produce the Substack-ready version.** Write a plain version of the same piece to `content-engine/posts/` (markdown or plain text), so cross-posting to Substack needs no rework. Keep it in sync with the rendered HTML.
 
@@ -23,14 +25,18 @@ Open `CONTENT_STATE.md` first. Then read `VOICE.md` and `DESIGN.md`. Do not skip
 ## Guardrails on publishing
 
 - No push to `main` and no deploy without Bill's explicit in-chat go-ahead on the final draft.
-- Run the pre-commit checks (em dashes, banned constructions) against anything new in `content-engine/` before committing, the same way they were run at setup. The banned-construction grep will match exactly one intentional line: the guardrail definition in `VOICE.md` that names the banned phrases. That single match is expected. Any other match is a real hit and must be fixed.
-- Human-readable file names throughout, in `drafts/`, `posts/`, and `public/insights/`.
+- The humanness gate (step 3.5) is a hard gate: no render, no publish, until the draft clears grade B with zero auto-fails.
+- Run the pre-commit checks (em dashes, banned constructions) against anything new in `content-engine/` before committing, the same way they were run at setup. The banned-construction grep will match the intentional guardrail definitions in `VOICE.md` and `HUMANNESS.md` that name the banned phrases. Those matches are expected. Any match in a draft, post, or rendered page is a real hit and must be fixed.
+- Human-readable file names throughout, in `drafts/`, `posts/`, and `src/pages/`.
 
 ## Folder map
 
 - `content-engine/CONTENT_STATE.md` : source of truth, start here.
 - `content-engine/VOICE.md` : how it sounds, plus the guardrails.
 - `content-engine/DESIGN.md` : the locked design tokens and where HTML goes.
+- `content-engine/HUMANNESS.md` : the humanness grading gate (rubric + judge).
+- `content-engine/tools/humanness-check.mjs` : the deterministic Layer 1 checker.
 - `content-engine/WORKFLOW.md` : this file.
 - `content-engine/drafts/` : markdown drafts in progress.
 - `content-engine/posts/` : Substack-ready plain versions of shipped pieces.
+- Rendered posts live at `src/pages/<slug>.astro` (root-slug URLs), not under `public/insights/`.

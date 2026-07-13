@@ -1,12 +1,12 @@
 # CONTENT_STATE
 
-**READ THIS FIRST. This is the single source of truth for the Treetop content engine. Before drafting anything, read VOICE.md, DESIGN.md, and WORKFLOW.md in this folder.**
+**READ THIS FIRST. This is the single source of truth for the Treetop content engine. Before drafting anything, read VOICE.md, DESIGN.md, WORKFLOW.md, and HUMANNESS.md in this folder.**
 
 This file is the backlog and the status board. It is the equivalent of the ecofit Airtable backlog and the Billy `BUILD_STATE.md`. Every content session opens this file first, picks the next post by sequence priority, and updates status here as it moves.
 
-Status values: `Backlog`, `Drafting`, `In Review`, `Rendered`, `Live`.
+Status values: `Backlog`, `Drafting`, `In Review`, `Rendered`, `Live`. A post cannot move to `Rendered` until it clears the humanness gate (grade B or better, zero auto-fails). See the Humanness gate section below and HUMANNESS.md.
 
-Finished HTML is published to `public/insights/` (see `PUBLIC_CONTENT_PATH` in DESIGN.md). This repo deploys on push to `main`, so pushing to main means publishing. Nothing publishes without Bill's explicit in-chat approval of the final draft.
+Finished posts are published as `src/pages/<slug>.astro` (root-slug URLs, see `PUBLIC_CONTENT_PATH` in DESIGN.md). Not `public/insights/`, which is redirected. This repo deploys on push to `main`, so pushing to main means publishing. Nothing publishes without Bill's explicit in-chat approval of the final draft.
 
 ---
 
@@ -33,4 +33,16 @@ Lead with **2** (the retrospective), then **5** (perfect-prompt), then **3** (HT
 
 ## Design lock
 
-The first content session prototypes and locks ONE post template before any post is rendered. Nothing renders to HTML until the template is locked. See WORKFLOW.md step 4 and DESIGN.md.
+The post template is LOCKED: the self-contained article format used by the three launch posts (full head, Article and Breadcrumb schema, brand CSS, related links, CTA, `<GlobalFooter />`), rendered at `src/pages/<slug>.astro`. Every post renders against this template. See WORKFLOW.md step 4 and DESIGN.md.
+
+## Humanness gate
+
+Every post must clear the humanness gate before it can move to `Rendered` (grade B or better, zero auto-fails: no em or en dashes, no banned constructions). Run `node content-engine/tools/humanness-check.mjs <file>` plus the adversarial Claude judge. Full rubric in HUMANNESS.md. Record each graded post here:
+
+| Post (slug) | Cluster | Status | Humanness grade |
+|-------------|---------|--------|-----------------|
+| model-a-business-before-you-risk-capital | Operator craft | Written, not published | A+ |
+| right-size-your-software-stack | Market and pricing | Written, not published | A |
+| you-cannot-buy-your-way-in | Relationship GTM | Written, not published | A+ |
+
+Grades above are the deterministic Layer 1 score; the Claude judge runs at publish time and the lower grade governs. These three are committed on branch `content-engine-grader`, awaiting Bill's go to publish.
