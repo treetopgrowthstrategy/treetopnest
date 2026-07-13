@@ -165,6 +165,26 @@ export async function consumeBudget(): Promise<number | null> {
   return bump(`cmo:budget:${dayStamp()}`);
 }
 
+// ─── Idempotency (check-before / mark-after-success) ────────────────────────
+// A processed marker is written only AFTER a unit of work succeeds, so a failed
+// attempt never blocks a legitimate reprocess. `enforced:false` means no store
+// is configured and the caller should fall back to its own dedupe (e.g. an
+// Airtable field marker).
+
+export interface ProcessedResult { seen: boolean; enforced: boolean; }
+
+export async function wasProcessed(key: string): Promise<ProcessedResult> {
+  if (!storeConfigured()) return { seen: false, enforced: false };
+  const res = await redis('get', key);
+  if (res?._error) return { seen: false, enforced: false }; // store errored: do not block delivery
+  return { seen: res?.result != null, enforced: true };
+}
+
+export async function markProcessed(key: string, ttlSeconds = 2592000): Promise<void> {
+  if (!storeConfigured()) return;
+  await redis('set', key, '1', 'EX', String(ttlSeconds));
+}
+
 // ─── Admin auth for the manual re-run HTTP path ─────────────────────────────
 // Denies by default: if CMO_ADMIN_KEY is unset, the manual path is closed.
 

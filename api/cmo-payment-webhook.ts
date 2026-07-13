@@ -4,8 +4,11 @@
 // 5. Delivers via Resend
 
 import Stripe from 'stripe';
+import { wasProcessed, markProcessed } from './_cmo-guards';
 
-export const config = { api: { bodyParser: false } };
+export const config = { api: { bodyParser: false }, maxDuration: 60 };
+
+function sleep(ms: number): Promise<void> { return new Promise(r => setTimeout(r, ms)); }
 
 const STRIPE_SECRET_KEY    = process.env.STRIPE_SECRET_KEY    || '';
 const CMO_WEBHOOK_SECRET   = process.env.CMO_WEBHOOK_SECRET   || '';
@@ -44,7 +47,7 @@ function rawBody(req: any): Promise<Buffer> {
 
 // ─── Airtable ─────────────────────────────────────────────────────────────────
 
-async function fetchOnboardingRecord(email: string): Promise<{ recordId: string; notes: string } | null> {
+async function fetchOnboardingRecord(email: string): Promise<{ recordId: string; notes: string; lastSession: string } | null> {
   if (!AIRTABLE_API_KEY) return null;
   const formula = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1`;
@@ -53,18 +56,31 @@ async function fetchOnboardingRecord(email: string): Promise<{ recordId: string;
   const data: any = await r.json();
   const record = data.records?.[0];
   if (!record) return null;
-  return { recordId: record.id, notes: record.fields?.Notes || '' };
+  return { recordId: record.id, notes: record.fields?.Notes || '', lastSession: (record.fields?.LastPaidSessionId || '').toString() };
 }
 
-async function saveLastReport(recordId: string, reportHtml: string): Promise<void> {
+async function saveLastReport(recordId: string, reportHtml: string, sessionId: string): Promise<void> {
   if (!AIRTABLE_API_KEY || !recordId) return;
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}/${recordId}`;
   const r = await fetch(url, {
     method: 'PATCH',
     headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields: { 'Last Report': reportHtml, 'Stage': 'report_delivered', 'StageSince': new Date().toISOString().slice(0, 10) } }),
+    body: JSON.stringify({ fields: { 'Last Report': reportHtml, 'Stage': 'report_delivered', 'StageSince': new Date().toISOString().slice(0, 10), 'LastPaidSessionId': sessionId } }),
   });
   if (!r.ok) console.error('Failed to save Last Report to Airtable:', r.status, await r.text());
+}
+
+// Dead-letter marker: records the failed session without advancing Stage to
+// delivered, so a manual/automated retry can find it and nothing is lost.
+async function markReportFailed(recordId: string, sessionId: string): Promise<void> {
+  if (!AIRTABLE_API_KEY || !recordId) return;
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}/${recordId}`;
+  const r = await fetch(url, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { 'ReportStatus': 'failed', 'LastPaidSessionId': sessionId, 'StageSince': new Date().toISOString().slice(0, 10) } }),
+  });
+  if (!r.ok) console.error('Failed to mark report failed in Airtable:', r.status, await r.text());
 }
 
 // Advance a lead's Stage by email (used for subscription tier purchases). Upserts.
@@ -166,8 +182,8 @@ function formatAhrefsBlock(items: (AhrefsData | null)[]): string {
 
 // ─── Report generation ────────────────────────────────────────────────────────
 
-async function generateReport(email: string, notes: string, ahrefsBlock: string): Promise<string> {
-  if (!OPENAI_API_KEY) return '<p>Report generation not configured.</p>';
+async function generateReport(email: string, notes: string, ahrefsBlock: string): Promise<{ ok: boolean; html: string }> {
+  if (!OPENAI_API_KEY) return { ok: false, html: '' };
 
   const prompt = `You are Bill Colbert, founder of Treetop Growth Strategy and a fractional CMO. A client just paid $99 for an AI CMO Starter Report. Write their complete report based on the onboarding answers and live competitive data below.
 
@@ -219,17 +235,18 @@ HARD CONSTRAINTS:
   if (!r.ok) {
     const err = await r.text();
     console.error('OpenAI API error:', r.status, err);
-    return '<p>Report generation failed. Bill will follow up manually within 24 hours.</p>';
+    return { ok: false, html: '' };
   }
 
   const result: any = await r.json();
-  return result.choices?.[0]?.message?.content || '<p>Report could not be generated. Bill will follow up manually.</p>';
+  const content = result.choices?.[0]?.message?.content || '';
+  return content ? { ok: true, html: content } : { ok: false, html: '' };
 }
 
 // ─── Email helpers ────────────────────────────────────────────────────────────
 
-async function sendEmail(to: string, subject: string, html: string, replyTo?: string, scheduledAt?: string): Promise<void> {
-  if (!RESEND_API_KEY) { console.warn('RESEND_API_KEY not set'); return; }
+async function sendEmail(to: string, subject: string, html: string, replyTo?: string, scheduledAt?: string): Promise<boolean> {
+  if (!RESEND_API_KEY) { console.warn('RESEND_API_KEY not set'); return false; }
   const payload: Record<string, any> = { from: FROM_EMAIL, to: [to], subject, html };
   if (replyTo)     payload.reply_to    = [replyTo];
   if (scheduledAt) payload.scheduled_at = scheduledAt;
@@ -238,7 +255,26 @@ async function sendEmail(to: string, subject: string, html: string, replyTo?: st
     headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
-  if (!r.ok) console.error('Resend error:', r.status, await r.text());
+  if (!r.ok) { console.error('Resend error:', r.status, await r.text()); return false; }
+  return true;
+}
+
+// Graceful holding note so a generation/delivery failure never leaves a paying
+// customer in silence.
+function holdingEmailHtml(customerEmail: string): string {
+  return `
+<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;background:#fff;color:#1a1a1a;line-height:1.65;">
+  <div style="background:#050D05;padding:28px 32px;">
+    <p style="margin:0;font-family:Georgia,serif;font-size:20px;font-style:italic;color:#F0FFF0;">Treetop Growth Strategy</p>
+  </div>
+  <div style="padding:36px 32px;">
+    <h1 style="margin:0 0 12px;font-size:22px;font-weight:600;color:#050D05;">Your report is on its way</h1>
+    <p style="margin:0 0 16px;font-size:15px;color:#333;">Thanks for your order. Your AI CMO Starter Report is taking a little longer than usual to compile. I am finishing it personally and you will have it within 24 hours.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#333;">If you have anything you want me to focus on, just reply to this email. It comes straight to me.</p>
+    <p style="margin:24px 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>
+    <p style="margin:0;font-size:13px;color:#888;">Founder, Treetop Growth Strategy</p>
+  </div>
+</div>`;
 }
 
 function reportEmailHtml(reportBody: string, customerEmail: string): string {
@@ -310,68 +346,75 @@ export default async function handler(req: any, res: any) {
     return res.status(200).json({ received: true });
   }
 
+  // Idempotency: never generate the same paid session's report twice (Stripe
+  // delivers at least once). Prefer the Upstash marker; fall back to an Airtable
+  // field when no store is configured. The marker is written only after a
+  // successful delivery, so a failed attempt never blocks a reprocess.
+  const idemKey = `cmo:paid:${session.id}`;
+  const onboarding = await fetchOnboardingRecord(email);
+  const processed = await wasProcessed(idemKey);
+  if (processed.enforced ? processed.seen : (onboarding?.lastSession === session.id)) {
+    console.log(`Duplicate paid event, skipping ${session.id}`);
+    return res.status(200).json({ received: true, duplicate: true });
+  }
+
   console.log(`Generating CMO report for ${email} (session ${session.id})`);
 
-  try {
-    // Today's date for Ahrefs API calls (YYYY-MM-DD)
-    const todayDate = new Date().toISOString().slice(0, 10);
+  const notes = onboarding?.notes || '';
+  const competitorDomains = parseCompetitorDomains(notes);
+  const userDomain = email.split('@')[1];
+  const allDomains = [userDomain, ...competitorDomains].filter(Boolean);
+  const todayDate = new Date().toISOString().slice(0, 10);
 
-    // Fetch onboarding answers first — needed to extract competitor domains
-    const onboarding = await fetchOnboardingRecord(email);
-    const notes = onboarding?.notes || '';
+  // Retry the fragile generate+deliver sequence up to 3 times with backoff.
+  // Ahrefs stays best-effort inside (a failure degrades the report, it does not
+  // block it); a hard failure is no usable report or the customer send failing.
+  let delivered = false;
+  let lastErr: any = null;
+  for (let attempt = 1; attempt <= 3 && !delivered; attempt++) {
+    try {
+      const ahrefsResults = await Promise.all(allDomains.map(d => fetchAhrefsData(d, todayDate)));
+      const ahrefsBlock = formatAhrefsBlock(ahrefsResults);
 
-    // Resolve domains: user's own + up to 3 competitors from onboarding
-    const competitorDomains = parseCompetitorDomains(notes);
-    const userDomain = email.split('@')[1];
-    const allDomains = [userDomain, ...competitorDomains].filter(Boolean);
+      const gen = await generateReport(email, notes, ahrefsBlock);
+      if (!gen.ok) throw new Error('report generation returned no usable content');
 
-    // Fetch Ahrefs data for all domains in parallel (gracefully fails if key missing)
-    const ahrefsResults = await Promise.all(
-      allDomains.map(d => fetchAhrefsData(d, todayDate))
-    );
-    const ahrefsBlock = formatAhrefsBlock(ahrefsResults);
+      // Schedule delivery 15 minutes out so it does not arrive instantly.
+      const deliverAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+      const sent = await sendEmail(email, 'Your AI CMO Starter Report is ready', reportEmailHtml(gen.html, email), REPLY_TO_ADDRESS, deliverAt);
+      if (!sent) throw new Error('customer report send failed');
 
-    if (ahrefsBlock) {
-      console.log(`Ahrefs data fetched for: ${allDomains.join(', ')}`);
-    } else {
-      console.log('No Ahrefs data (key missing or all calls failed); generating report from onboarding answers only');
+      delivered = true;
+
+      // Mark processed only after successful delivery. Persist + Bill copy are
+      // non-fatal from here.
+      await markProcessed(idemKey);
+      if (onboarding?.recordId) await saveLastReport(onboarding.recordId, gen.html, session.id).catch(e => console.error('saveLastReport failed:', e));
+      await sendEmail(
+        BILL_EMAIL,
+        `CMO report delivered: ${email}`,
+        `<p style="font-family:sans-serif;color:#555;">Delivered to <strong>${email}</strong> for session <code>${session.id}</code> on attempt ${attempt}.</p><p style="font-family:sans-serif;color:#555;">Ahrefs domains: ${allDomains.join(', ') || 'none'}</p><hr/>${gen.html}`,
+        email,
+      ).catch(() => {});
+      console.log(`CMO report delivered to ${email} on attempt ${attempt}`);
+    } catch (err) {
+      lastErr = err;
+      console.error(`Report attempt ${attempt} failed for ${email}:`, err);
+      const backoffMs = Number(process.env.CMO_RETRY_BACKOFF_MS ?? 1500);
+      if (attempt < 3) await sleep(attempt * backoffMs);
     }
+  }
 
-    const reportBody = await generateReport(email, notes, ahrefsBlock);
-
-    // Persist the report so a reply to it can be answered with real context
-    if (onboarding?.recordId) {
-      await saveLastReport(onboarding.recordId, reportBody);
-    }
-
-    // Schedule delivery 15 minutes out so the report doesn't arrive instantly
-    const deliverAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
-
-    await sendEmail(
-      email,
-      'Your AI CMO Starter Report is ready',
-      reportEmailHtml(reportBody, email),
-      REPLY_TO_ADDRESS,
-      deliverAt,
-    );
-
-    // Bill gets a copy with full context
+  if (!delivered) {
+    // Never silence the customer: graceful holding note + dead-letter to Bill +
+    // Airtable marker so the paid order is not lost.
+    await sendEmail(email, 'Your AI CMO report is on its way', holdingEmailHtml(email), REPLY_TO_ADDRESS).catch(() => {});
     await sendEmail(
       BILL_EMAIL,
-      `CMO report delivered: ${email}`,
-      `<p style="font-family:sans-serif;color:#555;">Delivered to <strong>${email}</strong> for session <code>${session.id}</code>.</p><p style="font-family:sans-serif;color:#555;">Ahrefs domains: ${allDomains.join(', ') || 'none'}</p><hr/>${reportBody}`,
-      email,
-    );
-
-    console.log(`CMO report delivered to ${email}`);
-  } catch (err) {
-    console.error('Report error:', err);
-    // Always return 200 so Stripe does not retry; alert Bill manually
-    await sendEmail(
-      BILL_EMAIL,
-      `ACTION NEEDED: CMO report failed for ${email}`,
-      `<p style="font-family:sans-serif;">Report generation or delivery failed for <strong>${email}</strong> (session <code>${session.id}</code>). Please generate and send manually.</p><pre>${String(err)}</pre>`,
+      `ACTION NEEDED: CMO report failed after retries for ${email}`,
+      `<p style="font-family:sans-serif;">Report generation/delivery failed 3x for <strong>${email}</strong> (session <code>${session.id}</code>). The customer received a holding note; please generate and send manually.</p><pre>${String(lastErr)}</pre>`,
     ).catch(() => {});
+    if (onboarding?.recordId) await markReportFailed(onboarding.recordId, session.id).catch(() => {});
   }
 
   return res.status(200).json({ received: true });
