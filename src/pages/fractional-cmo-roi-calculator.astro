@@ -118,16 +118,16 @@ export const prerender = true;
         <label for="company-stage">Company stage / revenue</label>
         <span class="helper">Affects the realistic comp range and ROI expectations</span>
         <select id="company-stage">
-          <option value="seed">Pre-PMF / Seed ($0–$2M)</option>
-          <option value="early" selected>Early growth ($2M–$10M)</option>
-          <option value="growth">Growth stage ($10M–$30M)</option>
-          <option value="scale">Scaling ($30M–$75M)</option>
+          <option value="seed">Pre-PMF / Seed ($0-$2M)</option>
+          <option value="early" selected>Early growth ($2M-$10M)</option>
+          <option value="growth">Growth stage ($10M-$30M)</option>
+          <option value="scale">Scaling ($30M-$75M)</option>
         </select>
       </div>
 
       <div class="field">
         <label for="ceo-hours">CEO hours per week currently on marketing decisions</label>
-        <span class="helper">Marketing strategy, campaign approvals, agency oversight, content review — anything marketing-related</span>
+        <span class="helper">Marketing strategy, campaign approvals, agency oversight, content review, anything marketing-related</span>
         <div class="slider-row">
           <input type="range" id="ceo-hours" min="0" max="30" value="12" />
           <span class="slider-val" id="ceo-hours-val">12 hrs</span>
@@ -136,7 +136,7 @@ export const prerender = true;
 
       <div class="field">
         <label for="ceo-cost">CEO loaded hourly cost ($)</label>
-        <span class="helper">Founder salary + dilution + opportunity cost — typical founders: $250–$500/hr</span>
+        <span class="helper">Founder salary + dilution + opportunity cost, typical founders: $250-$500/hr</span>
         <div class="slider-row">
           <input type="range" id="ceo-cost" min="150" max="800" step="25" value="350" />
           <span class="slider-val" id="ceo-cost-val">$350/hr</span>
@@ -145,7 +145,7 @@ export const prerender = true;
 
       <div class="field">
         <label for="fractional-hours">Fractional CMO hours per month (preferred)</label>
-        <span class="helper">Typical: 20–40 hours/month. Lower for advisory, higher for embedded operator.</span>
+        <span class="helper">Typical: 20-40 hours/month. Lower for advisory, higher for embedded operator.</span>
         <div class="slider-row">
           <input type="range" id="fractional-hours" min="10" max="40" value="25" />
           <span class="slider-val" id="fractional-hours-val">25 hrs</span>
@@ -157,12 +157,12 @@ export const prerender = true;
     <div class="compare-grid">
 
       <div class="opt-card" id="card-fractional">
-        <div class="opt-tag" id="fractional-tag">—</div>
+        <div class="opt-tag" id="fractional-tag">,</div>
         <div class="opt-name">Fractional CMO</div>
         <div class="opt-cost" id="frac-cost">$120K</div>
         <div class="opt-cost-label">Year-one all-in</div>
         <div class="opt-row"><span>Monthly fee</span><span id="frac-monthly">$10K</span></div>
-        <div class="opt-row"><span>Setup &amp; onboarding</span><span>—</span></div>
+        <div class="opt-row"><span>Setup &amp; onboarding</span><span>,</span></div>
         <div class="opt-row"><span>Equity dilution</span><span>None</span></div>
         <div class="opt-row"><span>Recruiter fee</span><span>None</span></div>
         <div class="opt-row"><span>Notice period</span><span>30 days</span></div>
@@ -170,20 +170,20 @@ export const prerender = true;
       </div>
 
       <div class="opt-card" id="card-fulltime">
-        <div class="opt-tag" id="ft-tag">—</div>
+        <div class="opt-tag" id="ft-tag">,</div>
         <div class="opt-name">Full-time CMO</div>
         <div class="opt-cost" id="ft-cost">$520K</div>
         <div class="opt-cost-label">Year-one all-in</div>
         <div class="opt-row"><span>Base + variable</span><span id="ft-base">$375K</span></div>
         <div class="opt-row"><span>Benefits</span><span>$45K</span></div>
-        <div class="opt-row"><span>Equity (1–2% est. value)</span><span id="ft-equity">$50K+</span></div>
+        <div class="opt-row"><span>Equity (1-2% est. value)</span><span id="ft-equity">$50K+</span></div>
         <div class="opt-row"><span>Recruiter fee</span><span>$75K</span></div>
-        <div class="opt-row"><span>Notice period</span><span>3–9 mo</span></div>
+        <div class="opt-row"><span>Notice period</span><span>3-9 mo</span></div>
         <div class="opt-row"><span>Hours/month</span><span>~160 hrs</span></div>
       </div>
 
       <div class="opt-card" id="card-diy">
-        <div class="opt-tag" id="diy-tag">—</div>
+        <div class="opt-tag" id="diy-tag">,</div>
         <div class="opt-name">CEO-led (DIY)</div>
         <div class="opt-cost" id="diy-cost">$218K</div>
         <div class="opt-cost-label">CEO opportunity cost</div>
@@ -198,7 +198,7 @@ export const prerender = true;
 
     <div class="verdict">
       <h3 id="verdict-h">Recommended for your stage: Fractional CMO</h3>
-      <p id="verdict-p">For early growth companies ($2M–$10M), the fractional model captures the senior strategic value of a CMO without the dilution, recruiter risk, or 9-month onboarding ramp. Switch to full-time when you cross $25M–$30M and the function genuinely requires 40+ hours/week of leadership.</p>
+      <p id="verdict-p">For early growth companies ($2M-$10M), the fractional model captures the senior strategic value of a CMO without the dilution, recruiter risk, or 9-month onboarding ramp. Switch to full-time when you cross $25M-$30M and the function genuinely requires 40+ hours/week of leadership.</p>
     </div>
   </div>
 </section>
@@ -208,7 +208,7 @@ export const prerender = true;
     <span class="lbl">How the math works</span>
     <h2 class="h2">What's behind the calculation</h2>
     <p class="body"><strong style="color:#F0FFF0;">Fractional cost</strong> = monthly fee × 12. The default monthly fee scales with the requested hours/month (using $400/hr blended rate as a benchmark).</p>
-    <p class="body"><strong style="color:#F0FFF0;">Full-time cost</strong> includes base + variable + benefits + equity-value + recruiter fee, scaled to your stage. Equity value is estimated at the midpoint of typical CMO grants (1–2% of company value at next round).</p>
+    <p class="body"><strong style="color:#F0FFF0;">Full-time cost</strong> includes base + variable + benefits + equity-value + recruiter fee, scaled to your stage. Equity value is estimated at the midpoint of typical CMO grants (1-2% of company value at next round).</p>
     <p class="body"><strong style="color:#F0FFF0;">DIY (CEO-led) cost</strong> = (CEO hrs/week × 52) × CEO hourly cost. This is the <em>opportunity cost</em> of CEO time spent on marketing rather than on CEO-level work. Most CEOs significantly underestimate this number.</p>
     <p class="body">For the deeper analysis of when each fits, see <a href="/fractional-cmo-vs-full-time-cmo" style="color:#00C853;text-decoration:none;">fractional CMO vs. full-time CMO</a> and <a href="/signs-you-need-a-fractional-cmo" style="color:#00C853;text-decoration:none;">signs you need a fractional CMO</a>.</p>
   </div>
@@ -233,7 +233,7 @@ export const prerender = true;
     <div class="cta-box">
       <div>
         <div class="cta-text">Considering a fractional engagement?</div>
-        <div class="cta-sub">Take the 3-minute Gap Assessment first — it tells you whether fractional CMO is actually the right fix for your specific gaps.</div>
+        <div class="cta-sub">Take the 3-minute Gap Assessment first, it tells you whether fractional CMO is actually the right fix for your specific gaps.</div>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;">
         <a href="/quiz" class="btn-p">Take the Gap Assessment →</a>

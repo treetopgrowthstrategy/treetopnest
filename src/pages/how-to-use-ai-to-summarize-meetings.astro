@@ -27,7 +27,7 @@ export const prerender = true;
   "@graph": [
     {"@type": "HowTo", "name": "How to Use AI to Summarize Meetings (And Actually Make Them Useful)", "url": "https://treetopgrowthstrategy.com/how-to-use-ai-to-summarize-meetings", "step": [{"@type": "HowToStep", "name": "Capture the transcript", "text": "Record the meeting with auto-transcription enabled."},{"@type": "HowToStep", "name": "Build a meeting summary Project", "text": "Create a Claude Project with your meeting summary template."},{"@type": "HowToStep", "name": "Run the summary prompt", "text": "Paste the transcript and ask for the structured summary."},{"@type": "HowToStep", "name": "Review and ship", "text": "Spend 3 minutes verifying, then distribute."},{"@type": "HowToStep", "name": "Close the loop", "text": "Track action items to completion."}]},
     {"@type": "Article", "headline": "How to Use AI to Summarize Meetings (And Actually Make Them Useful)", "url": "https://treetopgrowthstrategy.com/how-to-use-ai-to-summarize-meetings", "author": {"@type": "Person", "name": "Bill Colbert", "url": "https://treetopgrowthstrategy.com/about"}, "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}, "datePublished": "2026-05-20", "image": "https://treetopgrowthstrategy.com/og-default.png"},
-    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which AI tool is best for meeting summaries?", "acceptedAnswer": {"@type": "Answer", "text": "Claude is best for the synthesis pass (turning transcript into structured summary). Granola, Otter, or Fireflies are best for the capture pass (recording + transcribing). The pattern is: capture in your transcription tool, then summarize in Claude with your template."}},{"@type": "Question", "name": "How long should an AI meeting summary be?", "acceptedAnswer": {"@type": "Answer", "text": "For most 30–60 minute meetings, 400–800 words. Long enough to capture decisions and actions, short enough that people actually read it."}},{"@type": "Question", "name": "Can I use ChatGPT instead of Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but with two caveats: (1) Use Custom GPTs to persist your template — equivalent to Claude Projects. (2) ChatGPT tends to be more verbose; budget more editing time."}},{"@type": "Question", "name": "What about confidential discussions?", "acceptedAnswer": {"@type": "Answer", "text": "Either don't use external AI, or use Claude Enterprise / API with zero-retention configured. Set a written policy."}}]},
+    {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which AI tool is best for meeting summaries?", "acceptedAnswer": {"@type": "Answer", "text": "Claude is best for the synthesis pass (turning transcript into structured summary). Granola, Otter, or Fireflies are best for the capture pass (recording + transcribing). The pattern is: capture in your transcription tool, then summarize in Claude with your template."}},{"@type": "Question", "name": "How long should an AI meeting summary be?", "acceptedAnswer": {"@type": "Answer", "text": "For most 30-60 minute meetings, 400-800 words. Long enough to capture decisions and actions, short enough that people actually read it."}},{"@type": "Question", "name": "Can I use ChatGPT instead of Claude?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but with two caveats: (1) Use Custom GPTs to persist your template, equivalent to Claude Projects. (2) ChatGPT tends to be more verbose; budget more editing time."}},{"@type": "Question", "name": "What about confidential discussions?", "acceptedAnswer": {"@type": "Answer", "text": "Either don't use external AI, or use Claude Enterprise / API with zero-retention configured. Set a written policy."}}]},
     {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
   ]
 }
@@ -94,7 +94,7 @@ export const prerender = true;
   <div class="hero-inner">
     <div class="badge"><span class="badge-dot"></span>Task guide</div>
     <h1 class="hero-h">How to use AI to <em style="color:#00C853;font-style:italic;">summarize meetings.</em></h1>
-    <p class="hero-sub">Most "AI meeting notes" are 4,000-word transcripts that nobody reads. The useful pattern is different: a structured summary that captures decisions, action items, open questions, and tone — in a format that becomes the canonical record of what happened. Here's exactly how to set it up.</p>
+    <p class="hero-sub">Most "AI meeting notes" are 4,000-word transcripts that nobody reads. The useful pattern is different: a structured summary that captures decisions, action items, open questions, and tone, in a format that becomes the canonical record of what happened. Here's exactly how to set it up.</p>
   </div>
 </div>
 
@@ -104,44 +104,44 @@ export const prerender = true;
     <h2 class="h2">Step-by-step process</h2>
 
     <div class="step">
-      <div class="step-num">— Step 01 —</div>
+      <div class="step-num">, Step 01,</div>
       <h3>Capture the transcript</h3>
-      <p>Use whatever transcription source you already have — Gong, Chorus, Otter, Fireflies, Granola, native Zoom/Google Meet transcripts. The specific tool matters less than the discipline of always having a transcript available.</p>
+      <p>Use whatever transcription source you already have, Gong, Chorus, Otter, Fireflies, Granola, native Zoom/Google Meet transcripts. The specific tool matters less than the discipline of always having a transcript available.</p>
       <p>For internal meetings where no transcription tool is running, just record audio on your phone or use a quick browser-based transcriber. The transcript is the input. Everything else is downstream of having it.</p>
       
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 02 —</div>
+      <div class="step-num">, Step 02,</div>
       <h3>Build a meeting summary Project</h3>
       <p>One-time setup. Create a dedicated Claude Project ("Meeting Summaries") and load:</p>
-      <p>— Your standard meeting summary template (sections: Context, Decisions Made, Action Items, Open Questions, Tone &amp; Risk Signals)<br/>— 3–5 examples of summaries that worked well<br/>— Your team's terminology guide (project names, internal acronyms)</p>
+      <p>, Your standard meeting summary template (sections: Context, Decisions Made, Action Items, Open Questions, Tone &amp; Risk Signals)<br/>, 3-5 examples of summaries that worked well<br/>, Your team's terminology guide (project names, internal acronyms)</p>
       <p>System prompt should instruct Claude to: prioritize decisions over discussion, attribute action items to specific people, flag anything that sounded like disagreement or ambiguity, and never invent attendees or details.</p>
       
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 03 —</div>
+      <div class="step-num">, Step 03,</div>
       <h3>Run the summary prompt</h3>
       <p>A useful prompt template:</p>
       <p><pre>Summarize the attached transcript using our standard structure. Focus on decisions and action items. Attribute each action to a person with an owner and a target date (use [TBD] if no date discussed). Flag any disagreement or ambiguity. Maximum 600 words.</pre></p>
-      <p>For a 60-minute meeting, this produces a 400–600 word structured summary in about 15 seconds.</p>
+      <p>For a 60-minute meeting, this produces a 400-600 word structured summary in about 15 seconds.</p>
       
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 04 —</div>
+      <div class="step-num">, Step 04,</div>
       <h3>Review and ship</h3>
       <p>Read once. Verify the decisions section matches what you actually agreed. Check action items have the right owners. Edit anything that sounds wrong.</p>
-      <p>Then ship to a known location — Slack channel, Notion page, dedicated email. Same place every time. The discipline of consistent distribution is what makes meeting summaries actually become referenceable artifacts.</p>
+      <p>Then ship to a known location, Slack channel, Notion page, dedicated email. Same place every time. The discipline of consistent distribution is what makes meeting summaries actually become referenceable artifacts.</p>
       
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 05 —</div>
+      <div class="step-num">, Step 05,</div>
       <h3>Close the loop</h3>
       <p>The single most-skipped step. Each action item from the summary needs to end up somewhere it gets reviewed. Could be Asana, Linear, a Notion database, or just a recurring Slack reminder.</p>
-      <p>Without this step, summaries become writing exercises. With it, they become operational artifacts that compound — the team starts to trust that decisions get tracked, which changes how people engage in meetings.</p>
+      <p>Without this step, summaries become writing exercises. With it, they become operational artifacts that compound, the team starts to trust that decisions get tracked, which changes how people engage in meetings.</p>
       
     </div>
 
@@ -156,7 +156,7 @@ export const prerender = true;
     <div class="pitfall"><p><strong>1. Pasting raw transcript without structure.</strong> You get a generic narrative summary. Always include the structured template in the prompt.</p></div>
     <div class="pitfall"><p><strong>2. Skipping attribution.</strong> An action item without an owner is just a wish. Force Claude to attribute every action to a specific person.</p></div>
     <div class="pitfall"><p><strong>3. Not building a Project.</strong> A one-off chat works for one meeting. By meeting #10, you're re-pasting your template every time. Put it in a Project.</p></div>
-    <div class="pitfall"><p><strong>4. Using AI on confidential meetings without policy.</strong> Some meetings — legal, M&amp;A, HR — should not go through external AI. Have a written policy on what types of meetings get AI-summarized.</p></div>
+    <div class="pitfall"><p><strong>4. Using AI on confidential meetings without policy.</strong> Some meetings, legal, M&amp;A, HR, should not go through external AI. Have a written policy on what types of meetings get AI-summarized.</p></div>
   </div>
 </section>
 
@@ -171,11 +171,11 @@ export const prerender = true;
     </div>
     <div class="faq">
       <h3>How long should an AI meeting summary be?</h3>
-      <p>For most 30–60 minute meetings, 400–800 words. Long enough to capture decisions and actions, short enough that people actually read it.</p>
+      <p>For most 30-60 minute meetings, 400-800 words. Long enough to capture decisions and actions, short enough that people actually read it.</p>
     </div>
     <div class="faq">
       <h3>Can I use ChatGPT instead of Claude?</h3>
-      <p>Yes, but with two caveats: (1) Use Custom GPTs to persist your template — equivalent to Claude Projects. (2) ChatGPT tends to be more verbose; budget more editing time.</p>
+      <p>Yes, but with two caveats: (1) Use Custom GPTs to persist your template, equivalent to Claude Projects. (2) ChatGPT tends to be more verbose; budget more editing time.</p>
     </div>
     <div class="faq">
       <h3>What about confidential discussions?</h3>

@@ -68,7 +68,7 @@ import GlobalFooter from '../../components/GlobalFooter.astro';
     .prose h3 { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin-top: 1.75rem; margin-bottom: 0.75rem; }
     .prose ul { list-style: none; margin-bottom: 1.4rem; }
     .prose ul li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
-    .prose ul li::before { content: '—'; position: absolute; left: 0; color: rgba(0,200,83,0.5); }
+    .prose ul li::before { content: ','; position: absolute; left: 0; color: rgba(0,200,83,0.5); }
     .prose ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
     .prose ol li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.75; margin-bottom: 0.5rem; }
     .prose strong { color: #F0FFF0; font-weight: 500; }
@@ -137,10 +137,10 @@ import GlobalFooter from '../../components/GlobalFooter.astro';
     <div class="prose">
 
       <p>
-        The quality of what you get from Claude is almost entirely determined by the quality of what you put in. This is less about magic words and more about clear communication — being specific about what you want, providing the context Claude needs, and structuring the request in a way that sets up a good output.
+        The quality of what you get from Claude is almost entirely determined by the quality of what you put in. This is less about magic words and more about clear communication, being specific about what you want, providing the context Claude needs, and structuring the request in a way that sets up a good output.
       </p>
       <p>
-        Most people use Claude the way they use a search engine: short, vague queries that produce generic results. The gap between that and a well-crafted business prompt is enormous — and closing it doesn't take advanced technical skill. It takes understanding a few core principles and then building a library of prompts that work for your specific business.
+        Most people use Claude the way they use a search engine: short, vague queries that produce generic results. The gap between that and a well-crafted business prompt is enormous, and closing it doesn't take advanced technical skill. It takes understanding a few core principles and then building a library of prompts that work for your specific business.
       </p>
 
       <h2 id="anatomy">The anatomy of a good business prompt</h2>
@@ -152,7 +152,7 @@ import GlobalFooter from '../../components/GlobalFooter.astro';
         <li><strong>Task:</strong> What specifically are you asking for? The more precise, the better. Not "write an email" but "write a follow-up email to a prospect who attended our webinar but hasn't responded to the initial outreach."</li>
         <li><strong>Audience:</strong> Who is the output for? Claude adjusts tone and complexity when it knows this.</li>
         <li><strong>Constraints:</strong> Format, length, tone, things to avoid. "Keep it under 200 words. No bullet points. Don't mention pricing yet."</li>
-        <li><strong>Raw material:</strong> Any information Claude needs to do the job well — the meeting notes, the data, the previous email thread, the brief.</li>
+        <li><strong>Raw material:</strong> Any information Claude needs to do the job well, the meeting notes, the data, the previous email thread, the brief.</li>
       </ul>
       <p>
         Run any prompt that isn't working through this checklist. You'll almost always find which element is missing.
@@ -160,14 +160,14 @@ import GlobalFooter from '../../components/GlobalFooter.astro';
 
       <h2 id="system-vs-user">System prompts vs user prompts: what's the difference</h2>
       <p>
-        If you're using Claude Projects (and if you're using Claude for business, you should be — read the <a href="/resources/how-to-set-up-claude-projects" style="color:#00C853;">Project setup guide</a> first), you'll encounter two types of prompts: system prompts and user prompts.
+        If you're using Claude Projects (and if you're using Claude for business, you should be, read the <a href="/resources/how-to-set-up-claude-projects" style="color:#00C853;">Project setup guide</a> first), you'll encounter two types of prompts: system prompts and user prompts.
       </p>
       <h3>System prompt</h3>
       <p>
         The system prompt is set once in your Project configuration. It's always-on background context. It establishes who Claude is in the context of your business, what it knows about you, how it should behave, and what rules apply to every conversation. You write it once; it shapes every interaction.
       </p>
       <p>
-        Think of it as onboarding a new team member: everything they need to know about the company, the voice, the rules, and the typical work — written down before their first day.
+        Think of it as onboarding a new team member: everything they need to know about the company, the voice, the rules, and the typical work, written down before their first day.
       </p>
       <h3>User prompt</h3>
       <p>
@@ -183,7 +183,7 @@ import GlobalFooter from '../../components/GlobalFooter.astro';
 
       <h2 id="claude-projects">Setting up Claude Projects for prompt consistency</h2>
       <p>
-        The single highest-leverage action most businesses can take is building a Claude Project with a strong system prompt and relevant knowledge base. Every prompt you write after that is building on a foundation of context that Claude already has — which means shorter prompts, more consistent output, and results that sound like your company rather than a generic AI.
+        The single highest-leverage action most businesses can take is building a Claude Project with a strong system prompt and relevant knowledge base. Every prompt you write after that is building on a foundation of context that Claude already has, which means shorter prompts, more consistent output, and results that sound like your company rather than a generic AI.
       </p>
       <p>
         The architecture looks like this:
@@ -216,7 +216,7 @@ What they need: <span class="ph">[brief description of the engagement]</span>
 Services: <span class="ph">[which of our services apply]</span>
 Budget discussed: <span class="ph">[range, or "not yet discussed"]</span>
 Key priority they mentioned: <span class="ph">[specific concern or goal]</span>
-Length: 2–3 pages, professional tone</div>
+Length: 2-3 pages, professional tone</div>
       </div>
 
       <div class="template-block">
@@ -230,7 +230,7 @@ Match our voice. Under 150 words unless the situation requires more.
 Customer email:
 <span class="ph">[paste email]</span>
 
-Situation: <span class="ph">[what's actually happening — 2–3 sentences]</span>
+Situation: <span class="ph">[what's actually happening, 2-3 sentences]</span>
 Desired outcome: <span class="ph">[what you want to happen next]</span></div>
       </div>
 
@@ -247,7 +247,7 @@ Notes:
 <span class="ph">[paste raw notes or transcript]</span>
 
 Output:
-1. Summary (3–5 bullets, key decisions)
+1. Summary (3-5 bullets, key decisions)
 2. Action items (owner, task, due date)
 3. Open questions
 4. Follow-up email draft to <span class="ph">[recipient]</span></div>
@@ -291,7 +291,7 @@ Do not use buzzwords. No fake urgency. Under 100 words.
 
 Prospect: <span class="ph">[name, title, company]</span>
 Their situation: <span class="ph">[what you know about their business/challenge]</span>
-Reason we're reaching out: <span class="ph">[specific hook — not generic]</span>
+Reason we're reaching out: <span class="ph">[specific hook, not generic]</span>
 One ask: <span class="ph">[15-min call / reply / specific action]</span></div>
       </div>
 
@@ -307,8 +307,8 @@ Client: <span class="ph">[name or anonymized descriptor]</span>
 Challenge: <span class="ph">[what they were dealing with before]</span>
 What we did: <span class="ph">[specific work/services]</span>
 Results: <span class="ph">[numbers, outcomes, timeline]</span>
-Quote available: <span class="ph">[yes/no — if yes, paste it]</span>
-Length: 400–600 words</div>
+Quote available: <span class="ph">[yes/no, if yes, paste it]</span>
+Length: 400-600 words</div>
       </div>
 
       <div class="template-block">
@@ -320,7 +320,7 @@ Length: 400–600 words</div>
 Tone: clear and direct, no corporate fluff. We want people who read it to self-select.
 
 Role: <span class="ph">[title]</span>
-What they'll own: <span class="ph">[2–4 main responsibilities]</span>
+What they'll own: <span class="ph">[2-4 main responsibilities]</span>
 What good looks like: <span class="ph">[specific outcomes in the first 90 days]</span>
 Must-haves: <span class="ph">[non-negotiables]</span>
 Nice-to-haves: <span class="ph">[preferred but not required]</span>
@@ -362,7 +362,7 @@ Edge cases: <span class="ph">[anything that can go wrong or varies]</span></div>
 
       <h2 id="common-mistakes">What makes a prompt fail</h2>
       <p>
-        The most common failure modes — and what to do instead:
+        The most common failure modes, and what to do instead:
       </p>
       <ul>
         <li><strong>Too vague on the task:</strong> "Write something about our new service" → "Write a 300-word email announcing our new AI audit service to existing clients who haven't yet purchased it"</li>
@@ -374,10 +374,10 @@ Edge cases: <span class="ph">[anything that can go wrong or varies]</span></div>
 
       <h2 id="building-your-library">Building your prompt library</h2>
       <p>
-        The 10 templates above are a starting point. Your prompt library should eventually contain 20–30 prompts tuned specifically to how your business operates. Every time you write a prompt that produces great output, save it. Every time a team member finds one that works, add it to the shared library.
+        The 10 templates above are a starting point. Your prompt library should eventually contain 20-30 prompts tuned specifically to how your business operates. Every time you write a prompt that produces great output, save it. Every time a team member finds one that works, add it to the shared library.
       </p>
       <p>
-        Store your library somewhere accessible — a Notion page, a Google Doc, or as documents in your Claude Project knowledge base. Treat it as living documentation that gets refined over time, not a one-time deliverable.
+        Store your library somewhere accessible, a Notion page, a Google Doc, or as documents in your Claude Project knowledge base. Treat it as living documentation that gets refined over time, not a one-time deliverable.
       </p>
       <p>
         The businesses doing this right treat their prompt library the same way they'd treat an SOP library: it's documented, it's shared, it's updated when something changes, and it's part of how the team is trained on new hires.
@@ -386,7 +386,7 @@ Edge cases: <span class="ph">[anything that can go wrong or varies]</span></div>
       <div class="article-cta">
         <div class="article-cta-h">Want these built for your specific business?</div>
         <p>
-          A general prompt library is a starting point. A library tuned to your business — your services, your clients, your voice, your workflows — is what actually moves the needle. That's what our implementation service delivers.
+          A general prompt library is a starting point. A library tuned to your business, your services, your clients, your voice, your workflows, is what actually moves the needle. That's what our implementation service delivers.
         </p>
         <div class="cta-btns">
           <a href="/services/implementation" class="btn-p">See Implementation →</a>

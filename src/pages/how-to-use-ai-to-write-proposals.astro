@@ -122,7 +122,7 @@ export const prerender = true;
     <div class="badge"><span class="badge-dot"></span>Task guide · 8 min read</div>
     <h1 class="hero-h">How to use AI to write proposals <em style="color:#00C853;font-style:italic;">that actually win.</em></h1>
     <p class="hero-sub">
-      Most teams use AI for proposal-writing the wrong way: they paste a blank prompt into Claude or ChatGPT and ask it to "write a proposal." The output is generic, the voice is wrong, and the technical details are made up. There's a better pattern — one that turns a 6-hour proposal draft into a 45-minute review. Here's exactly how it works.
+      Most teams use AI for proposal-writing the wrong way: they paste a blank prompt into Claude or ChatGPT and ask it to "write a proposal." The output is generic, the voice is wrong, and the technical details are made up. There's a better pattern, one that turns a 6-hour proposal draft into a 45-minute review. Here's exactly how it works.
     </p>
   </div>
 </div>
@@ -132,7 +132,7 @@ export const prerender = true;
     <span class="lbl">The premise</span>
     <h2 class="h2">Why "write me a proposal" produces garbage</h2>
     <p class="body">A blank-page prompt to Claude lacks three things every good proposal needs: <em>your standard structure</em>, <em>the deal-specific discovery</em>, and <em>your brand voice</em>. Without all three, the AI defaults to a generic template, invents details to fill gaps, and writes in a voice that sounds like a chamber-of-commerce mailer.</p>
-    <p class="body">The fix is to give the AI all three up front — once — in a dedicated Claude Project. Then every proposal you draft uses that scaffolding. Setup takes 30 minutes. Payoff compounds with every proposal you write for the next two years.</p>
+    <p class="body">The fix is to give the AI all three up front, once, in a dedicated Claude Project. Then every proposal you draft uses that scaffolding. Setup takes 30 minutes. Payoff compounds with every proposal you write for the next two years.</p>
   </div>
 </section>
 
@@ -142,9 +142,9 @@ export const prerender = true;
     <h2 class="h2">The exact workflow</h2>
 
     <div class="step">
-      <div class="step-num">— Step 01 —</div>
+      <div class="step-num">, Step 01,</div>
       <h3>Set up the proposal context (one-time, 30 minutes)</h3>
-      <p>Create a dedicated Claude Project titled "Proposals — [Your Company]." Upload three things to the knowledge base:</p>
+      <p>Create a dedicated Claude Project titled "Proposals, [Your Company]." Upload three things to the knowledge base:</p>
       <p>
         <strong style="color:#F0FFF0;">1. Your standard proposal structure.</strong> The actual section headings you use. Executive summary → understanding → approach → scope → pricing → timeline → team → terms. Or whatever your version looks like.<br/>
         <strong style="color:#F0FFF0;">2. Three to five anonymized winning proposals.</strong> The wins, not the misses. The AI learns your voice and structure from examples.<br/>
@@ -155,7 +155,7 @@ export const prerender = true;
 
 When drafting a proposal:
 - Use the standard structure in the knowledge base
-- Match the voice of the example proposals — not generic consulting speak
+- Match the voice of the example proposals, not generic consulting speak
 - Cite specifics from the discovery notes; do not invent details
 - If a detail is missing, write [TK: ask sales team about X] instead of guessing
 - Pricing: always reference our standard rate card in the knowledge base
@@ -163,43 +163,43 @@ When drafting a proposal:
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 02 —</div>
+      <div class="step-num">, Step 02,</div>
       <h3>Capture the deal-specific discovery</h3>
       <p>For each new proposal, gather three inputs:</p>
       <p>
-        — The RFP language, statement of work, or whatever the client sent over<br/>
-        — Your discovery call notes (raw is fine — the AI extracts structure)<br/>
-        — The Gong/Chorus transcript if you have one
+       , The RFP language, statement of work, or whatever the client sent over<br/>
+       , Your discovery call notes (raw is fine, the AI extracts structure)<br/>
+       , The Gong/Chorus transcript if you have one
       </p>
       <p>Paste them all into a new chat inside your Proposal Project. Tell Claude: "Here's the discovery for the [Client Name] proposal. Read it carefully and ask me up to 5 clarifying questions before drafting."</p>
       <div class="callout">
-        <p><strong>The ask-questions-first trick is critical.</strong> Skipping it produces a draft built on AI assumptions. Claude's clarifying questions force you to write down the answers — and those written answers become the actual differentiated content of the proposal.</p>
+        <p><strong>The ask-questions-first trick is critical.</strong> Skipping it produces a draft built on AI assumptions. Claude's clarifying questions force you to write down the answers, and those written answers become the actual differentiated content of the proposal.</p>
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 03 —</div>
+      <div class="step-num">, Step 03,</div>
       <h3>Generate the structured draft</h3>
       <p>Once you've answered the clarifying questions, prompt:</p>
-      <pre>Now draft the proposal using our standard structure. Match the voice and depth of the example proposals in the knowledge base. Flag any section where you're guessing with [TK: ...]. Don't write the pricing yet — that's a separate pass.</pre>
+      <pre>Now draft the proposal using our standard structure. Match the voice and depth of the example proposals in the knowledge base. Flag any section where you're guessing with [TK: ...]. Don't write the pricing yet, that's a separate pass.</pre>
       <p>The output should be roughly 80% of a finished proposal. The 20% gap is what you fill in step 4.</p>
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 04 —</div>
+      <div class="step-num">, Step 04,</div>
       <h3>Edit for voice and accuracy (the actual work)</h3>
       <p>Two passes:</p>
       <p>
-        <strong style="color:#F0FFF0;">Pass 1 — Accuracy.</strong> Read every [TK: ...] and resolve it. Read every claim about your capabilities and verify it. The AI will occasionally claim you've done something you haven't. Find those and fix them. Time required: ~20 minutes.<br/>
-        <strong style="color:#F0FFF0;">Pass 2 — Voice.</strong> Read aloud. Anywhere it sounds like a marketing brochure, rewrite. Anywhere it uses an AI-cliche phrase ("In today's rapidly evolving landscape...", "It's important to note that..."), kill it. Time required: ~15 minutes.
+        <strong style="color:#F0FFF0;">Pass 1, Accuracy.</strong> Read every [TK: ...] and resolve it. Read every claim about your capabilities and verify it. The AI will occasionally claim you've done something you haven't. Find those and fix them. Time required: ~20 minutes.<br/>
+        <strong style="color:#F0FFF0;">Pass 2, Voice.</strong> Read aloud. Anywhere it sounds like a marketing brochure, rewrite. Anywhere it uses an AI-cliche phrase ("In today's rapidly evolving landscape...", "It's important to note that..."), kill it. Time required: ~15 minutes.
       </p>
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 05 —</div>
+      <div class="step-num">, Step 05,</div>
       <h3>Iterate on the close</h3>
       <p>Spend 80% of your remaining time on two sections: the <em>executive summary</em> and the <em>pricing/scope language</em>. These are the only parts of the proposal most readers actually read carefully. The rest is reference material.</p>
-      <p>For the executive summary, ask Claude to draft 3 alternative versions — different angles, different lead-ins. Pick the one that hits hardest on the client's actual stated priorities, and refine.</p>
+      <p>For the executive summary, ask Claude to draft 3 alternative versions, different angles, different lead-ins. Pick the one that hits hardest on the client's actual stated priorities, and refine.</p>
       <p>For pricing language, ensure the value framing precedes the dollar figure. Never let the dollar figure be the first thing on the page.</p>
     </div>
   </div>
@@ -220,7 +220,7 @@ When drafting a proposal:
       <p><strong>3. Letting AI write the executive summary first draft.</strong> AI is excellent at the middle of a proposal (scope, approach, timeline) and mediocre at the open and close. Write those parts yourself or be very intentional about the editing pass.</p>
     </div>
     <div class="pitfall">
-      <p><strong>4. Using ChatGPT instead of Claude Projects.</strong> ChatGPT in a chat window forgets your structure and voice between sessions. Claude Projects remembers — that's the whole point. Use a Project.</p>
+      <p><strong>4. Using ChatGPT instead of Claude Projects.</strong> ChatGPT in a chat window forgets your structure and voice between sessions. Claude Projects remembers, that's the whole point. Use a Project.</p>
     </div>
     <div class="pitfall">
       <p><strong>5. Treating it as a one-and-done.</strong> Your proposal Project should be updated quarterly with new wins and refined voice notes. The system that worked in Q1 will be stale by Q4 if you never feed it new examples.</p>

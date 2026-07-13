@@ -19,7 +19,7 @@ export const prerender = true;
 {"@context":"https://schema.org","@graph":[
   {"@type":"HowTo","name":"How to Use AI to Build Pitch Decks (Founders & Fundraising)","url":"https://treetopgrowthstrategy.com/how-to-use-ai-to-build-pitch-decks","step":[{"@type": "HowToStep", "name": "Build a pitch-deck Project", "text": "Load benchmark decks and your specific company data."},{"@type": "HowToStep", "name": "Outline the narrative arc first", "text": "Claude is good at structure. Use it for the outline before the slides."},{"@type": "HowToStep", "name": "Draft each slide individually", "text": "Slide by slide, not \"draft the whole deck.\""},{"@type": "HowToStep", "name": "Write the narrative yourself", "text": "The narrative connecting slides is your work, not AI's."},{"@type": "HowToStep", "name": "Iterate fast with constraint prompts", "text": "Use specific constraints to compress iteration cycles."}]},
   {"@type":"Article","headline":"How to Use AI to Build Pitch Decks (Founders & Fundraising)","url":"https://treetopgrowthstrategy.com/how-to-use-ai-to-build-pitch-decks","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},
-  {"@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Can Claude write a fundable pitch deck?", "acceptedAnswer": {"@type": "Answer", "text": "Claude can write a structurally sound deck quickly. Whether that deck gets funded depends on the business, the founder, and the narrative — none of which AI can manufacture. Treat AI as a 5x speedup, not a replacement for thinking."}},{"@type": "Question", "name": "Should I use Claude or ChatGPT for pitch decks?", "acceptedAnswer": {"@type": "Answer", "text": "Claude. Specifically Claude Pro or Team with Projects. The Projects feature lets you persist the operational metrics, founder context, and benchmark decks across iterations — which makes iteration cycles dramatically faster."}},{"@type": "Question", "name": "What about confidentiality with sensitive financials?", "acceptedAnswer": {"@type": "Answer", "text": "For competitive financials, use Claude Enterprise or the API with zero-retention settings. Or anonymize numbers (use ratios and growth rates instead of absolute dollars) for the initial draft work."}},{"@type": "Question", "name": "Will investors care if I used AI?", "acceptedAnswer": {"@type": "Answer", "text": "In 2026, no — increasingly, the opposite. A founder who can ship a high-quality deck in 1 day instead of 2 weeks because they're AI-fluent is signaling exactly the operating model investors want to fund."}}]},
+  {"@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Can Claude write a fundable pitch deck?", "acceptedAnswer": {"@type": "Answer", "text": "Claude can write a structurally sound deck quickly. Whether that deck gets funded depends on the business, the founder, and the narrative, none of which AI can manufacture. Treat AI as a 5x speedup, not a replacement for thinking."}},{"@type": "Question", "name": "Should I use Claude or ChatGPT for pitch decks?", "acceptedAnswer": {"@type": "Answer", "text": "Claude. Specifically Claude Pro or Team with Projects. The Projects feature lets you persist the operational metrics, founder context, and benchmark decks across iterations, which makes iteration cycles dramatically faster."}},{"@type": "Question", "name": "What about confidentiality with sensitive financials?", "acceptedAnswer": {"@type": "Answer", "text": "For competitive financials, use Claude Enterprise or the API with zero-retention settings. Or anonymize numbers (use ratios and growth rates instead of absolute dollars) for the initial draft work."}},{"@type": "Question", "name": "Will investors care if I used AI?", "acceptedAnswer": {"@type": "Answer", "text": "In 2026, no, increasingly, the opposite. A founder who can ship a high-quality deck in 1 day instead of 2 weeks because they're AI-fluent is signaling exactly the operating model investors want to fund."}}]},
   {"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}
 ]}
 </script>
@@ -73,14 +73,14 @@ pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Cou
 <div class="hero"><div class="hero-inner">
 <div class="badge"><span class="badge-dot"></span>Task guide</div>
 <h1 class="hero-h">How to use AI to <em style="color:#00C853;font-style:italic;">build pitch decks.</em></h1>
-<p class="hero-sub">Pitch decks are some of the highest-leverage documents a founder will ever write — and some of the most time-expensive. AI can do roughly 60% of the work in 20% of the time. But there's a clear line between what AI is good at (structure, draft, format) and what only the founder can do (narrative, judgment, what to leave out). Here's where the line sits.</p>
+<p class="hero-sub">Pitch decks are some of the highest-leverage documents a founder will ever write, and some of the most time-expensive. AI can do roughly 60% of the work in 20% of the time. But there's a clear line between what AI is good at (structure, draft, format) and what only the founder can do (narrative, judgment, what to leave out). Here's where the line sits.</p>
 </div></div>
 <section><div class="sec-inner"><span class="lbl">The workflow</span><h2 class="h2">Step-by-step process</h2>
-<div class="step"><div class="step-num">— Step 01 —</div><h3>Build a pitch-deck Project</h3><p>Create a Claude Project. Load:</p>
-      <p>— 3–5 anonymized successful decks from companies in your stage and category<br/>— Your business plan / vision doc<br/>— Your most recent investor update (if you have one)<br/>— Your operational metrics (ARR, growth rate, retention, customer count, churn)<br/>— Your founder bios</p>
-      <p>System prompt: "Help draft and refine pitch decks for [STAGE] startups. Match the rigor and structure of the example decks in the knowledge base. Cite specifics from the operational metrics. If a data point is missing, write [TK: founder to provide] — never invent numbers."</p>
+<div class="step"><div class="step-num">, Step 01,</div><h3>Build a pitch-deck Project</h3><p>Create a Claude Project. Load:</p>
+      <p>, 3-5 anonymized successful decks from companies in your stage and category<br/>, Your business plan / vision doc<br/>, Your most recent investor update (if you have one)<br/>, Your operational metrics (ARR, growth rate, retention, customer count, churn)<br/>, Your founder bios</p>
+      <p>System prompt: "Help draft and refine pitch decks for [STAGE] startups. Match the rigor and structure of the example decks in the knowledge base. Cite specifics from the operational metrics. If a data point is missing, write [TK: founder to provide], never invent numbers."</p>
       </div>
-<div class="step"><div class="step-num">— Step 02 —</div><h3>Outline the narrative arc first</h3><p><pre>I'm raising a [SERIES] round of [AMOUNT] for [COMPANY], a [WHAT IT DOES]. Our current state: [PASTE METRICS]. Our thesis on why now: [PASTE].
+<div class="step"><div class="step-num">, Step 02,</div><h3>Outline the narrative arc first</h3><p><pre>I'm raising a [SERIES] round of [AMOUNT] for [COMPANY], a [WHAT IT DOES]. Our current state: [PASTE METRICS]. Our thesis on why now: [PASTE].
 
 Build me a deck outline. 10-12 slides. For each slide:
 - Slide purpose (what this slide is doing in the arc)
@@ -90,18 +90,18 @@ Build me a deck outline. 10-12 slides. For each slide:
 
 The arc should build: problem → market → solution → proof → why us → why now → ask. Don't default to a generic Sequoia-template structure. Tailor to my actual story.</pre></p>
       </div>
-<div class="step"><div class="step-num">— Step 03 —</div><h3>Draft each slide individually</h3><p>Claude generates better content when each slide is its own prompt. Generic "draft the deck" requests produce shallow output across all slides.</p>
-      <p>Per slide: "Draft the [Problem] slide. Match the structure of the example decks. 50 words max in the body. The headline should make a single point — not a clever phrase. Focus on the problem we solve, in our buyer's language."</p>
+<div class="step"><div class="step-num">, Step 03,</div><h3>Draft each slide individually</h3><p>Claude generates better content when each slide is its own prompt. Generic "draft the deck" requests produce shallow output across all slides.</p>
+      <p>Per slide: "Draft the [Problem] slide. Match the structure of the example decks. 50 words max in the body. The headline should make a single point, not a clever phrase. Focus on the problem we solve, in our buyer's language."</p>
       </div>
-<div class="step"><div class="step-num">— Step 04 —</div><h3>Write the narrative yourself</h3><p>The slides are content. The story between them is the actual pitch. That story has to come from you — what made you start this company, what you've learned, what you believe is going to change in the next 5 years. AI can't generate that.</p>
+<div class="step"><div class="step-num">, Step 04,</div><h3>Write the narrative yourself</h3><p>The slides are content. The story between them is the actual pitch. That story has to come from you, what made you start this company, what you've learned, what you believe is going to change in the next 5 years. AI can't generate that.</p>
       <p>Specifically, write yourself: the Why Us slide, the founder Why Now answer, the response to "why hasn't this been built before," and the close. These are voice-and-judgment work.</p>
       </div>
-<div class="step"><div class="step-num">— Step 05 —</div><h3>Iterate fast with constraint prompts</h3><p><pre>Rewrite this slide so:
+<div class="step"><div class="step-num">, Step 05,</div><h3>Iterate fast with constraint prompts</h3><p><pre>Rewrite this slide so:
 - Headline is 8 words or less
 - Body is 30 words or less
 - One specific number must appear
 - Avoid: "leverage," "synergy," "best-in-class," "first-of-its-kind"</pre></p>
-      <p>These constraint passes are where AI really earns its keep — running through 8 iterations of a slide in 5 minutes instead of 30 minutes per pass manually.</p>
+      <p>These constraint passes are where AI really earns its keep, running through 8 iterations of a slide in 5 minutes instead of 30 minutes per pass manually.</p>
       </div>
 
 </div></section>
@@ -114,10 +114,10 @@ The arc should build: problem → market → solution → proof → why us → w
 
 </div></section>
 <section><div class="sec-inner"><span class="lbl">FAQ</span><h2 class="h2">Frequently asked</h2>
-<div class="faq"><h3>Can Claude write a fundable pitch deck?</h3><p>Claude can write a structurally sound deck quickly. Whether that deck gets funded depends on the business, the founder, and the narrative — none of which AI can manufacture. Treat AI as a 5x speedup, not a replacement for thinking.</p></div>
-<div class="faq"><h3>Should I use Claude or ChatGPT for pitch decks?</h3><p>Claude. Specifically Claude Pro or Team with Projects. The Projects feature lets you persist the operational metrics, founder context, and benchmark decks across iterations — which makes iteration cycles dramatically faster.</p></div>
+<div class="faq"><h3>Can Claude write a fundable pitch deck?</h3><p>Claude can write a structurally sound deck quickly. Whether that deck gets funded depends on the business, the founder, and the narrative, none of which AI can manufacture. Treat AI as a 5x speedup, not a replacement for thinking.</p></div>
+<div class="faq"><h3>Should I use Claude or ChatGPT for pitch decks?</h3><p>Claude. Specifically Claude Pro or Team with Projects. The Projects feature lets you persist the operational metrics, founder context, and benchmark decks across iterations, which makes iteration cycles dramatically faster.</p></div>
 <div class="faq"><h3>What about confidentiality with sensitive financials?</h3><p>For competitive financials, use Claude Enterprise or the API with zero-retention settings. Or anonymize numbers (use ratios and growth rates instead of absolute dollars) for the initial draft work.</p></div>
-<div class="faq"><h3>Will investors care if I used AI?</h3><p>In 2026, no — increasingly, the opposite. A founder who can ship a high-quality deck in 1 day instead of 2 weeks because they're AI-fluent is signaling exactly the operating model investors want to fund.</p></div>
+<div class="faq"><h3>Will investors care if I used AI?</h3><p>In 2026, no, increasingly, the opposite. A founder who can ship a high-quality deck in 1 day instead of 2 weeks because they're AI-fluent is signaling exactly the operating model investors want to fund.</p></div>
 
 </div></section>
 <section><div class="sec-inner"><span class="lbl">Related</span><h2 class="h2">Related guides</h2>
@@ -131,7 +131,7 @@ The arc should build: problem → market → solution → proof → why us → w
 </div></section>
 <section><div class="sec-inner"><div class="cta-box">
 <div><div class="cta-text">Want us to build this for your team?</div>
-<div class="cta-sub">Our Implementation engagement covers task workflows like this — $3,500 fixed price.</div></div>
+<div class="cta-sub">Our Implementation engagement covers task workflows like this, $3,500 fixed price.</div></div>
 <div style="display:flex;gap:1rem;flex-wrap:wrap;">
 <a href="/services/implementation" class="btn-p">See Implementation →</a>
 <a href="/services/ai-audit" class="btn-g">Start with an Audit</a>

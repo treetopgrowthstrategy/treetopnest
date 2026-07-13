@@ -112,7 +112,7 @@ section{padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:
 <input type="text" id="g-company" name="company" placeholder="Company" required />
 <button type="submit" class="btn-p">Email me the PDF →</button>
 </div>
-<div id="gate-success">✓ On its way. Check your inbox in 2–3 minutes.</div>
+<div id="gate-success">✓ On its way. Check your inbox in 2-3 minutes.</div>
 <div id="gate-error">Something went wrong. Email bill@treetopgrowthstrategy.com</div>
 </form>
 </div>
@@ -147,41 +147,41 @@ const QUESTIONS = [
   { q: "What's your annual revenue stage?",
     a: [
       { t: "Pre-revenue or under $1M ARR", k: "stage_early" },
-      { t: "$1M–$5M ARR", k: "stage_early_growth" },
-      { t: "$5M–$30M ARR", k: "stage_growth" },
+      { t: "$1M-$5M ARR", k: "stage_early_growth" },
+      { t: "$5M-$30M ARR", k: "stage_growth" },
       { t: "$30M+ ARR", k: "stage_scale" },
     ]},
   { q: "Do you have a written GTM strategy you'd commit to for 6+ months?",
     a: [
       { t: "Yes, written down and stable", k: "strategy_clear" },
       { t: "Roughly clear but evolving", k: "strategy_evolving" },
-      { t: "Not really — we're still figuring it out", k: "strategy_unclear" },
+      { t: "Not really, we're still figuring it out", k: "strategy_unclear" },
     ]},
   { q: "What's your current marketing team size?",
     a: [
       { t: "Just me / the founder", k: "team_zero" },
-      { t: "1–3 marketers", k: "team_small" },
-      { t: "4–10 marketers", k: "team_mid" },
+      { t: "1-3 marketers", k: "team_small" },
+      { t: "4-10 marketers", k: "team_mid" },
       { t: "10+ marketers", k: "team_large" },
     ]},
-  { q: "How technical is your team — would someone build a DIY Claude setup?",
+  { q: "How technical is your team, would someone build a DIY Claude setup?",
     a: [
-      { t: "Yes — we have someone willing to do 30–50 hours of setup", k: "tech_yes" },
-      { t: "Maybe — we'd need to find them", k: "tech_maybe" },
-      { t: "No — we want polished tooling without building", k: "tech_no" },
+      { t: "Yes, we have someone willing to do 30-50 hours of setup", k: "tech_yes" },
+      { t: "Maybe, we'd need to find them", k: "tech_maybe" },
+      { t: "No, we want polished tooling without building", k: "tech_no" },
     ]},
   { q: "What's the biggest bottleneck right now?",
     a: [
-      { t: "Execution capacity — strategy is clear, we can't produce enough", k: "bottleneck_capacity" },
-      { t: "Strategic direction — we don't know what to do", k: "bottleneck_strategy" },
-      { t: "Accountability — no one owns marketing outcomes", k: "bottleneck_accountability" },
+      { t: "Execution capacity, strategy is clear, we can't produce enough", k: "bottleneck_capacity" },
+      { t: "Strategic direction, we don't know what to do", k: "bottleneck_strategy" },
+      { t: "Accountability, no one owns marketing outcomes", k: "bottleneck_accountability" },
       { t: "All three", k: "bottleneck_all" },
     ]},
   { q: "What's your monthly marketing-leadership budget?",
     a: [
       { t: "Under $1K/month (tooling only)", k: "budget_micro" },
-      { t: "$1K–$10K/month", k: "budget_small" },
-      { t: "$10K–$30K/month", k: "budget_mid" },
+      { t: "$1K-$10K/month", k: "budget_small" },
+      { t: "$10K-$30K/month", k: "budget_mid" },
       { t: "$30K+/month", k: "budget_large" },
     ]},
 ];
@@ -234,32 +234,32 @@ function showResult() {
 
   // Decision logic
   if (has('stage_early') && has('budget_micro')) {
-    rec = "DIY Claude — you're not ready to spend on tooling yet.";
+    rec = "DIY Claude, you're not ready to spend on tooling yet.";
     body = "At your stage and budget, building a simple Claude-based AI CMO setup is the right call. Claude Pro is $20/month, and you can be productive within a week with Claude Projects.";
     detail = "Next steps: subscribe to Claude Pro, set up Projects for Strategy, Content, and Reporting. Don't add complexity until revenue justifies it. Skip fractional CMO until $1M+ ARR.";
     actions = [['/build-your-own-ai-cmo-with-claude', 'See the DIY guide →'], ['/ai-tool-stack-auditor', 'Audit your current stack']];
   }
   else if (has('strategy_unclear') || has('bottleneck_strategy') || has('bottleneck_accountability')) {
-    rec = "Hire a fractional CMO first — AI tooling won't fix this.";
-    body = "Your bottleneck isn't execution capacity — it's strategic direction or accountability. An AI CMO will execute whatever you point it at, which means it'll execute the wrong things faster. Strategy and ownership come first.";
+    rec = "Hire a fractional CMO first, AI tooling won't fix this.";
+    body = "Your bottleneck isn't execution capacity, it's strategic direction or accountability. An AI CMO will execute whatever you point it at, which means it'll execute the wrong things faster. Strategy and ownership come first.";
     detail = "Next steps: book a fractional CMO conversation. Most engagements at $5M-$30M ARR run $10K-$25K/month. AI tooling becomes the execution layer underneath, not the primary investment.";
     actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/services/ai-audit', 'Book the $1,500 AI Audit']];
   }
   else if (has('stage_scale') && has('team_large')) {
     rec = "Full-time CMO + AI tooling distributed across the team.";
-    body = "At your scale, you need permanent in-house leadership and the institutional knowledge that comes with it. The AI layer goes underneath — distributed across your team, with a marketing-ops or Marketing AI Lead owning the configuration.";
+    body = "At your scale, you need permanent in-house leadership and the institutional knowledge that comes with it. The AI layer goes underneath, distributed across your team, with a marketing-ops or Marketing AI Lead owning the configuration.";
     detail = "Next steps: if you don't have a full-time CMO, that's the priority hire. If you do, focus on the operating model redesign: who owns AI tooling configuration across the team, what's centralized vs distributed, how do you measure ROI?";
     actions = [['/cmo-ai-adoption-playbook', "See the CMO's AI adoption playbook →"], ['/services/ai-audit', 'Book the $1,500 AI Audit']];
   }
   else if ((has('stage_growth') || has('stage_early_growth')) && (has('bottleneck_capacity') || has('bottleneck_all'))) {
     if (has('tech_yes')) {
-      rec = "Fractional CMO + DIY Claude AI CMO — the highest-ROI combination.";
+      rec = "Fractional CMO + DIY Claude AI CMO, the highest-ROI combination.";
       body = "You have a strategy, you have someone technical, you have execution bottlenecks. The right move: fractional CMO ($10K-$20K/month) for strategy and accountability + DIY Claude setup (~$100/month) for execution leverage. Combined cost ~$10K-$20K/month vs $40K+/month for full-time.";
-      detail = "Next steps: book a fractional CMO conversation and start the DIY build in parallel. The fractional CMO will help shape what the DIY setup should do. Don't pay for Okara or Lindy yet — your tech-fluent team can build it cheaper.";
+      detail = "Next steps: book a fractional CMO conversation and start the DIY build in parallel. The fractional CMO will help shape what the DIY setup should do. Don't pay for Okara or Lindy yet, your tech-fluent team can build it cheaper.";
       actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/build-your-own-ai-cmo-with-claude', 'See the DIY guide']];
     } else if (has('tech_no')) {
       rec = "Fractional CMO + Okara (or similar dedicated AI CMO product).";
-      body = "You have a strategy and need execution leverage, but no one to build DIY. The right move: fractional CMO ($10K-$20K/month) + dedicated AI CMO product like Okara ($500-$2,000/month). Combined cost ~$11K-$22K/month — well below a full-time CMO.";
+      body = "You have a strategy and need execution leverage, but no one to build DIY. The right move: fractional CMO ($10K-$20K/month) + dedicated AI CMO product like Okara ($500-$2,000/month). Combined cost ~$11K-$22K/month, well below a full-time CMO.";
       detail = "Next steps: book a fractional CMO conversation. Evaluate Okara, Lindy, and 1-2 others against your specific stack. The fractional CMO will help select and integrate.";
       actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/best-ai-cmo-tools-2026', 'See AI CMO tool comparison']];
     } else {
@@ -270,16 +270,16 @@ function showResult() {
     }
   }
   else if (has('team_zero') && has('budget_small')) {
-    rec = "DIY Claude or Lindy — you're the strategy, AI is the execution.";
+    rec = "DIY Claude or Lindy, you're the strategy, AI is the execution.";
     body = "Founder-led with limited budget. Don't pay for a fractional CMO yet (you're being the CMO). Get AI tooling working underneath you. Lindy is a good middle ground if you don't want to build DIY.";
     detail = "Next steps: start with Claude Pro ($20/month) and a few core Skills. If you need more polish without building, evaluate Lindy CMO Agent ($100-$500/month tier).";
     actions = [['/build-your-own-ai-cmo-with-claude', 'See DIY guide →'], ['/lindy-ai-cmo-review', 'See Lindy review']];
   }
   else {
     // Default: middle of the road
-    rec = "Pair an AI CMO with a fractional CMO — the most common right answer.";
+    rec = "Pair an AI CMO with a fractional CMO, the most common right answer.";
     body = "Your situation fits the pattern most B2B mid-market companies are in: clear enough strategy, execution bottlenecks, ready to invest. The right move is pairing strategic leadership (fractional CMO) with execution leverage (AI CMO tooling).";
-    detail = "Next steps: book a fractional CMO conversation. Evaluate which AI CMO category fits — DIY if technically fluent, dedicated product (Okara) if not. Combined monthly cost typically $9K-$22K vs $40K+/month for full-time hire.";
+    detail = "Next steps: book a fractional CMO conversation. Evaluate which AI CMO category fits, DIY if technically fluent, dedicated product (Okara) if not. Combined monthly cost typically $9K-$22K vs $40K+/month for full-time hire.";
     actions = [['/fractional-cmo', 'See fractional CMO services →'], ['/best-ai-cmo-tools-2026', 'See AI CMO tool comparison']];
   }
 

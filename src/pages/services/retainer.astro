@@ -57,7 +57,7 @@ export const prerender = true;
 
       <div style="display:flex;flex-direction:column;gap:0;">
         {[
-          { n: '01', title: 'New Workflow Build', desc: 'Each month we build at least one new Claude workflow for your business — a new use case, a new department, or a new tool integration.' },
+          { n: '01', title: 'New Workflow Build', desc: 'Each month we build at least one new Claude workflow for your business, a new use case, a new department, or a new tool integration.' },
           { n: '02', title: 'Prompt Optimization', desc: 'Existing prompts tuned based on what you\'ve learned using them. Edge cases handled. Output quality improved. Your library gets better every month.' },
           { n: '03', title: 'Monthly Strategy Call', desc: 'A 45-minute call to review what\'s working, what to build next, and how to think about AI as your business evolves.' },
           { n: '04', title: 'Async Support', desc: 'Questions answered via Slack or email, typically same day. Use us as a resource whenever you hit something you can\'t figure out.' },
@@ -107,7 +107,7 @@ export const prerender = true;
       <h2 class="h2" style="font-size:clamp(1.75rem,3vw,2.25rem);margin-bottom:2.5rem;">Let's be direct.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
         {[
-          { title: "Not a coaching program", desc: "We're not teaching you how to use AI — we're using it for you. Every month you get built deliverables, not lessons about building them." },
+          { title: "Not a coaching program", desc: "We're not teaching you how to use AI, we're using it for you. Every month you get built deliverables, not lessons about building them." },
           { title: "Not a software subscription", desc: "You're paying for expert time and custom work, not a SaaS tool. Everything built is yours, documented, and works independently of us." },
           { title: "Not a long-term commitment", desc: "Month-to-month means you can cancel anytime. We'd rather earn your retention every month than lock you into a contract." },
         ].map(({ title, desc }) => (
@@ -151,7 +151,7 @@ export const prerender = true;
           </div>
           <p class="body-text" style="font-size:0.88rem;">For growing teams who want more workflows, faster execution, and deeper strategic involvement.</p>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;flex:1;">
-            <li style="font-size:0.85rem;color:#8FAF8F;display:flex;gap:0.5rem;"><span style="color:#00C853;">✓</span> 2–3 new workflows/month</li>
+            <li style="font-size:0.85rem;color:#8FAF8F;display:flex;gap:0.5rem;"><span style="color:#00C853;">✓</span> 2-3 new workflows/month</li>
             <li style="font-size:0.85rem;color:#8FAF8F;display:flex;gap:0.5rem;"><span style="color:#00C853;">✓</span> Deep prompt optimization</li>
             <li style="font-size:0.85rem;color:#8FAF8F;display:flex;gap:0.5rem;"><span style="color:#00C853;">✓</span> Monthly strategy call (60 min)</li>
             <li style="font-size:0.85rem;color:#8FAF8F;display:flex;gap:0.5rem;"><span style="color:#00C853;">✓</span> Async support (Slack + email)</li>
@@ -202,16 +202,16 @@ export const prerender = true;
         <textarea class="input-field" name="context" rows="4" placeholder="Where are you with Claude right now? (Existing workflows? Just getting started? What do you want to build next?)"></textarea>
         <select class="input-field" name="gain" style="cursor:pointer;">
           <option value="" disabled selected>Which tier interests you?</option>
-          <option value="Core ($1,200/mo)">Core — $1,200/mo</option>
-          <option value="Growth ($2,000/mo)">Growth — $2,000/mo</option>
-          <option value="Not sure yet">Not sure yet — help me figure it out</option>
+          <option value="Core ($1,200/mo)">Core, $1,200/mo</option>
+          <option value="Growth ($2,000/mo)">Growth, $2,000/mo</option>
+          <option value="Not sure yet">Not sure yet, help me figure it out</option>
         </select>
         <div id="form-error" style="display:none;color:#ff6b6b;font-size:0.85rem;"></div>
         <button type="submit" class="btn-p" id="submit-btn" style="align-self:flex-start;">Start the conversation →</button>
       </form>
 
       <div id="form-success" style="display:none;padding:2rem;background:#0A1A0A;border:1px solid rgba(0,200,83,0.4);margin-top:1rem;">
-        <p style="color:#00C853;font-weight:600;margin-bottom:0.5rem;">We got it — thanks!</p>
+        <p style="color:#00C853;font-weight:600;margin-bottom:0.5rem;">We got it, thanks!</p>
         <p class="body-text">We'll reach out within one business day to schedule a quick discovery call.</p>
       </div>
     </div>

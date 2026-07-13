@@ -107,9 +107,9 @@ section{padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:
 <label class="control-label" for="stage">Your stage</label>
 <select id="stage" onchange="recalc()">
 <option value="3">Pre-product-market-fit / under $1M ARR</option>
-<option value="5" selected>Early growth ($1M–$10M ARR)</option>
-<option value="15">Scaling ($10M–$30M ARR)</option>
-<option value="40">Mid-market ($30M–$100M ARR)</option>
+<option value="5" selected>Early growth ($1M-$10M ARR)</option>
+<option value="15">Scaling ($10M-$30M ARR)</option>
+<option value="40">Mid-market ($30M-$100M ARR)</option>
 </select>
 </div>
 <div class="control">
@@ -149,10 +149,10 @@ section{padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:
 <tr><td>Board reporting / exec presence</td><td class="cap-yes">Yes</td><td class="cap-no">No</td><td class="cap-yes">Yes</td></tr>
 <tr><td>Vendor independence</td><td class="cap-yes">Yes</td><td class="cap-no">Conflicted</td><td class="cap-yes">Yes</td></tr>
 <tr><td>Scale of execution arms</td><td class="cap-partial">Brings preferred vendors</td><td class="cap-yes">Built-in team</td><td class="cap-partial">Hires team</td></tr>
-<tr><td>Time to start producing</td><td class="cap-yes">2–4 weeks</td><td class="cap-yes">2–6 weeks</td><td class="cap-no">3–6 months (search + ramp)</td></tr>
+<tr><td>Time to start producing</td><td class="cap-yes">2-4 weeks</td><td class="cap-yes">2-6 weeks</td><td class="cap-no">3-6 months (search + ramp)</td></tr>
 <tr><td>Long-term institutional knowledge</td><td class="cap-partial">During engagement</td><td class="cap-no">Owned by agency</td><td class="cap-yes">Permanent</td></tr>
-<tr><td>Annual loaded cost (typical mid-market)</td><td>$96K–$300K</td><td>$120K–$480K</td><td>$300K–$500K+</td></tr>
-<tr><td>Termination flexibility</td><td class="cap-yes">30-day notice typical</td><td class="cap-yes">30–90 day notice</td><td class="cap-no">Severance + ramp loss</td></tr>
+<tr><td>Annual loaded cost (typical mid-market)</td><td>$96K-$300K</td><td>$120K-$480K</td><td>$300K-$500K+</td></tr>
+<tr><td>Termination flexibility</td><td class="cap-yes">30-day notice typical</td><td class="cap-yes">30-90 day notice</td><td class="cap-no">Severance + ramp loss</td></tr>
 </tbody>
 </table>
 
@@ -162,16 +162,16 @@ section{padding:3.5rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:
 <section><div class="sec-inner">
 <span class="lbl">How to read this</span>
 <h2 class="h2">The pricing assumptions, briefly</h2>
-<p class="body"><strong>Fractional CMO:</strong> $200–$350/hour effective rate. Assumes a senior operator (10+ years CMO/VP), not a part-time generalist. Includes monthly retainer model commonly used in B2B mid-market.</p>
-<p class="body"><strong>Marketing agency:</strong> $175–$300/hour blended. Includes strategist time (small portion) plus execution (most of the hours). Excludes media spend.</p>
-<p class="body"><strong>Full-time CMO:</strong> $250K–$400K base + 25% benefits/payroll burden + ~15% equity dilution amortized. Includes recruiting cost (~25% of first-year base) amortized over expected tenure (3 years).</p>
+<p class="body"><strong>Fractional CMO:</strong> $200-$350/hour effective rate. Assumes a senior operator (10+ years CMO/VP), not a part-time generalist. Includes monthly retainer model commonly used in B2B mid-market.</p>
+<p class="body"><strong>Marketing agency:</strong> $175-$300/hour blended. Includes strategist time (small portion) plus execution (most of the hours). Excludes media spend.</p>
+<p class="body"><strong>Full-time CMO:</strong> $250K-$400K base + 25% benefits/payroll burden + ~15% equity dilution amortized. Includes recruiting cost (~25% of first-year base) amortized over expected tenure (3 years).</p>
 <p class="body">All numbers are 12-month estimates for senior-level marketing leadership in US mid-market B2B. Your actual range will vary by geography, scope, and negotiating leverage.</p>
 </div></section>
 
 <section><div class="sec-inner">
 <span class="lbl">Considering Treetop?</span>
 <h2 class="h2">Fractional CMO engagement details</h2>
-<p class="body">Treetop offers fractional CMO services for B2B mid-market companies ($5M–$50M ARR). Engagements typically run 12–18 months with a defined weekly cadence. <a href="/fractional-cmo" style="color:#00C853;">See the full engagement model →</a></p>
+<p class="body">Treetop offers fractional CMO services for B2B mid-market companies ($5M-$50M ARR). Engagements typically run 12-18 months with a defined weekly cadence. <a href="/fractional-cmo" style="color:#00C853;">See the full engagement model →</a></p>
 <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem">
 <a href="/fractional-cmo" class="btn-p">See the engagement model →</a>
 <a href="/fractional-cmo-vs-marketing-director" class="btn-p" style="background:transparent;color:#F0FFF0;border:1px solid #1A3A1A">Read the detailed comparison →</a>
@@ -302,14 +302,14 @@ function recalc(){
 
   let headline, body;
   if (winner.name === 'Fractional CMO') {
-    headline = `Fractional CMO is your best fit — saves up to ${fmt(savings)}/year vs the next option.`;
-    body = `At your stage and scope, a fractional CMO gives you senior leadership without the full-time burden. You get strategic ownership, hands-on execution, and 2–4 week ramp — at roughly ${Math.round((winner.annual / (others[0]?.annual || winner.annual)) * 100)}% the cost of ${others[0]?.name || 'the alternative'}.`;
+    headline = `Fractional CMO is your best fit, saves up to ${fmt(savings)}/year vs the next option.`;
+    body = `At your stage and scope, a fractional CMO gives you senior leadership without the full-time burden. You get strategic ownership, hands-on execution, and 2-4 week ramp, at roughly ${Math.round((winner.annual / (others[0]?.annual || winner.annual)) * 100)}% the cost of ${others[0]?.name || 'the alternative'}.`;
   } else if (winner.name === 'Marketing Agency') {
-    headline = `Agency is the cheapest viable option here — but you give up strategy ownership.`;
+    headline = `Agency is the cheapest viable option here, but you give up strategy ownership.`;
     body = `For pure campaign execution at lower hours, agencies are cost-effective. But you'll need someone internal to own strategy and outcomes. Many companies start here and graduate to fractional CMO once they need a strategy owner.`;
   } else {
     headline = `Full-time CMO makes sense given your scale and hour needs.`;
-    body = `At 24+ hours/week of senior time, the math starts favoring a full-time hire over fractional. The trade-off: 3–6 month ramp, ~30% higher all-in cost, and significantly less flexibility. Worth it if you're at $30M+ ARR and need permanent institutional knowledge.`;
+    body = `At 24+ hours/week of senior time, the math starts favoring a full-time hire over fractional. The trade-off: 3-6 month ramp, ~30% higher all-in cost, and significantly less flexibility. Worth it if you're at $30M+ ARR and need permanent institutional knowledge.`;
   }
 
   document.getElementById('rec-headline').textContent = headline;

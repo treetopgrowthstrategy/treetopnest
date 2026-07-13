@@ -5,25 +5,25 @@ const QUESTIONS = [
   {
     id: 'locations', context: 'Your Network',
     text: 'How many locations do you currently operate?',
-    hint: 'Include all active locations — owned, managed, or franchised.',
+    hint: 'Include all active locations, owned, managed, or franchised.',
     options: [
       { label: '1 location',       value: '1' },
-      { label: '2–5 locations',    value: '2-5' },
-      { label: '6–15 locations',   value: '6-15' },
-      { label: '16–50 locations',  value: '16-50' },
-      { label: '51–100 locations', value: '51-100' },
+      { label: '2-5 locations',    value: '2-5' },
+      { label: '6-15 locations',   value: '6-15' },
+      { label: '16-50 locations',  value: '16-50' },
+      { label: '51-100 locations', value: '51-100' },
       { label: '100+ locations',   value: '100+' },
     ]
   },
   {
     id: 'equipment', context: 'Your Network',
     text: 'Roughly how many pieces of equipment does your average location run?',
-    hint: 'Count everything — cardio, strength, functional, specialty. Estimate is fine.',
+    hint: 'Count everything, cardio, strength, functional, specialty. Estimate is fine.',
     options: [
       { label: 'Under 30 pieces',  value: 'under-30' },
-      { label: '30–75 pieces',     value: '30-75' },
-      { label: '76–150 pieces',    value: '76-150' },
-      { label: '151–300 pieces',   value: '151-300' },
+      { label: '30-75 pieces',     value: '30-75' },
+      { label: '76-150 pieces',    value: '76-150' },
+      { label: '151-300 pieces',   value: '151-300' },
       { label: '300+ pieces',      value: '300+' },
     ]
   },
@@ -40,12 +40,12 @@ const QUESTIONS = [
   },
   {
     id: 'maintenance', context: 'Current Operations',
-    text: 'How much of your maintenance spend last year was reactive — unplanned repairs after something broke?',
+    text: 'How much of your maintenance spend last year was reactive, unplanned repairs after something broke?',
     hint: 'Industry benchmark: best-in-class operators keep reactive spend under 20%.',
     options: [
-      { label: 'Mostly planned — under 25% reactive',    value: 'planned' },
+      { label: 'Mostly planned, under 25% reactive',    value: 'planned' },
       { label: 'Roughly half and half',                  value: 'mixed' },
-      { label: 'Mostly reactive — over 50% unplanned',   value: 'reactive' },
+      { label: 'Mostly reactive, over 50% unplanned',   value: 'reactive' },
       { label: "We don't track this breakdown",          value: 'unknown' },
     ]
   },
@@ -54,21 +54,21 @@ const QUESTIONS = [
     text: "What's the average age of your primary cardio and strength equipment?",
     hint: 'Older fleets without visibility data carry compounding capex risk.',
     options: [
-      { label: 'Under 3 years — relatively new fleet',           value: 'under-3' },
-      { label: '3–6 years — starting to see more service calls', value: '3-6' },
-      { label: '6–10 years — significant maintenance pressure',  value: '6-10' },
-      { label: '10+ years — major replacement cycle coming',     value: '10+' },
+      { label: 'Under 3 years, relatively new fleet',           value: 'under-3' },
+      { label: '3-6 years, starting to see more service calls', value: '3-6' },
+      { label: '6-10 years, significant maintenance pressure',  value: '6-10' },
+      { label: '10+ years, major replacement cycle coming',     value: '10+' },
     ]
   },
   {
     id: 'recovery', context: 'Equipment Profile',
     text: 'Do you have a dedicated recovery or wellness zone at your locations?',
-    hint: 'Recovery zones are the fastest-growing capex category in fitness — and the least measured.',
+    hint: 'Recovery zones are the fastest-growing capex category in fitness, and the least measured.',
     options: [
       { label: 'No dedicated recovery area',                     value: 'none' },
-      { label: 'Small zone — under 500 sq ft',                  value: 'small' },
-      { label: 'Medium zone — 500–1,500 sq ft',                 value: 'medium' },
-      { label: 'Large or premium recovery area — 1,500+ sq ft', value: 'large' },
+      { label: 'Small zone, under 500 sq ft',                  value: 'small' },
+      { label: 'Medium zone, 500-1,500 sq ft',                 value: 'medium' },
+      { label: 'Large or premium recovery area, 1,500+ sq ft', value: 'large' },
     ]
   },
   {
@@ -76,9 +76,9 @@ const QUESTIONS = [
     text: 'In the last 12 months, how often has equipment downtime visibly impacted member experience?',
     hint: 'Out-of-order equipment, member complaints, or staff scrambling to respond.',
     options: [
-      { label: 'Rarely — equipment is mostly reliable',              value: 'rarely' },
-      { label: 'Occasionally — a few incidents per quarter',         value: 'occasionally' },
-      { label: 'Frequently — members notice and sometimes complain', value: 'frequently' },
+      { label: 'Rarely, equipment is mostly reliable',              value: 'rarely' },
+      { label: 'Occasionally, a few incidents per quarter',         value: 'occasionally' },
+      { label: 'Frequently, members notice and sometimes complain', value: 'frequently' },
       { label: "It's a known pain point we haven't solved",         value: 'known-pain' },
     ]
   },
@@ -87,9 +87,9 @@ const QUESTIONS = [
     text: 'How confident are you in the accuracy of your equipment ROI data right now?',
     hint: 'This is what Ecofit gives you. Most operators feel the gap as soon as they answer this.',
     options: [
-      { label: 'Very confident — we have real-time visibility',         value: 'high' },
-      { label: "Somewhat confident — we track it but it's incomplete", value: 'medium' },
-      { label: 'Not very confident — our data has significant gaps',    value: 'low' },
+      { label: 'Very confident, we have real-time visibility',         value: 'high' },
+      { label: "Somewhat confident, we track it but it's incomplete", value: 'medium' },
+      { label: 'Not very confident, our data has significant gaps',    value: 'low' },
       { label: "We don't have equipment ROI data",                      value: 'none' },
     ]
   },
@@ -441,7 +441,7 @@ const totalQ = QUESTIONS.length;
         every year?
       </h1>
       <p class="ec-intro-sub">
-        Multi-location fitness operators running without real equipment intelligence are absorbing enormous costs invisibly. Eight questions tells you exactly how much is at stake — and where to start closing the gap.
+        Multi-location fitness operators running without real equipment intelligence are absorbing enormous costs invisibly. Eight questions tells you exactly how much is at stake, and where to start closing the gap.
       </p>
       <div class="ec-stats">
         <div class="ec-stat">
@@ -501,7 +501,7 @@ const totalQ = QUESTIONS.length;
     <div class="ec-center">
       <div class="ec-risk-block">
         <div class="ec-risk-lbl">Estimated Annual OpEx at Risk</div>
-        <span class="ec-risk-amt" id="score-display">—</span>
+        <span class="ec-risk-amt" id="score-display">,</span>
         <div class="ec-risk-sub" id="score-sublabel"></div>
       </div>
       <h2 style="font-family:'Raleway',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px;color:#F2F3F8;">Get your full Facility Intelligence Report.</h2>
@@ -531,7 +531,7 @@ const totalQ = QUESTIONS.length;
         </div>
         <p class="ec-form-note">Report arrives within 5 minutes. We don't share your information.</p>
         <button class="ec-btn" id="submit-btn" type="submit">Send My Facility Report →</button>
-        <div id="error-msg">Something went wrong — please try again.</div>
+        <div id="error-msg">Something went wrong, please try again.</div>
       </form>
     </div>
   </div>
@@ -551,11 +551,11 @@ const totalQ = QUESTIONS.length;
       <div class="ec-confirm-stats">
         <div class="ec-confirm-stat">
           <div class="ec-confirm-stat-l">Estimated at risk</div>
-          <div class="ec-confirm-stat-v" id="confirm-risk">—</div>
+          <div class="ec-confirm-stat-v" id="confirm-risk">,</div>
         </div>
         <div class="ec-confirm-stat">
           <div class="ec-confirm-stat-l">Network size</div>
-          <div class="ec-confirm-stat-v" id="confirm-network">—</div>
+          <div class="ec-confirm-stat-v" id="confirm-network">,</div>
         </div>
       </div>
       <p style="font-size:14px;color:#9699A2;line-height:1.8;margin-bottom:26px;max-width:460px;font-weight:300;">If you'd like to see what the intelligence layer looks like for your specific network, an Ecofit analyst is available for a 30-minute no-commitment demo.</p>
@@ -641,15 +641,15 @@ const totalQ = QUESTIONS.length;
   }
 
   function riskLabel(n) {
-    if (n < 100000) return 'Emerging exposure — targeted quick wins available';
-    if (n < 300000) return 'Significant exposure — clear ROI opportunity at this scale';
-    if (n < 750000) return 'High exposure — network-wide intelligence pays for itself fast';
-    return 'Critical exposure — every quarter without visibility compounds the cost';
+    if (n < 100000) return 'Emerging exposure, targeted quick wins available';
+    if (n < 300000) return 'Significant exposure, clear ROI opportunity at this scale';
+    if (n < 750000) return 'High exposure, network-wide intelligence pays for itself fast';
+    return 'Critical exposure, every quarter without visibility compounds the cost';
   }
 
   function networkLabel() {
-    return ({'1':'1 location','2-5':'2–5 locations','6-15':'6–15 locations',
-             '16-50':'16–50 locations','51-100':'51–100 locations','100+':'100+ locations'}
+    return ({'1':'1 location','2-5':'2-5 locations','6-15':'6-15 locations',
+             '16-50':'16-50 locations','51-100':'51-100 locations','100+':'100+ locations'}
             [answers.locations] || 'your network');
   }
 
@@ -657,9 +657,9 @@ const totalQ = QUESTIONS.length;
     const r = computeRisk();
     const lo = fmtM(Math.round(r * 0.75));
     const hi = fmtM(Math.round(r * 1.35));
-    document.getElementById('score-display').textContent  = lo + '–' + hi;
+    document.getElementById('score-display').textContent  = lo + '-' + hi;
     document.getElementById('score-sublabel').textContent = riskLabel(r);
-    window._riskDisplay = lo + '–' + hi;
+    window._riskDisplay = lo + '-' + hi;
     showStep('step-lead');
     updateProgress(totalQ);
   }
@@ -694,7 +694,7 @@ const totalQ = QUESTIONS.length;
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error();
-      document.getElementById('confirm-risk').textContent    = window._riskDisplay || (fmtM(payload.riskLow) + '–' + fmtM(payload.riskHigh));
+      document.getElementById('confirm-risk').textContent    = window._riskDisplay || (fmtM(payload.riskLow) + '-' + fmtM(payload.riskHigh));
       document.getElementById('confirm-network').textContent = networkLabel();
       showStep('step-confirm');
       document.getElementById('progress-bar').style.width = '100%';
