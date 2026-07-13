@@ -14,7 +14,7 @@
 // POST { email, linkedin } -> { success: true, message }
 
 import { generateAndSendFreeReport } from './cmo-free-report';
-import { clientIp, rateLimitSubmission, isDisposableEmail, emailMatchesWebsite, killSwitchOn, alertOps } from './_cmo-guards';
+import { clientIp, rateLimitSubmission, isDisposableEmail, emailMatchesWebsite, killSwitchOn, alertOps } from './cmo-guards';
 
 // Vercel: give this function up to 60s so the background report generation
 // (Ahrefs + OpenAI + Resend) has room to finish after the response is flushed.

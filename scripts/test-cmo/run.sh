@@ -14,7 +14,7 @@ mkdir -p "$DIR/ep"
 
 echo "Bundling handlers..."
 npx esbuild api/cron-cmo-nurture.ts --bundle --platform=node --format=esm --outfile="$DIR/cron.mjs" >/dev/null 2>&1
-npx esbuild api/_cmo-guards.ts --bundle --platform=node --format=esm --outfile="$DIR/guards.mjs" >/dev/null 2>&1
+npx esbuild api/cmo-guards.ts --bundle --platform=node --format=esm --outfile="$DIR/guards.mjs" >/dev/null 2>&1
 npx esbuild api/cmo-payment-webhook.ts --bundle --platform=node --format=esm --outfile="$DIR/webhook.mjs" >/dev/null 2>&1
 for f in cmo-signup cmo-verify cmo-onboard cmo-free-start cmo-free-qualify; do
   npx esbuild "api/$f.ts" --bundle --platform=node --format=esm --outfile="$DIR/ep/$f.mjs" >/dev/null 2>&1
