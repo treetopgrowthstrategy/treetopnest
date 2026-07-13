@@ -33,10 +33,6 @@
       "label": "Boise"
     },
     {
-      "href": "/fractional-cro-boston",
-      "label": "Boston"
-    },
-    {
       "href": "/fractional-cro-buffalo",
       "label": "Buffalo"
     },
@@ -61,24 +57,12 @@
       "label": "Chicago"
     },
     {
-      "href": "/fractional-cro-cincinnati",
-      "label": "Cincinnati"
-    },
-    {
       "href": "/fractional-cro-cleveland",
       "label": "Cleveland"
     },
     {
-      "href": "/fractional-cro-colorado-springs",
-      "label": "Colorado Springs"
-    },
-    {
       "href": "/fractional-cro-columbus",
       "label": "Columbus"
-    },
-    {
-      "href": "/fractional-cro-dallas",
-      "label": "Dallas"
     },
     {
       "href": "/fractional-cro-denver",
@@ -87,10 +71,6 @@
     {
       "href": "/fractional-cro-des-moines",
       "label": "Des Moines"
-    },
-    {
-      "href": "/fractional-cro-detroit",
-      "label": "Detroit"
     },
     {
       "href": "/fractional-cro-durham",
@@ -115,10 +95,6 @@
     {
       "href": "/fractional-cro-greenville-sc",
       "label": "Greenville SC"
-    },
-    {
-      "href": "/fractional-cro-hartford",
-      "label": "Hartford"
     },
     {
       "href": "/fractional-cro-honolulu",
@@ -229,10 +205,6 @@
       "label": "Orlando"
     },
     {
-      "href": "/fractional-cro-philadelphia",
-      "label": "Philadelphia"
-    },
-    {
       "href": "/fractional-cro-phoenix",
       "label": "Phoenix"
     },
@@ -243,10 +215,6 @@
     {
       "href": "/fractional-cro-plano",
       "label": "Plano"
-    },
-    {
-      "href": "/fractional-cro-portland",
-      "label": "Portland"
     },
     {
       "href": "/fractional-cro-providence",
@@ -263,10 +231,6 @@
     {
       "href": "/fractional-cro-richmond",
       "label": "Richmond"
-    },
-    {
-      "href": "/fractional-cro-sacramento",
-      "label": "Sacramento"
     },
     {
       "href": "/fractional-cro-salt-lake-city",
@@ -329,10 +293,6 @@
       "label": "Washington DC"
     },
     {
-      "href": "/fractional-cro-winston-salem",
-      "label": "Winston Salem"
-    },
-    {
       "href": "/fractional-cro-worcester",
       "label": "Worcester"
     }
@@ -349,10 +309,6 @@
     {
       "href": "/fractional-cmo-arlington-tx",
       "label": "Arlington TX"
-    },
-    {
-      "href": "/fractional-cmo-atlanta",
-      "label": "Atlanta"
     },
     {
       "href": "/fractional-cmo-austin",
@@ -381,10 +337,6 @@
     {
       "href": "/fractional-cmo-buffalo",
       "label": "Buffalo"
-    },
-    {
-      "href": "/fractional-cmo-chandler",
-      "label": "Chandler"
     },
     {
       "href": "/fractional-cmo-charleston",
@@ -443,10 +395,6 @@
       "label": "Durham"
     },
     {
-      "href": "/fractional-cmo-eugene",
-      "label": "Eugene"
-    },
-    {
       "href": "/fractional-cmo-fayetteville",
       "label": "Fayetteville"
     },
@@ -495,10 +443,6 @@
       "label": "Houston"
     },
     {
-      "href": "/fractional-cmo-indianapolis",
-      "label": "Indianapolis"
-    },
-    {
       "href": "/fractional-cmo-interview-questions",
       "label": "Interview Questions"
     },
@@ -509,10 +453,6 @@
     {
       "href": "/fractional-cmo-jacksonville",
       "label": "Jacksonville"
-    },
-    {
-      "href": "/fractional-cmo-jersey-city",
-      "label": "Jersey City"
     },
     {
       "href": "/fractional-cmo-kansas-city",
@@ -537,10 +477,6 @@
     {
       "href": "/fractional-cmo-los-angeles",
       "label": "Los Angeles"
-    },
-    {
-      "href": "/fractional-cmo-lubbock",
-      "label": "Lubbock"
     },
     {
       "href": "/fractional-cmo-madison",
@@ -785,10 +721,6 @@
       "label": "Boise"
     },
     {
-      "href": "/fractional-cfo-boston",
-      "label": "Boston"
-    },
-    {
       "href": "/fractional-cfo-buffalo",
       "label": "Buffalo"
     },
@@ -869,10 +801,6 @@
       "label": "Greenville SC"
     },
     {
-      "href": "/fractional-cfo-hartford",
-      "label": "Hartford"
-    },
-    {
       "href": "/fractional-cfo-honolulu",
       "label": "Honolulu"
     },
@@ -913,10 +841,6 @@
       "label": "Lincoln"
     },
     {
-      "href": "/fractional-cfo-long-beach",
-      "label": "Long Beach"
-    },
-    {
       "href": "/fractional-cfo-los-angeles",
       "label": "Los Angeles"
     },
@@ -951,10 +875,6 @@
     {
       "href": "/fractional-cfo-minneapolis",
       "label": "Minneapolis"
-    },
-    {
-      "href": "/fractional-cfo-nashville",
-      "label": "Nashville"
     },
     {
       "href": "/fractional-cfo-new-orleans",
@@ -1001,10 +921,6 @@
       "label": "Portland"
     },
     {
-      "href": "/fractional-cfo-providence",
-      "label": "Providence"
-    },
-    {
       "href": "/fractional-cfo-raleigh-durham",
       "label": "Raleigh Durham"
     },
@@ -1049,10 +965,6 @@
       "label": "Seattle"
     },
     {
-      "href": "/fractional-cfo-spokane",
-      "label": "Spokane"
-    },
-    {
       "href": "/fractional-cfo-springfield-mo",
       "label": "Springfield MO"
     },
@@ -1087,20 +999,12 @@
   ],
   "fractional-cto": [
     {
-      "href": "/fractional-cto-anaheim",
-      "label": "Anaheim"
-    },
-    {
       "href": "/fractional-cto-ann-arbor",
       "label": "Ann Arbor"
     },
     {
       "href": "/fractional-cto-arlington-tx",
       "label": "Arlington TX"
-    },
-    {
-      "href": "/fractional-cto-atlanta",
-      "label": "Atlanta"
     },
     {
       "href": "/fractional-cto-austin",
@@ -1127,14 +1031,6 @@
       "label": "Buffalo"
     },
     {
-      "href": "/fractional-cto-chandler",
-      "label": "Chandler"
-    },
-    {
-      "href": "/fractional-cto-charleston",
-      "label": "Charleston"
-    },
-    {
       "href": "/fractional-cto-charlotte",
       "label": "Charlotte"
     },
@@ -1149,10 +1045,6 @@
     {
       "href": "/fractional-cto-cincinnati",
       "label": "Cincinnati"
-    },
-    {
-      "href": "/fractional-cto-cleveland",
-      "label": "Cleveland"
     },
     {
       "href": "/fractional-cto-colorado-springs",
@@ -1219,10 +1111,6 @@
       "label": "Indianapolis"
     },
     {
-      "href": "/fractional-cto-irving",
-      "label": "Irving"
-    },
-    {
       "href": "/fractional-cto-jacksonville",
       "label": "Jacksonville"
     },
@@ -1237,10 +1125,6 @@
     {
       "href": "/fractional-cto-knoxville",
       "label": "Knoxville"
-    },
-    {
-      "href": "/fractional-cto-las-vegas",
-      "label": "Las Vegas"
     },
     {
       "href": "/fractional-cto-lincoln",
@@ -1363,10 +1247,6 @@
       "label": "San Antonio"
     },
     {
-      "href": "/fractional-cto-san-diego",
-      "label": "San Diego"
-    },
-    {
       "href": "/fractional-cto-san-francisco",
       "label": "San Francisco"
     },
@@ -1377,10 +1257,6 @@
     {
       "href": "/fractional-cto-scottsdale",
       "label": "Scottsdale"
-    },
-    {
-      "href": "/fractional-cto-seattle",
-      "label": "Seattle"
     },
     {
       "href": "/fractional-cto-spokane",
@@ -1429,10 +1305,6 @@
       "label": "Ann Arbor"
     },
     {
-      "href": "/ai-consultant-arlington-tx",
-      "label": "Arlington TX"
-    },
-    {
       "href": "/ai-consultant-atlanta",
       "label": "Atlanta"
     },
@@ -1443,10 +1315,6 @@
     {
       "href": "/ai-consultant-baltimore",
       "label": "Baltimore"
-    },
-    {
-      "href": "/ai-consultant-birmingham",
-      "label": "Birmingham"
     },
     {
       "href": "/ai-consultant-boise",
@@ -1463,10 +1331,6 @@
     {
       "href": "/ai-consultant-chandler",
       "label": "Chandler"
-    },
-    {
-      "href": "/ai-consultant-charleston",
-      "label": "Charleston"
     },
     {
       "href": "/ai-consultant-charlotte",
@@ -1533,10 +1397,6 @@
       "label": "For Small Business"
     },
     {
-      "href": "/ai-consultant-grand-rapids",
-      "label": "Grand Rapids"
-    },
-    {
       "href": "/ai-consultant-greensboro",
       "label": "Greensboro"
     },
@@ -1575,10 +1435,6 @@
     {
       "href": "/ai-consultant-kansas-city",
       "label": "Kansas City"
-    },
-    {
-      "href": "/ai-consultant-knoxville",
-      "label": "Knoxville"
     },
     {
       "href": "/ai-consultant-las-vegas",
@@ -1709,20 +1565,12 @@
       "label": "San Diego"
     },
     {
-      "href": "/ai-consultant-san-francisco",
-      "label": "San Francisco"
-    },
-    {
       "href": "/ai-consultant-savannah",
       "label": "Savannah"
     },
     {
       "href": "/ai-consultant-scottsdale",
       "label": "Scottsdale"
-    },
-    {
-      "href": "/ai-consultant-seattle",
-      "label": "Seattle"
     },
     {
       "href": "/ai-consultant-spokane",
@@ -1751,10 +1599,6 @@
     {
       "href": "/ai-consultant-vs-doing-it-yourself",
       "label": "Vs Doing IT Yourself"
-    },
-    {
-      "href": "/ai-consultant-washington-dc",
-      "label": "Washington DC"
     },
     {
       "href": "/ai-consultant-winston-salem",

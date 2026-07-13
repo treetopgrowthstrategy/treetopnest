@@ -10,7 +10,6 @@
       "destination": "/specialty-coffee-ecommerce-growth-plan",
       "statusCode": 301
     },
-
     {
       "source": "/insights/what-is-a-fractional-cmo",
       "destination": "/what-does-a-fractional-cmo-do",
@@ -61,7 +60,6 @@
       "destination": "/resources",
       "statusCode": 301
     },
-
     {
       "source": "/home",
       "destination": "/",
@@ -112,7 +110,6 @@
       "destination": "/",
       "statusCode": 301
     },
-
     {
       "source": "/fractional-cmo-austin-tx",
       "destination": "/fractional-cmo-austin",
@@ -137,11 +134,209 @@
       "source": "/resources/claude-vs-chatgpt-small-business",
       "destination": "/claude-ai-vs-chatgpt-small-business",
       "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-arlington-tx",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-birmingham",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-charleston",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-grand-rapids",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-knoxville",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-san-francisco",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-seattle",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-consultant-washington-dc",
+      "destination": "/ai-consultant",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cfo-boston",
+      "destination": "/fractional-cfo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cfo-hartford",
+      "destination": "/fractional-cfo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cfo-long-beach",
+      "destination": "/fractional-cfo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cfo-nashville",
+      "destination": "/fractional-cfo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cfo-providence",
+      "destination": "/fractional-cfo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cfo-spokane",
+      "destination": "/fractional-cfo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-atlanta",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-chandler",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-eugene",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-indianapolis",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-jersey-city",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cmo-lubbock",
+      "destination": "/fractional-cmo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-boston",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-cincinnati",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-colorado-springs",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-dallas",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-detroit",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-hartford",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-philadelphia",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-portland",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-sacramento",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cro-winston-salem",
+      "destination": "/fractional-cro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-anaheim",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-atlanta",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-chandler",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-charleston",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-cleveland",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-irving",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-las-vegas",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-san-diego",
+      "destination": "/fractional-cto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fractional-cto-seattle",
+      "destination": "/fractional-cto",
+      "statusCode": 301
     }
   ],
   "cleanUrls": true,
   "trailingSlash": false,
   "crons": [
-    { "path": "/api/cron-cmo-nurture", "schedule": "0 14 * * *" }
+    {
+      "path": "/api/cron-cmo-nurture",
+      "schedule": "0 14 * * *"
+    }
   ]
 }
