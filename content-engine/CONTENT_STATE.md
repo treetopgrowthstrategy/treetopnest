@@ -46,3 +46,19 @@ Every post must clear the humanness gate before it can move to `Rendered` (grade
 | you-cannot-buy-your-way-in | Relationship GTM | Written, not published | A+ |
 
 Grades above are the deterministic Layer 1 score; the Claude judge runs at publish time and the lower grade governs. These three are committed on branch `content-engine-grader`, awaiting Bill's go to publish.
+
+## Distribution (the flywheel)
+
+Once an essay is live, repurpose it into atomic units (see DISTRIBUTION.md and WORKFLOW.md step 5.5). Track what went out where, so units stagger over weeks instead of firing at once.
+
+| Post (slug) | LinkedIn | X thread | Newsletter | Carousel |
+|-------------|----------|----------|------------|----------|
+| model-a-business-before-you-risk-capital | drafted | drafted | drafted | drafted |
+| right-size-your-software-stack | pending | pending | pending | pending |
+| you-cannot-buy-your-way-in | pending | pending | pending | pending |
+
+"drafted" = generated and gate-passed in `distribution/<slug>/` (or `posts/` for newsletter), not yet posted. Update to "posted <date>" as Bill posts each. Nothing auto-posts.
+
+## Idea capture (front end)
+
+Twice a week, 30 minutes, add 5 to 7 candidate ideas to the Pipeline above (sources and rules in DISTRIBUTION.md). Keeps the backlog from ever running dry.

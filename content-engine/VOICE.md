@@ -75,6 +75,12 @@ These are Bill's own frameworks. Posts can lean on them without over-explaining,
 
 ---
 
+## Hooks (for repurposed social units)
+
+Short-form units (LinkedIn, X) live or die on the first line. The hook library is in `HOOKS.md`. The one rule that must never break, because it is the same guardrail as above: a hook throws rocks at a situation, a status quo, or a market condition, never at the reader. "Most SMBs pay enterprise prices for software they half-use" is allowed. "You're overpaying because you never read your contract" is not. First-person confession ("I aimed AI at the wrong problem for two years") is allowed and powerful. See `HOOKS.md`.
+
+---
+
 ## Note on sourcing
 
 Voice above was extracted from the canonical repo source, which is in sync with `origin/main` and therefore identical to the live site. If a future session wants to refresh this profile against newly published pages, re-read the current homepage and one recent long-form page and add observed patterns here. Do not invent phrases Bill has not used.

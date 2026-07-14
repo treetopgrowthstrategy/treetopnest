@@ -20,6 +20,8 @@ Open `CONTENT_STATE.md` first. Then read `VOICE.md` and `DESIGN.md`. Do not skip
 
 5. **Produce the Substack-ready version.** Write a plain version of the same piece to `content-engine/posts/` (markdown or plain text), so cross-posting to Substack needs no rework. Keep it in sync with the rendered HTML.
 
+5.5. **Repurpose into atomic units (the flywheel).** Once the essay is live, turn it into channel units with the repurpose harness (`Workflow({name:'repurpose', args:{slug}})`, see `DISTRIBUTION.md`): a LinkedIn post, an X thread, a newsletter section, a carousel outline. Each is drafted to `VOICE.md` + `HOOKS.md` and must clear the humanness gate before it is post-ready. Stagger them across 4 to 6 weeks; do not fire all at once. Recycle winners at ~12 months. Nothing auto-posts.
+
 6. **Update status.** Update the post's Status in `CONTENT_STATE.md`. Never push to `main` or publish without Bill's explicit in-chat approval of the final draft. Publishing here means pushing to `main`, which triggers the Vercel deploy.
 
 ## Guardrails on publishing
@@ -35,8 +37,12 @@ Open `CONTENT_STATE.md` first. Then read `VOICE.md` and `DESIGN.md`. Do not skip
 - `content-engine/VOICE.md` : how it sounds, plus the guardrails.
 - `content-engine/DESIGN.md` : the locked design tokens and where HTML goes.
 - `content-engine/HUMANNESS.md` : the humanness grading gate (rubric + judge).
+- `content-engine/DISTRIBUTION.md` : the repurposing flywheel (one essay to many units).
+- `content-engine/HOOKS.md` : the hook library (situation-as-enemy, never the reader).
 - `content-engine/tools/humanness-check.mjs` : the deterministic Layer 1 checker.
+- `content-engine/tools/repurpose.js` : the repurpose harness (essay to atomic units).
 - `content-engine/WORKFLOW.md` : this file.
 - `content-engine/drafts/` : markdown drafts in progress.
 - `content-engine/posts/` : Substack-ready plain versions of shipped pieces.
+- `content-engine/distribution/` : generated per-essay social units (LinkedIn / X / carousel).
 - Rendered posts live at `src/pages/<slug>.astro` (root-slug URLs), not under `public/insights/`.
