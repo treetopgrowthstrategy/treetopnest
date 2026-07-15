@@ -329,6 +329,46 @@
       "source": "/fractional-cto-seattle",
       "destination": "/fractional-cto",
       "statusCode": 301
+    },
+    {
+      "source": "/what-is-a-system-prompt",
+      "destination": "/glossary#what-is-a-system-prompt",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-brand-positioning",
+      "destination": "/glossary#what-is-brand-positioning",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-claude-team",
+      "destination": "/glossary#what-is-claude-team",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-marketing-qualified-lead",
+      "destination": "/glossary#what-is-marketing-qualified-lead",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-multimodal-ai",
+      "destination": "/glossary#what-is-multimodal-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-outbound-marketing",
+      "destination": "/glossary#what-is-outbound-marketing",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-third-party-data",
+      "destination": "/glossary#what-is-third-party-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/what-is-zero-click-search",
+      "destination": "/glossary#what-is-zero-click-search",
+      "statusCode": 301
     }
   ],
   "cleanUrls": true,
