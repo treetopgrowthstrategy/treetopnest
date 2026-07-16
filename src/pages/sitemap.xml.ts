@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { readdirSync, statSync, readFileSync } from 'node:fs';
 import { join, relative, sep, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 export const prerender = true;
 
@@ -111,6 +112,45 @@ function isNoindex(filepath: string): boolean {
   }
 }
 
+// Per-file last-modification date, from git history (not filesystem mtime).
+// Vercel's build environment resets every file's mtime to the git-clone time,
+// so `statSync(f).mtime` returns today for every file, defeating the purpose
+// of a per-URL lastmod signal. Shelling out to `git log --name-only` once at
+// module load builds a { file -> ISO date } map keyed on last-commit-date,
+// which is what Google's crawler actually cares about.
+let gitDateMap: Map<string, string> | null = null;
+function buildGitDateMap(): Map<string, string> {
+  const map = new Map<string, string>();
+  try {
+    const raw = execSync(
+      'git log --name-only --pretty=format:"COMMITDATE:%aI" -- src/pages/',
+      { cwd: process.cwd(), encoding: 'utf-8', maxBuffer: 128 * 1024 * 1024 }
+    );
+    let currentDate = '';
+    for (const line of raw.split('\n')) {
+      if (line.startsWith('COMMITDATE:')) {
+        currentDate = line.slice('COMMITDATE:'.length).split('T')[0];
+      } else if (currentDate && line.startsWith('src/pages/')) {
+        // git log output goes newest-first; first occurrence wins per file
+        if (!map.has(line)) map.set(line, currentDate);
+      }
+    }
+  } catch {
+    // git unavailable (unlikely on Vercel) or shallow clone with 1 commit; fall through
+  }
+  return map;
+}
+
+function lastmodFor(filepath: string): string {
+  if (!gitDateMap) gitDateMap = buildGitDateMap();
+  const rel = relative(process.cwd(), filepath).replaceAll(sep, '/');
+  const gitDate = gitDateMap.get(rel);
+  if (gitDate) return gitDate;
+  // Fallback: filesystem mtime (accurate locally, unreliable on Vercel builds
+  // where the git clone resets everything to today's date).
+  return statSync(filepath).mtime.toISOString().split('T')[0];
+}
+
 export const GET: APIRoute = () => {
   const files = walk(PAGES_DIR);
   const pages: { url: string; priority: string; changefreq: string; lastmod: string }[] = [];
@@ -125,7 +165,7 @@ export const GET: APIRoute = () => {
     if (isNoindex(f)) continue;
     if (seen.has(url)) continue;
     seen.add(url);
-    const lastmod = statSync(f).mtime.toISOString().split('T')[0];
+    const lastmod = lastmodFor(f);
     pages.push({ url, priority: priorityFor(url), changefreq: changefreqFor(url), lastmod });
   }
 
