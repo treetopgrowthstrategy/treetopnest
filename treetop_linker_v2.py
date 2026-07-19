@@ -1552,6 +1552,13 @@ def main():
     skipped_missing_targets = 0
     by_target = defaultdict(int)
     skip_urls = {
+        # Full-viewport interactive UI pages: .step { position:fixed; inset:0 }
+        # + body { overflow:hidden }. Auto-linker block renders in normal flow
+        # and gets visually stacked BEHIND the fixed UI, causing text overlap.
+        # These pages don't want a related-links block anyway (they're
+        # conversion/tool surfaces, not content).
+        "/quiz",
+        "/ai-cmo-readiness-quiz",
         # Don't touch tiny utility/transactional/private pages.
         # The new Claude cluster posts already ship a curated "Related guides"
         # section, so skip the auto-block to avoid a second stacked block.
