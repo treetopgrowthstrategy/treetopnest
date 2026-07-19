@@ -12,6 +12,10 @@ DIR="scripts/test-cmo/.bundled"
 rm -rf "$DIR"
 mkdir -p "$DIR/ep"
 
+# Static guard: api/*.ts relative imports must carry .js (ESM) or they 500 on
+# Vercel at load. The bundler below would inline and hide the bug, so check first.
+bash scripts/check-api-imports.sh
+
 echo "Bundling handlers..."
 npx esbuild api/cron-cmo-nurture.ts --bundle --platform=node --format=esm --outfile="$DIR/cron.mjs" >/dev/null 2>&1
 npx esbuild api/cmo-guards.ts --bundle --platform=node --format=esm --outfile="$DIR/guards.mjs" >/dev/null 2>&1
