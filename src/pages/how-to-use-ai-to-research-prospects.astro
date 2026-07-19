@@ -121,7 +121,7 @@ export const prerender = true;
     <div class="badge"><span class="badge-dot"></span>Task guide · 7 min read</div>
     <h1 class="hero-h">How to use AI to research prospects <em style="color:#00C853;font-style:italic;">in 10 minutes.</em></h1>
     <p class="hero-sub">
-      The standard B2B sales motion has reps spending 90 minutes researching an account before they reach out. Most of that time is opening browser tabs, copying paragraphs, and trying to remember what the ICP looks like. AI compresses it to 10 minutes — but only if you set up the workflow correctly. Here's exactly how.
+      The standard B2B sales motion has reps spending 90 minutes researching an account before they reach out. Most of that time is opening browser tabs, copying paragraphs, and trying to remember what the ICP looks like. AI compresses it to 10 minutes, but only if you set up the workflow correctly. Here's exactly how.
     </p>
   </div>
 </div>
@@ -131,7 +131,7 @@ export const prerender = true;
     <span class="lbl">The premise</span>
     <h2 class="h2">Why most "AI for prospect research" fails</h2>
     <p class="body">Most reps treat Claude like a research analyst they're meeting for the first time: "Here's a URL, tell me about this company." The output is a generic Wikipedia-style summary. Useful as a refresher; useless as a sales tool.</p>
-    <p class="body">The shift is to treat Claude like a research analyst <em>who works for your company</em>. Someone who knows your ICP, your value proposition, and what "good fit" looks like. The brief they produce reads completely differently — it's not "what does this company do" but "why does this company match our ICP, what signals of timing exist, and what would resonate in outreach."</p>
+    <p class="body">The shift is to treat Claude like a research analyst <em>who works for your company</em>. Someone who knows your ICP, your value proposition, and what "good fit" looks like. The brief they produce reads completely differently, it's not "what does this company do" but "why does this company match our ICP, what signals of timing exist, and what would resonate in outreach."</p>
     <p class="body">The difference between those two outputs is one document and twenty minutes of setup. Let's walk through it.</p>
   </div>
 </section>
@@ -142,11 +142,11 @@ export const prerender = true;
     <h2 class="h2">The exact workflow</h2>
 
     <div class="step">
-      <div class="step-num">— Step 01 —</div>
+      <div class="step-num">, Step 01,</div>
       <h3>Build the research Claude Project (one-time, 20 minutes)</h3>
-      <p>Create a Project called "Account Research — [Your Company]." Load these into the knowledge base:</p>
+      <p>Create a Project called "Account Research, [Your Company]." Load these into the knowledge base:</p>
       <p>
-        <strong style="color:#F0FFF0;">1. Operational ICP definition.</strong> Not a tagline — the actual 15–25 structured fields you care about: company size, industry, growth signals, tech stack patterns, etc.<br/>
+        <strong style="color:#F0FFF0;">1. Operational ICP definition.</strong> Not a tagline, the actual 15-25 structured fields you care about: company size, industry, growth signals, tech stack patterns, etc.<br/>
         <strong style="color:#F0FFF0;">2. Buyer persona docs.</strong> Who you're typically selling to. Title patterns, pain patterns, what they care about, what they ignore.<br/>
         <strong style="color:#F0FFF0;">3. Three to five anonymized winning briefs.</strong> Actual research briefs that led to closed deals. The AI learns what "good" looks like from examples.<br/>
         <strong style="color:#F0FFF0;">4. Your value proposition + differentiated positioning.</strong> Two paragraphs.
@@ -158,7 +158,7 @@ When researching an account:
 1. Verify fit against the ICP fields in the knowledge base
 2. Identify signals of timing (recent hires, funding, product launches, churn signals, regulatory changes, leadership changes)
 3. Identify the likely buyer persona and what they care about
-4. Surface what we'd say in outreach — specifics from the research, not generic value-prop language
+4. Surface what we'd say in outreach, specifics from the research, not generic value-prop language
 5. Flag anything that suggests this is NOT a fit so the rep can disqualify quickly
 
 Output format: 1-page structured brief (sections: Fit · Timing · Buyer · Angle · Risk).
@@ -166,14 +166,14 @@ If a key data point is missing, write [Unknown: source needed] rather than guess
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 02 —</div>
+      <div class="step-num">, Step 02,</div>
       <h3>Gather the inputs (1 minute)</h3>
       <p>For each account, pull together:</p>
       <p>
-        — The company URL<br/>
-        — LinkedIn URL of the likely buyer (or 2-3 candidates)<br/>
-        — Anything recent from a news search ("[Company] funding", "[Company] hires CRO")<br/>
-        — Their most recent press release or blog post if findable
+       , The company URL<br/>
+       , LinkedIn URL of the likely buyer (or 2-3 candidates)<br/>
+       , Anything recent from a news search ("[Company] funding", "[Company] hires CRO")<br/>
+       , Their most recent press release or blog post if findable
       </p>
       <p>Drop them as URLs into a new chat inside the Project.</p>
       <div class="callout">
@@ -182,13 +182,13 @@ If a key data point is missing, write [Unknown: source needed] rather than guess
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 02.5 —</div>
-      <h3>If you want to scale this — wire it up</h3>
+      <div class="step-num">, Step 02.5,</div>
+      <h3>If you want to scale this, wire it up</h3>
       <p>Once you've used this workflow manually for ~20 accounts and you trust the output, the next step is to wire it directly into your sales engagement tool (Outreach, Salesloft, Apollo). The brief gets generated automatically when an account moves to "prospect" stage, drops into the rep's queue, and they review rather than create. This is what Treetop typically builds during the Outbound Intelligence phase of an <a href="/services/implementation" style="color:#00C853;text-decoration:none;">Implementation engagement</a>.</p>
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 03 —</div>
+      <div class="step-num">, Step 03,</div>
       <h3>Run the structured brief prompt (2 minutes)</h3>
       <p>One sentence:</p>
       <pre>Research [Company Name] using the URL [url] and the LinkedIn profile [url]. Use the standard brief structure. Flag any data points you can't verify.</pre>
@@ -196,25 +196,25 @@ If a key data point is missing, write [Unknown: source needed] rather than guess
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 04 —</div>
+      <div class="step-num">, Step 04,</div>
       <h3>Validate and tag (3 minutes)</h3>
       <p>This is the only manual work left. Read the brief. Verify:</p>
       <p>
-        — Two specific claims about the company. Open one tab, check one fact. If wrong, the rest of the brief is suspect.<br/>
-        — The "Angle" section. Is it specific, or did Claude default to generic value-prop language? If generic, ask Claude to rewrite using only specifics from the research.<br/>
-        — The fit verdict. Trust it cautiously — if Claude says "strong fit" but something in the brief contradicts that, dig in.
+       , Two specific claims about the company. Open one tab, check one fact. If wrong, the rest of the brief is suspect.<br/>
+       , The "Angle" section. Is it specific, or did Claude default to generic value-prop language? If generic, ask Claude to rewrite using only specifics from the research.<br/>
+       , The fit verdict. Trust it cautiously, if Claude says "strong fit" but something in the brief contradicts that, dig in.
       </p>
       <p>Then tag with priority (A/B/C) and route to the right rep. Total time so far: ~8 minutes.</p>
     </div>
 
     <div class="step">
-      <div class="step-num">— Step 05 —</div>
+      <div class="step-num">, Step 05,</div>
       <h3>Save back to the system (2 minutes)</h3>
       <p>The brief needs to live somewhere the next workflow can read it. Three options, in order of how scalable they are:</p>
       <p>
-        <strong style="color:#F0FFF0;">Manual paste into CRM activity note</strong> — fine for early days.<br/>
-        <strong style="color:#F0FFF0;">Save to a shared knowledge base or Notion</strong> — better once you have 50+ accounts in motion.<br/>
-        <strong style="color:#F0FFF0;">Wire to CRM via Zapier or native integration</strong> — best, but requires a real workflow build.
+        <strong style="color:#F0FFF0;">Manual paste into CRM activity note</strong>, fine for early days.<br/>
+        <strong style="color:#F0FFF0;">Save to a shared knowledge base or Notion</strong>, better once you have 50+ accounts in motion.<br/>
+        <strong style="color:#F0FFF0;">Wire to CRM via Zapier or native integration</strong>, best, but requires a real workflow build.
       </p>
       <p>The point: don't let the brief die in a Claude chat. The whole compound of AI in sales is that <em>this brief becomes input to the next workflow</em> (sequence personalization, call prep, reply triage). Treat it as data, not a one-off output.</p>
     </div>
@@ -236,7 +236,7 @@ If a key data point is missing, write [Unknown: source needed] rather than guess
       <p><strong>3. Skipping the "Angle" section.</strong> The whole reason to do research is to know what to say in outreach. If your brief format doesn't force that synthesis, you're just doing AI-flavored Wikipedia.</p>
     </div>
     <div class="pitfall">
-      <p><strong>4. Researching companies that aren't qualified.</strong> AI research is so cheap that reps will start researching everything. Build the disqualification step into the prompt — "if any of these conditions, output DISQUALIFY: [reason]."</p>
+      <p><strong>4. Researching companies that aren't qualified.</strong> AI research is so cheap that reps will start researching everything. Build the disqualification step into the prompt, "if any of these conditions, output DISQUALIFY: [reason]."</p>
     </div>
     <div class="pitfall">
       <p><strong>5. Not closing the loop.</strong> The reps need to feed back: which briefs led to good first calls? Which were misleading? That signal goes back into prompt refinement. Otherwise the workflow stays at its day-one quality forever.</p>

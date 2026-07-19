@@ -102,7 +102,7 @@ export const prerender = true;
     <div class="badge"><span class="badge-dot"></span>Interactive · 60 seconds · 6 questions</div>
     <h1 class="hero-h">Should I use Claude <em style="color:#00C853;font-style:italic;">or ChatGPT?</em></h1>
     <p class="hero-sub">
-      A short decision tool calibrated to your business needs. Answer 6 questions; get back a specific recommendation with reasoning. Most teams should use both for different jobs — this tool tells you which one for which job, based on your situation.
+      A short decision tool calibrated to your business needs. Answer 6 questions; get back a specific recommendation with reasoning. Most teams should use both for different jobs, this tool tells you which one for which job, based on your situation.
     </p>
   </div>
 </div>
@@ -128,8 +128,8 @@ export const prerender = true;
         <h3>How many people will use the tool?</h3>
         <div class="opts">
           <button class="opt" data-val="solo">Just me (1)</button>
-          <button class="opt" data-val="small">Small team (2–10)</button>
-          <button class="opt" data-val="medium">Mid-size team (10–50)</button>
+          <button class="opt" data-val="small">Small team (2-10)</button>
+          <button class="opt" data-val="medium">Mid-size team (10-50)</button>
           <button class="opt" data-val="large">Larger org (50+)</button>
         </div>
       </div>
@@ -137,7 +137,7 @@ export const prerender = true;
       <div class="q" data-q="2">
         <h3>Do you need a shared knowledge base (your docs, ICP, brand voice loaded once for the team)?</h3>
         <div class="opts">
-          <button class="opt" data-val="critical">Yes — critical for the workflow</button>
+          <button class="opt" data-val="critical">Yes, critical for the workflow</button>
           <button class="opt" data-val="nice">Nice to have</button>
           <button class="opt" data-val="no">No, individual use is fine</button>
         </div>
@@ -146,23 +146,23 @@ export const prerender = true;
       <div class="q" data-q="3">
         <h3>Do you need access to a marketplace of pre-built specialized tools (GPTs)?</h3>
         <div class="opts">
-          <button class="opt" data-val="yes">Yes — useful for variety of tasks</button>
-          <button class="opt" data-val="no">No — I prefer building my own setup</button>
+          <button class="opt" data-val="yes">Yes, useful for variety of tasks</button>
+          <button class="opt" data-val="no">No, I prefer building my own setup</button>
         </div>
       </div>
 
       <div class="q" data-q="4">
         <h3>Is sustained output quality more important than ecosystem breadth?</h3>
         <div class="opts">
-          <button class="opt" data-val="quality">Quality matters most — especially for client-facing output</button>
-          <button class="opt" data-val="breadth">Breadth matters more — many small tasks across various needs</button>
+          <button class="opt" data-val="quality">Quality matters most, especially for client-facing output</button>
+          <button class="opt" data-val="breadth">Breadth matters more, many small tasks across various needs</button>
         </div>
       </div>
 
       <div class="q" data-q="5">
         <h3>Do you have specific compliance requirements (HIPAA, FedRAMP, EU data residency)?</h3>
         <div class="opts">
-          <button class="opt" data-val="yes">Yes — formal requirements</button>
+          <button class="opt" data-val="yes">Yes, formal requirements</button>
           <button class="opt" data-val="no">No</button>
         </div>
       </div>
@@ -328,15 +328,15 @@ export const prerender = true;
       else planTier = 'Team ($30/seat/mo)';
 
       if (rec === 'claude') {
-        headline = 'Claude — ' + planTier;
+        headline = 'Claude, ' + planTier;
         body = '<strong>Claude is the right primary choice for your situation.</strong> The combination of factors you described (especially the writing focus, team size, and shared knowledge needs) maps well to what Claude does best. ChatGPT would be a step down for these specific workflows.';
         detail = '<p><strong>Why Claude wins for you:</strong> Long-form writing quality is best in class. Shared Projects let your team operate against the same ICP, voice, and proof points. Strong instruction-following for production workflows. Best-in-class coding capability if that\'s in your scope.</p>';
       } else if (rec === 'chatgpt') {
-        headline = 'ChatGPT — Team or Plus';
+        headline = 'ChatGPT, Team or Plus';
         body = '<strong>ChatGPT is the better fit for your specific use case.</strong> Your needs are more about variety and breadth than about sustained workflows or team-wide consistency. The GPT marketplace gives you specialized tools across many small jobs.';
         detail = '<p><strong>Why ChatGPT wins for you:</strong> Broader marketplace of pre-built GPTs. Faster for short queries. Better for quick everyday assists. Plenty good enough for individual or small-team use where each person can build their own workflow.</p>';
       } else {
-        headline = 'Use both — different tools for different jobs';
+        headline = 'Use both, different tools for different jobs';
         body = '<strong>Your needs cross both tools.</strong> Smart teams in your situation use Claude as the primary workhorse for sustained workflows + customer-facing output, plus ChatGPT for breadth and specialized GPT marketplace use cases.';
         detail = '<p><strong>The recommended split:</strong> Claude Team ($30/seat) as your primary deployment. ChatGPT Plus ($20/mo) on the side for the 2-3 people who do significant variety of tasks. Total combined cost is comparable to one mid-tier SaaS subscription. Combined output is meaningfully higher than either alone.</p>';
       }

@@ -3,6 +3,8 @@
 // complete step 2 (the LinkedIn unlock). No research spend happens here.
 // POST { email, website, hp, _t } -> { success: true }
 
+import { clientIp, rateLimitSubmission, isDisposableEmail } from './cmo-guards.js';
+
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const AIRTABLE_LEADS_TABLE = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
@@ -39,6 +41,16 @@ export default async function handler(req: any, res: any) {
   const loadTime = Number(body._t) || 0;
   const elapsed  = loadTime ? Date.now() - loadTime : Infinity;
   if (hp.length > 0 || (loadTime > 0 && elapsed < 3000) || looksRandom(email.split('@')[0])) {
+    return res.status(200).json({ success: true });
+  }
+
+  // Disposable inboxes and per-IP intake floods are dropped silently (same 200
+  // shape) so bots do not retry and the CRM does not fill with junk.
+  if (isDisposableEmail(email)) {
+    return res.status(200).json({ success: true });
+  }
+  const rl = await rateLimitSubmission(clientIp(req), email, 's');
+  if (!rl.ok) {
     return res.status(200).json({ success: true });
   }
 

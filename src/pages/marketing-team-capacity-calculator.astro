@@ -101,7 +101,7 @@ export const prerender = true;
     <div class="badge"><span class="badge-dot"></span>Free calculator · 60 seconds</div>
     <h1 class="hero-h">Marketing team capacity <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
     <p class="hero-sub">
-      Compare three scenarios side by side: your current capacity, your AI-enabled capacity (same team), and your capacity after hiring one more person. Tells you which move actually adds output — and what it costs.
+      Compare three scenarios side by side: your current capacity, your AI-enabled capacity (same team), and your capacity after hiring one more person. Tells you which move actually adds output, and what it costs.
     </p>
   </div>
 </div>
@@ -150,7 +150,7 @@ export const prerender = true;
         <div class="scen-row"><span>Team size</span><span id="current-team">5 FTE</span></div>
         <div class="scen-row"><span>Annual team cost</span><span id="current-cost">$550K</span></div>
         <div class="scen-row"><span>Cost per piece</span><span id="current-per">$3,819</span></div>
-        <div class="scen-row"><span>AI overhead</span><span>—</span></div>
+        <div class="scen-row"><span>AI overhead</span><span>,</span></div>
         <div class="scen-row"><span>Setup time</span><span>n/a</span></div>
       </div>
 
@@ -325,9 +325,9 @@ export const prerender = true;
       var verdictText;
       if (winner === 'ai') {
         var savings = (hireMarginal - aiCostYearOne);
-        verdictText = 'AI deployment produces ' + aiOutput + ' pieces/month at ' + fmt(aiPerPiece) + ' per piece — vs. ' + fmt(hirePerPiece) + ' per piece if you hire one more person. AI adds ' + (aiOutput - output) + ' pieces of capacity (vs. ' + (hireOutput - output) + ' from a new hire) at ' + fmt(aiCostYearOne) + ' annual cost (vs. ' + fmt(hireMarginal) + ' for the hire). Net savings if you pick AI over hiring: ' + fmt(savings) + ' year one, plus dramatically more capacity.';
+        verdictText = 'AI deployment produces ' + aiOutput + ' pieces/month at ' + fmt(aiPerPiece) + ' per piece, vs. ' + fmt(hirePerPiece) + ' per piece if you hire one more person. AI adds ' + (aiOutput - output) + ' pieces of capacity (vs. ' + (hireOutput - output) + ' from a new hire) at ' + fmt(aiCostYearOne) + ' annual cost (vs. ' + fmt(hireMarginal) + ' for the hire). Net savings if you pick AI over hiring: ' + fmt(savings) + ' year one, plus dramatically more capacity.';
       } else {
-        verdictText = 'In this configuration, hiring produces lower cost per piece than AI deployment. This is unusual — typically AI wins on the unit economics. Re-check the inputs: if your team is very small or current output is very low, the AI multiplier may not fully apply.';
+        verdictText = 'In this configuration, hiring produces lower cost per piece than AI deployment. This is unusual, typically AI wins on the unit economics. Re-check the inputs: if your team is very small or current output is very low, the AI multiplier may not fully apply.';
       }
       document.getElementById('verdict-h').textContent = winner === 'ai' ? 'AI is the clear win for this team' : 'Hiring beats AI in this specific configuration';
       document.getElementById('verdict-p').textContent = verdictText;

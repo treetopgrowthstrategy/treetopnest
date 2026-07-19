@@ -16,7 +16,7 @@ export const prerender = true;
 <meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/how-to-do-ab-testing-with-ai.png" /><meta name="twitter:title" content="How to Do A/B Testing with AI (Hypothesis Generation + Analysis)" />
 <meta name="twitter:description" content="Practical guide to using Claude for A/B testing: hypothesis generation, variant creation, statistical analysis writeups. What AI does well and where it gets dangerous." />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":"How to Do A/B Testing with AI (Hypothesis Generation + Analysis)","url":"https://treetopgrowthstrategy.com/how-to-do-ab-testing-with-ai"},{"@type":"Article","headline":"How to Do A/B Testing with AI (Hypothesis Generation + Analysis)","description":"Practical guide to using Claude for A/B testing — hypothesis generation, variant creation, statistical analysis writeups. What AI does well and where it gets dangerous.","url":"https://treetopgrowthstrategy.com/how-to-do-ab-testing-with-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
+{"@context":"https://schema.org","@graph":[{"@type":"HowTo","name":"How to Do A/B Testing with AI (Hypothesis Generation + Analysis)","url":"https://treetopgrowthstrategy.com/how-to-do-ab-testing-with-ai"},{"@type":"Article","headline":"How to Do A/B Testing with AI (Hypothesis Generation + Analysis)","description":"Practical guide to using Claude for A/B testing, hypothesis generation, variant creation, statistical analysis writeups. What AI does well and where it gets dangerous.","url":"https://treetopgrowthstrategy.com/how-to-do-ab-testing-with-ai","author":{"@type":"Person","name":"Bill Colbert","url":"https://treetopgrowthstrategy.com/about"},"publisher":{"@id":"https://treetopgrowthstrategy.com/#organization"},"datePublished":"2026-05-20","image":"https://treetopgrowthstrategy.com/og-default.png"},{"@type":"Organization","@id":"https://treetopgrowthstrategy.com/#organization","name":"Treetop Growth Strategy","url":"https://treetopgrowthstrategy.com"}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -64,7 +64,7 @@ pre{background:#050D05;border:1px solid #1A3A1A;padding:1.25rem;font-family:'Cou
 
 <section><div class="sec-inner"><span class="lbl">The premise</span><h2 class="h2">What AI changes about A/B testing</h2>
     <p class="body">Three phases of A/B testing: <strong>generate hypotheses</strong>, <strong>create variants</strong>, <strong>analyze results</strong>. All three were historically labor-heavy. AI compresses each by 50-80%.</p>
-    <p class="body">What does not change: you still need statistical significance, you still need sufficient traffic, you still need to resist over-interpreting noisy results. AI cannot fix small-sample-size testing — it can make it faster and worse.</p>
+    <p class="body">What does not change: you still need statistical significance, you still need sufficient traffic, you still need to resist over-interpreting noisy results. AI cannot fix small-sample-size testing, it can make it faster and worse.</p>
     </div></section>
 
 <section><div class="sec-inner"><span class="lbl">The hypothesis-generation prompt</span><h2 class="h2">Phase 1</h2>
@@ -79,7 +79,7 @@ Constraint: implementation effort per variant should be [LOW / MEDIUM / HIGH]
 Generate 20 hypotheses ranked by expected impact divided by effort.
 
 For each hypothesis:
-- The specific change (be concrete — "test new button color" is not specific; "test orange CTA vs current green" is)
+- The specific change (be concrete, "test new button color" is not specific; "test orange CTA vs current green" is)
 - The reasoning (which user behavior signal points to it)
 - Expected impact estimate (small / medium / large)
 - Implementation effort
@@ -89,7 +89,7 @@ Then recommend the top 3 to test next.</pre></p>
     </div></section>
 
 <section><div class="sec-inner"><span class="lbl">The variant generation prompt</span><h2 class="h2">Phase 2</h2>
-    <p class="body"><pre>Write variants for an A/B test on [ELEMENT — headline / CTA / hero copy / etc].
+    <p class="body"><pre>Write variants for an A/B test on [ELEMENT, headline / CTA / hero copy / etc].
 
 Current version: [PASTE]
 Hypothesis we are testing: [SPECIFIC]

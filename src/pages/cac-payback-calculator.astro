@@ -187,8 +187,8 @@ export const prerender = true;
     <h2 class="h2">What\'s behind the calculation</h2>
     <p class="body"><strong style="color:#F0FFF0;">CAC payback (months)</strong> = CAC ÷ (ACV × gross margin ÷ 12 × (1 + expansion/2)). Expansion is halved because it ramps over the year rather than landing on day one.</p>
     <p class="body"><strong style="color:#F0FFF0;">Health tiers</strong>: under 12 months = healthy, 12-18 = good, 18-24 = at-risk, 24+ = broken. These are SaaS benchmarks; services businesses can support longer payback if expansion or retention is strong.</p>
-    <p class="body"><strong style="color:#F0FFF0;">3-year LTV (estimated)</strong> assumes 90% gross retention and continued expansion. This is a rough estimate — your actual LTV depends on logo churn and net retention dynamics specific to your business.</p>
-    <p class="body">If your payback is in the at-risk or broken zone, the fix is rarely about cutting CAC — it\'s about ICP refinement, sales motion efficiency, or pricing. See <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">the AI-Native GTM Framework</a> for the operational view.</p>
+    <p class="body"><strong style="color:#F0FFF0;">3-year LTV (estimated)</strong> assumes 90% gross retention and continued expansion. This is a rough estimate, your actual LTV depends on logo churn and net retention dynamics specific to your business.</p>
+    <p class="body">If your payback is in the at-risk or broken zone, the fix is rarely about cutting CAC, it\'s about ICP refinement, sales motion efficiency, or pricing. See <a href="/the-ai-native-gtm-framework" style="color:#00C853;text-decoration:none;">the AI-Native GTM Framework</a> for the operational view.</p>
   </div>
 </section>
 
@@ -266,8 +266,8 @@ export const prerender = true;
     var status,tierText,vH,vP;
     if(payback<=12){status='good';tierText='Healthy';vH='Healthy unit economics';vP='Payback of '+payback.toFixed(0)+' months is in the healthy zone for B2B SaaS. You can sustain this CAC and grow profitably. If you want to grow faster, you can afford to spend more on acquisition.';}
     else if(payback<=18){status='good-edge';tierText='Good';vH='Good unit economics';vP='Payback of '+payback.toFixed(0)+' months is acceptable for most B2B SaaS. Not as comfortable as <12 months, but supports continued growth investment.';}
-    else if(payback<=24){status='warn';tierText='At-risk';card.classList.add('warn');num.classList.add('warn');verdict.classList.add('warn');vH='At-risk unit economics';vP='Payback of '+payback.toFixed(0)+' months is uncomfortable. You\'re still recovering CAC eventually, but the period creates cash-flow strain and limits growth investment. Most fixes here are upstream — ICP refinement, sales cycle compression, or pricing — not just \"reduce CAC.\"';}
-    else{status='bad';tierText='Broken';card.classList.add('bad');num.classList.add('bad');verdict.classList.add('bad');vH='Broken unit economics';vP='Payback of '+payback.toFixed(0)+' months is unsustainable. You\'re burning capital to grow without recovering it in a reasonable timeframe. The structural fix is almost certainly in ICP, pricing, or sales motion — not in cutting marketing spend (which usually makes things worse).';}
+    else if(payback<=24){status='warn';tierText='At-risk';card.classList.add('warn');num.classList.add('warn');verdict.classList.add('warn');vH='At-risk unit economics';vP='Payback of '+payback.toFixed(0)+' months is uncomfortable. You\'re still recovering CAC eventually, but the period creates cash-flow strain and limits growth investment. Most fixes here are upstream, ICP refinement, sales cycle compression, or pricing, not just \"reduce CAC.\"';}
+    else{status='bad';tierText='Broken';card.classList.add('bad');num.classList.add('bad');verdict.classList.add('bad');vH='Broken unit economics';vP='Payback of '+payback.toFixed(0)+' months is unsustainable. You\'re burning capital to grow without recovering it in a reasonable timeframe. The structural fix is almost certainly in ICP, pricing, or sales motion, not in cutting marketing spend (which usually makes things worse).';}
     tier.textContent=tierText;
     document.getElementById('verdict-h').textContent=vH;
     document.getElementById('verdict-p').textContent=vP;

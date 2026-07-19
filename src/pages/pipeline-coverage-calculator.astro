@@ -107,7 +107,7 @@ export const prerender = true;
     <div class="badge"><span class="badge-dot"></span>Free calculator · 60 seconds</div>
     <h1 class="hero-h">Pipeline coverage <em style="color:#00C853;font-style:italic;">calculator.</em></h1>
     <p class="hero-sub">
-      Are you going to hit quota? This calculator tells you in 60 seconds — based on the standard B2B SaaS coverage math (pipeline ÷ quota × win rate). Adjust the inputs to your team; the tool flags coverage gaps and tells you what to do about them.
+      Are you going to hit quota? This calculator tells you in 60 seconds, based on the standard B2B SaaS coverage math (pipeline ÷ quota × win rate). Adjust the inputs to your team; the tool flags coverage gaps and tells you what to do about them.
     </p>
   </div>
 </div>
@@ -206,8 +206,8 @@ export const prerender = true;
     <h2 class="h2">What\'s behind the calculation</h2>
     <p class="body"><strong style="color:#F0FFF0;">Coverage ratio</strong> = pipeline value ÷ quarterly quota. B2B SaaS rule of thumb: <em>you need 3-4× coverage</em> to reliably hit quota when win rate is 25-30%. Lower win rate → higher required coverage.</p>
     <p class="body"><strong style="color:#F0FFF0;">Expected close</strong> = pipeline × win rate. This is the statistical expectation of how much closes assuming your historical win rate holds.</p>
-    <p class="body"><strong style="color:#F0FFF0;">Recommended coverage</strong> uses the formula: target = 1 ÷ win rate × buffer. Default buffer is 1.0x — meaning if your win rate is 25%, you need 4× coverage to expect to hit quota.</p>
-    <p class="body">Most pipeline coverage problems aren\'t coverage problems at all — they\'re stage-conversion problems or aging-deal problems disguised as coverage. See <a href="/how-to-fix-pipeline-coverage-problems" style="color:#00C853;text-decoration:none;">how to fix pipeline coverage problems</a> for the full diagnostic.</p>
+    <p class="body"><strong style="color:#F0FFF0;">Recommended coverage</strong> uses the formula: target = 1 ÷ win rate × buffer. Default buffer is 1.0x, meaning if your win rate is 25%, you need 4× coverage to expect to hit quota.</p>
+    <p class="body">Most pipeline coverage problems aren\'t coverage problems at all, they\'re stage-conversion problems or aging-deal problems disguised as coverage. See <a href="/how-to-fix-pipeline-coverage-problems" style="color:#00C853;text-decoration:none;">how to fix pipeline coverage problems</a> for the full diagnostic.</p>
   </div>
 </section>
 
@@ -308,7 +308,7 @@ export const prerender = true;
       document.getElementById('expected-close').textContent = fmt(expectedClose);
       document.getElementById('quota-gap').textContent = quotaGap > 0 ? fmt(quotaGap) + ' short' : fmt(-quotaGap) + ' over';
       document.getElementById('rec-coverage').textContent = recCoverage.toFixed(1) + '×';
-      document.getElementById('add-pipeline').textContent = addPipeline > 0 ? fmt(addPipeline) : 'None — covered';
+      document.getElementById('add-pipeline').textContent = addPipeline > 0 ? fmt(addPipeline) : 'None, covered';
       document.getElementById('days-needed').textContent = cycle + ' days';
 
       // Color coding
@@ -331,17 +331,17 @@ export const prerender = true;
         card.classList.add('warning');
         num.classList.add('warn');
         verdict.classList.add('warn');
-        verdictH = 'At-risk — coverage below recommended';
-        verdictP = 'Coverage of ' + coverage.toFixed(1) + '× is below the recommended ' + recCoverage.toFixed(1) + '× for a ' + (winRate * 100) + '% win rate. You\'re likely to come in ' + fmt(quotaGap) + ' short. With ' + daysLeft + ' days left and a ' + cycle + '-day cycle, sourcing additional pipeline this quarter is difficult — most of your closes will come from existing deals.';
+        verdictH = 'At-risk, coverage below recommended';
+        verdictP = 'Coverage of ' + coverage.toFixed(1) + '× is below the recommended ' + recCoverage.toFixed(1) + '× for a ' + (winRate * 100) + '% win rate. You\'re likely to come in ' + fmt(quotaGap) + ' short. With ' + daysLeft + ' days left and a ' + cycle + '-day cycle, sourcing additional pipeline this quarter is difficult, most of your closes will come from existing deals.';
         verdictP += ' Focus on: (1) advancing the highest-probability deals already in the pipeline, (2) qualifying ruthlessly to ensure you\'re not overcommitting, (3) starting outbound now to seed next quarter.';
       } else {
         status = 'bad';
         card.classList.add('danger');
         num.classList.add('bad');
         verdict.classList.add('bad');
-        verdictH = 'Coverage critically low — quota miss likely';
-        verdictP = 'Coverage of ' + coverage.toFixed(1) + '× against a recommended ' + recCoverage.toFixed(1) + '× signals a serious gap. Expected close is ' + fmt(expectedClose) + ' against ' + fmt(quota) + ' quota — a ' + Math.round(quotaGap / quota * 100) + '% miss.';
-        verdictP += ' Possible causes: (1) the pipeline number is overstated by stale deals, (2) qualification has been too loose at top stages, (3) genuine top-of-funnel deficit. Diagnose which one drives your gap before adding outbound capacity — most teams misdiagnose this.';
+        verdictH = 'Coverage critically low, quota miss likely';
+        verdictP = 'Coverage of ' + coverage.toFixed(1) + '× against a recommended ' + recCoverage.toFixed(1) + '× signals a serious gap. Expected close is ' + fmt(expectedClose) + ' against ' + fmt(quota) + ' quota, a ' + Math.round(quotaGap / quota * 100) + '% miss.';
+        verdictP += ' Possible causes: (1) the pipeline number is overstated by stale deals, (2) qualification has been too loose at top stages, (3) genuine top-of-funnel deficit. Diagnose which one drives your gap before adding outbound capacity, most teams misdiagnose this.';
       }
       document.getElementById('verdict-h').textContent = verdictH;
       document.getElementById('verdict-p').textContent = verdictP;

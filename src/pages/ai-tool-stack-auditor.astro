@@ -101,8 +101,8 @@ section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:11
 <section class="hero">
 <div class="hero-inner">
 <span class="lbl">Free · ~3 minutes · No signup to start</span>
-<h1 class="hero-h">What's <em>actually</em> in your AI tool stack — and where's it costing you?</h1>
-<p class="hero-sub">Check the AI tools you currently use. Get an instant audit of overlaps, gaps, and consolidation opportunities. Most companies are paying for 3–5 tools that do the same job. Some are missing entire critical categories. This auditor surfaces both in 3 minutes.</p>
+<h1 class="hero-h">What's <em>actually</em> in your AI tool stack, and where's it costing you?</h1>
+<p class="hero-sub">Check the AI tools you currently use. Get an instant audit of overlaps, gaps, and consolidation opportunities. Most companies are paying for 3-5 tools that do the same job. Some are missing entire critical categories. This auditor surfaces both in 3 minutes.</p>
 </div>
 </section>
 
@@ -110,7 +110,7 @@ section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:11
 <div class="sec-inner">
 <span class="lbl">Step 1 · Check what you use</span>
 <h2 class="h2">Your current AI stack</h2>
-<p class="body">Check every tool your company actively pays for or uses in production. Don't include experiments or trials — only tools you're committed to.</p>
+<p class="body">Check every tool your company actively pays for or uses in production. Don't include experiments or trials, only tools you're committed to.</p>
 
 <div class="cat-grid" id="cat-grid"></div>
 </div>
@@ -142,7 +142,7 @@ section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:11
 <input type="text" id="g-company" name="company" placeholder="Company" required />
 <button type="submit" class="btn-p">Email me the PDF →</button>
 </div>
-<div id="gate-success">✓ On its way. Check your inbox in 2–3 minutes.</div>
+<div id="gate-success">✓ On its way. Check your inbox in 2-3 minutes.</div>
 <div id="gate-error">Something went wrong. Email bill@treetopgrowthstrategy.com</div>
 </form>
 </div>
@@ -154,9 +154,9 @@ section{padding:4rem 2.5rem;border-top:1px solid #1A3A1A}.sec-inner{max-width:11
 <section style="padding-top:3rem">
 <div class="sec-inner">
 <span class="lbl">Why this matters</span>
-<h2 class="h2">Most mid-market AI stacks are 30–45% redundant</h2>
-<p class="body">In the past year of fractional CMO and AI implementation work, the same pattern keeps showing up: companies pay $8K–$25K/month on AI tools without anyone owning the stack. Three different writing assistants. Two meeting recorders. A vendor that overlaps 80% with Claude or ChatGPT. Categories left wide open (intent data, agent infrastructure) because no one mapped what was needed.</p>
-<p class="body">This auditor isn't a sales pitch — it's the same diagnostic Bill runs at the start of every AI implementation engagement. The output should be useful even if you never talk to us.</p>
+<h2 class="h2">Most mid-market AI stacks are 30-45% redundant</h2>
+<p class="body">In the past year of fractional CMO and AI implementation work, the same pattern keeps showing up: companies pay $8K-$25K/month on AI tools without anyone owning the stack. Three different writing assistants. Two meeting recorders. A vendor that overlaps 80% with Claude or ChatGPT. Categories left wide open (intent data, agent infrastructure) because no one mapped what was needed.</p>
+<p class="body">This auditor isn't a sales pitch, it's the same diagnostic Bill runs at the start of every AI implementation engagement. The output should be useful even if you never talk to us.</p>
 </div>
 </section>
 
@@ -296,7 +296,7 @@ function runAudit() {
     }
   });
 
-  // Gaps — critical categories not covered
+  // Gaps, critical categories not covered
   CRITICAL_CATS.forEach(catId => {
     if (!byCategory[catId]) {
       const cat = CATEGORIES.find(c => c.id === catId);
@@ -304,7 +304,7 @@ function runAudit() {
         tag: 'tag-gap',
         tagLabel: 'Critical gap',
         title: `No coverage in "${cat.name}"`,
-        body: `Companies running AI-native GTM consistently invest here. Without coverage, you're likely either doing this work manually or missing the lift entirely. ${catId === 'llm' ? 'Foundation model access is table-stakes — start here.' : catId === 'sales' ? 'Sales intelligence is the single biggest driver of pipeline efficiency.' : 'Agent/automation infrastructure is what turns AI tools into AI-native workflows.'}`,
+        body: `Companies running AI-native GTM consistently invest here. Without coverage, you're likely either doing this work manually or missing the lift entirely. ${catId === 'llm' ? 'Foundation model access is table-stakes, start here.' : catId === 'sales' ? 'Sales intelligence is the single biggest driver of pipeline efficiency.' : 'Agent/automation infrastructure is what turns AI tools into AI-native workflows.'}`,
       });
     }
   });

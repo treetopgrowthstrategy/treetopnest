@@ -87,7 +87,7 @@ export const prerender = true;
     <div class="badge"><span class="badge-dot"></span>Copy &amp; deploy · 10 prompts</div>
     <h1 class="hero-h">10 Claude prompts <em style="color:#00C853;font-style:italic;">for customer service.</em></h1>
     <p class="hero-sub">
-      The prompts below cover the full customer service workflow: ticket triage, response drafts, knowledge base authoring, escalation routing, customer health monitoring. Each is annotated with when to use it. Copy any into Claude — they work best inside a Project loaded with your brand voice, product documentation, and past customer responses.
+      The prompts below cover the full customer service workflow: ticket triage, response drafts, knowledge base authoring, escalation routing, customer health monitoring. Each is annotated with when to use it. Copy any into Claude, they work best inside a Project loaded with your brand voice, product documentation, and past customer responses.
     </p>
   </div>
 </div>
@@ -98,7 +98,7 @@ export const prerender = true;
     <h2 class="h2">Ticket triage</h2>
 
     <div class="prompt">
-      <div class="prompt-num">— 01 —</div>
+      <div class="prompt-num">, 01,</div>
       <h3>Triage classification</h3>
       <div class="when">Use when: a new ticket comes in and you need to route it quickly</div>
       <pre>Read this ticket: [PASTE TICKET]
@@ -110,11 +110,11 @@ Classify it on:
 - Time-sensitivity (immediate / 24hrs / 48hrs / standard)
 - Recommended next action (auto-respond, route to Tier 1, escalate to Tier 2, escalate to engineering, escalate to leadership)
 
-Output as JSON. Be conservative on severity — when in doubt, escalate up.</pre>
+Output as JSON. Be conservative on severity, when in doubt, escalate up.</pre>
     </div>
 
     <div class="prompt">
-      <div class="prompt-num">— 02 —</div>
+      <div class="prompt-num">, 02,</div>
       <h3>Customer history summary</h3>
       <div class="when">Use when: a CS rep needs context before responding to a ticket</div>
       <pre>Here's the customer's last 12 months of interaction history: [PASTE]
@@ -138,7 +138,7 @@ Output: 6 bullets max. Goal: rep can read this in 30 seconds before responding.<
     <h2 class="h2">Reply drafting</h2>
 
     <div class="prompt">
-      <div class="prompt-num">— 03 —</div>
+      <div class="prompt-num">, 03,</div>
       <h3>First-response draft (standard ticket)</h3>
       <div class="when">Use when: drafting a reply to a standard support ticket</div>
       <pre>Customer ticket: [PASTE]
@@ -156,7 +156,7 @@ Length: 100-150 words. No marketing language. Sound like a competent human, not 
     </div>
 
     <div class="prompt">
-      <div class="prompt-num">— 04 —</div>
+      <div class="prompt-num">, 04,</div>
       <h3>De-escalation response (angry customer)</h3>
       <div class="when">Use when: customer is frustrated and the situation needs careful handling</div>
       <pre>Customer ticket (angry): [PASTE]
@@ -165,16 +165,16 @@ What we can actually offer (within policy): [PASTE]
 
 Draft a de-escalation response that:
 - Opens by acknowledging their frustration (specifically, not generically)
-- Takes ownership where it's our fault — does NOT take fake ownership where it isn't
+- Takes ownership where it's our fault, does NOT take fake ownership where it isn't
 - States what we CAN do in concrete terms
 - Avoids defensive language, justification, or "I understand how you feel"
 - Closes with a specific commitment and timeline
 
-Length: 80-120 words. Tone: calm, specific, accountable. Never use "unfortunately" — it signals weakness.</pre>
+Length: 80-120 words. Tone: calm, specific, accountable. Never use "unfortunately", it signals weakness.</pre>
     </div>
 
     <div class="prompt">
-      <div class="prompt-num">— 05 —</div>
+      <div class="prompt-num">, 05,</div>
       <h3>Apology + remediation</h3>
       <div class="when">Use when: we made a real mistake and need to repair</div>
       <pre>What happened: [PASTE]
@@ -186,14 +186,14 @@ Draft an apology email:
 - Opens with what happened, in plain language, without burying it
 - Acknowledges specific impact (not "we apologize for any inconvenience")
 - States what we're doing to ensure it doesn't recur
-- Offers the remediation directly — don't make them ask
+- Offers the remediation directly, don't make them ask
 - Closes with the named person they can reach if they want to discuss further
 
 Length: 150-200 words. Tone: serious, specific, accountable.</pre>
     </div>
 
     <div class="prompt">
-      <div class="prompt-num">— 06 —</div>
+      <div class="prompt-num">, 06,</div>
       <h3>Feature-request response</h3>
       <div class="when">Use when: customer asks for a feature we don\'t have</div>
       <pre>Feature requested: [PASTE]
@@ -218,7 +218,7 @@ Length: 100-130 words. Tone: respectful, honest, specific.</pre>
     <h2 class="h2">KB &amp; documentation</h2>
 
     <div class="prompt">
-      <div class="prompt-num">— 07 —</div>
+      <div class="prompt-num">, 07,</div>
       <h3>KB article from ticket pattern</h3>
       <div class="when">Use when: the same question is coming in repeatedly and you should create a KB article</div>
       <pre>Recurring ticket pattern: [PASTE 3-5 representative tickets]
@@ -235,7 +235,7 @@ Match voice and structure of existing KB articles in the Project.</pre>
     </div>
 
     <div class="prompt">
-      <div class="prompt-num">— 08 —</div>
+      <div class="prompt-num">, 08,</div>
       <h3>Help center search optimization</h3>
       <div class="when">Use when: customers can\'t find existing KB articles</div>
       <pre>KB article title: [PASTE]
@@ -257,7 +257,7 @@ Suggest:
     <h2 class="h2">Health monitoring &amp; churn</h2>
 
     <div class="prompt">
-      <div class="prompt-num">— 09 —</div>
+      <div class="prompt-num">, 09,</div>
       <h3>Churn risk signal scan</h3>
       <div class="when">Use when: reviewing accounts for early-warning signals</div>
       <pre>For each customer in this list: [PASTE]
@@ -276,7 +276,7 @@ Return a table: Customer | Risk score | Top signal | Recommended action.</pre>
     </div>
 
     <div class="prompt">
-      <div class="prompt-num">— 10 —</div>
+      <div class="prompt-num">, 10,</div>
       <h3>QBR preparation</h3>
       <div class="when">Use when: preparing for a quarterly business review with a customer</div>
       <pre>Customer: [PASTE]
@@ -287,11 +287,11 @@ Their original goals when they signed: [PASTE]
 
 Prepare:
 - Executive summary (3 sentences)
-- Wins this quarter — specific, with numbers
+- Wins this quarter, specific, with numbers
 - Issues that came up and how we resolved them
 - Where they\'re tracking against their original goals
 - 2-3 specific recommendations for next quarter
-- Expansion opportunities (be specific — not "upsell")
+- Expansion opportunities (be specific, not "upsell")
 - Potential risks I should raise carefully
 
 Format: 1-page brief, dense but readable. Voice: trusted advisor, not vendor.</pre>

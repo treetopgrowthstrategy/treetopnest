@@ -13,7 +13,8 @@
 // The response never reveals qualification status to the user (no leaking / no gaming).
 // POST { email, linkedin } -> { success: true, message }
 
-import { generateAndSendFreeReport } from './cmo-free-report';
+import { generateAndSendFreeReport } from './cmo-free-report.js';
+import { clientIp, rateLimitSubmission, isDisposableEmail, emailMatchesWebsite, killSwitchOn, alertOps } from './cmo-guards.js';
 
 // Vercel: give this function up to 60s so the background report generation
 // (Ahrefs + OpenAI + Resend) has room to finish after the response is flushed.
@@ -98,8 +99,34 @@ export default async function handler(req: any, res: any) {
   }
   const linkedinUrl = /^https?:\/\//i.test(linkedin) ? linkedin : 'https://' + linkedin.replace(/^\/+/, '');
 
-  const enrichment = await apolloEnrich(email, linkedinUrl);
-  const status = classify(enrichment);
+  // Neutral response used for silent drops so nothing leaks to an abuser.
+  const NEUTRAL = {
+    success: true,
+    message: 'You are all set. Your competitive snapshot is on its way. It should land in your inbox in a couple minutes. Reply to it any time to talk to your AI CMO.',
+  };
+
+  // Abuse guards, before any paid work (Apollo enrich, then the inline report).
+  const ip = clientIp(req);
+  if (isDisposableEmail(email)) {
+    return res.status(200).json(NEUTRAL); // disposable inbox: no capture, no spend
+  }
+  const rl = await rateLimitSubmission(ip, email, 'q');
+  if (!rl.ok) {
+    await alertOps(
+      'qualify-rate',
+      'AI CMO qualify rate limit tripped',
+      `<p style="font-family:sans-serif;">Rate limit tripped on /api/cmo-free-qualify (${rl.reason}) for ${email} from ${ip}. Possible abuse.</p>`,
+    );
+    return res.status(200).json(NEUTRAL); // silent, no leak, no spend
+  }
+
+  // Kill switch pauses spend (Apollo + report) but keeps intake alive: the lead
+  // is still captured below, held as 'review' with no enrichment spend.
+  const paused = killSwitchOn();
+  const enrichment = paused
+    ? { title: '', seniority: '', companySize: '', companyDomain: '', matched: false }
+    : await apolloEnrich(email, linkedinUrl);
+  let status = classify(enrichment);
 
   // Persist to the lead record.
   try {
@@ -110,6 +137,13 @@ export default async function handler(req: any, res: any) {
       const fr = await fetch(`${base}?filterByFormula=${q}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
       const fd: any = fr.ok ? await fr.json() : { records: [] };
       const rec = fd.records?.[0];
+      // Plausibility: an auto-qualified lead whose email domain does not match
+      // the company website they submitted gets held for review, not
+      // auto-approved (guards against a free-provider email claiming a big brand).
+      const submittedSite = (rec?.fields?.WebsiteURL || '').toString();
+      if (status === 'qualified' && submittedSite && !emailMatchesWebsite(email, submittedSite)) {
+        status = 'review';
+      }
       const fields: Record<string, any> = {
         LinkedInURL: linkedinUrl,
         QualifiedStatus: status,
@@ -159,9 +193,10 @@ export default async function handler(req: any, res: any) {
     message: 'You are all set. Your competitive snapshot is on its way. It should land in your inbox in a couple minutes. Reply to it any time to talk to your AI CMO.',
   });
 
-  // Background work. Rejected leads get no research spend. All errors are
-  // logged and swallowed since the user already has their success response.
-  if (status !== 'rejected') {
+  // Background work. Rejected leads get no research spend; the kill switch
+  // pauses it entirely. All errors are logged and swallowed since the user
+  // already has their success response.
+  if (!paused && status !== 'rejected') {
     try {
       const result = await generateAndSendFreeReport({ email });
       if (!result.sent) console.log('cmo-free-qualify: report not sent,', result.reason);
