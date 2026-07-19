@@ -5,6 +5,7 @@
 
 import Stripe from 'stripe';
 import { wasProcessed, markProcessed } from './cmo-guards.js';
+import { reportPermalink } from './cmo-report.js';
 
 export const config = { api: { bodyParser: false }, maxDuration: 60 };
 
@@ -279,6 +280,7 @@ function holdingEmailHtml(customerEmail: string): string {
 
 function reportEmailHtml(reportBody: string, customerEmail: string): string {
   const upgradeUrl = `${SITE}/ai-cmo-advisor/upgrade?tier=monitor&e=${Buffer.from(customerEmail).toString('base64url')}`;
+  const permalink = reportPermalink(customerEmail);
   return `
 <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;background:#fff;color:#1a1a1a;line-height:1.65;">
   <div style="background:#050D05;padding:28px 32px;">
@@ -287,7 +289,8 @@ function reportEmailHtml(reportBody: string, customerEmail: string): string {
   <div style="padding:36px 32px;">
     <h1 style="margin:0 0 6px;font-size:24px;font-weight:600;color:#050D05;">Your AI CMO Starter Report</h1>
     <p style="margin:0 0 24px;font-size:13px;color:#888;">Prepared by Bill Colbert, with live Ahrefs data</p>
-    <p style="margin:0 0 28px;font-size:15px;color:#333;line-height:1.65;">Here is your report. I pulled the live data on the competitors you named and wrote up what I would actually do about it. The section most people read first is the last one, "What I would do first." If anything here raises a question, just reply to this email. It comes straight to me.</p>
+    <p style="margin:0 0 14px;font-size:15px;color:#333;line-height:1.65;">Here is your report. I pulled the live data on the competitors you named and wrote up what I would actually do about it. The section most people read first is the last one, "What I would do first." If anything here raises a question, just reply to this email. It comes straight to me.</p>
+    <p style="margin:0 0 28px;font-size:13px;"><a href="${permalink}" style="color:#00897B;text-decoration:none;font-weight:600;">View or share this report online &rarr;</a></p>
     ${reportBody}
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #eaeaea;">
       <p style="margin:0 0 4px;font-size:14px;color:#1a1a1a;">Bill Colbert</p>

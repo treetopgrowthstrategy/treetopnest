@@ -373,6 +373,12 @@
   ],
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/r/:token",
+      "destination": "/api/cmo-report?token=:token"
+    }
+  ],
   "crons": [
     {
       "path": "/api/cron-cmo-nurture",

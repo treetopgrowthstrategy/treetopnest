@@ -15,6 +15,7 @@
 //   POST /api/cmo-free-report { email, website? } -> { sent, mode, reason? }
 
 import { killSwitchOn, budgetAvailable, consumeBudget, adminAuthorized, alertOps } from './cmo-guards.js';
+import { reportPermalink } from './cmo-report.js';
 
 // Vercel: give this function up to 60s. Ahrefs (3 parallel) + OpenAI GPT-4o
 // with JSON output + Resend typically finishes in 10-20s, but Ahrefs can
@@ -307,6 +308,7 @@ function renderLockedSection(title: string, hint: string, payUrl: string): strin
 function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnType<typeof writeTeasers>>>, email: string, fn: string): string {
   const payUrl = `${SITE}/api/cmo-pay?e=${enc(email)}`;
   const upgradeAll = `${SITE}/ai-cmo-advisor/upgrade?tier=monitor&e=${enc(email)}`;
+  const permalink = reportPermalink(email);
   const own = data.own;
   const kwCallout = teasers.keywordCallout;
 
@@ -323,7 +325,8 @@ function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnTy
   <div style="padding:32px 32px 28px;">
     <p style="margin:0 0 8px;font-size:14px;color:#555;">Hi ${fn},</p>
     <h1 style="margin:0 0 6px;font-size:22px;font-weight:600;color:#050D05;line-height:1.3;">Here is your free snapshot for ${data.ownDomain}.</h1>
-    <p style="margin:0 0 22px;font-size:14px;color:#666;">I pulled this from Ahrefs a few minutes ago and ran it through my analysis. Three sections are open so you can see the kind of work I do. Six more are locked. Those are the ones that turn data into a plan.</p>
+    <p style="margin:0 0 14px;font-size:14px;color:#666;">I pulled this from Ahrefs a few minutes ago and ran it through my analysis. Three sections are open so you can see the kind of work I do. Six more are locked. Those are the ones that turn data into a plan.</p>
+    <p style="margin:0 0 22px;font-size:13px;"><a href="${permalink}" style="color:#00897B;text-decoration:none;font-weight:600;">View or share this report online &rarr;</a></p>
 
     <!-- OPEN SECTION 1: YOUR OWN METRICS -->
     <h2 style="margin:0 0 10px;font-size:15px;font-weight:600;color:#050D05;text-transform:uppercase;letter-spacing:0.06em;">01 &middot; Where you stand</h2>
