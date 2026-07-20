@@ -6,6 +6,8 @@
 import Stripe from 'stripe';
 import { wasProcessed, markProcessed } from './cmo-guards.js';
 import { reportPermalink } from './cmo-report.js';
+import { fetchAhrefsData } from './cmo-ahrefs.js';
+import type { AhrefsData } from './cmo-ahrefs.js';
 
 export const config = { api: { bodyParser: false }, maxDuration: 60 };
 
@@ -18,22 +20,10 @@ const OPENAI_API_KEY       = process.env.OPENAI_API_KEY       || '';
 const AIRTABLE_API_KEY     = process.env.AIRTABLE_API_KEY     || '';
 const AIRTABLE_BASE_ID     = (process.env.AIRTABLE_BASE_ID    || 'app0cpbQjtdZh1sHT').split('/')[0];
 const AIRTABLE_TABLE       = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
-const AHREFS_API_KEY       = process.env.AHREFS_API_KEY       || '';
 const FROM_EMAIL           = process.env.RESEND_FROM          || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL           = process.env.BILL_NOTIFY_EMAIL    || 'william.colbert@treetopgrowthstrategy.com';
 const REPLY_TO_ADDRESS     = process.env.CMO_REPLY_TO_EMAIL   || 'bill@reports.treetopgrowthstrategy.com';
 const SITE                 = 'https://treetopgrowthstrategy.com';
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-interface AhrefsData {
-  domain: string;
-  domainRating: number | null;
-  ahrefsRank: number | null;
-  orgKeywords: number | null;
-  orgTraffic: number | null;
-  topKeywords: Array<{ keyword: string; volume: number; best_position: number; sum_traffic: number }>;
-}
 
 // ─── Raw body ─────────────────────────────────────────────────────────────────
 
@@ -100,38 +90,6 @@ async function setLeadStage(email: string, stage: string): Promise<void> {
       await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', Stage: stage, StageSince: new Date().toISOString().slice(0, 10) } }) });
     }
   } catch (err) { console.error('setLeadStage error:', err); }
-}
-
-// ─── Ahrefs ───────────────────────────────────────────────────────────────────
-
-async function fetchAhrefsData(domain: string, todayDate: string): Promise<AhrefsData | null> {
-  if (!AHREFS_API_KEY) return null;
-  const base = 'https://api.ahrefs.com/v3/site-explorer';
-  const h = { Authorization: `Bearer ${AHREFS_API_KEY}` };
-
-  try {
-    const [drRes, metricsRes, kwRes] = await Promise.all([
-      fetch(`${base}/domain-rating?target=${domain}&date=${todayDate}&output=json`, { headers: h }),
-      fetch(`${base}/metrics?target=${domain}&date=${todayDate}&mode=subdomains&output=json`, { headers: h }),
-      fetch(`${base}/organic-keywords?target=${domain}&date=${todayDate}&mode=subdomains&select=keyword,volume,best_position,sum_traffic&order_by=sum_traffic:desc&limit=10&output=json`, { headers: h }),
-    ]);
-
-    const dr: any      = drRes.ok      ? await drRes.json()      : null;
-    const metrics: any = metricsRes.ok ? await metricsRes.json() : null;
-    const kw: any      = kwRes.ok      ? await kwRes.json()      : null;
-
-    return {
-      domain,
-      domainRating:  dr?.domain_rating?.domain_rating  ?? null,
-      ahrefsRank:    dr?.domain_rating?.ahrefs_rank     ?? null,
-      orgKeywords:   metrics?.metrics?.org_keywords     ?? null,
-      orgTraffic:    metrics?.metrics?.org_traffic      ?? null,
-      topKeywords:   kw?.keywords                       ?? [],
-    };
-  } catch (err) {
-    console.error(`Ahrefs fetch failed for ${domain}:`, err);
-    return null;
-  }
 }
 
 function parseCompetitorDomains(notes: string): string[] {

@@ -16,6 +16,8 @@
 
 import { killSwitchOn, budgetAvailable, consumeBudget, adminAuthorized, alertOps } from './cmo-guards.js';
 import { reportPermalink } from './cmo-report.js';
+import { fetchOwnMetrics, fetchTopKeywords, fetchCompetitors, enrichCompetitors } from './cmo-ahrefs.js';
+import type { DomainMetrics, CompetitorRow, KeywordRow } from './cmo-ahrefs.js';
 
 // Vercel: give this function up to 60s. Ahrefs (3 parallel) + OpenAI GPT-4o
 // with JSON output + Resend typically finishes in 10-20s, but Ahrefs can
@@ -25,7 +27,6 @@ export const config = { maxDuration: 60 };
 const AIRTABLE_API_KEY   = process.env.AIRTABLE_API_KEY || '';
 const AIRTABLE_BASE_ID   = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const AIRTABLE_TABLE     = process.env.AIRTABLE_LEADS_TABLE || 'tbl7PEKkdYKafCEdC';
-const AHREFS_API_KEY     = process.env.AHREFS_API_KEY || '';
 const OPENAI_API_KEY     = process.env.OPENAI_API_KEY || '';
 const RESEND_API_KEY     = process.env.RESEND_API_KEY || '';
 const FROM_EMAIL         = process.env.RESEND_FROM || 'Bill Colbert <bill@treetopgrowthstrategy.com>';
@@ -34,27 +35,6 @@ const REPLY_TO_ADDRESS   = process.env.CMO_REPLY_TO_EMAIL || 'bill@reports.treet
 const SITE               = 'https://treetopgrowthstrategy.com';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-
-interface DomainMetrics {
-  domain: string;
-  domainRating: number | null;
-  orgTraffic: number | null;
-  orgKeywords: number | null;
-}
-
-interface CompetitorRow {
-  domain: string;
-  domainRating: number | null;
-  orgTraffic: number | null;
-}
-
-interface KeywordRow {
-  keyword: string;
-  volume: number;
-  best_position: number;
-  sum_traffic: number;
-  cpc?: number | null;
-}
 
 interface ReportData {
   ownDomain: string;
@@ -107,86 +87,6 @@ async function patchLead(recordId: string, fields: Record<string, any>): Promise
     body: JSON.stringify({ fields }),
   });
   if (!r.ok) console.error('cmo-free-report patchLead failed', r.status, await r.text());
-}
-
-// ─── Ahrefs ───────────────────────────────────────────────────────────────────
-
-async function fetchOwnMetrics(domain: string, date: string): Promise<DomainMetrics | null> {
-  if (!AHREFS_API_KEY || !domain) return null;
-  const base = 'https://api.ahrefs.com/v3/site-explorer';
-  const h = { Authorization: `Bearer ${AHREFS_API_KEY}` };
-  try {
-    const [drRes, mRes] = await Promise.all([
-      fetch(`${base}/domain-rating?target=${domain}&date=${date}&output=json`, { headers: h }),
-      fetch(`${base}/metrics?target=${domain}&date=${date}&mode=subdomains&output=json`, { headers: h }),
-    ]);
-    const dr: any = drRes.ok ? await drRes.json() : null;
-    const m: any  = mRes.ok  ? await mRes.json()  : null;
-    if (!drRes.ok) console.warn(`Ahrefs domain-rating ${domain}: HTTP ${drRes.status}`);
-    if (!mRes.ok)  console.warn(`Ahrefs metrics ${domain}: HTTP ${mRes.status}`);
-    const result = {
-      domain,
-      domainRating: dr?.domain_rating?.domain_rating ?? dr?.domain_rating ?? null,
-      orgTraffic:   m?.metrics?.org_traffic ?? null,
-      orgKeywords:  m?.metrics?.org_keywords ?? null,
-    };
-    if (result.domainRating == null && result.orgTraffic == null) {
-      console.warn(`Ahrefs returned no usable metrics for ${domain}. DR response keys: ${dr ? Object.keys(dr).join(',') : 'null'}. Metrics response keys: ${m ? Object.keys(m).join(',') : 'null'}`);
-    }
-    return result;
-  } catch (err) {
-    console.error('fetchOwnMetrics failed:', err);
-    return null;
-  }
-}
-
-async function fetchTopKeywords(domain: string, date: string, limit = 20): Promise<KeywordRow[]> {
-  if (!AHREFS_API_KEY || !domain) return [];
-  const base = 'https://api.ahrefs.com/v3/site-explorer';
-  const url = `${base}/organic-keywords?target=${domain}&date=${date}&mode=subdomains&select=keyword,volume,best_position,sum_traffic,cpc&order_by=sum_traffic:desc&limit=${limit}&output=json`;
-  try {
-    const r = await fetch(url, { headers: { Authorization: `Bearer ${AHREFS_API_KEY}` } });
-    if (!r.ok) return [];
-    const data: any = await r.json();
-    return (data?.keywords || []) as KeywordRow[];
-  } catch (err) {
-    console.error('fetchTopKeywords failed:', err);
-    return [];
-  }
-}
-
-async function fetchCompetitors(domain: string, date: string, limit = 3): Promise<string[]> {
-  if (!AHREFS_API_KEY || !domain) return [];
-  const base = 'https://api.ahrefs.com/v3/site-explorer';
-  const url = `${base}/organic-competitors?target=${domain}&date=${date}&mode=subdomains&select=competitor_domain,intersecting_keywords&order_by=intersecting_keywords:desc&limit=${limit}&output=json`;
-  try {
-    const r = await fetch(url, { headers: { Authorization: `Bearer ${AHREFS_API_KEY}` } });
-    if (!r.ok) return [];
-    const data: any = await r.json();
-    const rows: Array<{ competitor_domain?: string; domain?: string }> = data?.competitors || data?.organic_competitors || data?.results || [];
-    if (!rows.length) console.warn(`Ahrefs organic-competitors for ${domain}: 0 results. Response keys: ${Object.keys(data || {}).join(',')}`);
-    return rows
-      .map(x => (x.competitor_domain || x.domain || '').toString().replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].toLowerCase())
-      .filter(Boolean)
-      .filter(d => d !== domain)
-      .slice(0, limit);
-  } catch (err) {
-    console.error('fetchCompetitors failed:', err);
-    return [];
-  }
-}
-
-async function enrichCompetitors(domains: string[], date: string): Promise<CompetitorRow[]> {
-  if (!domains.length) return [];
-  const rows = await Promise.all(domains.map(async d => {
-    const m = await fetchOwnMetrics(d, date);
-    return {
-      domain: d,
-      domainRating: m?.domainRating ?? null,
-      orgTraffic:   m?.orgTraffic ?? null,
-    };
-  }));
-  return rows;
 }
 
 // ─── OpenAI teaser copy ───────────────────────────────────────────────────────
@@ -440,7 +340,7 @@ export async function generateAndSendFreeReport(opts: GenerateOpts): Promise<Gen
     if (lastSent === today) return { sent: false, mode: 'skipped', reason: 'already sent today' };
   }
 
-  if (!AHREFS_API_KEY || !OPENAI_API_KEY || !RESEND_API_KEY) {
+  if (!process.env.AHREFS_API_KEY || !OPENAI_API_KEY || !RESEND_API_KEY) {
     return { sent: false, mode: 'skipped', reason: 'missing env keys (ahrefs/openai/resend)' };
   }
 
