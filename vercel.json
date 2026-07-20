@@ -2158,6 +2158,10 @@
     {
       "path": "/api/cron-cmo-nurture",
       "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/cron-cmo-monitor",
+      "schedule": "0 15 * * *"
     }
   ]
 }
