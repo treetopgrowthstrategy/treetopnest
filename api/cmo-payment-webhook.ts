@@ -6,7 +6,7 @@
 import Stripe from 'stripe';
 import { wasProcessed, markProcessed, alertOps } from './cmo-guards.js';
 import { reportPermalink } from './cmo-report.js';
-import { fetchAhrefsData } from './cmo-ahrefs.js';
+import { fetchAhrefsData, fetchOwnMetrics, fetchTopKeywords, fetchCompetitors, enrichCompetitors } from './cmo-ahrefs.js';
 import type { AhrefsData } from './cmo-ahrefs.js';
 
 export const config = { api: { bodyParser: false }, maxDuration: 60 };
@@ -434,6 +434,42 @@ export default async function handler(req: any, res: any) {
     const subscriptionId = (session.subscription || '').toString();
     if (subEmail) {
       await activateSubscription(subEmail, subscriptionId, tier).catch(err => console.error('activateSubscription error:', err));
+
+      if (prod === 'cmo-monitor') {
+        try {
+          const domain = (session.metadata?.domain || subEmail.split('@')[1] || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '').trim();
+          if (domain) {
+            const today = new Date().toISOString().slice(0, 10);
+            const [metrics, keywords, compDomains] = await Promise.all([
+              fetchOwnMetrics(domain, today),
+              fetchTopKeywords(domain, today, 20),
+              fetchCompetitors(domain, today, 3),
+            ]);
+            const competitors = await enrichCompetitors(compDomains, today);
+            const snapshot = {
+              domain,
+              domainRating: metrics?.domainRating ?? null,
+              orgTraffic: metrics?.orgTraffic ?? null,
+              orgKeywords: metrics?.orgKeywords ?? null,
+              topKeywords: keywords,
+              competitors,
+              takenAt: today,
+            };
+            const formula = encodeURIComponent(`LOWER({Email})="${subEmail.replace(/"/g, '')}"`);
+            const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`;
+            const lookupRes = await fetch(`${base}?filterByFormula=${formula}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+            const lookupData: any = lookupRes.ok ? await lookupRes.json() : { records: [] };
+            const rec = lookupData.records?.[0];
+            if (rec) {
+              await fetch(`${base}/${rec.id}`, {
+                method: 'PATCH',
+                headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ fields: { LastSnapshotJson: JSON.stringify(snapshot), LastSnapshotAt: today } }),
+              });
+            }
+          }
+        } catch (err) { console.error('Baseline snapshot failed (non-fatal):', err); }
+      }
     }
     return res.status(200).json({ received: true });
   }
