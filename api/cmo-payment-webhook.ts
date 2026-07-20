@@ -4,7 +4,7 @@
 // 5. Delivers via Resend
 
 import Stripe from 'stripe';
-import { wasProcessed, markProcessed } from './cmo-guards.js';
+import { wasProcessed, markProcessed, alertOps } from './cmo-guards.js';
 import { reportPermalink } from './cmo-report.js';
 import { fetchAhrefsData } from './cmo-ahrefs.js';
 import type { AhrefsData } from './cmo-ahrefs.js';
@@ -90,6 +90,59 @@ async function setLeadStage(email: string, stage: string): Promise<void> {
       await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', Stage: stage, StageSince: new Date().toISOString().slice(0, 10) } }) });
     }
   } catch (err) { console.error('setLeadStage error:', err); }
+}
+
+async function findLeadBySubscriptionId(subId: string): Promise<{ recordId: string; email: string; status: string } | null> {
+  if (!AIRTABLE_API_KEY || !subId) return null;
+  const formula = encodeURIComponent(`{SubscriptionId}="${subId.replace(/"/g, '')}"`);
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}?filterByFormula=${formula}&maxRecords=1`;
+  const r = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+  if (!r.ok) return null;
+  const data: any = await r.json();
+  const rec = data.records?.[0];
+  if (!rec) return null;
+  return {
+    recordId: rec.id,
+    email: (rec.fields?.Email || '').toString().toLowerCase(),
+    status: (rec.fields?.SubscriptionStatus || '').toString(),
+  };
+}
+
+async function activateSubscription(email: string, subscriptionId: string, tier: string): Promise<void> {
+  if (!AIRTABLE_API_KEY) return;
+  const base = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`;
+  const auth = { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' };
+  const now = new Date().toISOString().slice(0, 10);
+  const fields: Record<string, any> = {
+    Stage: tier,
+    StageSince: now,
+    SubscriptionId: subscriptionId,
+    SubscriptionStatus: 'active',
+    SubscriptionTier: tier,
+    SubscriptionStartedAt: now,
+  };
+  try {
+    const formula = encodeURIComponent(`LOWER({Email})="${email.replace(/"/g, '')}"`);
+    const r = await fetch(`${base}?filterByFormula=${formula}&maxRecords=1`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } });
+    const data: any = r.ok ? await r.json() : { records: [] };
+    const rec = data.records?.[0];
+    if (rec) {
+      await fetch(`${base}/${rec.id}`, { method: 'PATCH', headers: auth, body: JSON.stringify({ fields }) });
+    } else {
+      await fetch(base, { method: 'POST', headers: auth, body: JSON.stringify({ fields: { Email: email, Source: 'cmo-subscribe', ...fields } }) });
+    }
+  } catch (err) { console.error('activateSubscription error:', err); }
+}
+
+async function patchSubscriptionStatus(recordId: string, fields: Record<string, any>): Promise<void> {
+  if (!AIRTABLE_API_KEY || !recordId) return;
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}/${recordId}`;
+  const r = await fetch(url, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields }),
+  });
+  if (!r.ok) console.error('patchSubscriptionStatus failed:', r.status, await r.text());
 }
 
 function parseCompetitorDomains(notes: string): string[] {
@@ -260,6 +313,81 @@ function reportEmailHtml(reportBody: string, customerEmail: string): string {
 </div>`;
 }
 
+// ─── Subscription lifecycle handlers ─────────────────────────────────────────
+
+async function handleSubscriptionDeleted(event: any, res: any) {
+  const sub = event.data.object;
+  const subId = sub.id;
+  const idemKey = `cmo:sub-del:${event.id}`;
+  const processed = await wasProcessed(idemKey);
+  if (processed.enforced && processed.seen) {
+    return res.status(200).json({ received: true, duplicate: true });
+  }
+
+  const lead = await findLeadBySubscriptionId(subId);
+  if (!lead) {
+    console.warn(`Subscription deleted but no lead found for ${subId}`);
+    return res.status(200).json({ received: true });
+  }
+
+  await patchSubscriptionStatus(lead.recordId, {
+    SubscriptionStatus: 'cancelled',
+    SubscriptionCancelledAt: new Date().toISOString().slice(0, 10),
+  });
+  await markProcessed(idemKey);
+  await alertOps('sub-cancelled', `Subscription cancelled: ${lead.email}`,
+    `<p style="font-family:sans-serif;">Subscription <code>${subId}</code> cancelled for <strong>${lead.email}</strong>.</p>`);
+
+  return res.status(200).json({ received: true });
+}
+
+async function handlePaymentFailed(event: any, res: any) {
+  const invoice = event.data.object;
+  const subId = (invoice.subscription || '').toString();
+  const idemKey = `cmo:pay-fail:${event.id}`;
+  const processed = await wasProcessed(idemKey);
+  if (processed.enforced && processed.seen) {
+    return res.status(200).json({ received: true, duplicate: true });
+  }
+
+  const lead = await findLeadBySubscriptionId(subId);
+  if (!lead) {
+    console.warn(`Payment failed but no lead found for subscription ${subId}`);
+    return res.status(200).json({ received: true });
+  }
+
+  await patchSubscriptionStatus(lead.recordId, { SubscriptionStatus: 'past_due' });
+  await markProcessed(idemKey);
+  await alertOps('payment-failed', `Payment failed: ${lead.email}`,
+    `<p style="font-family:sans-serif;">Invoice payment failed for <strong>${lead.email}</strong> (subscription <code>${subId}</code>). Stripe Smart Retries will handle recovery.</p>`);
+
+  return res.status(200).json({ received: true });
+}
+
+async function handleInvoicePaid(event: any, res: any) {
+  const invoice = event.data.object;
+  const subId = (invoice.subscription || '').toString();
+  const idemKey = `cmo:inv-paid:${event.id}`;
+  const processed = await wasProcessed(idemKey);
+  if (processed.enforced && processed.seen) {
+    return res.status(200).json({ received: true, duplicate: true });
+  }
+
+  const lead = await findLeadBySubscriptionId(subId);
+  if (!lead) {
+    return res.status(200).json({ received: true });
+  }
+
+  if (lead.status !== 'past_due') {
+    return res.status(200).json({ received: true });
+  }
+
+  await patchSubscriptionStatus(lead.recordId, { SubscriptionStatus: 'active' });
+  await markProcessed(idemKey);
+
+  return res.status(200).json({ received: true });
+}
+
 // ─── Handler ──────────────────────────────────────────────────────────────────
 
 export default async function handler(req: any, res: any) {
@@ -282,18 +410,31 @@ export default async function handler(req: any, res: any) {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
 
+  // ── Route by event type ────────────────────────────────────────────────
+  if (event.type === 'customer.subscription.deleted') {
+    return handleSubscriptionDeleted(event, res);
+  }
+  if (event.type === 'invoice.payment_failed') {
+    return handlePaymentFailed(event, res);
+  }
+  if (event.type === 'invoice.paid') {
+    return handleInvoicePaid(event, res);
+  }
   if (event.type !== 'checkout.session.completed') {
     return res.status(200).json({ received: true });
   }
 
   const session = event.data.object;
 
-  // Subscription tier purchases: advance the lead's Stage to that tier. No report to generate.
+  // Subscription tier purchases: activate and write all subscription fields.
   const prod = session.metadata?.product || '';
   if (prod === 'cmo-monitor' || prod === 'cmo-guided' || prod === 'cmo-embedded') {
     const subEmail = (session.customer_email || session.metadata?.email || '').toLowerCase().trim();
     const tier = (session.metadata?.tier || prod.replace('cmo-', '')).toString();
-    if (subEmail) { await setLeadStage(subEmail, tier).catch(() => {}); }
+    const subscriptionId = (session.subscription || '').toString();
+    if (subEmail) {
+      await activateSubscription(subEmail, subscriptionId, tier).catch(err => console.error('activateSubscription error:', err));
+    }
     return res.status(200).json({ received: true });
   }
 
