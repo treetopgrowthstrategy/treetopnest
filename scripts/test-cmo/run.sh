@@ -35,6 +35,7 @@ run "cron: live paid"      test-cron-live.mjs
 run "cron: free + paid"    test-cron-free.mjs
 run "endpoints: lifecycle" test-endpoints.mjs
 run "webhook: idempotency+retry" test-webhook.mjs
+run "subscription: lifecycle" test-subscription.mjs
 run "report: permalink serving" test-report.mjs
 
 echo ""
