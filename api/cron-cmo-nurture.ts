@@ -12,6 +12,7 @@
 // and does not advance any counters. Flip the flag to go live.
 
 import crypto from 'node:crypto';
+import { fetchOwnMetrics } from './cmo-ahrefs.js';
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || '';
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
@@ -24,7 +25,6 @@ const TOKEN_SECRET     = process.env.CMO_TOKEN_SECRET || 'cmo-dev-secret-change-
 const NURTURE_ENABLED  = process.env.CMO_NURTURE_ENABLED === 'true';
 const CRON_SECRET      = process.env.CRON_SECRET || '';
 const SITE             = 'https://treetopgrowthstrategy.com';
-const AHREFS_API_KEY   = process.env.AHREFS_API_KEY || '';
 const OPENAI_API_KEY   = process.env.OPENAI_API_KEY || '';
 // Hard cap on how many free leads get a fresh Ahrefs+OpenAI insight per run (cost gate).
 const MAX_FREE_RESEARCH_PER_RUN = Number(process.env.CMO_MAX_FREE_RESEARCH || '25');
@@ -213,20 +213,13 @@ function domainOf(lead: any): string {
 // One genuinely useful insight from live Ahrefs data, phrased by GPT-4o. Null if
 // keys are missing or the domain has no data (caller falls back to templated copy).
 async function buildInsight(domain: string): Promise<string | null> {
-  if (!AHREFS_API_KEY || !OPENAI_API_KEY || !domain) return null;
+  if (!OPENAI_API_KEY || !domain) return null;
   const date = todayISO();
-  const base = 'https://api.ahrefs.com/v3/site-explorer';
-  const h = { Authorization: `Bearer ${AHREFS_API_KEY}` };
   try {
-    const [drRes, mRes] = await Promise.all([
-      fetch(`${base}/domain-rating?target=${domain}&date=${date}&output=json`, { headers: h }),
-      fetch(`${base}/metrics?target=${domain}&date=${date}&mode=subdomains&output=json`, { headers: h }),
-    ]);
-    const dr: any = drRes.ok ? await drRes.json() : null;
-    const m: any  = mRes.ok  ? await mRes.json()  : null;
-    const domainRating = dr?.domain_rating?.domain_rating ?? null;
-    const orgTraffic   = m?.metrics?.org_traffic ?? null;
-    const orgKeywords  = m?.metrics?.org_keywords ?? null;
+    const metrics = await fetchOwnMetrics(domain, date);
+    const domainRating = metrics?.domainRating ?? null;
+    const orgTraffic   = metrics?.orgTraffic ?? null;
+    const orgKeywords  = metrics?.orgKeywords ?? null;
     if (domainRating === null && orgTraffic === null) return null;
     const prompt = `You are Bill Colbert, a fractional CMO. For the domain ${domain}, Ahrefs shows Domain Rating ${domainRating ?? 'n/a'}, about ${orgTraffic ?? 'n/a'} monthly organic visits across ${orgKeywords ?? 'n/a'} ranking keywords. Write ONE genuinely useful, specific observation a CMO would make about their organic position, and the single biggest opportunity you would chase first. 2 to 3 sentences, direct and human, no preamble, no sign-off. HARD RULE: no em dashes.`;
     const r = await fetch('https://api.openai.com/v1/chat/completions', {

@@ -17,6 +17,7 @@ mkdir -p "$DIR/ep"
 bash scripts/check-api-imports.sh
 
 echo "Bundling handlers..."
+npx esbuild api/cmo-ahrefs.ts --bundle --platform=node --format=esm --outfile="$DIR/ahrefs.mjs" >/dev/null 2>&1
 npx esbuild api/cron-cmo-nurture.ts --bundle --platform=node --format=esm --outfile="$DIR/cron.mjs" >/dev/null 2>&1
 npx esbuild api/cmo-guards.ts --bundle --platform=node --format=esm --outfile="$DIR/guards.mjs" >/dev/null 2>&1
 npx esbuild api/cmo-payment-webhook.ts --bundle --platform=node --format=esm --outfile="$DIR/webhook.mjs" >/dev/null 2>&1
