@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABM Intelligence Brief: Sample Deliverable | Treetop Growth Strategy</title>
+<meta name="description" content="An anonymized sample of the ABM intelligence briefs Treetop builds for vertical SaaS platforms. 625 operators mapped from a public backlink graph, 29,405 reviews read, friction counted only in 1-2 star complaints, and the recoverable revenue named. All numbers are real.">
+<link rel="canonical" href="https://treetopgrowthstrategy.com/abm-intelligence-brief">
+<meta name="robots" content="index, follow">
+<meta name="author" content="William Colbert, Treetop Growth Strategy">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Treetop Growth Strategy">
+<meta property="og:title" content="ABM Intelligence Brief: Sample Deliverable">
+<meta property="og:description" content="625 operators mapped from a public backlink graph. 29,405 reviews read. Friction counted only in 1-2 star complaints. The recoverable revenue, named and concentrated. An anonymized sample of the ABM briefs Treetop builds for vertical SaaS platforms.">
+<meta property="og:url" content="https://treetopgrowthstrategy.com/abm-intelligence-brief">
+<meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ABM Intelligence Brief: Sample Deliverable">
+<meta name="twitter:description" content="625 operators mapped from a public backlink graph. 29,405 reviews read. The recoverable revenue, named and concentrated.">
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og-default.png">
+<style>
+  :root {
+    --bg: #0B0B0E;
+    --surface: #14141A;
+    --ink: #EDECEA;
+    --muted: #6E6E7A;
+    --rule: #252530;
+    --signal: #E8C400;
+    --alert: #E84860;
+    --clear: #22C55E;
+    --alert-bg: rgba(232,72,96,0.07);
+    --signal-bg: rgba(232,196,0,0.05);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #F7F6F3;
+      --surface: #FFFFFF;
+      --ink: #1C1C22;
+      --muted: #7A7A84;
+      --rule: #E0DFD8;
+      --signal: #9E8500;
+      --alert: #C93048;
+      --clear: #16A34A;
+      --alert-bg: rgba(201,48,72,0.06);
+      --signal-bg: rgba(158,133,0,0.06);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F7F6F3;
+    --surface: #FFFFFF;
+    --ink: #1C1C22;
+    --muted: #7A7A84;
+    --rule: #E0DFD8;
+    --signal: #9E8500;
+    --alert: #C93048;
+    --clear: #16A34A;
+    --alert-bg: rgba(201,48,72,0.06);
+    --signal-bg: rgba(158,133,0,0.06);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0B0E;
+    --surface: #14141A;
+    --ink: #EDECEA;
+    --muted: #6E6E7A;
+    --rule: #252530;
+    --signal: #E8C400;
+    --alert: #E84860;
+    --clear: #22C55E;
+    --alert-bg: rgba(232,72,96,0.07);
+    --signal-bg: rgba(232,196,0,0.05);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px 80px; }
+
+  /* --- PORTFOLIO BANNER --- */
+  .portfolio-bar {
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .portfolio-bar .org {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--signal);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .portfolio-bar .org:hover { border-bottom: 1px solid var(--signal); }
+  .portfolio-bar .label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+  }
+  .portfolio-context {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 28px 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  a:focus-visible, .org:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+  /* --- HEADER --- */
+  .header { padding: 48px 0 0; }
+  .classification {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    border: 1px solid var(--signal);
+    display: inline-block;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    text-wrap: balance;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .doc-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .doc-meta strong { color: var(--ink); font-weight: 700; }
+
+  /* --- SECTIONS --- */
+  section { margin-top: 52px; }
+  h2 {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 20px;
+    background: var(--signal);
+    flex-shrink: 0;
+  }
+  .section-sub {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 18px;
+  }
+
+  /* --- STATS GRID --- */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    border: 1px solid var(--rule);
+  }
+  .stat {
+    padding: 20px 18px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-val {
+    font-family: system-ui, sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-val.signal { color: var(--signal); }
+  .stat-lbl {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* --- REVENUE TABLE --- */
+  .assumptions {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    border-left: 2px solid var(--signal);
+    padding: 10px 16px;
+    margin-bottom: 18px;
+    background: var(--signal-bg);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+  .rev-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+  }
+  .rev-table th, .rev-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    text-align: left;
+  }
+  .rev-table th {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+    background: var(--surface);
+  }
+  .rev-table td.term {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+  }
+  .rev-table td.num {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    text-align: right;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rev-table tr:last-child td { border-bottom: none; }
+
+  /* --- SENSITIVITY RANGE --- */
+  .sensitivity {
+    margin-top: 20px;
+    border: 1px solid var(--rule);
+  }
+  .sensitivity-header {
+    background: var(--surface);
+    padding: 10px 18px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+  }
+  .sensitivity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+  }
+  @media (max-width: 580px) {
+    .sensitivity-grid { grid-template-columns: 1fr; }
+  }
+  .sens-cell {
+    padding: 20px 22px;
+    border-right: 1px solid var(--rule);
+  }
+  .sens-cell:last-child { border-right: none; }
+  .sens-cell.mid { background: var(--signal-bg); }
+  .sens-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sens-label.floor { color: var(--clear); }
+  .sens-label.mid { color: var(--signal); }
+  .sens-label.ceil { color: var(--alert); }
+  .sens-val {
+    font-family: system-ui, sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sens-val.lead {
+    font-size: 48px;
+    color: var(--signal);
+  }
+  .sens-note {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* --- CONCENTRATION --- */
+  .conc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .conc-cell {
+    padding: 22px 20px;
+    border-right: 1px solid var(--rule);
+  }
+  .conc-cell:last-child { border-right: none; }
+  .conc-val {
+    font-family: system-ui, sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .conc-val.green { color: var(--clear); }
+  .conc-val.amber { color: var(--signal); }
+  .conc-val.red { color: var(--alert); }
+  .conc-lbl {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+  .conc-read {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-left: 3px solid var(--signal);
+    background: var(--signal-bg);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* --- QUOTES --- */
+  .quote-card {
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    padding: 22px 24px;
+    margin-bottom: 14px;
+  }
+  .q-tag {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    margin-right: 6px;
+    font-weight: 700;
+  }
+  .q-tag.billing { background: var(--signal); color: #0B0B0E; }
+  .q-tag.cancel { background: var(--alert); color: #0B0B0E; }
+  .q-tag.service { background: var(--muted); color: #0B0B0E; }
+  .q-attr {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .q-attr strong { color: var(--ink); }
+  .q-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 12px 0 14px;
+    font-style: italic;
+    border-left: 2px solid var(--signal);
+    padding-left: 16px;
+    color: var(--ink);
+  }
+  .q-impact {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--alert);
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  /* --- MATRIX --- */
+  .matrix-wrap {
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    padding: 24px;
+    overflow-x: auto;
+  }
+  .matrix-wrap svg { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto; min-width: 420px; }
+
+  /* --- METHODOLOGY CARDS --- */
+  .method-card {
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .method-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 8px;
+  }
+  .method-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* --- CTA --- */
+  .cta-box {
+    background: var(--signal);
+    color: #0B0B0E;
+    padding: 32px 36px;
+    margin-top: 12px;
+  }
+  .cta-headline {
+    font-family: system-ui, sans-serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 640px;
+    text-wrap: balance;
+  }
+  .cta-body {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 580px;
+    margin-bottom: 18px;
+  }
+  .cta-contact {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .cta-contact a { color: #0B0B0E; text-decoration: underline; }
+
+  /* --- FOOTER --- */
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+  footer strong { color: var(--ink); font-weight: 700; }
+  footer a { color: var(--signal); text-decoration: none; border-bottom: 1px solid var(--signal); }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-bottom: 1px solid var(--rule); }
+    .conc-grid { grid-template-columns: repeat(2, 1fr); }
+    .conc-cell { border-bottom: 1px solid var(--rule); }
+    .doc-meta { gap: 14px; }
+    h1 { font-size: 32px; }
+    .stat-val { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="portfolio-bar">
+  <a class="org" href="https://treetopgrowthstrategy.com/">Treetop Growth Strategy</a>
+  <span class="label">Sample Intelligence Deliverable</span>
+</div>
+<div class="portfolio-context">
+  This is an anonymized sample of the ABM intelligence briefs Treetop builds for vertical SaaS platforms. All numbers are real. The platform and operator names have been redacted. <a href="mailto:william.colbert@treetopgrowthstrategy.com?subject=ABM%20intelligence%20brief%20for%20our%20platform" style="color:var(--signal);text-decoration:none;border-bottom:1px solid var(--signal);">Request one for your platform.</a>
+</div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="classification">Confidential // ABM Intelligence Brief</div>
+    <h1>Operator Base<br>Intelligence Brief</h1>
+    <div class="subtitle">Membership Friction &amp; Recovery Analysis · July 2026</div>
+    <div class="doc-meta">
+      <span>Issued <strong>2026-07-16</strong></span>
+      <span>Coverage <strong>Through July 2026</strong></span>
+      <span>Sample <strong>29,405 Reviews · 625 Operators</strong></span>
+      <span>Distribution <strong>Prepared for [Platform] Leadership</strong></span>
+    </div>
+  </header>
+
+  <!-- FOOTPRINT -->
+  <section>
+    <div class="stats-row" style="margin-bottom:20px;">
+      <div class="stat">
+        <div class="stat-val signal">625</div>
+        <div class="stat-lbl">Operator Locations Sampled</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">29,405</div>
+        <div class="stat-lbl">Public Reviews Analyzed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">679</div>
+        <div class="stat-lbl">Confirmed [Platform] Operators</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">45</div>
+        <div class="stat-lbl">States Covered</div>
+      </div>
+    </div>
+
+    <!-- Simplified US map -->
+    <div style="border:1px solid var(--rule); background:var(--surface); padding:20px 20px 14px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+        <span class="stat-lbl" style="font-size:10px;">// Sampled Footprint · Continental US</span>
+        <span class="stat-lbl" style="font-size:10px;"><span style="display:inline-block;width:7px;height:7px;background:var(--signal);margin-right:6px;border-radius:50%;"></span>Operator Location</span>
+      </div>
+      <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative map of the continental United States with operator location markers spread across 45 states" style="display:block;width:100%;height:auto;">
+        <path d="M17,25 L27,55 L25,110 L21,151 L40,184 L47,197 L67,220 L72,244 L100,252 L116,272 L152,272 L200,294 L237,294 L260,286 L287,304 L307,332 L327,318 L360,351 L381,378 L387,350 L416,320 L440,320 L463,326 L486,331 L493,310 L514,310 L534,308 L560,314 L574,338 L578,354 L590,381 L607,390 L613,370 L612,356 L607,340 L597,308 L602,283 L620,268 L640,252 L654,233 L667,208 L669,189 L680,176 L694,158 L700,145 L733,136 L740,131 L747,116 L738,100 L760,96 L787,82 L776,66 L760,47 L768,41 L733,77 L703,79 L680,82 L662,95 L631,101 L625,102 L580,131 L574,126 L574,66 L552,62 L534,131 L514,79 L507,49 L487,33 L453,47 L419,16 L384,16 L293,16 L213,16 L120,16 L40,16 Z"
+              fill="var(--surface)" stroke="var(--rule)" stroke-width="1.2" stroke-linejoin="round"/>
+        <circle cx="510" cy="128" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="510" cy="128" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="660" cy="157" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="660" cy="157" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="280" cy="162" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="280" cy="162" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="47" cy="190" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="47" cy="190" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="118" cy="272" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="118" cy="272" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="268" cy="225" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="268" cy="225" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="472" cy="179" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="472" cy="179" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="596" cy="132" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="596" cy="132" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="390" cy="272" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="390" cy="272" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="580" cy="358" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="580" cy="358" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="188" cy="260" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="188" cy="260" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="63" cy="177" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="63" cy="177" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="505" cy="108" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="505" cy="108" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="640" cy="240" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="640" cy="240" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="350" cy="310" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="350" cy="310" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="430" cy="290" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="430" cy="290" r="10" fill="var(--signal)" opacity="0.1"/>
+        <circle cx="550" cy="145" r="4" fill="var(--signal)" opacity="0.9"/><circle cx="550" cy="145" r="10" fill="var(--signal)" opacity="0.1"/>
+      </svg>
+      <div style="font-family:ui-monospace,monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule);">
+        45 states represented across 625 sampled operators. Map pins are illustrative of geographic reach. Sample drawn from the platform's mapped operator base via Ahrefs backlink graph of [platform-domain.com].
+      </div>
+    </div>
+  </section>
+
+  <!-- REVENUE IMPACT -->
+  <section>
+    <h2>Revenue Impact Estimator</h2>
+    <div class="section-sub">// Friction-to-churn translation · Complaints-only (&#8804;2&#9733;) · Observed, not extrapolated</div>
+    <div class="assumptions">
+      Assumptions: Avg member LTV $2,400/year (adjustable) · Friction counted only in 1-2&#9733; reviews across 625 operators sampled · No operator-base extrapolation · Range reflects 30-100% friction-to-churn conversion.
+    </div>
+
+    <div style="border:1px solid var(--rule);background:var(--surface);padding:18px 22px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div class="stat-lbl" style="margin-bottom:6px;">Observed · &#8804;2&#9733; Reviews · 75 Operators</div>
+        <div class="stat-val" style="font-size:34px;">$600K</div>
+        <div style="font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);margin-top:4px;">Friction-term mentions in 1-2&#9733; reviews &times; $2,400 LTV.</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="stat-lbl" style="margin-bottom:6px;">Friction Mentions · &#8804;2&#9733;</div>
+        <div style="font-family:ui-monospace,monospace;font-size:26px;color:var(--signal);font-weight:700;font-variant-numeric:tabular-nums;">250</div>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;">
+    <table class="rev-table">
+      <thead><tr>
+        <th>Friction Term</th>
+        <th style="text-align:right;">&#8804;2&#9733; Mentions</th>
+        <th style="text-align:right;">Risk @ $2,400 LTV</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="term">charged</td><td class="num">50</td><td class="num">$120,000</td></tr>
+        <tr><td class="term">refund</td><td class="num">40</td><td class="num">$96,000</td></tr>
+        <tr><td class="term">cancel</td><td class="num">24</td><td class="num">$57,600</td></tr>
+        <tr><td class="term">fee</td><td class="num">24</td><td class="num">$57,600</td></tr>
+        <tr><td class="term">canceled</td><td class="num">19</td><td class="num">$45,600</td></tr>
+        <tr><td class="term">cancelled</td><td class="num">11</td><td class="num">$26,400</td></tr>
+        <tr><td class="term">billing</td><td class="num">10</td><td class="num">$24,000</td></tr>
+        <tr><td class="term">bill</td><td class="num">10</td><td class="num">$24,000</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="sensitivity">
+      <div class="sensitivity-header">Conversion Sensitivity · Observed Across 625 Sampled Operators · No Extrapolation</div>
+      <div class="sensitivity-grid">
+        <div class="sens-cell">
+          <div class="sens-label floor">Conservative · 30%</div>
+          <div class="sens-val">$180K</div>
+          <div class="sens-note">Floor</div>
+        </div>
+        <div class="sens-cell mid">
+          <div class="sens-label mid">Midpoint · 60% (Lead)</div>
+          <div class="sens-val lead">$360K</div>
+          <div class="sens-note">Conservative midpoint · lead number</div>
+        </div>
+        <div class="sens-cell">
+          <div class="sens-label ceil">Ceiling · 100%</div>
+          <div class="sens-val">$600K</div>
+          <div class="sens-note">All mentions convert</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCENTRATION -->
+  <section>
+    <h2>Friction Is Concentrated</h2>
+    <div class="section-sub">// This is not a platform-wide problem. It is an operator-specific one.</div>
+    <p style="font-size:15px;max-width:720px;margin-bottom:18px;line-height:1.65;">
+      Of 625 operators sampled, <strong>550 (88%) show no visible membership friction</strong>. The signal concentrates in a small subset: the top 20 operators (3% of the base) carry <strong>63%</strong> of all visible friction. The top 5 carry 24% alone. The operators are named.
+    </p>
+    <div class="conc-grid">
+      <div class="conc-cell">
+        <div class="conc-val green">88%</div>
+        <div class="conc-lbl">Operators clean<br>(550 of 625)</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-val amber">75</div>
+        <div class="conc-lbl">Operators with<br>visible friction (12%)</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-val red">63%</div>
+        <div class="conc-lbl">Of friction sits in<br>the top 20 operators</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-val">24%</div>
+        <div class="conc-lbl">Sits in the top<br>5 operators alone</div>
+      </div>
+    </div>
+    <div class="conc-read">
+      <strong style="font-family:system-ui;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--signal);">Read:&nbsp;</strong>
+      The recoverable AR does not sit on 625 operators. It sits on 75, most of it on 20, and it is loud enough in public reviews that CS leadership already knows these names. We have the list.
+    </div>
+  </section>
+
+  <!-- ANCHOR QUOTES -->
+  <section>
+    <h2>Anchor Quotes</h2>
+    <div class="section-sub">// Sourced evidence · 1-2&#9733; reviews from the platform's customer base</div>
+    <div class="quote-card">
+      <span class="q-tag cancel">Cancellation</span><span class="q-tag billing">Billing</span>
+      <div class="q-attr"><strong>[Operator A]</strong> · [City, State] · Google Review</div>
+      <div class="q-text">"I was planning on using the monetary value from an expired [deal] towards a 6-session package. The owner said [the deal platform] has their rules and we have ours. After 30 minutes of back and forth, she changed what we had agreed upon. On the day of my next appointment, she called to cancel, saying she needed to 'look into it more.' I told her I have already paid for these sessions, so we are under contract. She said, 'then I will refund you.'"</div>
+      <div class="q-impact">&#9650; Estimated impact: events like this cost operators an estimated $2,400 in LTV per incident. 3 primary friction terms in this single review.</div>
+    </div>
+    <div class="quote-card">
+      <span class="q-tag billing">Billing</span><span class="q-tag service">Service</span>
+      <div class="q-attr"><strong>[Operator B]</strong> · [City, State] · Google Review</div>
+      <div class="q-text">"The ad promoted treatments at $4/unit for up to 40 units. When I arrived, the doctor recommended a much higher number of units and a different brand, justifying it based on concentration differences not disclosed in the ad or at booking. When I expressed concern about the cost, her immediate response was to ask about my budget, making the interaction feel transactional rather than patient-focused. This felt like a classic bait-and-switch."</div>
+      <div class="q-impact">&#9650; Estimated impact: events like this cost operators an estimated $2,400 in LTV per incident. 1 primary friction term in this review.</div>
+    </div>
+  </section>
+
+  <!-- SIGNAL MATRIX -->
+  <section>
+    <h2>Signal Matrix</h2>
+    <div class="section-sub">// Friction term prioritization · Frequency &times; Revenue Severity</div>
+    <div class="matrix-wrap">
+      <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quadrant chart plotting friction terms by frequency and revenue severity. Charged, refund and cancel fall in the critical quadrant; billing and fee in watch; appointment and paid in noise.">
+        <rect x="70" y="30" width="270" height="160" fill="var(--signal-bg)"/>
+        <rect x="340" y="30" width="270" height="160" fill="var(--alert-bg)"/>
+        <rect x="70" y="190" width="270" height="160" fill="none"/>
+        <rect x="340" y="190" width="270" height="160" fill="var(--signal-bg)" opacity="0.4"/>
+        <line x1="70" y1="350" x2="610" y2="350" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="70" y1="30" x2="70" y2="350" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="340" y1="30" x2="340" y2="350" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="70" y1="190" x2="610" y2="190" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="600" y="50" text-anchor="end" fill="var(--alert)" font-family="ui-monospace,monospace" font-size="10" font-weight="700" letter-spacing="2">CRITICAL</text>
+        <text x="80" y="50" text-anchor="start" fill="var(--signal)" font-family="ui-monospace,monospace" font-size="10" font-weight="700" letter-spacing="2">WATCH</text>
+        <text x="600" y="340" text-anchor="end" fill="var(--muted)" font-family="ui-monospace,monospace" font-size="10" font-weight="700" letter-spacing="2">NOISE</text>
+        <text x="340" y="385" text-anchor="middle" fill="var(--muted)" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2">FREQUENCY &#x2192;</text>
+        <text x="18" y="190" text-anchor="middle" fill="var(--muted)" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2" transform="rotate(-90,18,190)">REVENUE SEVERITY &#x2192;</text>
+        <circle cx="460" cy="95" r="34" fill="var(--alert)" fill-opacity="0.8" stroke="var(--bg)" stroke-width="1"/>
+        <text x="460" y="99" text-anchor="middle" fill="var(--bg)" font-family="ui-monospace,monospace" font-size="9" font-weight="700">charged</text>
+        <circle cx="420" cy="110" r="30" fill="var(--alert)" fill-opacity="0.8" stroke="var(--bg)" stroke-width="1"/>
+        <text x="420" y="114" text-anchor="middle" fill="var(--bg)" font-family="ui-monospace,monospace" font-size="9" font-weight="700">refund</text>
+        <circle cx="380" cy="100" r="26" fill="var(--alert)" fill-opacity="0.8" stroke="var(--bg)" stroke-width="1"/>
+        <text x="380" y="104" text-anchor="middle" fill="var(--bg)" font-family="ui-monospace,monospace" font-size="9" font-weight="700">cancel</text>
+        <circle cx="200" cy="105" r="22" fill="var(--signal)" fill-opacity="0.7" stroke="var(--bg)" stroke-width="1"/>
+        <text x="200" y="109" text-anchor="middle" fill="var(--bg)" font-family="ui-monospace,monospace" font-size="9" font-weight="700">billing</text>
+        <circle cx="160" cy="120" r="20" fill="var(--signal)" fill-opacity="0.7" stroke="var(--bg)" stroke-width="1"/>
+        <text x="160" y="124" text-anchor="middle" fill="var(--bg)" font-family="ui-monospace,monospace" font-size="9" font-weight="700">fee</text>
+        <circle cx="530" cy="230" r="28" fill="var(--muted)" fill-opacity="0.35" stroke="var(--bg)" stroke-width="1"/>
+        <text x="530" y="234" text-anchor="middle" fill="var(--ink)" font-family="ui-monospace,monospace" font-size="8" font-weight="700">appointment</text>
+        <circle cx="400" cy="245" r="22" fill="var(--muted)" fill-opacity="0.3" stroke="var(--bg)" stroke-width="1"/>
+        <text x="400" y="249" text-anchor="middle" fill="var(--ink)" font-family="ui-monospace,monospace" font-size="8" font-weight="700">paid</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section>
+    <h2>Methodology</h2>
+    <div class="section-sub">// Three objections this brief expects, addressed on the record</div>
+    <div class="method-card">
+      <div class="method-label">// Sample Selection Bias</div>
+      <p>Public reviewers skew toward dissatisfied customers. We treat this as a feature: friction is counted <strong>only in 1-2&#9733; reviews</strong>, which deliberately excludes positive mentions. The 250 friction mentions that survive this gate are not a population-representative survey. They are an early-warning indicator of where billing and cancellation friction is loud enough to reach a public channel.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-label">// 1 Friction Mention &#8776; 1 Lost Member (Directional)</div>
+      <p>The 1:1 friction-to-churn assumption is directional, not actuarial. The Revenue Impact Estimator publishes the full sensitivity range (30% to 100% conversion) and leads with the 60% midpoint. Anyone uncomfortable with the ceiling can read the floor and still find the recoverable AR material.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-label">// How We Identified Your Operators</div>
+      <p>The operator base was mapped from the public Ahrefs backlink graph of [platform-domain.com]: businesses that link back to the platform (booking widgets, "powered by" badges, partner pages) are surfaced as candidates, then filtered against Google Business results to confirm they are live operators. No proprietary platform data was used.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-box">
+      <div class="cta-headline">We build these for vertical SaaS platforms. Yours is next.</div>
+      <div class="cta-body">
+        Every platform with a public-facing operator base has a backlink graph we can map and a review corpus we can read. The methodology is the same. The brief is specific to your operators, your verticals, your friction patterns.
+      </div>
+      <div class="cta-contact">William Colbert · <a href="mailto:william.colbert@treetopgrowthstrategy.com?subject=ABM%20intelligence%20brief%20for%20our%20platform">william.colbert@treetopgrowthstrategy.com</a> · Treetop Growth Strategy</div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Methodology</strong> · Operator base mapped via Ahrefs backlink crawl. Public reviews pulled via DataForSEO (Google). Friction terms counted only in 1-2&#9733; reviews (genuine complaints); positive mentions excluded. Revenue impact multiplies friction mentions by member LTV at a 1:1 ratio with 30-100% conversion sensitivity. No operator-base extrapolation.
+    <br><br>
+    <strong>Treetop Growth Strategy</strong> · Fractional CMO and growth engineering for vertical SaaS and specialty brands. <a href="https://treetopgrowthstrategy.com/">treetopgrowthstrategy.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
