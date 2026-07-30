@@ -7,6 +7,7 @@
 const RESEND_API_KEY   = process.env.RESEND_API_KEY;
 const FROM_EMAIL       = 'Ecofit <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
+const DAVE_EMAIL       = process.env.DAVE_NOTIFY_EMAIL || 'dave@myecofit.com';
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const BOOKING_LINK     = 'https://calendar.app.google/GS5H5y8U3PrN8u4A8';
@@ -54,7 +55,7 @@ async function sendBillNotification(data: DemoPayload) {
     headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: FROM_EMAIL,
-      to: BILL_EMAIL,
+      to: [BILL_EMAIL, DAVE_EMAIL],
       subject: `New Demo Request: ${data.name} @ ${data.company}`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;">

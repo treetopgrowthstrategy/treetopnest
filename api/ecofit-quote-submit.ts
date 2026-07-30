@@ -7,6 +7,7 @@
 const RESEND_API_KEY   = process.env.RESEND_API_KEY;
 const FROM_EMAIL       = 'Ecofit <bill@treetopgrowthstrategy.com>';
 const BILL_EMAIL       = process.env.BILL_NOTIFY_EMAIL || 'william.colbert@treetopgrowthstrategy.com';
+const DAVE_EMAIL       = process.env.DAVE_NOTIFY_EMAIL || 'dave@myecofit.com';
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || 'app0cpbQjtdZh1sHT').split('/')[0];
 const QUOTE_TABLE      = 'Ecofit Quote Requests';
@@ -29,12 +30,12 @@ function brandList(data: QuotePayload): string {
 
 // ─── EMAIL ──────────────────────────────────────────────────────────────────
 
-async function sendEmail(to: string, subject: string, html: string) {
+async function sendEmail(to: string | string[], subject: string, html: string) {
   if (!RESEND_API_KEY) { console.warn('RESEND_API_KEY not set'); return; }
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM_EMAIL, to: [to], subject, html }),
+    body: JSON.stringify({ from: FROM_EMAIL, to: Array.isArray(to) ? to : [to], subject, html }),
   });
   if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
 }
@@ -111,22 +112,15 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // Bot protection (mirrors api/lead-capture.ts): honeypot, time trap, random-string heuristic.
+    // Bot protection: honeypot + time trap only. The old random-string
+    // heuristic was discarding real leads (single-word or camel-case company
+    // names like "CrossFitNYC"), so it has been removed. We never drop a
+    // submission based on how a name or company is capitalized.
     const body: any = data;
-    function looksRandom(s: string): boolean {
-      const t = (s || '').trim();
-      if (t.length < 10 || t.includes(' ')) return false;
-      return ((t.slice(1).match(/[A-Z]/g) || []).length) >= 3;
-    }
     const hp = (body.hp as string | undefined)?.trim() ?? '';
     const loadTime = Number(body._t) || 0;
     const elapsed = loadTime ? Date.now() - loadTime : Infinity;
-    const isBot =
-      hp.length > 0 ||
-      (loadTime > 0 && elapsed < 3000) ||
-      looksRandom(body.first_name || body.name || '') ||
-      looksRandom(body.last_name || '') ||
-      looksRandom(body.company || '');
+    const isBot = hp.length > 0 || (loadTime > 0 && elapsed < 3000);
     if (isBot) {
       console.warn('Bot submission dropped:', body.email);
       return res.status(200).json({ success: true });
@@ -146,7 +140,7 @@ export default async function handler(req: any, res: any) {
     // 2. Notify Bill (best-effort).
     let billEmailError: string | null = null;
     try {
-      await sendEmail(BILL_EMAIL, `New Ecofit Quote Request: ${data.name} at ${data.company}`, buildBillNotifyEmail(data));
+      await sendEmail([BILL_EMAIL, DAVE_EMAIL], `New Ecofit Quote Request: ${data.name} at ${data.company}`, buildBillNotifyEmail(data));
     } catch (e) { billEmailError = String(e); console.error('Bill email failed:', e); }
 
     return res.status(200).json({ success: true, airtableError, billEmailError });
