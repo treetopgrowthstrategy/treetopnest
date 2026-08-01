@@ -1,0 +1,283 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>CRM Build vs Buy Cost Calculator (2026) | Treetop</title>
+  <meta name="description" content="A free interactive calculator. Estimate the 5-year total cost of building a custom CRM versus an off-the-shelf CRM versus an AI-native CRM, based on your team size and build approach." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/crm-build-vs-buy-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/crm-build-vs-buy-calculator" />
+  <meta property="og:title" content="CRM Build vs Buy Cost Calculator (2026)" />
+  <meta property="og:description" content="Estimate the 5-year cost of build vs buy vs AI-native CRM in 60 seconds." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og/crm-build-vs-buy-calculator.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://treetopgrowthstrategy.com/og/crm-build-vs-buy-calculator.png" />
+  <meta name="twitter:title" content="CRM Build vs Buy Cost Calculator" />
+  <meta name="twitter:description" content="Estimate the 5-year cost of build vs buy vs AI-native CRM." />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "CRM Build vs Buy Cost Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://treetopgrowthstrategy.com/crm-build-vs-buy-calculator",
+      "description": "Estimate the 5-year total cost of building a custom CRM versus buying off-the-shelf versus an AI-native CRM.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "publisher": {"@id": "https://treetopgrowthstrategy.com/#organization"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "How does this CRM cost calculator work?", "acceptedAnswer": {"@type": "Answer", "text": "It estimates the five-year total cost of three paths. For building, it uses a typical first-version cost for your chosen approach plus maintenance at about eighteen percent per year. For off-the-shelf, it uses a representative per-seat monthly price times your team size. For AI-native, it uses a representative flat monthly price. The figures are illustrative ranges, not a quote."}},
+        {"@type": "Question", "name": "Why is building usually more expensive?", "acceptedAnswer": {"@type": "Answer", "text": "Because the build cost is only the start. Maintenance, integrations, security, and staff time continue for as long as you use the tool, while a subscription spreads those costs across thousands of customers. Over five years a build commonly costs several times what buying does, for a tool that has no automation unless you paid to build that too."}},
+        {"@type": "Question", "name": "What is an AI-native CRM in this calculator?", "acceptedAnswer": {"@type": "Answer", "text": "A CRM built around an AI agent that finds prospects and runs outreach for you, rather than a passive record. It is modeled here at a flat monthly price because it does not charge purely per seat, and it often starts on a free tier. Billy is one current example of the category."}}
+      ]
+    },
+    {"@type": "Organization", "@id": "https://treetopgrowthstrategy.com/#organization", "name": "Treetop Growth Strategy", "url": "https://treetopgrowthstrategy.com"}
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-g { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #F0FFF0; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #1A3A1A; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 0.75rem; display: block; }
+    section { padding: 4rem 2.5rem; border-top: 1px solid #1A3A1A; }
+    .sec-inner { max-width: 880px; margin: 0 auto; }
+    .hero { padding: 7rem 2.5rem 1rem; }
+    .hero-inner { max-width: 880px; margin: 0 auto; }
+    .hero-h { font-family: 'Instrument Serif', serif; font-size: clamp(2.3rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.1; color: #F0FFF0; margin-bottom: 1rem; }
+    .hero-sub { font-size: 1.05rem; color: #C0D8C0; line-height: 1.8; max-width: 720px; }
+    .h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 400; line-height: 1.15; color: #F0FFF0; margin-bottom: 1rem; }
+    .body { font-size: 1rem; color: #C0D8C0; line-height: 1.85; max-width: 760px; margin-bottom: 1.15rem; }
+    .body a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .calc { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2rem; }
+    .field { margin-bottom: 1.5rem; }
+    .field label { display: block; font-size: 0.8rem; font-weight: 600; color: #F0FFF0; margin-bottom: 0.6rem; }
+    .field .hint { font-size: 0.78rem; color: #8FAF8F; margin-top: 0.4rem; }
+    .calc input[type=number] { width: 140px; background: rgba(240,255,240,0.04); border: 1px solid #1A3A1A; color: #F0FFF0; padding: 0.75rem 1rem; font-family: inherit; font-size: 1rem; outline: none; }
+    .calc input[type=number]:focus { border-color: rgba(0,200,83,0.5); }
+    .seg { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .seg button { background: rgba(240,255,240,0.03); border: 1px solid #1A3A1A; color: #C0D8C0; padding: 0.7rem 1.1rem; font-family: inherit; font-size: 0.85rem; cursor: pointer; transition: all 0.15s; }
+    .seg button.active { background: rgba(0,200,83,0.12); border-color: #00C853; color: #F0FFF0; }
+    .results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1A3A1A; margin-top: 0.5rem; }
+    @media(max-width:760px){ .results { grid-template-columns: 1fr; } section,.hero{padding-left:1.5rem;padding-right:1.5rem} .hide-mob{display:none!important} }
+    .rcard { background: #0A1A0A; padding: 1.5rem; text-align: center; }
+    .rcard .rlabel { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8FAF8F; margin-bottom: 0.5rem; }
+    .rcard .rval { font-family: 'Instrument Serif', serif; font-size: 2rem; color: #F0FFF0; line-height: 1.1; }
+    .rcard .rsub { font-size: 0.76rem; color: #8FAF8F; margin-top: 0.4rem; }
+    .rcard.best { background: rgba(0,200,83,0.08); }
+    .rcard.best .rval { color: #00C853; }
+    .headline { font-family: 'Instrument Serif', serif; font-size: clamp(1.3rem,3vw,1.8rem); color: #F0FFF0; line-height: 1.3; margin: 1.75rem 0 0; }
+    .headline strong { color: #00C853; font-weight: 400; }
+    .note { font-size: 0.78rem; color: #8FAF8F; margin-top: 1rem; line-height: 1.6; }
+    .disclosure { font-size: 0.82rem; color: #8FAF8F; line-height: 1.7; border: 1px solid #1A3A1A; background: #0A1A0A; padding: 0.9rem 1.2rem; margin: 1.5rem 0; max-width: 760px; }
+    .disclosure a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    .faq-q { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: #F0FFF0; font-weight: 400; margin: 1.5rem 0 0.4rem; }
+    .cta-box { background: #0A1A0A; border: 1px solid #1A3A1A; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: #F0FFF0; }
+    .cta-sub { font-size: 0.9rem; color: #8FAF8F; margin-top: 0.5rem; max-width: 460px; }
+    .rel-list { list-style: none; padding: 0; font-size: 0.96rem; line-height: 1.9; color: #C0D8C0; }
+    .rel-list a { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+  </style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://treetopgrowthstrategy.com/"},{"@type":"ListItem","position":2,"name":"CRM Build Vs Buy Calculator","item":"https://treetopgrowthstrategy.com/crm-build-vs-buy-calculator"}]}</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/claude-for-business" class="nav-link">Claude for Business</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/resources" class="nav-link">Resources</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment &rarr;</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="lbl">Free calculator</span>
+    <h1 class="hero-h">CRM build vs buy cost calculator.</h1>
+    <p class="hero-sub">Estimate the five-year total cost of three paths to a CRM: building a custom one, buying off-the-shelf, or going AI-native. Set your team size and how you would build, and see the gap. The figures are illustrative ranges to frame the decision, not a quote.</p>
+  </div>
+</div>
+
+<section style="border-top:none;padding-top:1.5rem;">
+  <div class="sec-inner">
+    <div class="calc">
+      <div class="field">
+        <label for="seats">How many people need the CRM?</label>
+        <input type="number" id="seats" value="5" min="1" max="500" />
+        <div class="hint">Used for the per-seat off-the-shelf estimate.</div>
+      </div>
+      <div class="field">
+        <label>If you built it, how?</label>
+        <div class="seg" id="approach-seg">
+          <button data-val="freelancer" class="active">Freelancer</button>
+          <button data-val="agency">Agency</button>
+          <button data-val="inhouse">In-house team</button>
+        </div>
+        <div class="hint">Sets the typical first-version build cost.</div>
+      </div>
+
+      <span class="lbl" style="margin-top:0.5rem;">5-year total cost</span>
+      <div class="results">
+        <div class="rcard" id="card-build">
+          <div class="rlabel">Build it</div>
+          <div class="rval" id="val-build">$0</div>
+          <div class="rsub">Build + maintenance</div>
+        </div>
+        <div class="rcard" id="card-ots">
+          <div class="rlabel">Off-the-shelf</div>
+          <div class="rval" id="val-ots">$0</div>
+          <div class="rsub">Per seat, per month</div>
+        </div>
+        <div class="rcard" id="card-ai">
+          <div class="rlabel">AI-native</div>
+          <div class="rval" id="val-ai">$0</div>
+          <div class="rsub">Flat, often free to start</div>
+        </div>
+      </div>
+      <p class="headline" id="headline"></p>
+      <p class="note" id="note"></p>
+    </div>
+
+    <div class="disclosure">Disclosure: Treetop's founder, Bill Colbert, also builds Billy, an AI-native CRM. The AI-native estimate reflects that category's typical flat pricing. Figures here are illustrative, not a quote. See <a href="/how-much-does-it-cost-to-build-a-custom-crm">the full cost breakdown</a> for the assumptions.</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">How to read it</span>
+    <h2 class="h2">What the numbers assume</h2>
+    <p class="body">The <strong>build</strong> figure uses a typical first-version cost for your chosen approach (freelancer, agency, or in-house), plus maintenance at about eighteen percent of the build cost per year for five years. The <strong>off-the-shelf</strong> figure uses a representative fifty dollars per seat per month across your team. The <strong>AI-native</strong> figure uses a representative flat monthly price, because tools in that category do not charge purely per seat and often start on a free tier.</p>
+    <p class="body">These are deliberately simple. Real numbers vary with scope, integrations, and the specific tools you pick. The point is not a precise quote. It is the shape of the decision, which is almost always the same: building costs several times what buying does, for a tool that does less. For the detailed assumptions, see <a href="/how-much-does-it-cost-to-build-a-custom-crm">how much it costs to build a custom CRM</a>, and for the bigger decision, <a href="/build-a-custom-crm">should you build a custom CRM</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">FAQ</span>
+    <h2 class="h2">Common questions</h2>
+    <div class="faq-q">How does this CRM cost calculator work?</div>
+    <p class="body">It estimates the five-year total cost of three paths. Building uses a typical first-version cost for your chosen approach plus maintenance at about eighteen percent per year. Off-the-shelf uses a representative per-seat monthly price times your team size. AI-native uses a representative flat monthly price. The figures are illustrative ranges, not a quote.</p>
+    <div class="faq-q">Why is building usually more expensive?</div>
+    <p class="body">Because the build cost is only the start. Maintenance, integrations, security, and staff time continue for as long as you use the tool, while a subscription spreads those costs across thousands of customers. Over five years a build commonly costs several times what buying does, for a tool with no automation unless you paid to build that too.</p>
+    <div class="faq-q">What is an AI-native CRM here?</div>
+    <p class="body">A CRM built around an AI agent that finds prospects and runs outreach for you, rather than a passive record. It is modeled at a flat monthly price because it does not charge purely per seat, and it often starts on a free tier. <a href="/what-is-an-ai-native-crm">Billy is one current example</a> of the category.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <span class="lbl">Keep reading</span>
+    <h2 class="h2">Related guides</h2>
+    <ul class="rel-list">
+      <li><a href="/build-a-custom-crm">Should you build a custom CRM? &rarr;</a></li>
+      <li><a href="/how-much-does-it-cost-to-build-a-custom-crm">How much does it cost to build a custom CRM? &rarr;</a></li>
+      <li><a href="/custom-crm-vs-off-the-shelf">Custom CRM vs off-the-shelf &rarr;</a></li>
+      <li><a href="/what-is-an-ai-native-crm">What is an AI-native CRM? &rarr;</a></li>
+      <li><a href="/salesforce-alternatives-for-small-teams">Salesforce alternatives for small teams &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-inner">
+    <div class="cta-box">
+      <div>
+        <div class="cta-text">Skip the build entirely.</div>
+        <div class="cta-sub">Try an AI-native CRM free with Billy, or take Treetop's 3-minute Gap Assessment to see where AI pays off first.</div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="https://usebilly.io" class="btn-p">Try Billy free &rarr;</a>
+        <a href="/quiz" class="btn-g">Take the Gap Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<GlobalFooter />
+
+<script is:inline>
+  (function(){
+    var BUILD = { freelancer: 40000, agency: 100000, inhouse: 180000 };
+    var OTS_PER_SEAT_MO = 50;
+    var AINATIVE_MO = 79;
+    var MONTHS = 60;
+    var approach = 'freelancer';
+
+    function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+
+    function calc(){
+      var seats = parseInt(document.getElementById('seats').value, 10);
+      if (isNaN(seats) || seats < 1) seats = 1;
+      var buildBase = BUILD[approach];
+      var build = buildBase * 1.9;            // build + ~18%/yr maintenance x5
+      var ots = OTS_PER_SEAT_MO * seats * MONTHS;
+      var ai = AINATIVE_MO * MONTHS;
+
+      document.getElementById('val-build').textContent = fmt(build);
+      document.getElementById('val-ots').textContent = fmt(ots);
+      document.getElementById('val-ai').textContent = fmt(ai);
+
+      var vals = [['build', build], ['ots', ots], ['ai', ai]];
+      var min = Math.min(build, ots, ai);
+      vals.forEach(function(v){
+        var el = document.getElementById('card-' + v[0]);
+        if (v[1] === min) el.classList.add('best'); else el.classList.remove('best');
+      });
+
+      var cheapest = Math.min(ots, ai);
+      var mult = (build / cheapest);
+      var multTxt = mult >= 10 ? Math.round(mult) : mult.toFixed(1);
+      document.getElementById('headline').innerHTML =
+        'Building costs about <strong>' + multTxt + 'x</strong> the cheapest alternative over five years, and ' +
+        '<strong>' + fmt(build - cheapest) + '</strong> more.';
+      document.getElementById('note').textContent =
+        'Build assumes a ' + approach + ' first version of ' + fmt(buildBase) +
+        ' plus maintenance at ~18% per year for 5 years. Off-the-shelf assumes $' + OTS_PER_SEAT_MO +
+        '/seat/month for ' + seats + ' seat' + (seats === 1 ? '' : 's') + '. AI-native assumes a flat $' +
+        AINATIVE_MO + '/month (many start free). Estimates only.';
+    }
+
+    var seg = document.getElementById('approach-seg');
+    seg.addEventListener('click', function(e){
+      var b = e.target.closest('button');
+      if (!b) return;
+      approach = b.getAttribute('data-val');
+      Array.prototype.forEach.call(seg.querySelectorAll('button'), function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      calc();
+    });
+    document.getElementById('seats').addEventListener('input', calc);
+    calc();
+  })();
+</script>
+</body>
+</html>
