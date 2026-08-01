@@ -193,7 +193,8 @@ function renderCompetitorRow(c: CompetitorRow, i: number): string {
     </tr>`;
 }
 
-function renderLockedSection(title: string, hint: string, payUrl: string): string {
+function renderLockedSection(title: string, hint: string, payUrl: string, slug?: string, token?: string): string {
+  const href = slug && token ? `${SITE}/api/cmo-click?s=${slug}&t=${encodeURIComponent(token)}` : payUrl;
   return `
     <div style="border:1px solid #eaeaea;background:#fafafa;padding:18px 20px;margin:10px 0;border-radius:4px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
@@ -201,7 +202,7 @@ function renderLockedSection(title: string, hint: string, payUrl: string): strin
         <span style="font-size:15px;font-weight:600;color:#050D05;">${title}</span>
       </div>
       <p style="margin:0 0 10px;font-size:13px;color:#666;line-height:1.6;">${hint}</p>
-      <a href="${payUrl}" style="font-size:13px;color:#00897B;text-decoration:none;font-weight:600;">Unlock the full report for $99 &rarr;</a>
+      <a href="${href}" style="font-size:13px;color:#00897B;text-decoration:none;font-weight:600;">Unlock the full report for $99 &rarr;</a>
     </div>`;
 }
 
@@ -263,18 +264,20 @@ function buildReportHtml(data: ReportData, teasers: NonNullable<Awaited<ReturnTy
       <p style="margin:0 0 4px;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.1em;">I have more to show you</p>
       <p style="margin:0 0 16px;font-size:13px;color:#888;">Six sections I have already drafted from your data. Each one moves you closer to a plan you can actually execute.</p>
     </div>
-    ${renderLockedSection('04 &middot; The full competitive snapshot', teasers.lockedHints.snapshot, payUrl)}
-    ${renderLockedSection('05 &middot; Keyword gap (5 to 8 opportunities)', teasers.lockedHints.keywordGap, payUrl)}
-    ${renderLockedSection('06 &middot; Content positioning', teasers.lockedHints.positioning, payUrl)}
-    ${renderLockedSection('07 &middot; Top 3 growth levers', teasers.lockedHints.levers, payUrl)}
-    ${renderLockedSection('08 &middot; 90-day roadmap', teasers.lockedHints.roadmap, payUrl)}
-    ${renderLockedSection('09 &middot; What I would do first', teasers.lockedHints.firstMove, payUrl)}
+    ${(() => { const t = permalink.split('/r/')[1] || ''; return `
+    ${renderLockedSection('04 &middot; The full competitive snapshot', teasers.lockedHints.snapshot, payUrl, 'snapshot', t)}
+    ${renderLockedSection('05 &middot; Keyword gap (5 to 8 opportunities)', teasers.lockedHints.keywordGap, payUrl, 'keyword-gap', t)}
+    ${renderLockedSection('06 &middot; Content positioning', teasers.lockedHints.positioning, payUrl, 'positioning', t)}
+    ${renderLockedSection('07 &middot; Top 3 growth levers', teasers.lockedHints.levers, payUrl, 'levers', t)}
+    ${renderLockedSection('08 &middot; 90-day roadmap', teasers.lockedHints.roadmap, payUrl, 'roadmap', t)}
+    ${renderLockedSection('09 &middot; What I would do first', teasers.lockedHints.firstMove, payUrl, 'first-move', t)}
+    `; })()}
 
     <!-- BIG CTA -->
     <div style="margin:34px 0 22px;padding:22px;background:#050D05;text-align:center;">
       <p style="margin:0 0 12px;font-family:Georgia,serif;font-size:19px;color:#F0FFF0;">Ready for the full plan?</p>
       <p style="margin:0 0 18px;font-size:13px;color:#8FAF8F;">Delivered same day. Written by your AI CMO. Includes everything above plus the four locked sections.</p>
-      <a href="${payUrl}" style="display:inline-block;background:#00C853;color:#050D05;padding:13px 28px;font-size:15px;font-weight:600;text-decoration:none;border-radius:4px;">Unlock the full report for $99 &rarr;</a>
+      <a href="${SITE}/api/cmo-click?s=roadmap&t=${encodeURIComponent(permalink.split('/r/')[1] || '')}" style="display:inline-block;background:#00C853;color:#050D05;padding:13px 28px;font-size:15px;font-weight:600;text-decoration:none;border-radius:4px;">Unlock the full report for $99 &rarr;</a>
     </div>
 
     <div style="border-top:1px solid #eaeaea;padding-top:20px;margin-top:24px;">
