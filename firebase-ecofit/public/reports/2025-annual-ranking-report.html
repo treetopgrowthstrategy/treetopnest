@@ -403,16 +403,25 @@
     btn.textContent = 'Opening…';
     errEl.style.display = 'none';
 
+    // NOTE: deliberately NOT /api/lead-capture. That endpoint emails the
+    // submitter on every code path, always Treetop-branded ("Thanks for
+    // reaching out to Treetop", signed Founder, Treetop Growth Strategy).
+    // On an ecofit page that leaks the agency to ecofit's own prospects.
+    // ecofit-quote-submit is Ecofit-branded and only ever emails Bill.
+    // TEMPORARY: leads land in the "Ecofit Quote Requests" table until a
+    // dedicated ecofit-report-submit endpoint exists. The Title field is
+    // used as a loud marker so report downloads are not mistaken for
+    // real quote requests.
     var payload = {
-      hp:         document.getElementById('f-hp').value,
-      _t:         window._formLoadTime,
-      first_name: document.getElementById('f-first').value.trim(),
-      last_name:  document.getElementById('f-last').value.trim(),
-      email:      document.getElementById('f-email').value.trim(),
-      company:    document.getElementById('f-company').value.trim(),
-      phone:      document.getElementById('f-phone').value.trim(),
-      asset:      '2025 North American Annual Ranking Report',
-      source:     '/reports/2025-annual-ranking-report',
+      formType: 'report-download',
+      hp:       document.getElementById('f-hp').value,
+      _t:       window._formLoadTime,
+      name:     (document.getElementById('f-first').value.trim() + ' ' +
+                 document.getElementById('f-last').value.trim()).trim(),
+      email:    document.getElementById('f-email').value.trim(),
+      company:  document.getElementById('f-company').value.trim(),
+      phone:    document.getElementById('f-phone').value.trim(),
+      title:    'REPORT DOWNLOAD - 2025 Annual Ranking Report (not a quote request)',
     };
 
     try {
@@ -420,7 +429,7 @@
       // to apex, and browsers do not follow redirects on a CORS preflight, so
       // a www URL loses the lead silently. Re-test with an OPTIONS request
       // before ever changing this; the redirect direction has flipped once.
-      var res = await fetch('https://treetopgrowthstrategy.com/api/lead-capture', {
+      var res = await fetch('https://treetopgrowthstrategy.com/api/ecofit-quote-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
