@@ -36,6 +36,24 @@ PUBLIC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))
 ORIGIN = "https://ecofitnetworks.com"
 TIMEOUT = 20
 
+# Content that must never be deployed, as path fragments matched against every
+# file under public/. Standing instruction from Bill on 2026-08-05: the
+# gym-insurance cluster is not to be published under any circumstances.
+#
+# This is a hard gate rather than a note because the cluster has already come
+# back twice on its own. Commit 3ba70c8f is titled "recover after bad
+# working-tree state (restore gym-insurance cluster...)", and it reappeared
+# again after that. A checkout of an older commit, a stray revert, or a stash
+# pop is enough to put these files back in public/, and `firebase deploy` ships
+# the whole directory. This check fails the deploy instead.
+#
+# Do not remove this without Bill saying so explicitly.
+FORBIDDEN_CONTENT = [
+    ("gym-insurance", "gym-insurance cluster"),
+    ("insurance-savings", "insurance-savings estimator"),
+    ("sitemap-insurance-module", "insurance module sitemap"),
+]
+
 # Endpoints that must never be called from an ecofit page, with the reason.
 # These return 200, so a plain reachability check will not catch them.
 FORBIDDEN = {
@@ -102,8 +120,38 @@ def preflight(url: str) -> tuple[int | None, dict, str]:
         return None, {}, str(e)
 
 
+def check_forbidden_content() -> list[str]:
+    """Fail if content that must never ship has reappeared under public/."""
+    hits: list[str] = []
+    for root, _dirs, files in os.walk(PUBLIC):
+        for fn in files:
+            rel = os.path.relpath(os.path.join(root, fn), PUBLIC)
+            for fragment, label in FORBIDDEN_CONTENT:
+                if fragment in rel:
+                    hits.append(f"{rel}  ({label})")
+                    break
+    return sorted(hits)
+
+
 def main() -> int:
     verbose = "--verbose" in sys.argv
+
+    forbidden = check_forbidden_content()
+    if forbidden:
+        print("preflight: BLOCKED. Content that must never be published is present "
+              f"under public/ ({len(forbidden)} file(s)):\n")
+        for h in forbidden:
+            print(f"  {h}")
+        print(
+            "\nThis is a standing instruction, not a stale rule. The gym-insurance\n"
+            "cluster has reappeared twice from working-tree accidents, and\n"
+            "`firebase deploy` ships the entire public/ directory, so one stray file\n"
+            "here republishes it. Remove these files before deploying.\n"
+            "If this is genuinely intended, Bill has to say so and FORBIDDEN_CONTENT\n"
+            "in this script needs updating first."
+        )
+        return 1
+
     endpoints = discover()
 
     if not endpoints:
