@@ -37,9 +37,85 @@ a { color: inherit; }
 .post-h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.12; color: #F2F3F8; margin-bottom: 20px; }
 .post-byline { font-size: 14px; color: #9699A2; font-weight: 400; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .post-byline strong { color: #F2F3F8; font-weight: 600; }
+/* Optional hero image. Sits between .post-byline and .post-body.
+   Give the <img> explicit width/height attributes so it reserves
+   space and does not shift the article on load. */
+.post-hero { margin: 30px 0 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #0d1117; line-height: 0; }
+.post-hero img { display: block; width: 100%; height: auto; }
+
 .post-body { padding-top: 34px; }
 .post-body > p { font-size: 17px; line-height: 1.78; color: #c8cad1; margin-bottom: 24px; }
 .post-body > h2 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); font-weight: 700; color: #F2F3F8; line-height: 1.28; margin: 46px 0 16px; }
+
+/* ── DATA FIGURES (ranked horizontal bars) ──────────────────
+   Shared chart furniture for data posts. Ranked horizontal bars
+   are already the ecofit house chart form (see analytics.html
+   and platform.html); this codifies it for the blog.
+
+   Column math assumes the article column:
+     .post          760px, padding 24px      -> 712px content
+     .pchart inner  712 - 48 padding - 2 bd  -> 662px
+     row = 148 lab + 14 + 440 track + 14 + 46 val = 662
+
+   Fill widths are precomputed and set inline: value / max * 100.
+   The value sits in its own fixed column, so a full-length bar
+   can never clip its label. Bars run to a true 100%.
+
+   Palette: #84BC41 story bar, #647585 context bar. #647585 is a
+   new token, introduced here, not used elsewhere on the site.
+
+   NOTE: do not add a `.post-body > *` rule. The two direct-child
+   selectors above must stay the only ones or nested <p> loses its
+   typography.
+   ─────────────────────────────────────────────────────────── */
+.pchart { background: #1a2130; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 26px 24px 22px; margin: 36px 0 40px; }
+.pchart-title { font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 700; color: #F2F3F8; line-height: 1.3; margin-bottom: 6px; }
+.pchart-sub { font-size: 13.5px; color: #9699A2; line-height: 1.5; margin-bottom: 24px; }
+
+.pchart-rows { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.pchart-row { display: grid; grid-template-columns: 148px 1fr 46px; gap: 0 14px; align-items: center; }
+.pchart-lab { font-size: 13.5px; font-weight: 400; color: #c8cad1; text-align: right; line-height: 1.25; }
+.pchart-row.is-story .pchart-lab { color: #F2F3F8; font-weight: 600; }
+
+/* Visible track: chart A spans 118:1, so the bottom rows must read
+   as "nearly nothing" against a track rather than as a failed render. */
+.pchart-track { height: 10px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden; }
+.pchart-fill { display: block; height: 100%; min-width: 3px; background: #647585; border-radius: 0 5px 5px 0; }
+.pchart-row.is-story .pchart-fill { background: #84BC41; }
+
+.pchart-val { font-size: 13px; font-weight: 600; color: #c8cad1; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pchart-row.is-story .pchart-val { color: #F2F3F8; }
+
+.pchart-note { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; line-height: 1.6; color: #9699A2; }
+
+/* ── RANK-SHIFT CALLOUT ──
+   #1a2130 not #2F3535: the CTA owns #2F3535, and a green-bordered
+   #2F3535 block would read as a second CTA. 3px border, not 4px. */
+.pcallout { background: #1a2130; border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #84BC41; border-radius: 12px; padding: 28px 30px; margin: 36px 0 40px; }
+.pcallout-h { font-family: 'Raleway', sans-serif; font-size: 1.1rem; font-weight: 700; color: #F2F3F8; line-height: 1.3; margin-bottom: 10px; }
+.pcallout-p { font-size: 15px; line-height: 1.65; color: #c8cad1; margin-bottom: 20px; }
+.pcallout-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.pcallout-item { background: rgba(0,0,0,0.22); border-radius: 8px; padding: 14px 16px; }
+.pcallout-name { font-size: 13.5px; font-weight: 600; color: #F2F3F8; margin-bottom: 6px; }
+.pcallout-move { font-size: 12.5px; color: #9699A2; font-variant-numeric: tabular-nums; }
+.pcallout-move b { color: #84BC41; font-weight: 700; }
+.pcallout-item.is-down .pcallout-move b { color: #c8cad1; }
+
+/* ── FULL DATA TABLE (accessibility fallback + crawler-visible proof) ── */
+.pdata { background: #1a2130; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin: 36px 0 12px; overflow: hidden; }
+.pdata-sum { padding: 18px 24px; cursor: pointer; font-size: 14px; font-weight: 600; color: #c8cad1; list-style: none; display: block; }
+.pdata-sum::-webkit-details-marker { display: none; }
+.pdata-sum:hover { color: #F2F3F8; }
+.pdata-caret { color: #84BC41; }
+.pdata-scroll { overflow-x: auto; padding: 0 24px 24px; }
+.pdata-table { border-collapse: collapse; width: 100%; min-width: 300px; }
+.pdata-table th, .pdata-table td { text-align: left; padding: 9px 12px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.pdata-table thead th { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9699A2; }
+.pdata-table td { color: #c8cad1; font-weight: 400; }
+.pdata-table tbody th { font-size: 13px; font-weight: 400; text-transform: none; letter-spacing: 0; color: #c8cad1; }
+.pdata-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.pdata-table tr:last-child td, .pdata-table tr:last-child th { border-bottom: none; }
+.pdata-src { font-size: 12px; line-height: 1.65; color: #9699A2; margin: 0 0 40px; }
 
 /* ── CTA BLOCK (uses the site primary button style) ── */
 .post-cta { background: #2F3535; border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid #84BC41; border-radius: 12px; padding: 36px 40px; margin: 52px 0 12px; text-align: center; }
@@ -72,4 +148,17 @@ a { color: inherit; }
   .post { padding: 40px 20px 20px; }
   .post-body > p { font-size: 16px; line-height: 1.75; }
   .post-cta { padding: 28px 22px; }
+
+  /* Restack the bar rows rather than squeeze them. At 375px a
+     3-column row leaves a ~141px track and the small bars vanish. */
+  .pchart { padding: 20px 18px 18px; }
+  .pchart-rows { gap: 16px; }
+  .pchart-row { grid-template-columns: 1fr auto; grid-template-areas: "lab val" "bar bar"; gap: 6px 10px; }
+  .pchart-lab { grid-area: lab; text-align: left; }
+  .pchart-val { grid-area: val; }
+  .pchart-track { grid-area: bar; }
+  .pcallout { padding: 22px 20px; }
+  .pcallout-grid { grid-template-columns: 1fr; }
+  .pdata-sum, .pdata-scroll { padding-left: 18px; padding-right: 18px; }
+  .pdata-table th, .pdata-table td { padding: 8px 10px; }
 }

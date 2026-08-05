@@ -16,7 +16,6 @@
       { "source": "/partners", "destination": "/partners/index.html" },
       { "source": "/partners/woodway", "destination": "/partners/woodway.html" },
       { "source": "/blog", "destination": "/blog.html" },
-      { "source": "/insurance-savings", "destination": "/resources/insurance-savings.html" },
       { "source": "/assessment", "destination": "/assessment.html" }
     ],
     "headers": [

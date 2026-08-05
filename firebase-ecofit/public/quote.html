@@ -217,6 +217,10 @@
       <h2 style="font-family:'Raleway',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px;color:#F2F3F8;">Where should we send your quote?</h2>
       <p style="font-size:14px;color:#9699A2;margin-bottom:22px;line-height:1.75;font-weight:300;">An Ecofit team member will review your network details and follow up with pricing tailored to your operation.</p>
       <form id="quote-form">
+        <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+          <label for="f-hp">Leave this empty</label>
+          <input type="text" id="f-hp" name="hp" tabindex="-1" autocomplete="off" />
+        </div>
         <div class="ec-form-grid">
           <div class="ec-form-field">
             <label class="ec-form-label" for="f-name">First Name *</label>
@@ -269,13 +273,14 @@
         </div>
       </div>
       <p style="font-size:14px;color:#9699A2;line-height:1.8;margin-bottom:26px;max-width:460px;font-weight:300;">Want to talk through your network in detail? A 30-minute call with our team is the fastest way to get a firm number.</p>
-      <a href="https://calendar.app.google/GS5H5y8U3PrN8u4A8" class="ec-btn" target="_blank" rel="noopener">Book a Call →</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3oPQnRW98TQomagOQyvEu5t1eFjCA2VvXaxlm4Vhkgq_Z8bur0ubp7sKvlecUtFMw5bfiEq4Yn" class="ec-btn" target="_blank" rel="noopener">Book a Call →</a>
       <a href="/" class="ec-back-link">&#8592; Back to Ecofit</a>
     </div>
   </div>
 </div>
 
 <script>
+  window._formLoadTime = Date.now();
   var answers = {};
   var multiAnswers = { brands: [] };
   var TOTAL_Q = 6;
@@ -365,6 +370,8 @@
 
     var payload = {
       formType:        'quote',
+      hp:              document.getElementById('f-hp').value,
+      _t:              window._formLoadTime,
       name:            document.getElementById('f-name').value.trim(),
       email:           document.getElementById('f-email').value.trim(),
       company:         document.getElementById('f-company').value.trim(),
@@ -378,7 +385,7 @@
 
     var submitted = false;
     try {
-      var res = await fetch('https://www.treetopgrowthstrategy.com/api/ecofit-quote-submit', {
+      var res = await fetch('https://treetopgrowthstrategy.com/api/ecofit-quote-submit', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload),
@@ -386,7 +393,7 @@
       if (res.ok) submitted = true;
     } catch(_) {}
 
-    // Show confirmation regardless — data captured, team follows up
+    // Show confirmation regardless. Data captured, team follows up.
     document.getElementById('confirm-locations').textContent  = locLabels[answers.locations] || '—';
     document.getElementById('confirm-equipment').textContent  = equipLabels[answers.equipment] || '—';
     showStep('step-confirm');

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecofit Data Agent | Just ask.</title>
+<meta name="description" content="Your equipment data, in a conversation. Answers in seconds, current to the hour.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://ecofitnetworks.com/data-agent">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ecofit Data Agent">
+<meta property="og:description" content="Your equipment data, in a conversation. Just ask.">
+<meta property="og:image" content="https://ecofitnetworks.com/assets/ecofit-logo.png">
+<link rel="icon" type="image/png" href="/assets/ecofit-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Work Sans',sans-serif;font-weight:300;background:#14191f;color:#F2F3F8;-webkit-font-smoothing:antialiased;line-height:1.6}
+  h1,h2,h3{font-family:'Raleway',sans-serif;letter-spacing:-0.02em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#84BC41;margin-bottom:16px}
+  .green{color:#84BC41}
+  .btn-green{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;background:#84BC41;color:#14191f;padding:14px 28px;border-radius:8px;transition:background .15s,transform .15s}
+  .btn-green:hover{background:#75a838;transform:translateY(-1px)}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#F2F3F8;border:1px solid rgba(255,255,255,0.18);padding:13px 26px;border-radius:8px;transition:border-color .15s}
+  .btn-ghost:hover{border-color:#84BC41}
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(26,33,48,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.08)}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo img{height:32px;width:auto;display:block}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a{font-size:13.5px;font-weight:500;color:#c8cad1}
+  .nav-links a.current{color:#F2F3F8;font-weight:600}
+  .nav-links a:hover{color:#F2F3F8}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .nav-login{font-size:13.5px;font-weight:500;color:#c8cad1;padding:7px 14px}
+  .nav-cta{font-size:13.5px;font-weight:600;background:#84BC41;color:#fff;padding:8px 18px;border-radius:6px}
+  /* HERO (big photo + type) */
+  .hero{position:relative;overflow:hidden;isolation:isolate;min-height:min(88vh,760px);display:flex;align-items:center;justify-content:center;padding:120px 24px 96px}
+  .hero-photo{position:absolute;inset:0;z-index:0;background-image:url('/assets/hero-gym-floor.jpg');background-size:cover;background-position:center 45%;background-repeat:no-repeat;transform:scale(1.02)}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 75% at 50% 55%,rgba(20,25,31,0.35) 0%,rgba(20,25,31,0.68) 55%,rgba(20,25,31,0.92) 100%),linear-gradient(180deg,rgba(20,25,31,0.55) 0%,rgba(20,25,31,0.15) 30%,rgba(20,25,31,0.15) 55%,rgba(20,25,31,0.85) 100%)}
+  .hero-center{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
+  .hero .eyebrow{color:#84BC41;margin-bottom:20px;text-shadow:0 2px 20px rgba(0,0,0,0.6)}
+  .hero h1{font-size:clamp(3.6rem,10vw,8.5rem);font-weight:800;line-height:0.94;color:#F2F3F8;margin:0 0 26px;letter-spacing:-0.038em;text-shadow:0 4px 44px rgba(0,0,0,0.7),0 1px 3px rgba(0,0,0,0.5)}
+  .hero-dek{font-size:clamp(17px,1.9vw,21px);color:#e2e4ea;line-height:1.5;margin:0 auto 40px;max-width:620px;text-shadow:0 2px 20px rgba(0,0,0,0.7)}
+  .hero-cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  /* DEMO (prompt + answer over ambient data wall) */
+  .demo{position:relative;overflow:hidden;isolation:isolate;padding:104px 0 96px;background:#14191f}
+  .demo-head{position:relative;z-index:3;max-width:720px;margin:0 auto 44px;text-align:center;padding:0 24px}
+  .demo-head .eyebrow{margin-bottom:16px}
+  .demo-head h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;color:#F2F3F8;line-height:1.15;letter-spacing:-0.02em}
+  .demo-center{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 24px}
+  /* DATA WALL (ambient background) */
+  .datawall{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .dw-grid{position:absolute;inset:-40px -20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:24px;opacity:0.22;transform:translateY(0)}
+  .dw-tile{background:#1a2130;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:36px;font-size:10.5px;line-height:1.2}
+  .dw-tile.hot{border-color:rgba(132,188,65,0.35);background:linear-gradient(180deg,#1a2130,#1a2130 60%,rgba(132,188,65,0.06))}
+  .dw-tile.cold{opacity:0.55}
+  .dw-tile.off{border-color:rgba(255,255,255,0.03);background:#12161c}
+  .dw-name{color:#9699A2;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+  .dw-pct{font-family:'Work Sans',sans-serif;font-weight:700;color:#c8cad1;font-variant-numeric:tabular-nums}
+  .dw-tile.hot .dw-pct{color:#84BC41}
+  .dw-tile.off .dw-pct{color:#3d434a;letter-spacing:0.1em}
+  /* Spotlight vignette so the center content pops above the wall */
+  .dw-veil{position:absolute;inset:0;background:radial-gradient(ellipse 70% 65% at 50% 50%,rgba(20,25,31,0.94) 0%,rgba(20,25,31,0.82) 30%,rgba(20,25,31,0.55) 60%,rgba(20,25,31,0.15) 85%,transparent 100%)}
+  /* PROMPT (the ask) */
+  .prompt{max-width:640px;margin:0 auto;text-align:left}
+  .prompt-input{position:relative;display:flex;align-items:center;gap:14px;background:#14191f;border:1px solid rgba(132,188,65,0.35);border-radius:14px;padding:20px 20px 20px 22px;box-shadow:0 0 0 6px rgba(132,188,65,0.06),0 26px 60px rgba(0,0,0,0.5)}
+  .prompt-q{flex:1;font-family:'Work Sans',sans-serif;font-size:17px;color:#F2F3F8;font-weight:400;line-height:1.4;overflow-wrap:break-word}
+  .prompt-caret{display:inline-block;width:2px;height:22px;background:#84BC41;margin-left:2px;vertical-align:middle;animation:blink 1.05s steps(2,start) infinite}
+  @keyframes blink{to{visibility:hidden}}
+  .prompt-btn{width:36px;height:36px;flex-shrink:0;border-radius:8px;background:#84BC41;display:flex;align-items:center;justify-content:center;color:#14191f;font-weight:800;font-size:16px;box-shadow:0 4px 14px rgba(132,188,65,0.35)}
+  /* PROMPT ANSWER (the reply) */
+  .prompt-answer{margin-top:16px;background:#1a2130;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px 22px;box-shadow:0 20px 44px rgba(0,0,0,0.35)}
+  .pa-head{display:flex;align-items:center;gap:10px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .pa-dot{width:9px;height:9px;border-radius:50%;background:#84BC41;box-shadow:0 0 0 4px rgba(132,188,65,0.15)}
+  .pa-name{font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;color:#F2F3F8;letter-spacing:0.01em}
+  .pa-sub{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b6f7a}
+  .pa-body{color:#F2F3F8;font-size:14.5px;line-height:1.6}
+  .pa-body b{font-family:'Raleway',sans-serif;color:#84BC41;font-weight:700;letter-spacing:-0.01em}
+  .pa-body ol{list-style:none;margin-top:10px;counter-reset:rk}
+  .pa-body ol li{counter-increment:rk;font-size:13.5px;padding:8px 0;display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,0.05);font-variant-numeric:tabular-nums}
+  .pa-body ol li:first-of-type{border-top:none}
+  .pa-body ol li::before{content:counter(rk)".";color:#6b6f7a;min-width:16px;margin-right:8px}
+  .pa-body ol li .n{color:#F2F3F8;flex:1;font-weight:400}
+  .pa-body ol li .v{color:#84BC41;font-weight:700}
+  /* SECTION */
+  section{padding:64px 0}
+  .sec-head{max-width:720px;margin-bottom:44px}
+  .sec-head h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;line-height:1.15;color:#F2F3F8;margin-bottom:14px}
+  .sec-head p{font-size:16.5px;color:#9699A2;line-height:1.7}
+  .band{background:#1a2130;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+  /* BEFORE / AFTER (cards, no images) */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+  .ba-card{border-radius:12px;padding:28px 26px;border:1px solid rgba(255,255,255,0.10);background:#2F3535;height:100%}
+  .ba-card.old{opacity:0.85}
+  .ba-card.new{background:#1a2130;border-color:rgba(132,188,65,0.28);box-shadow:0 0 0 1px rgba(132,188,65,0.15)}
+  .ba-kicker{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b6f7a;margin-bottom:10px}
+  .ba-card.new .ba-kicker{color:#84BC41}
+  .ba-card h3{font-family:'Raleway',sans-serif;font-size:19px;font-weight:700;color:#F2F3F8;margin-bottom:14px;line-height:1.3}
+  .ba-card ul{list-style:none}
+  .ba-card li{font-size:14px;color:#c8cad1;line-height:1.6;padding:8px 0 8px 24px;position:relative;border-top:1px solid rgba(255,255,255,0.06)}
+  .ba-card li:first-child{border-top:none}
+  .ba-card li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:2px;background:#6b6f7a}
+  .ba-card.new li::before{background:#84BC41;border-radius:50%}
+  /* CAPABILITY LIST (Apple-style: word + one line) */
+  .cap-list-lg{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+  .cap-lg{padding:32px 32px 30px;border-top:1px solid rgba(255,255,255,0.08);border-left:1px solid rgba(255,255,255,0.08)}
+  .cap-list-lg > .cap-lg:nth-child(-n+2){border-top:none}
+  .cap-list-lg > .cap-lg:nth-child(odd){border-left:none}
+  .cap-lg h3{font-family:'Raleway',sans-serif;font-size:clamp(1.5rem,2.4vw,1.9rem);font-weight:800;color:#84BC41;line-height:1.05;margin-bottom:10px;letter-spacing:-0.02em}
+  .cap-lg p{font-size:16px;color:#c8cad1;line-height:1.5;font-weight:400}
+  /* METRICS 2x2 */
+  .metrics{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .metric{background:#14191f;border:1px solid rgba(132,188,65,0.18);border-left:4px solid #84BC41;border-radius:12px;padding:32px 34px}
+  .metric-label{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#84BC41;margin-bottom:10px}
+  .metric h3{font-family:'Raleway',sans-serif;font-size:1.35rem;font-weight:700;color:#F2F3F8;margin-bottom:10px;letter-spacing:-0.01em}
+  .metric p{font-size:14.5px;color:#9699A2;line-height:1.7}
+  /* WORKS WITH */
+  .ww{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ww-item h3{font-size:17px;font-weight:700;color:#F2F3F8;margin:0 0 8px}
+  .ww-item p{font-size:14px;color:#9699A2;line-height:1.65}
+  .ww-item .n{font-family:'Raleway',sans-serif;font-size:2rem;font-weight:800;color:#84BC41;line-height:1;margin-bottom:12px}
+  /* TRUST GRID */
+  .trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .trust{background:#2F3535;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 24px}
+  .trust h3{font-size:16px;font-weight:700;color:#F2F3F8;margin-bottom:6px;font-family:'Raleway',sans-serif;letter-spacing:0}
+  .trust p{font-size:14px;color:#9699A2;line-height:1.65}
+  /* CTA */
+  .cta{background:#2F3535;border:1px solid rgba(132,188,65,0.2);border-top:3px solid #84BC41;border-radius:16px;padding:56px 40px;text-align:center}
+  .cta h2{font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:800;color:#F2F3F8;line-height:1.15;margin-bottom:14px}
+  .cta p{font-size:16px;color:#9699A2;max-width:560px;margin:0 auto 28px;line-height:1.7}
+  /* FOOTER */
+  footer{border-top:1px solid rgba(255,255,255,0.08);padding:48px 32px;background:#1a2130;margin-top:24px}
+  .foot-in{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px}
+  .foot-brand{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#F2F3F8;margin-bottom:8px}
+  .foot-tag{font-size:13px;color:#6b6f7a;max-width:260px;line-height:1.6}
+  .foot-cols{display:flex;gap:56px;flex-wrap:wrap}
+  .foot-h{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F2F3F8;margin-bottom:12px}
+  .foot-col a{display:block;font-size:13px;color:#9699A2;margin-bottom:8px}
+  .foot-col a:hover{color:#c8cad1}
+  .foot-bottom{max-width:1180px;margin:30px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:rgba(255,255,255,0.25)}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:900px){
+    .ba,.metrics,.trust-grid,.cap-list-lg{grid-template-columns:1fr}
+    .cap-lg{border-left:none !important}
+    .cap-list-lg > .cap-lg:first-child{border-top:none}
+    .cap-list-lg > .cap-lg:not(:first-child){border-top:1px solid rgba(255,255,255,0.08)}
+    .ww{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .hero{padding:56px 0 40px}
+    .hero h1{font-size:clamp(3rem,14vw,4.6rem)}
+    .prompt-q{font-size:15px}
+    .dw-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .prompt-caret{animation:none}
+    .reveal{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/assets/ecofit-logo.png" alt="Ecofit"></a>
+    <div class="nav-links">
+      <a href="/platform">Platform</a>
+      <a href="/analytics">Analytics</a>
+      <a href="/vision-ai">Vision AI</a>
+      <a href="/integrations">Integrations</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://assets.myecofit.com/" class="nav-login">Log in</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3oPQnRW98TQomagOQyvEu5t1eFjCA2VvXaxlm4Vhkgq_Z8bur0ubp7sKvlecUtFMw5bfiEq4Yn" class="nav-cta">Book a Walkthrough</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-center reveal">
+    <div class="eyebrow">The Ecofit Data Agent</div>
+    <h1>Just ask.</h1>
+    <p class="hero-dek">Every treadmill, bike, and rack in every club is generating data. Point at any of it.</p>
+    <div class="hero-cta">
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3oPQnRW98TQomagOQyvEu5t1eFjCA2VvXaxlm4Vhkgq_Z8bur0ubp7sKvlecUtFMw5bfiEq4Yn" class="btn-green">Book a walkthrough &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<!-- DEMO -->
+<section class="demo">
+  <div class="datawall" aria-hidden="true">
+    <div class="dw-grid" id="dw-grid"></div>
+    <div class="dw-veil"></div>
+  </div>
+  <div class="demo-head reveal">
+    <div class="eyebrow">One question at a time</div>
+    <h2>A conversation over your live utilization data.</h2>
+  </div>
+  <div class="demo-center reveal">
+    <div class="prompt" aria-hidden="true">
+      <div class="prompt-input">
+        <span class="prompt-q">Which cardio units are underused at Rehoboth Beach?<span class="prompt-caret"></span></span>
+        <span class="prompt-btn">&uarr;</span>
+      </div>
+      <div class="prompt-answer">
+        <div class="pa-head">
+          <span class="pa-dot"></span>
+          <span class="pa-name">Ecofit Data Agent</span>
+          <span class="pa-sub">Live, hourly data</span>
+        </div>
+        <div class="pa-body">
+          <b>Rehoboth Beach, last 30 days.</b> Bottom four cardio units by utilization:
+          <ol>
+            <li><span class="n">Life Fitness Arc Trainer</span><span class="v">18%</span></li>
+            <li><span class="n">Cybex 770T Treadmill</span><span class="v">15%</span></li>
+            <li><span class="n">StairMaster 8G</span><span class="v">12%</span></li>
+            <li><span class="n">Precor AMT 835</span><span class="v">9%</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Ambient data wall: seeded with real equipment so it reads as the client's own data
+  var fleet = [
+    ['Precor TRM 445',92,'hot'],['Life Fitness IC7',88,'hot'],['Concept2 RowErg',81,'hot'],
+    ['Precor EFX 885',77,'hot'],['Matrix T7xe',72,'hot'],['Woodway 4Front',69],
+    ['Star Trac 8-TR',66],['Precor AMT 835',63],['Life Fitness Discover SE3',61],
+    ['Cybex R Series',58],['StairMaster 4G',55],['TRUE Palladium',53],
+    ['Precor TRM 761',49],['Matrix E7xe',47],['Nautilus T718',45],
+    ['Life Fitness Powermill',44],['Precor C956',41],['Concept2 BikeErg',39],
+    ['Hoist Roc-It RS-1101',36],['Star Trac 8-RB',34],['Cybex 750AT',32],
+    ['Life Fitness IC5',31],['Precor EFX 833',28],['Nautilus R618',26,'cold'],
+    ['StairMaster SM3',24,'cold'],['Matrix S-Drive',22,'cold'],['Concept2 SkiErg',21,'cold'],
+    ['Life Fitness Integrity',18,'cold'],['Cybex 770T',15,'cold'],
+    ['StairMaster 8G',12,'cold'],['Woodway Curve',10,'cold'],
+    ['Precor AMT 100i',null,'off'],['Life Fitness Arc',null,'off'],
+    ['TRUE Alpine Runner',null,'off'],['Matrix G3-S72',null,'off'],
+    ['Precor Assurance',null,'off'],['Cybex Bravo',null,'off']
+  ];
+  var host = document.getElementById('dw-grid');
+  if (!host) return;
+  // Repeat + shuffle so the wall feels dense at any viewport width
+  var pool = fleet.concat(fleet).concat(fleet);
+  // Simple deterministic shuffle so paint is stable
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = (i * 2654435761 >>> 0) % (i + 1);
+    var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+  }
+  var frag = document.createDocumentFragment();
+  pool.forEach(function(row){
+    var tile = document.createElement('div');
+    tile.className = 'dw-tile' + (row[2] ? ' ' + row[2] : '');
+    var name = document.createElement('span');
+    name.className = 'dw-name';
+    name.textContent = row[0];
+    var pct = document.createElement('span');
+    pct.className = 'dw-pct';
+    pct.textContent = row[1] == null ? '– – –' : row[1] + '%';
+    tile.appendChild(name);
+    tile.appendChild(pct);
+    frag.appendChild(tile);
+  });
+  host.appendChild(frag);
+})();
+</script>
+
+<!-- SHIFT -->
+<section class="band">
+  <div class="wrap sec-head reveal" style="margin-bottom:0;max-width:900px">
+    <h2>Every question is a first-class question.</h2>
+    <p>Traditional analytics answer the ones someone anticipated. The Data Agent answers the ones nobody did.</p>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Six kinds of intelligence. One conversation.</h2>
+    </div>
+    <div class="cap-list-lg reveal">
+      <div class="cap-lg">
+        <h3>Utilization.</h3>
+        <p>What is used. What is not. Fairly normalized across install dates and reporting gaps.</p>
+      </div>
+      <div class="cap-lg">
+        <h3>Saturation.</h3>
+        <p>What share of a type is in use, right now. When and where members hit queues.</p>
+      </div>
+      <div class="cap-lg">
+        <h3>Refit.</h3>
+        <p>What to add against real demand. What to remove or relocate. By make and model.</p>
+      </div>
+      <div class="cap-lg">
+        <h3>Rotation.</h3>
+        <p>Even out the wear. Extend asset life. Smooth the maintenance cycle.</p>
+      </div>
+      <div class="cap-lg">
+        <h3>Health.</h3>
+        <p>Zero-utilization units surfaced before a member reports them.</p>
+      </div>
+      <div class="cap-lg">
+        <h3>Location.</h3>
+        <p>Facility to room, each club in its own local time. One site or a hundred.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OWNERSHIP -->
+<section class="band">
+  <div class="wrap sec-head reveal" style="margin-bottom:0;max-width:900px">
+    <h2>Yours.</h2>
+    <p>Ecofit-owned. Read-only. Scoped per user. Fully auditable. Built for multi-brand data boundaries.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>See it on your own data.</h2>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3oPQnRW98TQomagOQyvEu5t1eFjCA2VvXaxlm4Vhkgq_Z8bur0ubp7sKvlecUtFMw5bfiEq4Yn" class="btn-green">Book a walkthrough &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand">ecofit</div>
+      <div class="foot-tag">The equipment intelligence platform for fitness operators who demand more than guesswork.</div>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <div class="foot-h">Platform</div>
+        <a href="/platform">Features</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/vision-ai">Vision AI</a>
+        <a href="/integrations">Integrations</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-h">Company</div>
+        <a href="/blog">Blog</a>
+        <a href="https://assets.myecofit.com/">Portal Login</a>
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3oPQnRW98TQomagOQyvEu5t1eFjCA2VvXaxlm4Vhkgq_Z8bur0ubp7sKvlecUtFMw5bfiEq4Yn">Book a Walkthrough</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">&copy; 2025 Ecofit Networks Inc. All rights reserved.</div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver'in window){
+    var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target);}})},{threshold:0.08});
+    els.forEach(function(e){o.observe(e);});
+  } else { els.forEach(function(e){e.classList.add('in');}); }
+})();
+</script>
+</body>
+</html>

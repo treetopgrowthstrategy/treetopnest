@@ -1,8 +1,30 @@
+# ecofitnetworks.com
+
 User-agent: *
 Allow: /
 
-# Conversion funnels (/assessment, /resources/insurance-savings) are
-# noindex'd at the HTML level so crawlers can still discover the pages
-# and respect the in-page directive. Not blocked here.
+# AI assistants and answer engines are welcome to read and cite this site.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Conversion funnels (/assessment) are noindex'd at the HTML level, so
+# crawlers can discover them and respect the in-page directive. Not blocked here.
 
 Sitemap: https://ecofitnetworks.com/sitemap.xml
+
+# LLM overview: https://ecofitnetworks.com/llms.txt
