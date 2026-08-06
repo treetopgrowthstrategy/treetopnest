@@ -3,6 +3,8 @@
 // at public/clients/ecofit/{slug}.html, then marks the article Published with its live URL.
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
 const GITHUB_TOKEN   = process.env.GITHUB_TOKEN;
+// Reuses CALENDAR_WRITE_KEY so no new environment variable is needed.
+const PUBLISH_KEY    = process.env.CALENDAR_WRITE_KEY;
 const BASE     = "appkCLcOtOfpYJkRg";
 const ARTICLES = "tblykZHualCHDzbei";
 const REPO     = "treetopgrowthstrategy/treetopnest";
@@ -67,6 +69,15 @@ export default async function handler(req, res){
   cors(res);
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+
+  // This endpoint commits a file to REPO with GITHUB_TOKEN. Unauthenticated,
+  // the only thing between a stranger and a commit in the repo was guessing an
+  // Airtable record ID. Unlike /api/calendar there is no public page calling
+  // this, so it takes a hard secret rather than an origin check, and fails
+  // closed when the key is unset.
+  if (!PUBLISH_KEY || req.headers["x-calendar-key"] !== PUBLISH_KEY) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
 
   try {
     const { recordId } = req.body || {};

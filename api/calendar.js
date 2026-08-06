@@ -5,11 +5,15 @@
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
 const CALENDAR_WRITE_KEY = process.env.CALENDAR_WRITE_KEY;
 
-// Writes are allowed from the planner's own site (no secret needed in the
-// public page) or with the optional CALENDAR_WRITE_KEY header. The origin
-// check is a speed bump against anonymous bots, not a hard lock.
+// Reads and writes are both allowed from the planner's own site (no secret
+// needed in the public page) or with the optional CALENDAR_WRITE_KEY header.
+// The origin check is a speed bump against anonymous bots, not a hard lock:
+// Origin is client-supplied and can be forged with one curl flag. It is worth
+// having anyway, because it ends drive-by access to the whole table, and it is
+// the strongest control available while the planner stays a public page with
+// no login. Putting the planner behind auth is the real fix.
 const ALLOWED_HOSTS = ["treetopgrowthstrategy.com", "localhost", "127.0.0.1"];
-function writeAllowed(req) {
+function callerAllowed(req) {
   const provided = req.headers["x-calendar-key"];
   if (CALENDAR_WRITE_KEY && provided === CALENDAR_WRITE_KEY) return true;
   const origin = req.headers.origin || req.headers.referer || "";
@@ -33,6 +37,11 @@ export default async function handler(req, res){
 
   try {
     if (req.method === "GET") {
+      // This read was open to the entire internet and returned every campaign
+      // record in the base: Buyer Segment, Review Status, Pillar, Campaign Key,
+      // Location, Notes, Stage1 Status. The write path beside it was gated; the
+      // read never was. Same gate now applies to both.
+      if (!callerAllowed(req)) return res.status(401).json({ error: "Unauthorized" });
       const r = await fetch(`https://api.airtable.com/v0/${BASE}/${CAMPAIGNS}?pageSize=100`, {
         headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` }
       });
@@ -45,7 +54,7 @@ export default async function handler(req, res){
     if (req.method === "POST") {
       // Writes must come from the planner's own origin (or carry the optional
       // CALENDAR_WRITE_KEY header). No secret lives in the public page.
-      if (!writeAllowed(req)) {
+      if (!callerAllowed(req)) {
         return res.status(401).json({ error: "Unauthorized" });
       }
       const body = req.body || {};
