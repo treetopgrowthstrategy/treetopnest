@@ -112,17 +112,31 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // Bot protection: honeypot + time trap only. The old random-string
-    // heuristic was discarding real leads (single-word or camel-case company
-    // names like "CrossFitNYC"), so it has been removed. We never drop a
-    // submission based on how a name or company is capitalized.
+    // Bot protection: honeypot only.
+    //
+    // The random-string heuristic went first, for discarding real leads with
+    // camel-case company names like "CrossFitNYC". The time trap goes now, for
+    // the same reason: it was dropping real people, verified against production
+    // on 2026-08-06.
+    //
+    // It compared Date.now() on the server against _t from the browser, so it
+    // failed two ordinary cases. A visitor whose device clock runs fast makes
+    // the difference negative, and negative is always under three seconds. And
+    // browser autofill legitimately completes a short form in under three
+    // seconds. Both were dropped, and because the drop returned success the
+    // visitor saw a confirmation while the lead went nowhere.
+    //
+    // It also bought nothing. _t is supplied by the client, so any bot defeats
+    // the check by sending an older timestamp. It stopped only bots that were
+    // not trying, and charged real leads for the privilege. There is no spam to
+    // defend against here either: the tables hold no junk across months.
+    //
+    // The honeypot stays. A bot has to actively avoid filling a hidden field,
+    // which is real signal, and it does not misfire on ordinary humans.
     const body: any = data;
     const hp = (body.hp as string | undefined)?.trim() ?? '';
-    const loadTime = Number(body._t) || 0;
-    const elapsed = loadTime ? Date.now() - loadTime : Infinity;
-    const isBot = hp.length > 0 || (loadTime > 0 && elapsed < 3000);
-    if (isBot) {
-      console.warn('Bot submission dropped:', body.email);
+    if (hp.length > 0) {
+      console.warn('Bot submission dropped (honeypot):', body.email);
       return res.status(200).json({ success: true });
     }
 

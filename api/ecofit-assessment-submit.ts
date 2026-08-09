@@ -434,17 +434,21 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // Bot protection: honeypot + time trap only. The old random-string
-    // heuristic was discarding real leads (single-word or camel-case company
-    // names like "CrossFitNYC"), so it has been removed. We never drop a
-    // submission based on how a name or company is capitalized.
+    // Bot protection: honeypot only. Mirrors api/ecofit-quote-submit.ts.
+    //
+    // The random-string heuristic went first, for discarding real leads with
+    // camel-case company names. The time trap goes now, for the same reason: it
+    // compared server Date.now() against a browser-supplied _t, so a visitor
+    // whose clock runs fast produced a negative elapsed, and browser autofill
+    // legitimately beat the three-second floor. Both were dropped while the
+    // visitor saw a confirmation. Verified against production on 2026-08-06.
+    //
+    // It also stopped nothing worth stopping, since _t is client-supplied and
+    // any bot can send an older timestamp.
     const body: any = data;
     const hp = (body.hp as string | undefined)?.trim() ?? '';
-    const loadTime = Number(body._t) || 0;
-    const elapsed = loadTime ? Date.now() - loadTime : Infinity;
-    const isBot = hp.length > 0 || (loadTime > 0 && elapsed < 3000);
-    if (isBot) {
-      console.warn('Bot submission dropped:', body.email);
+    if (hp.length > 0) {
+      console.warn('Bot submission dropped (honeypot):', body.email);
       return res.status(200).json({ success: true });
     }
 
