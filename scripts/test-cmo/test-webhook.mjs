@@ -123,13 +123,17 @@ reset({ record: { id: 'rec1', fields: { Notes: 'Competitors: rival.com' } }, ope
   check('never-silence: Stage NOT advanced to delivered', !airtablePatches().some(c => c.body?.fields?.Stage === 'report_delivered'));
 }
 
-// ── 6. Subscription tier: advances stage, no report ──
+// ── 6. Subscription tier: advances stage + writes subscription fields ──
 reset({ record: { id: 'rec1', fields: {} } });
 {
-  const r = await fireEvent({ id: 'cs_sub', customer_email: 'buyer@acme.com', metadata: { product: 'cmo-monitor', tier: 'monitor' } });
+  const r = await fireEvent({ id: 'cs_sub', customer_email: 'buyer@acme.com', subscription: 'sub_test123', metadata: { product: 'cmo-monitor', tier: 'monitor' } });
   check('subscription: 200', r.code === 200);
   check('subscription: no OpenAI spend', openaiCalls().length === 0);
   check('subscription: stage set to tier', airtablePatches().some(c => c.body?.fields?.Stage === 'monitor'));
+  check('subscription: SubscriptionId written', airtablePatches().some(c => c.body?.fields?.SubscriptionId === 'sub_test123'));
+  check('subscription: SubscriptionStatus=active', airtablePatches().some(c => c.body?.fields?.SubscriptionStatus === 'active'));
+  check('subscription: SubscriptionTier=monitor', airtablePatches().some(c => c.body?.fields?.SubscriptionTier === 'monitor'));
+  check('subscription: SubscriptionStartedAt stamped', airtablePatches().some(c => c.body?.fields?.SubscriptionStartedAt));
 }
 
 console.log(log.join('\n'));

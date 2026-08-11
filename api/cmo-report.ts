@@ -31,7 +31,7 @@ export function reportPermalink(email: string, site = SITE): string {
   return `${site}/r/${enc}.${expectedSig(e)}`;
 }
 
-function verifyToken(token: string): string | null {
+export function verifyToken(token: string): string | null {
   const dot = token.lastIndexOf('.');
   if (dot <= 0) return null;
   const encEmail = token.slice(0, dot);
