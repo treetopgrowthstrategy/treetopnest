@@ -22,6 +22,7 @@ npx esbuild api/cron-cmo-nurture.ts --bundle --platform=node --format=esm --outf
 npx esbuild api/cmo-guards.ts --bundle --platform=node --format=esm --outfile="$DIR/guards.mjs" >/dev/null 2>&1
 npx esbuild api/cmo-payment-webhook.ts --bundle --platform=node --format=esm --outfile="$DIR/webhook.mjs" >/dev/null 2>&1
 npx esbuild api/cmo-report.ts --bundle --platform=node --format=esm --outfile="$DIR/report.mjs" >/dev/null 2>&1
+npx esbuild api/cron-cmo-monitor.ts --bundle --platform=node --format=esm --outfile="$DIR/monitor-cron.mjs" >/dev/null 2>&1
 for f in cmo-signup cmo-verify cmo-onboard cmo-free-start cmo-free-qualify; do
   npx esbuild "api/$f.ts" --bundle --platform=node --format=esm --outfile="$DIR/ep/$f.mjs" >/dev/null 2>&1
 done
@@ -36,6 +37,7 @@ run "cron: free + paid"    test-cron-free.mjs
 run "endpoints: lifecycle" test-endpoints.mjs
 run "webhook: idempotency+retry" test-webhook.mjs
 run "subscription: lifecycle" test-subscription.mjs
+run "monitor-cron: fulfillment" test-monitor-cron.mjs
 run "report: permalink serving" test-report.mjs
 
 echo ""
