@@ -11,10 +11,10 @@ const items = [
   // Industry playbooks (most recent + highest-leverage)
   { url: '/healthcare-ai-playbook-2026', title: 'Healthcare AI Playbook 2026', description: 'A practical 2026 AI playbook for private medical practices and mid-market healthcare organizations.' },
   { url: '/legal-ai-playbook-2026', title: 'Legal AI Playbook 2026', description: 'A practical 2026 AI playbook for mid-sized law firms (5-50 attorneys).' },
-  { url: '/manufacturing-ai-playbook-2026', title: 'Manufacturing AI Playbook 2026', description: 'A 2026 AI playbook for mid-market industrial manufacturers — commercial-side focus.' },
+  { url: '/manufacturing-ai-playbook-2026', title: 'Manufacturing AI Playbook 2026', description: 'A 2026 AI playbook for mid-market industrial manufacturers, commercial-side focus.' },
   { url: '/financial-services-ai-playbook-2026', title: 'Financial Services AI Playbook 2026', description: 'A 2026 AI playbook for financial advisory, wealth management, and brokerage firms.' },
   { url: '/ecommerce-ai-playbook-2026', title: 'E-commerce AI Playbook 2026', description: 'A 2026 AI playbook for DTC brands $2M-$50M.' },
-  { url: '/nonprofit-ai-playbook-2026', title: 'Nonprofit AI Playbook 2026', description: 'A 2026 AI playbook for mid-sized nonprofits — capacity expansion framing.' },
+  { url: '/nonprofit-ai-playbook-2026', title: 'Nonprofit AI Playbook 2026', description: 'A 2026 AI playbook for mid-sized nonprofits, capacity expansion framing.' },
   { url: '/real-estate-ai-playbook-2026', title: 'Real Estate AI Playbook 2026', description: 'A 2026 AI playbook for real estate brokerages and property management companies.' },
 
   // Case studies
