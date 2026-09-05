@@ -1,8 +1,8 @@
 // api/verify.js
 // Vercel serverless function. Fetches a URL and inspects the HTML for Meta Pixel presence.
-// No dependencies. Uses global fetch (Node 18+).
+// No dependencies. Uses global fetch (Node 18+). ESM because repo package.json is "type": "module".
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
