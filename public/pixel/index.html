@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Install your Meta Pixel | Treetop Growth Strategy</title>
+<style>
+  :root {
+    --ink: #16202b;
+    --soft: #55636f;
+    --page: #eef2f6;
+    --surface: #ffffff;
+    --rule: #d3dce4;
+    --action: #0b5fd8;
+    --action-hover: #094fb2;
+    --confirmed: #0f7b62;
+    --confirmed-soft: #e3f4ee;
+    --warning: #a64b12;
+    --warning-soft: #fbeee3;
+    --error: #b3261e;
+    --error-soft: #fbe9e7;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--page);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 20px 80px;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; }
+
+  header.masthead { margin-bottom: 32px; }
+  .brand { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--action); font-weight: 600; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 8px 0 6px; color: var(--ink); font-weight: 700; }
+  .lede { color: var(--soft); font-size: 15px; margin: 0; }
+
+  .rail { position: relative; }
+
+  .step {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 20px 22px 22px 60px;
+    margin-bottom: 18px;
+    transition: opacity .2s, border-color .2s;
+  }
+  .step[data-state="waiting"] { opacity: 0.5; }
+  .step[data-state="waiting"] input,
+  .step[data-state="waiting"] button,
+  .step[data-state="waiting"] .check-row { pointer-events: none; }
+  .step[data-state="waiting"] .marker { background: var(--surface); color: var(--soft); border-color: var(--rule); }
+  .step[data-state="active"] .marker { background: var(--action); color: #fff; border-color: var(--action); }
+  .step[data-state="done"] .marker { background: var(--confirmed); color: #fff; border-color: var(--confirmed); }
+  .step[data-state="done"] .marker span { display: none; }
+  .step[data-state="done"] .marker::after { content: "✓"; font-weight: 700; }
+
+  .marker {
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid var(--rule);
+    background: var(--surface);
+    color: var(--soft);
+    z-index: 1;
+  }
+  /* Vertical rule connecting the markers */
+  .step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 55px;
+    bottom: -18px;
+    width: 2px;
+    background: var(--rule);
+    z-index: 0;
+  }
+  .step[data-state="done"]:not(:last-child)::before { background: var(--confirmed); }
+
+  .step-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .step-hint {
+    font-size: 14px;
+    color: var(--soft);
+    margin: 0 0 14px;
+  }
+
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    background: #fff;
+    color: var(--ink);
+    font-family: inherit;
+  }
+  input[type="text"]:focus {
+    outline: 3px solid rgba(11, 95, 216, 0.28);
+    outline-offset: 0;
+    border-color: var(--action);
+  }
+  input.mono { font-family: var(--mono); letter-spacing: 0.02em; font-size: 15px; }
+
+  .inline-msg {
+    display: block;
+    font-size: 13px;
+    margin-top: 8px;
+    min-height: 18px;
+  }
+  .inline-msg.ok { color: var(--confirmed); }
+  .inline-msg.warn { color: var(--warning); }
+  .inline-msg.err { color: var(--error); }
+
+  pre.code {
+    background: #16202b;
+    color: #e6ecf3;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    overflow-x: auto;
+    margin: 0 0 12px;
+    white-space: pre;
+    min-height: 40px;
+  }
+
+  button.btn {
+    background: var(--action);
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s;
+  }
+  button.btn:hover:not(:disabled) { background: var(--action-hover); }
+  button.btn:disabled { background: var(--rule); color: var(--soft); cursor: not-allowed; }
+  button.btn:focus-visible { outline: 3px solid rgba(11, 95, 216, 0.4); outline-offset: 2px; }
+  button.btn.done { background: var(--confirmed); }
+
+  ol.path {
+    padding-left: 20px;
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  ol.path li { margin: 4px 0; }
+  ol.path code {
+    background: #eaeef2;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+  }
+
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+    user-select: none;
+  }
+  .check-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--action);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .verify-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .verify-row input[type="text"] { flex: 1; }
+  @media (max-width: 480px) {
+    .verify-row { flex-direction: column; }
+    .verify-row button { width: 100%; }
+  }
+
+  .result {
+    margin-top: 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: none;
+  }
+  .result.show { display: block; }
+  .result[data-lamp="live"] { border-left: 4px solid var(--confirmed); }
+  .result[data-lamp="warn"] { border-left: 4px solid var(--warning); }
+  .result[data-lamp="err"] { border-left: 4px solid var(--error); }
+  .result[data-lamp="none"] { border-left: 4px solid var(--rule); }
+
+  .lamp-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .lamp {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--rule);
+    flex-shrink: 0;
+  }
+  .result[data-lamp="live"] .lamp { background: var(--confirmed); }
+  .result[data-lamp="warn"] .lamp { background: var(--warning); }
+  .result[data-lamp="err"] .lamp { background: var(--error); }
+  .verdict {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+  }
+  .findings {
+    padding-left: 22px;
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .findings li { margin: 5px 0; }
+  .findings code {
+    background: #eaeef2;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+  }
+
+  footer.foot {
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">Treetop Growth Strategy</div>
+    <h1>Install your Meta Pixel</h1>
+    <p class="lede">Four steps. About ten minutes. No downloads or logins.</p>
+  </header>
+
+  <div class="rail">
+
+    <section class="step" id="step1" data-state="active">
+      <div class="marker"><span>1</span></div>
+      <h2 class="step-title">Enter your Meta Pixel ID</h2>
+      <p class="step-hint">Find it in Meta Events Manager, under Data Sources. It is a 15 or 16 digit number.</p>
+      <label for="pixelId">Pixel ID</label>
+      <input type="text" id="pixelId" class="mono" inputmode="numeric" autocomplete="off" placeholder="e.g. 1234567890123456" />
+      <span class="inline-msg" id="pixelMsg"></span>
+    </section>
+
+    <section class="step" id="step2" data-state="waiting">
+      <div class="marker"><span>2</span></div>
+      <h2 class="step-title">Copy the pixel code</h2>
+      <p class="step-hint">This is the exact block to paste. Do not edit it.</p>
+      <pre class="code" id="codeBlock"></pre>
+      <button class="btn" id="copyBtn" type="button" disabled>Copy code</button>
+    </section>
+
+    <section class="step" id="step3" data-state="waiting">
+      <div class="marker"><span>3</span></div>
+      <h2 class="step-title">Paste it into GoHighLevel</h2>
+      <p class="step-hint">Follow the path exactly. Head Tracking Code, not Footer. Save, then publish.</p>
+      <ol class="path">
+        <li>Open your GoHighLevel sub-account.</li>
+        <li>Go to <code>Sites</code>.</li>
+        <li>Open <code>Funnels</code> (or <code>Websites</code> if your landing page lives there).</li>
+        <li>Open the funnel your ads point to.</li>
+        <li>Go to <code>Settings</code>.</li>
+        <li>Open <code>Tracking Code</code>.</li>
+        <li>Paste the code from step 2 into the <code>Head Tracking Code</code> field, not the Footer.</li>
+        <li>Save.</li>
+        <li>Publish the funnel.</li>
+      </ol>
+      <p class="step-hint" style="margin: 0 0 10px;">Setting the pixel at the funnel level covers every step in the funnel automatically.</p>
+      <label class="check-row">
+        <input type="checkbox" id="pastedOk" />
+        <span>Pasted, saved, and published</span>
+      </label>
+    </section>
+
+    <section class="step" id="step4" data-state="waiting">
+      <div class="marker"><span>4</span></div>
+      <h2 class="step-title">Check that the pixel fires</h2>
+      <p class="step-hint">Give us your funnel URL. We will pull up the live page and confirm the pixel is really there.</p>
+      <label for="verifyUrl">Funnel URL</label>
+      <div class="verify-row">
+        <input type="text" id="verifyUrl" placeholder="https://yourfunnel.com/landing" autocomplete="off" inputmode="url" />
+        <button class="btn" id="verifyBtn" type="button">Check</button>
+      </div>
+      <div class="result" id="result" data-lamp="none" role="status" aria-live="polite">
+        <div class="lamp-row">
+          <span class="lamp" aria-hidden="true"></span>
+          <p class="verdict" id="verdict"></p>
+        </div>
+        <ul class="findings" id="findings"></ul>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="foot">
+    Made by Treetop Growth Strategy for our clients.
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var els = {
+    pixelId: document.getElementById('pixelId'),
+    pixelMsg: document.getElementById('pixelMsg'),
+    codeBlock: document.getElementById('codeBlock'),
+    copyBtn: document.getElementById('copyBtn'),
+    pastedOk: document.getElementById('pastedOk'),
+    verifyUrl: document.getElementById('verifyUrl'),
+    verifyBtn: document.getElementById('verifyBtn'),
+    result: document.getElementById('result'),
+    verdict: document.getElementById('verdict'),
+    findings: document.getElementById('findings'),
+    step1: document.getElementById('step1'),
+    step2: document.getElementById('step2'),
+    step3: document.getElementById('step3'),
+    step4: document.getElementById('step4')
+  };
+
+  var currentId = "";
+
+  function makeSnippet(id) {
+    return (
+      "<!-- Meta Pixel Code -->\n" +
+      "<" + "script>\n" +
+      "!function(f,b,e,v,n,t,s)\n" +
+      "{if(f.fbq)return;n=f.fbq=function(){n.callMethod?\n" +
+      "n.callMethod.apply(n,arguments):n.queue.push(arguments)};\n" +
+      "if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';\n" +
+      "n.queue=[];t=b.createElement(e);t.async=!0;\n" +
+      "t.src=v;s=b.getElementsByTagName(e)[0];\n" +
+      "s.parentNode.insertBefore(t,s)}(window,document,'script',\n" +
+      "'https://connect.facebook.net/en_US/fbevents.js');\n" +
+      "fbq('init', '" + id + "');\n" +
+      "fbq('track', 'PageView');\n" +
+      "</" + "script>\n" +
+      "<noscript><img height=\"1\" width=\"1\" style=\"display:none\"\n" +
+      "  src=\"https://www.facebook.com/tr?id=" + id + "&ev=PageView&noscript=1\"/></noscript>\n" +
+      "<!-- End Meta Pixel Code -->"
+    );
+  }
+
+  function setStep(el, state) {
+    el.setAttribute('data-state', state);
+  }
+
+  function isValidId(id) {
+    return id.length === 15 || id.length === 16;
+  }
+
+  function refreshFromId(id) {
+    currentId = id;
+    if (!id) {
+      els.pixelMsg.textContent = "";
+      els.pixelMsg.className = "inline-msg";
+      setStep(els.step1, 'active');
+      setStep(els.step2, 'waiting');
+      setStep(els.step3, 'waiting');
+      setStep(els.step4, 'waiting');
+      els.codeBlock.textContent = "";
+      els.copyBtn.disabled = true;
+      hideResult();
+      return;
+    }
+    if (isValidId(id)) {
+      els.pixelMsg.textContent = "Looks right. " + id.length + " digits.";
+      els.pixelMsg.className = "inline-msg ok";
+      setStep(els.step1, 'done');
+      setStep(els.step2, 'active');
+      els.codeBlock.textContent = makeSnippet(id);
+      els.copyBtn.disabled = false;
+      if (els.pastedOk.checked) {
+        setStep(els.step3, 'done');
+        setStep(els.step4, 'active');
+      } else {
+        setStep(els.step3, 'active');
+        setStep(els.step4, 'waiting');
+      }
+    } else {
+      els.pixelMsg.textContent = "Pixel IDs are 15 or 16 digits. You have " + id.length + ".";
+      els.pixelMsg.className = "inline-msg warn";
+      setStep(els.step1, 'active');
+      setStep(els.step2, 'waiting');
+      setStep(els.step3, 'waiting');
+      setStep(els.step4, 'waiting');
+      els.codeBlock.textContent = "";
+      els.copyBtn.disabled = true;
+      hideResult();
+    }
+  }
+
+  els.pixelId.addEventListener('input', function (e) {
+    var stripped = e.target.value.replace(/\D/g, '');
+    if (stripped !== e.target.value) e.target.value = stripped;
+    refreshFromId(stripped);
+  });
+
+  els.copyBtn.addEventListener('click', function () {
+    var text = els.codeBlock.textContent;
+    var flip = function () {
+      els.copyBtn.textContent = "Copied";
+      els.copyBtn.classList.add('done');
+      setTimeout(function () {
+        els.copyBtn.textContent = "Copy code";
+        els.copyBtn.classList.remove('done');
+      }, 2000);
+    };
+    var fallback = function () {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); flip(); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(flip, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  els.pastedOk.addEventListener('change', function () {
+    if (!isValidId(currentId)) {
+      els.pastedOk.checked = false;
+      return;
+    }
+    if (els.pastedOk.checked) {
+      setStep(els.step3, 'done');
+      setStep(els.step4, 'active');
+    } else {
+      setStep(els.step3, 'active');
+      setStep(els.step4, 'waiting');
+      hideResult();
+    }
+  });
+
+  function hideResult() {
+    els.result.classList.remove('show');
+    els.result.setAttribute('data-lamp', 'none');
+    els.verdict.textContent = "";
+    els.findings.innerHTML = "";
+  }
+
+  function showResult(lamp, verdict, findings) {
+    els.result.classList.add('show');
+    els.result.setAttribute('data-lamp', lamp);
+    els.verdict.textContent = verdict;
+    els.findings.innerHTML = "";
+    (findings || []).forEach(function (f) {
+      var li = document.createElement('li');
+      li.innerHTML = f;
+      els.findings.appendChild(li);
+    });
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return c === "&" ? "&amp;" : c === "<" ? "&lt;" : c === ">" ? "&gt;" : "&quot;";
+    });
+  }
+
+  async function verify() {
+    var url = els.verifyUrl.value.trim();
+    if (!url) {
+      showResult('err', "Enter your funnel URL first", ["Paste the URL of the page where the pixel code was pasted."]);
+      return;
+    }
+    els.verifyBtn.disabled = true;
+    els.verifyBtn.textContent = "Checking";
+    hideResult();
+    try {
+      var resp = await fetch('/api/verify?url=' + encodeURIComponent(url), { cache: 'no-store' });
+      var data = await resp.json().catch(function () { return {}; });
+      if (resp.status === 400) {
+        showResult('err', "That URL is not valid", [(data && data.error) || "Enter a full page URL, for example https://yourfunnel.com/landing."]);
+        return;
+      }
+      if (!data.ok) {
+        if (data.reason === 'timeout') {
+          showResult('err', "The page took too long to load", [
+            "We waited 12 seconds and got nothing. Check the URL, or try again in a minute.",
+            "If your funnel is unpublished or behind a login, we cannot check it from here."
+          ]);
+        } else if (data.reason === 'unreachable') {
+          showResult('err', "Could not reach the page", [
+            "The URL did not answer. Double-check it opens in a normal browser window.",
+            "If your funnel is unpublished, publish it first."
+          ]);
+        } else if (data.reason === 'http') {
+          showResult('err', "The page returned an error", [
+            "The server answered with a " + esc(String(data.status || "non-200")) + " status. That usually means the URL is wrong, the page is deleted, or the funnel is unpublished."
+          ]);
+        } else {
+          showResult('err', "Something went wrong", ["We could not check this page. Send the URL to Bill so we can look."]);
+        }
+        return;
+      }
+      renderVerdict(data);
+    } catch (e) {
+      showResult('err', "Something went wrong", ["We could not reach our verifier. Try again in a minute, or send this URL to Bill."]);
+    } finally {
+      els.verifyBtn.disabled = false;
+      els.verifyBtn.textContent = "Check";
+    }
+  }
+
+  function renderVerdict(data) {
+    var yourId = currentId;
+    var ids = (data.ids || []).slice();
+    var hasYours = ids.indexOf(yourId) !== -1;
+    var others = ids.filter(function (i) { return i !== yourId; });
+
+    var extras = [];
+    if (data.pageView) {
+      extras.push("PageView event is present.");
+    } else {
+      extras.push("No PageView event line was found. That means the pixel loads but does not report visits. Go back to step 2, copy the whole block, and make sure the <code>fbq('track', 'PageView')</code> line is included.");
+    }
+    if (data.inHead === false) {
+      extras.push("The code was found outside the Head section. It usually still fires, but Head placement is preferred. If you can, move it to <code>Head Tracking Code</code>.");
+    } else if (data.inHead === true) {
+      extras.push("Code is placed in the Head section. Good.");
+    }
+
+    if (hasYours && others.length === 0) {
+      showResult('live', "Pixel is live", [
+        "Your pixel <code>" + esc(yourId) + "</code> is firing on this page."
+      ].concat(extras));
+      setStep(els.step4, 'done');
+      return;
+    }
+    if (hasYours && others.length > 0) {
+      showResult('warn', "Live, with a second pixel", [
+        "Your pixel <code>" + esc(yourId) + "</code> is firing on the page.",
+        "Another pixel is also firing: <code>" + others.map(esc).join('</code>, <code>') + "</code>. Two pixels can double count conversions and inflate reported results. If the second pixel belongs to a former agency or a plugin, remove it."
+      ].concat(extras));
+      setStep(els.step4, 'done');
+      return;
+    }
+    if (!hasYours && ids.length > 0) {
+      showResult('warn', "A different pixel is firing", [
+        "The page has pixel <code>" + ids.map(esc).join('</code>, <code>') + "</code> but not yours (<code>" + esc(yourId) + "</code>).",
+        "Check that you pasted the code from step 2 (not an older copy) and that you saved and published the funnel."
+      ].concat(extras));
+      return;
+    }
+    if (data.libraryFound && ids.length === 0) {
+      showResult('warn', "Pixel library loaded, no ID found", [
+        "We see the Meta Pixel library loading, but no <code>fbq('init', '...')</code> call with an ID. That usually means only part of the code was pasted.",
+        "Go back to step 2, click Copy code, and paste the entire block including the init line."
+      ]);
+      return;
+    }
+    if (!data.libraryFound && data.gtmFound) {
+      showResult('warn', "Google Tag Manager is on the page", [
+        "We could not see a Meta Pixel in the raw page, but Google Tag Manager is installed. If your pixel fires through GTM, we cannot see it from here.",
+        "Test in Meta Events Manager instead. Open Events Manager, pick your pixel, click Test Events, then load your funnel in another tab. If PageView shows up there, you are good."
+      ]);
+      return;
+    }
+    showResult('err', "No pixel found", [
+      "The page loaded, but we did not find a Meta Pixel on it.",
+      "Go back to step 3 and make sure you pasted the code into Head Tracking Code, saved, and published the funnel. Then click Check again."
+    ]);
+  }
+
+  els.verifyBtn.addEventListener('click', verify);
+  els.verifyUrl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); verify(); }
+  });
+
+  refreshFromId("");
+})();
+</script>
+</body>
+</html>
