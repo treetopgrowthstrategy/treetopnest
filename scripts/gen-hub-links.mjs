@@ -37,6 +37,20 @@ const UPPER = new Set([
   'b2b','kpi','roi','crm','cx','ux','pm','qa',
 ]);
 
+// Readable labels where the slug-derived version is awkward or ambiguous. These
+// strings are anchor text, so they should describe the destination the way a
+// reader would say it, not the way the URL is spelled.
+const LABEL_OVERRIDES = {
+  'fractional-cmo-b2b-saas': 'Fractional CMO for B2B SaaS',
+  'fractional-cmo-for-manufacturing': 'Fractional CMO for manufacturing',
+  'fractional-cmo-for-private-equity-portfolio-companies': 'Fractional CMO for PE portfolio companies',
+  'fractional-cmo-vs-agency-vs-hire-calculator': 'Fractional CMO vs agency vs hire',
+  'fractional-cmo-vs-marketing-director': 'Fractional CMO vs marketing director',
+  'fractional-cmo-onboarding-checklist': 'Onboarding checklist',
+  'fractional-cmo-cro-pricing-benchmark-2026': '2026 CMO and CRO pricing benchmark',
+  'ai-consultant-cost': 'What AI consulting costs',
+};
+
 const labelFrom = (rest) =>
   rest.split('-').map((t) => {
     if (!t) return t;
@@ -54,7 +68,7 @@ for (const c of CLUSTERS) {
   const items = files
     .filter((slug) => slug.startsWith(c.prefix) && !c.exclude.includes(slug))
     .sort()
-    .map((slug) => ({ href: `/${slug}`, label: labelFrom(slug.slice(c.prefix.length)) }));
+    .map((slug) => ({ href: `/${slug}`, label: LABEL_OVERRIDES[slug] ?? labelFrom(slug.slice(c.prefix.length)) }));
   out[c.key] = items;
 }
 
