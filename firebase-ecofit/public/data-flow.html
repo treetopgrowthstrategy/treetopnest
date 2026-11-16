@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ecofit Data Flow & Infrastructure Overview</title>
-<meta name="description" content="A complete walkthrough of how data moves from the Ecofit website through Cloud Functions, email, storage, and CRM. Includes infrastructure ownership and cost guidance.">
+<meta name="description" content="How data moves from the Ecofit website through Cloud Functions, email, storage, and CRM. Includes infrastructure ownership and cost guidance."><link rel="canonical" href="https://ecofitnetworks.com/data-flow"><meta property="og:type" content="website"><meta property="og:title" content="Ecofit Data Flow and Infrastructure Overview"><meta property="og:description" content="How data moves from the Ecofit website through Cloud Functions, email, storage, and CRM. Includes infrastructure ownership and cost guidance."><meta property="og:url" content="https://ecofitnetworks.com/data-flow"><meta property="og:image" content="https://ecofitnetworks.com/assets/ecofit-logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Ecofit Data Flow and Infrastructure Overview"><meta name="twitter:description" content="How data moves from the Ecofit website through Cloud Functions, email, storage, and CRM. Includes infrastructure ownership and cost guidance."><meta name="twitter:image" content="https://ecofitnetworks.com/assets/ecofit-logo.png">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,6 +210,15 @@
     margin-top:80px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.07);
     font-size:13px; color:#999da8; text-align:center;
   }
+
+          /* Narrow screens: wide reference tables and code samples scroll in
+             place instead of widening the page. */
+          @media (max-width:760px){
+            table{display:block;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+            pre,code{max-width:100%;overflow-x:auto;overflow-wrap:anywhere}
+            .step-body{min-width:0}
+            .step-body p,.step-body li{overflow-wrap:anywhere}
+          }
 </style>
 </head>
 <body>
@@ -450,14 +459,14 @@
     <div class="components">
       <div class="comp-card">
         <div class="label">Entry point 1</div>
-        <h4>Facility Intelligence Assessment</h4>
+        <h3 style="font-size:1.05rem;margin-bottom:10px">Facility Intelligence Assessment</h3>
         <p>An 8-question funnel at <code>/assessment</code>. The questions feed a risk model that estimates how much revenue and capex the operator is leaving on the table. The lead form sits between the score reveal and a personalized report download.</p>
         <div class="stat"><strong>Conversion intent:</strong> Educational. Best fit for cold prospects who want to understand their exposure before talking to sales.</div>
       </div>
 
       <div class="comp-card">
         <div class="label">Entry point 2</div>
-        <h4>Request a Demo</h4>
+        <h3 style="font-size:1.05rem;margin-bottom:10px">Request a Demo</h3>
         <p>A modal launched from the "Request a Demo" buttons throughout the site. Captures name, work email, company, locations, and phone, then routes the lead to a Google Calendar booking link.</p>
         <div class="stat"><strong>Conversion intent:</strong> High. Best fit for sales-qualified visitors who want to see the platform in action.</div>
       </div>
@@ -696,7 +705,7 @@ BILL_NOTIFY_EMAIL         # Recipient of the team notification
       <div class="step">
         <div class="step-marker">01</div>
         <div class="step-body">
-          <h4>Repoint the demo form at the ecofit domain</h4>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">Repoint the demo form at the ecofit domain</h3>
           <p>The demo modal currently posts to <code>https://treetopgrowthstrategy.com/api/ecofit-demo-request</code>. That works today because the function is deployed under both projects, but it means a Treetop outage would break the demo form. Update the home page JS to post to <code>/api/ecofit-demo-request</code> (relative path, same origin) and confirm the function is deployed under <code>ecofit-website</code>.</p>
           <div class="step-meta"><span class="tag">Estimated effort: 30 minutes</span></div>
         </div>
@@ -705,7 +714,7 @@ BILL_NOTIFY_EMAIL         # Recipient of the team notification
       <div class="step">
         <div class="step-marker">02</div>
         <div class="step-body">
-          <h4>Add www as a Firebase Hosting custom domain</h4>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">Add www as a Firebase Hosting custom domain</h3>
           <p><code>www.ecofitnetworks.com</code> currently returns 404. Adding the www domain to Firebase Hosting and redirecting it to the apex is a 10-minute config change.</p>
           <div class="step-meta"><span class="tag">Estimated effort: 10 minutes</span></div>
         </div>
@@ -714,7 +723,7 @@ BILL_NOTIFY_EMAIL         # Recipient of the team notification
       <div class="step">
         <div class="step-marker">03</div>
         <div class="step-body">
-          <h4>Swap the notification recipient and sender addresses</h4>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">Swap the notification recipient and sender addresses</h3>
           <p>Today the team notification email goes to a Treetop address. Update the <code>BILL_NOTIFY_EMAIL</code> environment variable to whichever Ecofit address should own inbound leads (a shared inbox like <code>leads@ecofitnetworks.com</code> works well). Verify a sending domain at Resend so the autoresponder shows up as from an Ecofit address rather than a Treetop one.</p>
           <div class="step-meta"><span class="tag">Estimated effort: 1-2 hours including DNS records</span></div>
         </div>
@@ -723,7 +732,7 @@ BILL_NOTIFY_EMAIL         # Recipient of the team notification
       <div class="step">
         <div class="step-marker">04</div>
         <div class="step-body">
-          <h4>Move the CRM destination to an Ecofit-owned home</h4>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">Move the CRM destination to an Ecofit-owned home</h3>
           <p>Either migrate the Airtable base to an Ecofit Airtable workspace, or replace Airtable with HubSpot. If HubSpot, we add a few lines to the handler that upsert a contact and create a deal in the right pipeline. The lead-funnel doc already walks through the HubSpot integration path in detail.</p>
           <div class="step-meta"><span class="tag">Estimated effort: 2-4 hours for HubSpot path</span></div>
         </div>
@@ -732,7 +741,7 @@ BILL_NOTIFY_EMAIL         # Recipient of the team notification
       <div class="step">
         <div class="step-marker">05</div>
         <div class="step-body">
-          <h4>Pick a billing path and execute it</h4>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">Pick a billing path and execute it</h3>
           <p>Option A, B, or C from section 09. Once chosen, this is mostly a finance-team task: provision the account, run the billing transfer, and confirm the first invoice routes to the right address.</p>
           <div class="step-meta"><span class="tag">Estimated effort: Half a day to two days depending on option</span></div>
         </div>
