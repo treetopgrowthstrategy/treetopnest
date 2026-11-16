@@ -244,8 +244,8 @@ function buildReportHTML(data: AssessmentPayload): string {
 
 // ─── GITHUB PUBLISH ───────────────────────────────────────────────────────────
 
-async function pushReportToGitHub(slug: string, html: string): Promise<string | null> {
-  if (!GITHUB_TOKEN) { console.warn('GITHUB_TOKEN not set'); return null; }
+async function pushReportToGitHub(slug: string, html: string): Promise<{ url: string | null; error: string | null }> {
+  if (!GITHUB_TOKEN) { console.warn('GITHUB_TOKEN not set'); return { url: null, error: 'GITHUB_TOKEN not set' }; }
   const path = `public/reports/${slug}.html`;
   const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${path}`;
   const content = Buffer.from(html, 'utf-8').toString('base64');
@@ -265,8 +265,12 @@ async function pushReportToGitHub(slug: string, html: string): Promise<string | 
     body: JSON.stringify(body),
   });
 
-  if (!res.ok) { console.error('GitHub push failed:', await res.text()); return null; }
-  return `${SITE_URL}/reports/${slug}.html`;
+  if (!res.ok) {
+    const detail = (await res.text()).slice(0, 300);
+    console.error('GitHub push failed:', detail);
+    return { url: null, error: `GitHub ${res.status}: ${detail}` };
+  }
+  return { url: `${SITE_URL}/reports/${slug}.html`, error: null };
 }
 
 // ─── EMAIL ────────────────────────────────────────────────────────────────────
@@ -305,7 +309,7 @@ function buildProspectEmail(data: AssessmentPayload, reportUrl: string | null): 
   </div>
   <div style="padding:40px 32px">
     <p style="font-size:14px;color:rgba(242,243,248,0.5);margin:0 0 18px">${firstName},</p>
-    <h1 style="font-family:Raleway,sans-serif;font-weight:700;font-size:26px;color:#F2F3F8;line-height:1.2;margin:0 0 14px">Your Facility Intelligence Report is ready.</h1>
+    <h1 style="font-family:Raleway,sans-serif;font-weight:700;font-size:26px;color:#F2F3F8;line-height:1.2;margin:0 0 14px">${reportUrl ? 'Your Facility Intelligence Report is ready.' : 'Your OpEx estimate.'}</h1>
     <p style="font-size:14px;color:#9699A2;line-height:1.75;margin:0 0 24px">${hook}</p>
     <div style="background:#2F3535;border:1px solid rgba(132,188,65,0.2);border-left:4px solid #84BC41;padding:28px;margin-bottom:28px">
       <div style="font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(242,243,248,0.4);margin-bottom:10px">Estimated Annual OpEx at Risk</div>
@@ -328,7 +332,7 @@ function buildProspectEmail(data: AssessmentPayload, reportUrl: string | null): 
 </body></html>`;
 }
 
-function buildBillNotifyEmail(data: AssessmentPayload, reportUrl: string | null): string {
+function buildBillNotifyEmail(data: AssessmentPayload, reportUrl: string | null, reportError: string | null = null): string {
   const riskRange = `${fmt(data.riskLow)}-${fmt(data.riskHigh)}`;
   const a = data.answers;
 
@@ -347,6 +351,11 @@ function buildBillNotifyEmail(data: AssessmentPayload, reportUrl: string | null)
     <span style="font-size:12px;color:rgba(242,243,248,0.5);margin-left:12px">New Assessment Lead</span>
   </div>
   <div style="padding:24px">
+    ${reportError ? `
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:6px;padding:14px 18px;margin-bottom:20px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#991b1b;margin-bottom:6px">Report not delivered</div>
+      <div style="font-size:13px;color:#7f1d1d;line-height:1.6">This lead received an estimate with no report link. Cause: ${String(reportError).replace(/[<>]/g, '')}</div>
+    </div>` : ''}
     ${signals.length > 0 ? `
     <div style="background:#fefce8;border:1px solid #fde68a;border-radius:6px;padding:14px 18px;margin-bottom:20px">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#92400e;margin-bottom:8px">Lead Signals</div>
@@ -465,7 +474,12 @@ export default async function handler(req: any, res: any) {
 
     // 1. Build report HTML and push to GitHub
     let reportUrl: string | null = null;
-    try { reportUrl = await pushReportToGitHub(slug, buildReportHTML(data)); } catch (e) { console.error('GitHub push failed:', e); }
+    let reportError: string | null = null;
+    try {
+      const pushed = await pushReportToGitHub(slug, buildReportHTML(data));
+      reportUrl = pushed.url;
+      reportError = pushed.error;
+    } catch (e) { reportError = String(e); console.error('GitHub push failed:', e); }
 
     // 2. Persist the lead to Airtable FIRST so an email failure can never lose it.
     let airtableError: string | null = null;
@@ -474,16 +488,19 @@ export default async function handler(req: any, res: any) {
     // 3. Email prospect (best-effort: a bad address must not 500 the request or skip the Bill notify below).
     let prospectEmailError: string | null = null;
     try {
-      await sendEmail(data.email, `Your Ecofit Facility Intelligence Report, ${data.name.split(' ')[0]}`, buildProspectEmail(data, reportUrl));
+      const prospectSubject = reportUrl
+        ? `Your Ecofit Facility Intelligence Report, ${data.name.split(' ')[0]}`
+        : `Your Ecofit OpEx estimate, ${data.name.split(' ')[0]}`;
+      await sendEmail(data.email, prospectSubject, buildProspectEmail(data, reportUrl));
     } catch (e) { prospectEmailError = String(e); console.error('Prospect email failed:', e); }
 
     // 4. Notify Bill (best-effort).
     let billEmailError: string | null = null;
     try {
-      await sendEmail([BILL_EMAIL, DAVE_EMAIL], `New Ecofit Assessment: ${data.name} at ${data.company} - ${fmt(data.riskLow)}-${fmt(data.riskHigh)} at risk`, buildBillNotifyEmail(data, reportUrl));
+      await sendEmail([BILL_EMAIL, DAVE_EMAIL], `New Ecofit Assessment: ${data.name} at ${data.company} - ${fmt(data.riskLow)}-${fmt(data.riskHigh)} at risk`, buildBillNotifyEmail(data, reportUrl, reportError));
     } catch (e) { billEmailError = String(e); console.error('Bill email failed:', e); }
 
-    return res.status(200).json({ success: true, reportUrl, airtableError, prospectEmailError, billEmailError });
+    return res.status(200).json({ success: true, reportUrl, reportError, airtableError, prospectEmailError, billEmailError });
 
   } catch (err) {
     console.error('ecofit-assessment-submit error:', err);

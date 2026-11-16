@@ -1,0 +1,383 @@
+/* ===========================================================================
+   mobile.css — responsive layer for ecofitnetworks.com
+   Added 2026-11-15.
+
+   WHY THIS FILE EXISTS
+   The marketing pages under public/ were built desktop-only. The page CSS in
+   _astro/ contains no media queries at all, so below roughly 680px the nav row
+   and several section grids ran off the right edge. The worst case: the
+   "Take the Assessment" button rendered at x=528 on a 375px screen and, on the
+   homepage, could not even be scrolled to because html/body carry
+   overflow-x:hidden.
+
+   This file is loaded LAST on every marketing page, in the slot that used to
+   point at the missing /_astro/claude-training.BXgpkJbM.css (which 404'd on
+   every page load).
+
+   ABOUT !important
+   The generated page CSS scopes every rule with an attribute selector, e.g.
+   .pain-grid[data-astro-cid-tjjvd2r3], and the inner pages set nav layout with
+   inline style attributes. Both outrank a plain class selector here. Rather
+   than rewrite six generated stylesheets and four nav blocks, these overrides
+   use !important, confined entirely to max-width media queries. Desktop
+   rendering is untouched.
+
+   DESKTOP IS NOT AFFECTED. Every rule below sits inside a max-width query.
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. Global guards. Nothing should be able to push the page wider than itself.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  img, svg, video, canvas { max-width: 100%; height: auto; }
+  /* Any grid or flex child holding text must be allowed to shrink. */
+  .pain-card, .feature-row > *, .cta-inner > *, .testimonial-card { min-width: 0 !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   2. Navigation.
+
+   Baseline (no JavaScript): the nav row wraps, so every link and the CTA stay
+   visible and tappable. The header is taller, which is an acceptable fallback.
+
+   Enhanced (mobile-nav.js adds .js-nav to <html>): the links collapse behind a
+   toggle and expand in flow below the bar. nav is position:sticky, so an
+   in-flow panel expands correctly without any absolute positioning.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  nav { background: #1a2130 !important; }   /* page CSS has a malformed hex here */
+
+  .nav-inner {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    min-height: 56px;
+    padding: 0 16px !important;
+    row-gap: 0;
+  }
+
+  /* The logo keeps its place on the bar; the toggle sits opposite it.
+     Explicit order matters: the toggle is appended last in the DOM, so without
+     this it wraps below the expanded panel instead of staying on the bar. */
+  .nav-inner > a:first-child { margin-right: auto; order: 1; }
+  .nav-toggle  { order: 2; }
+  .nav-links   { order: 3; }
+  .nav-actions { order: 4; }
+
+  .nav-links,
+  .nav-actions {
+    flex-basis: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+  }
+
+  .nav-links a {
+    display: block !important;
+    padding: 13px 2px !important;      /* 44px+ tap target */
+    font-size: 16px !important;
+    color: #F2F3F8 !important;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-actions {
+    gap: 10px !important;
+    padding: 14px 0 18px !important;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-actions a {
+    display: block !important;
+    text-align: center !important;
+    padding: 13px 18px !important;     /* 44px+ tap target */
+    font-size: 16px !important;
+    border-radius: 8px !important;
+  }
+
+  /* The primary CTA stays unmistakably the primary CTA. */
+  .nav-actions a.btn-nav-primary,
+  .nav-actions a[href="/assessment"] {
+    background: #84BC41 !important;
+    color: #11150f !important;
+    font-weight: 700 !important;
+  }
+
+  .nav-actions a.btn-ghost,
+  .nav-actions a[href^="https://assets.myecofit.com"] {
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    color: #F2F3F8 !important;
+  }
+
+  /* --- toggle button, injected by mobile-nav.js --- */
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-left: 8px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    cursor: pointer;
+    color: #F2F3F8;
+    flex: 0 0 auto;
+  }
+  .nav-toggle:focus-visible { outline: 2px solid #84BC41; outline-offset: 2px; }
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+  }
+  .nav-toggle span::before,
+  .nav-toggle span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    transition: transform .18s ease, opacity .18s ease;
+  }
+  .nav-toggle span::before { top: -6px; }
+  .nav-toggle span::after  { top:  6px; }
+
+  .nav-toggle[aria-expanded="true"] span { background: transparent; }
+  .nav-toggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span::after  { transform: translateY(-6px) rotate(-45deg); }
+
+  /* Collapsed only when JS is present to reopen it. */
+  .js-nav .nav-links,
+  .js-nav .nav-actions { display: none !important; }
+
+  .js-nav nav.nav-open .nav-links,
+  .js-nav nav.nav-open .nav-actions { display: flex !important; }
+}
+
+/* The toggle is a mobile affordance only. */
+@media (min-width: 901px) {
+  .nav-toggle { display: none !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   3. Homepage and inner-page section grids.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  /* Hero: copy above, dashboard below. */
+  .hero {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    padding: 44px 16px 48px !important;
+  }
+  .hero h1 { font-size: clamp(2.1rem, 9vw, 3rem) !important; }
+  .hero p  { max-width: none !important; }
+  .hero-ctas { flex-wrap: wrap !important; gap: 12px !important; }
+  .hero-ctas > * { flex: 1 1 auto; min-width: 0; }
+  .hero-visual { max-width: 100% !important; }
+  .hero-visual * { max-width: 100%; }
+
+  /* Alternating two-column feature rows stack. The .reverse variant uses
+     direction:rtl to flip columns, which must be undone when stacked or the
+     text renders right-aligned. */
+  .feature-row {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding: 44px 0 !important;
+  }
+  .feature-row.reverse { direction: ltr !important; }
+
+  /* Closing CTA band. */
+  .cta-section { padding: 56px 16px !important; }
+  .cta-inner {
+    grid-template-columns: 1fr !important;
+    padding: 32px 22px !important;
+    gap: 24px !important;
+  }
+  .cta-sub { max-width: none !important; }
+  .cta-actions {
+    align-items: stretch !important;
+    white-space: normal !important;
+  }
+  .cta-actions > a { text-align: center; }
+}
+
+@media (max-width: 768px) {
+  /* Three-up rows that are laid out with an inline style attribute rather than
+     a class. Matched on the inline value because these divs carry no class.
+     Deliberately does NOT match the hero dashboard, whose inner grids are
+     repeat(4,1fr) and 56px repeat(14,1fr) and fit fine at 343px. */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3, 1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Stat rows (40% / 3.2x / 200+). */
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .stat-item  { text-align: left !important; }
+}
+
+@media (max-width: 768px) {
+  /* The four "industry shift" cards. Previously held four columns at 148px
+     each, so card 3 was clipped and card 4 sat entirely off-screen. */
+  .pain-grid { grid-template-columns: 1fr !important; }
+
+  .testimonials-grid { grid-template-columns: 1fr !important; }
+
+  /* Generic safety net for any remaining hard-coded multi-column grid. */
+  .feature-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   4. Section padding. The generated CSS uses 32px side padding throughout,
+      which is too much of a 375px screen.
+   --------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .section, .section-inner, .partners-section,
+  .cta-section, .footer-inner { padding-left: 16px !important; padding-right: 16px !important; }
+  .nav-inner { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   5. Assessment funnel.
+      iOS Safari zooms the page whenever a focused input is under 16px and does
+      not zoom back out, which left people stranded mid-form on a magnified,
+      sideways-scrolling page.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  input, select, textarea { font-size: 16px !important; }
+
+  /* Back and skip controls were 48x16. 44px is the minimum tap target. */
+  .ec-back, .ec-back-link, .exit-skip, .q-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 44px !important;
+    padding: 10px 4px !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   6. Tables and wide figures scroll inside their own box, never the page.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+/* ---------------------------------------------------------------------------
+   7. Named section grids across the inner pages.
+      Each of these was a fixed 2, 3 or 4 column grid with no breakpoint, so
+      the later columns sat outside the screen. Collapsed to a single column.
+   --------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .articles-grid,            /* blog index */
+  .steps-grid,               /* integrations: Connect / Sync / See */
+  .int-types,                /* integrations: integration types */
+  .value-props,              /* integrations: four value props */
+  .testimonials-dark-grid,   /* platform */
+  .metrics-showcase-grid,
+  .capability-grid,
+  .cap-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Brand chips inside an integration card wrap instead of running on. */
+  .int-type-brands { flex-wrap: wrap !important; }
+}
+
+/* Two-column grids set with an inline style attribute, used across the inner
+   pages for copy-beside-visual rows and for paired form fields. */
+@media (max-width: 900px) {
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* The sample-dashboard tile row. Four tiles are too narrow to read on a phone,
+   and on /platform the row measured 399px against a 375px screen. Two up keeps
+   the figures legible. The heatmap grid (56px repeat(14,1fr)) is a different
+   pattern and is deliberately left alone. */
+@media (max-width: 600px) {
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* 32px of padding inside a card on a 375px screen leaves very little room. */
+  [style*="padding:32px"] { padding: 20px !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   8. Last two stragglers found during verification.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  /* /integrations closing CTA: an inline "1fr auto" grid, so the button column
+     kept its desktop width and pushed past the screen. */
+  [style*="grid-template-columns:1fr auto"],
+  [style*="grid-template-columns: 1fr auto"],
+  [style*="grid-template-columns:auto 1fr"],
+  [style*="grid-template-columns: auto 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* /analytics saturation donut: a hard 180x180 box inside a column narrower
+     than itself. Scale it to the column and keep it circular. */
+  [style*="width:180px"][style*="height:180px"] {
+    width: min(180px, 100%) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   9. Remaining inline grid ratios used across the partner and detail pages.
+      Enumerated from every grid-template-columns value in public/ rather than
+      guessed. Auto-fit and auto-fill minmax() grids are already responsive by
+      definition and are deliberately left alone, as is the 56px repeat(14,1fr)
+      heatmap inside the sample dashboard.
+   --------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  [style*="grid-template-columns:repeat(2,1fr)"],
+  [style*="grid-template-columns: repeat(2, 1fr)"],
+  [style*="grid-template-columns:1.4fr 1fr"],
+  [style*="grid-template-columns: 1.4fr 1fr"],
+  [style*="grid-template-columns:1.4fr 1fr 1fr"],
+  [style*="grid-template-columns:1.15fr 1.4fr 1fr"],
+  [style*="grid-template-columns:1fr auto 1fr"],
+  [style*="grid-template-columns: 1fr auto 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   10. Skip link (WCAG 2.4.1, Level A). Off-screen until focused, then pinned
+       top-left so a keyboard user can jump straight past the navigation.
+       Outside any media query: this applies at every width.
+   --------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 18px;
+  background: #84BC41;
+  color: #11150f;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid #F2F3F8;
+  outline-offset: -3px;
+}
+/* The sticky header would otherwise cover the element we jump to. */
+:target, [tabindex="-1"]:focus { scroll-margin-top: 72px; outline: none; }

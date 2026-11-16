@@ -1,5 +1,8 @@
 {
   "hosting": {
+    "predeploy": [
+      "python3 \"$PROJECT_DIR/scripts/preflight.py\""
+    ],
     "public": "public",
     "ignore": [
       "firebase.json",
