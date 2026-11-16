@@ -61,6 +61,24 @@ function getPillarRecs(ps: QuizPayload['pillarScores']) {
   return sorted.slice(0, 3).flatMap(p => (recMap[p.key] || []).slice(0, 1));
 }
 
+// A published report is protected by nothing but its URL: the page is served
+// publicly, carries no auth, and holds the facility profile a prospect typed
+// in. A slug of company plus date is trivially enumerable from a company name
+// and a guessed week, so every slug carries 64 bits of CSPRNG suffix. This
+// throws rather than falling back to Math.random, because a weak token here
+// looks identical to a strong one and fails silently.
+function reportToken(): string {
+  const c: any = (globalThis as any).crypto;
+  if (!c || typeof c.getRandomValues !== 'function') {
+    throw new Error('no CSPRNG available; refusing to publish a guessable report URL');
+  }
+  const b = new Uint8Array(8);
+  c.getRandomValues(b);
+  let s = '';
+  for (let i = 0; i < b.length; i++) s += b[i].toString(16).padStart(2, '0');
+  return s;
+}
+
 function buildSlug(company: string, date: string): string {
   return company
     .toLowerCase()
@@ -68,7 +86,7 @@ function buildSlug(company: string, date: string): string {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .slice(0, 40)
-    .replace(/-$/, '') + '-' + date;
+    .replace(/-$/, '') + '-' + date + '-' + reportToken();
 }
 
 function buildReportHTML(data: QuizPayload, reportUrl: string): string {
