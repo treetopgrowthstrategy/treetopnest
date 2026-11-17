@@ -1,0 +1,289 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+const UPDATED = 'November 17, 2026';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Terms of Service | Treetop Growth Strategy</title>
+  <meta name="description" content="The terms for using treetopgrowthstrategy.com and for buying reports, subscriptions and engagements from Treetop Growth Strategy. Billing, cancellation, refunds, what our analysis is and is not." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/terms" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/terms" />
+  <meta property="og:title" content="Terms of Service | Treetop Growth Strategy" />
+  <meta property="og:description" content="Billing, cancellation, refunds, acceptable use, and what our analysis is and is not." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta name="twitter:title" content="Terms of Service | Treetop Growth Strategy" />
+  <meta name="twitter:description" content="Billing, cancellation, refunds, and what our analysis is and is not." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 2.5rem; }
+    header.hero { padding: 9rem 0 3rem; border-bottom: 1px solid #1A3A1A; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+    .updated { font-size: 0.82rem; color: #4A6A4A; }
+
+    .tldr { border: 1px solid #1A3A1A; background: #0A1A0A; padding: 1.75rem 2rem; margin: 3rem 0; }
+    .tldr h2 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .tldr li { font-size: 0.95rem; color: #C8E6C8; line-height: 1.65; padding-left: 1.4rem; position: relative; }
+    .tldr li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background: #00C853; }
+
+    section.doc { padding: 2.5rem 0; border-bottom: 1px solid #0F250F; }
+    section.doc:last-of-type { border-bottom: none; }
+    h2.sec { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.25rem; scroll-margin-top: 90px; }
+    h3.sub { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin: 1.75rem 0 0.6rem; }
+    p { font-size: 0.97rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1rem; }
+    p strong, li strong { color: #F0FFF0; font-weight: 600; }
+    ul.body, ol.body { margin: 0 0 1rem 0; padding-left: 1.3rem; }
+    ul.body li, ol.body li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.8; margin-bottom: 0.5rem; }
+    a.ilink { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    a.ilink:hover { border-bottom-color: #00C853; }
+
+    .callout { border-left: 2px solid #00C853; background: rgba(0,200,83,0.04); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p:last-child { margin-bottom: 0; }
+
+    /* The site-wide `nav` rule above is position:fixed. Scope it off the in-page
+       contents list, which is a nav element too and would otherwise pin itself
+       over the header. */
+    nav.toc { position: static; background: none; backdrop-filter: none; border-bottom: none; }
+    .toc { margin: 2.5rem 0 0; }
+    .toc ol { list-style: none; counter-reset: toc; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem; }
+    .toc li { counter-increment: toc; font-size: 0.86rem; }
+    .toc li::before { content: counter(toc) ". "; color: #2A3A2A; }
+    .toc a { color: #4A6A4A; text-decoration: none; }
+    .toc a:hover { color: #00C853; }
+
+    footer.contactbar { border-top: 1px solid #1A3A1A; background: #0A1A0A; padding: 2.5rem 0; margin-top: 2rem; }
+
+    @media (max-width: 760px) {
+      .wrap { padding: 0 1.5rem; }
+      .nav-inner { padding: 0 1.5rem; }
+      .hide-mob { display: none !important; }
+      header.hero { padding: 7rem 0 2.5rem; }
+      .toc ol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/the-ai-native-gtm-framework" class="nav-link">Framework</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="lbl">Legal</span>
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated {UPDATED} · Treetop Growth Strategy · Austin, Texas</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="tldr">
+    <h2>The short version</h2>
+    <ul>
+      <li>Use the free tools, read the research, take the assessments. No account, no catch.</li>
+      <li>Subscriptions renew monthly until you cancel, and you can cancel yourself in the Stripe portal at any time. You keep access through the end of the period you paid for.</li>
+      <li>One-time digital purchases are refundable for 14 days. Ask and we process it.</li>
+      <li>Our reports are analysis and judgment, not a guarantee of a result, and not legal, tax or financial advice.</li>
+      <li>If you have signed a statement of work with us, that document wins wherever it says something different from this page.</li>
+    </ul>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#agreement">The agreement</a></li>
+      <li><a href="#what">What we sell</a></li>
+      <li><a href="#orders">Orders and prices</a></li>
+      <li><a href="#subscriptions">Subscriptions and cancellation</a></li>
+      <li><a href="#refunds">Refunds</a></li>
+      <li><a href="#deliver">What we deliver</a></li>
+      <li><a href="#notadvice">What our work is not</a></li>
+      <li><a href="#reports">Published reports</a></li>
+      <li><a href="#ip">Ownership and licence</a></li>
+      <li><a href="#use">Acceptable use</a></li>
+      <li><a href="#freetools">Free tools and calculators</a></li>
+      <li><a href="#availability">Availability</a></li>
+      <li><a href="#warranty">Warranties</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#disputes">Disputes and governing law</a></li>
+      <li><a href="#changes">Changes and contact</a></li>
+    </ol>
+  </nav>
+
+  <section class="doc">
+    <h2 class="sec" id="agreement">1. The agreement</h2>
+    <p>These terms are between you and <strong>Treetop Growth Strategy</strong>, a go-to-market consulting practice based in Austin, Texas ("Treetop", "we", "us"). They apply when you use treetopgrowthstrategy.com, submit a form, use a calculator, or buy anything here.</p>
+    <p>By using the site you accept them. If you are agreeing on behalf of a company, you are confirming that you are allowed to bind that company, and "you" means the company.</p>
+    <div class="callout">
+      <p><strong>Signed agreements control.</strong> If we have a signed statement of work, master services agreement or order form with you, that document governs the work it covers. Where it conflicts with this page, it wins. This page covers the site itself and anything you buy directly through it without a separate signature.</p>
+    </div>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="what">2. What we sell</h2>
+    <p>Three different things, with different rules attached:</p>
+    <ul class="body">
+      <li><strong>One-time digital products.</strong> Reports, workbooks, audits and other deliverables bought at a fixed price and delivered once.</li>
+      <li><strong>Subscriptions.</strong> Productized monthly services, including the AI CMO Advisor tiers, Claude Consulting and the Managed Marketing Stack plans. These bill every month until cancelled.</li>
+      <li><strong>Engagements.</strong> Fractional CMO and CRO retainers, implementation work and anything else scoped on a call. These run under a separate written agreement, are month to month unless that agreement says otherwise, and require 30 days notice to end.</li>
+    </ul>
+    <p>What is currently on offer, and at what price, is on the <a class="ilink" href="/pricing">pricing page</a>. We can change what we offer and what it costs at any time, but a change never affects an order you have already placed or the current period of a subscription you already hold.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="orders">3. Orders and prices</h2>
+    <p>Prices are in US dollars and are the price shown at checkout. Payment is taken by <strong>Stripe</strong>, and completing a Stripe checkout is what forms the order. You are responsible for any sales or value added tax that applies where you are, unless we have stated otherwise in writing.</p>
+    <p>You agree that the payment method you use is yours to use, and that the billing details you give are accurate. If a payment fails or is reversed, we may suspend access to the thing it paid for until it is resolved.</p>
+    <p>We may decline or cancel an order, and refund it, if we believe it is fraudulent, if we cannot deliver what was ordered, or if the price was listed in obvious error.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="subscriptions">4. Subscriptions and cancellation</h2>
+    <p>A subscription bills on the same day each month until you cancel it. Each renewal is charged automatically to the payment method on file.</p>
+    <p><strong>You can cancel at any time, yourself.</strong> Every receipt includes a link to the Stripe customer portal, where you can cancel in one click without talking to us or explaining why. You can also email us and we will do it for you.</p>
+    <p>Cancelling stops the next renewal. It does not end the period you have already paid for, and you keep access and delivery through the end of that period. We do not refund part of a month that has already started. See section 5.</p>
+    <p>We may suspend or end a subscription ourselves if payment fails repeatedly, or for the reasons in section 10. If we end it for any reason other than your breach, we refund the unused part of the period.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="refunds">5. Refunds</h2>
+    <ul class="body">
+      <li><strong>One-time digital products: 14 days, no questions asked.</strong> Email <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a> within 14 days of purchase and we process the refund. You do not have to justify it.</li>
+      <li><strong>Subscriptions: cancel any time, no partial-month refunds.</strong> You keep what you paid for until the period ends.</li>
+      <li><strong>Engagements:</strong> as set out in the signed agreement for that engagement.</li>
+    </ul>
+    <p>If something we delivered is wrong, broken or not what was described, tell us regardless of the window. We would rather fix it or refund it than have you feel badly treated over a sum of money.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="deliver">6. What we deliver, and when</h2>
+    <p>Delivery times stated on a product page are our honest estimate, not a contractual deadline. Reports generated from an assessment usually arrive within a few hours and almost always within 24 hours, because a person reads them before they go out.</p>
+    <p>Our analysis draws on third-party data, including live metrics from Ahrefs and business information from Apollo. Those figures are those providers' estimates. We present them as what they are, and we are not responsible for their accuracy. Where a number is an estimate, we say so.</p>
+    <p>If we cannot deliver something you paid for, we refund it. That is the remedy for non-delivery.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="notadvice">7. What our work is not</h2>
+    <p>This matters more than the usual boilerplate, so it gets its own section.</p>
+    <p>What we sell is informed judgment about go-to-market strategy. It is <strong>not a guarantee of any business result</strong>. No report, audit, roadmap or retainer from us promises revenue, pipeline, rankings, traffic or a successful hire, and nothing on this site should be read as promising one. Results depend on your market, your team and your execution, none of which we control.</p>
+    <p>Our work is <strong>not legal, tax, accounting, investment, employment or medical advice</strong>, and it is not a substitute for a professional in any of those fields. Where our materials touch on those areas, for example business formation costs in a gym startup guide, they are general information for planning purposes. Get a qualified professional before you act on them.</p>
+    <p>You remain responsible for your own decisions, and for checking anything you intend to rely on.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="reports">8. Published reports</h2>
+    <p>When you complete an assessment, we publish your report to a web address on this domain and email you the link. The address is unguessable and search engines are told not to list it, but <strong>it is not password protected</strong>, and anyone holding the link can read it.</p>
+    <p>Our <a class="ilink" href="/privacy#reports">privacy policy explains this in full</a>, including how to get a report delivered privately instead, and how to have one taken down. By completing an assessment you agree to it being published this way. Ask us and we will remove it the same day.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="ip">9. Ownership and licence</h2>
+    <p><strong>Your material stays yours.</strong> The answers you submit, the data you give us and the content of your website remain your property. You give us permission to use them for the purpose of producing and delivering what you asked for, and nothing else.</p>
+    <p><strong>Our material stays ours.</strong> The site, its research, frameworks, calculators, templates and the wording of our reports are owned by Treetop and protected by copyright.</p>
+    <p>When you buy a deliverable, you get a licence to use it inside your own business, including sharing it with your team, your board and your investors. You may not resell it, publish it as your own, or use it to build a competing product or service.</p>
+    <p>You may quote and cite our public research with attribution, naming Treetop Growth Strategy and linking to the page. Several of our research pages say this explicitly and set out the preferred citation.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="use">10. Acceptable use</h2>
+    <p>Do not do these things:</p>
+    <ul class="body">
+      <li>Submit a form with someone else's details, or with details you made up to get a report you are not entitled to.</li>
+      <li>Automate, script or bulk-submit the forms and calculators. We rate limit by IP address and we will block abuse.</li>
+      <li>Scrape the site at a rate that burdens it, or copy it wholesale.</li>
+      <li>Try to reach data that is not yours, probe for vulnerabilities, or interfere with the site's operation.</li>
+      <li>Resell access to anything here, or use a subscription on behalf of clients it was not sold for.</li>
+      <li>Use the site to break the law, or to send anything unlawful, defamatory or malicious.</li>
+    </ul>
+    <p>We may rate limit, suspend or refuse service to anyone doing any of this, and we may do it without warning where the site's stability is at stake.</p>
+    <p>If you have found a security problem, please tell us at <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a> rather than exploiting it. We will not pursue anyone who reports a genuine issue in good faith and gives us a reasonable chance to fix it.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="freetools">11. Free tools and calculators</h2>
+    <p>The calculators, scorecards, benchmarks and research on this site are free, and they are provided as they are. They run on stated assumptions and industry ranges, not on your actual accounts. Treat the output as a starting point for a conversation, not as a forecast of your business. We may change or withdraw any of them at any time.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="availability">12. Availability</h2>
+    <p>We do not promise that the site will be available without interruption. It runs on third-party infrastructure that occasionally fails, and we take it down for maintenance when we need to. For the free parts of the site there is no service level, and we owe nothing for downtime.</p>
+    <p>Where a paid plan includes an explicit service level, for example a Managed Marketing Stack plan, that plan's terms apply and this section does not reduce them.</p>
+    <p>The site links to other people's services and websites. We do not control them and are not responsible for what they do.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="warranty">13. Warranties</h2>
+    <p>We will perform our work with reasonable skill and care, in the way a competent practitioner in our field would.</p>
+    <p>Beyond that, and to the fullest extent the law allows, the site and everything on it are provided without warranty of any kind, express or implied, including implied warranties of merchantability, fitness for a particular purpose and non-infringement. Some jurisdictions do not allow these exclusions, in which case they apply to you only as far as the law permits.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="liability">14. Limitation of liability</h2>
+    <p>To the fullest extent permitted by law:</p>
+    <ul class="body">
+      <li>Neither party is liable to the other for indirect, incidental, special or consequential losses, or for lost profits, lost revenue, lost data or lost business opportunity, even if the possibility was known.</li>
+      <li>Our total liability arising out of or relating to these terms or the site, for all claims combined, is limited to the amount you paid us in the 12 months before the event giving rise to the claim, or 100 US dollars if you paid us nothing.</li>
+    </ul>
+    <p>None of this limits liability for fraud, for fraudulent misrepresentation, for death or personal injury caused by negligence, or for anything else that cannot lawfully be limited.</p>
+    <p>These limits reflect how this is priced. A 99 dollar report cannot carry unlimited exposure, and pricing it as though it could would mean charging you very differently.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="disputes">15. Disputes and governing law</h2>
+    <p><strong>Talk to us first.</strong> If something has gone wrong, email <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a> and describe it. Both of us agree to try to resolve it directly for 30 days before starting any formal proceeding. In practice this resolves almost everything.</p>
+    <p>These terms are governed by the laws of the State of Texas, without regard to its conflict of laws rules. Any dispute that is not resolved informally will be brought exclusively in the state or federal courts located in Travis County, Texas, and both parties consent to the jurisdiction of those courts.</p>
+    <p>You may always bring a qualifying claim in small claims court instead. Nothing here requires you to arbitrate, and nothing here waives a jury trial.</p>
+    <p>If any part of these terms is held unenforceable, the rest stays in force. Our not enforcing something on one occasion does not waive it later. You may not assign these terms without our consent; we may assign them to a successor to the business.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="changes">16. Changes, and how to reach us</h2>
+    <p>We may update these terms. The date at the top changes when we do, and the new version applies to anything you do on the site afterward. If a change materially affects a subscription you hold, we will email you before it takes effect, and you can cancel if you do not want it.</p>
+    <p><strong>Bill Colbert</strong><br />Treetop Growth Strategy<br />Austin, Texas, United States<br /><a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a></p>
+    <p>See also our <a class="ilink" href="/privacy">Privacy Policy</a>.</p>
+  </section>
+
+</div>
+
+<footer class="contactbar">
+  <div class="wrap">
+    <p style="font-size:0.82rem;color:#4A6A4A;">These terms were last updated on {UPDATED}. If anything here is unclear, email us and ask. We would rather explain it than have you agree to something you did not read.</p>
+  </div>
+</footer>
+
+<GlobalFooter />
+
+</body>
+</html>
