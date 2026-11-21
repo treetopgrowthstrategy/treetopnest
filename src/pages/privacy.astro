@@ -1,0 +1,320 @@
+---
+import GlobalFooter from '../components/GlobalFooter.astro';
+export const prerender = true;
+const UPDATED = 'November 17, 2026';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Privacy Policy | Treetop Growth Strategy</title>
+  <meta name="description" content="What Treetop Growth Strategy collects when you use this site, which services process it, how published assessment reports work, and how to have your data or a report removed." />
+  <link rel="canonical" href="https://treetopgrowthstrategy.com/privacy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://treetopgrowthstrategy.com/privacy" />
+  <meta property="og:title" content="Privacy Policy | Treetop Growth Strategy" />
+  <meta property="og:description" content="What we collect, who processes it, how published reports work, and how to have your data removed." />
+  <meta property="og:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta property="og:site_name" content="Treetop Growth Strategy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://treetopgrowthstrategy.com/og-default.png" />
+  <meta name="twitter:title" content="Privacy Policy | Treetop Growth Strategy" />
+  <meta name="twitter:description" content="What we collect, who processes it, and how to have it removed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050D05; color: #F0FFF0; font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(5,13,5,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1A3A1A; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; font-style: italic; color: #F0FFF0; text-decoration: none; }
+    .nav-link { font-size: 0.82rem; color: rgba(240,255,240,0.5); text-decoration: none; }
+    .nav-link:hover { color: #F0FFF0; }
+    .btn-p { display: inline-flex; align-items: center; gap: 6px; background: #00C853; color: #050D05; padding: 0.875rem 1.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .btn-p:hover { opacity: 0.88; }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 2.5rem; }
+    header.hero { padding: 9rem 0 3rem; border-bottom: 1px solid #1A3A1A; }
+    .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; display: block; }
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+    .updated { font-size: 0.82rem; color: #4A6A4A; }
+
+    .tldr { border: 1px solid #1A3A1A; background: #0A1A0A; padding: 1.75rem 2rem; margin: 3rem 0; }
+    .tldr h2 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #00C853; margin-bottom: 1rem; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .tldr li { font-size: 0.95rem; color: #C8E6C8; line-height: 1.65; padding-left: 1.4rem; position: relative; }
+    .tldr li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background: #00C853; }
+
+    section.doc { padding: 2.5rem 0; border-bottom: 1px solid #0F250F; }
+    section.doc:last-of-type { border-bottom: none; }
+    h2.sec { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.25rem; scroll-margin-top: 90px; }
+    h3.sub { font-size: 1rem; font-weight: 600; color: #F0FFF0; margin: 1.75rem 0 0.6rem; }
+    p { font-size: 0.97rem; color: #8FAF8F; line-height: 1.85; margin-bottom: 1rem; }
+    p strong, li strong { color: #F0FFF0; font-weight: 600; }
+    ul.body, ol.body { margin: 0 0 1rem 0; padding-left: 1.3rem; }
+    ul.body li, ol.body li { font-size: 0.97rem; color: #8FAF8F; line-height: 1.8; margin-bottom: 0.5rem; }
+    a.ilink { color: #00C853; text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3); }
+    a.ilink:hover { border-bottom-color: #00C853; }
+
+    .callout { border-left: 2px solid #00C853; background: rgba(0,200,83,0.04); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout p:last-child { margin-bottom: 0; }
+
+    .tbl-scroll { overflow-x: auto; margin: 1.5rem 0; }
+    table { width: 100%; border-collapse: collapse; min-width: 560px; }
+    th { text-align: left; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8FAF8F; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid #1A3A1A; vertical-align: bottom; }
+    td { font-size: 0.88rem; color: #8FAF8F; line-height: 1.6; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid #0F250F; vertical-align: top; }
+    td:first-child { color: #F0FFF0; font-weight: 500; white-space: nowrap; }
+
+    /* The site-wide `nav` rule above is position:fixed. Scope it off the in-page
+       contents list, which is a nav element too and would otherwise pin itself
+       over the header. */
+    nav.toc { position: static; background: none; backdrop-filter: none; border-bottom: none; }
+    .toc { margin: 2.5rem 0 0; }
+    .toc ol { list-style: none; counter-reset: toc; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem; }
+    .toc li { counter-increment: toc; font-size: 0.86rem; }
+    .toc li::before { content: counter(toc) ". "; color: #2A3A2A; }
+    .toc a { color: #4A6A4A; text-decoration: none; }
+    .toc a:hover { color: #00C853; }
+
+    footer.contactbar { border-top: 1px solid #1A3A1A; background: #0A1A0A; padding: 2.5rem 0; margin-top: 2rem; }
+    .contactbar p { margin-bottom: 0.5rem; }
+
+    @media (max-width: 760px) {
+      .wrap { padding: 0 1.5rem; }
+      .nav-inner { padding: 0 1.5rem; }
+      .hide-mob { display: none !important; }
+      header.hero { padding: 7rem 0 2.5rem; }
+      .toc ol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Treetop</a>
+    <div class="hide-mob" style="display:flex;gap:2rem;align-items:center;">
+      <a href="/the-ai-native-gtm-framework" class="nav-link">Framework</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+    </div>
+    <a href="/quiz" class="btn-p" style="padding:0.6rem 1.25rem;font-size:0.78rem;">Take the Gap Assessment →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="lbl">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated {UPDATED} · Treetop Growth Strategy · Austin, Texas</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="tldr">
+    <h2>The short version</h2>
+    <ul>
+      <li>We collect what you type into a form. Name, work email, company, job title, sometimes a phone number, and your answers to the assessment questions.</li>
+      <li>There is no analytics tag, no advertising pixel and no tracking cookie anywhere on this site. We do not sell, rent or trade your information.</li>
+      <li>If you complete an assessment, your report is published to a public web address on this domain. It has a hard-to-guess link and is hidden from search engines, but it is not password protected. Section 4 explains exactly how that works.</li>
+      <li>We look up a few public business facts about you and your company to write the report. Section 2 lists what and from where.</li>
+      <li>Email <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a> and we will delete your record, pull a published report down, or send you a copy of everything we hold.</li>
+    </ul>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#collect">What we collect</a></li>
+      <li><a href="#dont">What we do not do</a></li>
+      <li><a href="#reports">Published reports</a></li>
+      <li><a href="#processors">Who processes your data</a></li>
+      <li><a href="#email">Email from us</a></li>
+      <li><a href="#ai">AI processing</a></li>
+      <li><a href="#payments">Payments</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#rights">Your choices and rights</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <section class="doc">
+    <h2 class="sec" id="who">1. Who we are</h2>
+    <p>Treetop Growth Strategy is a go-to-market consulting practice based in Austin, Texas, founded and run by Bill Colbert. This policy covers <strong>treetopgrowthstrategy.com</strong> and the forms, assessments, calculators and paid products on it.</p>
+    <p>We are the controller of the information described here. The person responsible for it is Bill Colbert, reachable at <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a>.</p>
+    <p>Client work we perform under a signed agreement is governed by that agreement. Where a client contract says something different about data handling, the contract controls for that engagement.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="collect">2. What we collect</h2>
+
+    <h3 class="sub">What you type</h3>
+    <p>Our forms ask for some combination of your name, work email address, company name, job title, phone number, and free-text answers about your situation. Nothing on this site asks for a government identifier, a date of birth, or a payment card number. Only the fields marked required are required, and you can get a useful answer out of most of our calculators without submitting anything at all.</p>
+
+    <h3 class="sub">What we look up</h3>
+    <p>To write a report that is worth reading, we pull a small amount of business context after you submit:</p>
+    <ul class="body">
+      <li><strong>Apollo.</strong> We pass your work email address to Apollo's business contact database to confirm your job title, seniority and the rough employee count of your company. We explicitly request that personal email addresses not be returned.</li>
+      <li><strong>Ahrefs.</strong> We pull public search metrics for your company's web domain and for competitor domains: domain rating, estimated organic traffic, keyword counts and top keywords. This is published information about a website, not information about you personally.</li>
+    </ul>
+    <p>Both lookups are about your company and your professional role. Neither reaches into your personal life, and neither happens until you submit a form.</p>
+
+    <h3 class="sub">What your browser sends</h3>
+    <p>Like every website, ours sees the technical details your browser provides with each request: your IP address, user agent, the page you asked for, and the time. Our host keeps these in standard server logs. We also use your IP address to rate-limit form submissions, which is what stops one script from filing a thousand assessments.</p>
+    <p>This site loads its typefaces from Google Fonts. That means Google receives your IP address and browser details when a page loads, under Google's own privacy terms. It is the only third party your browser contacts on a normal page view.</p>
+
+    <h3 class="sub">If you reply to us</h3>
+    <p>If you reply to a report email, the content of your reply is processed so that we can answer it, and is stored alongside your record. Treat it as you would any business email.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="dont">3. What we do not do</h2>
+    <p>Worth stating plainly, because most sites in our category do the opposite:</p>
+    <ul class="body">
+      <li><strong>No analytics.</strong> There is no Google Analytics, no Meta pixel, no LinkedIn insight tag, no heatmap recorder and no session replay on this site.</li>
+      <li><strong>No tracking cookies.</strong> We do not set cookies to follow you between pages or between sites, which is why you have never seen a cookie banner here. Two pages in the AI CMO Advisor onboarding flow save your place in your own browser's local storage so you can finish where you left off. That stays on your device and is never transmitted to us.</li>
+      <li><strong>No selling or renting.</strong> We do not sell, rent, trade or share your personal information for anyone else's marketing, and we never have. Nothing here is a "sale" or "share" as California law defines those terms.</li>
+      <li><strong>No buying lists to email you.</strong> You hear from us because you asked to, or because we had a real conversation.</li>
+    </ul>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="reports">4. Published reports, and what that means</h2>
+    <p>This is the part of how we work that most deserves a clear explanation, so here it is in full.</p>
+    <p>When you complete the AI-GTM Gap Assessment or an equipment assessment, we generate an HTML report from your answers and publish it as a page on this website, at an address of the form:</p>
+    <div class="callout">
+      <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.85rem;color:#C8E6C8;">treetopgrowthstrategy.com/reports/your-company-2026-11-17-a3f9c2e81b4d7056.html</p>
+    </div>
+    <p>We email you that link. Three things protect it:</p>
+    <ul class="body">
+      <li>The address ends in 64 bits of cryptographically random characters, so it cannot be guessed from your company name and a date.</li>
+      <li>Every report page carries a <strong>noindex, nofollow</strong> instruction, and the whole reports directory is disallowed in our robots.txt, so search engines are told not to list it.</li>
+      <li>Nothing on this site links to it. The only way to the page is the link we sent you.</li>
+    </ul>
+    <p>What those three things do <strong>not</strong> do is lock the page. <strong>There is no password on a report.</strong> Anyone who has the link can open it, including anyone you forward it to, anyone who sees it over your shoulder, and anyone who ends up with your email. The report contains what you told us: your company name, your name and title, your answers, and our analysis of them.</p>
+    <p>If that is not what you want, you have two options, and both are easy. Tell us before you submit and we will send the report as an attachment instead of publishing it. Or email us any time afterward and we will delete the page the same day. Reports do not expire on their own, so a report stays up until you ask us to take it down.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="processors">5. Who processes your data</h2>
+    <p>We run a small practice on other people's infrastructure. These are every service that touches your information, what each one gets, and why. We do not add to this list quietly; if it changes, this table changes.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Service</th><th>What it receives</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vercel</td><td>Every request to this site, including your IP address</td><td>Hosting and server logs</td></tr>
+          <tr><td>Airtable</td><td>Your name, email, company, title, phone, assessment answers, report link, and our notes</td><td>Our record of who we are talking to</td></tr>
+          <tr><td>Resend</td><td>Your email address and the content of messages we send and receive</td><td>Sending your report, receipts and follow-ups, and receiving your replies</td></tr>
+          <tr><td>Stripe</td><td>Your payment details, billing name and email</td><td>Taking payment. See section 8</td></tr>
+          <tr><td>OpenAI</td><td>Your assessment answers, company context, and the text of replies you send us</td><td>Drafting report analysis and response drafts</td></tr>
+          <tr><td>Anthropic</td><td>The same category of content, for the same purpose</td><td>Drafting and analysis</td></tr>
+          <tr><td>Apollo</td><td>Your work email address</td><td>Confirming job title, seniority and company size</td></tr>
+          <tr><td>Ahrefs</td><td>Your company's web domain</td><td>Public search metrics for the report</td></tr>
+          <tr><td>GitHub</td><td>The finished report file, which contains your answers</td><td>Storing and serving the published report page</td></tr>
+          <tr><td>Upstash</td><td>Your IP address and a hash of your email</td><td>Rate limiting, to stop abuse of the forms</td></tr>
+          <tr><td>Gamma</td><td>Report content, where a presentation version is produced</td><td>Generating slide versions of a deliverable</td></tr>
+          <tr><td>Google Fonts</td><td>Your IP address and browser details, directly from your browser</td><td>Loading the typefaces this site uses</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Each of these is a service provider acting on our instructions, not a party we sell data to. All of them process data in the United States, and this site is operated from the United States, so if you are writing to us from elsewhere your information is handled here.</p>
+    <p>We will also disclose information if the law requires it, and we would tell you if that happened unless we were legally prohibited from doing so.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="email">6. Email from us</h2>
+    <p>Two kinds of email come from this site.</p>
+    <p><strong>The thing you asked for.</strong> Your report, your receipt, a verification link, the workbook you bought. These are the point of the transaction, and they go out whether or not you want anything else from us.</p>
+    <p><strong>Follow-ups about that thing.</strong> If you started an assessment and did not finish, or finished one and might want the next step, you may hear from us a few times over the following weeks. These are written by a person, reviewed by a person, and sent only to people who gave us their address here.</p>
+    <p>To stop the second kind: reply to any message and say so, or email <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a>. We take you off the same day. Asking to stop does not affect anything you have bought; you will still get receipts and the deliverables you paid for.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="ai">7. AI processing</h2>
+    <p>We use large language models from OpenAI and Anthropic to help draft the analysis in a report and to help draft replies to emails. Your assessment answers and the text of your messages are sent to those models for that purpose.</p>
+    <p>Nothing we send is used to decide anything about you that has a legal or similarly significant effect, and no model output is sent to you without a person reading it first. If you would rather we not run your submission through a model at all, say so when you submit and we will write it by hand.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="payments">8. Payments</h2>
+    <p>Everything you can buy here is paid for through Stripe Checkout, which is a page Stripe hosts and operates. Your card number is entered on Stripe's page, not ours. <strong>We never see, receive or store your full card number.</strong> What comes back to us is the fact of a successful payment, the amount, the product, and the billing name and email you gave Stripe.</p>
+    <p>Stripe handles that data under its own privacy policy as an independent controller for its part of the transaction. If you hold a subscription, you can manage or cancel it yourself through the Stripe customer portal link in your receipt.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="retention">9. How long we keep it</h2>
+    <ul class="body">
+      <li><strong>Your record with us</strong> stays in Airtable until you ask us to delete it, or until we have had no contact for three years, whichever comes first.</li>
+      <li><strong>Published reports</strong> stay up until you ask us to take one down. There is no automatic expiry.</li>
+      <li><strong>Email we exchanged</strong> is kept as long as the business relationship is live and for a reasonable period after.</li>
+      <li><strong>Payment records</strong> are kept as long as tax and accounting rules require, which is generally seven years.</li>
+      <li><strong>Server and rate-limiting logs</strong> are short-lived, days rather than months, and are kept by our host and rate-limiting service on their schedules.</li>
+    </ul>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="rights">10. Your choices and rights</h2>
+    <p>Wherever you live, you can ask us to do any of the following, and we will do it:</p>
+    <ul class="body">
+      <li>Tell you everything we hold about you, and where it came from.</li>
+      <li>Send you a copy of it.</li>
+      <li>Correct anything that is wrong.</li>
+      <li>Delete your record.</li>
+      <li>Take a published report offline.</li>
+      <li>Stop emailing you.</li>
+    </ul>
+    <p>One email to <a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a> does it. We aim to act within a few days and will always respond within 30 days. We will not charge you, and we will not treat you differently for asking.</p>
+
+    <h3 class="sub">If you are in California</h3>
+    <p>You have the rights above under the CCPA as amended by the CPRA: to know, to delete, to correct, to obtain a portable copy, and to opt out of the sale or sharing of personal information. We do not sell or share personal information, and we do not use or disclose sensitive personal information for any purpose beyond providing what you asked for, so there is nothing for you to opt out of. We do not discriminate against anyone who exercises a right. You may use an authorized agent; we will ask for proof of their authority.</p>
+
+    <h3 class="sub">If you are in the UK or the EEA</h3>
+    <p>Our lawful bases are: performing a contract with you, where you have bought something; our legitimate interest in answering business enquiries and following up on them, where you submitted a form; and your consent where we have asked for it. You have the right to access, rectify, erase, restrict and port your data, and to object to processing based on legitimate interest, including direct marketing, which we will always honor. You also have the right to complain to your local supervisory authority. Your data is transferred to and processed in the United States.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="security">11. Security</h2>
+    <p>This site is served over HTTPS. Credentials for the services listed in section 5 are held as encrypted environment variables and are never committed to source control. Access to your record is limited to Bill Colbert and anyone directly working on your engagement.</p>
+    <p>No one can promise perfect security, and we are not going to. What we can tell you is what is and is not protected, which is the point of section 4.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="children">12. Children</h2>
+    <p>This is a business-to-business site intended for people acting for their companies. It is not directed at children, and we do not knowingly collect information from anyone under 16. If you believe a child has sent us something, write to us and we will delete it.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="changes">13. Changes to this policy</h2>
+    <p>If we change how any of this works, we will update this page and change the date at the top. If a change is significant, for instance if we ever added analytics or a new processor, we will say so here in plain terms rather than quietly editing a sentence.</p>
+  </section>
+
+  <section class="doc">
+    <h2 class="sec" id="contact">14. Contact</h2>
+    <p>Questions, requests, corrections, takedowns, or a disagreement with anything above:</p>
+    <p><strong>Bill Colbert</strong><br />Treetop Growth Strategy<br />Austin, Texas, United States<br /><a class="ilink" href="mailto:bill@treetopgrowthstrategy.com">bill@treetopgrowthstrategy.com</a></p>
+    <p>See also our <a class="ilink" href="/terms">Terms of Service</a>.</p>
+  </section>
+
+</div>
+
+<footer class="contactbar">
+  <div class="wrap">
+    <p style="font-size:0.82rem;color:#4A6A4A;">This policy was last updated on {UPDATED}. It describes how treetopgrowthstrategy.com actually behaves, not a template of how a site like it usually behaves.</p>
+  </div>
+</footer>
+
+<GlobalFooter />
+
+</body>
+</html>
