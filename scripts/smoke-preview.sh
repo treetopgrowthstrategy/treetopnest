@@ -35,10 +35,23 @@ get_ok() {
   fi
 }
 
+cron_loads() {
+  local path="$1" label="$2"
+  local code
+  code=$(curl -s -o /dev/null -w "%{http_code}" "$BASE$path" 2>/dev/null || echo 000)
+  if [ "$code" = 500 ] || [ "$code" = 000 ]; then
+    echo "FAIL $label ($path) -> $code (function did not load)"; fail=1
+  else
+    echo "ok   $label ($path) -> $code"
+  fi
+}
+
 echo "Smoke testing $BASE"
 post_loads /api/cmo-free-start     "free-start loads"
 post_loads /api/cmo-free-qualify   "free-qualify loads"
 post_loads /api/cmo-free-report    "free-report loads"
+cron_loads /api/cron-cmo-monitor   "monitor cron loads"
+cron_loads /api/cmo-click          "click tracker loads"
 get_ok     /                       "homepage"
 get_ok     /ai-cmo-advisor/pricing "pricing page"
 
